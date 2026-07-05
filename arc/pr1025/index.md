@@ -4,3 +4,4 @@
 |---|---|---|---|
 | 1025-1-rows.png | https://github.com/ArcBlock/arc/pull/1025 | 2026-07-05T06:13:17Z | pr-review agent (local) |
 | 1025-2-hover.png | https://github.com/ArcBlock/arc/pull/1025 | 2026-07-05T06:13:21Z | pr-review agent (local) |
+| 1025-3-menu-open.png | https://github.com/ArcBlock/arc/pull/1025 | 2026-07-05T06:13:24Z | pr-review agent (local) |
