@@ -6,3 +6,4 @@
 | discuss-kit-list-dark.png | https://github.com/ArcBlock/arc/issues/1513 | 2026-07-14T18:37:50Z | wangshijun@wangshijun-mac-studio |
 | discuss-kit-detail-light.png | https://github.com/ArcBlock/arc/issues/1513 | 2026-07-14T18:37:57Z | wangshijun@wangshijun-mac-studio |
 | discuss-kit-detail-dark.png | https://github.com/ArcBlock/arc/issues/1513 | 2026-07-14T18:38:07Z | wangshijun@wangshijun-mac-studio |
+| discuss-kit-detail-notfound.png | https://github.com/ArcBlock/arc/issues/1513 | 2026-07-14T18:38:14Z | wangshijun@wangshijun-mac-studio |
