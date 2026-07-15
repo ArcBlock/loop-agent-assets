@@ -11,3 +11,4 @@
 | edit-form-open-light.png | https://github.com/ArcBlock/arc/issues/1515 | 2026-07-15T06:39:32Z | wangshijun@wangshijun-mac-studio |
 | list-light.png | https://github.com/ArcBlock/arc/issues/1515 | 2026-07-15T06:39:45Z | wangshijun@wangshijun-mac-studio |
 | list-dark.png | https://github.com/ArcBlock/arc/issues/1515 | 2026-07-15T06:39:58Z | wangshijun@wangshijun-mac-studio |
+| detail-light.png | https://github.com/ArcBlock/arc/issues/1515 | 2026-07-15T06:40:11Z | wangshijun@wangshijun-mac-studio |
