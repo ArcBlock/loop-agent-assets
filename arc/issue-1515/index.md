@@ -13,3 +13,4 @@
 | list-dark.png | https://github.com/ArcBlock/arc/issues/1515 | 2026-07-15T06:39:58Z | wangshijun@wangshijun-mac-studio |
 | detail-light.png | https://github.com/ArcBlock/arc/issues/1515 | 2026-07-15T06:40:11Z | wangshijun@wangshijun-mac-studio |
 | detail-dark.png | https://github.com/ArcBlock/arc/issues/1515 | 2026-07-15T06:40:34Z | wangshijun@wangshijun-mac-studio |
+| xss-inert-light.png | https://github.com/ArcBlock/arc/issues/1515 | 2026-07-15T06:40:51Z | wangshijun@wangshijun-mac-studio |
