@@ -8,3 +8,4 @@
 | composer-submitting-light.png | https://github.com/ArcBlock/arc/issues/1515 | 2026-07-15T06:38:53Z | wangshijun@wangshijun-mac-studio |
 | edit-collapsed-light.png | https://github.com/ArcBlock/arc/issues/1515 | 2026-07-15T06:39:06Z | wangshijun@wangshijun-mac-studio |
 | edit-collapsed-dark.png | https://github.com/ArcBlock/arc/issues/1515 | 2026-07-15T06:39:19Z | wangshijun@wangshijun-mac-studio |
+| edit-form-open-light.png | https://github.com/ArcBlock/arc/issues/1515 | 2026-07-15T06:39:32Z | wangshijun@wangshijun-mac-studio |
