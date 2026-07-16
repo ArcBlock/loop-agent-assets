@@ -11,3 +11,4 @@
 | calendar-01-panel.png | https://github.com/ArcBlock/arc/issues/1630 | 2026-07-16T18:28:50Z | wangshijun@wangshijun-mac-studio |
 | calendar-02-permission-dialog.png | https://github.com/ArcBlock/arc/issues/1630 | 2026-07-16T18:29:03Z | wangshijun@wangshijun-mac-studio |
 | calendar-03-list-ok.png | https://github.com/ArcBlock/arc/issues/1630 | 2026-07-16T18:29:21Z | wangshijun@wangshijun-mac-studio |
+| calendar-04-forbidden-graceful.png | https://github.com/ArcBlock/arc/issues/1630 | 2026-07-16T18:29:34Z | wangshijun@wangshijun-mac-studio |
