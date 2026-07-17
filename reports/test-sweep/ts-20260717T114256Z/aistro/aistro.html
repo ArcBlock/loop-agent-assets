@@ -1,0 +1,113 @@
+<!doctype html><html><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>aistro — agent 走查报告</title><style>
+:root{--bg:#f7f8f8;--fg:#16201f;--muted:#5c6b69;--card:#fff;--card2:#eef2f1;--border:#dde3e2;--accent:#127a72;--pass:#1f8a54;--warn:#b5771a;--bad:#c0392b}
+@media(prefers-color-scheme:dark){:root{--bg:#0e1413;--fg:#e6ecea;--muted:#8ea19d;--card:#161d1c;--card2:#1d2624;--border:#26302e;--accent:#3fb8ab;--pass:#3fb37a;--warn:#d69a3e;--bad:#e5735f}}
+:root[data-theme=dark]{--bg:#0e1413;--fg:#e6ecea;--muted:#8ea19d;--card:#161d1c;--card2:#1d2624;--border:#26302e;--accent:#3fb8ab;--pass:#3fb37a;--warn:#d69a3e;--bad:#e5735f}
+:root[data-theme=light]{--bg:#f7f8f8;--fg:#16201f;--muted:#5c6b69;--card:#fff;--card2:#eef2f1;--border:#dde3e2;--accent:#127a72;--pass:#1f8a54;--warn:#b5771a;--bad:#c0392b}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--fg);font:15px/1.65 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;padding:24px}
+.wrap{max-width:920px;margin:0 auto}
+h1{font-size:24px;margin:0 0 4px;text-wrap:balance}h2{font-size:19px;margin:30px 0 8px}
+h2 .rt{font-size:13px;color:var(--muted);font-weight:400;font-variant-numeric:tabular-nums}
+.sub{color:var(--muted);margin:0 0 14px;font-size:13px}
+code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.85em;background:var(--card2);padding:1px 5px;border-radius:4px}
+.how{background:var(--card);border:1px solid var(--border);border-left:3px solid var(--accent);border-radius:8px;padding:13px 16px;margin:14px 0;font-size:14px}
+.how b{color:var(--accent)}
+.banner{border-radius:12px;padding:14px 18px;margin:16px 0}
+.banner.ok{background:color-mix(in srgb,var(--pass) 12%,transparent);border:1px solid color-mix(in srgb,var(--pass) 40%,transparent)}
+.banner.ok b{color:var(--pass)}
+.banner.bad{background:color-mix(in srgb,var(--bad) 13%,transparent);border:1px solid color-mix(in srgb,var(--bad) 45%,transparent)}
+.banner.bad b{color:var(--bad);font-size:16px}
+.plist{margin:10px 0 0;padding-left:0;list-style:none}
+.plist li{padding:8px 0;border-top:1px solid var(--border)}
+.plist a{text-decoration:none;color:var(--fg);font-weight:600}
+.plist .pe{color:var(--muted);font-size:12.5px;font-weight:400;margin-top:3px}
+.video{width:100%;border-radius:10px;border:1px solid var(--border);background:#000;margin:6px 0 2px}
+.vcap{color:var(--muted);font-size:12.5px;margin:0 0 8px}
+.novideo{color:var(--bad);font-weight:600;background:color-mix(in srgb,var(--bad) 10%,transparent);border:1px dashed color-mix(in srgb,var(--bad) 45%,transparent);border-radius:8px;padding:8px 12px;font-size:13px}
+.kpis{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0}
+.kpi{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:9px 14px;min-width:70px}
+.kpi .k{font-size:21px;font-weight:700;font-variant-numeric:tabular-nums}.kpi .l{color:var(--muted);font-size:12px}
+.kpi .k-bad{color:var(--bad)}.kpi .k-warn{color:var(--warn)}
+.op{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:15px 17px;margin:14px 0}
+.op h3{margin:0 0 3px;font-size:16px;display:flex;align-items:center;gap:9px;flex-wrap:wrap}
+.op .exp{color:var(--muted);font-size:13px;margin:0 0 9px}
+.op .nt{color:var(--muted);font-size:12.5px;margin-top:6px}
+.pill{font-size:11.5px;font-weight:700;padding:2px 9px;border-radius:20px}
+.p-ok{background:color-mix(in srgb,var(--pass) 18%,transparent);color:var(--pass)}
+.p-fail{background:color-mix(in srgb,var(--bad) 18%,transparent);color:var(--bad)}
+.p-warn{background:color-mix(in srgb,var(--warn) 20%,transparent);color:var(--warn)}
+.p-skip{background:var(--card2);color:var(--muted)}
+.p-write{background:color-mix(in srgb,var(--accent) 18%,transparent);color:var(--accent)}
+.frame figure{margin:0 0 9px}.frame img{width:100%;border-radius:8px;border:1px solid var(--border);display:block}
+.frame figcaption{color:var(--muted);font-size:11.5px;margin-top:4px;text-align:center}
+.chk{background:color-mix(in srgb,var(--pass) 12%,transparent);border:1px solid color-mix(in srgb,var(--pass) 34%,transparent);border-radius:8px;padding:8px 12px;font-size:13px}
+.chk b{color:var(--pass)}
+.chk-fail{background:color-mix(in srgb,var(--bad) 11%,transparent);border:1px solid color-mix(in srgb,var(--bad) 40%,transparent);border-radius:8px;padding:8px 12px;font-size:13px}
+.chk-fail b{color:var(--bad)}
+table.probe{border-collapse:collapse;width:100%;font-size:13px}
+table.probe th,table.probe td{border:1px solid var(--border);padding:5px 9px;text-align:left}
+table.probe tr.bad td{background:color-mix(in srgb,var(--bad) 10%,transparent)}
+</style></head><body><div class="wrap">
+<h1>aistro — agent 走查报告</h1>
+<p class="sub">环境 <code>https://aistro.afsd.dev</code> · 2026-07-17T11:59:40Z · 4 条测试路径 · driver <code>agent-playwright-mcp</code></p>
+<div class="how"><b>这份报告在做什么</b>：test-sweep 让 <b>agent 读被测页面自己写的
+<code>.aup/man</code> 知识</b>，用 Playwright MCP <b>当真人逐条测试路径走查</b>（导航/加标签/编辑/删除/创建…），
+<b>每条路径各自一段录屏</b>、每步截图并<b>自判 verdict + 附观察证据</b>（实际 DOM/文本/值，可复核）。
+<b>unreached</b>=没驱动到（不当失败）；<b>inconclusive</b>=不确定（绝不判失败）。写操作默认真提交、不清理。</div>
+<div class="banner bad"><b>⚠️ 发现 2 个问题</b>（点击跳到对应路径）<ul class="plist"><li><a href="#path-today"><span class="pill p-fail">失败</span> Today&#x27;s horoscope view · 步1</a> — navigate to /app/today (redirects to /app/today/2026-07-17), wait ~27s total<div class="pe">Page shell renders fine (nav, date tabs &#x27;← 昨天 2026-07-16 今天 2026-07-17 明天 2026-07-18 →&#x27;), but the content area is permanently stuck on the loading placeholder text &#x27;✨ 星象数据生成中，请稍候…&#x27; (&#x27;star data generating, please wait...&#x27;) for the entire obs</div></li><li><a href="#path-natal"><span class="pill p-fail">失败</span> Natal chart view · 步1</a> — navigate to /app/natal, wait ~11s<div class="pe">Page shell renders (&#x27;本命星盘&#x27; / &#x27;Your natal chart&#x27; header, &#x27;你出生那一刻的天象，是占星理解你的起点。&#x27; subtitle, &#x27;深度解读&#x27; section), but the chart area is stuck on &#x27;✨ 星象数据生成中，请稍候…&#x27; the entire time and the &#x27;深度解读&#x27; (deep reading) section below shows &#x27;No items to display</div></li></ul></div>
+<section id="probes"><h2>后端探针 （全通过）</h2><table class="probe"><tr><th></th><th>探针</th><th>详情</th></tr><tr class=""><td>✅</td><td>http-reachable</td><td>HTTP 200</td></tr><tr class=""><td>✅</td><td>afs-rpc-list</td><td>ok:true (10 .aup pages)</td></tr></table></section>
+<section id="path-today">
+<h2>Today&#x27;s horoscope view <span class="rt">authed · /app/today</span></h2>
+<video class="video" controls preload="metadata" src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260717T114256Z/aistro/page@c194bdf78e492b878799cdea30004cb2.webm"><a href="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260717T114256Z/aistro/page@c194bdf78e492b878799cdea30004cb2.webm">下载该路径录像</a></video><p class="vcap">本测试路径整段走查录像</p>
+<div class="kpis"><div class="kpi"><div class="k">1</div><div class="l">操作步</div></div><div class="kpi"><div class="k">0</div><div class="l">通过</div></div><div class="kpi"><div class="k k-bad">1</div><div class="l">失败</div></div><div class="kpi"><div class="k k-warn">0</div><div class="l">不确定</div></div><div class="kpi"><div class="k">0</div><div class="l">未走到</div></div></div>
+<div class="op">
+<h3><span class="pill p-fail">失败</span> navigate to /app/today (redirects to /app/today/2026-07-17), wait ~27s total</h3>
+<div class="exp">期望：today&#x27;s horoscope content renders (sandbox compute produces real data)</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260717T114256Z/aistro/today-03.png" alt="navigate to /app/today (redirects to /app/today/2026-07-17), wait ~27s total" loading="lazy"><figcaption>navigate to /app/today (redirects to /app/today/2026-07-17), wait ~27s total</figcaption></figure></div>
+<div class="chk-fail"><b>观察证据</b>：Page shell renders fine (nav, date tabs &#x27;← 昨天 2026-07-16 今天 2026-07-17 明天 2026-07-18 →&#x27;), but the content area is permanently stuck on the loading placeholder text &#x27;✨ 星象数据生成中，请稍候…&#x27; (&#x27;star data generating, please wait...&#x27;) for the entire observation window (checked at settle+0s, +8s, +16s, and again after a fresh 27s wait) and the detail list below it shows &#x27;No items to display&#x27;. No chart, data, or error message ever appears; textLen stayed flat at 147 chars across repeated snapshots (today-01/02/03.png).</div>
+<div class="nt">Root cause identified via the /app/chat path (same session/user): the agent explicitly said horoscope generation requires birth info the test fixture user hasn&#x27;t set (&#x27;I can&#x27;t generate your daily horoscope without your birth information. Please go to the Settings page...&#x27;). So the underlying failure is likely a missing precondition (no birth data on this account) rather than the QuickJS sandbox itself being broken — but the Today page&#x27;s failure mode is a defect regardless: it hangs on an infinite &#x27;generating&#x27; spinner instead of surfacing that same actionable error/empty-state.</div>
+</div>
+</section><section id="path-natal">
+<h2>Natal chart view <span class="rt">authed · /app/natal</span></h2>
+<video class="video" controls preload="metadata" src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260717T114256Z/aistro/page@27ca10c57f18ce4d1374249d4c4e8ad2.webm"><a href="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260717T114256Z/aistro/page@27ca10c57f18ce4d1374249d4c4e8ad2.webm">下载该路径录像</a></video><p class="vcap">本测试路径整段走查录像</p>
+<div class="kpis"><div class="kpi"><div class="k">1</div><div class="l">操作步</div></div><div class="kpi"><div class="k">0</div><div class="l">通过</div></div><div class="kpi"><div class="k k-bad">1</div><div class="l">失败</div></div><div class="kpi"><div class="k k-warn">0</div><div class="l">不确定</div></div><div class="kpi"><div class="k">0</div><div class="l">未走到</div></div></div>
+<div class="op">
+<h3><span class="pill p-fail">失败</span> navigate to /app/natal, wait ~11s</h3>
+<div class="exp">期望：natal chart page renders chart/data</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260717T114256Z/aistro/natal-03.png" alt="navigate to /app/natal, wait ~11s" loading="lazy"><figcaption>navigate to /app/natal, wait ~11s</figcaption></figure></div>
+<div class="chk-fail"><b>观察证据</b>：Page shell renders (&#x27;本命星盘&#x27; / &#x27;Your natal chart&#x27; header, &#x27;你出生那一刻的天象，是占星理解你的起点。&#x27; subtitle, &#x27;深度解读&#x27; section), but the chart area is stuck on &#x27;✨ 星象数据生成中，请稍候…&#x27; the entire time and the &#x27;深度解读&#x27; (deep reading) section below shows &#x27;No items to display&#x27; — confirmed visually in natal-03.png: an empty rounded placeholder box where the chart should be, with no chart rendering and no error message.</div>
+<div class="nt">Same underlying pattern as /app/today — same fixture user, same missing-birth-info likely cause, same stuck-spinner-instead-of-error UX defect.</div>
+</div>
+</section><section id="path-friends">
+<h2>Friends list <span class="rt">authed · /app/friends</span></h2>
+<video class="video" controls preload="metadata" src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260717T114256Z/aistro/page@f7f37262bce0975637f35cfcf935f227.webm"><a href="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260717T114256Z/aistro/page@f7f37262bce0975637f35cfcf935f227.webm">下载该路径录像</a></video><p class="vcap">本测试路径整段走查录像</p>
+<div class="kpis"><div class="kpi"><div class="k">1</div><div class="l">操作步</div></div><div class="kpi"><div class="k">1</div><div class="l">通过</div></div><div class="kpi"><div class="k k-bad">0</div><div class="l">失败</div></div><div class="kpi"><div class="k k-warn">0</div><div class="l">不确定</div></div><div class="kpi"><div class="k">0</div><div class="l">未走到</div></div></div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> navigate to /app/friends, wait ~7s</h3>
+<div class="exp">期望：friends list renders; empty state is fine if genuinely no friends, but must be a clear intentional empty state, not a crash</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260717T114256Z/aistro/friends-03.png" alt="navigate to /app/friends, wait ~7s" loading="lazy"><figcaption>navigate to /app/friends, wait ~7s</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：Page renders a clean, intentional empty state: header &#x27;好友&#x27; with subtitle &#x27;你身边重要的人，每人都有自己的星盘。&#x27;, a prominent &#x27;+ 添加好友&#x27; (Add Friend) call-to-action button top-right, and a body area with a folder icon plus &#x27;No items to display&#x27; text (visible in friends-03.png). No console errors, no crash, no leftover loading spinner — this is a real empty-list state, distinct from the stuck-generating state seen on today/natal.</div>
+
+</div>
+</section><section id="path-chat">
+<h2>AI chat astrologer <span class="rt">authed · /app/chat</span></h2>
+<video class="video" controls preload="metadata" src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260717T114256Z/aistro/page@92f6873d4ca2df93a2a0d7d6e71d4bb8.webm"><a href="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260717T114256Z/aistro/page@92f6873d4ca2df93a2a0d7d6e71d4bb8.webm">下载该路径录像</a></video><p class="vcap">本测试路径整段走查录像</p>
+<div class="kpis"><div class="kpi"><div class="k">2</div><div class="l">操作步</div></div><div class="kpi"><div class="k">2</div><div class="l">通过</div></div><div class="kpi"><div class="k k-bad">0</div><div class="l">失败</div></div><div class="kpi"><div class="k k-warn">0</div><div class="l">不确定</div></div><div class="kpi"><div class="k">0</div><div class="l">未走到</div></div></div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> navigate to /app/chat</h3>
+<div class="exp">期望：chat UI renders with input + send controls</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260717T114256Z/aistro/chat-01.png" alt="navigate to /app/chat" loading="lazy"><figcaption>navigate to /app/chat</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：Chat UI renders fully: greeting &#x27;How can I help?&#x27;, model indicator &#x27;AI Device · balanced&#x27;, 3 suggestion chips (&#x27;Show me around this workspace&#x27;, &#x27;Run a quick skill&#x27;, &#x27;Explain how this app works&#x27;), a textarea with placeholder &quot;Ask about your chart, today&#x27;s energy, a friend...&quot;, a model-picker button &#x27;🌐 balanced&#x27;, a voice-input button, and a send button &#x27;→&#x27;. dom.inputs=1 confirms the textbox is present and interactive.</div>
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> <span class="pill p-write">写</span>type &#x27;What&#x27;s my horoscope today?&#x27; into the textarea, click send (&#x27;→&#x27;), wait up to 25s for the agent</h3>
+<div class="exp">期望：the embedded agent responds with real content (happy-path chat round trip)</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260717T114256Z/aistro/chat-04.png" alt="type &#x27;What&#x27;s my horoscope today?&#x27; into the textarea, click send (&#x27;→&#x27;), wait up to 25s for the agent" loading="lazy"><figcaption>type &#x27;What&#x27;s my horoscope today?&#x27; into the textarea, click send (&#x27;→&#x27;), wait up to 25s for the agent</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：User bubble &#x27;What&#x27;s my horoscope today?&#x27; appears, followed by a visible tool-call trace (&#x27;Round 1 ✓ read `/packages/skills/daily-reading/SKILL.md`&#x27;, &#x27;Round 2 ✓ read&#x27;), then a real assistant text reply: &quot;I can&#x27;t generate your daily horoscope without your birth information. Please go to the Settings page to enter your birth date and place.&quot; with a stats footer &#x27;2 actions in 2 rounds · 27070 tokens · 26887 in · 183 out · 8297 cached · gemini-2-5-pro&#x27; (chat-04.png). This confirms the agent-surface LLM round trip is fully functional end-to-end (skill lookup, model call, token accounting) even though the answer itself is a graceful refusal due to missing user birth data.</div>
+<div class="nt">Sent one benign message per run default (COMMIT_WRITES=0, judged safe/cheap per instructions). This response is also the evidence used to explain the today/natal failures above.</div>
+</div>
+</section>
+<p class="sub" style="margin-top:22px">Generated by test-report-builder (build-agent-report) · issue #1808</p>
+</div></body></html>
