@@ -7,3 +7,4 @@
 | 20260716-154904-reader-notes-fullscreen-long.png | https://github.com/ArcBlock/aside/pull/330 | 2026-07-16T15:49:07Z | nategu@Nate-Mac-Pro |
 | 20260716-172404-ios-note-history.jpg | https://github.com/ArcBlock/aside/pull/330 | 2026-07-16T17:24:08Z | nategu@Nate-Mac-Pro |
 | 20260716-172425-web-note-history.jpg | https://github.com/ArcBlock/aside/pull/330 | 2026-07-16T17:24:27Z | nategu@Nate-Mac-Pro |
+| 20260717-075811-web-my-notes-crud.png | https://github.com/ArcBlock/aside/pull/330 | 2026-07-17T07:58:13Z | nategu@Nate-Mac-Pro |
