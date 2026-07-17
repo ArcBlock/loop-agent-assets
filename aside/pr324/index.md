@@ -10,3 +10,4 @@
 | 20260717-013738-issue-313-shared-reader-b7ee6a78.jpg | https://github.com/ArcBlock/aside/pull/324 | 2026-07-17T01:37:40Z | nategu@Nate-Mac-Pro |
 | 20260717-013750-issue-313-state-restored-b7ee6a78.jpg | https://github.com/ArcBlock/aside/pull/324 | 2026-07-17T01:37:52Z | nategu@Nate-Mac-Pro |
 | 20260717-013803-issue-313-pinyin-composition-b7ee6a78.jpg | https://github.com/ArcBlock/aside/pull/324 | 2026-07-17T01:38:06Z | nategu@Nate-Mac-Pro |
+| 20260717-015049-issue-313-inline-highlight-cropped-87308d1e.jpg | https://github.com/ArcBlock/aside/pull/324 | 2026-07-17T01:50:52Z | nategu@Nate-Mac-Pro |
