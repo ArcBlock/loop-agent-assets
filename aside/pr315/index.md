@@ -10,3 +10,4 @@
 | 20260716-090214-location-removed-add-back.jpg | https://github.com/ArcBlock/aside/pull/315 | 2026-07-16T09:02:16Z | nategu@Nate-Mac-Pro |
 | 20260717-092942-quick-note-metadata-wrap.jpg | https://github.com/ArcBlock/aside/pull/315 | 2026-07-17T09:29:45Z | nategu@Nate-Mac-Pro |
 | 20260717-095418-note-reader-capture-metadata.jpg | https://github.com/ArcBlock/aside/pull/315 | 2026-07-17T09:54:21Z | nategu@Nate-Mac-Pro |
+| 20260717-100233-note-reader-capture-metadata-latest-main.jpg | https://github.com/ArcBlock/aside/pull/315 | 2026-07-17T10:02:36Z | nategu@Nate-Mac-Pro |
