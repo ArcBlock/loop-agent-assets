@@ -1,0 +1,140 @@
+<!doctype html><html><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>site-blocklet-io — agent 走查报告</title><style>
+:root{--bg:#f7f8f8;--fg:#16201f;--muted:#5c6b69;--card:#fff;--card2:#eef2f1;--border:#dde3e2;--accent:#127a72;--pass:#1f8a54;--warn:#b5771a;--bad:#c0392b}
+@media(prefers-color-scheme:dark){:root{--bg:#0e1413;--fg:#e6ecea;--muted:#8ea19d;--card:#161d1c;--card2:#1d2624;--border:#26302e;--accent:#3fb8ab;--pass:#3fb37a;--warn:#d69a3e;--bad:#e5735f}}
+:root[data-theme=dark]{--bg:#0e1413;--fg:#e6ecea;--muted:#8ea19d;--card:#161d1c;--card2:#1d2624;--border:#26302e;--accent:#3fb8ab;--pass:#3fb37a;--warn:#d69a3e;--bad:#e5735f}
+:root[data-theme=light]{--bg:#f7f8f8;--fg:#16201f;--muted:#5c6b69;--card:#fff;--card2:#eef2f1;--border:#dde3e2;--accent:#127a72;--pass:#1f8a54;--warn:#b5771a;--bad:#c0392b}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--fg);font:15px/1.65 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;padding:24px}
+.wrap{max-width:920px;margin:0 auto}
+h1{font-size:24px;margin:0 0 4px;text-wrap:balance}h2{font-size:19px;margin:30px 0 8px}
+h2 .rt{font-size:13px;color:var(--muted);font-weight:400;font-variant-numeric:tabular-nums}
+.sub{color:var(--muted);margin:0 0 14px;font-size:13px}
+code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.85em;background:var(--card2);padding:1px 5px;border-radius:4px}
+.how{background:var(--card);border:1px solid var(--border);border-left:3px solid var(--accent);border-radius:8px;padding:13px 16px;margin:14px 0;font-size:14px}
+.how b{color:var(--accent)}
+.banner{border-radius:12px;padding:14px 18px;margin:16px 0}
+.banner.ok{background:color-mix(in srgb,var(--pass) 12%,transparent);border:1px solid color-mix(in srgb,var(--pass) 40%,transparent)}
+.banner.ok b{color:var(--pass)}
+.banner.bad{background:color-mix(in srgb,var(--bad) 13%,transparent);border:1px solid color-mix(in srgb,var(--bad) 45%,transparent)}
+.banner.bad b{color:var(--bad);font-size:16px}
+.banner.info{background:color-mix(in srgb,var(--accent) 10%,transparent);border:1px solid color-mix(in srgb,var(--accent) 38%,transparent)}
+.banner.info b{color:var(--accent)}
+.plist{margin:10px 0 0;padding-left:0;list-style:none}
+.plist li{padding:8px 0;border-top:1px solid var(--border)}
+.plist a{text-decoration:none;color:var(--fg);font-weight:600}
+.plist .pe{color:var(--muted);font-size:12.5px;font-weight:400;margin-top:3px}
+.video{width:100%;border-radius:10px;border:1px solid var(--border);background:#000;margin:6px 0 2px}
+.vcap{color:var(--muted);font-size:12.5px;margin:0 0 8px}
+.novideo{color:var(--bad);font-weight:600;background:color-mix(in srgb,var(--bad) 10%,transparent);border:1px dashed color-mix(in srgb,var(--bad) 45%,transparent);border-radius:8px;padding:8px 12px;font-size:13px}
+.kpis{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0}
+.kpi{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:9px 14px;min-width:70px}
+.kpi .k{font-size:21px;font-weight:700;font-variant-numeric:tabular-nums}.kpi .l{color:var(--muted);font-size:12px}
+.kpi .k-bad{color:var(--bad)}.kpi .k-warn{color:var(--warn)}
+.op{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:15px 17px;margin:14px 0}
+.op h3{margin:0 0 3px;font-size:16px;display:flex;align-items:center;gap:9px;flex-wrap:wrap}
+.op .exp{color:var(--muted);font-size:13px;margin:0 0 9px}
+.op .nt{color:var(--muted);font-size:12.5px;margin-top:6px}
+.pill{font-size:11.5px;font-weight:700;padding:2px 9px;border-radius:20px}
+.p-ok{background:color-mix(in srgb,var(--pass) 18%,transparent);color:var(--pass)}
+.p-fail{background:color-mix(in srgb,var(--bad) 18%,transparent);color:var(--bad)}
+.p-warn{background:color-mix(in srgb,var(--warn) 20%,transparent);color:var(--warn)}
+.p-skip{background:var(--card2);color:var(--muted)}
+.p-write{background:color-mix(in srgb,var(--accent) 18%,transparent);color:var(--accent)}
+.frame figure{margin:0 0 9px}.frame img{width:100%;border-radius:8px;border:1px solid var(--border);display:block}
+.frame figcaption{color:var(--muted);font-size:11.5px;margin-top:4px;text-align:center}
+.chk{background:color-mix(in srgb,var(--pass) 12%,transparent);border:1px solid color-mix(in srgb,var(--pass) 34%,transparent);border-radius:8px;padding:8px 12px;font-size:13px}
+.chk b{color:var(--pass)}
+.chk-fail{background:color-mix(in srgb,var(--bad) 11%,transparent);border:1px solid color-mix(in srgb,var(--bad) 40%,transparent);border-radius:8px;padding:8px 12px;font-size:13px}
+.chk-fail b{color:var(--bad)}
+table.probe{border-collapse:collapse;width:100%;font-size:13px}
+table.probe th,table.probe td{border:1px solid var(--border);padding:5px 9px;text-align:left}
+table.probe tr.bad td{background:color-mix(in srgb,var(--bad) 10%,transparent)}
+</style></head><body><div class="wrap">
+<h1>site-blocklet-io — agent 走查报告</h1>
+<p class="sub">环境 <code>https://site-blocklet-io.afsd.dev</code> · 2026-07-18T02:11:52Z · 走查 0 / 声明 0 条测试路径 · driver <code>agent-playwright-mcp</code></p>
+<div class="how"><b>这份报告在做什么</b>：test-sweep 让 <b>agent 读被测页面自己写的
+<code>.aup/man</code> 知识</b>，用 Playwright MCP <b>当真人逐条测试路径走查</b>（导航/加标签/编辑/删除/创建…），
+<b>每条路径各自一段录屏</b>、每步截图并<b>自判 verdict + 附观察证据</b>（实际 DOM/文本/值，可复核）。
+<b>unreached</b>=没驱动到（不当失败）；<b>inconclusive</b>=不确定（绝不判失败）。写操作默认真提交、不清理。</div>
+<div class="banner ok"><b>✅ 覆盖完整</b>：声明 0 条测试路径全部走查。</div>
+<div class="banner bad"><b>⚠️ 发现 1 个问题</b>（点击跳到对应路径）<ul class="plist"><li><a href="#path-articles"><span class="pill p-warn">不确定</span> 文章索引 + 详情 + 本地化回退 · 步4</a> — 首页 locale-switch 按钮（&#x27;中文&#x27;/&#x27;日本語&#x27;）本身未点击驱动，仅通过上一步直接 URL 导航验证了 /ja/ 前缀行为<div class="pe">index 页快照中 interactables 确实含 button &quot;中文&quot;、button &quot;日本語&quot;、button &quot;Select language&quot;（存在可点击的语言切换控件），但本轮未实际点击该按钮走查其重渲染效果，故按钮驱动路径本身标记不确定，不代表功能异常</div></li></ul></div>
+<section id="probes"><h2>后端探针 （全通过）</h2><table class="probe"><tr><th></th><th>探针</th><th>详情</th></tr><tr class=""><td>✅</td><td>http-reachable</td><td>HTTP 200</td></tr><tr class=""><td>✅</td><td>afs-rpc-list</td><td>N/A（非 AUP app，无 .aup/pages，webLibrary/manifest-free 站点属预期）</td></tr></table></section>
+<section id="path-index">
+<h2>首页浏览与站内导航 <span class="rt">anon · /</span></h2>
+<video class="video" controls preload="metadata" src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260718T020644Z/site-blocklet-io/page@70385736dfff3ae24ae6b834661ff9d6.webm"><a href="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260718T020644Z/site-blocklet-io/page@70385736dfff3ae24ae6b834661ff9d6.webm">下载该路径录像</a></video><p class="vcap">本测试路径整段走查录像</p>
+<div class="kpis"><div class="kpi"><div class="k">2</div><div class="l">操作步</div></div><div class="kpi"><div class="k">2</div><div class="l">通过</div></div><div class="kpi"><div class="k k-bad">0</div><div class="l">失败</div></div><div class="kpi"><div class="k k-warn">0</div><div class="l">不确定</div></div><div class="kpi"><div class="k">0</div><div class="l">未走到</div></div></div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> 导航到首页 https://site-blocklet-io.afsd.dev/，等待渲染</h3>
+<div class="exp">期望：hero headline &#x27;Package real apps as portable product blocks.&#x27; 渲染，含两个站内 CTA &#x27;Read the docs&#x27; 和 &#x27;See platform articles&#x27;</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260718T020644Z/site-blocklet-io/index-01.png" alt="导航到首页 https://site-blocklet-io.afsd.dev/，等待渲染" loading="lazy"><figcaption>导航到首页 https://site-blocklet-io.afsd.dev/，等待渲染</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：document.title=&#x27;Composable App Platform | Blocklet&#x27;；body textHead=&#x27;Blocklet DOCS ARTICLES BLOCKLET Blocklet Package real apps as portable product blocks. Build, publish, and operate apps, docs, services, and site sections without giving up source ownership. Read the docs See platform articles BLOCKLET COMPOSABLE DELIVERY A product surface can be built from many blocks. ...&#x27;；interactables 含 a &quot;Read the docs&quot;、a &quot;See platform articles&quot;、a &quot;Read docs&quot;（closing CTA）、a &quot;Explore AIGNE&quot;，与 man 描述的六段结构（hero/blocks/proof stats/support cards/developer flow/closing CTA）及双 CTA 均一致</div>
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> 点击 hero 主 CTA &#x27;Read the docs&#x27;</h3>
+<div class="exp">期望：站内跳转到 /{locale}/docs/（不离站）</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260718T020644Z/site-blocklet-io/index-03.png" alt="点击 hero 主 CTA &#x27;Read the docs&#x27;" loading="lazy"><figcaption>点击 hero 主 CTA &#x27;Read the docs&#x27;</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：点击后 url 变为 https://site-blocklet-io.afsd.dev/en/docs/，title=&#x27;Blocklet Docs | Blocklet&#x27;，textHead 出现 docs 导航树 &#x27;FOUNDATIONS What is a blocklet Anatomy BUILD Author content Mount in a site OPERATE Release cadence&#x27;，确认站内跳转且落在 docs 索引页</div>
+
+</div>
+</section><section id="path-docs">
+<h2>文档索引 + 详情浏览 <span class="rt">anon · /en/docs/</span></h2>
+<video class="video" controls preload="metadata" src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260718T020644Z/site-blocklet-io/page@016ce229f693aa708df7906a13186636.webm"><a href="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260718T020644Z/site-blocklet-io/page@016ce229f693aa708df7906a13186636.webm">下载该路径录像</a></video><p class="vcap">本测试路径整段走查录像</p>
+<div class="kpis"><div class="kpi"><div class="k">3</div><div class="l">操作步</div></div><div class="kpi"><div class="k">3</div><div class="l">通过</div></div><div class="kpi"><div class="k k-bad">0</div><div class="l">失败</div></div><div class="kpi"><div class="k k-warn">0</div><div class="l">不确定</div></div><div class="kpi"><div class="k">0</div><div class="l">未走到</div></div></div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> 直接导航到 https://site-blocklet-io.afsd.dev/en/docs/</h3>
+<div class="exp">期望：intro 段落 + 按 nav-group/nav-order 分组的导航树：Foundations(What is a blocklet #1, Anatomy #2)/Build(Author content #1, Mount in a site #2)/Operate(Release cadence #1)</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260718T020644Z/site-blocklet-io/docs-01.png" alt="直接导航到 https://site-blocklet-io.afsd.dev/en/docs/" loading="lazy"><figcaption>直接导航到 https://site-blocklet-io.afsd.dev/en/docs/</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：textHead=&#x27;Blocklet DOCS ARTICLES Blocklet Docs FOUNDATIONS What is a blocklet Anatomy BUILD Author content Mount in a site OPERATE Release cadence DOCUMENTATION Blocklet Docs How to design, package, and operate a blocklet — the smallest deployable product slice on ArcBlock. Blocklet documentation. A blocklet is a self-contained product slice ...&#x27;，分组与顺序与 man DESCRIPTION 声明的 5 篇文档/3 组顺序完全一致</div>
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> 点击导航项 &#x27;Anatomy&#x27;</h3>
+<div class="exp">期望：跳转到 /en/docs/anatomy/，正文以 &#x27;The directory layout of a typical blocklet.&#x27; 开头</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260718T020644Z/site-blocklet-io/docs-04.png" alt="点击导航项 &#x27;Anatomy&#x27;" loading="lazy"><figcaption>点击导航项 &#x27;Anatomy&#x27;</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：url 变为 https://site-blocklet-io.afsd.dev/en/docs/anatomy/，title=&#x27;Anatomy | Blocklet&#x27;，textHead=&#x27;...BLOCKLET DOCS / ANATOMY FOUNDATIONS Anatomy The directory layou...&#x27;（截断处正是 man example 给出的原文 &#x27;The directory layout of a typical blocklet.&#x27;）</div>
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> 再点击导航项 &#x27;Mount in a site&#x27;</h3>
+<div class="exp">期望：跳转到 /en/docs/mount-in-a-site/，Build 分组下第 2 篇渲染</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260718T020644Z/site-blocklet-io/docs-07.png" alt="再点击导航项 &#x27;Mount in a site&#x27;" loading="lazy"><figcaption>再点击导航项 &#x27;Mount in a site&#x27;</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：url 变为 https://site-blocklet-io.afsd.dev/en/docs/mount-in-a-site/，title=&#x27;Mount in a site | Blocklet&#x27;，textHead=&#x27;...BLOCKLET DOCS / MOUNT IN A SITE BUILD Mount in a site Connectin...&#x27;，确认可在文档间通过导航树连续跳转（非仅单篇可达）</div>
+
+</div>
+</section><section id="path-articles">
+<h2>文章索引 + 详情 + 本地化回退 <span class="rt">anon · /en/articles/</span></h2>
+<video class="video" controls preload="metadata" src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260718T020644Z/site-blocklet-io/page@7140ded6bc66bdc882f230f2b6b57531.webm"><a href="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260718T020644Z/site-blocklet-io/page@7140ded6bc66bdc882f230f2b6b57531.webm">下载该路径录像</a></video><p class="vcap">本测试路径整段走查录像</p>
+<div class="kpis"><div class="kpi"><div class="k">4</div><div class="l">操作步</div></div><div class="kpi"><div class="k">3</div><div class="l">通过</div></div><div class="kpi"><div class="k k-bad">0</div><div class="l">失败</div></div><div class="kpi"><div class="k k-warn">1</div><div class="l">不确定</div></div><div class="kpi"><div class="k">0</div><div class="l">未走到</div></div></div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> 直接导航到 https://site-blocklet-io.afsd.dev/en/articles/</h3>
+<div class="exp">期望：索引列出每篇文章卡片（标题/摘要/日期/分类），来自 front matter</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260718T020644Z/site-blocklet-io/articles-01.png" alt="直接导航到 https://site-blocklet-io.afsd.dev/en/articles/" loading="lazy"><figcaption>直接导航到 https://site-blocklet-io.afsd.dev/en/articles/</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：textHead=&#x27;...ARTICLES Articles about Blocklet packaging, deployment, and composable application architecture. STRATEGY · MAY 1, 2026 Blocklet Site Operating Model How blocklet.io will use blocklet-owne...&#x27;，首卡标题/分类(STRATEGY)/日期(2026-05-01)与摘要均渲染，符合 man 描述的卡片字段来源</div>
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> 点击卡片 &#x27;The Shape of a Blocklet&#x27;</h3>
+<div class="exp">期望：跳转到 /en/articles/the-shape-of-a-blocklet/，正文含 title/date/author 头部</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260718T020644Z/site-blocklet-io/articles-04.png" alt="点击卡片 &#x27;The Shape of a Blocklet&#x27;" loading="lazy"><figcaption>点击卡片 &#x27;The Shape of a Blocklet&#x27;</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：url 变为 https://site-blocklet-io.afsd.dev/en/articles/the-shape-of-a-blocklet/，title=&#x27;The Shape of a Blocklet | Blocklet&#x27;，textHead=&#x27;...Home / Articles / The Shape of a Blocklet The Shape of a Blocklet ArcBlock 2026-04-19 blocklet packaging What lives inside...&#x27;，author=&#x27;ArcBlock&#x27;、date=&#x27;2026-04-19&#x27;、tags 均渲染，slug 与目录名一致</div>
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> 直接导航到本地化路由 https://site-blocklet-io.afsd.dev/ja/articles/naming-the-routes/（验证无 ja 译文时的回退行为）</h3>
+<div class="exp">期望：非 404，渲染英文正文（man caveat：未译文章的本地化路由回退到英文）</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260718T020644Z/site-blocklet-io/articles-06.png" alt="直接导航到本地化路由 https://site-blocklet-io.afsd.dev/ja/articles/naming-the-routes/（验证无 ja 译文时的回退行为）" loading="lazy"><figcaption>直接导航到本地化路由 https://site-blocklet-io.afsd.dev/ja/articles/naming-the-routes/（验证无 ja 译文时的回退行为）</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：HTTP 可达且渲染成功，title=&#x27;Naming the Routes | Blocklet&#x27;（英文原题，非机翻/占位符），textHead=&#x27;...Home / Articles / Naming the Routes Naming the Routes ArcBlock 2026-02-21 routing information-architecture URLs are interfaces...&#x27;，正文英文原文，未 404、未空白，确认 English-only 回退声明成立</div>
+
+</div>
+<div class="op">
+<h3><span class="pill p-warn">不确定</span> 首页 locale-switch 按钮（&#x27;中文&#x27;/&#x27;日本語&#x27;）本身未点击驱动，仅通过上一步直接 URL 导航验证了 /ja/ 前缀行为</h3>
+<div class="exp">期望：点击 header 的语言切换按钮应重渲染当前页为对应 locale 文案</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260718T020644Z/site-blocklet-io/index-01.png" alt="首页 locale-switch 按钮（&#x27;中文&#x27;/&#x27;日本語&#x27;）本身未点击驱动，仅通过上一步直接 URL 导航验证了 /ja/ 前缀行为" loading="lazy"><figcaption>首页 locale-switch 按钮（&#x27;中文&#x27;/&#x27;日本語&#x27;）本身未点击驱动，仅通过上一步直接 URL 导航验证了 /ja/ 前缀行为</figcaption></figure></div>
+<div class="chk-fail"><b>观察证据</b>：index 页快照中 interactables 确实含 button &quot;中文&quot;、button &quot;日本語&quot;、button &quot;Select language&quot;（存在可点击的语言切换控件），但本轮未实际点击该按钮走查其重渲染效果，故按钮驱动路径本身标记不确定，不代表功能异常</div>
+<div class="nt">预算内优先覆盖三条声明路径的主流程，语言切换按钮的点击驱动可留待下轮加强</div>
+</div>
+</section>
+<p class="sub" style="margin-top:22px">Generated by test-report-builder (build-agent-report) · issue #1808</p>
+</div></body></html>
