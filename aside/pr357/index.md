@@ -1,0 +1,5 @@
+# aside/pr357
+
+| file | source | uploaded | by |
+|---|---|---|---|
+| 20260718-064528-collection-delete-progress-3528-items.png | https://github.com/ArcBlock/aside/pull/357 | 2026-07-18T06:45:31Z | nategu@Nate-Mac-Pro |
