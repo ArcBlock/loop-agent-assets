@@ -1,0 +1,179 @@
+<!doctype html><html><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>cost-dashboard — agent 走查报告</title><style>
+:root{--bg:#f7f8f8;--fg:#16201f;--muted:#5c6b69;--card:#fff;--card2:#eef2f1;--border:#dde3e2;--accent:#127a72;--pass:#1f8a54;--warn:#b5771a;--bad:#c0392b}
+@media(prefers-color-scheme:dark){:root{--bg:#0e1413;--fg:#e6ecea;--muted:#8ea19d;--card:#161d1c;--card2:#1d2624;--border:#26302e;--accent:#3fb8ab;--pass:#3fb37a;--warn:#d69a3e;--bad:#e5735f}}
+:root[data-theme=dark]{--bg:#0e1413;--fg:#e6ecea;--muted:#8ea19d;--card:#161d1c;--card2:#1d2624;--border:#26302e;--accent:#3fb8ab;--pass:#3fb37a;--warn:#d69a3e;--bad:#e5735f}
+:root[data-theme=light]{--bg:#f7f8f8;--fg:#16201f;--muted:#5c6b69;--card:#fff;--card2:#eef2f1;--border:#dde3e2;--accent:#127a72;--pass:#1f8a54;--warn:#b5771a;--bad:#c0392b}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--fg);font:15px/1.65 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;padding:24px}
+.wrap{max-width:920px;margin:0 auto}
+h1{font-size:24px;margin:0 0 4px;text-wrap:balance}h2{font-size:19px;margin:30px 0 8px}
+h2 .rt{font-size:13px;color:var(--muted);font-weight:400;font-variant-numeric:tabular-nums}
+.sub{color:var(--muted);margin:0 0 14px;font-size:13px}
+code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.85em;background:var(--card2);padding:1px 5px;border-radius:4px}
+.how{background:var(--card);border:1px solid var(--border);border-left:3px solid var(--accent);border-radius:8px;padding:13px 16px;margin:14px 0;font-size:14px}
+.how b{color:var(--accent)}
+.banner{border-radius:12px;padding:14px 18px;margin:16px 0}
+.banner.ok{background:color-mix(in srgb,var(--pass) 12%,transparent);border:1px solid color-mix(in srgb,var(--pass) 40%,transparent)}
+.banner.ok b{color:var(--pass)}
+.banner.bad{background:color-mix(in srgb,var(--bad) 13%,transparent);border:1px solid color-mix(in srgb,var(--bad) 45%,transparent)}
+.banner.bad b{color:var(--bad);font-size:16px}
+.banner.info{background:color-mix(in srgb,var(--accent) 10%,transparent);border:1px solid color-mix(in srgb,var(--accent) 38%,transparent)}
+.banner.info b{color:var(--accent)}
+.plist{margin:10px 0 0;padding-left:0;list-style:none}
+.plist li{padding:8px 0;border-top:1px solid var(--border)}
+.plist a{text-decoration:none;color:var(--fg);font-weight:600}
+.plist .pe{color:var(--muted);font-size:12.5px;font-weight:400;margin-top:3px}
+.video{width:100%;border-radius:10px;border:1px solid var(--border);background:#000;margin:6px 0 2px}
+.vcap{color:var(--muted);font-size:12.5px;margin:0 0 8px}
+.novideo{color:var(--bad);font-weight:600;background:color-mix(in srgb,var(--bad) 10%,transparent);border:1px dashed color-mix(in srgb,var(--bad) 45%,transparent);border-radius:8px;padding:8px 12px;font-size:13px}
+.kpis{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0}
+.kpi{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:9px 14px;min-width:70px}
+.kpi .k{font-size:21px;font-weight:700;font-variant-numeric:tabular-nums}.kpi .l{color:var(--muted);font-size:12px}
+.kpi .k-bad{color:var(--bad)}.kpi .k-warn{color:var(--warn)}
+.op{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:15px 17px;margin:14px 0}
+.op h3{margin:0 0 3px;font-size:16px;display:flex;align-items:center;gap:9px;flex-wrap:wrap}
+.op .exp{color:var(--muted);font-size:13px;margin:0 0 9px}
+.op .nt{color:var(--muted);font-size:12.5px;margin-top:6px}
+.pill{font-size:11.5px;font-weight:700;padding:2px 9px;border-radius:20px}
+.p-ok{background:color-mix(in srgb,var(--pass) 18%,transparent);color:var(--pass)}
+.p-fail{background:color-mix(in srgb,var(--bad) 18%,transparent);color:var(--bad)}
+.p-warn{background:color-mix(in srgb,var(--warn) 20%,transparent);color:var(--warn)}
+.p-skip{background:var(--card2);color:var(--muted)}
+.p-write{background:color-mix(in srgb,var(--accent) 18%,transparent);color:var(--accent)}
+.frame figure{margin:0 0 9px}.frame img{width:100%;border-radius:8px;border:1px solid var(--border);display:block}
+.frame figcaption{color:var(--muted);font-size:11.5px;margin-top:4px;text-align:center}
+.chk{background:color-mix(in srgb,var(--pass) 12%,transparent);border:1px solid color-mix(in srgb,var(--pass) 34%,transparent);border-radius:8px;padding:8px 12px;font-size:13px}
+.chk b{color:var(--pass)}
+.chk-fail{background:color-mix(in srgb,var(--bad) 11%,transparent);border:1px solid color-mix(in srgb,var(--bad) 40%,transparent);border-radius:8px;padding:8px 12px;font-size:13px}
+.chk-fail b{color:var(--bad)}
+table.probe{border-collapse:collapse;width:100%;font-size:13px}
+table.probe th,table.probe td{border:1px solid var(--border);padding:5px 9px;text-align:left}
+table.probe tr.bad td{background:color-mix(in srgb,var(--bad) 10%,transparent)}
+</style></head><body><div class="wrap">
+<h1>cost-dashboard — agent 走查报告</h1>
+<p class="sub">环境 <code>https://cost-dashboard.afsd.dev</code> · 2026-07-19T02:31:41Z · 走查 4 / 声明 4 条测试路径 · driver <code>agent-playwright-mcp</code></p>
+<div class="how"><b>这份报告在做什么</b>：test-sweep 让 <b>agent 读被测页面自己写的
+<code>.aup/man</code> 知识</b>，用 Playwright MCP <b>当真人逐条测试路径走查</b>（导航/加标签/编辑/删除/创建…），
+<b>每条路径各自一段录屏</b>、每步截图并<b>自判 verdict + 附观察证据</b>（实际 DOM/文本/值，可复核）。
+<b>unreached</b>=没驱动到（不当失败）；<b>inconclusive</b>=不确定（绝不判失败）。写操作默认真提交、不清理。</div>
+<div class="banner ok"><b>✅ 覆盖完整</b>：声明 4 条测试路径全部走查。</div>
+<div class="banner bad"><b>⚠️ 发现 10 个问题</b>（点击跳到对应路径）<ul class="plist"><li><a href="#path-overview"><span class="pill p-fail">失败</span> Overview — grand-total KPIs, cloud cards, monthly trend, top services · 步2</a> — assert header/subtitle/KPI content interpolation<div class="pe">h1#header text is the literal unresolved string &quot;Cost Dashboard — ${content.grandTotalFormatted}&quot;; h4#subtitle is literally &quot;${content.cloudCount} clouds · ${content.period.start} — ${content.period.end}&quot;; kpi-gross-value/kpi-credits-value/</div></li><li><a href="#path-overview"><span class="pill p-fail">失败</span> Overview — grand-total KPIs, cloud cards, monthly trend, top services · 步3</a> — assert trend-chart renders monthly spend data<div class="pe">div#trend-chart text is &quot;Data error: Path not found: /cost-aggregator/all/b&quot; (truncated in capture; confirmed full path via the identically-sourced month page: /cost-aggregator/all/by-month/.chart) — an explicit backend read error, not a le</div></li><li><a href="#path-overview"><span class="pill p-fail">失败</span> Overview — grand-total KPIs, cloud cards, monthly trend, top services · 步4</a> — assert cloud-cards populated<div class="pe">div#cloud-cards text is &quot;No cloud services configured&quot;, consistent with the probe.sh backend probe &quot;afs-rpc-list&quot;: false, detail &quot;error code: 1102&quot; and the trend-chart/KPI failures above — the cost-aggregator backend is not returning data o</div></li><li><a href="#path-month"><span class="pill p-fail">失败</span> Monthly trend — bar chart + day-by-day breakdown + cloud cards · 步2</a> — assert header/subtitle content interpolation<div class="pe">h1#header literal &quot;Monthly Trend — ${content.grandTotalFormatted}&quot;; h4#subtitle literal &quot;${content.cloudCount} clouds · ${content.period.start} — ${content.period.end}&quot; — unresolved template tokens, same failure mode as overview.</div></li><li><a href="#path-month"><span class="pill p-fail">失败</span> Monthly trend — bar chart + day-by-day breakdown + cloud cards · 步3</a> — assert month-chart renders monthly bar chart<div class="pe">div#month-chart text is the exact string &quot;Data error: Path not found: /cost-aggregator/all/by-month/.chart&quot; — explicit backend 404/not-found on the declared src path.</div></li><li><a href="#path-month"><span class="pill p-fail">失败</span> Monthly trend — bar chart + day-by-day breakdown + cloud cards · 步4</a> — assert month-table renders daily breakdown<div class="pe">div#month-table text is &quot;No items&quot; — empty table, consistent with the same aggregator backend failure.</div></li><li><a href="#path-month"><span class="pill p-fail">失败</span> Monthly trend — bar chart + day-by-day breakdown + cloud cards · 步5</a> — assert cloud-cards populated<div class="pe">div#cloud-cards text is &quot;No cloud services configured&quot; — identical failure to overview&#x27;s cloud-cards.</div></li><li><a href="#path-cloud-detail"><span class="pill p-fail">失败</span> Cloud detail — cloud-selector + empty detail-surface until a cloud is picked · 步2</a> — assert cloud-selector populated<div class="pe">div#cloud-selector text is &quot;No cloud services configured&quot; — same aggregator backend failure observed on overview and month.</div></li><li><a href="#path-cloud-detail"><span class="pill p-fail">失败</span> Cloud detail — cloud-selector + empty detail-surface until a cloud is picked · 步3</a> — assert detail-surface empty-state text<div class="pe">div#detail-surface text is &quot;\u26a0 Surface: set src (AFS path) or url (ws://)&quot; (a generic surface-node placeholder), not the man-asserted &quot;Select a cloud above to view details&quot; string — the configured emptyText is not being rendered.</div></li><li><a href="#path-explorer"><span class="pill p-warn">不确定</span> Explorer — header + embedded explorer blocklet mount · 步2</a> — assert embedded explorer blocklet content renders under #browser<div class="pe">div#browser has no rendered text/children (dom.textHead ends at &quot;Cost Data Explorer Overview&quot;, nothing beyond it, aupNodes stayed at 15 = just this page&#x27;s own tree). Per man caveat, this is the DOCUMENTED behavior when the required:false `e</div></li></ul></div>
+<section id="probes"><h2>后端探针 （1 项失败）</h2><table class="probe"><tr><th></th><th>探针</th><th>详情</th></tr><tr class=""><td>✅</td><td>http-reachable</td><td>HTTP 200</td></tr><tr class="bad"><td>❌</td><td>afs-rpc-list</td><td>error code: 1102 </td></tr></table></section>
+<section id="path-overview">
+<h2>Overview — grand-total KPIs, cloud cards, monthly trend, top services <span class="rt">anon · /</span></h2>
+<video class="video" controls preload="metadata" src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260719T020655Z/cost-dashboard/page@a1b9cf54f171da2f5cf3ce6e046a50b1.webm"><a href="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260719T020655Z/cost-dashboard/page@a1b9cf54f171da2f5cf3ce6e046a50b1.webm">下载该路径录像</a></video><p class="vcap">本测试路径整段走查录像</p>
+<div class="kpis"><div class="kpi"><div class="k">4</div><div class="l">操作步</div></div><div class="kpi"><div class="k">1</div><div class="l">通过</div></div><div class="kpi"><div class="k k-bad">3</div><div class="l">失败</div></div><div class="kpi"><div class="k k-warn">0</div><div class="l">不确定</div></div><div class="kpi"><div class="k">0</div><div class="l">未走到</div></div></div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> navigate</h3>
+<div class="exp">期望：Land on / and render the cost-dashboard overview page shell (nav bar + cost-overview tree) after the initial AFS &#x27;CONNECTED — WAITING FOR CONTENT&#x27; loading state resolves.</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260719T020655Z/cost-dashboard/overview-02.png" alt="navigate" loading="lazy"><figcaption>navigate</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：Initial paint: dom.textHead=&quot;AFS Agentic File System CONNECTED — WAITING FOR CONTENT POWERED BY ARC&quot; (title=AFS). After 2.5s waitFor, title became &quot;Cost Dashboard&quot;, aupNodes=30, buttons=5, nav bar rendered with #nav-overview/#nav-clouds/#nav-month/#nav-explorer, and page tree #cost-overview/#header-row/#kpi-row/#cloud-cards/#trend-chart/#services-table all present in DOM matching the man tree.</div>
+
+</div>
+<div class="op">
+<h3><span class="pill p-fail">失败</span> assert header/subtitle/KPI content interpolation</h3>
+<div class="exp">期望：Per man caveat, header/subtitle/KPI values interpolate ${content.*} from the /cost-aggregator/all read into real formatted currency strings — a literal unresolved token indicates the aggregator read failed to resolve.</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260719T020655Z/cost-dashboard/overview-03.png" alt="assert header/subtitle/KPI content interpolation" loading="lazy"><figcaption>assert header/subtitle/KPI content interpolation</figcaption></figure></div>
+<div class="chk-fail"><b>观察证据</b>：h1#header text is the literal unresolved string &quot;Cost Dashboard — ${content.grandTotalFormatted}&quot;; h4#subtitle is literally &quot;${content.cloudCount} clouds · ${content.period.start} — ${content.period.end}&quot;; kpi-gross-value/kpi-credits-value/kpi-net-value are literally &quot;${content.grossGrandTotalFormatted}&quot;, &quot;${content.grandTotalCreditsFormatted}&quot;, &quot;${content.grandTotalFormatted}&quot; — none resolved to real values, in both the waitFor and snapshot steps.</div>
+
+</div>
+<div class="op">
+<h3><span class="pill p-fail">失败</span> assert trend-chart renders monthly spend data</h3>
+<div class="exp">期望：trend-chart (chart node) renders a monthly spend trend from the cost-aggregator mount.</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260719T020655Z/cost-dashboard/overview-03.png" alt="assert trend-chart renders monthly spend data" loading="lazy"><figcaption>assert trend-chart renders monthly spend data</figcaption></figure></div>
+<div class="chk-fail"><b>观察证据</b>：div#trend-chart text is &quot;Data error: Path not found: /cost-aggregator/all/b&quot; (truncated in capture; confirmed full path via the identically-sourced month page: /cost-aggregator/all/by-month/.chart) — an explicit backend read error, not a legitimate empty state.</div>
+
+</div>
+<div class="op">
+<h3><span class="pill p-fail">失败</span> assert cloud-cards populated</h3>
+<div class="exp">期望：cloud-cards afs-list shows a card per configured cloud (blocklet.yaml wires the cost-aggregator:// provider for the composite /cost-aggregator/all mount).</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260719T020655Z/cost-dashboard/overview-03.png" alt="assert cloud-cards populated" loading="lazy"><figcaption>assert cloud-cards populated</figcaption></figure></div>
+<div class="chk-fail"><b>观察证据</b>：div#cloud-cards text is &quot;No cloud services configured&quot;, consistent with the probe.sh backend probe &quot;afs-rpc-list&quot;: false, detail &quot;error code: 1102&quot; and the trend-chart/KPI failures above — the cost-aggregator backend is not returning data on this deployment.</div>
+
+</div>
+</section><section id="path-month">
+<h2>Monthly trend — bar chart + day-by-day breakdown + cloud cards <span class="rt">anon · /?page=month</span></h2>
+<video class="video" controls preload="metadata" src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260719T020655Z/cost-dashboard/page@9ef5b04077f5b8223cd0f5c326b2b357.webm"><a href="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260719T020655Z/cost-dashboard/page@9ef5b04077f5b8223cd0f5c326b2b357.webm">下载该路径录像</a></video><p class="vcap">本测试路径整段走查录像</p>
+<div class="kpis"><div class="kpi"><div class="k">5</div><div class="l">操作步</div></div><div class="kpi"><div class="k">1</div><div class="l">通过</div></div><div class="kpi"><div class="k k-bad">4</div><div class="l">失败</div></div><div class="kpi"><div class="k k-warn">0</div><div class="l">不确定</div></div><div class="kpi"><div class="k">0</div><div class="l">未走到</div></div></div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> navigate</h3>
+<div class="exp">期望：Reachable via wrapper.json&#x27;s &quot;Monthly&quot; nav (nav-month) — direct navigation to /?page=month lands on the month page tree.</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260719T020655Z/cost-dashboard/month-01.png" alt="navigate" loading="lazy"><figcaption>navigate</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：title=&quot;Cost Dashboard&quot;, aupNodes=20, buttons=5, page tree #cost-month/#header-row/#chart-title/#month-chart/#table-title/#month-table/#clouds-title/#cloud-cards all present, matching man tree.</div>
+
+</div>
+<div class="op">
+<h3><span class="pill p-fail">失败</span> assert header/subtitle content interpolation</h3>
+<div class="exp">期望：Same page-level /cost-aggregator/all mount as overview.json — header/subtitle should interpolate real values.</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260719T020655Z/cost-dashboard/month-02.png" alt="assert header/subtitle content interpolation" loading="lazy"><figcaption>assert header/subtitle content interpolation</figcaption></figure></div>
+<div class="chk-fail"><b>观察证据</b>：h1#header literal &quot;Monthly Trend — ${content.grandTotalFormatted}&quot;; h4#subtitle literal &quot;${content.cloudCount} clouds · ${content.period.start} — ${content.period.end}&quot; — unresolved template tokens, same failure mode as overview.</div>
+
+</div>
+<div class="op">
+<h3><span class="pill p-fail">失败</span> assert month-chart renders monthly bar chart</h3>
+<div class="exp">期望：month-chart bound to src /cost-aggregator/all/by-month/.chart renders a bar chart of spend by month.</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260719T020655Z/cost-dashboard/month-02.png" alt="assert month-chart renders monthly bar chart" loading="lazy"><figcaption>assert month-chart renders monthly bar chart</figcaption></figure></div>
+<div class="chk-fail"><b>观察证据</b>：div#month-chart text is the exact string &quot;Data error: Path not found: /cost-aggregator/all/by-month/.chart&quot; — explicit backend 404/not-found on the declared src path.</div>
+
+</div>
+<div class="op">
+<h3><span class="pill p-fail">失败</span> assert month-table renders daily breakdown</h3>
+<div class="exp">期望：month-table (src /cost-aggregator/all/by-date, pageSize 31) lists day rows.</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260719T020655Z/cost-dashboard/month-02.png" alt="assert month-table renders daily breakdown" loading="lazy"><figcaption>assert month-table renders daily breakdown</figcaption></figure></div>
+<div class="chk-fail"><b>观察证据</b>：div#month-table text is &quot;No items&quot; — empty table, consistent with the same aggregator backend failure.</div>
+
+</div>
+<div class="op">
+<h3><span class="pill p-fail">失败</span> assert cloud-cards populated</h3>
+<div class="exp">期望：Same cloud-cards grid as overview (byte-different itemTemplate, same source) shows configured clouds.</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260719T020655Z/cost-dashboard/month-03.png" alt="assert cloud-cards populated" loading="lazy"><figcaption>assert cloud-cards populated</figcaption></figure></div>
+<div class="chk-fail"><b>观察证据</b>：div#cloud-cards text is &quot;No cloud services configured&quot; — identical failure to overview&#x27;s cloud-cards.</div>
+
+</div>
+</section><section id="path-cloud-detail">
+<h2>Cloud detail — cloud-selector + empty detail-surface until a cloud is picked <span class="rt">anon · /?page=cloud-detail</span></h2>
+<video class="video" controls preload="metadata" src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260719T020655Z/cost-dashboard/page@6736850c8965270867ef96ddaf993d2f.webm"><a href="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260719T020655Z/cost-dashboard/page@6736850c8965270867ef96ddaf993d2f.webm">下载该路径录像</a></video><p class="vcap">本测试路径整段走查录像</p>
+<div class="kpis"><div class="kpi"><div class="k">3</div><div class="l">操作步</div></div><div class="kpi"><div class="k">1</div><div class="l">通过</div></div><div class="kpi"><div class="k k-bad">2</div><div class="l">失败</div></div><div class="kpi"><div class="k k-warn">0</div><div class="l">不确定</div></div><div class="kpi"><div class="k">0</div><div class="l">未走到</div></div></div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> navigate</h3>
+<div class="exp">期望：Reachable via wrapper.json&#x27;s &quot;Clouds&quot; nav (nav-clouds) — direct navigation to /?page=cloud-detail lands on the cloud-detail page tree, starting at the detail-surface empty state per man description.</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260719T020655Z/cost-dashboard/cloud-detail-01.png" alt="navigate" loading="lazy"><figcaption>navigate</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：title=&quot;Cost Dashboard&quot;, aupNodes=15, buttons=5, page tree #cloud-detail/#detail-header/#title (&quot;Cloud Detail&quot;)/#back-btn (&quot;Back to Overview&quot;)/#cloud-selector/#detail-surface all present, matching man tree structure.</div>
+
+</div>
+<div class="op">
+<h3><span class="pill p-fail">失败</span> assert cloud-selector populated</h3>
+<div class="exp">期望：cloud-selector (identical source to overview/month cloud-cards) shows a card per configured cloud.</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260719T020655Z/cost-dashboard/cloud-detail-02.png" alt="assert cloud-selector populated" loading="lazy"><figcaption>assert cloud-selector populated</figcaption></figure></div>
+<div class="chk-fail"><b>观察证据</b>：div#cloud-selector text is &quot;No cloud services configured&quot; — same aggregator backend failure observed on overview and month.</div>
+
+</div>
+<div class="op">
+<h3><span class="pill p-fail">失败</span> assert detail-surface empty-state text</h3>
+<div class="exp">期望：Per man assertion, detail-surface&#x27;s emptyText prop is exactly &quot;Select a cloud above to view details&quot;.</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260719T020655Z/cost-dashboard/cloud-detail-02.png" alt="assert detail-surface empty-state text" loading="lazy"><figcaption>assert detail-surface empty-state text</figcaption></figure></div>
+<div class="chk-fail"><b>观察证据</b>：div#detail-surface text is &quot;\u26a0 Surface: set src (AFS path) or url (ws://)&quot; (a generic surface-node placeholder), not the man-asserted &quot;Select a cloud above to view details&quot; string — the configured emptyText is not being rendered.</div>
+
+</div>
+</section><section id="path-explorer">
+<h2>Explorer — header + embedded explorer blocklet mount <span class="rt">anon · /?page=explorer</span></h2>
+<video class="video" controls preload="metadata" src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260719T020655Z/cost-dashboard/page@b18adb67302b4ab81510bb100247b758.webm"><a href="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260719T020655Z/cost-dashboard/page@b18adb67302b4ab81510bb100247b758.webm">下载该路径录像</a></video><p class="vcap">本测试路径整段走查录像</p>
+<div class="kpis"><div class="kpi"><div class="k">2</div><div class="l">操作步</div></div><div class="kpi"><div class="k">1</div><div class="l">通过</div></div><div class="kpi"><div class="k k-bad">0</div><div class="l">失败</div></div><div class="kpi"><div class="k k-warn">1</div><div class="l">不确定</div></div><div class="kpi"><div class="k">0</div><div class="l">未走到</div></div></div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> navigate</h3>
+<div class="exp">期望：Reachable via wrapper.json&#x27;s &quot;Explorer&quot; nav (nav-explorer) — direct navigation to /?page=explorer lands on a thin wrapper page: header + back-btn + a `browser` mount at /modules/explorer.</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260719T020655Z/cost-dashboard/explorer-01.png" alt="navigate" loading="lazy"><figcaption>navigate</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：title=&quot;Cost Dashboard&quot;, aupNodes=15, buttons=5, page tree #cost-explorer/#explorer-header/#title (&quot;Cost Data Explorer&quot;)/#back-btn (&quot;Overview&quot;)/#browser all present, matching man tree. No console errors on this path.</div>
+
+</div>
+<div class="op">
+<h3><span class="pill p-warn">不确定</span> assert embedded explorer blocklet content renders under #browser</h3>
+<div class="exp">期望：The blocklet-instance://explorer mount at /modules/explorer server-expands the embedded explorer blocklet&#x27;s own page tree inside #browser.</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260719T020655Z/cost-dashboard/explorer-02.png" alt="assert embedded explorer blocklet content renders under #browser" loading="lazy"><figcaption>assert embedded explorer blocklet content renders under #browser</figcaption></figure></div>
+<div class="chk-fail"><b>观察证据</b>：div#browser has no rendered text/children (dom.textHead ends at &quot;Cost Data Explorer Overview&quot;, nothing beyond it, aupNodes stayed at 15 = just this page&#x27;s own tree). Per man caveat, this is the DOCUMENTED behavior when the required:false `explorer` blocklet is not installed/activated (expandBlockletViews leaves the mount untouched rather than erroring) — cannot distinguish from a genuine mount failure without checking explorer&#x27;s installation status, which is outside this walk&#x27;s evidence.</div>
+
+</div>
+</section>
+<p class="sub" style="margin-top:22px">Generated by test-report-builder (build-agent-report) · issue #1808</p>
+</div></body></html>
