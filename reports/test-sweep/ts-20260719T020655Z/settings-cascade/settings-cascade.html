@@ -1,0 +1,133 @@
+<!doctype html><html><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>settings-cascade — agent 走查报告</title><style>
+:root{--bg:#f7f8f8;--fg:#16201f;--muted:#5c6b69;--card:#fff;--card2:#eef2f1;--border:#dde3e2;--accent:#127a72;--pass:#1f8a54;--warn:#b5771a;--bad:#c0392b}
+@media(prefers-color-scheme:dark){:root{--bg:#0e1413;--fg:#e6ecea;--muted:#8ea19d;--card:#161d1c;--card2:#1d2624;--border:#26302e;--accent:#3fb8ab;--pass:#3fb37a;--warn:#d69a3e;--bad:#e5735f}}
+:root[data-theme=dark]{--bg:#0e1413;--fg:#e6ecea;--muted:#8ea19d;--card:#161d1c;--card2:#1d2624;--border:#26302e;--accent:#3fb8ab;--pass:#3fb37a;--warn:#d69a3e;--bad:#e5735f}
+:root[data-theme=light]{--bg:#f7f8f8;--fg:#16201f;--muted:#5c6b69;--card:#fff;--card2:#eef2f1;--border:#dde3e2;--accent:#127a72;--pass:#1f8a54;--warn:#b5771a;--bad:#c0392b}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--fg);font:15px/1.65 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;padding:24px}
+.wrap{max-width:920px;margin:0 auto}
+h1{font-size:24px;margin:0 0 4px;text-wrap:balance}h2{font-size:19px;margin:30px 0 8px}
+h2 .rt{font-size:13px;color:var(--muted);font-weight:400;font-variant-numeric:tabular-nums}
+.sub{color:var(--muted);margin:0 0 14px;font-size:13px}
+code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.85em;background:var(--card2);padding:1px 5px;border-radius:4px}
+.how{background:var(--card);border:1px solid var(--border);border-left:3px solid var(--accent);border-radius:8px;padding:13px 16px;margin:14px 0;font-size:14px}
+.how b{color:var(--accent)}
+.banner{border-radius:12px;padding:14px 18px;margin:16px 0}
+.banner.ok{background:color-mix(in srgb,var(--pass) 12%,transparent);border:1px solid color-mix(in srgb,var(--pass) 40%,transparent)}
+.banner.ok b{color:var(--pass)}
+.banner.bad{background:color-mix(in srgb,var(--bad) 13%,transparent);border:1px solid color-mix(in srgb,var(--bad) 45%,transparent)}
+.banner.bad b{color:var(--bad);font-size:16px}
+.banner.info{background:color-mix(in srgb,var(--accent) 10%,transparent);border:1px solid color-mix(in srgb,var(--accent) 38%,transparent)}
+.banner.info b{color:var(--accent)}
+.plist{margin:10px 0 0;padding-left:0;list-style:none}
+.plist li{padding:8px 0;border-top:1px solid var(--border)}
+.plist a{text-decoration:none;color:var(--fg);font-weight:600}
+.plist .pe{color:var(--muted);font-size:12.5px;font-weight:400;margin-top:3px}
+.video{width:100%;border-radius:10px;border:1px solid var(--border);background:#000;margin:6px 0 2px}
+.vcap{color:var(--muted);font-size:12.5px;margin:0 0 8px}
+.novideo{color:var(--bad);font-weight:600;background:color-mix(in srgb,var(--bad) 10%,transparent);border:1px dashed color-mix(in srgb,var(--bad) 45%,transparent);border-radius:8px;padding:8px 12px;font-size:13px}
+.kpis{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0}
+.kpi{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:9px 14px;min-width:70px}
+.kpi .k{font-size:21px;font-weight:700;font-variant-numeric:tabular-nums}.kpi .l{color:var(--muted);font-size:12px}
+.kpi .k-bad{color:var(--bad)}.kpi .k-warn{color:var(--warn)}
+.op{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:15px 17px;margin:14px 0}
+.op h3{margin:0 0 3px;font-size:16px;display:flex;align-items:center;gap:9px;flex-wrap:wrap}
+.op .exp{color:var(--muted);font-size:13px;margin:0 0 9px}
+.op .nt{color:var(--muted);font-size:12.5px;margin-top:6px}
+.pill{font-size:11.5px;font-weight:700;padding:2px 9px;border-radius:20px}
+.p-ok{background:color-mix(in srgb,var(--pass) 18%,transparent);color:var(--pass)}
+.p-fail{background:color-mix(in srgb,var(--bad) 18%,transparent);color:var(--bad)}
+.p-warn{background:color-mix(in srgb,var(--warn) 20%,transparent);color:var(--warn)}
+.p-skip{background:var(--card2);color:var(--muted)}
+.p-write{background:color-mix(in srgb,var(--accent) 18%,transparent);color:var(--accent)}
+.frame figure{margin:0 0 9px}.frame img{width:100%;border-radius:8px;border:1px solid var(--border);display:block}
+.frame figcaption{color:var(--muted);font-size:11.5px;margin-top:4px;text-align:center}
+.chk{background:color-mix(in srgb,var(--pass) 12%,transparent);border:1px solid color-mix(in srgb,var(--pass) 34%,transparent);border-radius:8px;padding:8px 12px;font-size:13px}
+.chk b{color:var(--pass)}
+.chk-fail{background:color-mix(in srgb,var(--bad) 11%,transparent);border:1px solid color-mix(in srgb,var(--bad) 40%,transparent);border-radius:8px;padding:8px 12px;font-size:13px}
+.chk-fail b{color:var(--bad)}
+table.probe{border-collapse:collapse;width:100%;font-size:13px}
+table.probe th,table.probe td{border:1px solid var(--border);padding:5px 9px;text-align:left}
+table.probe tr.bad td{background:color-mix(in srgb,var(--bad) 10%,transparent)}
+</style></head><body><div class="wrap">
+<h1>settings-cascade — agent 走查报告</h1>
+<p class="sub">环境 <code>https://settings-cascade.afsd.dev</code> · 2026-07-19T02:53:00Z · 走查 1 / 声明 1 条测试路径 · driver <code>agent-playwright-mcp</code></p>
+<div class="how"><b>这份报告在做什么</b>：test-sweep 让 <b>agent 读被测页面自己写的
+<code>.aup/man</code> 知识</b>，用 Playwright MCP <b>当真人逐条测试路径走查</b>（导航/加标签/编辑/删除/创建…），
+<b>每条路径各自一段录屏</b>、每步截图并<b>自判 verdict + 附观察证据</b>（实际 DOM/文本/值，可复核）。
+<b>unreached</b>=没驱动到（不当失败）；<b>inconclusive</b>=不确定（绝不判失败）。写操作默认真提交、不清理。</div>
+<div class="banner ok"><b>✅ 覆盖完整</b>：声明 1 条测试路径全部走查。</div>
+<div class="banner bad"><b>⚠️ 发现 1 个问题</b>（点击跳到对应路径）<ul class="plist"><li><a href="#path-home"><span class="pill p-warn">不确定</span> Home 页（匿名）— settings-shell 二级 cascade + propBind mirror · 步5</a> — 核对 man caveat：retention（instance scope，仅 admin 可写）在非 admin 视角下的渲染差异<div class="pe">匿名态下 settings-shell 的 General 分组只渲染出一个字段（Theme，文本含 &#x27;Read-only&#x27; + &#x27;Sign in to personalize&#x27; 徽标），未观察到任何 Retention 字段标签或分组；额外用已登录的 Test Fixture User（非 admin）重跑同一页（home-authed 路径），General 分组渲染出 Nickname + Theme 两个字段，Theme 的 &#x27;Read-only&#x27; 徽标消失（变为可编</div></li></ul></div>
+<section id="probes"><h2>后端探针 （全通过）</h2><table class="probe"><tr><th></th><th>探针</th><th>详情</th></tr><tr class=""><td>✅</td><td>http-reachable</td><td>HTTP 200</td></tr><tr class=""><td>✅</td><td>afs-rpc-list</td><td>ok:true (1 .aup pages)</td></tr></table></section>
+<section id="path-home">
+<h2>Home 页（匿名）— settings-shell 二级 cascade + propBind mirror <span class="rt">anon · /app</span></h2>
+<video class="video" controls preload="metadata" src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260719T020655Z/settings-cascade/page@d9cbe0277e3353dd34dc66940b54eba8.webm"><a href="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260719T020655Z/settings-cascade/page@d9cbe0277e3353dd34dc66940b54eba8.webm">下载该路径录像</a></video><p class="vcap">本测试路径整段走查录像</p>
+<div class="kpis"><div class="kpi"><div class="k">5</div><div class="l">操作步</div></div><div class="kpi"><div class="k">4</div><div class="l">通过</div></div><div class="kpi"><div class="k k-bad">0</div><div class="l">失败</div></div><div class="kpi"><div class="k k-warn">1</div><div class="l">不确定</div></div><div class="kpi"><div class="k">0</div><div class="l">未走到</div></div></div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> 导航到 /app（匿名），等待 AUP 内容渲染（WS 连接建立）</h3>
+<div class="exp">期望：settings-shell auto-surface（cascade-settings）渲染出来</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260719T020655Z/settings-cascade/home-retry-01.png" alt="导航到 /app（匿名），等待 AUP 内容渲染（WS 连接建立）" loading="lazy"><figcaption>导航到 /app（匿名），等待 AUP 内容渲染（WS 连接建立）</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：2.5s 时仍处于占位态 &#x27;CONNECTED — WAITING FOR CONTENT&#x27;（aupNodes:0）；等到 6s 后 aupNodes:18，出现 div#cascade-settings、h2#cascade-settings-title &#x27;Settings&#x27;、h3#cascade-settings-page-general-title &#x27;General&#x27;。首次渲染耗时超过 2.5s（walk 计划需相应放宽 waitFor，否则会误判为空白页）。</div>
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> 核对 man 断言 1：settings-shell auto-surface over /instance/settings/cascade（node id=cascade-settings）</h3>
+<div class="exp">期望：node_exists {type: auto-surface, id: cascade-settings}</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260719T020655Z/settings-cascade/home-retry-01.png" alt="核对 man 断言 1：settings-shell auto-surface over /instance/settings/cascade（node id=cascade-settings）" loading="lazy"><figcaption>核对 man 断言 1：settings-shell auto-surface over /instance/settings/cascade（node id=cascade-settings）</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：interactables 中存在 &#x27;div#cascade-settings &quot;Settings Theme system light dark Interface theme —&quot;&#x27;，id 与 man 声明一致；受观测方式限制（本 harness 的 dom 快照不暴露 data-aup-type/props 明细），auto-surface 类型与 src/pattern 具体 prop 值未逐字段核对，但字段结构（General 分组、Theme 字段的 description 文案与 man synopsis 一致）与声明的 settings-shell 渲染吻合。</div>
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> 核对 man 断言 2：retention-mirror / theme-mirror 两个 propBind 镜像节点</h3>
+<div class="exp">期望：node_exists {type: text, id: retention-mirror} 和 {id: theme-mirror}，均通过 propBind 读取 /instance/settings/cascade/*.json 的值</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260719T020655Z/settings-cascade/home-retry-03.png" alt="核对 man 断言 2：retention-mirror / theme-mirror 两个 propBind 镜像节点" loading="lazy"><figcaption>核对 man 断言 2：retention-mirror / theme-mirror 两个 propBind 镜像节点</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：div#retention-mirror 文本内容为 &#x27;30&#x27;；div#theme-mirror 文本内容为 &#x27;system&#x27;，均为非空初值，与 settings-shell 自身渲染出的 Theme 字段（下拉显示 system/light/dark，当前态 system）一致。</div>
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> 核对 man 断言 3（负向 fixture）：tmp-mirror propBind 指向 /tmp/scratch.json（非 /instance 下），应被拒绝，content 停留在占位符 &#x27;—&#x27;</h3>
+<div class="exp">期望：node_has_prop {id: tmp-mirror, prop: content, value: &#x27;—&#x27;}</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260719T020655Z/settings-cascade/home-retry-03.png" alt="核对 man 断言 3（负向 fixture）：tmp-mirror propBind 指向 /tmp/scratch.json（非 /instance 下），应被拒绝，content 停留在占位符 &#x27;—&#x27;" loading="lazy"><figcaption>核对 man 断言 3（负向 fixture）：tmp-mirror propBind 指向 /tmp/scratch.json（非 /instance 下），应被拒绝，content 停留在占位符 &#x27;—&#x27;</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：div#tmp-mirror 文本内容为 &#x27;—&#x27;，与占位符一致，未被任何真实值覆盖，符合 propBind allow-list 在 resolve 时拒绝 /instance 之外路径的预期。</div>
+
+</div>
+<div class="op">
+<h3><span class="pill p-warn">不确定</span> 核对 man caveat：retention（instance scope，仅 admin 可写）在非 admin 视角下的渲染差异</h3>
+<div class="exp">期望：man 原文：&#x27;a walker testing as a non-admin user should expect retention&#x27;s field to be read-only while theme&#x27;s is editable&#x27;</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260719T020655Z/settings-cascade/home-retry-02.png" alt="核对 man caveat：retention（instance scope，仅 admin 可写）在非 admin 视角下的渲染差异" loading="lazy"><figcaption>核对 man caveat：retention（instance scope，仅 admin 可写）在非 admin 视角下的渲染差异</figcaption></figure></div>
+<div class="chk-fail"><b>观察证据</b>：匿名态下 settings-shell 的 General 分组只渲染出一个字段（Theme，文本含 &#x27;Read-only&#x27; + &#x27;Sign in to personalize&#x27; 徽标），未观察到任何 Retention 字段标签或分组；额外用已登录的 Test Fixture User（非 admin）重跑同一页（home-authed 路径），General 分组渲染出 Nickname + Theme 两个字段，Theme 的 &#x27;Read-only&#x27; 徽标消失（变为可编辑），但仍未观察到 Retention 字段。即匿名和已登录非 admin 两种视角下 Retention 字段都是&#x27;完全不渲染&#x27;而非 man 描述的&#x27;渲染为只读&#x27;。这与 man caveat 字面表述不完全一致，但 man 本身已声明该行为的权威判定在 two-level-settings-render-sentinel.test.ts（真实角色的服务端过滤），非本页静态结构可判定，故标记 inconclusive 而非 fail。</div>
+
+</div>
+</section><section id="path-home-authed">
+<h2>Home 页（已登录非 admin：Test Fixture User）— 交叉验证 nickname/theme 的用户态渲染差异 <span class="rt">authed · /app</span></h2>
+<video class="video" controls preload="metadata" src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260719T020655Z/settings-cascade/page@463b757079031cad04907711e2eb4426.webm"><a href="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260719T020655Z/settings-cascade/page@463b757079031cad04907711e2eb4426.webm">下载该路径录像</a></video><p class="vcap">本测试路径整段走查录像</p>
+<div class="kpis"><div class="kpi"><div class="k">1</div><div class="l">操作步</div></div><div class="kpi"><div class="k">1</div><div class="l">通过</div></div><div class="kpi"><div class="k k-bad">0</div><div class="l">失败</div></div><div class="kpi"><div class="k k-warn">0</div><div class="l">不确定</div></div><div class="kpi"><div class="k">0</div><div class="l">未走到</div></div></div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> 以 Test Fixture User 身份导航到 /app，等待 6s 后抓取快照</h3>
+<div class="exp">期望：header 显示已登录态（用户名/Sign Out），settings-shell 渲染出用户可见的字段集</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260719T020655Z/settings-cascade/home-authed-01.png" alt="以 Test Fixture User 身份导航到 /app，等待 6s 后抓取快照" loading="lazy"><figcaption>以 Test Fixture User 身份导航到 /app，等待 6s 后抓取快照</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：header 出现 button &#x27;Test Fixture User&#x27;、&#x27;User Center&#x27;、&#x27;Sign Out&#x27;（而非匿名态的 &#x27;Login&#x27;）；aupNodes:19，General 分组下出现 Nickname 字段（含一个 input）与 Theme 字段（不再显示 &#x27;Read-only&#x27;/&#x27;Sign in to personalize&#x27;）。retention-mirror=&#x27;30&#x27;、theme-mirror=&#x27;system&#x27;、tmp-mirror=&#x27;—&#x27; 三个 propBind 镜像值与匿名态一致（未变化，符合只读走查预期，未做任何写操作）。</div>
+
+</div>
+</section><section id="path-settings">
+<h2>Settings 页（authed，用户级 settings-shell，无 .man 声明） <span class="rt">authed · /app?page=settings</span></h2>
+<video class="video" controls preload="metadata" src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260719T020655Z/settings-cascade/page@d708b1c68f6351a25b00e9c9b8989b13.webm"><a href="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260719T020655Z/settings-cascade/page@d708b1c68f6351a25b00e9c9b8989b13.webm">下载该路径录像</a></video><p class="vcap">本测试路径整段走查录像</p>
+<div class="kpis"><div class="kpi"><div class="k">2</div><div class="l">操作步</div></div><div class="kpi"><div class="k">2</div><div class="l">通过</div></div><div class="kpi"><div class="k k-bad">0</div><div class="l">失败</div></div><div class="kpi"><div class="k k-warn">0</div><div class="l">不确定</div></div><div class="kpi"><div class="k">0</div><div class="l">未走到</div></div></div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> 以 Test Fixture User 身份导航到 /app?page=settings，等待 AUP 内容渲染</h3>
+<div class="exp">期望：该页在 app.json 中声明 configDir（无 tree 文件），discover-aup.py 未发现对应 .man/settings.yaml（tree:null），故无 oracle 断言可判；仅做渲染健全性检查</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260719T020655Z/settings-cascade/settings-02.png" alt="以 Test Fixture User 身份导航到 /app?page=settings，等待 AUP 内容渲染" loading="lazy"><figcaption>以 Test Fixture User 身份导航到 /app?page=settings，等待 AUP 内容渲染</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：2.5s 时占位态 &#x27;CONNECTED — WAITING FOR CONTENT&#x27;（aupNodes:0）；6s 后 aupNodes:14，渲染出 h2 &#x27;Settings&#x27;、h3 &#x27;General&#x27;、Nickname 字段（含一个可编辑 input，描述文案 &#x27;Your personal display name. Private to your account.&#x27;）与 Theme 字段（描述文案与 home 页一致）。header 显示已登录态（&#x27;Test Fixture User&#x27;/&#x27;Sign Out&#x27;）。全程 consoleErrors 为空数组。</div>
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> 核对该页与 home 页 cascade 的字段差异（用户级 settings-shell vs 实例级 /instance/settings/cascade）</h3>
+<div class="exp">期望：该页是用户自己的 settings-shell 挂载（configDir），与 home 页挂载的 /instance/settings/cascade 是不同的数据源，理论上字段集合可以不同</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260719T020655Z/settings-cascade/settings-02.png" alt="核对该页与 home 页 cascade 的字段差异（用户级 settings-shell vs 实例级 /instance/settings/cascade）" loading="lazy"><figcaption>核对该页与 home 页 cascade 的字段差异（用户级 settings-shell vs 实例级 /instance/settings/cascade）</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：本页 General 分组含 Nickname + Theme 两字段，不含 Retention；与 home 页（含 Retention 语义但实际不渲染、仅 Theme 可见）字段集合不同但均无 Retention 显式渲染，两页均未观察到 Retention 字段，行为一致（非本页独有异常）。</div>
+
+</div>
+</section>
+<p class="sub" style="margin-top:22px">Generated by test-report-builder (build-agent-report) · issue #1808</p>
+</div></body></html>
