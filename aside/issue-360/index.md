@@ -11,3 +11,4 @@
 | 20260719-165327-fresh-cancel-draft-preserved.png | https://github.com/ArcBlock/aside/issues/360 | 2026-07-19T16:53:29Z | nategu@Nate-Mac-Pro |
 | 20260719-165346-fresh-photos-entry.png | https://github.com/ArcBlock/aside/issues/360 | 2026-07-19T16:53:50Z | nategu@Nate-Mac-Pro |
 | 20260719-165901-verified-draft-before-camera.png | https://github.com/ArcBlock/aside/issues/360 | 2026-07-19T16:59:04Z | nategu@Nate-Mac-Pro |
+| 20260719-165920-verified-camera-landscape.png | https://github.com/ArcBlock/aside/issues/360 | 2026-07-19T16:59:22Z | nategu@Nate-Mac-Pro |
