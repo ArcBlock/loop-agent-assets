@@ -1,8 +1,8 @@
-## ✅ Deploy test · `ea2dda6a5` · success
+## ✅ Deploy test · `83979a5cf` · success
 
-- **时间**: 2026-07-20T16:13:28Z
-- **版本**: `ea2dda6a54e2ec6cf0d5d992e4b2af35180b9b52`
-- **Run**: https://github.com/ArcBlock/arc/actions/runs/29758222970
+- **时间**: 2026-07-20T17:16:14Z
+- **版本**: `83979a5cf5e19b4c9cabde0112624b17fad7146f`
+- **Run**: https://github.com/ArcBlock/arc/actions/runs/29762602949
 - **改动窗口**: last 24 hours ago
 
 **2 个 blocklet 有改动 · 2 个 commit**
