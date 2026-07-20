@@ -7,3 +7,4 @@
 | 20260719-030900-03-unknown-type-visible-fallback.png | https://github.com/ArcBlock/arc/issues/1956 | 2026-07-19T03:09:01Z | mao@Roberts-MacBook-Pro-3 |
 | 20260719-030904-04-chain-degraded-rtc-chart.png | https://github.com/ArcBlock/arc/issues/1956 | 2026-07-19T03:09:05Z | mao@Roberts-MacBook-Pro-3 |
 | 20260719-030909-05-unexpanded-blocklet-embed-error.png | https://github.com/ArcBlock/arc/issues/1956 | 2026-07-19T03:09:10Z | mao@Roberts-MacBook-Pro-3 |
+| chat-entry-aup-device.png | https://github.com/ArcBlock/arc/issues/1956 | 2026-07-20T03:48:43Z | mao@Roberts-MacBook-Pro-3 |
