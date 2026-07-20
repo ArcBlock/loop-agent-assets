@@ -1,0 +1,5 @@
+# aside/issue-361
+
+| file | source | uploaded | by |
+|---|---|---|---|
+| 20260720-172905-settings-save-to-photos-off.png | https://github.com/ArcBlock/aside/issues/361 | 2026-07-20T17:29:08Z | codex-issue-review |
