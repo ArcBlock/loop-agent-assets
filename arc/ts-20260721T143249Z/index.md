@@ -38,3 +38,4 @@
 | 20260721-152553-posts-04.png | https://github.com/ArcBlock/arc | 2026-07-21T15:25:53Z | root@vm |
 | 20260721-152555-page@180fd3a1f780ba4946648c63a0a73e97.webm | https://github.com/ArcBlock/arc | 2026-07-21T15:25:55Z | root@vm |
 | 20260721-152557-page@8a3e83b6d5e3a062c73d4aa1a7028dad.webm | https://github.com/ArcBlock/arc | 2026-07-21T15:25:57Z | root@vm |
+| 20260721-152613-inbox-01.png | https://github.com/ArcBlock/arc | 2026-07-21T15:26:13Z | root@vm |
