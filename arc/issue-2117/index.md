@@ -3,3 +3,4 @@
 | file | source | uploaded | by |
 |---|---|---|---|
 | aup-action-disabled-dark.png | https://github.com/ArcBlock/arc/issues/2117 | 2026-07-21T03:01:21Z | root@vm |
+| aup-action-disabled-light.png | https://github.com/ArcBlock/arc/issues/2117 | 2026-07-21T03:01:30Z | root@vm |
