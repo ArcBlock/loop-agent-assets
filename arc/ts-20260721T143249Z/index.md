@@ -113,3 +113,4 @@
 | 20260721-153218-tags-01.png | https://github.com/ArcBlock/arc | 2026-07-21T15:32:18Z | root@vm |
 | 20260721-153221-tags-02.png | https://github.com/ArcBlock/arc | 2026-07-21T15:32:21Z | root@vm |
 | 20260721-153223-tags-03.png | https://github.com/ArcBlock/arc | 2026-07-21T15:32:23Z | root@vm |
+| 20260721-153225-page@1dce16e8d11ce528757764af74422dce.webm | https://github.com/ArcBlock/arc | 2026-07-21T15:32:25Z | root@vm |
