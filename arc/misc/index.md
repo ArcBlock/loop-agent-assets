@@ -12,3 +12,4 @@
 | 20260721-091124-01-files-panel-mounted.png | https://github.com/ArcBlock/arc | 2026-07-21T09:11:24Z | wangshijun@wangshijun-mac-studio |
 | 20260721-091133-02-write-read-roundtrip.png | https://github.com/ArcBlock/arc | 2026-07-21T09:11:33Z | wangshijun@wangshijun-mac-studio |
 | 20260721-091142-03-list-directory.png | https://github.com/ArcBlock/arc | 2026-07-21T09:11:42Z | wangshijun@wangshijun-mac-studio |
+| 20260721-091152-04-delete-then-notfound.png | https://github.com/ArcBlock/arc | 2026-07-21T09:11:52Z | wangshijun@wangshijun-mac-studio |
