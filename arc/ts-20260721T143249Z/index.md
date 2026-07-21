@@ -45,3 +45,4 @@
 | 20260721-152831-unified-01.png | https://github.com/ArcBlock/arc | 2026-07-21T15:28:31Z | root@vm |
 | 20260721-152833-unified-02.png | https://github.com/ArcBlock/arc | 2026-07-21T15:28:33Z | root@vm |
 | 20260721-152836-unified-03.png | https://github.com/ArcBlock/arc | 2026-07-21T15:28:36Z | root@vm |
+| 20260721-152838-unified-04.png | https://github.com/ArcBlock/arc | 2026-07-21T15:28:38Z | root@vm |
