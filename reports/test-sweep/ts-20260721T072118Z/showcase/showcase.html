@@ -1,0 +1,864 @@
+<!doctype html><html><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>showcase — agent 走查报告</title><style>
+:root{--bg:#f7f8f8;--fg:#16201f;--muted:#5c6b69;--card:#fff;--card2:#eef2f1;--border:#dde3e2;--accent:#127a72;--pass:#1f8a54;--warn:#b5771a;--bad:#c0392b}
+@media(prefers-color-scheme:dark){:root{--bg:#0e1413;--fg:#e6ecea;--muted:#8ea19d;--card:#161d1c;--card2:#1d2624;--border:#26302e;--accent:#3fb8ab;--pass:#3fb37a;--warn:#d69a3e;--bad:#e5735f}}
+:root[data-theme=dark]{--bg:#0e1413;--fg:#e6ecea;--muted:#8ea19d;--card:#161d1c;--card2:#1d2624;--border:#26302e;--accent:#3fb8ab;--pass:#3fb37a;--warn:#d69a3e;--bad:#e5735f}
+:root[data-theme=light]{--bg:#f7f8f8;--fg:#16201f;--muted:#5c6b69;--card:#fff;--card2:#eef2f1;--border:#dde3e2;--accent:#127a72;--pass:#1f8a54;--warn:#b5771a;--bad:#c0392b}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--fg);font:15px/1.65 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;padding:24px}
+.wrap{max-width:920px;margin:0 auto}
+h1{font-size:24px;margin:0 0 4px;text-wrap:balance}h2{font-size:19px;margin:30px 0 8px}
+h2 .rt{font-size:13px;color:var(--muted);font-weight:400;font-variant-numeric:tabular-nums}
+.sub{color:var(--muted);margin:0 0 14px;font-size:13px}
+code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.85em;background:var(--card2);padding:1px 5px;border-radius:4px}
+.how{background:var(--card);border:1px solid var(--border);border-left:3px solid var(--accent);border-radius:8px;padding:13px 16px;margin:14px 0;font-size:14px}
+.how b{color:var(--accent)}
+.banner{border-radius:12px;padding:14px 18px;margin:16px 0}
+.banner.ok{background:color-mix(in srgb,var(--pass) 12%,transparent);border:1px solid color-mix(in srgb,var(--pass) 40%,transparent)}
+.banner.ok b{color:var(--pass)}
+.banner.bad{background:color-mix(in srgb,var(--bad) 13%,transparent);border:1px solid color-mix(in srgb,var(--bad) 45%,transparent)}
+.banner.bad b{color:var(--bad);font-size:16px}
+.banner.info{background:color-mix(in srgb,var(--accent) 10%,transparent);border:1px solid color-mix(in srgb,var(--accent) 38%,transparent)}
+.banner.info b{color:var(--accent)}
+.plist{margin:10px 0 0;padding-left:0;list-style:none}
+.plist li{padding:8px 0;border-top:1px solid var(--border)}
+.plist a{text-decoration:none;color:var(--fg);font-weight:600}
+.plist .pe{color:var(--muted);font-size:12.5px;font-weight:400;margin-top:3px}
+.video{width:100%;border-radius:10px;border:1px solid var(--border);background:#000;margin:6px 0 2px}
+.vcap{color:var(--muted);font-size:12.5px;margin:0 0 8px}
+.novideo{color:var(--bad);font-weight:600;background:color-mix(in srgb,var(--bad) 10%,transparent);border:1px dashed color-mix(in srgb,var(--bad) 45%,transparent);border-radius:8px;padding:8px 12px;font-size:13px}
+.kpis{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0}
+.kpi{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:9px 14px;min-width:70px}
+.kpi .k{font-size:21px;font-weight:700;font-variant-numeric:tabular-nums}.kpi .l{color:var(--muted);font-size:12px}
+.kpi .k-bad{color:var(--bad)}.kpi .k-warn{color:var(--warn)}
+.op{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:15px 17px;margin:14px 0}
+.op h3{margin:0 0 3px;font-size:16px;display:flex;align-items:center;gap:9px;flex-wrap:wrap}
+.op .exp{color:var(--muted);font-size:13px;margin:0 0 9px}
+.op .nt{color:var(--muted);font-size:12.5px;margin-top:6px}
+.pill{font-size:11.5px;font-weight:700;padding:2px 9px;border-radius:20px}
+.p-ok{background:color-mix(in srgb,var(--pass) 18%,transparent);color:var(--pass)}
+.p-fail{background:color-mix(in srgb,var(--bad) 18%,transparent);color:var(--bad)}
+.p-warn{background:color-mix(in srgb,var(--warn) 20%,transparent);color:var(--warn)}
+.p-skip{background:var(--card2);color:var(--muted)}
+.p-write{background:color-mix(in srgb,var(--accent) 18%,transparent);color:var(--accent)}
+.frame figure{margin:0 0 9px}.frame img{width:100%;border-radius:8px;border:1px solid var(--border);display:block}
+.frame figcaption{color:var(--muted);font-size:11.5px;margin-top:4px;text-align:center}
+.chk{background:color-mix(in srgb,var(--pass) 12%,transparent);border:1px solid color-mix(in srgb,var(--pass) 34%,transparent);border-radius:8px;padding:8px 12px;font-size:13px}
+.chk b{color:var(--pass)}
+.chk-fail{background:color-mix(in srgb,var(--bad) 11%,transparent);border:1px solid color-mix(in srgb,var(--bad) 40%,transparent);border-radius:8px;padding:8px 12px;font-size:13px}
+.chk-fail b{color:var(--bad)}
+table.probe{border-collapse:collapse;width:100%;font-size:13px}
+table.probe th,table.probe td{border:1px solid var(--border);padding:5px 9px;text-align:left}
+table.probe tr.bad td{background:color-mix(in srgb,var(--bad) 10%,transparent)}
+</style></head><body><div class="wrap">
+<h1>showcase — agent 走查报告</h1>
+<p class="sub">环境 <code>https://showcase.afsd.dev</code> · 2026-07-21T07:30:00Z · 走查 10 / 声明 50 条测试路径 · driver <code>agent-playwright-mcp</code></p>
+<div class="how"><b>这份报告在做什么</b>：test-sweep 让 <b>agent 读被测页面自己写的
+<code>.aup/man</code> 知识</b>，用 Playwright MCP <b>当真人逐条测试路径走查</b>（导航/加标签/编辑/删除/创建…），
+<b>每条路径各自一段录屏</b>、每步截图并<b>自判 verdict + 附观察证据</b>（实际 DOM/文本/值，可复核）。
+<b>unreached</b>=没驱动到（不当失败）；<b>inconclusive</b>=不确定（绝不判失败）。写操作默认真提交、不清理。</div>
+<div class="banner info"><b>ℹ️ 覆盖 10 / 50：页内部分 example 未覆盖</b>（可见但不阻断——漏走的补记为 unreached、不判红；绿灯只表示走到的都过了。agent 应据此自主决定再补哪些、完善报告）<ul class="plist"></ul></div>
+<div class="banner bad"><b>⚠️ 发现 10 个问题</b>（点击跳到对应路径）<ul class="plist"><li><a href="#path-dashboard"><span class="pill p-warn">不确定</span> System Dashboard 系统监控面板 · 步2</a> — 点击 Refresh 按钮<div class="pe">点击成功无报错，但按钮样式与四个指标数值（12,847 / 142ms / 0.3% / 99.97%）在点击前后逐像素一致，未观察到任何刷新反馈（无 loading、无数值变化、无 toast）；该页无 .aup/man 声明预期行为，无法判定是否为按钮未接线（inert）还是设计为纯静态演示。</div></li><li><a href="#path-dashboard"><span class="pill p-warn">不确定</span> System Dashboard 系统监控面板 · 步3</a> — 点击 Deploy 按钮<div class="pe">点击成功无报错，但页面截图与点击前完全一致（未见部署进度、弹窗或状态变化）；同上，无 man 声明无法坐实为 bug，记为 inconclusive。</div></li><li><a href="#path-chat"><span class="pill p-fail">失败</span> Chat 团队聊天（authed） · 步2</a> — 点击左侧 &quot;design&quot; 频道<div class="pe">点击前后页面截图完全一致：&quot;design&quot; 行在点击前就已带高亮背景（可能只是默认/焦点样式而非选中态），头部始终显示 &quot;# engineering&quot;/&quot;API v2 sprint&quot;/&quot;5 members&quot;，未观察到任何频道切换（标题、成员数、消息区均未变化）——频道点击疑似未接线。</div></li><li><a href="#path-explorer"><span class="pill p-fail">失败</span> Explorer 复合面板 Demo（authed） · 步1</a> — navigate 到 /app?page=explorer（authed），等待 2s settle 后再额外等待 18s（合计约 20s）<div class="pe">页面在 navigate 后、2s settle 后、以及额外等待 18s 后三次快照的 aupNodes 均恒为 71（等于全站导航栏自身的节点数），正文区域始终只显示一行灰色文字 &quot;Setting up explorer panels...&quot;，20 秒内无任何进展，控制台无 JS 错误（静默卡死，非报错崩溃）。这是本轮走查中最明确的 bug：Explorer composite demo 页面加载后永久停留在初始化占位符状态，从未渲染出实际内容。</div></li><li><a href="#path-calendar"><span class="pill p-warn">不确定</span> Calendar / Time off 日历（HRISELINK demo, authed） · 步2</a> — 点击 Requested tab<div class="pe">点击后 Requested 文本变为高亮蓝色（选中态样式生效），但下方内容区域仍然是原来的月历网格，未切换为任何列表/表格视图；页面无 man 声明预期行为，无法确定这是「仅实现了 Calendar 一个 tab 的静态演示」还是内容切换未接线。</div></li><li><a href="#path-calendar"><span class="pill p-warn">不确定</span> Calendar / Time off 日历（HRISELINK demo, authed） · 步3</a> — 点击 Balances tab<div class="pe">同上：Balances 文案变蓝高亮，但主体内容区仍是同一份月历网格，未见任何数据变化。</div></li><li><a href="#path-tx-detail"><span class="pill p-fail">失败</span> Transaction Detail 交易详情（chain explorer composition, dynamic 路由） · 步2</a> — 点击右上角 › (tx-next) 按钮<div class="pe">点击成功无报错，按钮出现聚焦边框视觉反馈，但卡片全部字段（Transfer V3 / 0xa3f2c1…4a5b6c / z2E5VtCb…vvwo3D / z1aA8YvG…XcPpQv / Quarterly payment / 1 ABT / Block 8,142,096 / Nonce 47 / 1,284 confirmations）在点击前后逐字节一致——未观察到任何交易切换。tx-next 疑似未接线或该 demo 只有单条 mock 记录却渲染了看似可翻页的</div></li><li><a href="#path-tx-detail"><span class="pill p-fail">失败</span> Transaction Detail 交易详情（chain explorer composition, dynamic 路由） · 步3</a> — 点击 ‹ (tx-prev) 按钮<div class="pe">同样点击成功但内容与前两次快照完全一致，进一步确认 prev/next 翻页控件在当前环境下不产生任何可观察效果。</div></li><li><a href="#path-index"><span class="pill p-warn">不确定</span> Showcase 首页 Gallery（卡片墙） · 步1</a> — navigate 到 https://showcase.afsd.dev/（声明路由 declared path）<div class="pe">&quot;/&quot; 实际渲染的是一个独立的营销落地页（&quot;AFS Home Showcase — Agentic UI Protocol...&quot;），aupNodes=435（仅 1，说明这不是 AUP 渲染树），与 man 描述的 grid-featured 卡片墙内容完全不同。这与其它 afsd.dev blocklet 的已知模式一致（skill 文档记载：&quot;/ 是营销落地页&quot;，真正入口在 /app?page=X），非本页缺陷，但声明路由与实际 AUP 入口不一致，值得记录。</div></li><li><a href="#path-map"><span class="pill p-warn">不确定</span> Map 地图组件 · 步1</a> — navigate 到 https://showcase.afsd.dev/app?page=map，等待 AUP 节点渲染（waitAup&gt;=10, settle 1.4s），单步冒烟观测<div class="pe">控制台 8 条 401 错误（瓦片/地图服务鉴权），&quot;3D Globe — Fly Around the World&quot; 区块渲染出彩色圆点标记，但底图瓦片背景为纯黑（未见地图底图纹理）——与 401 错误吻合，怀疑地图瓦片服务需要 API key 但未配置/未在此环境可用；标记点本身渲染正常，非全页失败。</div></li></ul></div>
+<section id="probes"><h2>后端探针 （全通过）</h2><table class="probe"><tr><th></th><th>探针</th><th>详情</th></tr><tr class=""><td>✅</td><td>http-reachable</td><td>HTTP 200</td></tr><tr class=""><td>✅</td><td>afs-rpc-list</td><td>ok:true (60 .aup pages)</td></tr></table></section>
+<section id="path-dashboard">
+<h2>System Dashboard 系统监控面板 <span class="rt">anon · /app?page=dashboard</span></h2>
+<video class="video" controls preload="metadata" src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260721T072118Z/showcase/page@42ff22340d1322f80711bce59ac7ca75.webm"><a href="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260721T072118Z/showcase/page@42ff22340d1322f80711bce59ac7ca75.webm">下载该路径录像</a></video><p class="vcap">本测试路径整段走查录像</p>
+<div class="kpis"><div class="kpi"><div class="k">3</div><div class="l">操作步</div></div><div class="kpi"><div class="k">1</div><div class="l">通过</div></div><div class="kpi"><div class="k k-bad">0</div><div class="l">失败</div></div><div class="kpi"><div class="k k-warn">2</div><div class="l">不确定</div></div><div class="kpi"><div class="k">0</div><div class="l">未走到</div></div></div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> navigate 到 /app?page=dashboard，等待渲染</h3>
+<div class="exp">期望：Dashboard 渲染指标卡片与控制按钮</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260721T072118Z/showcase/dashboard-01.png" alt="navigate 到 /app?page=dashboard，等待渲染" loading="lazy"><figcaption>navigate 到 /app?page=dashboard，等待渲染</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：渲染出 System Dashboard 标题、&quot;All Systems Operational&quot; 徽章、四个指标卡（Total Requests 12,847 / Avg Latency 142ms / Error Rate 0.3% / Uptime 99.97%）及 Refresh/Deploy/Restart Service 三个按钮；125 个 data-aup-id 节点，69 个可交互元素，控制台无错误。</div>
+
+</div>
+<div class="op">
+<h3><span class="pill p-warn">不确定</span> 点击 Refresh 按钮</h3>
+<div class="exp">期望：指标刷新或出现加载态反馈</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260721T072118Z/showcase/dashboard-02.png" alt="点击 Refresh 按钮" loading="lazy"><figcaption>点击 Refresh 按钮</figcaption></figure></div>
+<div class="chk-fail"><b>观察证据</b>：点击成功无报错，但按钮样式与四个指标数值（12,847 / 142ms / 0.3% / 99.97%）在点击前后逐像素一致，未观察到任何刷新反馈（无 loading、无数值变化、无 toast）；该页无 .aup/man 声明预期行为，无法判定是否为按钮未接线（inert）还是设计为纯静态演示。</div>
+
+</div>
+<div class="op">
+<h3><span class="pill p-warn">不确定</span> 点击 Deploy 按钮</h3>
+<div class="exp">期望：触发部署流程或至少一个可观察的 UI 反馈</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260721T072118Z/showcase/dashboard-03.png" alt="点击 Deploy 按钮" loading="lazy"><figcaption>点击 Deploy 按钮</figcaption></figure></div>
+<div class="chk-fail"><b>观察证据</b>：点击成功无报错，但页面截图与点击前完全一致（未见部署进度、弹窗或状态变化）；同上，无 man 声明无法坐实为 bug，记为 inconclusive。</div>
+
+</div>
+</section><section id="path-form-wizard">
+<h2>Form Wizard 多步表单向导（issue #1852 fix） <span class="rt">anon · /app?page=form-wizard</span></h2>
+<video class="video" controls preload="metadata" src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260721T072118Z/showcase/page@32633541263a293ae305e33ea6dfae24.webm"><a href="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260721T072118Z/showcase/page@32633541263a293ae305e33ea6dfae24.webm">下载该路径录像</a></video><p class="vcap">本测试路径整段走查录像</p>
+<div class="kpis"><div class="kpi"><div class="k">4</div><div class="l">操作步</div></div><div class="kpi"><div class="k">4</div><div class="l">通过</div></div><div class="kpi"><div class="k k-bad">0</div><div class="l">失败</div></div><div class="kpi"><div class="k k-warn">0</div><div class="l">不确定</div></div><div class="kpi"><div class="k">0</div><div class="l">未走到</div></div></div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> navigate 到 /app?page=form-wizard</h3>
+<div class="exp">期望：Step 1/6 Vehicle Info 渲染，f-vin/f-brand 等字段可见</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260721T072118Z/showcase/form-wizard2-01.png" alt="navigate 到 /app?page=form-wizard" loading="lazy"><figcaption>navigate 到 /app?page=form-wizard</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：渲染出左侧 6 步 sidebar（Vehicle Info 高亮为当前步）与右侧 &quot;Customised Car Services&quot; 表单卡片，含 VIN Number / Registration Number / Brand(select=Volkswagen) / Engine Type / Model / Year / Color 字段，均已预填示例值；Step 标题显示 &quot;Step 1/6&quot;，与 man 描述完全一致。</div>
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> 点击 Next（btn-next）</h3>
+<div class="exp">期望：state.step 变为 2，Step 2/6 Retailer 面板渲染，sidebar dot 切到 Retailer</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260721T072118Z/showcase/form-wizard2-02.png" alt="点击 Next（btn-next）" loading="lazy"><figcaption>点击 Next（btn-next）</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：页面切换为 &quot;Step 2/6&quot; &quot;Retailer&quot;，sidebar 高亮框移动到第 2 项，内容区渲染 &quot;Find the retailer you like&quot; 卡片，卡片内出现 ← Back / → Next 按钮对，与 man refs.actions（btn-next → step2）描述一致。</div>
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> 点击卡片内的 step2-back-btn（第二个『Back』标签，用 text=Back&gt;&gt;nth=1 精确定位，避开顶部装饰性 back-btn）</h3>
+<div class="exp">期望：state.step 回退为 1，重新显示 Vehicle Info</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260721T072118Z/showcase/form-wizard2-04.png" alt="点击卡片内的 step2-back-btn（第二个『Back』标签，用 text=Back&gt;&gt;nth=1 精确定位，避开顶部装饰性 back-btn）" loading="lazy"><figcaption>点击卡片内的 step2-back-btn（第二个『Back』标签，用 text=Back&gt;&gt;nth=1 精确定位，避开顶部装饰性 back-btn）</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：页面正确回退到 &quot;Step 1/6&quot; &quot;Vehicle Info&quot;，sidebar 高亮框回到第 1 项，VIN/Brand 等字段与初始值一致（Volkswagen/Tayron R-Line 等），确认 step2-back-btn 正确接线，issue #1852 的修复在活环境成立。</div>
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> 补充探针：点击页面顶部『← Back』装饰性链接（非 step-nav 按钮）后仍在 Step 2/6</h3>
+<div class="exp">期望：man caveat 声明该顶部 back-btn 是未接线的装饰节点</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260721T072118Z/showcase/form-wizard-05.png" alt="补充探针：点击页面顶部『← Back』装饰性链接（非 step-nav 按钮）后仍在 Step 2/6" loading="lazy"><figcaption>补充探针：点击页面顶部『← Back』装饰性链接（非 step-nav 按钮）后仍在 Step 2/6</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：首次探路时误用宽泛文本选择器 &#x27;Back&#x27; 点到了页头装饰性 &#x27;← Back&#x27;，点击后页面仍停留在 Step 2/6（截图 form-wizard-05.png 与点击前 form-wizard-03.png 像素一致），证实 man caveat「header 的 back-btn 是单独的、未接线的装饰节点」为真，非本次测试误判。</div>
+
+</div>
+</section><section id="path-chat">
+<h2>Chat 团队聊天（authed） <span class="rt">authed · /app?page=chat</span></h2>
+<video class="video" controls preload="metadata" src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260721T072118Z/showcase/page@9f52dc3b6d1957a36c75149048c777ff.webm"><a href="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260721T072118Z/showcase/page@9f52dc3b6d1957a36c75149048c777ff.webm">下载该路径录像</a></video><p class="vcap">本测试路径整段走查录像</p>
+<div class="kpis"><div class="kpi"><div class="k">3</div><div class="l">操作步</div></div><div class="kpi"><div class="k">2</div><div class="l">通过</div></div><div class="kpi"><div class="k k-bad">1</div><div class="l">失败</div></div><div class="kpi"><div class="k k-warn">0</div><div class="l">不确定</div></div><div class="kpi"><div class="k">0</div><div class="l">未走到</div></div></div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> navigate 到 /app?page=chat（authed），等待最多 13s 让懒加载内容 settle</h3>
+<div class="exp">期望：频道列表 + DM 列表 + 消息区渲染</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260721T072118Z/showcase/chat-final-03.png" alt="navigate 到 /app?page=chat（authed），等待最多 13s 让懒加载内容 settle" loading="lazy"><figcaption>navigate 到 /app?page=chat（authed），等待最多 13s 让懒加载内容 settle</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：页面初次渲染约 15-17s 才脱离骨架屏（骨架占位符持续存在超过 12s，明显慢于其它页面）；最终渲染出真实 Channels（design/engineering(3)/general/leadership/product(1)/random）与 Direct Messages（Alice Chen🟢/Bob Park🟢/Carol Wu🟡/Dave Kim🔴 在线状态点），# engineering 频道头部显示 &quot;API v2 sprint&quot; &quot;5 members&quot;，消息区显示 &quot;No items to display&quot;（该频道无种子消息）。</div>
+
+</div>
+<div class="op">
+<h3><span class="pill p-fail">失败</span> 点击左侧 &quot;design&quot; 频道</h3>
+<div class="exp">期望：切换到 design 频道，头部标题变为 # design</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260721T072118Z/showcase/chat-final-05.png" alt="点击左侧 &quot;design&quot; 频道" loading="lazy"><figcaption>点击左侧 &quot;design&quot; 频道</figcaption></figure></div>
+<div class="chk-fail"><b>观察证据</b>：点击前后页面截图完全一致：&quot;design&quot; 行在点击前就已带高亮背景（可能只是默认/焦点样式而非选中态），头部始终显示 &quot;# engineering&quot;/&quot;API v2 sprint&quot;/&quot;5 members&quot;，未观察到任何频道切换（标题、成员数、消息区均未变化）——频道点击疑似未接线。</div>
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> 在消息输入框输入文本『hello from test-sweep (not sent)』但不点击 Send（写保守策略，避免持久化写入共享环境）</h3>
+<div class="exp">期望：输入框正确回显文本</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260721T072118Z/showcase/chat-final-07.png" alt="在消息输入框输入文本『hello from test-sweep (not sent)』但不点击 Send（写保守策略，避免持久化写入共享环境）" loading="lazy"><figcaption>在消息输入框输入文本『hello from test-sweep (not sent)』但不点击 Send（写保守策略，避免持久化写入共享环境）</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：输入框正确显示 &quot;hello from test-sweep (not sent)&quot;，input 状态绑定正常工作；未点击 Send，未产生任何写操作。</div>
+
+</div>
+</section><section id="path-overlays">
+<h2>Overlay Components 弹层组件（dialog/toast） <span class="rt">anon · /app?page=overlays</span></h2>
+<video class="video" controls preload="metadata" src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260721T072118Z/showcase/page@2a2acd156b7a67c5152bc887aabb8d89.webm"><a href="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260721T072118Z/showcase/page@2a2acd156b7a67c5152bc887aabb8d89.webm">下载该路径录像</a></video><p class="vcap">本测试路径整段走查录像</p>
+<div class="kpis"><div class="kpi"><div class="k">10</div><div class="l">操作步</div></div><div class="kpi"><div class="k">10</div><div class="l">通过</div></div><div class="kpi"><div class="k k-bad">0</div><div class="l">失败</div></div><div class="kpi"><div class="k k-warn">0</div><div class="l">不确定</div></div><div class="kpi"><div class="k">0</div><div class="l">未走到</div></div></div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> navigate 到 /app?page=overlays</h3>
+<div class="exp">期望：6 个触发按钮 + 3 个 toast 触发文本渲染</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260721T072118Z/showcase/overlays3-01.png" alt="navigate 到 /app?page=overlays" loading="lazy"><figcaption>navigate 到 /app?page=overlays</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：渲染出 Alert/Confirm/HUD/Choice/Multi-Step 五个绿色按钮及 Toast Success/Toast Error/Toast Sticky 三个文本触发器，标题 &quot;Overlay Components&quot;，与 man 描述一致。</div>
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> 点击 Alert 按钮</h3>
+<div class="exp">期望：alert-demo 弹出，state.open=true</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260721T072118Z/showcase/overlays2-02.png" alt="点击 Alert 按钮" loading="lazy"><figcaption>点击 Alert 按钮</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：弹出居中模态框，标题 &quot;Connection Lost&quot;，正文 &quot;The server is not responding. Please check your network and try again.&quot;，含红色 X 图标与 OK 按钮，背后遮罩层生效。</div>
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> 按 Escape 键尝试关闭 alert</h3>
+<div class="exp">期望：（探针）验证 man caveat：关闭走内置控件而非全局 Escape</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260721T072118Z/showcase/overlays-05.png" alt="按 Escape 键尝试关闭 alert" loading="lazy"><figcaption>按 Escape 键尝试关闭 alert</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：按 Escape 后弹窗仍然存在（截图与按键前完全一致），证实 man caveat「Close 走 overlay 自己的确认/取消/backdrop 控件，没有独立的关闭按钮节点」——Escape 不是设计内的关闭路径，非 bug。</div>
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> 点击弹窗内 OK 按钮关闭 alert</h3>
+<div class="exp">期望：alert-demo.state.open 变回 false</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260721T072118Z/showcase/overlays2-04.png" alt="点击弹窗内 OK 按钮关闭 alert" loading="lazy"><figcaption>点击弹窗内 OK 按钮关闭 alert</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：点击后弹窗消失，页面恢复到初始状态（Alert/Confirm/HUD 等按钮行完整可见，无遮罩）。</div>
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> 点击 Confirm 按钮</h3>
+<div class="exp">期望：confirm-demo 弹出（confirm/cancel 二选一）</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260721T072118Z/showcase/overlays3-03.png" alt="点击 Confirm 按钮" loading="lazy"><figcaption>点击 Confirm 按钮</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：弹出 &quot;Delete Project?&quot; 确认框，正文 &quot;This action cannot be undone...&quot;，含 Keep（次要样式）与 Delete（主色样式）两个按钮，符合 man 的 confirm 模式描述。</div>
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> 点击 Keep（安全的取消/保留选项，避免触发破坏性 Delete）</h3>
+<div class="exp">期望：confirm-demo 关闭，不触发任何写操作</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260721T072118Z/showcase/overlays3-04.png" alt="点击 Keep（安全的取消/保留选项，避免触发破坏性 Delete）" loading="lazy"><figcaption>点击 Keep（安全的取消/保留选项，避免触发破坏性 Delete）</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：点击 Keep 后弹窗关闭，页面恢复初始状态；全程未点击 Delete，无写操作发生。</div>
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> 点击 HUD 按钮</h3>
+<div class="exp">期望：hud-demo 弹出，progress 37、duration 3000</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260721T072118Z/showcase/overlays3-07.png" alt="点击 HUD 按钮" loading="lazy"><figcaption>点击 HUD 按钮</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：弹出 &quot;Deploying...&quot; 进度 HUD，显示 &quot;3 of 8 services&quot; 与进度条，与 man 描述的 progress HUD 一致。</div>
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> 等待 4 秒（超过 duration 3000ms）后再次截图</h3>
+<div class="exp">期望：HUD 应在 duration 后自动消失（events.dismiss 自触发）</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260721T072118Z/showcase/overlays3-09.png" alt="等待 4 秒（超过 duration 3000ms）后再次截图" loading="lazy"><figcaption>等待 4 秒（超过 duration 3000ms）后再次截图</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：4 秒后 HUD 弹窗已消失，HUD 按钮不再处于激活边框态，页面回到干净初始状态，证实 duration 自动关闭机制生效。</div>
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> 点击 Toast Sticky</h3>
+<div class="exp">期望：toast-sticky 出现在右下角，duration=0 不自动消失</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260721T072118Z/showcase/overlays3-11.png" alt="点击 Toast Sticky" loading="lazy"><figcaption>点击 Toast Sticky</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：右下角出现非模态 toast &quot;New Version Available / v2.4.0 is ready. Restart to update.&quot;，页面主体未被遮罩（非模态特性符合 man），Toast Sticky 按钮变为激活态。</div>
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> 点击 Choice 按钮</h3>
+<div class="exp">期望：choice-demo 单选题弹出</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260721T072118Z/showcase/overlays3-13.png" alt="点击 Choice 按钮" loading="lazy"><figcaption>点击 Choice 按钮</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：弹出 &quot;DATABASE&quot; 标签的选择框 &quot;Which database should we use for the user service?&quot;，含 PostgreSQL(Recommended)/MongoDB/SQLite 三个单选项及 Other... 输入框，底部 Skip/Confirm 按钮；此时先前打开的 Toast Sticky 仍并存显示（非模态特性再次确认）。</div>
+
+</div>
+</section><section id="path-explorer">
+<h2>Explorer 复合面板 Demo（authed） <span class="rt">authed · /app?page=explorer</span></h2>
+<video class="video" controls preload="metadata" src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260721T072118Z/showcase/page@9ed00c549e56bd31e5972972843ea07c.webm"><a href="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260721T072118Z/showcase/page@9ed00c549e56bd31e5972972843ea07c.webm">下载该路径录像</a></video><p class="vcap">本测试路径整段走查录像</p>
+<div class="kpis"><div class="kpi"><div class="k">1</div><div class="l">操作步</div></div><div class="kpi"><div class="k">0</div><div class="l">通过</div></div><div class="kpi"><div class="k k-bad">1</div><div class="l">失败</div></div><div class="kpi"><div class="k k-warn">0</div><div class="l">不确定</div></div><div class="kpi"><div class="k">0</div><div class="l">未走到</div></div></div>
+<div class="op">
+<h3><span class="pill p-fail">失败</span> navigate 到 /app?page=explorer（authed），等待 2s settle 后再额外等待 18s（合计约 20s）</h3>
+<div class="exp">期望：Explorer 面板渲染出内容</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260721T072118Z/showcase/explorer-long-03.png" alt="navigate 到 /app?page=explorer（authed），等待 2s settle 后再额外等待 18s（合计约 20s）" loading="lazy"><figcaption>navigate 到 /app?page=explorer（authed），等待 2s settle 后再额外等待 18s（合计约 20s）</figcaption></figure></div>
+<div class="chk-fail"><b>观察证据</b>：页面在 navigate 后、2s settle 后、以及额外等待 18s 后三次快照的 aupNodes 均恒为 71（等于全站导航栏自身的节点数），正文区域始终只显示一行灰色文字 &quot;Setting up explorer panels...&quot;，20 秒内无任何进展，控制台无 JS 错误（静默卡死，非报错崩溃）。这是本轮走查中最明确的 bug：Explorer composite demo 页面加载后永久停留在初始化占位符状态，从未渲染出实际内容。</div>
+
+</div>
+</section><section id="path-list-basic">
+<h2>afs-list: Basic 基础列表 <span class="rt">anon · /app?page=list-basic</span></h2>
+<video class="video" controls preload="metadata" src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260721T072118Z/showcase/page@f234ec2c0082fbb51ae82b003f72a0f0.webm"><a href="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260721T072118Z/showcase/page@f234ec2c0082fbb51ae82b003f72a0f0.webm">下载该路径录像</a></video><p class="vcap">本测试路径整段走查录像</p>
+<div class="kpis"><div class="kpi"><div class="k">3</div><div class="l">操作步</div></div><div class="kpi"><div class="k">3</div><div class="l">通过</div></div><div class="kpi"><div class="k k-bad">0</div><div class="l">失败</div></div><div class="kpi"><div class="k k-warn">0</div><div class="l">不确定</div></div><div class="kpi"><div class="k">0</div><div class="l">未走到</div></div></div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> navigate 到 /app?page=list-basic</h3>
+<div class="exp">期望：list1 渲染 12 条 data/items，flat+card 布局，tab-basic 高亮</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260721T072118Z/showcase/list-basic2-02.png" alt="navigate 到 /app?page=list-basic" loading="lazy"><figcaption>navigate 到 /app?page=list-basic</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：渲染出 &quot;afs-list: Basic&quot; 标题、6 按钮 tab bar（Basic 高亮绿色/Pagination/Templates/Grid/Virtual/Live），说明文本 &quot;Flat list, card itemStyle, bound to data/items. 12 items, no pagination.&quot;，下方以 JSON 卡片形式列出条目（首条 item-001.json：title=&quot;Migrate authentication to OAuth 2.1&quot;），与 man 断言的 list1(afs-list, layout=flat, itemStyle=card) 一致。</div>
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> 点击 Pagination tab（tab-pagination，events.click 设 _root.page=list-pagination）</h3>
+<div class="exp">期望：SPA 内切换到 list-pagination 页，无整页刷新</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260721T072118Z/showcase/list-basic2-04.png" alt="点击 Pagination tab（tab-pagination，events.click 设 _root.page=list-pagination）" loading="lazy"><figcaption>点击 Pagination tab（tab-pagination，events.click 设 _root.page=list-pagination）</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：页面切换为 &quot;afs-list: Pagination&quot; 标题，说明文本变为 &quot;pageSize: 8. The provider returns 12 items; the manual pager shows page 1 first (8 items) with Prev/Next controls...&quot;，tab bar 中 Pagination 变绿高亮，nav 顶栏同步高亮 &quot;List Pagination&quot;，条目列表显示 item-001..004；与 man 声明的 tab-pagination → list-pagination 导航精确吻合。</div>
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> 点击 Live tab（tab-live → live-updates）</h3>
+<div class="exp">期望：切换到 live-updates 页</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260721T072118Z/showcase/list-basic2-06.png" alt="点击 Live tab（tab-live → live-updates）" loading="lazy"><figcaption>点击 Live tab（tab-live → live-updates）</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：页面切换为 &quot;afs-list: Live Updates&quot; 标题，说明文本 &quot;An afs-list with subscribe: true bound to /instance/feed. New writes to that path stream into this page in real time over WebSocket — no reload, no polling.&quot;，Live tab 高亮，下方出现 &quot;Try it&quot; 引导区块，导航精确吻合 man 声明。</div>
+
+</div>
+</section><section id="path-calendar">
+<h2>Calendar / Time off 日历（HRISELINK demo, authed） <span class="rt">authed · /app?page=calendar</span></h2>
+<video class="video" controls preload="metadata" src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260721T072118Z/showcase/page@f0de38e94b1dea4283f79c7c45e97b9e.webm"><a href="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260721T072118Z/showcase/page@f0de38e94b1dea4283f79c7c45e97b9e.webm">下载该路径录像</a></video><p class="vcap">本测试路径整段走查录像</p>
+<div class="kpis"><div class="kpi"><div class="k">3</div><div class="l">操作步</div></div><div class="kpi"><div class="k">1</div><div class="l">通过</div></div><div class="kpi"><div class="k k-bad">0</div><div class="l">失败</div></div><div class="kpi"><div class="k k-warn">2</div><div class="l">不确定</div></div><div class="kpi"><div class="k">0</div><div class="l">未走到</div></div></div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> navigate 到 /app?page=calendar（authed）</h3>
+<div class="exp">期望：HRISELINK Time off 日历月视图渲染</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260721T072118Z/showcase/calendar-02.png" alt="navigate 到 /app?page=calendar（authed）" loading="lazy"><figcaption>navigate 到 /app?page=calendar（authed）</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：渲染出完整 HR 系统 UI：左侧导航（Dashboard/Teams/Employee/.../Time off 高亮/Hire/Finance...），主区 &quot;Time off&quot; 标题、Export CSV / Add new 按钮、Requested/Balances/Calendar 三个 tab（Calendar 当前高亮），月历网格显示 &quot;Today, 7 March 2025&quot;，第 5/7 日格子内可见 &quot;Sick leave 1&quot;&quot;Annual leave 1&quot; 事件标签。</div>
+
+</div>
+<div class="op">
+<h3><span class="pill p-warn">不确定</span> 点击 Requested tab</h3>
+<div class="exp">期望：切到 Requested 视图（预期列表/表格）</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260721T072118Z/showcase/calendar-04.png" alt="点击 Requested tab" loading="lazy"><figcaption>点击 Requested tab</figcaption></figure></div>
+<div class="chk-fail"><b>观察证据</b>：点击后 Requested 文本变为高亮蓝色（选中态样式生效），但下方内容区域仍然是原来的月历网格，未切换为任何列表/表格视图；页面无 man 声明预期行为，无法确定这是「仅实现了 Calendar 一个 tab 的静态演示」还是内容切换未接线。</div>
+
+</div>
+<div class="op">
+<h3><span class="pill p-warn">不确定</span> 点击 Balances tab</h3>
+<div class="exp">期望：切到 Balances 视图</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260721T072118Z/showcase/calendar-06.png" alt="点击 Balances tab" loading="lazy"><figcaption>点击 Balances tab</figcaption></figure></div>
+<div class="chk-fail"><b>观察证据</b>：同上：Balances 文案变蓝高亮，但主体内容区仍是同一份月历网格，未见任何数据变化。</div>
+
+</div>
+</section><section id="path-chart">
+<h2>Chart Primitive 图表组件（Chart.js v4） <span class="rt">anon · /app?page=chart</span></h2>
+<video class="video" controls preload="metadata" src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260721T072118Z/showcase/page@2730f54467e15f33cc7afa8ddde84285.webm"><a href="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260721T072118Z/showcase/page@2730f54467e15f33cc7afa8ddde84285.webm">下载该路径录像</a></video><p class="vcap">本测试路径整段走查录像</p>
+<div class="kpis"><div class="kpi"><div class="k">1</div><div class="l">操作步</div></div><div class="kpi"><div class="k">1</div><div class="l">通过</div></div><div class="kpi"><div class="k k-bad">0</div><div class="l">失败</div></div><div class="kpi"><div class="k k-warn">0</div><div class="l">不确定</div></div><div class="kpi"><div class="k">0</div><div class="l">未走到</div></div></div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> navigate 到 /app?page=chart，等待 CDN 懒加载 Chart.js</h3>
+<div class="exp">期望：Line/Bar/Pie/Area 等多类型图表渲染</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260721T072118Z/showcase/chart-05.png" alt="navigate 到 /app?page=chart，等待 CDN 懒加载 Chart.js" loading="lazy"><figcaption>navigate 到 /app?page=chart，等待 CDN 懒加载 Chart.js</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：渲染出 &quot;Chart Primitive&quot; 标题，说明 &quot;Chart.js v4, lazy-loaded from CDN.&quot;；可见两张已完整渲染的图表：Line — Revenue（蓝色 Revenue 折线 + 红色 Costs 折线，Jan-Jun 轴标签清晰）与 Bar — Quarterly（2024/2025 双柱状分组，Q1-Q4），下方还有 &quot;Pie — Devices&quot; 与 &quot;Area — Visitors&quot; 标题（需继续滚动查看），控制台无错误。</div>
+
+</div>
+</section><section id="path-session">
+<h2>Session &amp; Auth $session 变量演示（authed） <span class="rt">authed · /app?page=session</span></h2>
+<video class="video" controls preload="metadata" src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260721T072118Z/showcase/page@d0aed69ae76a1ce16e0a0b68f864121c.webm"><a href="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260721T072118Z/showcase/page@d0aed69ae76a1ce16e0a0b68f864121c.webm">下载该路径录像</a></video><p class="vcap">本测试路径整段走查录像</p>
+<div class="kpis"><div class="kpi"><div class="k">1</div><div class="l">操作步</div></div><div class="kpi"><div class="k">1</div><div class="l">通过</div></div><div class="kpi"><div class="k k-bad">0</div><div class="l">失败</div></div><div class="kpi"><div class="k k-warn">0</div><div class="l">不确定</div></div><div class="kpi"><div class="k">0</div><div class="l">未走到</div></div></div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> navigate 到 /app?page=session（authed，携带 mint 出的 login_token cookie）</h3>
+<div class="exp">期望：$session.authenticated=true 及 DID/displayName 正确渲染</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260721T072118Z/showcase/session-02.png" alt="navigate 到 /app?page=session（authed，携带 mint 出的 login_token cookie）" loading="lazy"><figcaption>navigate 到 /app?page=session（authed，携带 mint 出的 login_token cookie）</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：渲染出 &quot;Session &amp; Auth&quot; 标题、说明 &quot;Demonstrates $session.* variables, visible conditional rendering, login/logout actions, and role-based UI.&quot;，&quot;Session Context Status&quot; 卡片内显示 Authenticated: ✓ true，DID: z3hzrqPtWJA4AqkV6dq7Y6sgYM34TxdfaYVcH（与 mint.sh 签发 token 的 DID 一致），Display Name: Test Fixture User（与测试账号 fullName 一致）；确认 authed 态在此页被正确识别并绑定渲染，是本轮 authed 走查的核心验证点。</div>
+
+</div>
+</section><section id="path-tx-detail">
+<h2>Transaction Detail 交易详情（chain explorer composition, dynamic 路由） <span class="rt">anon · /app?page=tx-detail</span></h2>
+<video class="video" controls preload="metadata" src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260721T072118Z/showcase/page@1bc31060e2e01087c0997427b1773183.webm"><a href="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260721T072118Z/showcase/page@1bc31060e2e01087c0997427b1773183.webm">下载该路径录像</a></video><p class="vcap">本测试路径整段走查录像</p>
+<div class="kpis"><div class="kpi"><div class="k">3</div><div class="l">操作步</div></div><div class="kpi"><div class="k">1</div><div class="l">通过</div></div><div class="kpi"><div class="k k-bad">2</div><div class="l">失败</div></div><div class="kpi"><div class="k k-warn">0</div><div class="l">不确定</div></div><div class="kpi"><div class="k">0</div><div class="l">未走到</div></div></div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> navigate 到 /app?page=tx-detail（无 :id 参数，动态路由未提供具体 id）</h3>
+<div class="exp">期望：渲染出示例/mock 交易详情（页面自述 inline mock data，无需真实链）</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260721T072118Z/showcase/tx-detail2-02.png" alt="navigate 到 /app?page=tx-detail（无 :id 参数，动态路由未提供具体 id）" loading="lazy"><figcaption>navigate 到 /app?page=tx-detail（无 :id 参数，动态路由未提供具体 id）</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：即使不带具体交易 id，页面仍正常渲染出完整 mock 交易详情：标题 &quot;Transaction detail — chain explorer composition&quot;，交易卡片 &quot;Transfer V3&quot; / SUCCESS 徽章 / &quot;2 months ago | Apr 30, 2026, 12:34 PM&quot;，DETAILS 列（Hash 0xa3f2c1…4a5b6c / Type / Sender z2E5VtCb…vvwo3D / Receiver z1aA8YvG…XcPpQv / Memo &quot;Quarterly payment&quot;）、STATS 列（Amount 1 ABT / Fee 0.000021 ABT / Block 8,142,096 / Nonce 47）、STATUS 列（Result Success / Confirmations 1,284 / Timestamp），右上角有 ‹ › 翻页箭头；未提供 :id 时能优雅回退到 mock 数据而非报错，符合 dynamic 路由的合理预期。</div>
+
+</div>
+<div class="op">
+<h3><span class="pill p-fail">失败</span> 点击右上角 › (tx-next) 按钮</h3>
+<div class="exp">期望：切换到下一条 mock 交易，卡片内容（hash/sender/amount 等）应变化</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260721T072118Z/showcase/tx-detail2-04.png" alt="点击右上角 › (tx-next) 按钮" loading="lazy"><figcaption>点击右上角 › (tx-next) 按钮</figcaption></figure></div>
+<div class="chk-fail"><b>观察证据</b>：点击成功无报错，按钮出现聚焦边框视觉反馈，但卡片全部字段（Transfer V3 / 0xa3f2c1…4a5b6c / z2E5VtCb…vvwo3D / z1aA8YvG…XcPpQv / Quarterly payment / 1 ABT / Block 8,142,096 / Nonce 47 / 1,284 confirmations）在点击前后逐字节一致——未观察到任何交易切换。tx-next 疑似未接线或该 demo 只有单条 mock 记录却渲染了看似可翻页的箭头控件，误导用户。</div>
+
+</div>
+<div class="op">
+<h3><span class="pill p-fail">失败</span> 点击 ‹ (tx-prev) 按钮</h3>
+<div class="exp">期望：回到上一条（或与刚才 next 前一致）</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260721T072118Z/showcase/tx-detail2-06.png" alt="点击 ‹ (tx-prev) 按钮" loading="lazy"><figcaption>点击 ‹ (tx-prev) 按钮</figcaption></figure></div>
+<div class="chk-fail"><b>观察证据</b>：同样点击成功但内容与前两次快照完全一致，进一步确认 prev/next 翻页控件在当前环境下不产生任何可观察效果。</div>
+
+</div>
+</section><section id="path-index">
+<h2>Showcase 首页 Gallery（卡片墙） <span class="rt">anon · /app?page=index</span></h2>
+<p class="novideo">⛔ 本路径缺录屏（未满足要求 #1）</p>
+<div class="kpis"><div class="kpi"><div class="k">2</div><div class="l">操作步</div></div><div class="kpi"><div class="k">1</div><div class="l">通过</div></div><div class="kpi"><div class="k k-bad">0</div><div class="l">失败</div></div><div class="kpi"><div class="k k-warn">1</div><div class="l">不确定</div></div><div class="kpi"><div class="k">0</div><div class="l">未走到</div></div></div>
+<div class="op">
+<h3><span class="pill p-warn">不确定</span> navigate 到 https://showcase.afsd.dev/（声明路由 declared path）</h3>
+<div class="exp">期望：man 描述的卡片墙 gallery（grid-featured 等）</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260721T072118Z/showcase/showcase-index.png" alt="navigate 到 https://showcase.afsd.dev/（声明路由 declared path）" loading="lazy"><figcaption>navigate 到 https://showcase.afsd.dev/（声明路由 declared path）</figcaption></figure></div>
+<div class="chk-fail"><b>观察证据</b>：&quot;/&quot; 实际渲染的是一个独立的营销落地页（&quot;AFS Home Showcase — Agentic UI Protocol...&quot;），aupNodes=435（仅 1，说明这不是 AUP 渲染树），与 man 描述的 grid-featured 卡片墙内容完全不同。这与其它 afsd.dev blocklet 的已知模式一致（skill 文档记载：&quot;/ 是营销落地页&quot;，真正入口在 /app?page=X），非本页缺陷，但声明路由与实际 AUP 入口不一致，值得记录。</div>
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> navigate 到真实 AUP 入口 https://showcase.afsd.dev/app?page=index</h3>
+<div class="exp">期望：man 断言：grid-featured / card-dashboard-link / card-form-contact-link / card-form-wizard-link / card-overlays-link / card-explorer-link 等节点存在</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260721T072118Z/showcase/showcase-index-app.png" alt="navigate 到真实 AUP 入口 https://showcase.afsd.dev/app?page=index" loading="lazy"><figcaption>navigate 到真实 AUP 入口 https://showcase.afsd.dev/app?page=index</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：aupNodes=435, buttons=114；正文头部含 &quot;Home Showcase&quot; 导航及分区标题（Featured/Functional/Primitives/Lists/Replicas/Smart Home/Forms），与 man 描述的分区结构一致；顶部还额外渲染了一条完整的导航栏（贯穿全站，覆盖全部 58 页），是本次走查确认全站路由的依据。</div>
+
+</div>
+</section><section id="path-afs-workspace">
+<h2>AFS Workspace <span class="rt">authed · /app?page=afs-workspace</span></h2>
+<p class="novideo">⛔ 本路径缺录屏（未满足要求 #1）</p>
+<div class="kpis"><div class="kpi"><div class="k">1</div><div class="l">操作步</div></div><div class="kpi"><div class="k">1</div><div class="l">通过</div></div><div class="kpi"><div class="k k-bad">0</div><div class="l">失败</div></div><div class="kpi"><div class="k k-warn">0</div><div class="l">不确定</div></div><div class="kpi"><div class="k">0</div><div class="l">未走到</div></div></div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> navigate 到 https://showcase.afsd.dev/app?page=afs-workspace，等待 AUP 节点渲染（waitAup&gt;=10, settle 1.4s），单步冒烟观测</h3>
+<div class="exp">期望：页面渲染出真实内容（非空壳/非 Unknown 降级框），控制台无阻断性错误</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260721T072118Z/showcase/showcase-afs-workspace.png" alt="navigate 到 https://showcase.afsd.dev/app?page=afs-workspace，等待 AUP 节点渲染（waitAup&gt;=10, settle 1.4s），单步冒烟观测" loading="lazy"><figcaption>navigate 到 https://showcase.afsd.dev/app?page=afs-workspace，等待 AUP 节点渲染（waitAup&gt;=10, settle 1.4s），单步冒烟观测</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：页面正常渲染：130 个 data-aup-id 节点，75 个可交互元素（button/a/input）；正文头部：&quot;AFS Home Showcase ▾ AUP Web Home Functional Dashboard Content Portal Report Workspace Web Sharing WM Desktop Explorer Au&quot;；无 Unknown 降级框；控制台无错误。</div>
+
+</div>
+</section><section id="path-auto-surface">
+<h2>AFS Auto Surface（settings-bind G0 哨兵） <span class="rt">authed · /app?page=auto-surface</span></h2>
+<p class="novideo">⛔ 本路径缺录屏（未满足要求 #1）</p>
+<div class="kpis"><div class="kpi"><div class="k">1</div><div class="l">操作步</div></div><div class="kpi"><div class="k">1</div><div class="l">通过</div></div><div class="kpi"><div class="k k-bad">0</div><div class="l">失败</div></div><div class="kpi"><div class="k k-warn">0</div><div class="l">不确定</div></div><div class="kpi"><div class="k">0</div><div class="l">未走到</div></div></div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> navigate 到 https://showcase.afsd.dev/app?page=auto-surface，等待 AUP 节点渲染（waitAup&gt;=10, settle 1.4s），单步冒烟观测</h3>
+<div class="exp">期望：页面渲染出真实内容（非空壳/非 Unknown 降级框），控制台无阻断性错误</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260721T072118Z/showcase/showcase-auto-surface.png" alt="navigate 到 https://showcase.afsd.dev/app?page=auto-surface，等待 AUP 节点渲染（waitAup&gt;=10, settle 1.4s），单步冒烟观测" loading="lazy"><figcaption>navigate 到 https://showcase.afsd.dev/app?page=auto-surface，等待 AUP 节点渲染（waitAup&gt;=10, settle 1.4s），单步冒烟观测</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：页面正常渲染：239 个 data-aup-id 节点，85 个可交互元素（button/a/input）；正文头部：&quot;AFS Home Showcase ▾ AUP Web Home Functional Dashboard Content Portal Report Workspace Web Sharing WM Desktop Explorer Au&quot;；无 Unknown 降级框；控制台无错误。</div>
+
+</div>
+</section><section id="path-blocklet-settings">
+<h2>App Settings 应用设置 <span class="rt">authed · /app?page=blocklet-settings</span></h2>
+<p class="novideo">⛔ 本路径缺录屏（未满足要求 #1）</p>
+<div class="kpis"><div class="kpi"><div class="k">1</div><div class="l">操作步</div></div><div class="kpi"><div class="k">1</div><div class="l">通过</div></div><div class="kpi"><div class="k k-bad">0</div><div class="l">失败</div></div><div class="kpi"><div class="k k-warn">0</div><div class="l">不确定</div></div><div class="kpi"><div class="k">0</div><div class="l">未走到</div></div></div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> navigate 到 https://showcase.afsd.dev/app?page=blocklet-settings，等待 AUP 节点渲染（waitAup&gt;=10, settle 1.4s），单步冒烟观测</h3>
+<div class="exp">期望：页面渲染出真实内容（非空壳/非 Unknown 降级框），控制台无阻断性错误</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260721T072118Z/showcase/showcase-blocklet-settings.png" alt="navigate 到 https://showcase.afsd.dev/app?page=blocklet-settings，等待 AUP 节点渲染（waitAup&gt;=10, settle 1.4s），单步冒烟观测" loading="lazy"><figcaption>navigate 到 https://showcase.afsd.dev/app?page=blocklet-settings，等待 AUP 节点渲染（waitAup&gt;=10, settle 1.4s），单步冒烟观测</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：页面正常渲染：308 个 data-aup-id 节点，128 个可交互元素（button/a/input）；正文头部：&quot;AFS Home Showcase ▾ AUP Web Home Functional Dashboard Content Portal Report Workspace Web Sharing WM Desktop Explorer Au&quot;；无 Unknown 降级框；控制台无错误。</div>
+
+</div>
+</section><section id="path-content">
+<h2>Content 文章页 <span class="rt">authed · /app?page=content</span></h2>
+<p class="novideo">⛔ 本路径缺录屏（未满足要求 #1）</p>
+<div class="kpis"><div class="kpi"><div class="k">1</div><div class="l">操作步</div></div><div class="kpi"><div class="k">1</div><div class="l">通过</div></div><div class="kpi"><div class="k k-bad">0</div><div class="l">失败</div></div><div class="kpi"><div class="k k-warn">0</div><div class="l">不确定</div></div><div class="kpi"><div class="k">0</div><div class="l">未走到</div></div></div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> navigate 到 https://showcase.afsd.dev/app?page=content，等待 AUP 节点渲染（waitAup&gt;=10, settle 1.4s），单步冒烟观测</h3>
+<div class="exp">期望：页面渲染出真实内容（非空壳/非 Unknown 降级框），控制台无阻断性错误</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260721T072118Z/showcase/showcase-content.png" alt="navigate 到 https://showcase.afsd.dev/app?page=content，等待 AUP 节点渲染（waitAup&gt;=10, settle 1.4s），单步冒烟观测" loading="lazy"><figcaption>navigate 到 https://showcase.afsd.dev/app?page=content，等待 AUP 节点渲染（waitAup&gt;=10, settle 1.4s），单步冒烟观测</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：页面正常渲染：99 个 data-aup-id 节点，68 个可交互元素（button/a/input）；正文头部：&quot;AFS Home Showcase ▾ AUP Web Home Functional Dashboard Content Portal Report Workspace Web Sharing WM Desktop Explorer Au&quot;；无 Unknown 降级框；控制台无错误。</div>
+
+</div>
+</section><section id="path-device">
+<h2>Device 主件演示 <span class="rt">authed · /app?page=device</span></h2>
+<p class="novideo">⛔ 本路径缺录屏（未满足要求 #1）</p>
+<div class="kpis"><div class="kpi"><div class="k">1</div><div class="l">操作步</div></div><div class="kpi"><div class="k">1</div><div class="l">通过</div></div><div class="kpi"><div class="k k-bad">0</div><div class="l">失败</div></div><div class="kpi"><div class="k k-warn">0</div><div class="l">不确定</div></div><div class="kpi"><div class="k">0</div><div class="l">未走到</div></div></div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> navigate 到 https://showcase.afsd.dev/app?page=device，等待 AUP 节点渲染（waitAup&gt;=10, settle 1.4s），单步冒烟观测</h3>
+<div class="exp">期望：页面渲染出真实内容（非空壳/非 Unknown 降级框），控制台无阻断性错误</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260721T072118Z/showcase/showcase-device.png" alt="navigate 到 https://showcase.afsd.dev/app?page=device，等待 AUP 节点渲染（waitAup&gt;=10, settle 1.4s），单步冒烟观测" loading="lazy"><figcaption>navigate 到 https://showcase.afsd.dev/app?page=device，等待 AUP 节点渲染（waitAup&gt;=10, settle 1.4s），单步冒烟观测</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：页面正常渲染：85 个 data-aup-id 节点，68 个可交互元素（button/a/input）；正文头部：&quot;AFS Home Showcase ▾ AUP Web Home Functional Dashboard Content Portal Report Workspace Web Sharing WM Desktop Explorer Au&quot;；无 Unknown 降级框；控制台无错误。</div>
+
+</div>
+</section><section id="path-exposure">
+<h2>Exposure 摄影站 <span class="rt">authed · /app?page=exposure</span></h2>
+<p class="novideo">⛔ 本路径缺录屏（未满足要求 #1）</p>
+<div class="kpis"><div class="kpi"><div class="k">1</div><div class="l">操作步</div></div><div class="kpi"><div class="k">1</div><div class="l">通过</div></div><div class="kpi"><div class="k k-bad">0</div><div class="l">失败</div></div><div class="kpi"><div class="k k-warn">0</div><div class="l">不确定</div></div><div class="kpi"><div class="k">0</div><div class="l">未走到</div></div></div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> navigate 到 https://showcase.afsd.dev/app?page=exposure，等待 AUP 节点渲染（waitAup&gt;=10, settle 1.4s），单步冒烟观测</h3>
+<div class="exp">期望：页面渲染出真实内容（非空壳/非 Unknown 降级框），控制台无阻断性错误</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260721T072118Z/showcase/showcase-exposure.png" alt="navigate 到 https://showcase.afsd.dev/app?page=exposure，等待 AUP 节点渲染（waitAup&gt;=10, settle 1.4s），单步冒烟观测" loading="lazy"><figcaption>navigate 到 https://showcase.afsd.dev/app?page=exposure，等待 AUP 节点渲染（waitAup&gt;=10, settle 1.4s），单步冒烟观测</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：页面正常渲染：164 个 data-aup-id 节点，98 个可交互元素（button/a/input）；正文头部：&quot;AFS Home Showcase ▾ AUP Web Home Functional Dashboard Content Portal Report Workspace Web Sharing WM Desktop Explorer Au&quot;；无 Unknown 降级框；控制台无错误。</div>
+
+</div>
+</section><section id="path-finance">
+<h2>Finance Charts 金融图表 <span class="rt">authed · /app?page=finance</span></h2>
+<p class="novideo">⛔ 本路径缺录屏（未满足要求 #1）</p>
+<div class="kpis"><div class="kpi"><div class="k">1</div><div class="l">操作步</div></div><div class="kpi"><div class="k">1</div><div class="l">通过</div></div><div class="kpi"><div class="k k-bad">0</div><div class="l">失败</div></div><div class="kpi"><div class="k k-warn">0</div><div class="l">不确定</div></div><div class="kpi"><div class="k">0</div><div class="l">未走到</div></div></div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> navigate 到 https://showcase.afsd.dev/app?page=finance，等待 AUP 节点渲染（waitAup&gt;=10, settle 1.4s），单步冒烟观测</h3>
+<div class="exp">期望：页面渲染出真实内容（非空壳/非 Unknown 降级框），控制台无阻断性错误</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260721T072118Z/showcase/showcase-finance.png" alt="navigate 到 https://showcase.afsd.dev/app?page=finance，等待 AUP 节点渲染（waitAup&gt;=10, settle 1.4s），单步冒烟观测" loading="lazy"><figcaption>navigate 到 https://showcase.afsd.dev/app?page=finance，等待 AUP 节点渲染（waitAup&gt;=10, settle 1.4s），单步冒烟观测</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：页面正常渲染：86 个 data-aup-id 节点，68 个可交互元素（button/a/input）；正文头部：&quot;AFS Home Showcase ▾ AUP Web Home Functional Dashboard Content Portal Report Workspace Web Sharing WM Desktop Explorer Au&quot;；无 Unknown 降级框；控制台无错误。</div>
+
+</div>
+</section><section id="path-form-contact">
+<h2>Contact Form 联系表单（校验+写入） <span class="rt">authed · /app?page=form-contact</span></h2>
+<p class="novideo">⛔ 本路径缺录屏（未满足要求 #1）</p>
+<div class="kpis"><div class="kpi"><div class="k">1</div><div class="l">操作步</div></div><div class="kpi"><div class="k">1</div><div class="l">通过</div></div><div class="kpi"><div class="k k-bad">0</div><div class="l">失败</div></div><div class="kpi"><div class="k k-warn">0</div><div class="l">不确定</div></div><div class="kpi"><div class="k">0</div><div class="l">未走到</div></div></div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> navigate 到 https://showcase.afsd.dev/app?page=form-contact，等待 AUP 节点渲染（waitAup&gt;=10, settle 1.4s），单步冒烟观测</h3>
+<div class="exp">期望：页面渲染出真实内容（非空壳/非 Unknown 降级框），控制台无阻断性错误</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260721T072118Z/showcase/showcase-form-contact.png" alt="navigate 到 https://showcase.afsd.dev/app?page=form-contact，等待 AUP 节点渲染（waitAup&gt;=10, settle 1.4s），单步冒烟观测" loading="lazy"><figcaption>navigate 到 https://showcase.afsd.dev/app?page=form-contact，等待 AUP 节点渲染（waitAup&gt;=10, settle 1.4s），单步冒烟观测</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：页面正常渲染：106 个 data-aup-id 节点，74 个可交互元素（button/a/input）；正文头部：&quot;AFS Home Showcase ▾ AUP Web Home Functional Dashboard Content Portal Report Workspace Web Sharing WM Desktop Explorer Au&quot;；无 Unknown 降级框；控制台无错误。</div>
+
+</div>
+</section><section id="path-google">
+<h2>Google 首页复刻 <span class="rt">authed · /app?page=google</span></h2>
+<p class="novideo">⛔ 本路径缺录屏（未满足要求 #1）</p>
+<div class="kpis"><div class="kpi"><div class="k">1</div><div class="l">操作步</div></div><div class="kpi"><div class="k">1</div><div class="l">通过</div></div><div class="kpi"><div class="k k-bad">0</div><div class="l">失败</div></div><div class="kpi"><div class="k k-warn">0</div><div class="l">不确定</div></div><div class="kpi"><div class="k">0</div><div class="l">未走到</div></div></div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> navigate 到 https://showcase.afsd.dev/app?page=google，等待 AUP 节点渲染（waitAup&gt;=10, settle 1.4s），单步冒烟观测</h3>
+<div class="exp">期望：页面渲染出真实内容（非空壳/非 Unknown 降级框），控制台无阻断性错误</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260721T072118Z/showcase/showcase-google.png" alt="navigate 到 https://showcase.afsd.dev/app?page=google，等待 AUP 节点渲染（waitAup&gt;=10, settle 1.4s），单步冒烟观测" loading="lazy"><figcaption>navigate 到 https://showcase.afsd.dev/app?page=google，等待 AUP 节点渲染（waitAup&gt;=10, settle 1.4s），单步冒烟观测</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：页面正常渲染：97 个 data-aup-id 节点，81 个可交互元素（button/a/input）；正文头部：&quot;AFS Home Showcase ▾ AUP Web Home Functional Dashboard Content Portal Report Workspace Web Sharing WM Desktop Explorer Au&quot;；无 Unknown 降级框；控制台无错误。</div>
+
+</div>
+</section><section id="path-list-fields-card">
+<h2>List Fields: Card <span class="rt">authed · /app?page=list-fields-card</span></h2>
+<p class="novideo">⛔ 本路径缺录屏（未满足要求 #1）</p>
+<div class="kpis"><div class="kpi"><div class="k">1</div><div class="l">操作步</div></div><div class="kpi"><div class="k">1</div><div class="l">通过</div></div><div class="kpi"><div class="k k-bad">0</div><div class="l">失败</div></div><div class="kpi"><div class="k k-warn">0</div><div class="l">不确定</div></div><div class="kpi"><div class="k">0</div><div class="l">未走到</div></div></div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> navigate 到 https://showcase.afsd.dev/app?page=list-fields-card，等待 AUP 节点渲染（waitAup&gt;=10, settle 1.4s），单步冒烟观测</h3>
+<div class="exp">期望：页面渲染出真实内容（非空壳/非 Unknown 降级框），控制台无阻断性错误</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260721T072118Z/showcase/showcase-list-fields-card.png" alt="navigate 到 https://showcase.afsd.dev/app?page=list-fields-card，等待 AUP 节点渲染（waitAup&gt;=10, settle 1.4s），单步冒烟观测" loading="lazy"><figcaption>navigate 到 https://showcase.afsd.dev/app?page=list-fields-card，等待 AUP 节点渲染（waitAup&gt;=10, settle 1.4s），单步冒烟观测</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：页面正常渲染：80 个 data-aup-id 节点，73 个可交互元素（button/a/input）；正文头部：&quot;AFS Home Showcase ▾ AUP Web Home Functional Dashboard Content Portal Report Workspace Web Sharing WM Desktop Explorer Au&quot;；无 Unknown 降级框；控制台无错误。</div>
+
+</div>
+</section><section id="path-list-fields-compact">
+<h2>List Fields: Compact <span class="rt">authed · /app?page=list-fields-compact</span></h2>
+<p class="novideo">⛔ 本路径缺录屏（未满足要求 #1）</p>
+<div class="kpis"><div class="kpi"><div class="k">1</div><div class="l">操作步</div></div><div class="kpi"><div class="k">1</div><div class="l">通过</div></div><div class="kpi"><div class="k k-bad">0</div><div class="l">失败</div></div><div class="kpi"><div class="k k-warn">0</div><div class="l">不确定</div></div><div class="kpi"><div class="k">0</div><div class="l">未走到</div></div></div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> navigate 到 https://showcase.afsd.dev/app?page=list-fields-compact，等待 AUP 节点渲染（waitAup&gt;=10, settle 1.4s），单步冒烟观测</h3>
+<div class="exp">期望：页面渲染出真实内容（非空壳/非 Unknown 降级框），控制台无阻断性错误</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260721T072118Z/showcase/showcase-list-fields-compact.png" alt="navigate 到 https://showcase.afsd.dev/app?page=list-fields-compact，等待 AUP 节点渲染（waitAup&gt;=10, settle 1.4s），单步冒烟观测" loading="lazy"><figcaption>navigate 到 https://showcase.afsd.dev/app?page=list-fields-compact，等待 AUP 节点渲染（waitAup&gt;=10, settle 1.4s），单步冒烟观测</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：页面正常渲染：80 个 data-aup-id 节点，73 个可交互元素（button/a/input）；正文头部：&quot;AFS Home Showcase ▾ AUP Web Home Functional Dashboard Content Portal Report Workspace Web Sharing WM Desktop Explorer Au&quot;；无 Unknown 降级框；控制台无错误。</div>
+
+</div>
+</section><section id="path-list-fields-hero">
+<h2>List Fields: Hero <span class="rt">authed · /app?page=list-fields-hero</span></h2>
+<p class="novideo">⛔ 本路径缺录屏（未满足要求 #1）</p>
+<div class="kpis"><div class="kpi"><div class="k">1</div><div class="l">操作步</div></div><div class="kpi"><div class="k">1</div><div class="l">通过</div></div><div class="kpi"><div class="k k-bad">0</div><div class="l">失败</div></div><div class="kpi"><div class="k k-warn">0</div><div class="l">不确定</div></div><div class="kpi"><div class="k">0</div><div class="l">未走到</div></div></div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> navigate 到 https://showcase.afsd.dev/app?page=list-fields-hero，等待 AUP 节点渲染（waitAup&gt;=10, settle 1.4s），单步冒烟观测</h3>
+<div class="exp">期望：页面渲染出真实内容（非空壳/非 Unknown 降级框），控制台无阻断性错误</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260721T072118Z/showcase/showcase-list-fields-hero.png" alt="navigate 到 https://showcase.afsd.dev/app?page=list-fields-hero，等待 AUP 节点渲染（waitAup&gt;=10, settle 1.4s），单步冒烟观测" loading="lazy"><figcaption>navigate 到 https://showcase.afsd.dev/app?page=list-fields-hero，等待 AUP 节点渲染（waitAup&gt;=10, settle 1.4s），单步冒烟观测</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：页面正常渲染：80 个 data-aup-id 节点，73 个可交互元素（button/a/input）；正文头部：&quot;AFS Home Showcase ▾ AUP Web Home Functional Dashboard Content Portal Report Workspace Web Sharing WM Desktop Explorer Au&quot;；无 Unknown 降级框；控制台无错误。</div>
+
+</div>
+</section><section id="path-list-fields-media">
+<h2>List Fields: Media <span class="rt">authed · /app?page=list-fields-media</span></h2>
+<p class="novideo">⛔ 本路径缺录屏（未满足要求 #1）</p>
+<div class="kpis"><div class="kpi"><div class="k">1</div><div class="l">操作步</div></div><div class="kpi"><div class="k">1</div><div class="l">通过</div></div><div class="kpi"><div class="k k-bad">0</div><div class="l">失败</div></div><div class="kpi"><div class="k k-warn">0</div><div class="l">不确定</div></div><div class="kpi"><div class="k">0</div><div class="l">未走到</div></div></div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> navigate 到 https://showcase.afsd.dev/app?page=list-fields-media，等待 AUP 节点渲染（waitAup&gt;=10, settle 1.4s），单步冒烟观测</h3>
+<div class="exp">期望：页面渲染出真实内容（非空壳/非 Unknown 降级框），控制台无阻断性错误</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260721T072118Z/showcase/showcase-list-fields-media.png" alt="navigate 到 https://showcase.afsd.dev/app?page=list-fields-media，等待 AUP 节点渲染（waitAup&gt;=10, settle 1.4s），单步冒烟观测" loading="lazy"><figcaption>navigate 到 https://showcase.afsd.dev/app?page=list-fields-media，等待 AUP 节点渲染（waitAup&gt;=10, settle 1.4s），单步冒烟观测</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：页面正常渲染：80 个 data-aup-id 节点，73 个可交互元素（button/a/input）；正文头部：&quot;AFS Home Showcase ▾ AUP Web Home Functional Dashboard Content Portal Report Workspace Web Sharing WM Desktop Explorer Au&quot;；无 Unknown 降级框；控制台无错误。</div>
+
+</div>
+</section><section id="path-list-fields-row">
+<h2>List Fields: Row <span class="rt">authed · /app?page=list-fields-row</span></h2>
+<p class="novideo">⛔ 本路径缺录屏（未满足要求 #1）</p>
+<div class="kpis"><div class="kpi"><div class="k">1</div><div class="l">操作步</div></div><div class="kpi"><div class="k">1</div><div class="l">通过</div></div><div class="kpi"><div class="k k-bad">0</div><div class="l">失败</div></div><div class="kpi"><div class="k k-warn">0</div><div class="l">不确定</div></div><div class="kpi"><div class="k">0</div><div class="l">未走到</div></div></div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> navigate 到 https://showcase.afsd.dev/app?page=list-fields-row，等待 AUP 节点渲染（waitAup&gt;=10, settle 1.4s），单步冒烟观测</h3>
+<div class="exp">期望：页面渲染出真实内容（非空壳/非 Unknown 降级框），控制台无阻断性错误</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260721T072118Z/showcase/showcase-list-fields-row.png" alt="navigate 到 https://showcase.afsd.dev/app?page=list-fields-row，等待 AUP 节点渲染（waitAup&gt;=10, settle 1.4s），单步冒烟观测" loading="lazy"><figcaption>navigate 到 https://showcase.afsd.dev/app?page=list-fields-row，等待 AUP 节点渲染（waitAup&gt;=10, settle 1.4s），单步冒烟观测</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：页面正常渲染：80 个 data-aup-id 节点，73 个可交互元素（button/a/input）；正文头部：&quot;AFS Home Showcase ▾ AUP Web Home Functional Dashboard Content Portal Report Workspace Web Sharing WM Desktop Explorer Au&quot;；无 Unknown 降级框；控制台无错误。</div>
+
+</div>
+</section><section id="path-list-grid">
+<h2>afs-list: Grid <span class="rt">authed · /app?page=list-grid</span></h2>
+<p class="novideo">⛔ 本路径缺录屏（未满足要求 #1）</p>
+<div class="kpis"><div class="kpi"><div class="k">1</div><div class="l">操作步</div></div><div class="kpi"><div class="k">1</div><div class="l">通过</div></div><div class="kpi"><div class="k k-bad">0</div><div class="l">失败</div></div><div class="kpi"><div class="k k-warn">0</div><div class="l">不确定</div></div><div class="kpi"><div class="k">0</div><div class="l">未走到</div></div></div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> navigate 到 https://showcase.afsd.dev/app?page=list-grid，等待 AUP 节点渲染（waitAup&gt;=10, settle 1.4s），单步冒烟观测</h3>
+<div class="exp">期望：页面渲染出真实内容（非空壳/非 Unknown 降级框），控制台无阻断性错误</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260721T072118Z/showcase/showcase-list-grid.png" alt="navigate 到 https://showcase.afsd.dev/app?page=list-grid，等待 AUP 节点渲染（waitAup&gt;=10, settle 1.4s），单步冒烟观测" loading="lazy"><figcaption>navigate 到 https://showcase.afsd.dev/app?page=list-grid，等待 AUP 节点渲染（waitAup&gt;=10, settle 1.4s），单步冒烟观测</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：页面正常渲染：128 个 data-aup-id 节点，74 个可交互元素（button/a/input）；正文头部：&quot;AFS Home Showcase ▾ AUP Web Home Functional Dashboard Content Portal Report Workspace Web Sharing WM Desktop Explorer Au&quot;；无 Unknown 降级框；控制台无错误。</div>
+
+</div>
+</section><section id="path-list-pagination">
+<h2>afs-list: Pagination <span class="rt">authed · /app?page=list-pagination</span></h2>
+<p class="novideo">⛔ 本路径缺录屏（未满足要求 #1）</p>
+<div class="kpis"><div class="kpi"><div class="k">1</div><div class="l">操作步</div></div><div class="kpi"><div class="k">1</div><div class="l">通过</div></div><div class="kpi"><div class="k k-bad">0</div><div class="l">失败</div></div><div class="kpi"><div class="k k-warn">0</div><div class="l">不确定</div></div><div class="kpi"><div class="k">0</div><div class="l">未走到</div></div></div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> navigate 到 https://showcase.afsd.dev/app?page=list-pagination，等待 AUP 节点渲染（waitAup&gt;=10, settle 1.4s），单步冒烟观测</h3>
+<div class="exp">期望：页面渲染出真实内容（非空壳/非 Unknown 降级框），控制台无阻断性错误</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260721T072118Z/showcase/showcase-list-pagination.png" alt="navigate 到 https://showcase.afsd.dev/app?page=list-pagination，等待 AUP 节点渲染（waitAup&gt;=10, settle 1.4s），单步冒烟观测" loading="lazy"><figcaption>navigate 到 https://showcase.afsd.dev/app?page=list-pagination，等待 AUP 节点渲染（waitAup&gt;=10, settle 1.4s），单步冒烟观测</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：页面正常渲染：80 个 data-aup-id 节点，74 个可交互元素（button/a/input）；正文头部：&quot;AFS Home Showcase ▾ AUP Web Home Functional Dashboard Content Portal Report Workspace Web Sharing WM Desktop Explorer Au&quot;；无 Unknown 降级框；控制台无错误。</div>
+
+</div>
+</section><section id="path-list-template">
+<h2>afs-list: Templates <span class="rt">authed · /app?page=list-template</span></h2>
+<p class="novideo">⛔ 本路径缺录屏（未满足要求 #1）</p>
+<div class="kpis"><div class="kpi"><div class="k">1</div><div class="l">操作步</div></div><div class="kpi"><div class="k">1</div><div class="l">通过</div></div><div class="kpi"><div class="k k-bad">0</div><div class="l">失败</div></div><div class="kpi"><div class="k k-warn">0</div><div class="l">不确定</div></div><div class="kpi"><div class="k">0</div><div class="l">未走到</div></div></div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> navigate 到 https://showcase.afsd.dev/app?page=list-template，等待 AUP 节点渲染（waitAup&gt;=10, settle 1.4s），单步冒烟观测</h3>
+<div class="exp">期望：页面渲染出真实内容（非空壳/非 Unknown 降级框），控制台无阻断性错误</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260721T072118Z/showcase/showcase-list-template.png" alt="navigate 到 https://showcase.afsd.dev/app?page=list-template，等待 AUP 节点渲染（waitAup&gt;=10, settle 1.4s），单步冒烟观测" loading="lazy"><figcaption>navigate 到 https://showcase.afsd.dev/app?page=list-template，等待 AUP 节点渲染（waitAup&gt;=10, settle 1.4s），单步冒烟观测</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：页面正常渲染：80 个 data-aup-id 节点，74 个可交互元素（button/a/input）；正文头部：&quot;AFS Home Showcase ▾ AUP Web Home Functional Dashboard Content Portal Report Workspace Web Sharing WM Desktop Explorer Au&quot;；无 Unknown 降级框；控制台无错误。</div>
+
+</div>
+</section><section id="path-list-virtual">
+<h2>afs-list: Virtual <span class="rt">authed · /app?page=list-virtual</span></h2>
+<p class="novideo">⛔ 本路径缺录屏（未满足要求 #1）</p>
+<div class="kpis"><div class="kpi"><div class="k">1</div><div class="l">操作步</div></div><div class="kpi"><div class="k">1</div><div class="l">通过</div></div><div class="kpi"><div class="k k-bad">0</div><div class="l">失败</div></div><div class="kpi"><div class="k k-warn">0</div><div class="l">不确定</div></div><div class="kpi"><div class="k">0</div><div class="l">未走到</div></div></div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> navigate 到 https://showcase.afsd.dev/app?page=list-virtual，等待 AUP 节点渲染（waitAup&gt;=10, settle 1.4s），单步冒烟观测</h3>
+<div class="exp">期望：页面渲染出真实内容（非空壳/非 Unknown 降级框），控制台无阻断性错误</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260721T072118Z/showcase/showcase-list-virtual.png" alt="navigate 到 https://showcase.afsd.dev/app?page=list-virtual，等待 AUP 节点渲染（waitAup&gt;=10, settle 1.4s），单步冒烟观测" loading="lazy"><figcaption>navigate 到 https://showcase.afsd.dev/app?page=list-virtual，等待 AUP 节点渲染（waitAup&gt;=10, settle 1.4s），单步冒烟观测</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：页面正常渲染：80 个 data-aup-id 节点，74 个可交互元素（button/a/input）；正文头部：&quot;AFS Home Showcase ▾ AUP Web Home Functional Dashboard Content Portal Report Workspace Web Sharing WM Desktop Explorer Au&quot;；无 Unknown 降级框；控制台无错误。</div>
+
+</div>
+</section><section id="path-live-updates">
+<h2>afs-list: Live Updates (WebSocket) <span class="rt">authed · /app?page=live-updates</span></h2>
+<p class="novideo">⛔ 本路径缺录屏（未满足要求 #1）</p>
+<div class="kpis"><div class="kpi"><div class="k">1</div><div class="l">操作步</div></div><div class="kpi"><div class="k">1</div><div class="l">通过</div></div><div class="kpi"><div class="k k-bad">0</div><div class="l">失败</div></div><div class="kpi"><div class="k k-warn">0</div><div class="l">不确定</div></div><div class="kpi"><div class="k">0</div><div class="l">未走到</div></div></div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> navigate 到 https://showcase.afsd.dev/app?page=live-updates，等待 AUP 节点渲染（waitAup&gt;=10, settle 1.4s），单步冒烟观测</h3>
+<div class="exp">期望：页面渲染出真实内容（非空壳/非 Unknown 降级框），控制台无阻断性错误</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260721T072118Z/showcase/showcase-live-updates.png" alt="navigate 到 https://showcase.afsd.dev/app?page=live-updates，等待 AUP 节点渲染（waitAup&gt;=10, settle 1.4s），单步冒烟观测" loading="lazy"><figcaption>navigate 到 https://showcase.afsd.dev/app?page=live-updates，等待 AUP 节点渲染（waitAup&gt;=10, settle 1.4s），单步冒烟观测</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：页面正常渲染：84 个 data-aup-id 节点，74 个可交互元素（button/a/input）；正文头部：&quot;AFS Home Showcase ▾ AUP Web Home Functional Dashboard Content Portal Report Workspace Web Sharing WM Desktop Explorer Au&quot;；无 Unknown 降级框；控制台无错误。</div>
+
+</div>
+</section><section id="path-map">
+<h2>Map 地图组件 <span class="rt">authed · /app?page=map</span></h2>
+<p class="novideo">⛔ 本路径缺录屏（未满足要求 #1）</p>
+<div class="kpis"><div class="kpi"><div class="k">1</div><div class="l">操作步</div></div><div class="kpi"><div class="k">0</div><div class="l">通过</div></div><div class="kpi"><div class="k k-bad">0</div><div class="l">失败</div></div><div class="kpi"><div class="k k-warn">1</div><div class="l">不确定</div></div><div class="kpi"><div class="k">0</div><div class="l">未走到</div></div></div>
+<div class="op">
+<h3><span class="pill p-warn">不确定</span> navigate 到 https://showcase.afsd.dev/app?page=map，等待 AUP 节点渲染（waitAup&gt;=10, settle 1.4s），单步冒烟观测</h3>
+<div class="exp">期望：页面渲染出真实内容（非空壳/非 Unknown 降级框），控制台无阻断性错误</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260721T072118Z/showcase/showcase-map.png" alt="navigate 到 https://showcase.afsd.dev/app?page=map，等待 AUP 节点渲染（waitAup&gt;=10, settle 1.4s），单步冒烟观测" loading="lazy"><figcaption>navigate 到 https://showcase.afsd.dev/app?page=map，等待 AUP 节点渲染（waitAup&gt;=10, settle 1.4s），单步冒烟观测</figcaption></figure></div>
+<div class="chk-fail"><b>观察证据</b>：控制台 8 条 401 错误（瓦片/地图服务鉴权），&quot;3D Globe — Fly Around the World&quot; 区块渲染出彩色圆点标记，但底图瓦片背景为纯黑（未见地图底图纹理）——与 401 错误吻合，怀疑地图瓦片服务需要 API key 但未配置/未在此环境可用；标记点本身渲染正常，非全页失败。</div>
+
+</div>
+</section><section id="path-markdown">
+<h2>Markdown 渲染 <span class="rt">authed · /app?page=markdown</span></h2>
+<p class="novideo">⛔ 本路径缺录屏（未满足要求 #1）</p>
+<div class="kpis"><div class="kpi"><div class="k">1</div><div class="l">操作步</div></div><div class="kpi"><div class="k">1</div><div class="l">通过</div></div><div class="kpi"><div class="k k-bad">0</div><div class="l">失败</div></div><div class="kpi"><div class="k k-warn">0</div><div class="l">不确定</div></div><div class="kpi"><div class="k">0</div><div class="l">未走到</div></div></div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> navigate 到 https://showcase.afsd.dev/app?page=markdown，等待 AUP 节点渲染（waitAup&gt;=10, settle 1.4s），单步冒烟观测</h3>
+<div class="exp">期望：页面渲染出真实内容（非空壳/非 Unknown 降级框），控制台无阻断性错误</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260721T072118Z/showcase/showcase-markdown.png" alt="navigate 到 https://showcase.afsd.dev/app?page=markdown，等待 AUP 节点渲染（waitAup&gt;=10, settle 1.4s），单步冒烟观测" loading="lazy"><figcaption>navigate 到 https://showcase.afsd.dev/app?page=markdown，等待 AUP 节点渲染（waitAup&gt;=10, settle 1.4s），单步冒烟观测</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：页面正常渲染：87 个 data-aup-id 节点，68 个可交互元素（button/a/input）；正文头部：&quot;AFS Home Showcase ▾ AUP Web Home Functional Dashboard Content Portal Report Workspace Web Sharing WM Desktop Explorer Au&quot;；无 Unknown 降级框；控制台无错误。</div>
+
+</div>
+</section><section id="path-moonphase">
+<h2>Moon Phase 月相 <span class="rt">authed · /app?page=moonphase</span></h2>
+<p class="novideo">⛔ 本路径缺录屏（未满足要求 #1）</p>
+<div class="kpis"><div class="kpi"><div class="k">1</div><div class="l">操作步</div></div><div class="kpi"><div class="k">1</div><div class="l">通过</div></div><div class="kpi"><div class="k k-bad">0</div><div class="l">失败</div></div><div class="kpi"><div class="k k-warn">0</div><div class="l">不确定</div></div><div class="kpi"><div class="k">0</div><div class="l">未走到</div></div></div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> navigate 到 https://showcase.afsd.dev/app?page=moonphase，等待 AUP 节点渲染（waitAup&gt;=10, settle 1.4s），单步冒烟观测</h3>
+<div class="exp">期望：页面渲染出真实内容（非空壳/非 Unknown 降级框），控制台无阻断性错误</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260721T072118Z/showcase/showcase-moonphase.png" alt="navigate 到 https://showcase.afsd.dev/app?page=moonphase，等待 AUP 节点渲染（waitAup&gt;=10, settle 1.4s），单步冒烟观测" loading="lazy"><figcaption>navigate 到 https://showcase.afsd.dev/app?page=moonphase，等待 AUP 节点渲染（waitAup&gt;=10, settle 1.4s），单步冒烟观测</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：页面正常渲染：86 个 data-aup-id 节点，68 个可交互元素（button/a/input）；正文头部：&quot;AFS Home Showcase ▾ AUP Web Home Functional Dashboard Content Portal Report Workspace Web Sharing WM Desktop Explorer Au&quot;；无 Unknown 降级框；控制台无错误。</div>
+
+</div>
+</section><section id="path-myvibe">
+<h2>MyVibe 社区流 <span class="rt">authed · /app?page=myvibe</span></h2>
+<p class="novideo">⛔ 本路径缺录屏（未满足要求 #1）</p>
+<div class="kpis"><div class="kpi"><div class="k">1</div><div class="l">操作步</div></div><div class="kpi"><div class="k">1</div><div class="l">通过</div></div><div class="kpi"><div class="k k-bad">0</div><div class="l">失败</div></div><div class="kpi"><div class="k k-warn">0</div><div class="l">不确定</div></div><div class="kpi"><div class="k">0</div><div class="l">未走到</div></div></div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> navigate 到 https://showcase.afsd.dev/app?page=myvibe，等待 AUP 节点渲染（waitAup&gt;=10, settle 1.4s），单步冒烟观测</h3>
+<div class="exp">期望：页面渲染出真实内容（非空壳/非 Unknown 降级框），控制台无阻断性错误</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260721T072118Z/showcase/showcase-myvibe.png" alt="navigate 到 https://showcase.afsd.dev/app?page=myvibe，等待 AUP 节点渲染（waitAup&gt;=10, settle 1.4s），单步冒烟观测" loading="lazy"><figcaption>navigate 到 https://showcase.afsd.dev/app?page=myvibe，等待 AUP 节点渲染（waitAup&gt;=10, settle 1.4s），单步冒烟观测</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：页面正常渲染：225 个 data-aup-id 节点，112 个可交互元素（button/a/input）；正文头部：&quot;AFS Home Showcase ▾ AUP Web Home FUNCTIONAL Dashboard Content Portal Report Workspace Web Sharing WM Desktop Explorer Au&quot;；无 Unknown 降级框；控制台无错误。</div>
+
+</div>
+</section><section id="path-natal">
+<h2>Natal Chart 星盘 <span class="rt">authed · /app?page=natal</span></h2>
+<p class="novideo">⛔ 本路径缺录屏（未满足要求 #1）</p>
+<div class="kpis"><div class="kpi"><div class="k">1</div><div class="l">操作步</div></div><div class="kpi"><div class="k">1</div><div class="l">通过</div></div><div class="kpi"><div class="k k-bad">0</div><div class="l">失败</div></div><div class="kpi"><div class="k k-warn">0</div><div class="l">不确定</div></div><div class="kpi"><div class="k">0</div><div class="l">未走到</div></div></div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> navigate 到 https://showcase.afsd.dev/app?page=natal，等待 AUP 节点渲染（waitAup&gt;=10, settle 1.4s），单步冒烟观测</h3>
+<div class="exp">期望：页面渲染出真实内容（非空壳/非 Unknown 降级框），控制台无阻断性错误</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260721T072118Z/showcase/showcase-natal.png" alt="navigate 到 https://showcase.afsd.dev/app?page=natal，等待 AUP 节点渲染（waitAup&gt;=10, settle 1.4s），单步冒烟观测" loading="lazy"><figcaption>navigate 到 https://showcase.afsd.dev/app?page=natal，等待 AUP 节点渲染（waitAup&gt;=10, settle 1.4s），单步冒烟观测</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：页面正常渲染：83 个 data-aup-id 节点，68 个可交互元素（button/a/input）；正文头部：&quot;AFS Home Showcase ▾ AUP Web Home Functional Dashboard Content Portal Report Workspace Web Sharing WM Desktop Explorer Au&quot;；无 Unknown 降级框；控制台无错误。</div>
+
+</div>
+</section><section id="path-once">
+<h2>Once 产品页 <span class="rt">authed · /app?page=once</span></h2>
+<p class="novideo">⛔ 本路径缺录屏（未满足要求 #1）</p>
+<div class="kpis"><div class="kpi"><div class="k">1</div><div class="l">操作步</div></div><div class="kpi"><div class="k">1</div><div class="l">通过</div></div><div class="kpi"><div class="k k-bad">0</div><div class="l">失败</div></div><div class="kpi"><div class="k k-warn">0</div><div class="l">不确定</div></div><div class="kpi"><div class="k">0</div><div class="l">未走到</div></div></div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> navigate 到 https://showcase.afsd.dev/app?page=once，等待 AUP 节点渲染（waitAup&gt;=10, settle 1.4s），单步冒烟观测</h3>
+<div class="exp">期望：页面渲染出真实内容（非空壳/非 Unknown 降级框），控制台无阻断性错误</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260721T072118Z/showcase/showcase-once.png" alt="navigate 到 https://showcase.afsd.dev/app?page=once，等待 AUP 节点渲染（waitAup&gt;=10, settle 1.4s），单步冒烟观测" loading="lazy"><figcaption>navigate 到 https://showcase.afsd.dev/app?page=once，等待 AUP 节点渲染（waitAup&gt;=10, settle 1.4s），单步冒烟观测</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：页面正常渲染：78 个 data-aup-id 节点，68 个可交互元素（button/a/input）；正文头部：&quot;AFS Home Showcase ▾ AUP Web Home FUNCTIONAL Dashboard Content Portal Report Workspace Web Sharing WM Desktop Explorer Au&quot;；无 Unknown 降级框；控制台无错误。</div>
+
+</div>
+</section><section id="path-openai-help">
+<h2>OpenAI Help 复刻 <span class="rt">authed · /app?page=openai-help</span></h2>
+<p class="novideo">⛔ 本路径缺录屏（未满足要求 #1）</p>
+<div class="kpis"><div class="kpi"><div class="k">1</div><div class="l">操作步</div></div><div class="kpi"><div class="k">1</div><div class="l">通过</div></div><div class="kpi"><div class="k k-bad">0</div><div class="l">失败</div></div><div class="kpi"><div class="k k-warn">0</div><div class="l">不确定</div></div><div class="kpi"><div class="k">0</div><div class="l">未走到</div></div></div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> navigate 到 https://showcase.afsd.dev/app?page=openai-help，等待 AUP 节点渲染（waitAup&gt;=10, settle 1.4s），单步冒烟观测</h3>
+<div class="exp">期望：页面渲染出真实内容（非空壳/非 Unknown 降级框），控制台无阻断性错误</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260721T072118Z/showcase/showcase-openai-help.png" alt="navigate 到 https://showcase.afsd.dev/app?page=openai-help，等待 AUP 节点渲染（waitAup&gt;=10, settle 1.4s），单步冒烟观测" loading="lazy"><figcaption>navigate 到 https://showcase.afsd.dev/app?page=openai-help，等待 AUP 节点渲染（waitAup&gt;=10, settle 1.4s），单步冒烟观测</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：页面正常渲染：118 个 data-aup-id 节点，78 个可交互元素（button/a/input）；正文头部：&quot;AFS Home Showcase ▾ AUP Web Home Functional Dashboard Content Portal Report Workspace Web Sharing WM Desktop Explorer Au&quot;；无 Unknown 降级框；控制台 1 条错误（Failed to load resource: the server responded with a status ）。 </div>
+
+</div>
+</section><section id="path-openai-home">
+<h2>OpenAI Home 复刻 <span class="rt">authed · /app?page=openai-home</span></h2>
+<p class="novideo">⛔ 本路径缺录屏（未满足要求 #1）</p>
+<div class="kpis"><div class="kpi"><div class="k">1</div><div class="l">操作步</div></div><div class="kpi"><div class="k">1</div><div class="l">通过</div></div><div class="kpi"><div class="k k-bad">0</div><div class="l">失败</div></div><div class="kpi"><div class="k k-warn">0</div><div class="l">不确定</div></div><div class="kpi"><div class="k">0</div><div class="l">未走到</div></div></div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> navigate 到 https://showcase.afsd.dev/app?page=openai-home，等待 AUP 节点渲染（waitAup&gt;=10, settle 1.4s），单步冒烟观测</h3>
+<div class="exp">期望：页面渲染出真实内容（非空壳/非 Unknown 降级框），控制台无阻断性错误</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260721T072118Z/showcase/showcase-openai-home.png" alt="navigate 到 https://showcase.afsd.dev/app?page=openai-home，等待 AUP 节点渲染（waitAup&gt;=10, settle 1.4s），单步冒烟观测" loading="lazy"><figcaption>navigate 到 https://showcase.afsd.dev/app?page=openai-home，等待 AUP 节点渲染（waitAup&gt;=10, settle 1.4s），单步冒烟观测</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：页面正常渲染：94 个 data-aup-id 节点，70 个可交互元素（button/a/input）；正文头部：&quot;AFS Home Showcase ▾ AUP Web Home Functional Dashboard Content Portal Report Workspace Web Sharing WM Desktop Explorer Au&quot;；无 Unknown 降级框；控制台无错误。</div>
+
+</div>
+</section><section id="path-portal">
+<h2>Portal 服务门户 <span class="rt">authed · /app?page=portal</span></h2>
+<p class="novideo">⛔ 本路径缺录屏（未满足要求 #1）</p>
+<div class="kpis"><div class="kpi"><div class="k">1</div><div class="l">操作步</div></div><div class="kpi"><div class="k">1</div><div class="l">通过</div></div><div class="kpi"><div class="k k-bad">0</div><div class="l">失败</div></div><div class="kpi"><div class="k k-warn">0</div><div class="l">不确定</div></div><div class="kpi"><div class="k">0</div><div class="l">未走到</div></div></div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> navigate 到 https://showcase.afsd.dev/app?page=portal，等待 AUP 节点渲染（waitAup&gt;=10, settle 1.4s），单步冒烟观测</h3>
+<div class="exp">期望：页面渲染出真实内容（非空壳/非 Unknown 降级框），控制台无阻断性错误</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260721T072118Z/showcase/showcase-portal.png" alt="navigate 到 https://showcase.afsd.dev/app?page=portal，等待 AUP 节点渲染（waitAup&gt;=10, settle 1.4s），单步冒烟观测" loading="lazy"><figcaption>navigate 到 https://showcase.afsd.dev/app?page=portal，等待 AUP 节点渲染（waitAup&gt;=10, settle 1.4s），单步冒烟观测</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：页面正常渲染：83 个 data-aup-id 节点，68 个可交互元素（button/a/input）；正文头部：&quot;AFS Home Showcase ▾ AUP Web Home Functional Dashboard Content Portal Report Workspace Web Sharing WM Desktop Explorer Au&quot;；无 Unknown 降级框；控制台无错误。</div>
+
+</div>
+</section><section id="path-prim-app-footer">
+<h2>Primitive: App Footer <span class="rt">authed · /app?page=prim-app-footer</span></h2>
+<p class="novideo">⛔ 本路径缺录屏（未满足要求 #1）</p>
+<div class="kpis"><div class="kpi"><div class="k">1</div><div class="l">操作步</div></div><div class="kpi"><div class="k">1</div><div class="l">通过</div></div><div class="kpi"><div class="k k-bad">0</div><div class="l">失败</div></div><div class="kpi"><div class="k k-warn">0</div><div class="l">不确定</div></div><div class="kpi"><div class="k">0</div><div class="l">未走到</div></div></div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> navigate 到 https://showcase.afsd.dev/app?page=prim-app-footer，等待 AUP 节点渲染（waitAup&gt;=10, settle 1.4s），单步冒烟观测</h3>
+<div class="exp">期望：页面渲染出真实内容（非空壳/非 Unknown 降级框），控制台无阻断性错误</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260721T072118Z/showcase/showcase-prim-app-footer.png" alt="navigate 到 https://showcase.afsd.dev/app?page=prim-app-footer，等待 AUP 节点渲染（waitAup&gt;=10, settle 1.4s），单步冒烟观测" loading="lazy"><figcaption>navigate 到 https://showcase.afsd.dev/app?page=prim-app-footer，等待 AUP 节点渲染（waitAup&gt;=10, settle 1.4s），单步冒烟观测</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：页面正常渲染：83 个 data-aup-id 节点，68 个可交互元素（button/a/input）；正文头部：&quot;AFS Home Showcase ▾ AUP Web Home Functional Dashboard Content Portal Report Workspace Web Sharing WM Desktop Explorer Au&quot;；无 Unknown 降级框；控制台无错误。</div>
+
+</div>
+</section><section id="path-prim-app-header">
+<h2>Primitive: App Header <span class="rt">authed · /app?page=prim-app-header</span></h2>
+<p class="novideo">⛔ 本路径缺录屏（未满足要求 #1）</p>
+<div class="kpis"><div class="kpi"><div class="k">1</div><div class="l">操作步</div></div><div class="kpi"><div class="k">1</div><div class="l">通过</div></div><div class="kpi"><div class="k k-bad">0</div><div class="l">失败</div></div><div class="kpi"><div class="k k-warn">0</div><div class="l">不确定</div></div><div class="kpi"><div class="k">0</div><div class="l">未走到</div></div></div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> navigate 到 https://showcase.afsd.dev/app?page=prim-app-header，等待 AUP 节点渲染（waitAup&gt;=10, settle 1.4s），单步冒烟观测</h3>
+<div class="exp">期望：页面渲染出真实内容（非空壳/非 Unknown 降级框），控制台无阻断性错误</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260721T072118Z/showcase/showcase-prim-app-header.png" alt="navigate 到 https://showcase.afsd.dev/app?page=prim-app-header，等待 AUP 节点渲染（waitAup&gt;=10, settle 1.4s），单步冒烟观测" loading="lazy"><figcaption>navigate 到 https://showcase.afsd.dev/app?page=prim-app-header，等待 AUP 节点渲染（waitAup&gt;=10, settle 1.4s），单步冒烟观测</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：页面正常渲染：94 个 data-aup-id 节点，95 个可交互元素（button/a/input）；正文头部：&quot;AFS Home Showcase ▾ AUP Web Home Functional Dashboard Content Portal Report Workspace Web Sharing WM Desktop Explorer Au&quot;；无 Unknown 降级框；控制台无错误。</div>
+
+</div>
+</section><section id="path-prim-key-value-list">
+<h2>Primitive: Key-Value List <span class="rt">authed · /app?page=prim-key-value-list</span></h2>
+<p class="novideo">⛔ 本路径缺录屏（未满足要求 #1）</p>
+<div class="kpis"><div class="kpi"><div class="k">1</div><div class="l">操作步</div></div><div class="kpi"><div class="k">1</div><div class="l">通过</div></div><div class="kpi"><div class="k k-bad">0</div><div class="l">失败</div></div><div class="kpi"><div class="k k-warn">0</div><div class="l">不确定</div></div><div class="kpi"><div class="k">0</div><div class="l">未走到</div></div></div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> navigate 到 https://showcase.afsd.dev/app?page=prim-key-value-list，等待 AUP 节点渲染（waitAup&gt;=10, settle 1.4s），单步冒烟观测</h3>
+<div class="exp">期望：页面渲染出真实内容（非空壳/非 Unknown 降级框），控制台无阻断性错误</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260721T072118Z/showcase/showcase-prim-key-value-list.png" alt="navigate 到 https://showcase.afsd.dev/app?page=prim-key-value-list，等待 AUP 节点渲染（waitAup&gt;=10, settle 1.4s），单步冒烟观测" loading="lazy"><figcaption>navigate 到 https://showcase.afsd.dev/app?page=prim-key-value-list，等待 AUP 节点渲染（waitAup&gt;=10, settle 1.4s），单步冒烟观测</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：页面正常渲染：88 个 data-aup-id 节点，77 个可交互元素（button/a/input）；正文头部：&quot;AFS Home Showcase ▾ AUP Web Home Functional Dashboard Content Portal Report Workspace Web Sharing WM Desktop Explorer Au&quot;；无 Unknown 降级框；控制台无错误。</div>
+
+</div>
+</section><section id="path-report">
+<h2>Report 报表 <span class="rt">authed · /app?page=report</span></h2>
+<p class="novideo">⛔ 本路径缺录屏（未满足要求 #1）</p>
+<div class="kpis"><div class="kpi"><div class="k">1</div><div class="l">操作步</div></div><div class="kpi"><div class="k">1</div><div class="l">通过</div></div><div class="kpi"><div class="k k-bad">0</div><div class="l">失败</div></div><div class="kpi"><div class="k k-warn">0</div><div class="l">不确定</div></div><div class="kpi"><div class="k">0</div><div class="l">未走到</div></div></div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> navigate 到 https://showcase.afsd.dev/app?page=report，等待 AUP 节点渲染（waitAup&gt;=10, settle 1.4s），单步冒烟观测</h3>
+<div class="exp">期望：页面渲染出真实内容（非空壳/非 Unknown 降级框），控制台无阻断性错误</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260721T072118Z/showcase/showcase-report.png" alt="navigate 到 https://showcase.afsd.dev/app?page=report，等待 AUP 节点渲染（waitAup&gt;=10, settle 1.4s），单步冒烟观测" loading="lazy"><figcaption>navigate 到 https://showcase.afsd.dev/app?page=report，等待 AUP 节点渲染（waitAup&gt;=10, settle 1.4s），单步冒烟观测</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：页面正常渲染：88 个 data-aup-id 节点，69 个可交互元素（button/a/input）；正文头部：&quot;AFS Home Showcase ▾ AUP Web Home FUNCTIONAL Dashboard Content Portal Report Workspace Web Sharing WM Desktop Explorer Au&quot;；无 Unknown 降级框；控制台无错误。</div>
+
+</div>
+</section><section id="path-scaffold-app">
+<h2>Scaffold App 脚手架 <span class="rt">authed · /app?page=scaffold-app</span></h2>
+<p class="novideo">⛔ 本路径缺录屏（未满足要求 #1）</p>
+<div class="kpis"><div class="kpi"><div class="k">1</div><div class="l">操作步</div></div><div class="kpi"><div class="k">1</div><div class="l">通过</div></div><div class="kpi"><div class="k k-bad">0</div><div class="l">失败</div></div><div class="kpi"><div class="k k-warn">0</div><div class="l">不确定</div></div><div class="kpi"><div class="k">0</div><div class="l">未走到</div></div></div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> navigate 到 https://showcase.afsd.dev/app?page=scaffold-app，等待 AUP 节点渲染（waitAup&gt;=10, settle 1.4s），单步冒烟观测</h3>
+<div class="exp">期望：页面渲染出真实内容（非空壳/非 Unknown 降级框），控制台无阻断性错误</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260721T072118Z/showcase/showcase-scaffold-app.png" alt="navigate 到 https://showcase.afsd.dev/app?page=scaffold-app，等待 AUP 节点渲染（waitAup&gt;=10, settle 1.4s），单步冒烟观测" loading="lazy"><figcaption>navigate 到 https://showcase.afsd.dev/app?page=scaffold-app，等待 AUP 节点渲染（waitAup&gt;=10, settle 1.4s），单步冒烟观测</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：页面正常渲染：371 个 data-aup-id 节点，96 个可交互元素（button/a/input）；正文头部：&quot;AFS Home Showcase ▾ AUP Web Home Functional Dashboard Content Portal Report Workspace Web Sharing WM Desktop Explorer Au&quot;；无 Unknown 降级框；控制台无错误。</div>
+
+</div>
+</section><section id="path-session-chrome">
+<h2>System Chrome 系统外壳 <span class="rt">authed · /app?page=session-chrome</span></h2>
+<p class="novideo">⛔ 本路径缺录屏（未满足要求 #1）</p>
+<div class="kpis"><div class="kpi"><div class="k">1</div><div class="l">操作步</div></div><div class="kpi"><div class="k">1</div><div class="l">通过</div></div><div class="kpi"><div class="k k-bad">0</div><div class="l">失败</div></div><div class="kpi"><div class="k k-warn">0</div><div class="l">不确定</div></div><div class="kpi"><div class="k">0</div><div class="l">未走到</div></div></div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> navigate 到 https://showcase.afsd.dev/app?page=session-chrome，等待 AUP 节点渲染（waitAup&gt;=10, settle 1.4s），单步冒烟观测</h3>
+<div class="exp">期望：页面渲染出真实内容（非空壳/非 Unknown 降级框），控制台无阻断性错误</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260721T072118Z/showcase/showcase-session-chrome.png" alt="navigate 到 https://showcase.afsd.dev/app?page=session-chrome，等待 AUP 节点渲染（waitAup&gt;=10, settle 1.4s），单步冒烟观测" loading="lazy"><figcaption>navigate 到 https://showcase.afsd.dev/app?page=session-chrome，等待 AUP 节点渲染（waitAup&gt;=10, settle 1.4s），单步冒烟观测</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：页面正常渲染：81 个 data-aup-id 节点，72 个可交互元素（button/a/input）；正文头部：&quot;AFS Home Showcase ▾ AUP Web Home Functional Dashboard Content Portal Report Workspace Web Sharing WM Desktop Explorer Au&quot;；无 Unknown 降级框；控制台无错误。</div>
+
+</div>
+</section><section id="path-sh-climate">
+<h2>智能家居-气候 <span class="rt">authed · /app?page=sh-climate</span></h2>
+<p class="novideo">⛔ 本路径缺录屏（未满足要求 #1）</p>
+<div class="kpis"><div class="kpi"><div class="k">1</div><div class="l">操作步</div></div><div class="kpi"><div class="k">1</div><div class="l">通过</div></div><div class="kpi"><div class="k k-bad">0</div><div class="l">失败</div></div><div class="kpi"><div class="k k-warn">0</div><div class="l">不确定</div></div><div class="kpi"><div class="k">0</div><div class="l">未走到</div></div></div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> navigate 到 https://showcase.afsd.dev/app?page=sh-climate，等待 AUP 节点渲染（waitAup&gt;=10, settle 1.4s），单步冒烟观测</h3>
+<div class="exp">期望：页面渲染出真实内容（非空壳/非 Unknown 降级框），控制台无阻断性错误</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260721T072118Z/showcase/showcase-sh-climate.png" alt="navigate 到 https://showcase.afsd.dev/app?page=sh-climate，等待 AUP 节点渲染（waitAup&gt;=10, settle 1.4s），单步冒烟观测" loading="lazy"><figcaption>navigate 到 https://showcase.afsd.dev/app?page=sh-climate，等待 AUP 节点渲染（waitAup&gt;=10, settle 1.4s），单步冒烟观测</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：页面正常渲染：187 个 data-aup-id 节点，69 个可交互元素（button/a/input）；正文头部：&quot;AFS Home Showcase ▾ AUP Web Home Functional Dashboard Content Portal Report Workspace Web Sharing WM Desktop Explorer Au&quot;；无 Unknown 降级框；控制台无错误。</div>
+
+</div>
+</section><section id="path-sh-energy">
+<h2>智能家居-能源 <span class="rt">authed · /app?page=sh-energy</span></h2>
+<p class="novideo">⛔ 本路径缺录屏（未满足要求 #1）</p>
+<div class="kpis"><div class="kpi"><div class="k">1</div><div class="l">操作步</div></div><div class="kpi"><div class="k">1</div><div class="l">通过</div></div><div class="kpi"><div class="k k-bad">0</div><div class="l">失败</div></div><div class="kpi"><div class="k k-warn">0</div><div class="l">不确定</div></div><div class="kpi"><div class="k">0</div><div class="l">未走到</div></div></div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> navigate 到 https://showcase.afsd.dev/app?page=sh-energy，等待 AUP 节点渲染（waitAup&gt;=10, settle 1.4s），单步冒烟观测</h3>
+<div class="exp">期望：页面渲染出真实内容（非空壳/非 Unknown 降级框），控制台无阻断性错误</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260721T072118Z/showcase/showcase-sh-energy.png" alt="navigate 到 https://showcase.afsd.dev/app?page=sh-energy，等待 AUP 节点渲染（waitAup&gt;=10, settle 1.4s），单步冒烟观测" loading="lazy"><figcaption>navigate 到 https://showcase.afsd.dev/app?page=sh-energy，等待 AUP 节点渲染（waitAup&gt;=10, settle 1.4s），单步冒烟观测</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：页面正常渲染：144 个 data-aup-id 节点，69 个可交互元素（button/a/input）；正文头部：&quot;AFS Home Showcase ▾ AUP Web Home Functional Dashboard Content Portal Report Workspace Web Sharing WM Desktop Explorer Au&quot;；无 Unknown 降级框；控制台无错误。</div>
+
+</div>
+</section><section id="path-sh-homekit">
+<h2>智能家居-HomeKit <span class="rt">authed · /app?page=sh-homekit</span></h2>
+<p class="novideo">⛔ 本路径缺录屏（未满足要求 #1）</p>
+<div class="kpis"><div class="kpi"><div class="k">1</div><div class="l">操作步</div></div><div class="kpi"><div class="k">1</div><div class="l">通过</div></div><div class="kpi"><div class="k k-bad">0</div><div class="l">失败</div></div><div class="kpi"><div class="k k-warn">0</div><div class="l">不确定</div></div><div class="kpi"><div class="k">0</div><div class="l">未走到</div></div></div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> navigate 到 https://showcase.afsd.dev/app?page=sh-homekit，等待 AUP 节点渲染（waitAup&gt;=10, settle 1.4s），单步冒烟观测</h3>
+<div class="exp">期望：页面渲染出真实内容（非空壳/非 Unknown 降级框），控制台无阻断性错误</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260721T072118Z/showcase/showcase-sh-homekit.png" alt="navigate 到 https://showcase.afsd.dev/app?page=sh-homekit，等待 AUP 节点渲染（waitAup&gt;=10, settle 1.4s），单步冒烟观测" loading="lazy"><figcaption>navigate 到 https://showcase.afsd.dev/app?page=sh-homekit，等待 AUP 节点渲染（waitAup&gt;=10, settle 1.4s），单步冒烟观测</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：页面正常渲染：168 个 data-aup-id 节点，80 个可交互元素（button/a/input）；正文头部：&quot;AFS Home Showcase ▾ AUP Web Home Functional Dashboard Content Portal Report Workspace Web Sharing WM Desktop Explorer Au&quot;；无 Unknown 降级框；控制台无错误。</div>
+
+</div>
+</section><section id="path-sh-living">
+<h2>智能家居-客厅 <span class="rt">authed · /app?page=sh-living</span></h2>
+<p class="novideo">⛔ 本路径缺录屏（未满足要求 #1）</p>
+<div class="kpis"><div class="kpi"><div class="k">1</div><div class="l">操作步</div></div><div class="kpi"><div class="k">1</div><div class="l">通过</div></div><div class="kpi"><div class="k k-bad">0</div><div class="l">失败</div></div><div class="kpi"><div class="k k-warn">0</div><div class="l">不确定</div></div><div class="kpi"><div class="k">0</div><div class="l">未走到</div></div></div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> navigate 到 https://showcase.afsd.dev/app?page=sh-living，等待 AUP 节点渲染（waitAup&gt;=10, settle 1.4s），单步冒烟观测</h3>
+<div class="exp">期望：页面渲染出真实内容（非空壳/非 Unknown 降级框），控制台无阻断性错误</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260721T072118Z/showcase/showcase-sh-living.png" alt="navigate 到 https://showcase.afsd.dev/app?page=sh-living，等待 AUP 节点渲染（waitAup&gt;=10, settle 1.4s），单步冒烟观测" loading="lazy"><figcaption>navigate 到 https://showcase.afsd.dev/app?page=sh-living，等待 AUP 节点渲染（waitAup&gt;=10, settle 1.4s），单步冒烟观测</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：页面正常渲染：174 个 data-aup-id 节点，88 个可交互元素（button/a/input）；正文头部：&quot;AFS Home Showcase ▾ AUP Web Home Functional Dashboard Content Portal Report Workspace Web Sharing WM Desktop Explorer Au&quot;；无 Unknown 降级框；控制台无错误。</div>
+
+</div>
+</section><section id="path-sh-security">
+<h2>智能家居-安防 <span class="rt">authed · /app?page=sh-security</span></h2>
+<p class="novideo">⛔ 本路径缺录屏（未满足要求 #1）</p>
+<div class="kpis"><div class="kpi"><div class="k">1</div><div class="l">操作步</div></div><div class="kpi"><div class="k">1</div><div class="l">通过</div></div><div class="kpi"><div class="k k-bad">0</div><div class="l">失败</div></div><div class="kpi"><div class="k k-warn">0</div><div class="l">不确定</div></div><div class="kpi"><div class="k">0</div><div class="l">未走到</div></div></div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> navigate 到 https://showcase.afsd.dev/app?page=sh-security，等待 AUP 节点渲染（waitAup&gt;=10, settle 1.4s），单步冒烟观测</h3>
+<div class="exp">期望：页面渲染出真实内容（非空壳/非 Unknown 降级框），控制台无阻断性错误</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260721T072118Z/showcase/showcase-sh-security.png" alt="navigate 到 https://showcase.afsd.dev/app?page=sh-security，等待 AUP 节点渲染（waitAup&gt;=10, settle 1.4s），单步冒烟观测" loading="lazy"><figcaption>navigate 到 https://showcase.afsd.dev/app?page=sh-security，等待 AUP 节点渲染（waitAup&gt;=10, settle 1.4s），单步冒烟观测</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：页面正常渲染：164 个 data-aup-id 节点，68 个可交互元素（button/a/input）；正文头部：&quot;AFS Home Showcase ▾ AUP Web Home Functional Dashboard Content Portal Report Workspace Web Sharing WM Desktop Explorer Au&quot;；无 Unknown 降级框；控制台无错误。</div>
+
+</div>
+</section><section id="path-sharing">
+<h2>Web Sharing <span class="rt">authed · /app?page=sharing</span></h2>
+<p class="novideo">⛔ 本路径缺录屏（未满足要求 #1）</p>
+<div class="kpis"><div class="kpi"><div class="k">1</div><div class="l">操作步</div></div><div class="kpi"><div class="k">1</div><div class="l">通过</div></div><div class="kpi"><div class="k k-bad">0</div><div class="l">失败</div></div><div class="kpi"><div class="k k-warn">0</div><div class="l">不确定</div></div><div class="kpi"><div class="k">0</div><div class="l">未走到</div></div></div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> navigate 到 https://showcase.afsd.dev/app?page=sharing，等待 AUP 节点渲染（waitAup&gt;=10, settle 1.4s），单步冒烟观测</h3>
+<div class="exp">期望：页面渲染出真实内容（非空壳/非 Unknown 降级框），控制台无阻断性错误</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260721T072118Z/showcase/showcase-sharing.png" alt="navigate 到 https://showcase.afsd.dev/app?page=sharing，等待 AUP 节点渲染（waitAup&gt;=10, settle 1.4s），单步冒烟观测" loading="lazy"><figcaption>navigate 到 https://showcase.afsd.dev/app?page=sharing，等待 AUP 节点渲染（waitAup&gt;=10, settle 1.4s），单步冒烟观测</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：页面正常渲染：137 个 data-aup-id 节点，68 个可交互元素（button/a/input）；正文头部：&quot;AFS Home Showcase ▾ AUP Web Home Functional Dashboard Content Portal Report Workspace Web Sharing WM Desktop Explorer Au&quot;；无 Unknown 降级框；控制台无错误。</div>
+
+</div>
+</section><section id="path-subsystems">
+<h2>Editor &amp; Canvas 子系统 <span class="rt">authed · /app?page=subsystems</span></h2>
+<p class="novideo">⛔ 本路径缺录屏（未满足要求 #1）</p>
+<div class="kpis"><div class="kpi"><div class="k">1</div><div class="l">操作步</div></div><div class="kpi"><div class="k">1</div><div class="l">通过</div></div><div class="kpi"><div class="k k-bad">0</div><div class="l">失败</div></div><div class="kpi"><div class="k k-warn">0</div><div class="l">不确定</div></div><div class="kpi"><div class="k">0</div><div class="l">未走到</div></div></div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> navigate 到 https://showcase.afsd.dev/app?page=subsystems，等待 AUP 节点渲染（waitAup&gt;=10, settle 1.4s），单步冒烟观测</h3>
+<div class="exp">期望：页面渲染出真实内容（非空壳/非 Unknown 降级框），控制台无阻断性错误</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260721T072118Z/showcase/showcase-subsystems.png" alt="navigate 到 https://showcase.afsd.dev/app?page=subsystems，等待 AUP 节点渲染（waitAup&gt;=10, settle 1.4s），单步冒烟观测" loading="lazy"><figcaption>navigate 到 https://showcase.afsd.dev/app?page=subsystems，等待 AUP 节点渲染（waitAup&gt;=10, settle 1.4s），单步冒烟观测</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：页面正常渲染：80 个 data-aup-id 节点，77 个可交互元素（button/a/input）；正文头部：&quot;AFS Home Showcase ▾ AUP Web Home FUNCTIONAL Dashboard Content Portal Report Workspace Web Sharing WM Desktop Explorer Au&quot;；无 Unknown 降级框；控制台无错误。</div>
+
+</div>
+</section><section id="path-supplementary">
+<h2>Supplementary Provider Demo <span class="rt">authed · /app?page=supplementary</span></h2>
+<p class="novideo">⛔ 本路径缺录屏（未满足要求 #1）</p>
+<div class="kpis"><div class="kpi"><div class="k">1</div><div class="l">操作步</div></div><div class="kpi"><div class="k">1</div><div class="l">通过</div></div><div class="kpi"><div class="k k-bad">0</div><div class="l">失败</div></div><div class="kpi"><div class="k k-warn">0</div><div class="l">不确定</div></div><div class="kpi"><div class="k">0</div><div class="l">未走到</div></div></div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> navigate 到 https://showcase.afsd.dev/app?page=supplementary，等待 AUP 节点渲染（waitAup&gt;=10, settle 1.4s），单步冒烟观测</h3>
+<div class="exp">期望：页面渲染出真实内容（非空壳/非 Unknown 降级框），控制台无阻断性错误</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260721T072118Z/showcase/showcase-supplementary.png" alt="navigate 到 https://showcase.afsd.dev/app?page=supplementary，等待 AUP 节点渲染（waitAup&gt;=10, settle 1.4s），单步冒烟观测" loading="lazy"><figcaption>navigate 到 https://showcase.afsd.dev/app?page=supplementary，等待 AUP 节点渲染（waitAup&gt;=10, settle 1.4s），单步冒烟观测</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：页面正常渲染：83 个 data-aup-id 节点，68 个可交互元素（button/a/input）；正文头部：&quot;AFS Home Showcase ▾ AUP Web Home Functional Dashboard Content Portal Report Workspace Web Sharing WM Desktop Explorer Au&quot;；无 Unknown 降级框；控制台 2 条错误（Failed to load resource: the server responded with a status ）。 控制台 2 条网络错误（404/400），页面文本/结构完整渲染（&quot;Supplementary Provider Demo&quot; 标题+说明+Engineering Team 区块可见），无 Unknown 降级框；同上，大概率是 /instance 路径 fail-closed 的预期副作用。</div>
+
+</div>
+</section><section id="path-time">
+<h2>Time 时间组件 <span class="rt">authed · /app?page=time</span></h2>
+<p class="novideo">⛔ 本路径缺录屏（未满足要求 #1）</p>
+<div class="kpis"><div class="kpi"><div class="k">1</div><div class="l">操作步</div></div><div class="kpi"><div class="k">1</div><div class="l">通过</div></div><div class="kpi"><div class="k k-bad">0</div><div class="l">失败</div></div><div class="kpi"><div class="k k-warn">0</div><div class="l">不确定</div></div><div class="kpi"><div class="k">0</div><div class="l">未走到</div></div></div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> navigate 到 https://showcase.afsd.dev/app?page=time，等待 AUP 节点渲染（waitAup&gt;=10, settle 1.4s），单步冒烟观测</h3>
+<div class="exp">期望：页面渲染出真实内容（非空壳/非 Unknown 降级框），控制台无阻断性错误</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260721T072118Z/showcase/showcase-time.png" alt="navigate 到 https://showcase.afsd.dev/app?page=time，等待 AUP 节点渲染（waitAup&gt;=10, settle 1.4s），单步冒烟观测" loading="lazy"><figcaption>navigate 到 https://showcase.afsd.dev/app?page=time，等待 AUP 节点渲染（waitAup&gt;=10, settle 1.4s），单步冒烟观测</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：页面正常渲染：111 个 data-aup-id 节点，68 个可交互元素（button/a/input）；正文头部：&quot;AFS Home Showcase ▾ AUP Web Home Functional Dashboard Content Portal Report Workspace Web Sharing WM Desktop Explorer Au&quot;；无 Unknown 降级框；控制台无错误。</div>
+
+</div>
+</section><section id="path-universal">
+<h2>Universal Surface 通用曲面 <span class="rt">authed · /app?page=universal</span></h2>
+<p class="novideo">⛔ 本路径缺录屏（未满足要求 #1）</p>
+<div class="kpis"><div class="kpi"><div class="k">1</div><div class="l">操作步</div></div><div class="kpi"><div class="k">1</div><div class="l">通过</div></div><div class="kpi"><div class="k k-bad">0</div><div class="l">失败</div></div><div class="kpi"><div class="k k-warn">0</div><div class="l">不确定</div></div><div class="kpi"><div class="k">0</div><div class="l">未走到</div></div></div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> navigate 到 https://showcase.afsd.dev/app?page=universal，等待 AUP 节点渲染（waitAup&gt;=10, settle 1.4s），单步冒烟观测</h3>
+<div class="exp">期望：页面渲染出真实内容（非空壳/非 Unknown 降级框），控制台无阻断性错误</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260721T072118Z/showcase/showcase-universal.png" alt="navigate 到 https://showcase.afsd.dev/app?page=universal，等待 AUP 节点渲染（waitAup&gt;=10, settle 1.4s），单步冒烟观测" loading="lazy"><figcaption>navigate 到 https://showcase.afsd.dev/app?page=universal，等待 AUP 节点渲染（waitAup&gt;=10, settle 1.4s），单步冒烟观测</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：页面正常渲染：100 个 data-aup-id 节点，68 个可交互元素（button/a/input）；正文头部：&quot;AFS Home Showcase ▾ AUP Web Home Functional Dashboard Content Portal Report Workspace Web Sharing WM Desktop Explorer Au&quot;；无 Unknown 降级框；控制台 2 条错误（Failed to load resource: the server responded with a status ）。 控制台 2 条网络错误（404/400），页面文本/结构完整渲染（&quot;The device primitive with src renders any AFS path...&quot;），无 Unknown 降级框；错误大概率来自触达未挂载真实 DID Space 的 /instance 路径（根 CLAUDE.md「DID Space fail-closed」规则预期行为），非渲染缺陷。</div>
+
+</div>
+</section><section id="path-unsplash">
+<h2>Unsplash 图库 <span class="rt">authed · /app?page=unsplash</span></h2>
+<p class="novideo">⛔ 本路径缺录屏（未满足要求 #1）</p>
+<div class="kpis"><div class="kpi"><div class="k">1</div><div class="l">操作步</div></div><div class="kpi"><div class="k">1</div><div class="l">通过</div></div><div class="kpi"><div class="k k-bad">0</div><div class="l">失败</div></div><div class="kpi"><div class="k k-warn">0</div><div class="l">不确定</div></div><div class="kpi"><div class="k">0</div><div class="l">未走到</div></div></div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> navigate 到 https://showcase.afsd.dev/app?page=unsplash，等待 AUP 节点渲染（waitAup&gt;=10, settle 1.4s），单步冒烟观测</h3>
+<div class="exp">期望：页面渲染出真实内容（非空壳/非 Unknown 降级框），控制台无阻断性错误</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260721T072118Z/showcase/showcase-unsplash.png" alt="navigate 到 https://showcase.afsd.dev/app?page=unsplash，等待 AUP 节点渲染（waitAup&gt;=10, settle 1.4s），单步冒烟观测" loading="lazy"><figcaption>navigate 到 https://showcase.afsd.dev/app?page=unsplash，等待 AUP 节点渲染（waitAup&gt;=10, settle 1.4s），单步冒烟观测</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：页面正常渲染：111 个 data-aup-id 节点，82 个可交互元素（button/a/input）；正文头部：&quot;AFS Home Showcase ▾ AUP Web Home Functional Dashboard Content Portal Report Workspace Web Sharing WM Desktop Explorer Au&quot;；无 Unknown 降级框；控制台无错误。</div>
+
+</div>
+</section><section id="path-wm-desktop">
+<h2>WM Desktop 桌面窗口管理 <span class="rt">authed · /app?page=wm-desktop</span></h2>
+<p class="novideo">⛔ 本路径缺录屏（未满足要求 #1）</p>
+<div class="kpis"><div class="kpi"><div class="k">1</div><div class="l">操作步</div></div><div class="kpi"><div class="k">1</div><div class="l">通过</div></div><div class="kpi"><div class="k k-bad">0</div><div class="l">失败</div></div><div class="kpi"><div class="k k-warn">0</div><div class="l">不确定</div></div><div class="kpi"><div class="k">0</div><div class="l">未走到</div></div></div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> navigate 到 https://showcase.afsd.dev/app?page=wm-desktop，等待 AUP 节点渲染（waitAup&gt;=10, settle 1.4s），单步冒烟观测</h3>
+<div class="exp">期望：页面渲染出真实内容（非空壳/非 Unknown 降级框），控制台无阻断性错误</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260721T072118Z/showcase/showcase-wm-desktop.png" alt="navigate 到 https://showcase.afsd.dev/app?page=wm-desktop，等待 AUP 节点渲染（waitAup&gt;=10, settle 1.4s），单步冒烟观测" loading="lazy"><figcaption>navigate 到 https://showcase.afsd.dev/app?page=wm-desktop，等待 AUP 节点渲染（waitAup&gt;=10, settle 1.4s），单步冒烟观测</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：页面正常渲染：71 个 data-aup-id 节点，68 个可交互元素（button/a/input）；正文头部：&quot;AFS Home Showcase ▾ AUP Web Home Functional Dashboard Content Portal Report Workspace Web Sharing WM Desktop Explorer Au&quot;；无 Unknown 降级框；控制台无错误。</div>
+
+</div>
+</section><section id="path-workspace">
+<h2>Workspace 工作台 <span class="rt">authed · /app?page=workspace</span></h2>
+<p class="novideo">⛔ 本路径缺录屏（未满足要求 #1）</p>
+<div class="kpis"><div class="kpi"><div class="k">1</div><div class="l">操作步</div></div><div class="kpi"><div class="k">1</div><div class="l">通过</div></div><div class="kpi"><div class="k k-bad">0</div><div class="l">失败</div></div><div class="kpi"><div class="k k-warn">0</div><div class="l">不确定</div></div><div class="kpi"><div class="k">0</div><div class="l">未走到</div></div></div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> navigate 到 https://showcase.afsd.dev/app?page=workspace，等待 AUP 节点渲染（waitAup&gt;=10, settle 1.4s），单步冒烟观测</h3>
+<div class="exp">期望：页面渲染出真实内容（非空壳/非 Unknown 降级框），控制台无阻断性错误</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260721T072118Z/showcase/showcase-workspace.png" alt="navigate 到 https://showcase.afsd.dev/app?page=workspace，等待 AUP 节点渲染（waitAup&gt;=10, settle 1.4s），单步冒烟观测" loading="lazy"><figcaption>navigate 到 https://showcase.afsd.dev/app?page=workspace，等待 AUP 节点渲染（waitAup&gt;=10, settle 1.4s），单步冒烟观测</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：页面正常渲染：96 个 data-aup-id 节点，71 个可交互元素（button/a/input）；正文头部：&quot;AFS Home Showcase ▾ AUP Web Home FUNCTIONAL Dashboard Content Portal Report Workspace Web Sharing WM Desktop Explorer Au&quot;；无 Unknown 降级框；控制台无错误。</div>
+
+</div>
+</section>
+<p class="sub" style="margin-top:22px">Generated by test-report-builder (build-agent-report) · issue #1808</p>
+</div></body></html>
