@@ -29,3 +29,4 @@
 | 20260721-152515-explorer-01.png | https://github.com/ArcBlock/arc | 2026-07-21T15:25:15Z | root@vm |
 | 20260721-152525-explorer-02.png | https://github.com/ArcBlock/arc | 2026-07-21T15:25:25Z | root@vm |
 | 20260721-152533-explorer-03.png | https://github.com/ArcBlock/arc | 2026-07-21T15:25:33Z | root@vm |
+| 20260721-152536-explorer-04.png | https://github.com/ArcBlock/arc | 2026-07-21T15:25:36Z | root@vm |
