@@ -102,3 +102,4 @@
 | 20260721-153153-collections-02.png | https://github.com/ArcBlock/arc | 2026-07-21T15:31:53Z | root@vm |
 | 20260721-153155-collections-03.png | https://github.com/ArcBlock/arc | 2026-07-21T15:31:55Z | root@vm |
 | 20260721-153157-explore-01.png | https://github.com/ArcBlock/arc | 2026-07-21T15:31:57Z | root@vm |
+| 20260721-153159-explore-02.png | https://github.com/ArcBlock/arc | 2026-07-21T15:31:59Z | root@vm |
