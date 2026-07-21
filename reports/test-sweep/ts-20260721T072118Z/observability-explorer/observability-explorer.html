@@ -1,0 +1,158 @@
+<!doctype html><html><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>observability-explorer — agent 走查报告</title><style>
+:root{--bg:#f7f8f8;--fg:#16201f;--muted:#5c6b69;--card:#fff;--card2:#eef2f1;--border:#dde3e2;--accent:#127a72;--pass:#1f8a54;--warn:#b5771a;--bad:#c0392b}
+@media(prefers-color-scheme:dark){:root{--bg:#0e1413;--fg:#e6ecea;--muted:#8ea19d;--card:#161d1c;--card2:#1d2624;--border:#26302e;--accent:#3fb8ab;--pass:#3fb37a;--warn:#d69a3e;--bad:#e5735f}}
+:root[data-theme=dark]{--bg:#0e1413;--fg:#e6ecea;--muted:#8ea19d;--card:#161d1c;--card2:#1d2624;--border:#26302e;--accent:#3fb8ab;--pass:#3fb37a;--warn:#d69a3e;--bad:#e5735f}
+:root[data-theme=light]{--bg:#f7f8f8;--fg:#16201f;--muted:#5c6b69;--card:#fff;--card2:#eef2f1;--border:#dde3e2;--accent:#127a72;--pass:#1f8a54;--warn:#b5771a;--bad:#c0392b}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--fg);font:15px/1.65 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;padding:24px}
+.wrap{max-width:920px;margin:0 auto}
+h1{font-size:24px;margin:0 0 4px;text-wrap:balance}h2{font-size:19px;margin:30px 0 8px}
+h2 .rt{font-size:13px;color:var(--muted);font-weight:400;font-variant-numeric:tabular-nums}
+.sub{color:var(--muted);margin:0 0 14px;font-size:13px}
+code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.85em;background:var(--card2);padding:1px 5px;border-radius:4px}
+.how{background:var(--card);border:1px solid var(--border);border-left:3px solid var(--accent);border-radius:8px;padding:13px 16px;margin:14px 0;font-size:14px}
+.how b{color:var(--accent)}
+.banner{border-radius:12px;padding:14px 18px;margin:16px 0}
+.banner.ok{background:color-mix(in srgb,var(--pass) 12%,transparent);border:1px solid color-mix(in srgb,var(--pass) 40%,transparent)}
+.banner.ok b{color:var(--pass)}
+.banner.bad{background:color-mix(in srgb,var(--bad) 13%,transparent);border:1px solid color-mix(in srgb,var(--bad) 45%,transparent)}
+.banner.bad b{color:var(--bad);font-size:16px}
+.banner.info{background:color-mix(in srgb,var(--accent) 10%,transparent);border:1px solid color-mix(in srgb,var(--accent) 38%,transparent)}
+.banner.info b{color:var(--accent)}
+.plist{margin:10px 0 0;padding-left:0;list-style:none}
+.plist li{padding:8px 0;border-top:1px solid var(--border)}
+.plist a{text-decoration:none;color:var(--fg);font-weight:600}
+.plist .pe{color:var(--muted);font-size:12.5px;font-weight:400;margin-top:3px}
+.video{width:100%;border-radius:10px;border:1px solid var(--border);background:#000;margin:6px 0 2px}
+.vcap{color:var(--muted);font-size:12.5px;margin:0 0 8px}
+.novideo{color:var(--bad);font-weight:600;background:color-mix(in srgb,var(--bad) 10%,transparent);border:1px dashed color-mix(in srgb,var(--bad) 45%,transparent);border-radius:8px;padding:8px 12px;font-size:13px}
+.kpis{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0}
+.kpi{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:9px 14px;min-width:70px}
+.kpi .k{font-size:21px;font-weight:700;font-variant-numeric:tabular-nums}.kpi .l{color:var(--muted);font-size:12px}
+.kpi .k-bad{color:var(--bad)}.kpi .k-warn{color:var(--warn)}
+.op{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:15px 17px;margin:14px 0}
+.op h3{margin:0 0 3px;font-size:16px;display:flex;align-items:center;gap:9px;flex-wrap:wrap}
+.op .exp{color:var(--muted);font-size:13px;margin:0 0 9px}
+.op .nt{color:var(--muted);font-size:12.5px;margin-top:6px}
+.pill{font-size:11.5px;font-weight:700;padding:2px 9px;border-radius:20px}
+.p-ok{background:color-mix(in srgb,var(--pass) 18%,transparent);color:var(--pass)}
+.p-fail{background:color-mix(in srgb,var(--bad) 18%,transparent);color:var(--bad)}
+.p-warn{background:color-mix(in srgb,var(--warn) 20%,transparent);color:var(--warn)}
+.p-skip{background:var(--card2);color:var(--muted)}
+.p-write{background:color-mix(in srgb,var(--accent) 18%,transparent);color:var(--accent)}
+.frame figure{margin:0 0 9px}.frame img{width:100%;border-radius:8px;border:1px solid var(--border);display:block}
+.frame figcaption{color:var(--muted);font-size:11.5px;margin-top:4px;text-align:center}
+.chk{background:color-mix(in srgb,var(--pass) 12%,transparent);border:1px solid color-mix(in srgb,var(--pass) 34%,transparent);border-radius:8px;padding:8px 12px;font-size:13px}
+.chk b{color:var(--pass)}
+.chk-fail{background:color-mix(in srgb,var(--bad) 11%,transparent);border:1px solid color-mix(in srgb,var(--bad) 40%,transparent);border-radius:8px;padding:8px 12px;font-size:13px}
+.chk-fail b{color:var(--bad)}
+table.probe{border-collapse:collapse;width:100%;font-size:13px}
+table.probe th,table.probe td{border:1px solid var(--border);padding:5px 9px;text-align:left}
+table.probe tr.bad td{background:color-mix(in srgb,var(--bad) 10%,transparent)}
+</style></head><body><div class="wrap">
+<h1>observability-explorer — agent 走查报告</h1>
+<p class="sub">环境 <code>https://observability-explorer.afsd.dev</code> · 2026-07-21T07:41:58Z · 走查 4 / 声明 4 条测试路径 · driver <code>agent-playwright-mcp</code></p>
+<div class="how"><b>这份报告在做什么</b>：test-sweep 让 <b>agent 读被测页面自己写的
+<code>.aup/man</code> 知识</b>，用 Playwright MCP <b>当真人逐条测试路径走查</b>（导航/加标签/编辑/删除/创建…），
+<b>每条路径各自一段录屏</b>、每步截图并<b>自判 verdict + 附观察证据</b>（实际 DOM/文本/值，可复核）。
+<b>unreached</b>=没驱动到（不当失败）；<b>inconclusive</b>=不确定（绝不判失败）。写操作默认真提交、不清理。</div>
+<div class="banner ok"><b>✅ 覆盖完整</b>：声明 4 条测试路径全部走查。</div>
+<div class="banner ok"><b>✅ 未发现问题</b>：所有路径的操作步均 pass 或 unreached（unreached 不计失败）。</div>
+<section id="probes"><h2>后端探针 （全通过）</h2><table class="probe"><tr><th></th><th>探针</th><th>详情</th></tr><tr class=""><td>✅</td><td>http-reachable</td><td>HTTP 200</td></tr><tr class=""><td>✅</td><td>afs-rpc-list</td><td>ok:true (1 .aup pages)</td></tr></table></section>
+<section id="path-dashboard">
+<h2>首页加载与 Dashboard 概览面板（sidebar-list → primary-surface 默认挂载） <span class="rt">anon · /</span></h2>
+<video class="video" controls preload="metadata" src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260721T072118Z/observability-explorer/page@32322be9163312e97b786707f326aae4.webm"><a href="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260721T072118Z/observability-explorer/page@32322be9163312e97b786707f326aae4.webm">下载该路径录像</a></video><p class="vcap">本测试路径整段走查录像</p>
+<div class="kpis"><div class="kpi"><div class="k">4</div><div class="l">操作步</div></div><div class="kpi"><div class="k">4</div><div class="l">通过</div></div><div class="kpi"><div class="k k-bad">0</div><div class="l">失败</div></div><div class="kpi"><div class="k k-warn">0</div><div class="l">不确定</div></div><div class="kpi"><div class="k">0</div><div class="l">未走到</div></div></div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> 导航到首页 /，等待应用外壳（header/sidebar/primary/inspector 四窗格 wm shell）渲染</h3>
+<div class="exp">期望：四窗格 shell 渲染出来，sidebar-list 显示导航项</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260721T072118Z/observability-explorer/dashboard-01.png" alt="导航到首页 /，等待应用外壳（header/sidebar/primary/inspector 四窗格 wm shell）渲染" loading="lazy"><figcaption>导航到首页 /，等待应用外壳（header/sidebar/primary/inspector 四窗格 wm shell）渲染</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：首次渲染 aupNodes=13；页面标题 &#x27;Agent Observability&#x27;；sidebar-list 显示两行：&#x27;dashboard&#x27;（描述 &#x27;Run / token / cost roll-up a...&#x27;）和 &#x27;traces&#x27;（描述 &#x27;All agent-run trace logs, ne...&#x27;）；primary-surface 和 inspector-surface 此刻仍是加载骨架条（无实际内容）；footer 显示 &#x27;✅ build 4a6857534 · 2026-07-21T07:06:31Z · test&#x27;</div>
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> 等待约 8s 让 primary-surface（默认挂载 /dev/observability/dashboard）与 inspector-surface（挂载 /dev/observability/traces）完成客户端数据加载</h3>
+<div class="exp">期望：primary-surface 显示 dashboard 汇总指标（runs/tokens/cost），inspector-surface 显示 Traces 面板</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260721T072118Z/observability-explorer/dashboard-02.png" alt="等待约 8s 让 primary-surface（默认挂载 /dev/observability/dashboard）与 inspector-surface（挂载 /dev/observability/traces）完成客户端数据加载" loading="lazy"><figcaption>等待约 8s 让 primary-surface（默认挂载 /dev/observability/dashboard）与 inspector-surface（挂载 /dev/observability/traces）完成客户端数据加载</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：dom.textHead 含 &#x27;Agent runs · today&#x27;s signal 0 runs · 0 tokens · 0% ok · avg 0ms ⚠️ NEEDS ATTENTION 0 run(s) failed latest: (none) 💰 MOST EXPENSIVE — tokens (none) 🔁 HIGHEST ROUNDS 0 rounds (none) ⚠️ Failed runs (latest) 🎉 No failed runs 💰 Most expensive runs (no runs) 🔁 Most rounds (no runs)&#x27;；interactables 新增 #dashboard-view/#dash-header/#card-attention/#card-expensive/#card-round-heavy/#runs-trend-card/#tokens-trend-card/#models-card/#hubs-card/#apps-card 等 34 个 aup 节点；inspector-surface 同时渲染出 &#x27;Traces&#x27; 标题 + 搜索框 &#x27;Search traces — task, status…&#x27; + BLOCKLET 下拉 &#x27;All blocklets&#x27; + TIME 按钮组 All/Today/7d/30d</div>
+<div class="nt">所有指标均为 0/none/no runs——这是匿名态（无个人 DID Space 会话）下的合法空状态：页面没有报错、没有伪造数据，与 .man caveats 里 #1834 关于&#x27;空指标是真实无流量还是摄取缺口未定&#x27;的说明一致；本轮未登录，无法进一步判定是否有真实 run 数据</div>
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> 点击侧栏 &#x27;dashboard&#x27; 项，验证 sidebar-list select 事件把 primary-surface 重新指回 /dev/observability/dashboard</h3>
+<div class="exp">期望：primary-surface 面包屑更新为 &#x27;observability / dashboard&#x27;，内容不变</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260721T072118Z/observability-explorer/dashboard-04.png" alt="点击侧栏 &#x27;dashboard&#x27; 项，验证 sidebar-list select 事件把 primary-surface 重新指回 /dev/observability/dashboard" loading="lazy"><figcaption>点击侧栏 &#x27;dashboard&#x27; 项，验证 sidebar-list select 事件把 primary-surface 重新指回 /dev/observability/dashboard</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：URL 变为 https://observability-explorer.afsd.dev/dashboard；primary-surface 顶部出现面包屑 &#x27;observability / dashboard&#x27;；下方内容仍是 &#x27;0 runs · 0 tokens · 0% ok · avg 0ms&#x27; 等同样的零状态卡片</div>
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> 点击侧栏 &#x27;traces&#x27; 项，验证 primary-surface 重新挂载到 /dev/observability/traces</h3>
+<div class="exp">期望：primary-surface 面包屑更新为 &#x27;observability / traces&#x27;，显示 Traces 列表面板</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260721T072118Z/observability-explorer/dashboard-07.png" alt="点击侧栏 &#x27;traces&#x27; 项，验证 primary-surface 重新挂载到 /dev/observability/traces" loading="lazy"><figcaption>点击侧栏 &#x27;traces&#x27; 项，验证 primary-surface 重新挂载到 /dev/observability/traces</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：URL 变为 https://observability-explorer.afsd.dev/traces；primary-surface 面包屑变为 &#x27;observability / traces&#x27;；primary 面板出现独立的 &#x27;Traces&#x27; 标题 + 搜索框 + BLOCKLET 下拉 + TIME 过滤按钮组 + &#x27;No items&#x27; 空状态图标；与右侧 inspector-surface 的 Traces 面板并列展示两份几乎相同的 UI（各自独立过滤，互不联动）</div>
+<div class="nt">primary 与 inspector 各自独立挂载同一路径 /dev/observability/traces 产生的重复 UI 与 .man 描述的架构一致（inspector-surface 无自己的 events block，是固定的 selectTargetSurface 目标），非缺陷，但对真实用户是有一定冗余的 UX</div>
+</div>
+</section><section id="path-traces-filters">
+<h2>Traces 面板过滤器（BLOCKLET / TIME / 搜索）与深链直达 /traces <span class="rt">anon · /traces</span></h2>
+<video class="video" controls preload="metadata" src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260721T072118Z/observability-explorer/page@975ed1a9426e3324ebfcc77a9b56d285.webm"><a href="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260721T072118Z/observability-explorer/page@975ed1a9426e3324ebfcc77a9b56d285.webm">下载该路径录像</a></video><p class="vcap">本测试路径整段走查录像</p>
+<div class="kpis"><div class="kpi"><div class="k">4</div><div class="l">操作步</div></div><div class="kpi"><div class="k">4</div><div class="l">通过</div></div><div class="kpi"><div class="k k-bad">0</div><div class="l">失败</div></div><div class="kpi"><div class="k k-warn">0</div><div class="l">不确定</div></div><div class="kpi"><div class="k">0</div><div class="l">未走到</div></div></div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> 深链直接导航到 /traces（非经由侧栏点击的整页加载），等待约 9s</h3>
+<div class="exp">期望：primary-surface 与 inspector-surface 都完整渲染出 Traces 面板（标题/搜索框/过滤器），而不是停在加载骨架态</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260721T072118Z/observability-explorer/filters2-01.png" alt="深链直接导航到 /traces（非经由侧栏点击的整页加载），等待约 9s" loading="lazy"><figcaption>深链直接导航到 /traces（非经由侧栏点击的整页加载），等待约 9s</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：9s 后两侧均完整渲染：面包屑 &#x27;observability / traces&#x27;；primary 显示 &#x27;Traces&#x27; 标题、输入框 placeholder &#x27;Search traces — task, status…&#x27;、&#x27;BLOCKLET&#x27; 下拉 &#x27;All blocklets&#x27;、&#x27;TIME&#x27; 按钮组（All 高亮）、&#x27;No Items&#x27; 空态；inspector-surface 同样完整渲染同款面板</div>
+<div class="nt">早前一次用 4s settle + 10s click timeout 直接深链 /traces 时，Today/7d/搜索框/主题按钮均点击超时（TimeoutError: click/fill Timeout 10000ms exceeded），复现后确认根因是深链整页加载比经侧栏内导航明显更慢（需要 ~9-12s 才出现可交互的过滤控件，而不是 dashboard 路径下约 8s 那样），不是控件本身失效——用更长等待后同样的点击全部成功（见下面几步）。记录为 inconclusive 级别的时序观察，不判定为 fail：该现象在真实用户直接分享/收藏 /traces 链接时会造成短暂的&#x27;点不动&#x27;体验，值得关注但未达到明确功能缺陷的证据门槛</div>
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> 点击 primary 面板 TIME 过滤器 &#x27;Today&#x27;</h3>
+<div class="exp">期望：URL 带上 since=today 查询参数，&#x27;Today&#x27; 按钮高亮，列表随过滤器刷新（仍可能是 No items）</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260721T072118Z/observability-explorer/filters2-03.png" alt="点击 primary 面板 TIME 过滤器 &#x27;Today&#x27;" loading="lazy"><figcaption>点击 primary 面板 TIME 过滤器 &#x27;Today&#x27;</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：URL 变为 https://observability-explorer.afsd.dev/traces?since=today；截图显示 &#x27;Today&#x27; 按钮变为高亮态（黄色边框），&#x27;All&#x27; 恢复未选中；内容仍为 &#x27;No Items&#x27;（匿名态无 run 数据下的合理结果）</div>
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> 点击 primary 面板 TIME 过滤器 &#x27;7d&#x27;</h3>
+<div class="exp">期望：URL 带上 since=7d，&#x27;7d&#x27; 按钮高亮</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260721T072118Z/observability-explorer/filters2-05.png" alt="点击 primary 面板 TIME 过滤器 &#x27;7d&#x27;" loading="lazy"><figcaption>点击 primary 面板 TIME 过滤器 &#x27;7d&#x27;</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：URL 变为 https://observability-explorer.afsd.dev/traces?since=7d；截图显示 &#x27;7d&#x27; 按钮高亮，&#x27;Today&#x27;/&#x27;All&#x27; 未选中；内容仍 &#x27;No Items&#x27;</div>
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> 在 primary 面板搜索框输入 &#x27;nonexistent-task-zzz&#x27;</h3>
+<div class="exp">期望：URL 带上 q=nonexistent-task-zzz，搜索框显示输入值，列表按查询过滤</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260721T072118Z/observability-explorer/filters2-09.png" alt="在 primary 面板搜索框输入 &#x27;nonexistent-task-zzz&#x27;" loading="lazy"><figcaption>在 primary 面板搜索框输入 &#x27;nonexistent-task-zzz&#x27;</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：URL 变为 https://observability-explorer.afsd.dev/traces?q=nonexistent-task-zzz；primary 面板搜索框显示 &#x27;nonexistent-task-zzz&#x27;；inspector 面板搜索框仍为空 placeholder（两面板过滤状态互相独立，未联动）；内容 &#x27;No Items&#x27;</div>
+
+</div>
+</section><section id="path-header-controls">
+<h2>Header 控件：主题切换 + 登录跳转（DID Connect） <span class="rt">anon · /</span></h2>
+<video class="video" controls preload="metadata" src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260721T072118Z/observability-explorer/page@3a605e1adc59cc666d282584795cee42.webm"><a href="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260721T072118Z/observability-explorer/page@3a605e1adc59cc666d282584795cee42.webm">下载该路径录像</a></video><p class="vcap">本测试路径整段走查录像</p>
+<div class="kpis"><div class="kpi"><div class="k">2</div><div class="l">操作步</div></div><div class="kpi"><div class="k">2</div><div class="l">通过</div></div><div class="kpi"><div class="k k-bad">0</div><div class="l">失败</div></div><div class="kpi"><div class="k k-warn">0</div><div class="l">不确定</div></div><div class="kpi"><div class="k">0</div><div class="l">未走到</div></div></div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> 点击 header 右上角 &#x27;Toggle theme&#x27; 按钮</h3>
+<div class="exp">期望：页面在深色/浅色主题间切换，两侧面板配色同步变化</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260721T072118Z/observability-explorer/header-03.png" alt="点击 header 右上角 &#x27;Toggle theme&#x27; 按钮" loading="lazy"><figcaption>点击 header 右上角 &#x27;Toggle theme&#x27; 按钮</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：点击后整页从深色背景切换为浅色（米白背景 + 深色文字），header/sidebar/primary/inspector 三栏配色全部同步切换，&#x27;No Items&#x27; 空态图标与文字随之变浅色调，功能正常</div>
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> 点击 header 右上角 &#x27;Login&#x27; 按钮，验证跳转到 DID Connect 登录页（不完成实际登录，只验证跳转正确性——只读探索边界）</h3>
+<div class="exp">期望：跳转到 .well-known/service/login 登录页，附带 return_to/cancel_to 回跳参数</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260721T072118Z/observability-explorer/header-05.png" alt="点击 header 右上角 &#x27;Login&#x27; 按钮，验证跳转到 DID Connect 登录页（不完成实际登录，只验证跳转正确性——只读探索边界）" loading="lazy"><figcaption>点击 header 右上角 &#x27;Login&#x27; 按钮，验证跳转到 DID Connect 登录页（不完成实际登录，只验证跳转正确性——只读探索边界）</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：URL 跳转为 https://observability-explorer.afsd.dev/.well-known/service/login?return_to=%2Fdashboard&amp;cancel_to=%2Fdashboard；页面渲染出真实的 DID Connect 登录卡片：标题 &#x27;Sign in to ARC services (Test)&#x27;，按钮 &#x27;Sign in with Passkey&#x27;、链接 &#x27;First time? Create a passkey&#x27;、按钮 &#x27;Continue with DID Wallet&#x27;，footer &#x27;Secured by DID Connect&#x27;；未继续完成登录（只读探索，未提交任何凭据）</div>
+
+</div>
+</section><section id="path-trace-assistant">
+<h2>Run 详情内的 Trace Assistant 面板（仅当选中真实 obs:run 节点时出现） <span class="rt">anon · /</span></h2>
+<p class="novideo">⛔ 本路径缺录屏（未满足要求 #1）</p>
+<div class="kpis"><div class="kpi"><div class="k">1</div><div class="l">操作步</div></div><div class="kpi"><div class="k">0</div><div class="l">通过</div></div><div class="kpi"><div class="k k-bad">0</div><div class="l">失败</div></div><div class="kpi"><div class="k k-warn">0</div><div class="l">不确定</div></div><div class="kpi"><div class="k">1</div><div class="l">未走到</div></div></div>
+<div class="op">
+<h3><span class="pill p-skip">未走到</span> 尝试在 sidebar-list 或 Traces 列表中找到一个具体的 agent run 节点点进去，以触发 agent-container.state.activeKind == &#x27;obs:run&#x27; 从而显示 trace-assistant（agent-gate 的 visible 条件）</h3>
+<div class="exp">期望：点开一个具体 run 后，agent-gate 变为可见，内部渲染 trace-assistant（blocklet-embed 的 agent-surface）</div>
+
+<div class="chk"><b>观察证据</b>：匿名态下 sidebar-list 仅有 &#x27;dashboard&#x27;/&#x27;traces&#x27; 两个固定导航项，没有任何日期/run 子节点；Traces 列表在 All/Today/7d 各过滤条件下均显示 &#x27;No Items&#x27;（dom.textLen 对应内容为 &#x27;No items&#x27;，无可点击的 run 行）；因此没有 obs:run 类型的节点可供点击，agent-container 全程保持折叠（interactables 中 #agent-container 始终无子节点文本），无法验证 trace-assistant 面板本身是否渲染正确</div>
+<div class="nt">此路径依赖真实 agent run 数据（需要登录后有实际使用记录，或后端已摄取过 trace）——本轮匿名只读走查的数据前提不满足，如实标记为 unreached，不构成 fail；建议后续走查在已登录且有真实 run 数据的账号下补测</div>
+</div>
+</section>
+<p class="sub" style="margin-top:22px">Generated by test-report-builder (build-agent-report) · issue #1808</p>
+</div></body></html>
