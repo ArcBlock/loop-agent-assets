@@ -23,3 +23,4 @@
 | 20260721-152437-home-01.png | https://github.com/ArcBlock/arc | 2026-07-21T15:24:37Z | root@vm |
 | 20260721-152440-home-02.png | https://github.com/ArcBlock/arc | 2026-07-21T15:24:40Z | root@vm |
 | 20260721-152442-home-03.png | https://github.com/ArcBlock/arc | 2026-07-21T15:24:42Z | root@vm |
+| 20260721-152447-home-04.png | https://github.com/ArcBlock/arc | 2026-07-21T15:24:47Z | root@vm |
