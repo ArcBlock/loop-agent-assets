@@ -107,3 +107,4 @@
 | 20260721-153204-feed-01.png | https://github.com/ArcBlock/arc | 2026-07-21T15:32:04Z | root@vm |
 | 20260721-153207-feed-02.png | https://github.com/ArcBlock/arc | 2026-07-21T15:32:07Z | root@vm |
 | 20260721-153209-feed-03.png | https://github.com/ArcBlock/arc | 2026-07-21T15:32:09Z | root@vm |
+| 20260721-153211-item-detail-01.png | https://github.com/ArcBlock/arc | 2026-07-21T15:32:11Z | root@vm |
