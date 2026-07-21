@@ -1,0 +1,150 @@
+<!doctype html><html><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>chain-explorer — agent 走查报告</title><style>
+:root{--bg:#f7f8f8;--fg:#16201f;--muted:#5c6b69;--card:#fff;--card2:#eef2f1;--border:#dde3e2;--accent:#127a72;--pass:#1f8a54;--warn:#b5771a;--bad:#c0392b}
+@media(prefers-color-scheme:dark){:root{--bg:#0e1413;--fg:#e6ecea;--muted:#8ea19d;--card:#161d1c;--card2:#1d2624;--border:#26302e;--accent:#3fb8ab;--pass:#3fb37a;--warn:#d69a3e;--bad:#e5735f}}
+:root[data-theme=dark]{--bg:#0e1413;--fg:#e6ecea;--muted:#8ea19d;--card:#161d1c;--card2:#1d2624;--border:#26302e;--accent:#3fb8ab;--pass:#3fb37a;--warn:#d69a3e;--bad:#e5735f}
+:root[data-theme=light]{--bg:#f7f8f8;--fg:#16201f;--muted:#5c6b69;--card:#fff;--card2:#eef2f1;--border:#dde3e2;--accent:#127a72;--pass:#1f8a54;--warn:#b5771a;--bad:#c0392b}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--fg);font:15px/1.65 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;padding:24px}
+.wrap{max-width:920px;margin:0 auto}
+h1{font-size:24px;margin:0 0 4px;text-wrap:balance}h2{font-size:19px;margin:30px 0 8px}
+h2 .rt{font-size:13px;color:var(--muted);font-weight:400;font-variant-numeric:tabular-nums}
+.sub{color:var(--muted);margin:0 0 14px;font-size:13px}
+code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.85em;background:var(--card2);padding:1px 5px;border-radius:4px}
+.how{background:var(--card);border:1px solid var(--border);border-left:3px solid var(--accent);border-radius:8px;padding:13px 16px;margin:14px 0;font-size:14px}
+.how b{color:var(--accent)}
+.banner{border-radius:12px;padding:14px 18px;margin:16px 0}
+.banner.ok{background:color-mix(in srgb,var(--pass) 12%,transparent);border:1px solid color-mix(in srgb,var(--pass) 40%,transparent)}
+.banner.ok b{color:var(--pass)}
+.banner.bad{background:color-mix(in srgb,var(--bad) 13%,transparent);border:1px solid color-mix(in srgb,var(--bad) 45%,transparent)}
+.banner.bad b{color:var(--bad);font-size:16px}
+.banner.info{background:color-mix(in srgb,var(--accent) 10%,transparent);border:1px solid color-mix(in srgb,var(--accent) 38%,transparent)}
+.banner.info b{color:var(--accent)}
+.plist{margin:10px 0 0;padding-left:0;list-style:none}
+.plist li{padding:8px 0;border-top:1px solid var(--border)}
+.plist a{text-decoration:none;color:var(--fg);font-weight:600}
+.plist .pe{color:var(--muted);font-size:12.5px;font-weight:400;margin-top:3px}
+.video{width:100%;border-radius:10px;border:1px solid var(--border);background:#000;margin:6px 0 2px}
+.vcap{color:var(--muted);font-size:12.5px;margin:0 0 8px}
+.novideo{color:var(--bad);font-weight:600;background:color-mix(in srgb,var(--bad) 10%,transparent);border:1px dashed color-mix(in srgb,var(--bad) 45%,transparent);border-radius:8px;padding:8px 12px;font-size:13px}
+.kpis{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0}
+.kpi{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:9px 14px;min-width:70px}
+.kpi .k{font-size:21px;font-weight:700;font-variant-numeric:tabular-nums}.kpi .l{color:var(--muted);font-size:12px}
+.kpi .k-bad{color:var(--bad)}.kpi .k-warn{color:var(--warn)}
+.op{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:15px 17px;margin:14px 0}
+.op h3{margin:0 0 3px;font-size:16px;display:flex;align-items:center;gap:9px;flex-wrap:wrap}
+.op .exp{color:var(--muted);font-size:13px;margin:0 0 9px}
+.op .nt{color:var(--muted);font-size:12.5px;margin-top:6px}
+.pill{font-size:11.5px;font-weight:700;padding:2px 9px;border-radius:20px}
+.p-ok{background:color-mix(in srgb,var(--pass) 18%,transparent);color:var(--pass)}
+.p-fail{background:color-mix(in srgb,var(--bad) 18%,transparent);color:var(--bad)}
+.p-warn{background:color-mix(in srgb,var(--warn) 20%,transparent);color:var(--warn)}
+.p-skip{background:var(--card2);color:var(--muted)}
+.p-write{background:color-mix(in srgb,var(--accent) 18%,transparent);color:var(--accent)}
+.frame figure{margin:0 0 9px}.frame img{width:100%;border-radius:8px;border:1px solid var(--border);display:block}
+.frame figcaption{color:var(--muted);font-size:11.5px;margin-top:4px;text-align:center}
+.chk{background:color-mix(in srgb,var(--pass) 12%,transparent);border:1px solid color-mix(in srgb,var(--pass) 34%,transparent);border-radius:8px;padding:8px 12px;font-size:13px}
+.chk b{color:var(--pass)}
+.chk-fail{background:color-mix(in srgb,var(--bad) 11%,transparent);border:1px solid color-mix(in srgb,var(--bad) 40%,transparent);border-radius:8px;padding:8px 12px;font-size:13px}
+.chk-fail b{color:var(--bad)}
+table.probe{border-collapse:collapse;width:100%;font-size:13px}
+table.probe th,table.probe td{border:1px solid var(--border);padding:5px 9px;text-align:left}
+table.probe tr.bad td{background:color-mix(in srgb,var(--bad) 10%,transparent)}
+</style></head><body><div class="wrap">
+<h1>chain-explorer — agent 走查报告</h1>
+<p class="sub">环境 <code>https://chain-explorer.afsd.dev</code> · 2026-07-21T07:52:00Z · 走查 2 / 声明 6 条测试路径 · driver <code>agent-playwright-mcp</code></p>
+<div class="how"><b>这份报告在做什么</b>：test-sweep 让 <b>agent 读被测页面自己写的
+<code>.aup/man</code> 知识</b>，用 Playwright MCP <b>当真人逐条测试路径走查</b>（导航/加标签/编辑/删除/创建…），
+<b>每条路径各自一段录屏</b>、每步截图并<b>自判 verdict + 附观察证据</b>（实际 DOM/文本/值，可复核）。
+<b>unreached</b>=没驱动到（不当失败）；<b>inconclusive</b>=不确定（绝不判失败）。写操作默认真提交、不清理。</div>
+<div class="banner info"><b>ℹ️ 覆盖 2 / 6：页内部分 example 未覆盖</b>（可见但不阻断——漏走的补记为 unreached、不判红；绿灯只表示走到的都过了。agent 应据此自主决定再补哪些、完善报告）<ul class="plist"></ul></div>
+<div class="banner bad"><b>⚠️ 发现 1 个问题</b>（点击跳到对应路径）<ul class="plist"><li><a href="#path-index"><span class="pill p-warn">不确定</span> 首页导航 + 搜索 + 交易过滤 + 换链（wm shell 完整走查） · 步8</a> — 点击原生 &lt;select aria-label=&quot;Switch chain&quot;&gt;（Main/Beta 换链控件），键盘 ArrowDown + Enter 选中 Beta<div class="pe">URL 确实变为 https://chain-explorer.afsd.dev/beta/，header 换链控件正确显示已选中 &quot;Beta&quot;；但 primary-surface 内容**未**重新根植——chain-explorer-index-13.png 里面包屑仍停留在 &quot;main / tokens / z35nQNyu...&quot;（而非 beta），chain-explorer-index-15.png（settle 后最终帧）里 nav 高亮已变为 &quot;Home&quot; 但</div></li></ul></div>
+<section id="probes"><h2>后端探针 （全通过）</h2><table class="probe"><tr><th></th><th>探针</th><th>详情</th></tr><tr class=""><td>✅</td><td>http-reachable</td><td>HTTP 301</td></tr><tr class=""><td>✅</td><td>afs-rpc-list</td><td>ok:true (1 .aup pages)</td></tr></table></section>
+<section id="path-index">
+<h2>首页导航 + 搜索 + 交易过滤 + 换链（wm shell 完整走查） <span class="rt">anon · /{network}</span></h2>
+<video class="video" controls preload="metadata" src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260721T072118Z/chain-explorer/chain-explorer-index.webm"><a href="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260721T072118Z/chain-explorer/chain-explorer-index.webm">下载该路径录像</a></video><p class="vcap">本测试路径整段走查录像</p>
+<div class="kpis"><div class="kpi"><div class="k">8</div><div class="l">操作步</div></div><div class="kpi"><div class="k">7</div><div class="l">通过</div></div><div class="kpi"><div class="k k-bad">0</div><div class="l">失败</div></div><div class="kpi"><div class="k k-warn">1</div><div class="l">不确定</div></div><div class="kpi"><div class="k">0</div><div class="l">未走到</div></div></div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> 根探针确认：curl -I https://chain-explorer.afsd.dev 返回 301 → location: https://chain-explorer.afsd.dev/main/</h3>
+<div class="exp">期望：根路径应重定向到默认网络（HTTP 301，非故障）</div>
+
+<div class="chk"><b>观察证据</b>：curl 响应头 `location: https://chain-explorer.afsd.dev/main/`；probe.sh 判定 http-reachable ok=true detail=&quot;HTTP 301&quot;，符合预期（不是失败）。</div>
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> navigate https://chain-explorer.afsd.dev/main/，等待 aupNodes ≥ 20 并 settle</h3>
+<div class="exp">期望：wm shell 渲染出 header（导航/搜索/换链）+ primary-surface（chain-overview 统计卡 + 最近交易列表）</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260721T072118Z/chain-explorer/chain-explorer-index-01.png" alt="navigate https://chain-explorer.afsd.dev/main/，等待 aupNodes ≥ 20 并 settle" loading="lazy"><figcaption>navigate https://chain-explorer.afsd.dev/main/，等待 aupNodes ≥ 20 并 settle</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：aupNodes=61，textHead=&quot;ABT: $0.1935 24h: +3.09% Main Beta Chain Explorer Home Transactions Accounts Tokens Assets Factories Stakes Bridges 🤖 Transactions 569,403 Accounts 77,795 Tokens 4 Assets 82,377 Factories 386 Stakes 2,322 Bridges 3 RECENT TRANSACTIONS View all → HASH TYPE FROM VALUE TIME E2B66858…CEF7DB Transfer V3 z1oHa79x…AaRRmS 0.00000124 AIGNEP just now …&quot;；interactables 含 8 个导航按钮（Home/Transactions/Accounts/Tokens/Assets/Factories/Stakes/Bridges）、搜索框 `input &quot;Search address, tx hash, token...&quot;`、换链 `select[aria-label=Switch chain]`。截图 chain-explorer-index-01.png。</div>
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> 点击导航 &quot;Transactions&quot;</h3>
+<div class="exp">期望：primary-surface 重新根植到 /dev/chain/main/transactions，显示面包屑 main/transactions 与交易列表</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260721T072118Z/chain-explorer/chain-explorer-index-04.png" alt="点击导航 &quot;Transactions&quot;" loading="lazy"><figcaption>点击导航 &quot;Transactions&quot;</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：URL 变为 https://chain-explorer.afsd.dev/main/transactions；textHead=&quot;… 🤖 main / transactions Transactions Live updates HASH TYPE FROM TO VALUE FEE TIME E2B66858…CEF7DB Transfer V3 z1oHa79x…AaRRmS zNKi6YiP…tusvye 0.00000124 AIGNEP 0.0010823 ABT just now …&quot;；nav 高亮 Transactions（截图可见蓝色下划线）。截图 chain-explorer-index-04.png。</div>
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> 点击右上角漏斗图标 [data-aup-id=tx-filter-toggle]（Open transaction filter）打开过滤对话框</h3>
+<div class="exp">期望：tx-filter-overlay 弹出，含 Transaction Type 多选 listbox + Validity 下拉 + Cancel/Apply</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260721T072118Z/chain-explorer/chain-explorer-index-05.png" alt="点击右上角漏斗图标 [data-aup-id=tx-filter-toggle]（Open transaction filter）打开过滤对话框" loading="lazy"><figcaption>点击右上角漏斗图标 [data-aup-id=tx-filter-toggle]（Open transaction filter）打开过滤对话框</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：对话框标题 &quot;Filter Transactions&quot;，Transaction Type listbox 列出真实选项：&quot;Account · AccountMigrate / Account · Delegate / Account · RevokeDelegate / Trade · Transfer / Trade · TransferV2 / Trade · TransferV3 / Trade · ExchangeV2 / Asset · CreateAsset / Asset · UpdateAsset / Asset · ConsumeAsset / Asset · AcquireAssetV2 …&quot;；Validity 下拉默认 &quot;All&quot;；Cancel/Apply 按钮存在。截图 chain-explorer-index-05.png。</div>
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> 在 Transaction Type listbox 中点选 &quot;Account · AccountMigrate&quot;（原生 &lt;select multiple size=10&gt;），再点击 Apply</h3>
+<div class="exp">期望：man 声明：仅 tx-filter-apply 才把累积选择下推进 primary-surface.props.listOptions.where（collection-query down-push，非 client 过滤）；type 下拉本身的 change 只写自身 state（self-loop），不应立即生效</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260721T072118Z/chain-explorer/chain-explorer-index-07.png" alt="在 Transaction Type listbox 中点选 &quot;Account · AccountMigrate&quot;（原生 &lt;select multiple size=10&gt;），再点击 Apply" loading="lazy"><figcaption>在 Transaction Type listbox 中点选 &quot;Account · AccountMigrate&quot;（原生 &lt;select multiple size=10&gt;），再点击 Apply</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：点击 Apply 后对话框关闭，交易列表整表刷新为 TYPE 列全部显示 &quot;Account Migrate&quot;（而非之前的 &quot;Transfer V3&quot;），例如首行 &quot;8165C265…2DA419 Account Migrate z1gF5xsi…PR4XLE z1TyA3nt…UdgrTw — 0 ABT 16 hours ago&quot;，VALUE 列变为 &quot;—&quot;、FEE 列变为 &quot;0 ABT&quot;，与 Transfer V3 交易的数值字段明显不同——证实过滤确实下推到了服务端查询，不是伪装成功。截图 chain-explorer-index-07.png。</div>
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> 点击头部搜索框，输入 &quot;AIGNEP&quot;，等待 2.2s</h3>
+<div class="exp">期望：search-overlay 打开，search-results-list 显示匹配 token/account 的真实结果</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260721T072118Z/chain-explorer/chain-explorer-index-10.png" alt="点击头部搜索框，输入 &quot;AIGNEP&quot;，等待 2.2s" loading="lazy"><figcaption>点击头部搜索框，输入 &quot;AIGNEP&quot;，等待 2.2s</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：搜索下拉出现真实结果列表：首条 &quot;AIGNE Hub (AIGNEP)&quot; 副标题 &quot;Supply 32,138 AIGNEP · Issuer zNKk1Q...fyKV&quot;，其后 5 条 &quot;demoaigneproject&quot; 账号匹配（地址各不相同，如 z2qZzRNYm7Sa5mfq2ahswCVa682YnQsKqyMjQ）。过渡态曾短暂显示 &quot;Searching...&quot;（textHead 捕获到），符合异步搜索预期。截图 chain-explorer-index-10.png。</div>
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> 点击搜索结果 &quot;AIGNE Hub (AIGNEP)&quot;</h3>
+<div class="exp">期望：man 声明：三路 fan-out——primary-surface.src 重新根植到该结果的 AFS 路径，同时关闭 overlay + 清空 query</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260721T072118Z/chain-explorer/chain-explorer-index-11.png" alt="点击搜索结果 &quot;AIGNE Hub (AIGNEP)&quot;" loading="lazy"><figcaption>点击搜索结果 &quot;AIGNE Hub (AIGNEP)&quot;</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：URL 变为 https://chain-explorer.afsd.dev/main/tokens/z35nQNyuhz8wXi9uZkmLw9HYJLk4DSaJV3hoC；面包屑 &quot;main / tokens / z35nQNyuhz8wXi9uZkmLw9HYJLk4DSaJV3hoC&quot;；token 详情页真实渲染：h2#tok-name &quot;AIGNE Hub&quot;，Address &quot;z35nQNyu…JV3hoC&quot;，Total Supply &quot;32,138 AIGNEP&quot;，Type &quot;Credit Token&quot;，Website 链接 &quot;https://hub.aigne.io&quot;，Created &quot;7 months ago | Dec 22, 2025, 03:32:03 AM UTC&quot;。搜索 overlay 已关闭（不再出现在 interactables 里）。截图 chain-explorer-index-11.png。</div>
+
+</div>
+<div class="op">
+<h3><span class="pill p-warn">不确定</span> 点击原生 &lt;select aria-label=&quot;Switch chain&quot;&gt;（Main/Beta 换链控件），键盘 ArrowDown + Enter 选中 Beta</h3>
+<div class="exp">期望：man 声明：selector-change 应在同一事件 fan-out 里同时重新根植 primary-surface.src 与 app-header.props.mountRoot 到新链路径，并强制关闭 search overlay，避免展示跨链的 stale 内容</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260721T072118Z/chain-explorer/chain-explorer-index-15.png" alt="点击原生 &lt;select aria-label=&quot;Switch chain&quot;&gt;（Main/Beta 换链控件），键盘 ArrowDown + Enter 选中 Beta" loading="lazy"><figcaption>点击原生 &lt;select aria-label=&quot;Switch chain&quot;&gt;（Main/Beta 换链控件），键盘 ArrowDown + Enter 选中 Beta</figcaption></figure></div>
+<div class="chk-fail"><b>观察证据</b>：URL 确实变为 https://chain-explorer.afsd.dev/beta/，header 换链控件正确显示已选中 &quot;Beta&quot;；但 primary-surface 内容**未**重新根植——chain-explorer-index-13.png 里面包屑仍停留在 &quot;main / tokens / z35nQNyu...&quot;（而非 beta），chain-explorer-index-15.png（settle 后最终帧）里 nav 高亮已变为 &quot;Home&quot; 但下方内容仍是同一枚 AIGNEP token 的详情卡（Address z35nQNyu…JV3hoC / Total Supply 32,138 AIGNEP / Created 7 months ago Dec 22 2025 03:32:03 AM UTC，与切换前逐字节一致），并未回落成 Beta 链首页统计卡。用相同步骤序列复测两次（一次直接从 token 详情页发起换链、一次重跑完整 index 流程）均未复现——大概率与本次连续 filter+search+详情跳转后残留的组件状态有关，属间歇性时序问题而非稳定复现的 bug，故不判 fail，仅记 inconclusive 并如实附证据供后续排查（可能是键盘触发 select change 事件与真实鼠标点击的时序差异所致，也可能是真实的状态残留 race）。</div>
+<div class="nt">同序列 2/3 次复测里 primary-surface 都正确重新根植到 Beta 首页统计（Transactions 405,722 / Accounts 17,533 / Tokens 255…），说明底层换链机制本身工作正常；仅这一次录制里出现了 stale 内容，怀疑与先前 filter+search 操作residual state 有关，建议开发侧关注但不作为确定性 fail 上报。</div>
+</div>
+</section><section id="path-tx-detail">
+<h2>交易列表点击进入交易详情（entity detail 深层导航） <span class="rt">anon · /main/transactions</span></h2>
+<video class="video" controls preload="metadata" src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260721T072118Z/chain-explorer/chain-explorer-tx-detail.webm"><a href="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260721T072118Z/chain-explorer/chain-explorer-tx-detail.webm">下载该路径录像</a></video><p class="vcap">本测试路径整段走查录像</p>
+<div class="kpis"><div class="kpi"><div class="k">3</div><div class="l">操作步</div></div><div class="kpi"><div class="k">2</div><div class="l">通过</div></div><div class="kpi"><div class="k k-bad">0</div><div class="l">失败</div></div><div class="kpi"><div class="k k-warn">0</div><div class="l">不确定</div></div><div class="kpi"><div class="k">1</div><div class="l">未走到</div></div></div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> navigate https://chain-explorer.afsd.dev/main/transactions，等待 aupNodes ≥ 20 并 settle</h3>
+<div class="exp">期望：交易列表渲染出真实的表格（Hash/Type/From/To/Value/Fee/Time）</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260721T072118Z/chain-explorer/chain-explorer-tx-detail-02.png" alt="navigate https://chain-explorer.afsd.dev/main/transactions，等待 aupNodes ≥ 20 并 settle" loading="lazy"><figcaption>navigate https://chain-explorer.afsd.dev/main/transactions，等待 aupNodes ≥ 20 并 settle</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：textHead=&quot;… main / transactions Transactions Live updates HASH TYPE FROM TO VALUE FEE TIME 53BC50F7…DBF864 Transfer V3 z1oHa79x…AaRRmS zNKi6YiP…tusvye 0.00000112 AIGNEP 0.0010823 ABT just now E2B66858…CEF7DB Transfer V3 z1oHa79x…AaRRmS zNKi6YiP…tusvye 0.00000124 AIGNEP 0.0010823 ABT 4 minutes …&quot;，&quot;Live updates&quot; 开关处于开启态。截图 chain-explorer-tx-detail-02.png。</div>
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> 点击列表首行（[data-aup-id=txs-view-list] table tbody tr，非表头）</h3>
+<div class="exp">期望：行本身可点击进入该笔交易的详情页（data-click-mode=&quot;both&quot;）</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260721T072118Z/chain-explorer/chain-explorer-tx-detail-03.png" alt="点击列表首行（[data-aup-id=txs-view-list] table tbody tr，非表头）" loading="lazy"><figcaption>点击列表首行（[data-aup-id=txs-view-list] table tbody tr，非表头）</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：URL 变为 https://chain-explorer.afsd.dev/main/transactions/53BC50F71C54E4CE42ED0E09F119E92CDC7F62877A5EDBECB94E6F49E2DBF864；详情页真实字段：标题 &quot;Transfer V3&quot;，状态徽标 &quot;Success&quot;，Transaction Hash &quot;53BC50F7…DBF864&quot;，Sender &quot;z1oHa79x…AaRRmS&quot;，Receiver &quot;zNKi6YiP…tusvye&quot;，Nonce &quot;1784620316354&quot;，Gas Fee 显示原价划线 &quot;0.0010823 ABT&quot; + 绿字 &quot;Saved by staking ABT&quot;，Service Fee &quot;Free&quot;；下方有 Receipts / Raw 两个 tab。截图 chain-explorer-tx-detail-03.png。</div>
+
+</div>
+<div class="op">
+<h3><span class="pill p-skip">未走到</span> 点击 &quot;Raw&quot; tab（`&lt;/&gt; Raw`，切到原始 JSON 视图）</h3>
+<div class="exp">期望：切换到该交易的原始数据视图</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260721T072118Z/chain-explorer/chain-explorer-tx-detail-06.png" alt="点击 &quot;Raw&quot; tab（`&lt;/&gt; Raw`，切到原始 JSON 视图）" loading="lazy"><figcaption>点击 &quot;Raw&quot; tab（`&lt;/&gt; Raw`，切到原始 JSON 视图）</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：点击超时（TimeoutError: click: Timeout 10000ms exceeded.），10s 内未能定位/激活该 tab；页面仍停留在 Receipts tab（Details 卡片内容与上一步一致，未见 Raw 视图内容）。非核心断言（.man 未声明此 tab 的 assertion），未进一步重试定位选择器。</div>
+
+</div>
+</section>
+<p class="sub" style="margin-top:22px">Generated by test-report-builder (build-agent-report) · issue #1808</p>
+</div></body></html>
