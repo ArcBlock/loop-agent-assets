@@ -48,3 +48,4 @@
 | 20260721-152838-unified-04.png | https://github.com/ArcBlock/arc | 2026-07-21T15:28:38Z | root@vm |
 | 20260721-152840-page@2526e4823d18175cbeda3e631306931a.webm | https://github.com/ArcBlock/arc | 2026-07-21T15:28:40Z | root@vm |
 | 20260721-152845-page@6b0afc3782beae67eea84c1f0b9799e0.webm | https://github.com/ArcBlock/arc | 2026-07-21T15:28:45Z | root@vm |
+| 20260721-152847-page@e27fcb6e6c424ecab5564d937c65d6fa.webm | https://github.com/ArcBlock/arc | 2026-07-21T15:28:47Z | root@vm |
