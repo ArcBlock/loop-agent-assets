@@ -43,3 +43,4 @@
 | 20260721-152818-inbox-03.png | https://github.com/ArcBlock/arc | 2026-07-21T15:28:18Z | root@vm |
 | 20260721-152827-inbox-04.png | https://github.com/ArcBlock/arc | 2026-07-21T15:28:27Z | root@vm |
 | 20260721-152831-unified-01.png | https://github.com/ArcBlock/arc | 2026-07-21T15:28:31Z | root@vm |
+| 20260721-152833-unified-02.png | https://github.com/ArcBlock/arc | 2026-07-21T15:28:33Z | root@vm |
