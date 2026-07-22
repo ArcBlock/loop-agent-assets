@@ -15,3 +15,4 @@
 | 20260722-005822-organize-clue-detail-r4.png | https://github.com/ArcBlock/aside/issues/395 | 2026-07-22T00:58:25Z | codex-issue-review |
 | 20260722-005844-organize-no-clues-r4.png | https://github.com/ArcBlock/aside/issues/395 | 2026-07-22T00:58:47Z | codex-issue-review |
 | 20260722-014136-organize-quiet-suggestion-r5.png | https://github.com/ArcBlock/aside/issues/395 | 2026-07-22T01:41:39Z | codex-issue-review |
+| 20260722-014158-organize-direct-review-r5.png | https://github.com/ArcBlock/aside/issues/395 | 2026-07-22T01:42:00Z | codex-issue-review |
