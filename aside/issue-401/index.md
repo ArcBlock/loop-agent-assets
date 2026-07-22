@@ -10,3 +10,4 @@
 | 20260722-144422-scenario-start-organizing-r5.png | https://github.com/ArcBlock/aside/issues/401 | 2026-07-22T14:44:26Z | codex-issue-review |
 | 20260722-144455-scenario-travel-setup-r5.png | https://github.com/ArcBlock/aside/issues/401 | 2026-07-22T14:44:58Z | codex-issue-review |
 | 20260722-151710-scenario-organize-home-r6.png | https://github.com/ArcBlock/aside/issues/401 | 2026-07-22T15:17:13Z | codex-issue-review |
+| 20260722-151732-scenario-start-organizing-r6.png | https://github.com/ArcBlock/aside/issues/401 | 2026-07-22T15:17:35Z | codex-issue-review |
