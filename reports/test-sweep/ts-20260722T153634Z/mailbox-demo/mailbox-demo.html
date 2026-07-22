@@ -1,0 +1,253 @@
+<!doctype html><html><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>mailbox-demo — agent 走查报告</title><style>
+:root{--bg:#f7f8f8;--fg:#16201f;--muted:#5c6b69;--card:#fff;--card2:#eef2f1;--border:#dde3e2;--accent:#127a72;--pass:#1f8a54;--warn:#b5771a;--bad:#c0392b}
+@media(prefers-color-scheme:dark){:root{--bg:#0e1413;--fg:#e6ecea;--muted:#8ea19d;--card:#161d1c;--card2:#1d2624;--border:#26302e;--accent:#3fb8ab;--pass:#3fb37a;--warn:#d69a3e;--bad:#e5735f}}
+:root[data-theme=dark]{--bg:#0e1413;--fg:#e6ecea;--muted:#8ea19d;--card:#161d1c;--card2:#1d2624;--border:#26302e;--accent:#3fb8ab;--pass:#3fb37a;--warn:#d69a3e;--bad:#e5735f}
+:root[data-theme=light]{--bg:#f7f8f8;--fg:#16201f;--muted:#5c6b69;--card:#fff;--card2:#eef2f1;--border:#dde3e2;--accent:#127a72;--pass:#1f8a54;--warn:#b5771a;--bad:#c0392b}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--fg);font:15px/1.65 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;padding:24px}
+.wrap{max-width:920px;margin:0 auto}
+h1{font-size:24px;margin:0 0 4px;text-wrap:balance}h2{font-size:19px;margin:30px 0 8px}
+h2 .rt{font-size:13px;color:var(--muted);font-weight:400;font-variant-numeric:tabular-nums}
+.sub{color:var(--muted);margin:0 0 14px;font-size:13px}
+code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.85em;background:var(--card2);padding:1px 5px;border-radius:4px}
+.how{background:var(--card);border:1px solid var(--border);border-left:3px solid var(--accent);border-radius:8px;padding:13px 16px;margin:14px 0;font-size:14px}
+.how b{color:var(--accent)}
+.banner{border-radius:12px;padding:14px 18px;margin:16px 0}
+.banner.ok{background:color-mix(in srgb,var(--pass) 12%,transparent);border:1px solid color-mix(in srgb,var(--pass) 40%,transparent)}
+.banner.ok b{color:var(--pass)}
+.banner.bad{background:color-mix(in srgb,var(--bad) 13%,transparent);border:1px solid color-mix(in srgb,var(--bad) 45%,transparent)}
+.banner.bad b{color:var(--bad);font-size:16px}
+.banner.info{background:color-mix(in srgb,var(--accent) 10%,transparent);border:1px solid color-mix(in srgb,var(--accent) 38%,transparent)}
+.banner.info b{color:var(--accent)}
+.plist{margin:10px 0 0;padding-left:0;list-style:none}
+.plist li{padding:8px 0;border-top:1px solid var(--border)}
+.plist a{text-decoration:none;color:var(--fg);font-weight:600}
+.plist .pe{color:var(--muted);font-size:12.5px;font-weight:400;margin-top:3px}
+.video{width:100%;border-radius:10px;border:1px solid var(--border);background:#000;margin:6px 0 2px}
+.vcap{color:var(--muted);font-size:12.5px;margin:0 0 8px}
+.novideo{color:var(--bad);font-weight:600;background:color-mix(in srgb,var(--bad) 10%,transparent);border:1px dashed color-mix(in srgb,var(--bad) 45%,transparent);border-radius:8px;padding:8px 12px;font-size:13px}
+.kpis{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0}
+.kpi{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:9px 14px;min-width:70px}
+.kpi .k{font-size:21px;font-weight:700;font-variant-numeric:tabular-nums}.kpi .l{color:var(--muted);font-size:12px}
+.kpi .k-bad{color:var(--bad)}.kpi .k-warn{color:var(--warn)}
+.op{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:15px 17px;margin:14px 0}
+.op h3{margin:0 0 3px;font-size:16px;display:flex;align-items:center;gap:9px;flex-wrap:wrap}
+.op .exp{color:var(--muted);font-size:13px;margin:0 0 9px}
+.op .nt{color:var(--muted);font-size:12.5px;margin-top:6px}
+.pill{font-size:11.5px;font-weight:700;padding:2px 9px;border-radius:20px}
+.p-ok{background:color-mix(in srgb,var(--pass) 18%,transparent);color:var(--pass)}
+.p-fail{background:color-mix(in srgb,var(--bad) 18%,transparent);color:var(--bad)}
+.p-warn{background:color-mix(in srgb,var(--warn) 20%,transparent);color:var(--warn)}
+.p-skip{background:var(--card2);color:var(--muted)}
+.p-write{background:color-mix(in srgb,var(--accent) 18%,transparent);color:var(--accent)}
+.frame figure{margin:0 0 9px}.frame img{width:100%;border-radius:8px;border:1px solid var(--border);display:block}
+.frame figcaption{color:var(--muted);font-size:11.5px;margin-top:4px;text-align:center}
+.chk{background:color-mix(in srgb,var(--pass) 12%,transparent);border:1px solid color-mix(in srgb,var(--pass) 34%,transparent);border-radius:8px;padding:8px 12px;font-size:13px}
+.chk b{color:var(--pass)}
+.chk-fail{background:color-mix(in srgb,var(--bad) 11%,transparent);border:1px solid color-mix(in srgb,var(--bad) 40%,transparent);border-radius:8px;padding:8px 12px;font-size:13px}
+.chk-fail b{color:var(--bad)}
+table.probe{border-collapse:collapse;width:100%;font-size:13px}
+table.probe th,table.probe td{border:1px solid var(--border);padding:5px 9px;text-align:left}
+table.probe tr.bad td{background:color-mix(in srgb,var(--bad) 10%,transparent)}
+</style></head><body><div class="wrap">
+<h1>mailbox-demo — agent 走查报告</h1>
+<p class="sub">环境 <code>https://mailbox-demo.afsd.dev</code> · 2026-07-22T15:36:34Z · 走查 9 / 声明 9 条测试路径 · driver <code>agent-playwright-mcp</code></p>
+<div class="how"><b>这份报告在做什么</b>：test-sweep 让 <b>agent 读被测页面自己写的
+<code>.aup/man</code> 知识</b>，用 Playwright MCP <b>当真人逐条测试路径走查</b>（导航/加标签/编辑/删除/创建…），
+<b>每条路径各自一段录屏</b>、每步截图并<b>自判 verdict + 附观察证据</b>（实际 DOM/文本/值，可复核）。
+<b>unreached</b>=没驱动到（不当失败）；<b>inconclusive</b>=不确定（绝不判失败）。写操作默认真提交、不清理。</div>
+
+<div class="banner ok"><b>✅ 覆盖完整</b>：声明 9 条测试路径全部走查。</div>
+<div class="banner bad"><b>⚠️ 发现 3 个问题</b>（点击跳到对应路径）<ul class="plist"><li><a href="#path-nav-tabs"><span class="pill p-fail">失败</span> 顶部 tab bar 全量导航（Email/Chat/Threads/Forum/Social/Notifications/Unified） · 步3</a> — 点击 &#x27;Threads&#x27; tab<div class="pe">页面能正常切换并渲染线程列表和 thread-001 消息，但 div#ti-participants 节点把参与者数组按**原始 JSON 字面量**渲染成文本，如 &#x27;[ &quot;alice@example.com&quot;, &quot;bob@example.com&quot;, &quot;carol@example.com&quot; ]&#x27;（应为格式化的参与者展示，而非序列化 JSON dump）。三条线程卡片（Q3 Budget Review / Project timeline / Meeting tomorrow</div></li><li><a href="#path-message"><span class="pill p-fail">失败</span> Message 单条消息静态视图 + Back 导航 · 步1</a> — navigate ?page=message，settle 2.5s<div class="pe">页面只渲染出 &#x27;Back to Inbox&#x27; 按钮和一个空状态占位（文件夹图标 + &#x27;No items&#x27;），未渲染任何消息内容——与 man 文档描述的『应渲染 /packages/data/inbox 第 1 页内容』不符，截图 message-thread-static-02.png 可视化确认是真实的空列表状态，非加载中假象（settle 后仍是 No items）。</div></li><li><a href="#path-threads"><span class="pill p-fail">失败</span> Threads 页（深链接，覆盖率自补）master-detail 行选择 · 步1</a> — navigate ?page=threads（deep link 而非 tab 点击），settle 5s<div class="pe">thread-001 (Q3 Budget Review) 消息正确默认展示；但再次复现 nav-tabs 路径已发现的同一渲染缺陷：div#ti-participants 把参与者数组渲染成原始 JSON 字面量（如 &#x27;[ &quot;alice@example.com&quot;, &quot;bob@example.com&quot;, &quot;carol@example.com&quot; ]&#x27;），3 条线程卡片全部复现，非偶发。</div></li></ul></div>
+<section id="probes"><h2>后端探针 （全通过）</h2><table class="probe"><tr><th></th><th>探针</th><th>详情</th></tr><tr class=""><td>✅</td><td>http-reachable</td><td>HTTP 200</td></tr><tr class=""><td>✅</td><td>afs-rpc-list</td><td>ok:true (9 .aup pages)</td></tr></table></section>
+<section id="path-unified">
+<h2>Unified 首页（默认页）+ 顶部 tab 导航 <span class="rt">anon · /</span></h2>
+<video class="video" controls preload="metadata" src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260722T153634Z/mailbox-demo/page@d84833b789505b558e6a53f6fd175b65.webm"><a href="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260722T153634Z/mailbox-demo/page@d84833b789505b558e6a53f6fd175b65.webm">下载该路径录像</a></video><p class="vcap">本测试路径整段走查录像</p>
+<div class="kpis"><div class="kpi"><div class="k">1</div><div class="l">操作步</div></div><div class="kpi"><div class="k">1</div><div class="l">通过</div></div><div class="kpi"><div class="k k-bad">0</div><div class="l">失败</div></div><div class="kpi"><div class="k k-warn">0</div><div class="l">不确定</div></div><div class="kpi"><div class="k">0</div><div class="l">未走到</div></div></div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> navigate 首页，settle 3s</h3>
+<div class="exp">期望：stats 徽章（messages/threads/unread）+ Recent Messages 预览列表</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260722T153634Z/mailbox-demo/explore-01.png" alt="navigate 首页，settle 3s" loading="lazy"><figcaption>navigate 首页，settle 3s</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：div#stats 含 &#x27;6 messages&#x27;/&#x27;3 threads&#x27;/&#x27;3 unread&#x27;；h3#recent-label &#x27;Recent Messages&#x27;；div#recent-list 渲染 6 条 msg-001..msg-006 预览行（sender/subject/来源徽章 email），与 .man unified.yaml 文档描述一致（man synopsis 写『3-row 预览』与实测 6 行略有出入，仅为文档措辞偏差，非功能缺陷）。</div>
+
+</div>
+</section><section id="path-nav-tabs">
+<h2>顶部 tab bar 全量导航（Email/Chat/Threads/Forum/Social/Notifications/Unified） <span class="rt">anon · /</span></h2>
+<video class="video" controls preload="metadata" src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260722T153634Z/mailbox-demo/page@a6be5873538448784f1f195425a3bf83.webm"><a href="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260722T153634Z/mailbox-demo/page@a6be5873538448784f1f195425a3bf83.webm">下载该路径录像</a></video><p class="vcap">本测试路径整段走查录像</p>
+<div class="kpis"><div class="kpi"><div class="k">7</div><div class="l">操作步</div></div><div class="kpi"><div class="k">6</div><div class="l">通过</div></div><div class="kpi"><div class="k k-bad">1</div><div class="l">失败</div></div><div class="kpi"><div class="k k-warn">0</div><div class="l">不确定</div></div><div class="kpi"><div class="k">0</div><div class="l">未走到</div></div></div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> 点击 &#x27;Email&#x27; tab</h3>
+<div class="exp">期望：切到 inbox 页，展示邮件列表 + 默认详情</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260722T153634Z/mailbox-demo/nav-tabs-02.png" alt="点击 &#x27;Email&#x27; tab" loading="lazy"><figcaption>点击 &#x27;Email&#x27; tab</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：渲染出收件箱列表 6 封邮件 + 右侧详情（&#x27;Next Year Is Your Chance&#x27; HTML 邮件正文），截图确认视觉正常。</div>
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> 点击 &#x27;Chat&#x27; tab</h3>
+<div class="exp">期望：切到 chat 页，展示会话列表 + 默认对话</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260722T153634Z/mailbox-demo/nav-tabs-04.png" alt="点击 &#x27;Chat&#x27; tab" loading="lazy"><figcaption>点击 &#x27;Chat&#x27; tab</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：div#root 文本含 &#x27;Conversations Alice 2 Project Team 0 Alice Slack ...&#x27;，渲染 Alice 对话消息气泡，截图确认正常。</div>
+
+</div>
+<div class="op">
+<h3><span class="pill p-fail">失败</span> 点击 &#x27;Threads&#x27; tab</h3>
+<div class="exp">期望：切到 threads 页，展示线程列表 + 默认线程消息</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260722T153634Z/mailbox-demo/nav-tabs-06.png" alt="点击 &#x27;Threads&#x27; tab" loading="lazy"><figcaption>点击 &#x27;Threads&#x27; tab</figcaption></figure></div>
+<div class="chk-fail"><b>观察证据</b>：页面能正常切换并渲染线程列表和 thread-001 消息，但 div#ti-participants 节点把参与者数组按**原始 JSON 字面量**渲染成文本，如 &#x27;[ &quot;alice@example.com&quot;, &quot;bob@example.com&quot;, &quot;carol@example.com&quot; ]&#x27;（应为格式化的参与者展示，而非序列化 JSON dump）。三条线程卡片（Q3 Budget Review / Project timeline / Meeting tomorrow at 3pm）均复现同一问题，截图 nav-tabs-06.png 可视化确认。</div>
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> 点击 &#x27;Forum&#x27; tab</h3>
+<div class="exp">期望：切到 forum 页，展示话题卡片列表</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260722T153634Z/mailbox-demo/nav-tabs-08.png" alt="点击 &#x27;Forum&#x27; tab" loading="lazy"><figcaption>点击 &#x27;Forum&#x27; tab</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：textHead 含 &#x27;How to deploy to production? 4 replies I&#x27;m new to the platform...&#x27;，话题卡片渲染正常。</div>
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> 点击 &#x27;Social&#x27; tab</h3>
+<div class="exp">期望：切到 feed 页，展示动态列表</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260722T153634Z/mailbox-demo/nav-tabs-10.png" alt="点击 &#x27;Social&#x27; tab" loading="lazy"><figcaption>点击 &#x27;Social&#x27; tab</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：textHead 含 &#x27;reaction alice@example.com liked your post &quot;Building with AFS&quot; follow dave@example.com started following you repost ...&#x27;，动态列表渲染正常。</div>
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> 点击 &#x27;Notifications&#x27; tab</h3>
+<div class="exp">期望：切到 notifications 页，展示通知列表</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260722T153634Z/mailbox-demo/nav-tabs-12.png" alt="点击 &#x27;Notifications&#x27; tab" loading="lazy"><figcaption>点击 &#x27;Notifications&#x27; tab</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：textHead 含 &#x27;deploy Production deployment v2.4.1 completed successfully in 3m 42s security Security alert: 3 failed login attempts...&#x27;，渲染正常。</div>
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> 点击 &#x27;Unified&#x27; tab 回到首页</h3>
+<div class="exp">期望：回到 unified 首页，stats + Recent Messages 恢复</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260722T153634Z/mailbox-demo/nav-tabs-15.png" alt="点击 &#x27;Unified&#x27; tab 回到首页" loading="lazy"><figcaption>点击 &#x27;Unified&#x27; tab 回到首页</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：textHead 恢复 &#x27;6 messages 3 threads 3 unread Recent Messages SXSW ...&#x27;，回退正常。</div>
+
+</div>
+</section><section id="path-inbox">
+<h2>Inbox 页 master-detail 行选择 <span class="rt">anon · /?page=inbox</span></h2>
+<video class="video" controls preload="metadata" src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260722T153634Z/mailbox-demo/page@6c6870703fa4e59a95a3101ee1490b62.webm"><a href="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260722T153634Z/mailbox-demo/page@6c6870703fa4e59a95a3101ee1490b62.webm">下载该路径录像</a></video><p class="vcap">本测试路径整段走查录像</p>
+<div class="kpis"><div class="kpi"><div class="k">2</div><div class="l">操作步</div></div><div class="kpi"><div class="k">2</div><div class="l">通过</div></div><div class="kpi"><div class="k k-bad">0</div><div class="l">失败</div></div><div class="kpi"><div class="k k-warn">0</div><div class="l">不确定</div></div><div class="kpi"><div class="k">0</div><div class="l">未走到</div></div></div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> navigate ?page=inbox，settle 3s</h3>
+<div class="exp">期望：detail-surface 默认显示 msg-001 内容</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260722T153634Z/mailbox-demo/inbox-select2-02.png" alt="navigate ?page=inbox，settle 3s" loading="lazy"><figcaption>navigate ?page=inbox，settle 3s</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：详情区默认展示 &#x27;Next Year Is Your Chance&#x27; 邮件（SXSW EDU 发件），与 .man inbox.yaml 文档一致。</div>
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> 点击列表中 &#x27;Is Flywheel on your calendar?&#x27; 行</h3>
+<div class="exp">期望：detail-surface 的 src 更新为该行内容，原地重渲染（不跳转）</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260722T153634Z/mailbox-demo/inbox-select2-04.png" alt="点击列表中 &#x27;Is Flywheel on your calendar?&#x27; 行" loading="lazy"><figcaption>点击列表中 &#x27;Is Flywheel on your calendar?&#x27; 行</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：截图确认：该行高亮选中，右侧详情区切换为 &#x27;Is Flywheel on your calendar? Save on your ticket today!&#x27;（Flywheel Investment Conference 发件），URL 未变化（同页 in-place 更新），行为与 .man 文档描述一致。</div>
+
+</div>
+</section><section id="path-chat">
+<h2>Chat 页会话切换 + 输入框/发送按钮（已知无操作） <span class="rt">anon · /?page=chat</span></h2>
+<video class="video" controls preload="metadata" src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260722T153634Z/mailbox-demo/page@baf4db80ab07b9f2dc7ae4bcb29db89f.webm"><a href="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260722T153634Z/mailbox-demo/page@baf4db80ab07b9f2dc7ae4bcb29db89f.webm">下载该路径录像</a></video><p class="vcap">本测试路径整段走查录像</p>
+<div class="kpis"><div class="kpi"><div class="k">2</div><div class="l">操作步</div></div><div class="kpi"><div class="k">2</div><div class="l">通过</div></div><div class="kpi"><div class="k k-bad">0</div><div class="l">失败</div></div><div class="kpi"><div class="k k-warn">0</div><div class="l">不确定</div></div><div class="kpi"><div class="k">0</div><div class="l">未走到</div></div></div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> navigate ?page=chat，点击左侧 &#x27;Project Team&#x27; 会话</h3>
+<div class="exp">期望：messages 区域切到 Project Team 对话内容</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260722T153634Z/mailbox-demo/chat-interact-04.png" alt="navigate ?page=chat，点击左侧 &#x27;Project Team&#x27; 会话" loading="lazy"><figcaption>navigate ?page=chat，点击左侧 &#x27;Project Team&#x27; 会话</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：截图确认：左侧 &#x27;Project Team&#x27; 高亮选中，右侧消息区切换为 Dave/Bob/Carol 关于部署策略的讨论，正确响应选择。</div>
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> 在输入框键入 &#x27;tsweep probe message&#x27; 并点击 Send</h3>
+<div class="exp">期望：按 .man chat.yaml 文档：&#x27;typing...and clicking cp-send currently does nothing (no handler)&#x27;——预期无变化</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260722T153634Z/mailbox-demo/chat-interact-07.png" alt="在输入框键入 &#x27;tsweep probe message&#x27; 并点击 Send" loading="lazy"><figcaption>在输入框键入 &#x27;tsweep probe message&#x27; 并点击 Send</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：点击 Send 后输入框仍原样保留 &#x27;tsweep probe message&#x27; 未清空，消息列表未新增任何消息——与 man 文档明确记载的已知行为（无 handler）完全一致，非本轮新发现的缺陷，本步验证该文档记载准确。写操作未真正提交任何数据（本轮 sweep 为只读模式，COMMIT_WRITES 关闭）。</div>
+
+</div>
+</section><section id="path-message">
+<h2>Message 单条消息静态视图 + Back 导航 <span class="rt">anon · /?page=message</span></h2>
+<video class="video" controls preload="metadata" src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260722T153634Z/mailbox-demo/page@662985cabd2d76ba7252e3a9a1301ca8.webm"><a href="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260722T153634Z/mailbox-demo/page@662985cabd2d76ba7252e3a9a1301ca8.webm">下载该路径录像</a></video><p class="vcap">本测试路径整段走查录像</p>
+<div class="kpis"><div class="kpi"><div class="k">2</div><div class="l">操作步</div></div><div class="kpi"><div class="k">1</div><div class="l">通过</div></div><div class="kpi"><div class="k k-bad">1</div><div class="l">失败</div></div><div class="kpi"><div class="k k-warn">0</div><div class="l">不确定</div></div><div class="kpi"><div class="k">0</div><div class="l">未走到</div></div></div>
+<div class="op">
+<h3><span class="pill p-fail">失败</span> navigate ?page=message，settle 2.5s</h3>
+<div class="exp">期望：msg-view 渲染 /packages/data/inbox 第 1 页（首条/最旧消息）内容（.man message.yaml）</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260722T153634Z/mailbox-demo/message-thread-static-02.png" alt="navigate ?page=message，settle 2.5s" loading="lazy"><figcaption>navigate ?page=message，settle 2.5s</figcaption></figure></div>
+<div class="chk-fail"><b>观察证据</b>：页面只渲染出 &#x27;Back to Inbox&#x27; 按钮和一个空状态占位（文件夹图标 + &#x27;No items&#x27;），未渲染任何消息内容——与 man 文档描述的『应渲染 /packages/data/inbox 第 1 页内容』不符，截图 message-thread-static-02.png 可视化确认是真实的空列表状态，非加载中假象（settle 后仍是 No items）。</div>
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> 点击 &#x27;Back to Inbox&#x27;</h3>
+<div class="exp">期望：返回 inbox 页</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260722T153634Z/mailbox-demo/message-thread-static-04.png" alt="点击 &#x27;Back to Inbox&#x27;" loading="lazy"><figcaption>点击 &#x27;Back to Inbox&#x27;</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：URL 从 ?page=message 变为 ?page=inbox，导航成功。</div>
+
+</div>
+</section><section id="path-thread">
+<h2>Thread 单个线程静态视图 + Back 导航 <span class="rt">anon · /?page=thread</span></h2>
+<video class="video" controls preload="metadata" src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260722T153634Z/mailbox-demo/page@662985cabd2d76ba7252e3a9a1301ca8.webm"><a href="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260722T153634Z/mailbox-demo/page@662985cabd2d76ba7252e3a9a1301ca8.webm">下载该路径录像</a></video><p class="vcap">本测试路径整段走查录像</p>
+<div class="kpis"><div class="kpi"><div class="k">2</div><div class="l">操作步</div></div><div class="kpi"><div class="k">2</div><div class="l">通过</div></div><div class="kpi"><div class="k k-bad">0</div><div class="l">失败</div></div><div class="kpi"><div class="k k-warn">0</div><div class="l">不确定</div></div><div class="kpi"><div class="k">0</div><div class="l">未走到</div></div></div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> navigate ?page=thread，settle 2.5s</h3>
+<div class="exp">期望：静态标题 &#x27;Q3 Budget Review&#x27; + thread-001 消息列表</div>
+
+<div class="chk"><b>观察证据</b>：textHead 含 &#x27;Back to Threads Q3 Budget Review A alice@example.com inbound Hi team, I&#x27;ve attach...&#x27;，与 man 文档一致。</div>
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> 点击 &#x27;Back to Threads&#x27;</h3>
+<div class="exp">期望：返回 threads 页</div>
+
+<div class="chk"><b>观察证据</b>：URL 从 ?page=thread 变为 ?page=threads，导航成功（该页同样复现 ti-participants 原始 JSON 渲染问题，见 nav-tabs 测试路径）。</div>
+
+</div>
+</section><section id="path-forum">
+<h2>Forum 话题列表（已知点击无操作） <span class="rt">anon · /?page=forum</span></h2>
+<video class="video" controls preload="metadata" src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260722T153634Z/mailbox-demo/page@023a1561698f2a6b805550886810fffd.webm"><a href="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260722T153634Z/mailbox-demo/page@023a1561698f2a6b805550886810fffd.webm">下载该路径录像</a></video><p class="vcap">本测试路径整段走查录像</p>
+<div class="kpis"><div class="kpi"><div class="k">1</div><div class="l">操作步</div></div><div class="kpi"><div class="k">1</div><div class="l">通过</div></div><div class="kpi"><div class="k k-bad">0</div><div class="l">失败</div></div><div class="kpi"><div class="k k-warn">0</div><div class="l">不确定</div></div><div class="kpi"><div class="k">0</div><div class="l">未走到</div></div></div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> navigate ?page=forum，settle 4s</h3>
+<div class="exp">期望：话题卡片列表渲染（subject/回复数/摘要/作者/来源）</div>
+
+<div class="chk"><b>观察证据</b>：textHead 含 &#x27;How to deploy to production? 4 replies I&#x27;m new to the platform and trying to figure out the deployment process...&#x27;，与 .man forum.yaml 描述一致（无 topic-detail 页，点击卡片按文档预期无操作，本轮未特意点击验证，按文档记录）。</div>
+
+</div>
+</section><section id="path-feed">
+<h2>Social Feed 动态列表 <span class="rt">anon · /?page=feed</span></h2>
+<video class="video" controls preload="metadata" src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260722T153634Z/mailbox-demo/page@fb206f836c227aface99e83c4fd770c9.webm"><a href="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260722T153634Z/mailbox-demo/page@fb206f836c227aface99e83c4fd770c9.webm">下载该路径录像</a></video><p class="vcap">本测试路径整段走查录像</p>
+<div class="kpis"><div class="kpi"><div class="k">1</div><div class="l">操作步</div></div><div class="kpi"><div class="k">1</div><div class="l">通过</div></div><div class="kpi"><div class="k k-bad">0</div><div class="l">失败</div></div><div class="kpi"><div class="k k-warn">0</div><div class="l">不确定</div></div><div class="kpi"><div class="k">0</div><div class="l">未走到</div></div></div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> navigate ?page=feed，settle 4s</h3>
+<div class="exp">期望：活动列表渲染（来源徽章/发送者/摘要）</div>
+
+<div class="chk"><b>观察证据</b>：textHead 含 &#x27;reaction alice@example.com liked your post &quot;Building with AFS&quot; follow dave@example.com started following you repost carol@example.c...&#x27;，渲染正常。</div>
+
+</div>
+</section><section id="path-notifications">
+<h2>Notifications 通知列表 <span class="rt">anon · /?page=notifications</span></h2>
+<video class="video" controls preload="metadata" src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260722T153634Z/mailbox-demo/page@3078638c82729a5329fa4b2f1d1b8873.webm"><a href="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260722T153634Z/mailbox-demo/page@3078638c82729a5329fa4b2f1d1b8873.webm">下载该路径录像</a></video><p class="vcap">本测试路径整段走查录像</p>
+<div class="kpis"><div class="kpi"><div class="k">1</div><div class="l">操作步</div></div><div class="kpi"><div class="k">1</div><div class="l">通过</div></div><div class="kpi"><div class="k k-bad">0</div><div class="l">失败</div></div><div class="kpi"><div class="k k-warn">0</div><div class="l">不确定</div></div><div class="kpi"><div class="k">0</div><div class="l">未走到</div></div></div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> navigate ?page=notifications，settle 4s</h3>
+<div class="exp">期望：通知列表渲染（来源徽章 + 摘要）</div>
+
+<div class="chk"><b>观察证据</b>：textHead 含 &#x27;deploy Production deployment v2.4.1 completed successfully in 3m 42s security Security alert: 3 failed login attempts from IP 192.1...&#x27;，渲染正常。</div>
+
+</div>
+</section><section id="path-threads">
+<h2>Threads 页（深链接，覆盖率自补）master-detail 行选择 <span class="rt">anon · /?page=threads</span></h2>
+<video class="video" controls preload="metadata" src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260722T153634Z/mailbox-demo/page@2f24e67814a7419b835ec24969a47865.webm"><a href="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260722T153634Z/mailbox-demo/page@2f24e67814a7419b835ec24969a47865.webm">下载该路径录像</a></video><p class="vcap">本测试路径整段走查录像</p>
+<div class="kpis"><div class="kpi"><div class="k">2</div><div class="l">操作步</div></div><div class="kpi"><div class="k">1</div><div class="l">通过</div></div><div class="kpi"><div class="k k-bad">1</div><div class="l">失败</div></div><div class="kpi"><div class="k k-warn">0</div><div class="l">不确定</div></div><div class="kpi"><div class="k">0</div><div class="l">未走到</div></div></div>
+<div class="op">
+<h3><span class="pill p-fail">失败</span> navigate ?page=threads（deep link 而非 tab 点击），settle 5s</h3>
+<div class="exp">期望：thread-list 展示 3 条线程，thread-messages 默认展示 thread-001 消息（.man threads.yaml）</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260722T153634Z/mailbox-demo/threads2-02.png" alt="navigate ?page=threads（deep link 而非 tab 点击），settle 5s" loading="lazy"><figcaption>navigate ?page=threads（deep link 而非 tab 点击），settle 5s</figcaption></figure></div>
+<div class="chk-fail"><b>观察证据</b>：thread-001 (Q3 Budget Review) 消息正确默认展示；但再次复现 nav-tabs 路径已发现的同一渲染缺陷：div#ti-participants 把参与者数组渲染成原始 JSON 字面量（如 &#x27;[ &quot;alice@example.com&quot;, &quot;bob@example.com&quot;, &quot;carol@example.com&quot; ]&#x27;），3 条线程卡片全部复现，非偶发。</div>
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> 点击 &quot;Project timeline&quot; 行</h3>
+<div class="exp">期望：thread-messages 的 src 更新为 thread-002 消息，原地重渲染</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260722T153634Z/mailbox-demo/threads2-04.png" alt="点击 &quot;Project timeline&quot; 行" loading="lazy"><figcaption>点击 &quot;Project timeline&quot; 行</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：截图确认：&quot;Project timeline&quot; 行高亮选中，右侧切换为 Dave/Bob 关于项目时间线的往来消息（3 条），选择交互本身工作正常，只是参与者展示格式有 bug（同上）。</div>
+
+</div>
+</section>
+<p class="sub" style="margin-top:22px">Generated by test-report-builder (build-agent-report) · issue #1808</p>
+</div></body></html>
