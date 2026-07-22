@@ -14,3 +14,4 @@
 | 20260721-091142-03-list-directory.png | https://github.com/ArcBlock/arc | 2026-07-21T09:11:42Z | wangshijun@wangshijun-mac-studio |
 | 20260721-091152-04-delete-then-notfound.png | https://github.com/ArcBlock/arc | 2026-07-21T09:11:52Z | wangshijun@wangshijun-mac-studio |
 | pr2221-comments-surface.png | https://github.com/ArcBlock/arc | 2026-07-22T05:17:26Z | wangshijun@wangshijun-mac-studio |
+| pr2221-comments-surface-fa8dec6.png | https://github.com/ArcBlock/arc | 2026-07-22T05:47:39Z | wangshijun@wangshijun-mac-studio |
