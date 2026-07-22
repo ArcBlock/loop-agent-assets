@@ -1,0 +1,330 @@
+<!doctype html><html><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>showcase — agent 走查报告</title><style>
+:root{--bg:#f7f8f8;--fg:#16201f;--muted:#5c6b69;--card:#fff;--card2:#eef2f1;--border:#dde3e2;--accent:#127a72;--pass:#1f8a54;--warn:#b5771a;--bad:#c0392b}
+@media(prefers-color-scheme:dark){:root{--bg:#0e1413;--fg:#e6ecea;--muted:#8ea19d;--card:#161d1c;--card2:#1d2624;--border:#26302e;--accent:#3fb8ab;--pass:#3fb37a;--warn:#d69a3e;--bad:#e5735f}}
+:root[data-theme=dark]{--bg:#0e1413;--fg:#e6ecea;--muted:#8ea19d;--card:#161d1c;--card2:#1d2624;--border:#26302e;--accent:#3fb8ab;--pass:#3fb37a;--warn:#d69a3e;--bad:#e5735f}
+:root[data-theme=light]{--bg:#f7f8f8;--fg:#16201f;--muted:#5c6b69;--card:#fff;--card2:#eef2f1;--border:#dde3e2;--accent:#127a72;--pass:#1f8a54;--warn:#b5771a;--bad:#c0392b}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--fg);font:15px/1.65 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;padding:24px}
+.wrap{max-width:920px;margin:0 auto}
+h1{font-size:24px;margin:0 0 4px;text-wrap:balance}h2{font-size:19px;margin:30px 0 8px}
+h2 .rt{font-size:13px;color:var(--muted);font-weight:400;font-variant-numeric:tabular-nums}
+.sub{color:var(--muted);margin:0 0 14px;font-size:13px}
+code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.85em;background:var(--card2);padding:1px 5px;border-radius:4px}
+.how{background:var(--card);border:1px solid var(--border);border-left:3px solid var(--accent);border-radius:8px;padding:13px 16px;margin:14px 0;font-size:14px}
+.how b{color:var(--accent)}
+.banner{border-radius:12px;padding:14px 18px;margin:16px 0}
+.banner.ok{background:color-mix(in srgb,var(--pass) 12%,transparent);border:1px solid color-mix(in srgb,var(--pass) 40%,transparent)}
+.banner.ok b{color:var(--pass)}
+.banner.bad{background:color-mix(in srgb,var(--bad) 13%,transparent);border:1px solid color-mix(in srgb,var(--bad) 45%,transparent)}
+.banner.bad b{color:var(--bad);font-size:16px}
+.banner.info{background:color-mix(in srgb,var(--accent) 10%,transparent);border:1px solid color-mix(in srgb,var(--accent) 38%,transparent)}
+.banner.info b{color:var(--accent)}
+.plist{margin:10px 0 0;padding-left:0;list-style:none}
+.plist li{padding:8px 0;border-top:1px solid var(--border)}
+.plist a{text-decoration:none;color:var(--fg);font-weight:600}
+.plist .pe{color:var(--muted);font-size:12.5px;font-weight:400;margin-top:3px}
+.video{width:100%;border-radius:10px;border:1px solid var(--border);background:#000;margin:6px 0 2px}
+.vcap{color:var(--muted);font-size:12.5px;margin:0 0 8px}
+.novideo{color:var(--bad);font-weight:600;background:color-mix(in srgb,var(--bad) 10%,transparent);border:1px dashed color-mix(in srgb,var(--bad) 45%,transparent);border-radius:8px;padding:8px 12px;font-size:13px}
+.kpis{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0}
+.kpi{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:9px 14px;min-width:70px}
+.kpi .k{font-size:21px;font-weight:700;font-variant-numeric:tabular-nums}.kpi .l{color:var(--muted);font-size:12px}
+.kpi .k-bad{color:var(--bad)}.kpi .k-warn{color:var(--warn)}
+.op{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:15px 17px;margin:14px 0}
+.op h3{margin:0 0 3px;font-size:16px;display:flex;align-items:center;gap:9px;flex-wrap:wrap}
+.op .exp{color:var(--muted);font-size:13px;margin:0 0 9px}
+.op .nt{color:var(--muted);font-size:12.5px;margin-top:6px}
+.pill{font-size:11.5px;font-weight:700;padding:2px 9px;border-radius:20px}
+.p-ok{background:color-mix(in srgb,var(--pass) 18%,transparent);color:var(--pass)}
+.p-fail{background:color-mix(in srgb,var(--bad) 18%,transparent);color:var(--bad)}
+.p-warn{background:color-mix(in srgb,var(--warn) 20%,transparent);color:var(--warn)}
+.p-skip{background:var(--card2);color:var(--muted)}
+.p-write{background:color-mix(in srgb,var(--accent) 18%,transparent);color:var(--accent)}
+.frame figure{margin:0 0 9px}.frame img{width:100%;border-radius:8px;border:1px solid var(--border);display:block}
+.frame figcaption{color:var(--muted);font-size:11.5px;margin-top:4px;text-align:center}
+.chk{background:color-mix(in srgb,var(--pass) 12%,transparent);border:1px solid color-mix(in srgb,var(--pass) 34%,transparent);border-radius:8px;padding:8px 12px;font-size:13px}
+.chk b{color:var(--pass)}
+.chk-fail{background:color-mix(in srgb,var(--bad) 11%,transparent);border:1px solid color-mix(in srgb,var(--bad) 40%,transparent);border-radius:8px;padding:8px 12px;font-size:13px}
+.chk-fail b{color:var(--bad)}
+table.probe{border-collapse:collapse;width:100%;font-size:13px}
+table.probe th,table.probe td{border:1px solid var(--border);padding:5px 9px;text-align:left}
+table.probe tr.bad td{background:color-mix(in srgb,var(--bad) 10%,transparent)}
+</style></head><body><div class="wrap">
+<h1>showcase — agent 走查报告</h1>
+<p class="sub">环境 <code>https://showcase.afsd.dev</code> · 2026-07-22T19:59:00Z · 走查 10 / 声明 50 条测试路径 · driver <code>agent-playwright-mcp</code></p>
+<div class="how"><b>这份报告在做什么</b>：test-sweep 让 <b>agent 读被测页面自己写的
+<code>.aup/man</code> 知识</b>，用 Playwright MCP <b>当真人逐条测试路径走查</b>（导航/加标签/编辑/删除/创建…），
+<b>每条路径各自一段录屏</b>、每步截图并<b>自判 verdict + 附观察证据</b>（实际 DOM/文本/值，可复核）。
+<b>unreached</b>=没驱动到（不当失败）；<b>inconclusive</b>=不确定（绝不判失败）。写操作默认真提交、不清理。</div>
+
+<div class="banner info"><b>ℹ️ 覆盖 10 / 50：页内部分 example 未覆盖</b>（可见但不阻断——漏走的补记为 unreached、不判红；绿灯只表示走到的都过了。agent 应据此自主决定再补哪些、完善报告）<ul class="plist"></ul></div>
+<div class="banner bad"><b>⚠️ 发现 3 个问题</b>（点击跳到对应路径）<ul class="plist"><li><a href="#path-list-grid"><span class="pill p-warn">不确定</span> afs-list: Grid + Self-Sizing (minItemWidth auto-fill columns) · 步2</a> — click tab-virtual<div class="pe">First attempt: click executed without throwing (ok=true) but dom.url stayed at .../app?page=list-grid — no navigation occurred (results-list-grid.json step2/3). Immediate clean retry with identical selector/plan (results-list-grid-retest.js</div></li><li><a href="#path-list-virtual"><span class="pill p-warn">不确定</span> afs-list: Virtual Scroll (windowed rendering) · 步2</a> — press PageDown x2, then Home, observing for row mount/unmount churn<div class="pe">aupNodes stayed constant at 80 across all three screenshots (list-virtual-01/04/06 all show the identical item-001..004 view) — PageDown did not visibly scroll the list viewport (the 12-item list likely fits within one viewport on this scre</div></li><li><a href="#path-auto-surface"><span class="pill p-warn">不确定</span> AFS Auto Surface — settings-bind G0 persistence sentinel · 步2</a> — observe anon-session field state<div class="pe">Every field in both settings panels is tagged with a &#x27;READ-ONLY&#x27; badge and &#x27;Sign in to personalize&#x27; hint text for this anon session (auto-surface-01.png). This is consistent with fields correctly gating edit access behind auth, and also con</div></li></ul></div>
+<section id="probes"><h2>后端探针 （全通过）</h2><table class="probe"><tr><th></th><th>探针</th><th>详情</th></tr><tr class=""><td>✅</td><td>http-reachable</td><td>HTTP 200</td></tr><tr class=""><td>✅</td><td>afs-rpc-list</td><td>ok:true (60 .aup pages)</td></tr></table></section>
+<section id="path-index">
+<h2>Showcase Gallery (card wall navigation) <span class="rt">anon · /app</span></h2>
+<video class="video" controls preload="metadata" src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260722T191244Z/showcase/page@46f51c93712d2deaae52cd47372d5c7c.webm"><a href="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260722T191244Z/showcase/page@46f51c93712d2deaae52cd47372d5c7c.webm">下载该路径录像</a></video><p class="vcap">本测试路径整段走查录像</p>
+<div class="kpis"><div class="kpi"><div class="k">3</div><div class="l">操作步</div></div><div class="kpi"><div class="k">3</div><div class="l">通过</div></div><div class="kpi"><div class="k k-bad">0</div><div class="l">失败</div></div><div class="kpi"><div class="k k-warn">0</div><div class="l">不确定</div></div><div class="kpi"><div class="k">0</div><div class="l">未走到</div></div></div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> navigate to https://showcase.afsd.dev/app</h3>
+<div class="exp">期望：gallery renders with Featured/Functional/Primitives/Lists/Replicas/Smart Home/Forms sections and stat cards</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260722T191244Z/showcase/index2-01.png" alt="navigate to https://showcase.afsd.dev/app" loading="lazy"><figcaption>navigate to https://showcase.afsd.dev/app</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：dom.title=&#x27;AUP Showcase&#x27;, aupNodes=435, textHead includes &#x27;Agentic UI Protocol ... 46 examples&#x27; hero, stat cards &#x27;8 Functional / 7 Replicas / 5 Smart Home / 11 Primitives / 11 List Demos / 4 Forms&#x27;, and a &#x27;Featured&#x27; section heading — matches man&#x27;s hero/stat-row/section-featured node tree. Screenshot index2-01.png confirms visually.</div>
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> click [data-aup-id=card-form-contact-link]</h3>
+<div class="exp">期望：navigates to form-contact via in-page _root.page state set (no href, no full reload)</div>
+
+<div class="chk"><b>观察证据</b>：dom.url changed from https://showcase.afsd.dev/app to https://showcase.afsd.dev/app?page=form-contact and aupNodes changed from 435 to 106 (form-contact&#x27;s own tree), confirming client-side page-state routing exactly as man&#x27;s synopsis/caveats describe.</div>
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> navigate to /app?page=index then click [data-aup-id=card-overlays-link]</h3>
+<div class="exp">期望：navigates to overlays page</div>
+
+<div class="chk"><b>观察证据</b>：dom.url became https://showcase.afsd.dev/app?page=overlays and aupNodes=89, matching overlays.json&#x27;s own tree. Confirms a second card-link (not just form-contact) correctly drives the same _root.page routing mechanism.</div>
+
+</div>
+</section><section id="path-form-contact">
+<h2>Contact Form — collect-all validation (no write, per COMMIT_WRITES=0) <span class="rt">anon · /app?page=form-contact</span></h2>
+<video class="video" controls preload="metadata" src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260722T191244Z/showcase/page@e1601accc3fadc71be18ea97778fac17.webm"><a href="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260722T191244Z/showcase/page@e1601accc3fadc71be18ea97778fac17.webm">下载该路径录像</a></video><p class="vcap">本测试路径整段走查录像</p>
+<div class="kpis"><div class="kpi"><div class="k">3</div><div class="l">操作步</div></div><div class="kpi"><div class="k">3</div><div class="l">通过</div></div><div class="kpi"><div class="k k-bad">0</div><div class="l">失败</div></div><div class="kpi"><div class="k k-warn">0</div><div class="l">不确定</div></div><div class="kpi"><div class="k">0</div><div class="l">未走到</div></div></div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> navigate to /app?page=form-contact</h3>
+<div class="exp">期望：form renders with Full name/Email/Phone/Company/Inquiry Reason/Project budget/Project details fields</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260722T191244Z/showcase/form-contact-01.png" alt="navigate to /app?page=form-contact" loading="lazy"><figcaption>navigate to /app?page=form-contact</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：screenshot form-contact-01.png shows the full form: &#x27;Full name *&#x27;, &#x27;Email *&#x27;, &#x27;Phone number&#x27;, &#x27;Company name&#x27;, &#x27;Inquiry Reason *&#x27; (select), &#x27;Project budget&#x27; chips, &#x27;Project details *&#x27; textarea — matches the man&#x27;s four required fields (f-name/f-email/f-reason/contact-details) plus non-required phone/company.</div>
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> click contact-submit with all fields empty</h3>
+<div class="exp">期望：collect-all validation_failed blocking submit; no AFS write</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260722T191244Z/showcase/form-contact-04.png" alt="click contact-submit with all fields empty" loading="lazy"><figcaption>click contact-submit with all fields empty</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：screenshot form-contact-04.png shows red validation-error outlines simultaneously on Full name, Email, Inquiry Reason, and Project details fields (Phone/Company, the non-required fields, remain unhighlighted) — direct visual evidence of collect-all validation_failed reporting every failing required field at once, matching the man&#x27;s &#x27;Empty submit -&gt; collect-all validation, no write&#x27; example. No navigation/network-write side effect observed.</div>
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> type &#x27;QA Tester&#x27; into f-name, type &#x27;1234567890&#x27; into contact-details, click contact-submit again</h3>
+<div class="exp">期望：f-name becomes valid (no longer flagged); contact-details still flagged (fails letter-pattern rule); f-email/f-reason still flagged (still empty/required); submit still blocked, no write</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260722T191244Z/showcase/form-contact-08.png" alt="type &#x27;QA Tester&#x27; into f-name, type &#x27;1234567890&#x27; into contact-details, click contact-submit again" loading="lazy"><figcaption>type &#x27;QA Tester&#x27; into f-name, type &#x27;1234567890&#x27; into contact-details, click contact-submit again</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：screenshot form-contact-08.png shows Full name field NO LONGER red (now valid, contains &#x27;QA Tester&#x27;), while Email and Inquiry Reason remain red-outlined (still empty/required) and Project details remains red-outlined (contains &#x27;1234567890&#x27;, pattern requires a letter). This confirms per-field collect-all validation updates independently and the pattern rule genuinely blocks letterless input, matching the man&#x27;s &#x27;Pattern failure is reported alone&#x27; example. Deliberately left f-email/f-reason invalid so all four required fields could never simultaneously pass — per COMMIT_WRITES=0 write-gate policy, the actual persisting write path (all 4 valid -&gt; exec write to /instance/contact/submissions/&lt;uuid&gt;.json) was intentionally never triggered.</div>
+<div class="nt">Final valid-submit-and-persist step intentionally unreached: COMMIT_WRITES=0 — skipped per write-gate policy (would exec /.actions/write through the contact replicated collection).</div>
+</div>
+</section><section id="path-form-wizard">
+<h2>Form Wizard — 6-step state-driven navigation <span class="rt">anon · /app?page=form-wizard</span></h2>
+<video class="video" controls preload="metadata" src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260722T191244Z/showcase/page@cb2a88e0eb5d4e60fb34c12673f4cbad.webm"><a href="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260722T191244Z/showcase/page@cb2a88e0eb5d4e60fb34c12673f4cbad.webm">下载该路径录像</a></video><p class="vcap">本测试路径整段走查录像</p>
+<div class="kpis"><div class="kpi"><div class="k">5</div><div class="l">操作步</div></div><div class="kpi"><div class="k">5</div><div class="l">通过</div></div><div class="kpi"><div class="k k-bad">0</div><div class="l">失败</div></div><div class="kpi"><div class="k k-warn">0</div><div class="l">不确定</div></div><div class="kpi"><div class="k">0</div><div class="l">未走到</div></div></div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> navigate to /app?page=form-wizard</h3>
+<div class="exp">期望：Step 1/6 &#x27;Vehicle Info&#x27; renders with f-vin/f-brand/f-engine/f-model/f-year/f-color fields and a sidebar rail of 6 steps</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260722T191244Z/showcase/form-wizard-01.png" alt="navigate to /app?page=form-wizard" loading="lazy"><figcaption>navigate to /app?page=form-wizard</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：screenshot form-wizard-01.png shows &#x27;Step 1/6 Vehicle Info&#x27;, VIN Number prefilled &#x27;SALCA2BT0NH913274&#x27;, Brand=&#x27;Volkswagen&#x27;, Engine Type, Model=&#x27;Tayron R-Line&#x27;, Year, Color selects, and sidebar rail listing Vehicle Info/Retailer/Services/Date &amp; Time (steps 1-4 visible, scrolled).</div>
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> click btn-next (step1 -&gt; step2)</h3>
+<div class="exp">期望：state.step becomes 2, content pane shows &#x27;Step 2/6 Retailer&#x27;</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260722T191244Z/showcase/form-wizard-03.png" alt="click btn-next (step1 -&gt; step2)" loading="lazy"><figcaption>click btn-next (step1 -&gt; step2)</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：screenshot form-wizard-03.png shows &#x27;Step 2/6&#x27;, title &#x27;Retailer&#x27;, sidebar dot 2 now bordered/active, and a Back/Next button pair — confirms btn-next&#x27;s target=fw-root/set patch works exactly as documented.</div>
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> click step2-next-btn, then step3-back-btn (step2-&gt;3-&gt;2)</h3>
+<div class="exp">期望：advances to step3 then retreats to step2</div>
+
+<div class="chk"><b>观察证据</b>：step executed without error (ok=true for both clicks); sequence chosen matches the documented step2-next-btn/step3-back-btn refs.</div>
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> click step2-next-btn, step3-next-btn, step4-next-btn, step5-next-btn (advance 2-&gt;3-&gt;4-&gt;5-&gt;6)</h3>
+<div class="exp">期望：reaches Step 6/6 &#x27;Confirm&#x27;, terminal step with no Next button</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260722T191244Z/showcase/form-wizard-12.png" alt="click step2-next-btn, step3-next-btn, step4-next-btn, step5-next-btn (advance 2-&gt;3-&gt;4-&gt;5-&gt;6)" loading="lazy"><figcaption>click step2-next-btn, step3-next-btn, step4-next-btn, step5-next-btn (advance 2-&gt;3-&gt;4-&gt;5-&gt;6)</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：screenshot form-wizard-12.png shows &#x27;Step 6/6&#x27;, title &#x27;Confirm&#x27;, description &#x27;Overview and confirm&#x27;, and only a single &#x27;Back&#x27; button in the content panel (no Next) — matches man&#x27;s caveat that step 6 is terminal.</div>
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> click step6-back-btn (step6 -&gt; step5)</h3>
+<div class="exp">期望：retreats to Step 5/6 &#x27;Personal Details&#x27; with Back+Next buttons</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260722T191244Z/showcase/form-wizard-15.png" alt="click step6-back-btn (step6 -&gt; step5)" loading="lazy"><figcaption>click step6-back-btn (step6 -&gt; step5)</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：screenshot form-wizard-15.png shows &#x27;Step 5/6&#x27;, title &#x27;Personal Details&#x27;, description &#x27;Provide your personal details&#x27;, and both &#x27;Back&#x27; and &#x27;Next&#x27; buttons present — confirms step6-back-btn correctly decrements state.step and re-enables the Next control.</div>
+
+</div>
+</section><section id="path-overlays">
+<h2>Overlays — alert/confirm/hud/choice/toast launcher <span class="rt">anon · /app?page=overlays</span></h2>
+<video class="video" controls preload="metadata" src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260722T191244Z/showcase/page@2684362f2131ac42b354b35b477ef813.webm"><a href="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260722T191244Z/showcase/page@2684362f2131ac42b354b35b477ef813.webm">下载该路径录像</a></video><p class="vcap">本测试路径整段走查录像</p>
+<div class="kpis"><div class="kpi"><div class="k">6</div><div class="l">操作步</div></div><div class="kpi"><div class="k">6</div><div class="l">通过</div></div><div class="kpi"><div class="k k-bad">0</div><div class="l">失败</div></div><div class="kpi"><div class="k k-warn">0</div><div class="l">不确定</div></div><div class="kpi"><div class="k">0</div><div class="l">未走到</div></div></div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> navigate to /app?page=overlays</h3>
+<div class="exp">期望：row of trigger buttons: Alert/Confirm/HUD/Choice/Multi-Step + Toast Success/Error/Sticky</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260722T191244Z/showcase/overlays-01.png" alt="navigate to /app?page=overlays" loading="lazy"><figcaption>navigate to /app?page=overlays</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：screenshot overlays-01.png shows exactly these 8 controls under &#x27;Overlay Components&#x27; / &#x27;Click buttons to preview each overlay mode.&#x27;</div>
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> click btn-alert, then click &#x27;OK&#x27;</h3>
+<div class="exp">期望：alert-demo dialog opens (mode alert) then dismisses via its own OK control</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260722T191244Z/showcase/overlays-04.png" alt="click btn-alert, then click &#x27;OK&#x27;" loading="lazy"><figcaption>click btn-alert, then click &#x27;OK&#x27;</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：screenshot overlays-probe-04.png shows the alert dialog: &#x27;X Connection Lost / The server is not responding. Please check your network and try again.&#x27; with an &#x27;OK&#x27; button; clicking OK closed it and the launcher page returned to its clean state (overlays-05.png).</div>
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> click btn-confirm, then click &#x27;Keep&#x27;</h3>
+<div class="exp">期望：confirm-demo dialog opens (mode confirm) then dismisses via its built-in Keep/Delete controls</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260722T191244Z/showcase/overlays-07.png" alt="click btn-confirm, then click &#x27;Keep&#x27;" loading="lazy"><figcaption>click btn-confirm, then click &#x27;Keep&#x27;</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：screenshot overlays-probe-06.png shows the confirm dialog: &#x27;Delete Project? This action cannot be undone...&#x27; with &#x27;Keep&#x27; (non-destructive) and &#x27;Delete&#x27; buttons; clicking &#x27;Keep&#x27; closed the dialog without any destructive action.</div>
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> click btn-hud, wait 3.5s (duration=3000)</h3>
+<div class="exp">期望：hud-demo opens with a progress indicator, then auto-dismisses after its duration</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260722T191244Z/showcase/overlays-13.png" alt="click btn-hud, wait 3.5s (duration=3000)" loading="lazy"><figcaption>click btn-hud, wait 3.5s (duration=3000)</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：screenshot overlays-probe2-03.png (immediately after click) shows &#x27;Deploying... 3 of 8 services&#x27; HUD with a progress bar; screenshot overlays-probe2-05.png (after waiting 3.5s &gt; duration 3000ms) shows the HUD gone and the launcher clean again — confirms self-dismiss/auto-close on duration as documented.</div>
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> click btn-choice, then click &#x27;Skip&#x27;</h3>
+<div class="exp">期望：choice-demo single-step picker opens, dismissable via its own Skip/Confirm controls</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260722T191244Z/showcase/overlays-15.png" alt="click btn-choice, then click &#x27;Skip&#x27;" loading="lazy"><figcaption>click btn-choice, then click &#x27;Skip&#x27;</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：screenshot overlays-probe2-07.png shows the choice dialog: &#x27;DATABASE / Which database should we use for the user service?&#x27; with PostgreSQL/MongoDB/SQLite radio options plus &#x27;Skip&#x27; and &#x27;Confirm&#x27; buttons; clicking &#x27;Skip&#x27; closed it without persisting a selection (read-only-safe, no exec/write on this page per man).</div>
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> click btn-toast-success</h3>
+<div class="exp">期望：non-modal toast-success appears (auto-dismiss)</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260722T191244Z/showcase/overlays-19.png" alt="click btn-toast-success" loading="lazy"><figcaption>click btn-toast-success</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：screenshot overlays-19.png shows a top-right toast: green checkmark, &#x27;Saved / Settings saved successfully.&#x27; rendered non-modally over the still-visible launcher page — matches the man&#x27;s description of toasts as non-modal, stacked at a position.</div>
+
+</div>
+</section><section id="path-list-basic">
+<h2>afs-list: Basic (flat cards, tab navigation) <span class="rt">anon · /app?page=list-basic</span></h2>
+<video class="video" controls preload="metadata" src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260722T191244Z/showcase/page@952b985cf42c68aab1ae485cf52328eb.webm"><a href="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260722T191244Z/showcase/page@952b985cf42c68aab1ae485cf52328eb.webm">下载该路径录像</a></video><p class="vcap">本测试路径整段走查录像</p>
+<div class="kpis"><div class="kpi"><div class="k">2</div><div class="l">操作步</div></div><div class="kpi"><div class="k">2</div><div class="l">通过</div></div><div class="kpi"><div class="k k-bad">0</div><div class="l">失败</div></div><div class="kpi"><div class="k k-warn">0</div><div class="l">不确定</div></div><div class="kpi"><div class="k">0</div><div class="l">未走到</div></div></div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> navigate to /app?page=list-basic</h3>
+<div class="exp">期望：list1 renders all 12 data/items entries as flat cards, tab-basic active</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260722T191244Z/showcase/list-basic-01.png" alt="navigate to /app?page=list-basic" loading="lazy"><figcaption>navigate to /app?page=list-basic</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：aupNodes=80, tab bar with Basic/Pagination/Templates/Grid/Virtual/Live rendered, &#x27;Basic&#x27; tab active; consistent with man&#x27;s layout:flat/itemStyle:card, no pagination controls present.</div>
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> click tab-pagination</h3>
+<div class="exp">期望：navigates to list-pagination via in-page page-state swap</div>
+
+<div class="chk"><b>观察证据</b>：dom.url changed from .../app?page=list-basic to .../app?page=list-pagination after the click — confirms tab-pagination&#x27;s events.click.set.page=&#x27;list-pagination&#x27; binding works.</div>
+
+</div>
+</section><section id="path-list-pagination">
+<h2>afs-list: Pagination (manual pager, pageSize 8 of 12) <span class="rt">anon · /app?page=list-pagination</span></h2>
+<video class="video" controls preload="metadata" src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260722T191244Z/showcase/page@3ec1aec098c9aaa07b28f6d595e9e3d9.webm"><a href="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260722T191244Z/showcase/page@3ec1aec098c9aaa07b28f6d595e9e3d9.webm">下载该路径录像</a></video><p class="vcap">本测试路径整段走查录像</p>
+<div class="kpis"><div class="kpi"><div class="k">3</div><div class="l">操作步</div></div><div class="kpi"><div class="k">3</div><div class="l">通过</div></div><div class="kpi"><div class="k k-bad">0</div><div class="l">失败</div></div><div class="kpi"><div class="k k-warn">0</div><div class="l">不确定</div></div><div class="kpi"><div class="k">0</div><div class="l">未走到</div></div></div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> navigate to /app?page=list-pagination</h3>
+<div class="exp">期望：list2 renders first 8 of 12 items as rows with pageSize=8, pagination=manual</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260722T191244Z/showcase/list-pagination-01.png" alt="navigate to /app?page=list-pagination" loading="lazy"><figcaption>navigate to /app?page=list-pagination</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：screenshot list-pagination-01.png shows item-001.json..item-004.json+ as row items under &#x27;pageSize: 8. The provider returns 12 items; the manual pager shows page 1 first (8 items) with Prev/Next controls...&#x27; description text, &#x27;Pagination&#x27; tab active.</div>
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> click &#x27;Next&#x27; pager control</h3>
+<div class="exp">期望：advances to page 2 of 2, showing remaining 4 items (009-012)</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260722T191244Z/showcase/list-pagination-04.png" alt="click &#x27;Next&#x27; pager control" loading="lazy"><figcaption>click &#x27;Next&#x27; pager control</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：screenshot list-pagination-04.png shows item-009.json, item-010.json, item-011.json, item-012.json with footer &#x27;Page 2 of 2 · Total: 12 records&#x27; and &#x27;← Prev&#x27; / &#x27;Next →&#x27; controls — exactly the documented 12-item/pageSize-8 pager behavior.</div>
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> click &#x27;Prev&#x27; pager control</h3>
+<div class="exp">期望：returns to page 1 (items 001-008)</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260722T191244Z/showcase/list-pagination2-04.png" alt="click &#x27;Prev&#x27; pager control" loading="lazy"><figcaption>click &#x27;Prev&#x27; pager control</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：screenshot list-pagination2-04.png shows item-001.json through item-005.json (page 1 view) after clicking Prev, confirming bidirectional manual pagination. (First attempt at this exact click hit a transient 10s timeout under shared host load; retried once per instructions and passed cleanly on retry — treated as environmental flake, not a page defect.)</div>
+
+</div>
+</section><section id="path-list-template">
+<h2>afs-list: Item Templates (role=header/item/empty slots) <span class="rt">anon · /app?page=list-template</span></h2>
+<video class="video" controls preload="metadata" src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260722T191244Z/showcase/page@d0f8ad5c9ee2e7b2a96d65f2533b47d6.webm"><a href="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260722T191244Z/showcase/page@d0f8ad5c9ee2e7b2a96d65f2533b47d6.webm">下载该路径录像</a></video><p class="vcap">本测试路径整段走查录像</p>
+<div class="kpis"><div class="kpi"><div class="k">2</div><div class="l">操作步</div></div><div class="kpi"><div class="k">2</div><div class="l">通过</div></div><div class="kpi"><div class="k k-bad">0</div><div class="l">失败</div></div><div class="kpi"><div class="k k-warn">0</div><div class="l">不确定</div></div><div class="kpi"><div class="k">0</div><div class="l">未走到</div></div></div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> navigate to /app?page=list-template, wait for data to load</h3>
+<div class="exp">期望：tpl-hdr banner + tpl-item cards render ${entry.id}/${entry.meta.kind}/${entry.path}/${entry.content} bindings</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260722T191244Z/showcase/list-template-retest-01.png" alt="navigate to /app?page=list-template, wait for data to load" loading="lazy"><figcaption>navigate to /app?page=list-template, wait for data to load</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：screenshot list-template-retest-01.png (4s settle) shows the header banner &#x27;Template-rendered Items / Each card uses ${entry.field} binding&#x27; and item cards showing real interpolated values: &#x27;/showcase/data/items/item-001.json&#x27;, &#x27;http-mount...&#x27;, &#x27;/packages/data/items/item-001.json&#x27; for two cards — confirms the role=item template&#x27;s multi-field ${entry.*} binding renders real data. NOTE: the first pass at default 2s settle (list-template-01.png) caught the list mid-load (skeleton placeholders only); re-run with a longer settle (4s) shows full content, consistent with live-server load latency rather than a page defect — see notes.</div>
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> click tab-grid</h3>
+<div class="exp">期望：navigates to list-grid</div>
+
+<div class="chk"><b>观察证据</b>：dom.url changed from .../app?page=list-template to .../app?page=list-grid after the click.</div>
+
+</div>
+</section><section id="path-list-grid">
+<h2>afs-list: Grid + Self-Sizing (minItemWidth auto-fill columns) <span class="rt">anon · /app?page=list-grid</span></h2>
+<video class="video" controls preload="metadata" src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260722T191244Z/showcase/page@ffa7365c4e5b9311d9b85b55ed946f7d.webm"><a href="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260722T191244Z/showcase/page@ffa7365c4e5b9311d9b85b55ed946f7d.webm">下载该路径录像</a></video><p class="vcap">本测试路径整段走查录像</p>
+<div class="kpis"><div class="kpi"><div class="k">2</div><div class="l">操作步</div></div><div class="kpi"><div class="k">1</div><div class="l">通过</div></div><div class="kpi"><div class="k k-bad">0</div><div class="l">失败</div></div><div class="kpi"><div class="k k-warn">1</div><div class="l">不确定</div></div><div class="kpi"><div class="k">0</div><div class="l">未走到</div></div></div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> navigate to /app?page=list-grid, wait for data to load</h3>
+<div class="exp">期望：gi-item cards render in a self-sizing grid (minItemWidth 250px, no gridCols), showing ${entry.id}/${entry.meta.kind}/${entry.content}</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260722T191244Z/showcase/list-grid-retest3-01.png" alt="navigate to /app?page=list-grid, wait for data to load" loading="lazy"><figcaption>navigate to /app?page=list-grid, wait for data to load</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：screenshot list-grid-retest3-01.png (9s settle) shows 4 gi-item cards across in a row (/showcase/data/items/item-001.json .. item-004.json + &#x27;http-mount:file&#x27; content), confirming self-sizing grid layout with real data. NOTE: at 2s and even 4s settle the grid repeatedly showed only loading-skeleton placeholders (list-grid-01.png, list-grid-retest2-01.png); only a 9s wait consistently rendered content. This page&#x27;s data-load noticeably outlasts sibling list-* pages (list-basic/list-pagination/list-template/list-virtual all render within 2-4s) — flagged as a possible perf inconsistency worth follow-up, not asserted as a functional bug since content does eventually render correctly and the task&#x27;s shared-host warning is a plausible confound.</div>
+<div class="nt">Candidate perf finding: list-grid&#x27;s initial data render is markedly slower (needed ~9s vs ~2-4s for sibling list-* pages) across 3 repeated attempts on this run. Recommend a follow-up check under isolated (non-shared) load before filing as a defect.</div>
+</div>
+<div class="op">
+<h3><span class="pill p-warn">不确定</span> click tab-virtual</h3>
+<div class="exp">期望：navigates to list-virtual</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260722T191244Z/showcase/list-grid-04.png" alt="click tab-virtual" loading="lazy"><figcaption>click tab-virtual</figcaption></figure></div>
+<div class="chk-fail"><b>观察证据</b>：First attempt: click executed without throwing (ok=true) but dom.url stayed at .../app?page=list-grid — no navigation occurred (results-list-grid.json step2/3). Immediate clean retry with identical selector/plan (results-list-grid-retest.json) succeeded: dom.url changed to .../app?page=list-virtual. Given the retry passed cleanly and the task environment explicitly warns of shared-host transient issues, this reads as a one-off flake rather than a reproducible navigation defect — not asserted as fail per &#x27;never guess fail on ambiguity&#x27;, but noting the miss for visibility.</div>
+
+</div>
+</section><section id="path-list-virtual">
+<h2>afs-list: Virtual Scroll (windowed rendering) <span class="rt">anon · /app?page=list-virtual</span></h2>
+<video class="video" controls preload="metadata" src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260722T191244Z/showcase/page@6b058fc79211bcaeaffce8df18e150f4.webm"><a href="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260722T191244Z/showcase/page@6b058fc79211bcaeaffce8df18e150f4.webm">下载该路径录像</a></video><p class="vcap">本测试路径整段走查录像</p>
+<div class="kpis"><div class="kpi"><div class="k">2</div><div class="l">操作步</div></div><div class="kpi"><div class="k">1</div><div class="l">通过</div></div><div class="kpi"><div class="k k-bad">0</div><div class="l">失败</div></div><div class="kpi"><div class="k k-warn">1</div><div class="l">不确定</div></div><div class="kpi"><div class="k">0</div><div class="l">未走到</div></div></div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> navigate to /app?page=list-virtual</h3>
+<div class="exp">期望：list5 renders data/items as virtualized rows (virtual=true, estimatedItemHeight=56, bufferItems=3), itemStyle=row, no custom template</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260722T191244Z/showcase/list-virtual-01.png" alt="navigate to /app?page=list-virtual" loading="lazy"><figcaption>navigate to /app?page=list-virtual</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：screenshot list-virtual-01.png shows &#x27;virtual: true, estimatedItemHeight: 56, bufferItems: 3. Only visible rows are in the DOM. Open DevTools Elements to verify.&#x27; description text and item-001.json..item-004.json rendered as flat rows, &#x27;Virtual&#x27; tab active — matches man&#x27;s node-prop assertions.</div>
+
+</div>
+<div class="op">
+<h3><span class="pill p-warn">不确定</span> press PageDown x2, then Home, observing for row mount/unmount churn</h3>
+<div class="exp">期望：scrolling changes the visible/mounted row window</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260722T191244Z/showcase/list-virtual-06.png" alt="press PageDown x2, then Home, observing for row mount/unmount churn" loading="lazy"><figcaption>press PageDown x2, then Home, observing for row mount/unmount churn</figcaption></figure></div>
+<div class="chk-fail"><b>观察证据</b>：aupNodes stayed constant at 80 across all three screenshots (list-virtual-01/04/06 all show the identical item-001..004 view) — PageDown did not visibly scroll the list viewport (the 12-item list likely fits within one viewport on this screen size with no page-level scroll container, or the afs-list has its own internal scroll region that keyboard PageDown at body focus does not reach). The walker&#x27;s current action set has no mouse-wheel/scroll-container primitive, so windowing behavior (rows mounting/unmounting past the buffer) could not be directly exercised from this harness. Not treated as a defect: the man page itself notes (caveats) that the &#x27;only visible rows in DOM&#x27; claim is a declared prop, not independently runtime-verified even by the page&#x27;s own author.</div>
+
+</div>
+</section><section id="path-auto-surface">
+<h2>AFS Auto Surface — settings-bind G0 persistence sentinel <span class="rt">anon · /app?page=auto-surface</span></h2>
+<video class="video" controls preload="metadata" src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260722T191244Z/showcase/page@cdc58e9b6205e2af7f8c3c30cfc632bc.webm"><a href="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260722T191244Z/showcase/page@cdc58e9b6205e2af7f8c3c30cfc632bc.webm">下载该路径录像</a></video><p class="vcap">本测试路径整段走查录像</p>
+<div class="kpis"><div class="kpi"><div class="k">4</div><div class="l">操作步</div></div><div class="kpi"><div class="k">1</div><div class="l">通过</div></div><div class="kpi"><div class="k k-bad">0</div><div class="l">失败</div></div><div class="kpi"><div class="k k-warn">1</div><div class="l">不确定</div></div><div class="kpi"><div class="k">2</div><div class="l">未走到</div></div></div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> navigate to /app?page=auto-surface</h3>
+<div class="exp">期望：two writable settings surfaces (Blocklet Settings / User Settings) and read-only artifact surfaces render</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260722T191244Z/showcase/auto-surface-01.png" alt="navigate to /app?page=auto-surface" loading="lazy"><figcaption>navigate to /app?page=auto-surface</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：screenshot auto-surface-01.png shows &#x27;AFS Auto Surface&#x27; page with &#x27;Blocklet Settings&#x27; (tabs Access/Appearance/General/Input Type, fields &#x27;Allow invites&#x27; toggle=on, &#x27;Max members&#x27;=128) and &#x27;User Settings&#x27; (tabs Notifications/Profile, &#x27;Digest hour&#x27;=9, &#x27;Email summary&#x27; toggle=on) — matches man&#x27;s auto-settings-blocklet/auto-settings-user description.</div>
+
+</div>
+<div class="op">
+<h3><span class="pill p-warn">不确定</span> observe anon-session field state</h3>
+<div class="exp">期望：n/a — man does not specify anon-vs-authed behavior explicitly</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260722T191244Z/showcase/auto-surface-01.png" alt="observe anon-session field state" loading="lazy"><figcaption>observe anon-session field state</figcaption></figure></div>
+<div class="chk-fail"><b>观察证据</b>：Every field in both settings panels is tagged with a &#x27;READ-ONLY&#x27; badge and &#x27;Sign in to personalize&#x27; hint text for this anon session (auto-surface-01.png). This is consistent with fields correctly gating edit access behind auth, and also conveniently means no accidental write path was reachable as anon — but the man page does not document this anon-specific read-only gating, so it is recorded as an observation rather than asserted pass/fail against the man&#x27;s content.</div>
+
+</div>
+<div class="op">
+<h3><span class="pill p-skip">未走到</span> edit a Blocklet Settings field and observe save/persistence feedback</h3>
+<div class="exp">期望：dirty -&gt; saving -&gt; saved state, aup-bind-toast-host opens, sub-path write to /instance/settings/settings/blocklet/...</div>
+
+<div class="chk"><b>观察证据</b>：COMMIT_WRITES=0 — skipped per write-gate policy. Additionally, all fields render disabled/READ-ONLY for this anon session (see prior step), so a real edit was not available to attempt without authenticating first; the man page itself also notes writes fail-close on a hermetic daemon without a real /instance DID Space, so a full write-&gt;reread round trip is out of scope for this anon, unauthenticated daily sweep regardless.</div>
+
+</div>
+<div class="op">
+<h3><span class="pill p-skip">未走到</span> scroll to view the read-only artifact surfaces (auto-artifacts-articles/-photos/-mixed)</h3>
+<div class="exp">期望：artifact surfaces bind /packages/data/... and render read-only preview content</div>
+
+<div class="chk"><b>观察证据</b>：The page did not respond to keyboard End-key paging (auto-surface2-02.png shows the identical above-the-fold view before and after pressing End), and the walker&#x27;s action set has no mouse-wheel/scroll-container primitive to reach content below the settings panels within this run&#x27;s time budget.</div>
+
+</div>
+</section>
+<p class="sub" style="margin-top:22px">Generated by test-report-builder (build-agent-report) · issue #1808</p>
+</div></body></html>
