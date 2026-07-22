@@ -1,0 +1,145 @@
+<!doctype html><html><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>chain-explorer — agent 走查报告</title><style>
+:root{--bg:#f7f8f8;--fg:#16201f;--muted:#5c6b69;--card:#fff;--card2:#eef2f1;--border:#dde3e2;--accent:#127a72;--pass:#1f8a54;--warn:#b5771a;--bad:#c0392b}
+@media(prefers-color-scheme:dark){:root{--bg:#0e1413;--fg:#e6ecea;--muted:#8ea19d;--card:#161d1c;--card2:#1d2624;--border:#26302e;--accent:#3fb8ab;--pass:#3fb37a;--warn:#d69a3e;--bad:#e5735f}}
+:root[data-theme=dark]{--bg:#0e1413;--fg:#e6ecea;--muted:#8ea19d;--card:#161d1c;--card2:#1d2624;--border:#26302e;--accent:#3fb8ab;--pass:#3fb37a;--warn:#d69a3e;--bad:#e5735f}
+:root[data-theme=light]{--bg:#f7f8f8;--fg:#16201f;--muted:#5c6b69;--card:#fff;--card2:#eef2f1;--border:#dde3e2;--accent:#127a72;--pass:#1f8a54;--warn:#b5771a;--bad:#c0392b}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--fg);font:15px/1.65 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;padding:24px}
+.wrap{max-width:920px;margin:0 auto}
+h1{font-size:24px;margin:0 0 4px;text-wrap:balance}h2{font-size:19px;margin:30px 0 8px}
+h2 .rt{font-size:13px;color:var(--muted);font-weight:400;font-variant-numeric:tabular-nums}
+.sub{color:var(--muted);margin:0 0 14px;font-size:13px}
+code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.85em;background:var(--card2);padding:1px 5px;border-radius:4px}
+.how{background:var(--card);border:1px solid var(--border);border-left:3px solid var(--accent);border-radius:8px;padding:13px 16px;margin:14px 0;font-size:14px}
+.how b{color:var(--accent)}
+.banner{border-radius:12px;padding:14px 18px;margin:16px 0}
+.banner.ok{background:color-mix(in srgb,var(--pass) 12%,transparent);border:1px solid color-mix(in srgb,var(--pass) 40%,transparent)}
+.banner.ok b{color:var(--pass)}
+.banner.bad{background:color-mix(in srgb,var(--bad) 13%,transparent);border:1px solid color-mix(in srgb,var(--bad) 45%,transparent)}
+.banner.bad b{color:var(--bad);font-size:16px}
+.banner.info{background:color-mix(in srgb,var(--accent) 10%,transparent);border:1px solid color-mix(in srgb,var(--accent) 38%,transparent)}
+.banner.info b{color:var(--accent)}
+.plist{margin:10px 0 0;padding-left:0;list-style:none}
+.plist li{padding:8px 0;border-top:1px solid var(--border)}
+.plist a{text-decoration:none;color:var(--fg);font-weight:600}
+.plist .pe{color:var(--muted);font-size:12.5px;font-weight:400;margin-top:3px}
+.video{width:100%;border-radius:10px;border:1px solid var(--border);background:#000;margin:6px 0 2px}
+.vcap{color:var(--muted);font-size:12.5px;margin:0 0 8px}
+.novideo{color:var(--bad);font-weight:600;background:color-mix(in srgb,var(--bad) 10%,transparent);border:1px dashed color-mix(in srgb,var(--bad) 45%,transparent);border-radius:8px;padding:8px 12px;font-size:13px}
+.kpis{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0}
+.kpi{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:9px 14px;min-width:70px}
+.kpi .k{font-size:21px;font-weight:700;font-variant-numeric:tabular-nums}.kpi .l{color:var(--muted);font-size:12px}
+.kpi .k-bad{color:var(--bad)}.kpi .k-warn{color:var(--warn)}
+.op{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:15px 17px;margin:14px 0}
+.op h3{margin:0 0 3px;font-size:16px;display:flex;align-items:center;gap:9px;flex-wrap:wrap}
+.op .exp{color:var(--muted);font-size:13px;margin:0 0 9px}
+.op .nt{color:var(--muted);font-size:12.5px;margin-top:6px}
+.pill{font-size:11.5px;font-weight:700;padding:2px 9px;border-radius:20px}
+.p-ok{background:color-mix(in srgb,var(--pass) 18%,transparent);color:var(--pass)}
+.p-fail{background:color-mix(in srgb,var(--bad) 18%,transparent);color:var(--bad)}
+.p-warn{background:color-mix(in srgb,var(--warn) 20%,transparent);color:var(--warn)}
+.p-skip{background:var(--card2);color:var(--muted)}
+.p-write{background:color-mix(in srgb,var(--accent) 18%,transparent);color:var(--accent)}
+.frame figure{margin:0 0 9px}.frame img{width:100%;border-radius:8px;border:1px solid var(--border);display:block}
+.frame figcaption{color:var(--muted);font-size:11.5px;margin-top:4px;text-align:center}
+.chk{background:color-mix(in srgb,var(--pass) 12%,transparent);border:1px solid color-mix(in srgb,var(--pass) 34%,transparent);border-radius:8px;padding:8px 12px;font-size:13px}
+.chk b{color:var(--pass)}
+.chk-fail{background:color-mix(in srgb,var(--bad) 11%,transparent);border:1px solid color-mix(in srgb,var(--bad) 40%,transparent);border-radius:8px;padding:8px 12px;font-size:13px}
+.chk-fail b{color:var(--bad)}
+table.probe{border-collapse:collapse;width:100%;font-size:13px}
+table.probe th,table.probe td{border:1px solid var(--border);padding:5px 9px;text-align:left}
+table.probe tr.bad td{background:color-mix(in srgb,var(--bad) 10%,transparent)}
+</style></head><body><div class="wrap">
+<h1>chain-explorer — agent 走查报告</h1>
+<p class="sub">环境 <code>https://chain-explorer.afsd.dev</code> · 2026-07-22T19:32:56Z · 走查 4 / 声明 6 条测试路径 · driver <code>agent-playwright-mcp</code></p>
+<div class="how"><b>这份报告在做什么</b>：test-sweep 让 <b>agent 读被测页面自己写的
+<code>.aup/man</code> 知识</b>，用 Playwright MCP <b>当真人逐条测试路径走查</b>（导航/加标签/编辑/删除/创建…），
+<b>每条路径各自一段录屏</b>、每步截图并<b>自判 verdict + 附观察证据</b>（实际 DOM/文本/值，可复核）。
+<b>unreached</b>=没驱动到（不当失败）；<b>inconclusive</b>=不确定（绝不判失败）。写操作默认真提交、不清理。</div>
+
+<div class="banner info"><b>ℹ️ 覆盖 4 / 6：页内部分 example 未覆盖</b>（可见但不阻断——漏走的补记为 unreached、不判红；绿灯只表示走到的都过了。agent 应据此自主决定再补哪些、完善报告）<ul class="plist"></ul></div>
+<div class="banner bad"><b>⚠️ 发现 1 个问题</b>（点击跳到对应路径）<ul class="plist"><li><a href="#path-index-search-entity"><span class="pill p-fail">失败</span> Header search (search-input) -&gt; select result -&gt; entity route re-root · 步3</a> — BUG CHECK: read the Balance field on the loaded account detail page (waited additional 5s to rule out async load lag, separate run at same URL)<div class="pe">Account detail page (https://chain-explorer.afsd.dev/main/accounts/z1oHa79x3H6vxv9hfW8bHczPmwHKfAaRRmS) renders &#x27;Balance ℹ —&#x27; (em-dash placeholder) in the ACCOUNT INFO card, both immediately after navigation and after an extra 5s wait (scre</div></li></ul></div>
+<section id="probes"><h2>后端探针 （全通过）</h2><table class="probe"><tr><th></th><th>探针</th><th>详情</th></tr><tr class=""><td>✅</td><td>http-reachable</td><td>HTTP 301</td></tr><tr class=""><td>✅</td><td>afs-rpc-list</td><td>ok:true (1 .aup pages)</td></tr></table></section>
+<section id="path-index-home">
+<h2>Home page load (chain stats dashboard, no query) <span class="rt">anon · /{network}</span></h2>
+<video class="video" controls preload="metadata" src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260722T191244Z/chain-explorer/page@921b8d4e58d0ab03f4d43e8cfefb29e9.webm"><a href="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260722T191244Z/chain-explorer/page@921b8d4e58d0ab03f4d43e8cfefb29e9.webm">下载该路径录像</a></video><p class="vcap">本测试路径整段走查录像</p>
+<div class="kpis"><div class="kpi"><div class="k">2</div><div class="l">操作步</div></div><div class="kpi"><div class="k">2</div><div class="l">通过</div></div><div class="kpi"><div class="k k-bad">0</div><div class="l">失败</div></div><div class="kpi"><div class="k k-warn">0</div><div class="l">不确定</div></div><div class="kpi"><div class="k">0</div><div class="l">未走到</div></div></div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> navigate https://chain-explorer.afsd.dev/</h3>
+<div class="exp">期望：wm shell renders: app-header (nav+search+chain selector+micro price bar), primary-surface mounted at /dev/chain/main, app-footer</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260722T191244Z/chain-explorer/index-load-wait-01.png" alt="navigate https://chain-explorer.afsd.dev/" loading="lazy"><figcaption>navigate https://chain-explorer.afsd.dev/</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：URL redirected to https://chain-explorer.afsd.dev/main/; dom.title=&#x27;Chain Explorer&#x27;; interactables include header#app-header, input &#x27;Search address, tx hash, token...&#x27;, buttons Home/Transactions/Accounts/Tokens/Assets/Factories/Stakes/Bridges, div#tx-filter-overlay, footer#app-footer. aupNodes=21.</div>
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> waitFor 6000ms then snapshot (let async chain-data load settle)</h3>
+<div class="exp">期望：primary-surface populates with live chain stats + recent transactions/tokens/factories widgets</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260722T191244Z/chain-explorer/index-load-wait-03.png" alt="waitFor 6000ms then snapshot (let async chain-data load settle)" loading="lazy"><figcaption>waitFor 6000ms then snapshot (let async chain-data load settle)</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：textHead now reads &#x27;Transactions 570,029 Accounts 77,810 Tokens 4 Assets 82,377 Factories 386 Stakes 2,322 Bridges 3&#x27; and screenshot index-load-wait-03.png shows populated RECENT TRANSACTIONS table (hash/type/from/value/time columns with real tx rows), TOKENS panel (AIGNEP/AIGNET/AIGNES/ABT with totalSupply), FACTORIES panel. Micro price ticker shows &#x27;ABT: $0.1953 24h: +0.34%&#x27;.</div>
+
+</div>
+</section><section id="path-index-search-entity">
+<h2>Header search (search-input) -&gt; select result -&gt; entity route re-root <span class="rt">anon · /{network}</span></h2>
+<video class="video" controls preload="metadata" src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260722T191244Z/chain-explorer/page@76f32ac66435cc1af695ba3fe1fc78d1.webm"><a href="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260722T191244Z/chain-explorer/page@76f32ac66435cc1af695ba3fe1fc78d1.webm">下载该路径录像</a></video><p class="vcap">本测试路径整段走查录像</p>
+<div class="kpis"><div class="kpi"><div class="k">3</div><div class="l">操作步</div></div><div class="kpi"><div class="k">2</div><div class="l">通过</div></div><div class="kpi"><div class="k k-bad">1</div><div class="l">失败</div></div><div class="kpi"><div class="k k-warn">0</div><div class="l">不确定</div></div><div class="kpi"><div class="k">0</div><div class="l">未走到</div></div></div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> navigate home, type &#x27;z1oHa79x&#x27; into header search input</h3>
+<div class="exp">期望：search-input event opens search-overlay and drives search-results-list.props.searchQuery (per index.yaml example &#x27;Search and jump to a result&#x27;)</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260722T191244Z/chain-explorer/index-search-05.png" alt="navigate home, type &#x27;z1oHa79x&#x27; into header search input" loading="lazy"><figcaption>navigate home, type &#x27;z1oHa79x&#x27; into header search input</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：After typing, overlay showed &#x27;Searching...&#x27; then resolved to a single matching row &#x27;z1oHa7-aRRmS  Balance 998.165849263441 ABT, 11.676160481 AIGNEP&#x27; directly under the search input (screenshot index-search-04.png / index-search-05.png), confirming search-overlay opened and search-results-list rendered live query results.</div>
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> click the &#x27;z1oHa7-aRRmS&#x27; search result row</h3>
+<div class="exp">期望：result-click / search-results-list.select re-roots primary-surface.src to the result&#x27;s AFS path and closes overlay + clears query (three-target fan-out)</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260722T191244Z/chain-explorer/index-search2-06.png" alt="click the &#x27;z1oHa7-aRRmS&#x27; search result row" loading="lazy"><figcaption>click the &#x27;z1oHa7-aRRmS&#x27; search result row</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：URL changed to https://chain-explorer.afsd.dev/main/accounts/z1oHa79x3H6vxv9hfW8bHczPmwHKfAaRRmS; dom.textHead now reads &#x27;main / accounts / z1oHa79x...&#x27; breadcrumb; search overlay closed (no longer in textHead); page rendered ACCOUNT INFO card with Address/Moniker/Nonce/Created/Updated fields.</div>
+
+</div>
+<div class="op">
+<h3><span class="pill p-fail">失败</span> BUG CHECK: read the Balance field on the loaded account detail page (waited additional 5s to rule out async load lag, separate run at same URL)</h3>
+<div class="exp">期望：Balance field should show the account&#x27;s native ABT balance (the search overlay for this very same account showed &#x27;998.165849263441 ABT, 11.676160481 AIGNEP&#x27;)</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260722T191244Z/chain-explorer/balance-check-03.png" alt="BUG CHECK: read the Balance field on the loaded account detail page (waited additional 5s to rule out async load lag, separate run at same URL)" loading="lazy"><figcaption>BUG CHECK: read the Balance field on the loaded account detail page (waited additional 5s to rule out async load lag, separate run at same URL)</figcaption></figure></div>
+<div class="chk-fail"><b>观察证据</b>：Account detail page (https://chain-explorer.afsd.dev/main/accounts/z1oHa79x3H6vxv9hfW8bHczPmwHKfAaRRmS) renders &#x27;Balance ℹ —&#x27; (em-dash placeholder) in the ACCOUNT INFO card, both immediately after navigation and after an extra 5s wait (screenshot balance-check-03.png, dom.textHead: &#x27;...Moniker ℹ z1oHa7-aRRmS Balance ℹ — Nonce ℹ 178469742...&#x27;). This contradicts the header search overlay for the identical account which correctly displayed &#x27;Balance 998.165849263441 ABT, 11.676160481 AIGNEP&#x27; (screenshot index-search-05.png). The account detail page&#x27;s Balance rendering is broken/never resolves despite the data clearly being available server-side.</div>
+<div class="nt">Real bug: providers/runtime/ocap account detail recipe (aup/accounts/item.json) Balance field does not resolve native ABT balance; cross-checked twice (immediate + +5s wait) for both the account reached via search and a fresh direct navigation to the same URL.</div>
+</div>
+</section><section id="path-index-tx-nav-filter">
+<h2>Nav-click to Transactions -&gt; open filter dialog -&gt; apply type/validity filter (collection-query down-push) <span class="rt">anon · /{network}/transactions</span></h2>
+<video class="video" controls preload="metadata" src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260722T191244Z/chain-explorer/page@849ec6486fe56a146e08f68d441df0c0.webm"><a href="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260722T191244Z/chain-explorer/page@849ec6486fe56a146e08f68d441df0c0.webm">下载该路径录像</a></video><p class="vcap">本测试路径整段走查录像</p>
+<div class="kpis"><div class="kpi"><div class="k">3</div><div class="l">操作步</div></div><div class="kpi"><div class="k">3</div><div class="l">通过</div></div><div class="kpi"><div class="k k-bad">0</div><div class="l">失败</div></div><div class="kpi"><div class="k k-warn">0</div><div class="l">不确定</div></div><div class="kpi"><div class="k">0</div><div class="l">未走到</div></div></div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> click nav item &#x27;Transactions&#x27;</h3>
+<div class="exp">期望：app-header nav-click re-roots primary-surface.src to the Transactions OCAP path</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260722T191244Z/chain-explorer/index-tx-nav-filter-03.png" alt="click nav item &#x27;Transactions&#x27;" loading="lazy"><figcaption>click nav item &#x27;Transactions&#x27;</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：URL changed to https://chain-explorer.afsd.dev/main/transactions; breadcrumb &#x27;main / transactions&#x27;; page title &#x27;Transactions&#x27; with &#x27;Live updates&#x27; toggle and a HASH/TYPE/FROM/TO/VALUE/FEE/TIME table populated with real rows (e.g. AFD7AB73...9683A0, 88896DE8...FC5B92).</div>
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> click the filter toggle button (aria-label &#x27;Open transaction filter&#x27;)</h3>
+<div class="exp">期望：tx-filter-toggle.click opens tx-filter-overlay dialog (only visible on the Transactions route, per primary-toolbar visible-binding)</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260722T191244Z/chain-explorer/index-tx-nav-filter-06.png" alt="click the filter toggle button (aria-label &#x27;Open transaction filter&#x27;)" loading="lazy"><figcaption>click the filter toggle button (aria-label &#x27;Open transaction filter&#x27;)</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：Dialog &#x27;Filter Transactions&#x27; rendered with Transaction Type multi-select listbox (Account·AccountMigrate, Trade·Transfer, Trade·TransferV2, ... 38 options) and Validity select (All/Valid only/Failed only), plus Cancel/Apply buttons.</div>
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> select &#x27;Trade · Transfer&#x27; in the type multi-select, then click Apply</h3>
+<div class="exp">期望：tx-filter-apply pushes the accumulated type/validity selection into primary-surface.props.listOptions.where (collection-query down-push per docs/guides/collection-query.md, NOT client-side filtering) and closes the dialog</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260722T191244Z/chain-explorer/index-tx-nav-filter-14.png" alt="select &#x27;Trade · Transfer&#x27; in the type multi-select, then click Apply" loading="lazy"><figcaption>select &#x27;Trade · Transfer&#x27; in the type multi-select, then click Apply</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：Dialog closed after Apply; Transactions table content changed completely: before filter, TYPE column showed &#x27;Transfer V3&#x27; rows (AFD7AB73, 88896DE8, from z1oHa79x...AaRRmS, minutes-ago timestamps, screenshot index-tx-nav-filter-03.png); after filter+apply, TYPE column shows plain &#x27;Transfer&#x27; badge rows with different hashes/parties/timestamps (7F842B71...862D2D from z1f9ANzp...sRRRB4 &#x27;5 months ago&#x27;, A430EBAE...3D5358 &#x27;23 months ago&#x27;, etc, screenshot index-tx-nav-filter-14.png) — a real server-side re-query, not a client-side re-render of the same page.</div>
+
+</div>
+</section><section id="path-index-chain-switch">
+<h2>Chain selector Main -&gt; Beta re-roots primary-surface + app-header <span class="rt">anon · /{network}</span></h2>
+<video class="video" controls preload="metadata" src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260722T191244Z/chain-explorer/page@a0617aff6a1ebfca2221321f7e616619.webm"><a href="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260722T191244Z/chain-explorer/page@a0617aff6a1ebfca2221321f7e616619.webm">下载该路径录像</a></video><p class="vcap">本测试路径整段走查录像</p>
+<div class="kpis"><div class="kpi"><div class="k">1</div><div class="l">操作步</div></div><div class="kpi"><div class="k">1</div><div class="l">通过</div></div><div class="kpi"><div class="k k-bad">0</div><div class="l">失败</div></div><div class="kpi"><div class="k k-warn">0</div><div class="l">不确定</div></div><div class="kpi"><div class="k">0</div><div class="l">未走到</div></div></div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> focus the chain selector (&lt;select aria-label=&#x27;Switch chain&#x27;&gt;) and choose &#x27;Beta&#x27; via keyboard (ArrowDown+Enter)</h3>
+<div class="exp">期望：selector-change re-roots primary-surface.src AND app-header.props.mountRoot to /dev/chain/beta in the same event fan-out, closing any open search overlay</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260722T191244Z/chain-explorer/index-chain-switch2-05.png" alt="focus the chain selector (&lt;select aria-label=&#x27;Switch chain&#x27;&gt;) and choose &#x27;Beta&#x27; via keyboard (ArrowDown+Enter)" loading="lazy"><figcaption>focus the chain selector (&lt;select aria-label=&#x27;Switch chain&#x27;&gt;) and choose &#x27;Beta&#x27; via keyboard (ArrowDown+Enter)</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：URL changed from https://chain-explorer.afsd.dev/main/ to https://chain-explorer.afsd.dev/beta/; dashboard stats changed from Main-chain numbers (Transactions 570,030 / Accounts 77,810 / Tokens 4 / Factories 386 / Stakes 2,322 / Bridges 3) to distinct Beta-chain numbers (Transactions 405,736 / Accounts 17,533 / Tokens 255 / Assets 48,899 / Factories 5,512 / Stakes 5,745 / Bridges 11); the ABT price ticker (shown on Main) disappeared on Beta, consistent with Beta being a separate/test network without a price feed.</div>
+
+</div>
+</section>
+<p class="sub" style="margin-top:22px">Generated by test-report-builder (build-agent-report) · issue #1808</p>
+</div></body></html>
