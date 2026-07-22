@@ -18,3 +18,4 @@
 | 20260722-014158-organize-direct-review-r5.png | https://github.com/ArcBlock/aside/issues/395 | 2026-07-22T01:42:00Z | codex-issue-review |
 | 20260722-014223-organize-results-only-r5.png | https://github.com/ArcBlock/aside/issues/395 | 2026-07-22T01:42:25Z | codex-issue-review |
 | 20260722-020815-collection-create-empty-r6.png | https://github.com/ArcBlock/aside/issues/395 | 2026-07-22T02:08:18Z | codex-issue-review |
+| 20260722-020844-collection-create-ready-r6.png | https://github.com/ArcBlock/aside/issues/395 | 2026-07-22T02:08:47Z | codex-issue-review |
