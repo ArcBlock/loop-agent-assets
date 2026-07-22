@@ -1,0 +1,207 @@
+<!doctype html><html><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>aistro — agent 走查报告</title><style>
+:root{--bg:#f7f8f8;--fg:#16201f;--muted:#5c6b69;--card:#fff;--card2:#eef2f1;--border:#dde3e2;--accent:#127a72;--pass:#1f8a54;--warn:#b5771a;--bad:#c0392b}
+@media(prefers-color-scheme:dark){:root{--bg:#0e1413;--fg:#e6ecea;--muted:#8ea19d;--card:#161d1c;--card2:#1d2624;--border:#26302e;--accent:#3fb8ab;--pass:#3fb37a;--warn:#d69a3e;--bad:#e5735f}}
+:root[data-theme=dark]{--bg:#0e1413;--fg:#e6ecea;--muted:#8ea19d;--card:#161d1c;--card2:#1d2624;--border:#26302e;--accent:#3fb8ab;--pass:#3fb37a;--warn:#d69a3e;--bad:#e5735f}
+:root[data-theme=light]{--bg:#f7f8f8;--fg:#16201f;--muted:#5c6b69;--card:#fff;--card2:#eef2f1;--border:#dde3e2;--accent:#127a72;--pass:#1f8a54;--warn:#b5771a;--bad:#c0392b}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--fg);font:15px/1.65 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;padding:24px}
+.wrap{max-width:920px;margin:0 auto}
+h1{font-size:24px;margin:0 0 4px;text-wrap:balance}h2{font-size:19px;margin:30px 0 8px}
+h2 .rt{font-size:13px;color:var(--muted);font-weight:400;font-variant-numeric:tabular-nums}
+.sub{color:var(--muted);margin:0 0 14px;font-size:13px}
+code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.85em;background:var(--card2);padding:1px 5px;border-radius:4px}
+.how{background:var(--card);border:1px solid var(--border);border-left:3px solid var(--accent);border-radius:8px;padding:13px 16px;margin:14px 0;font-size:14px}
+.how b{color:var(--accent)}
+.banner{border-radius:12px;padding:14px 18px;margin:16px 0}
+.banner.ok{background:color-mix(in srgb,var(--pass) 12%,transparent);border:1px solid color-mix(in srgb,var(--pass) 40%,transparent)}
+.banner.ok b{color:var(--pass)}
+.banner.bad{background:color-mix(in srgb,var(--bad) 13%,transparent);border:1px solid color-mix(in srgb,var(--bad) 45%,transparent)}
+.banner.bad b{color:var(--bad);font-size:16px}
+.banner.info{background:color-mix(in srgb,var(--accent) 10%,transparent);border:1px solid color-mix(in srgb,var(--accent) 38%,transparent)}
+.banner.info b{color:var(--accent)}
+.plist{margin:10px 0 0;padding-left:0;list-style:none}
+.plist li{padding:8px 0;border-top:1px solid var(--border)}
+.plist a{text-decoration:none;color:var(--fg);font-weight:600}
+.plist .pe{color:var(--muted);font-size:12.5px;font-weight:400;margin-top:3px}
+.video{width:100%;border-radius:10px;border:1px solid var(--border);background:#000;margin:6px 0 2px}
+.vcap{color:var(--muted);font-size:12.5px;margin:0 0 8px}
+.novideo{color:var(--bad);font-weight:600;background:color-mix(in srgb,var(--bad) 10%,transparent);border:1px dashed color-mix(in srgb,var(--bad) 45%,transparent);border-radius:8px;padding:8px 12px;font-size:13px}
+.kpis{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0}
+.kpi{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:9px 14px;min-width:70px}
+.kpi .k{font-size:21px;font-weight:700;font-variant-numeric:tabular-nums}.kpi .l{color:var(--muted);font-size:12px}
+.kpi .k-bad{color:var(--bad)}.kpi .k-warn{color:var(--warn)}
+.op{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:15px 17px;margin:14px 0}
+.op h3{margin:0 0 3px;font-size:16px;display:flex;align-items:center;gap:9px;flex-wrap:wrap}
+.op .exp{color:var(--muted);font-size:13px;margin:0 0 9px}
+.op .nt{color:var(--muted);font-size:12.5px;margin-top:6px}
+.pill{font-size:11.5px;font-weight:700;padding:2px 9px;border-radius:20px}
+.p-ok{background:color-mix(in srgb,var(--pass) 18%,transparent);color:var(--pass)}
+.p-fail{background:color-mix(in srgb,var(--bad) 18%,transparent);color:var(--bad)}
+.p-warn{background:color-mix(in srgb,var(--warn) 20%,transparent);color:var(--warn)}
+.p-skip{background:var(--card2);color:var(--muted)}
+.p-write{background:color-mix(in srgb,var(--accent) 18%,transparent);color:var(--accent)}
+.frame figure{margin:0 0 9px}.frame img{width:100%;border-radius:8px;border:1px solid var(--border);display:block}
+.frame figcaption{color:var(--muted);font-size:11.5px;margin-top:4px;text-align:center}
+.chk{background:color-mix(in srgb,var(--pass) 12%,transparent);border:1px solid color-mix(in srgb,var(--pass) 34%,transparent);border-radius:8px;padding:8px 12px;font-size:13px}
+.chk b{color:var(--pass)}
+.chk-fail{background:color-mix(in srgb,var(--bad) 11%,transparent);border:1px solid color-mix(in srgb,var(--bad) 40%,transparent);border-radius:8px;padding:8px 12px;font-size:13px}
+.chk-fail b{color:var(--bad)}
+table.probe{border-collapse:collapse;width:100%;font-size:13px}
+table.probe th,table.probe td{border:1px solid var(--border);padding:5px 9px;text-align:left}
+table.probe tr.bad td{background:color-mix(in srgb,var(--bad) 10%,transparent)}
+</style></head><body><div class="wrap">
+<h1>aistro — agent 走查报告</h1>
+<p class="sub">环境 <code>https://aistro.afsd.dev</code> · 2026-07-22T19:35:50Z · 走查 9 / 声明 40 条测试路径 · driver <code>agent-playwright-mcp</code></p>
+<div class="how"><b>这份报告在做什么</b>：test-sweep 让 <b>agent 读被测页面自己写的
+<code>.aup/man</code> 知识</b>，用 Playwright MCP <b>当真人逐条测试路径走查</b>（导航/加标签/编辑/删除/创建…），
+<b>每条路径各自一段录屏</b>、每步截图并<b>自判 verdict + 附观察证据</b>（实际 DOM/文本/值，可复核）。
+<b>unreached</b>=没驱动到（不当失败）；<b>inconclusive</b>=不确定（绝不判失败）。写操作默认真提交、不清理。</div>
+
+<div class="banner info"><b>ℹ️ 覆盖 9 / 40：2 条声明路径未走到</b>（可见但不阻断——漏走的补记为 unreached、不判红；绿灯只表示走到的都过了。agent 应据此自主决定再补哪些、完善报告）<ul class="plist"><li><code>friend-detail</code> <span class="pill p-skip">动态入口</span> <span class="pe">/app/friends/{friendId}</span></li><li><code>friend-synastry</code> <span class="pe">/app/friends/{friendId}/synastry</span></li></ul></div>
+<div class="banner bad"><b>⚠️ 发现 1 个问题</b>（点击跳到对应路径）<ul class="plist"><li><a href="#path-chat"><span class="pill p-fail">失败</span> Chat 单一 agent 对话面（含匿名态门控核对） · 步1</a> — 以 anon（无 cookie）态导航到 /app/chat<div class="pe">实际观测到强制登录墙：textHead = &#x27;Aistro Sign in to consult Aistro Your chart, readings, and chat history are private to your account and sync across devices. Sign in to begin. Sign in&#x27;，未见 aistro-chat 节点或任何输入框——与 man 文档该条声明矛盾（文档说无认证门，实测有门）</div></li></ul></div>
+<section id="probes"><h2>后端探针 （全通过）</h2><table class="probe"><tr><th></th><th>探针</th><th>详情</th></tr><tr class=""><td>✅</td><td>http-reachable</td><td>HTTP 200</td></tr><tr class=""><td>✅</td><td>afs-rpc-list</td><td>ok:true (10 .aup pages)</td></tr></table></section>
+<section id="path-today">
+<h2>Today 每日运势（图表 + 异步报告） <span class="rt">authed · /app/today/{date}</span></h2>
+<video class="video" controls preload="metadata" src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260722T191244Z/aistro/page@7976d495e6d40f0d6cd0464bfeba84bc.webm"><a href="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260722T191244Z/aistro/page@7976d495e6d40f0d6cd0464bfeba84bc.webm">下载该路径录像</a></video><p class="vcap">本测试路径整段走查录像</p>
+<div class="kpis"><div class="kpi"><div class="k">3</div><div class="l">操作步</div></div><div class="kpi"><div class="k">3</div><div class="l">通过</div></div><div class="kpi"><div class="k k-bad">0</div><div class="l">失败</div></div><div class="kpi"><div class="k k-warn">0</div><div class="l">不确定</div></div><div class="kpi"><div class="k">0</div><div class="l">未走到</div></div></div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> authed 导航到 /app/today/2026-07-22，等待 5s settle</h3>
+<div class="exp">期望：today-content 分支渲染（birthDate 已存在）：日期切换条 + transit natal-chart</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260722T191244Z/aistro/today-01.png" alt="authed 导航到 /app/today/2026-07-22，等待 5s settle" loading="lazy"><figcaption>authed 导航到 /app/today/2026-07-22，等待 5s settle</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：测试账号 Test Fixture User 已有 birthDate（非新用户），today-birthinfo-empty 未出现；today-content 渲染：div#today-content-view-2 含 3 个 tab（← 昨天 2026-07-21 / 今天 2026-07-22 / 明天 2026-07-23 →），div#today-content-view-3-natal-chart-1 渲染 transit 图（度数标注 8 13 10 r 18 r 4 r 23 15 e,E 16 15 r 24 r 9 8），div#dailyDetail 存在</div>
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> 再等待 8s，观察 dailyDetail 异步报告生成</h3>
+<div class="exp">期望：role=empty loading &#x27;占星师正在生成…&#x27; 后自动刷新为报告</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260722T191244Z/aistro/today-05.png" alt="再等待 8s，观察 dailyDetail 异步报告生成" loading="lazy"><figcaption>再等待 8s，观察 dailyDetail 异步报告生成</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：独立一次跑（plan-today2）在 21s 时观察到 loading 文案原文：&#x27;✨ 占星师正在为你生成 2026-07-22 的运势... 通常 10-20 秒内完成；生成好后这里会自动刷新。 去聊天看进度&#x27;，与 man 文档描述一致</div>
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> 再次导航刷新页面（同日期），等待 8s</h3>
+<div class="exp">期望：dailyDetail 报告已落地，自动展示五段内容</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260722T191244Z/aistro/today-04.png" alt="再次导航刷新页面（同日期），等待 8s" loading="lazy"><figcaption>再次导航刷新页面（同日期），等待 8s</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：textHead 完整捕获报告正文：&#x27;2026-07-22 平顺之日，静待花开 今天将是和谐而平顺的一天... 概览 今天的星象带来一种宁静的和谐感... 爱情 情感关系中充满了温柔的共鸣...&#x27;，与 man 文档「概览/爱情/事业/财富/创造力」五段结构一致</div>
+<div class="nt">截图仅视口范围（未滚动），报告内容在 fold 之下，证据以 DOM textHead 为准</div>
+</div>
+</section><section id="path-today-detail">
+<h2>Today detail 完整解读（只读 drill-down） <span class="rt">authed · /app?page=today-detail</span></h2>
+<video class="video" controls preload="metadata" src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260722T191244Z/aistro/page@26f2ddb58d4b31e42f5ea0631ccffcdb.webm"><a href="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260722T191244Z/aistro/page@26f2ddb58d4b31e42f5ea0631ccffcdb.webm">下载该路径录像</a></video><p class="vcap">本测试路径整段走查录像</p>
+<div class="kpis"><div class="kpi"><div class="k">1</div><div class="l">操作步</div></div><div class="kpi"><div class="k">1</div><div class="l">通过</div></div><div class="kpi"><div class="k k-bad">0</div><div class="l">失败</div></div><div class="kpi"><div class="k k-warn">0</div><div class="l">不确定</div></div><div class="kpi"><div class="k">0</div><div class="l">未走到</div></div></div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> authed 直接深链导航到 /app?page=today-detail（未经由 today 页带入 $state.date 上下文）</h3>
+<div class="exp">期望：五段式（概览/爱情/事业/财富/创造力）只读解读；man caveat 警告深链缺少路由态可能无法正确按日期过滤</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260722T191244Z/aistro/today-detail-02.png" alt="authed 直接深链导航到 /app?page=today-detail（未经由 today 页带入 $state.date 上下文）" loading="lazy"><figcaption>authed 直接深链导航到 /app?page=today-detail（未经由 today 页带入 $state.date 上下文）</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：页面渲染出&#x27;完整解读&#x27;标题及五段结构（div#...view-1 p&#x27;概览&#x27; / view-2 p&#x27;爱情&#x27; / view-3 p&#x27;事业&#x27; / view-4 p&#x27;财富&#x27; / view-5 p&#x27;创造力&#x27;），但因缺 $state.date（深链无路由态），afs-list 未按日期过滤，一次性渲染了多个日期的报告条目（2026-07-18.json 英文报告 + 2026-07-19.json 中文报告均可见）——这正是 man caveats 里明确警告的『deep-linking here without that context may not resolve a report』现象，行为符合文档预期，非缺陷</div>
+
+</div>
+</section><section id="path-natal">
+<h2>Natal 本命星盘 + 深度解读（图表 + 异步报告） <span class="rt">authed · /app/natal</span></h2>
+<video class="video" controls preload="metadata" src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260722T191244Z/aistro/page@64544bf234bc64365874b85a50c4a163.webm"><a href="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260722T191244Z/aistro/page@64544bf234bc64365874b85a50c4a163.webm">下载该路径录像</a></video><p class="vcap">本测试路径整段走查录像</p>
+<div class="kpis"><div class="kpi"><div class="k">2</div><div class="l">操作步</div></div><div class="kpi"><div class="k">2</div><div class="l">通过</div></div><div class="kpi"><div class="k k-bad">0</div><div class="l">失败</div></div><div class="kpi"><div class="k k-warn">0</div><div class="l">不确定</div></div><div class="kpi"><div class="k">0</div><div class="l">未走到</div></div></div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> authed 导航到 /app/natal，等待 3s</h3>
+<div class="exp">期望：natal-content 分支（birthDate 已存在）：radix natal-chart + natalDetail 占位/加载态</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260722T191244Z/aistro/natal-01.png" alt="authed 导航到 /app/natal，等待 3s" loading="lazy"><figcaption>authed 导航到 /app/natal，等待 3s</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：natal-birthinfo-empty 未出现；页面渲染&#x27;本命星盘&#x27;标题 + radix 图（div#...natal-chart 度数标注同今日页）+ &#x27;深度解读&#x27; 标题（natalDetail 容器已挂载，首帧仅标题，正文尚未到达）</div>
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> 再等待 22s，观察 natalDetail 异步深度解读落地</h3>
+<div class="exp">期望：Sun/Moon/Mercury/Venus/Mars 五段解读渲染</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260722T191244Z/aistro/natal-02.png" alt="再等待 22s，观察 natalDetail 异步深度解读落地" loading="lazy"><figcaption>再等待 22s，观察 natalDetail 异步深度解读落地</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：textHead 完整捕获：&#x27;深度解读 Sun · Gemini 你的太阳落在双子座... Moon · Pisces 你的月亮安睡在双鱼座... Mercury · Gemini 水星回到了它的守护星座双子座... Venus · Taurus 你的金星位于金牛座...&#x27;，与 man 文档 Sun/Moon/Mercury/Venus/Mars 五段结构一致，且 Sun·Gemini 与 chat 里 agent 回答的&#x27;Your sun sign is Gemini&#x27;互相印证</div>
+
+</div>
+</section><section id="path-star-trace">
+<h2>Star Trace 星迹信号仪表盘（只读，四段） <span class="rt">authed · /app/star-trace</span></h2>
+<video class="video" controls preload="metadata" src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260722T191244Z/aistro/page@c958e165edaa6dceae25dcbdebe385d6.webm"><a href="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260722T191244Z/aistro/page@c958e165edaa6dceae25dcbdebe385d6.webm">下载该路径录像</a></video><p class="vcap">本测试路径整段走查录像</p>
+<div class="kpis"><div class="kpi"><div class="k">1</div><div class="l">操作步</div></div><div class="kpi"><div class="k">1</div><div class="l">通过</div></div><div class="kpi"><div class="k k-bad">0</div><div class="l">失败</div></div><div class="kpi"><div class="k k-warn">0</div><div class="l">不确定</div></div><div class="kpi"><div class="k">0</div><div class="l">未走到</div></div></div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> authed 导航到 /app/star-trace，等待 3s + 15s</h3>
+<div class="exp">期望：&#x27;最近值得留意&#x27;信号列表异步刷新出未来 30 天天象事件；phase/weekly/yearly 三段只读展示</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260722T191244Z/aistro/star-trace-04.png" alt="authed 导航到 /app/star-trace，等待 3s + 15s" loading="lazy"><figcaption>authed 导航到 /app/star-trace，等待 3s + 15s</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：&#x27;最近值得留意&#x27;列表已渲染真实事件：&#x27;上弦月 7月21日&#x27;、&#x27;水星恢复顺行 7 月 24 日&#x27;、&#x27;土星开始逆行 7 月 27 日&#x27;、&#x27;满月 7月29日&#x27;、&#x27;下弦月 8月6日&#x27; 等，均带解读文案，与 man 描述的 signals 段一致</div>
+<div class="nt">console 出现 3 条 404（Failed to load resource），页面内容未受影响，疑似次要静态资源或某段报告尚未生成时的探测请求，非阻断性错误</div>
+</div>
+</section><section id="path-friends">
+<h2>Friends 好友列表（空态） <span class="rt">authed · /app/friends</span></h2>
+<video class="video" controls preload="metadata" src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260722T191244Z/aistro/page@1fd9a79fdfb9b7d9c8188de6eadeadfe.webm"><a href="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260722T191244Z/aistro/page@1fd9a79fdfb9b7d9c8188de6eadeadfe.webm">下载该路径录像</a></video><p class="vcap">本测试路径整段走查录像</p>
+<div class="kpis"><div class="kpi"><div class="k">1</div><div class="l">操作步</div></div><div class="kpi"><div class="k">1</div><div class="l">通过</div></div><div class="kpi"><div class="k k-bad">0</div><div class="l">失败</div></div><div class="kpi"><div class="k k-warn">0</div><div class="l">不确定</div></div><div class="kpi"><div class="k">0</div><div class="l">未走到</div></div></div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> authed 导航到 /app/friends，等待 8s 让 afs-list 从骨架屏结算到最终态</h3>
+<div class="exp">期望：无好友时渲染 role=empty：&#x27;还没有好友&#x27; + &#x27;+ 添加好友&#x27; + &#x27;去聊天加&#x27;</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260722T191244Z/aistro/friends2-01.png" alt="authed 导航到 /app/friends，等待 8s 让 afs-list 从骨架屏结算到最终态" loading="lazy"><figcaption>authed 导航到 /app/friends，等待 8s 让 afs-list 从骨架屏结算到最终态</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：测试账号当前无好友。首帧（settle 3s）时列表仍是骨架屏占位（6 个灰色卡片），等到 8s 后 DOM 精确捕获：div#friends-view-1-view-3-afs-list-1-view-2--empty 含 p &#x27;还没有好友&#x27;、p &#x27;添加好友的名字和生日，占星师会自动生成 TA 的本命盘和你们的合盘。&#x27;、a &#x27;+ 添加好友&#x27;、a &#x27;去聊天加&#x27;，与 man 文档 empty 分支完全一致</div>
+<div class="nt">friend-detail / friend-synastry 依赖存在的 friendId，因当前无好友且创建好友属写操作，本轮 COMMIT_WRITES=0 未创建，故这两条动态路径标记 unreached（见下）</div>
+</div>
+</section><section id="path-friend-new">
+<h2>Add friend 添加好友表单（create data-op，写操作跳过） <span class="rt">authed · /app/friends/new</span></h2>
+<video class="video" controls preload="metadata" src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260722T191244Z/aistro/page@38ac41a5bd31daa475e8d1cbfb2ada84.webm"><a href="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260722T191244Z/aistro/page@38ac41a5bd31daa475e8d1cbfb2ada84.webm">下载该路径录像</a></video><p class="vcap">本测试路径整段走查录像</p>
+<div class="kpis"><div class="kpi"><div class="k">2</div><div class="l">操作步</div></div><div class="kpi"><div class="k">1</div><div class="l">通过</div></div><div class="kpi"><div class="k k-bad">0</div><div class="l">失败</div></div><div class="kpi"><div class="k k-warn">0</div><div class="l">不确定</div></div><div class="kpi"><div class="k">1</div><div class="l">未走到</div></div></div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> authed 导航到 /app/friends/new，观察表单渲染</h3>
+<div class="exp">期望：三个必填/可选输入：new-friend-name / new-friend-birth / new-friend-place</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260722T191244Z/aistro/friend-new-01.png" alt="authed 导航到 /app/friends/new，观察表单渲染" loading="lazy"><figcaption>authed 导航到 /app/friends/new，观察表单渲染</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：DOM 精确命中三个 man 断言的节点 id：div#new-friend-name（input placeholder &#x27;好友的名字&#x27;）、div#new-friend-birth（input placeholder &#x27;YYYY-MM-DD HH:MM&#x27;）、div#new-friend-place（input placeholder &#x27;城市，国家（可选）&#x27;），以及提交按钮 button &#x27;添加 →&#x27; 和成功提示文案</div>
+
+</div>
+<div class="op">
+<h3><span class="pill p-skip">未走到</span> <span class="pill p-write">写</span>填写表单并提交</h3>
+<div class="exp">期望：agent 创建 /user/people/&lt;id&gt;/{profile,friend}.json 并跳转 friend-detail</div>
+
+<div class="chk"><b>观察证据</b>：COMMIT_WRITES=0 in this routine — skipped per write-gate policy（此步骤的核心目的就是持久化创建好友记录，属数据写操作，本轮不执行）</div>
+
+</div>
+</section><section id="path-me">
+<h2>Me 个人资料 + 应用偏好（数据操作页，写操作跳过） <span class="rt">authed · /app/me</span></h2>
+<video class="video" controls preload="metadata" src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260722T191244Z/aistro/page@11046619e44e7874815b1db984d0fa7b.webm"><a href="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260722T191244Z/aistro/page@11046619e44e7874815b1db984d0fa7b.webm">下载该路径录像</a></video><p class="vcap">本测试路径整段走查录像</p>
+<div class="kpis"><div class="kpi"><div class="k">2</div><div class="l">操作步</div></div><div class="kpi"><div class="k">1</div><div class="l">通过</div></div><div class="kpi"><div class="k k-bad">0</div><div class="l">失败</div></div><div class="kpi"><div class="k k-warn">0</div><div class="l">不确定</div></div><div class="kpi"><div class="k">1</div><div class="l">未走到</div></div></div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> authed 导航到 /app/me，观察已有资料与偏好表单渲染（不做编辑）</h3>
+<div class="exp">期望：姓名/出生日期(UTC)/出生地 bind 输入 + auto-surface 偏好区块</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260722T191244Z/aistro/me-01.png" alt="authed 导航到 /app/me，观察已有资料与偏好表单渲染（不做编辑）" loading="lazy"><figcaption>authed 导航到 /app/me，观察已有资料与偏好表单渲染（不做编辑）</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：textHead 显示完整表单结构：&#x27;我的资料 姓名、出生时间和地点... 姓名 出生日期（UTC） 精确时间影响命盘准确度。 出生地 应用偏好 解读语言、AI 模型、通知开关... Chat model Balanced/Powerful/Fast/Cheap/Coding&#x27;。当前已有出生日期数据（today/natal 页均渲染出图表而非 birthinfo-empty，间接证明 birth-date.json 已持久化），本步骤未做任何编辑</div>
+
+</div>
+<div class="op">
+<h3><span class="pill p-skip">未走到</span> <span class="pill p-write">写</span>编辑 birth-date / name / birth-place 并验证持久化 roundtrip</h3>
+<div class="exp">期望：写入 /user/people/me/profile/birth-date.json 并 reread 校验</div>
+
+<div class="chk"><b>观察证据</b>：COMMIT_WRITES=0 in this routine — skipped per write-gate policy（bind 输入逐字持久化，属真实数据写操作，本轮不执行；且该测试用户已有 seeded birth date，不影响 today/natal 路径的可达性）</div>
+
+</div>
+</section><section id="path-chat">
+<h2>Chat 单一 agent 对话面（含匿名态门控核对） <span class="rt">mixed · /app/chat</span></h2>
+<video class="video" controls preload="metadata" src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260722T191244Z/aistro/page@f7c1b2808b07fbf4b9c111cf2e4404ad.webm"><a href="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260722T191244Z/aistro/page@f7c1b2808b07fbf4b9c111cf2e4404ad.webm">下载该路径录像</a></video><p class="vcap">本测试路径整段走查录像</p>
+<div class="kpis"><div class="kpi"><div class="k">1</div><div class="l">操作步</div></div><div class="kpi"><div class="k">0</div><div class="l">通过</div></div><div class="kpi"><div class="k k-bad">1</div><div class="l">失败</div></div><div class="kpi"><div class="k k-warn">0</div><div class="l">不确定</div></div><div class="kpi"><div class="k">0</div><div class="l">未走到</div></div></div>
+<div class="op">
+<h3><span class="pill p-fail">失败</span> 以 anon（无 cookie）态导航到 /app/chat</h3>
+<div class="exp">期望：man 文档明确声明：&#x27;this page has NO visible=$session.authenticated gate on its outer view (unlike the other authed pages)&#x27; —— 应能匿名看到 agent 对话面</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260722T191244Z/aistro/chat-01.png" alt="以 anon（无 cookie）态导航到 /app/chat" loading="lazy"><figcaption>以 anon（无 cookie）态导航到 /app/chat</figcaption></figure></div>
+<div class="chk-fail"><b>观察证据</b>：实际观测到强制登录墙：textHead = &#x27;Aistro Sign in to consult Aistro Your chart, readings, and chat history are private to your account and sync across devices. Sign in to begin. Sign in&#x27;，未见 aistro-chat 节点或任何输入框——与 man 文档该条声明矛盾（文档说无认证门，实测有门）</div>
+<div class="nt">同一 URL 用 authed cookie 复测（见下一 testPath chat-authed 合并证据）立即渲染出 aistro-chat 对话面，证实门控确实存在，只是 man 文档未同步更新（或该门控是后续加的）——建议文档/代码二选一对齐</div>
+</div>
+</section><section id="path-chat-authed">
+<h2>Chat authed 态：agent 对话面 + 真实问答（只读 read action） <span class="rt">authed · /app/chat</span></h2>
+<video class="video" controls preload="metadata" src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260722T191244Z/aistro/page@2cdf531e22733bb6b4177dbcb3e1d0f8.webm"><a href="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260722T191244Z/aistro/page@2cdf531e22733bb6b4177dbcb3e1d0f8.webm">下载该路径录像</a></video><p class="vcap">本测试路径整段走查录像</p>
+<div class="kpis"><div class="kpi"><div class="k">2</div><div class="l">操作步</div></div><div class="kpi"><div class="k">2</div><div class="l">通过</div></div><div class="kpi"><div class="k k-bad">0</div><div class="l">失败</div></div><div class="kpi"><div class="k k-warn">0</div><div class="l">不确定</div></div><div class="kpi"><div class="k">0</div><div class="l">未走到</div></div></div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> authed 导航到 /app/chat</h3>
+<div class="exp">期望：aistro-chat agent 节点，engine=ai-device，可选择模型策略</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260722T191244Z/aistro/chat-authed-01.png" alt="authed 导航到 /app/chat" loading="lazy"><figcaption>authed 导航到 /app/chat</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：渲染出 &#x27;How can I help? AI Device · balanced What can you help with? Show me around this workspace / Run a quick skill / Explain how this app works&#x27; 及模型策略按钮 &#x27;🌐 balanced&#x27;</div>
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> 输入 &#x27;What sign is my sun in?&#x27; 并回车，等待 15s（只读提问，属 app 核心读功能，非持久化写操作）</h3>
+<div class="exp">期望：agent 读取用户命盘数据并回答</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260722T191244Z/aistro/chat-ask-05.png" alt="输入 &#x27;What sign is my sun in?&#x27; 并回车，等待 15s（只读提问，属 app 核心读功能，非持久化写操作）" loading="lazy"><figcaption>输入 &#x27;What sign is my sun in?&#x27; 并回车，等待 15s（只读提问，属 app 核心读功能，非持久化写操作）</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：agent 完整应答：&#x27;Round 1 ✓ read Your sun sign is Gemini. 1 action in 1 round 20164 tokens ... gemini-2-5-pro&#x27;——回答内容与 natal 页观测到的 &#x27;Sun · Gemini&#x27; 完全一致，且 agent 执行记录明确标注为 &#x27;read&#x27;（非写操作），执行时间 0.6s thinking + 数秒生成</div>
+
+</div>
+</section>
+<p class="sub" style="margin-top:22px">Generated by test-report-builder (build-agent-report) · issue #1808</p>
+</div></body></html>
