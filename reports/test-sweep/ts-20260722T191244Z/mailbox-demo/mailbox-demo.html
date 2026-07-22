@@ -1,0 +1,214 @@
+<!doctype html><html><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>mailbox-demo — agent 走查报告</title><style>
+:root{--bg:#f7f8f8;--fg:#16201f;--muted:#5c6b69;--card:#fff;--card2:#eef2f1;--border:#dde3e2;--accent:#127a72;--pass:#1f8a54;--warn:#b5771a;--bad:#c0392b}
+@media(prefers-color-scheme:dark){:root{--bg:#0e1413;--fg:#e6ecea;--muted:#8ea19d;--card:#161d1c;--card2:#1d2624;--border:#26302e;--accent:#3fb8ab;--pass:#3fb37a;--warn:#d69a3e;--bad:#e5735f}}
+:root[data-theme=dark]{--bg:#0e1413;--fg:#e6ecea;--muted:#8ea19d;--card:#161d1c;--card2:#1d2624;--border:#26302e;--accent:#3fb8ab;--pass:#3fb37a;--warn:#d69a3e;--bad:#e5735f}
+:root[data-theme=light]{--bg:#f7f8f8;--fg:#16201f;--muted:#5c6b69;--card:#fff;--card2:#eef2f1;--border:#dde3e2;--accent:#127a72;--pass:#1f8a54;--warn:#b5771a;--bad:#c0392b}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--fg);font:15px/1.65 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;padding:24px}
+.wrap{max-width:920px;margin:0 auto}
+h1{font-size:24px;margin:0 0 4px;text-wrap:balance}h2{font-size:19px;margin:30px 0 8px}
+h2 .rt{font-size:13px;color:var(--muted);font-weight:400;font-variant-numeric:tabular-nums}
+.sub{color:var(--muted);margin:0 0 14px;font-size:13px}
+code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.85em;background:var(--card2);padding:1px 5px;border-radius:4px}
+.how{background:var(--card);border:1px solid var(--border);border-left:3px solid var(--accent);border-radius:8px;padding:13px 16px;margin:14px 0;font-size:14px}
+.how b{color:var(--accent)}
+.banner{border-radius:12px;padding:14px 18px;margin:16px 0}
+.banner.ok{background:color-mix(in srgb,var(--pass) 12%,transparent);border:1px solid color-mix(in srgb,var(--pass) 40%,transparent)}
+.banner.ok b{color:var(--pass)}
+.banner.bad{background:color-mix(in srgb,var(--bad) 13%,transparent);border:1px solid color-mix(in srgb,var(--bad) 45%,transparent)}
+.banner.bad b{color:var(--bad);font-size:16px}
+.banner.info{background:color-mix(in srgb,var(--accent) 10%,transparent);border:1px solid color-mix(in srgb,var(--accent) 38%,transparent)}
+.banner.info b{color:var(--accent)}
+.plist{margin:10px 0 0;padding-left:0;list-style:none}
+.plist li{padding:8px 0;border-top:1px solid var(--border)}
+.plist a{text-decoration:none;color:var(--fg);font-weight:600}
+.plist .pe{color:var(--muted);font-size:12.5px;font-weight:400;margin-top:3px}
+.video{width:100%;border-radius:10px;border:1px solid var(--border);background:#000;margin:6px 0 2px}
+.vcap{color:var(--muted);font-size:12.5px;margin:0 0 8px}
+.novideo{color:var(--bad);font-weight:600;background:color-mix(in srgb,var(--bad) 10%,transparent);border:1px dashed color-mix(in srgb,var(--bad) 45%,transparent);border-radius:8px;padding:8px 12px;font-size:13px}
+.kpis{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0}
+.kpi{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:9px 14px;min-width:70px}
+.kpi .k{font-size:21px;font-weight:700;font-variant-numeric:tabular-nums}.kpi .l{color:var(--muted);font-size:12px}
+.kpi .k-bad{color:var(--bad)}.kpi .k-warn{color:var(--warn)}
+.op{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:15px 17px;margin:14px 0}
+.op h3{margin:0 0 3px;font-size:16px;display:flex;align-items:center;gap:9px;flex-wrap:wrap}
+.op .exp{color:var(--muted);font-size:13px;margin:0 0 9px}
+.op .nt{color:var(--muted);font-size:12.5px;margin-top:6px}
+.pill{font-size:11.5px;font-weight:700;padding:2px 9px;border-radius:20px}
+.p-ok{background:color-mix(in srgb,var(--pass) 18%,transparent);color:var(--pass)}
+.p-fail{background:color-mix(in srgb,var(--bad) 18%,transparent);color:var(--bad)}
+.p-warn{background:color-mix(in srgb,var(--warn) 20%,transparent);color:var(--warn)}
+.p-skip{background:var(--card2);color:var(--muted)}
+.p-write{background:color-mix(in srgb,var(--accent) 18%,transparent);color:var(--accent)}
+.frame figure{margin:0 0 9px}.frame img{width:100%;border-radius:8px;border:1px solid var(--border);display:block}
+.frame figcaption{color:var(--muted);font-size:11.5px;margin-top:4px;text-align:center}
+.chk{background:color-mix(in srgb,var(--pass) 12%,transparent);border:1px solid color-mix(in srgb,var(--pass) 34%,transparent);border-radius:8px;padding:8px 12px;font-size:13px}
+.chk b{color:var(--pass)}
+.chk-fail{background:color-mix(in srgb,var(--bad) 11%,transparent);border:1px solid color-mix(in srgb,var(--bad) 40%,transparent);border-radius:8px;padding:8px 12px;font-size:13px}
+.chk-fail b{color:var(--bad)}
+table.probe{border-collapse:collapse;width:100%;font-size:13px}
+table.probe th,table.probe td{border:1px solid var(--border);padding:5px 9px;text-align:left}
+table.probe tr.bad td{background:color-mix(in srgb,var(--bad) 10%,transparent)}
+</style></head><body><div class="wrap">
+<h1>mailbox-demo — agent 走查报告</h1>
+<p class="sub">环境 <code>https://mailbox-demo.afsd.dev</code> · 2026-07-22T19:45:00Z · 走查 9 / 声明 9 条测试路径 · driver <code>agent-playwright-mcp</code></p>
+<div class="how"><b>这份报告在做什么</b>：test-sweep 让 <b>agent 读被测页面自己写的
+<code>.aup/man</code> 知识</b>，用 Playwright MCP <b>当真人逐条测试路径走查</b>（导航/加标签/编辑/删除/创建…），
+<b>每条路径各自一段录屏</b>、每步截图并<b>自判 verdict + 附观察证据</b>（实际 DOM/文本/值，可复核）。
+<b>unreached</b>=没驱动到（不当失败）；<b>inconclusive</b>=不确定（绝不判失败）。写操作默认真提交、不清理。</div>
+
+<div class="banner ok"><b>✅ 覆盖完整</b>：声明 9 条测试路径全部走查。</div>
+<div class="banner bad"><b>⚠️ 发现 2 个问题</b>（点击跳到对应路径）<ul class="plist"><li><a href="#path-unified"><span class="pill p-fail">失败</span> Unified inbox (default page) — stats strip + Recent Messages preview · 步2</a> — wait ~6s total for recent-list&#x27;s afs-list data fetch to finish, then re-snapshot<div class="pe">unified2-02.png / unified2-03.png screenshot shows recent-list rendered 6 full rows (SXSW EDU, Surething, Flywheel Investment Conference, Circle, 99 Concerts, Lenny&#x27;s Newsletter) — i.e. the ENTIRE inbox (matching the &quot;6 messages&quot; stat), not</div></li><li><a href="#path-message"><span class="pill p-fail">失败</span> Single message full view — msg-view + Back to Inbox · 步1</a> — navigate directly to https://mailbox-demo.afsd.dev/?page=message (message.yaml documents no in-app click path reaches this page, so direct URL nav is the only way in)<div class="pe">message-03.png screenshot and dom.textHead both show &quot;Back to Inbox&quot; action rendered correctly, but msg-view&#x27;s body renders an empty-state: an open-folder icon + &quot;No items&quot; text — confirmed reproducible after navigate+3000ms settle+3000ms e</div></li></ul></div>
+<section id="probes"><h2>后端探针 （全通过）</h2><table class="probe"><tr><th></th><th>探针</th><th>详情</th></tr><tr class=""><td>✅</td><td>http-reachable</td><td>HTTP 200</td></tr><tr class=""><td>✅</td><td>afs-rpc-list</td><td>ok:true (9 .aup pages)</td></tr></table></section>
+<section id="path-unified">
+<h2>Unified inbox (default page) — stats strip + Recent Messages preview <span class="rt">anon · /</span></h2>
+<video class="video" controls preload="metadata" src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260722T191244Z/mailbox-demo/page@b436174a7d07f7365ad2325c521e6a76.webm"><a href="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260722T191244Z/mailbox-demo/page@b436174a7d07f7365ad2325c521e6a76.webm">下载该路径录像</a></video><p class="vcap">本测试路径整段走查录像</p>
+<div class="kpis"><div class="kpi"><div class="k">2</div><div class="l">操作步</div></div><div class="kpi"><div class="k">1</div><div class="l">通过</div></div><div class="kpi"><div class="k k-bad">1</div><div class="l">失败</div></div><div class="kpi"><div class="k k-warn">0</div><div class="l">不确定</div></div><div class="kpi"><div class="k">0</div><div class="l">未走到</div></div></div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> navigate to https://mailbox-demo.afsd.dev/</h3>
+<div class="exp">期望：stats strip (&quot;6 messages&quot;/&quot;3 threads&quot;/&quot;3 unread&quot;) + &quot;Recent Messages&quot; heading + a 3-row preview list per unified.yaml&#x27;s recent-list pageSize:3 assertion</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260722T191244Z/mailbox-demo/unified-01.png" alt="navigate to https://mailbox-demo.afsd.dev/" loading="lazy"><figcaption>navigate to https://mailbox-demo.afsd.dev/</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：dom.textHead: &quot;📬 Mailbox Demo Unified Email Chat Threads Forum Social Notifications 6 messages 3 threads 3 unread Recent Messages&quot;; interactables include div#stat-messages &quot;6 messages&quot;, div#stat-threads &quot;3 threads&quot;, div#stat-unread &quot;3 unread&quot;, h3#recent-label &quot;Recent Messages&quot;, div#recent-list — matches unified.yaml&#x27;s node_exists/node_has_prop assertions for the stats strip.</div>
+
+</div>
+<div class="op">
+<h3><span class="pill p-fail">失败</span> wait ~6s total for recent-list&#x27;s afs-list data fetch to finish, then re-snapshot</h3>
+<div class="exp">期望：recent-list renders a 3-row preview per unified.yaml&#x27;s node_has_prop { id: recent-list, prop: pageSize, value: 3 }</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260722T191244Z/mailbox-demo/unified2-03.png" alt="wait ~6s total for recent-list&#x27;s afs-list data fetch to finish, then re-snapshot" loading="lazy"><figcaption>wait ~6s total for recent-list&#x27;s afs-list data fetch to finish, then re-snapshot</figcaption></figure></div>
+<div class="chk-fail"><b>观察证据</b>：unified2-02.png / unified2-03.png screenshot shows recent-list rendered 6 full rows (SXSW EDU, Surething, Flywheel Investment Conference, Circle, 99 Concerts, Lenny&#x27;s Newsletter) — i.e. the ENTIRE inbox (matching the &quot;6 messages&quot; stat), not a 3-item preview. This contradicts the man page&#x27;s own documented/asserted pageSize:3 behavior (node_has_prop assertion on recent-list.pageSize=3). Either the live afs-list component is not honoring pageSize:3 for this page, or the deployed build predates that declared prop. Real, reproducible discrepancy between checked-in man assertion and live render.</div>
+<div class="nt">Filing as a finding: unified page&#x27;s Recent Messages preview shows all 6 inbox messages instead of the declared 3-item preview.</div>
+</div>
+</section><section id="path-inbox">
+<h2>Email inbox — two-pane list + detail-surface row select <span class="rt">anon · /?page=inbox</span></h2>
+<video class="video" controls preload="metadata" src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260722T191244Z/mailbox-demo/page@96e5d99cebb48ae48e72378f73c542e4.webm"><a href="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260722T191244Z/mailbox-demo/page@96e5d99cebb48ae48e72378f73c542e4.webm">下载该路径录像</a></video><p class="vcap">本测试路径整段走查录像</p>
+<div class="kpis"><div class="kpi"><div class="k">2</div><div class="l">操作步</div></div><div class="kpi"><div class="k">2</div><div class="l">通过</div></div><div class="kpi"><div class="k k-bad">0</div><div class="l">失败</div></div><div class="kpi"><div class="k k-warn">0</div><div class="l">不确定</div></div><div class="kpi"><div class="k">0</div><div class="l">未走到</div></div></div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> navigate to https://mailbox-demo.afsd.dev/?page=inbox, wait for inbox-list to load</h3>
+<div class="exp">期望：detail-surface starts pre-filled with msg-001.json&#x27;s content (inbox.yaml&#x27;s node_has_prop src=/packages/data/inbox/msg-001.json assertion)</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260722T191244Z/mailbox-demo/inbox-03.png" alt="navigate to https://mailbox-demo.afsd.dev/?page=inbox, wait for inbox-list to load" loading="lazy"><figcaption>navigate to https://mailbox-demo.afsd.dev/?page=inbox, wait for inbox-list to load</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：dom.textHead shows inbox-list rows (&quot;Next Year Is Your Chance&quot;, &quot;Quick question from SureThing&quot;, etc.) rendered with cursor:pointer rows (verified via outerHTML dump: .aup-list-row[data-entry-path=&quot;/packages/data/inbox/msg-001.json&quot;][data-selected=&quot;true&quot;]) confirming msg-001 is the default-selected row.</div>
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> click the msg-002.json row ([data-entry-path=&quot;/packages/data/inbox/msg-002.json&quot;])</h3>
+<div class="exp">期望：inbox-list&#x27;s select event sets detail-surface.src to the clicked row&#x27;s path, swapping content in place (inbox.yaml&#x27;s action_exists + events.select.target/set assertions)</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260722T191244Z/mailbox-demo/inbox-06.png" alt="click the msg-002.json row ([data-entry-path=&quot;/packages/data/inbox/msg-002.json&quot;])" loading="lazy"><figcaption>click the msg-002.json row ([data-entry-path=&quot;/packages/data/inbox/msg-002.json&quot;])</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：dom.interactables before click: only &#x27;div#detail-surface&#x27; (empty at that snapshot instant, mid-load). After click: &#x27;div#detail-surface &quot;Quick question from SureThing — what held you back&quot;&#x27; and &#x27;div#email-detail &quot;Quick question from SureThing — what held you back&quot;&#x27; — confirms detail-surface swapped to msg-002&#x27;s content on row click, same-page, no navigation (URL stayed at ?page=inbox).</div>
+
+</div>
+</section><section id="path-message">
+<h2>Single message full view — msg-view + Back to Inbox <span class="rt">anon · /?page=message</span></h2>
+<video class="video" controls preload="metadata" src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260722T191244Z/mailbox-demo/page@071204a8d76a959d3d46e625147894bb.webm"><a href="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260722T191244Z/mailbox-demo/page@071204a8d76a959d3d46e625147894bb.webm">下载该路径录像</a></video><p class="vcap">本测试路径整段走查录像</p>
+<div class="kpis"><div class="kpi"><div class="k">2</div><div class="l">操作步</div></div><div class="kpi"><div class="k">1</div><div class="l">通过</div></div><div class="kpi"><div class="k k-bad">1</div><div class="l">失败</div></div><div class="kpi"><div class="k k-warn">0</div><div class="l">不确定</div></div><div class="kpi"><div class="k">0</div><div class="l">未走到</div></div></div>
+<div class="op">
+<h3><span class="pill p-fail">失败</span> navigate directly to https://mailbox-demo.afsd.dev/?page=message (message.yaml documents no in-app click path reaches this page, so direct URL nav is the only way in)</h3>
+<div class="exp">期望：msg-view (afs-list, pageSize:1, src=/packages/data/inbox) renders page 1 of the inbox per message.yaml&#x27;s node_has_prop assertions</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260722T191244Z/mailbox-demo/message-03.png" alt="navigate directly to https://mailbox-demo.afsd.dev/?page=message (message.yaml documents no in-app click path reaches this page, so direct URL nav is the only way in)" loading="lazy"><figcaption>navigate directly to https://mailbox-demo.afsd.dev/?page=message (message.yaml documents no in-app click path reaches this page, so direct URL nav is the only way in)</figcaption></figure></div>
+<div class="chk-fail"><b>观察证据</b>：message-03.png screenshot and dom.textHead both show &quot;Back to Inbox&quot; action rendered correctly, but msg-view&#x27;s body renders an empty-state: an open-folder icon + &quot;No items&quot; text — confirmed reproducible after navigate+3000ms settle+3000ms extra wait (6s+ total) and again in a separate standalone debug run with a 10s wait, no console errors logged. msg-view never renders the expected inbox message content live on this deployment, despite the page shell (header/back button) loading fine.</div>
+<div class="nt">Real bug: message.json&#x27;s msg-view (afs-list pageSize:1 over /packages/data/inbox) renders &quot;No items&quot; instead of the first inbox entry. Distinct from message.yaml&#x27;s already-documented reachability caveat — this is a rendering/data bug on a page that IS reachable via direct URL.</div>
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> click the &quot;Back to Inbox&quot; action ([data-aup-id=&quot;back&quot;])</h3>
+<div class="exp">期望：plain page navigation back to inbox (message.yaml&#x27;s node_has_prop events.click.page=inbox assertion)</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260722T191244Z/mailbox-demo/message-06.png" alt="click the &quot;Back to Inbox&quot; action ([data-aup-id=&quot;back&quot;])" loading="lazy"><figcaption>click the &quot;Back to Inbox&quot; action ([data-aup-id=&quot;back&quot;])</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：dom.url changed from https://mailbox-demo.afsd.dev/?page=message to https://mailbox-demo.afsd.dev/?page=inbox after the click; dom.interactables now include div#list-panel/div#inbox-list/div#detail-surface (the inbox page&#x27;s own tree) — confirms the back button correctly returns to the inbox page.</div>
+
+</div>
+</section><section id="path-threads">
+<h2>Threads master-detail (single page) — thread-list select updates thread-messages <span class="rt">anon · /?page=threads</span></h2>
+<video class="video" controls preload="metadata" src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260722T191244Z/mailbox-demo/page@93fa91a15acbb74944a9ff23f1b46a2b.webm"><a href="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260722T191244Z/mailbox-demo/page@93fa91a15acbb74944a9ff23f1b46a2b.webm">下载该路径录像</a></video><p class="vcap">本测试路径整段走查录像</p>
+<div class="kpis"><div class="kpi"><div class="k">2</div><div class="l">操作步</div></div><div class="kpi"><div class="k">2</div><div class="l">通过</div></div><div class="kpi"><div class="k k-bad">0</div><div class="l">失败</div></div><div class="kpi"><div class="k k-warn">0</div><div class="l">不确定</div></div><div class="kpi"><div class="k">0</div><div class="l">未走到</div></div></div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> navigate to https://mailbox-demo.afsd.dev/?page=threads, wait for lists to load</h3>
+<div class="exp">期望：thread-messages starts pre-filled with thread-001&#x27;s messages (threads.yaml&#x27;s node_has_prop src=/packages/data/thread-messages/thread-001 assertion)</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260722T191244Z/mailbox-demo/threads-02.png" alt="navigate to https://mailbox-demo.afsd.dev/?page=threads, wait for lists to load" loading="lazy"><figcaption>navigate to https://mailbox-demo.afsd.dev/?page=threads, wait for lists to load</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：dom.textHead: &quot;Q3 Budget Review [ \&quot;alice@example.com\&quot;, \&quot;bob@example.com\&quot;, \&quot;carol@example.com\&quot; ]&quot; — thread-list&#x27;s first row (Q3 Budget Review, thread-001) is shown and thread-messages panel renders its 4 messages on first load, matching the man page&#x27;s default-pre-filled assertion.</div>
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> click the thread-002 row ([data-aup-id=&quot;tpl-item--/mailbox-demo/data/threads/thread-002.json&quot;])</h3>
+<div class="exp">期望：thread-list&#x27;s select event (bound on the list node itself per threads.yaml, fixed in #1975) sets thread-messages.src to $args.item.messagesPath, swapping the detail panel in place</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260722T191244Z/mailbox-demo/threads-06.png" alt="click the thread-002 row ([data-aup-id=&quot;tpl-item--/mailbox-demo/data/threads/thread-002.json&quot;])" loading="lazy"><figcaption>click the thread-002 row ([data-aup-id=&quot;tpl-item--/mailbox-demo/data/threads/thread-002.json&quot;])</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：threads-06.png screenshot shows the right detail panel switched from Q3 Budget Review&#x27;s alice/bob/carol thread to Project Timeline&#x27;s dave@example.com/bob@example.com messages (&quot;Hi Bob, Can we sync on the updated project timeline?...&quot; / &quot;Sounds good — I&#x27;ll update the shared timeline doc...&quot;) — confirms click-to-select works and updates the sibling panel in place without navigation. Note (cosmetic, not a functional bug): thread-list&#x27;s participant field renders the raw JSON array literal (e.g. [ &quot;alice@example.com&quot;, &quot;bob@example.com&quot; ]) instead of a formatted comma list — visible in both before/after screenshots, not covered by any man-page assertion so not counted as fail.</div>
+
+</div>
+</section><section id="path-thread">
+<h2>Single thread full view (Q3 Budget Review) — Back to Threads <span class="rt">anon · /?page=thread</span></h2>
+<video class="video" controls preload="metadata" src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260722T191244Z/mailbox-demo/page@4aa6dbf3889b42d171ffb7ed3fadd812.webm"><a href="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260722T191244Z/mailbox-demo/page@4aa6dbf3889b42d171ffb7ed3fadd812.webm">下载该路径录像</a></video><p class="vcap">本测试路径整段走查录像</p>
+<div class="kpis"><div class="kpi"><div class="k">2</div><div class="l">操作步</div></div><div class="kpi"><div class="k">2</div><div class="l">通过</div></div><div class="kpi"><div class="k k-bad">0</div><div class="l">失败</div></div><div class="kpi"><div class="k k-warn">0</div><div class="l">不确定</div></div><div class="kpi"><div class="k">0</div><div class="l">未走到</div></div></div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> navigate directly to https://mailbox-demo.afsd.dev/?page=thread (thread.yaml documents no in-app click path reaches this page)</h3>
+<div class="exp">期望：static &quot;Q3 Budget Review&quot; title + thread-messages renders thread-001&#x27;s 4 messages (thread.yaml&#x27;s node_has_prop assertions)</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260722T191244Z/mailbox-demo/thread-03.png" alt="navigate directly to https://mailbox-demo.afsd.dev/?page=thread (thread.yaml documents no in-app click path reaches this page)" loading="lazy"><figcaption>navigate directly to https://mailbox-demo.afsd.dev/?page=thread (thread.yaml documents no in-app click path reaches this page)</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：dom.textHead: &quot;Back to Threads Q3 Budget Review A alice@example.com inbound Hi team, I&#x27;ve attach...&quot;; dom.interactables enumerate all 4 messages (alice, bob, carol, alice) with correct direction badges (inbound/outbound) — matches the man page&#x27;s assertions exactly.</div>
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> click the &quot;Back to Threads&quot; action ([data-aup-id=&quot;back&quot;])</h3>
+<div class="exp">期望：plain page navigation back to threads (thread.yaml&#x27;s node_has_prop events.click.page=threads assertion)</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260722T191244Z/mailbox-demo/thread-06.png" alt="click the &quot;Back to Threads&quot; action ([data-aup-id=&quot;back&quot;])" loading="lazy"><figcaption>click the &quot;Back to Threads&quot; action ([data-aup-id=&quot;back&quot;])</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：dom.url changed from https://mailbox-demo.afsd.dev/?page=thread to https://mailbox-demo.afsd.dev/?page=threads; dom.interactables now show the threads page&#x27;s own tree (thread-list with all 3 threads, detail-panel with thread-001&#x27;s messages) — confirms Back to Threads navigates correctly.</div>
+
+</div>
+</section><section id="path-chat">
+<h2>Chat (Slack-style) — conv-list select updates messages panel <span class="rt">anon · /?page=chat</span></h2>
+<video class="video" controls preload="metadata" src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260722T191244Z/mailbox-demo/page@6b17bb8eeaf73d066bdd064bf924b9a9.webm"><a href="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260722T191244Z/mailbox-demo/page@6b17bb8eeaf73d066bdd064bf924b9a9.webm">下载该路径录像</a></video><p class="vcap">本测试路径整段走查录像</p>
+<div class="kpis"><div class="kpi"><div class="k">3</div><div class="l">操作步</div></div><div class="kpi"><div class="k">2</div><div class="l">通过</div></div><div class="kpi"><div class="k k-bad">0</div><div class="l">失败</div></div><div class="kpi"><div class="k k-warn">0</div><div class="l">不确定</div></div><div class="kpi"><div class="k">1</div><div class="l">未走到</div></div></div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> navigate to https://mailbox-demo.afsd.dev/?page=chat, wait for conv-list/messages to load</h3>
+<div class="exp">期望：messages panel starts pre-filled with conv-001 (&quot;Alice&quot;), chat-header shows static &quot;Alice&quot;/&quot;Slack&quot; labels (chat.yaml&#x27;s node_has_prop assertions)</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260722T191244Z/mailbox-demo/chat-03.png" alt="navigate to https://mailbox-demo.afsd.dev/?page=chat, wait for conv-list/messages to load" loading="lazy"><figcaption>navigate to https://mailbox-demo.afsd.dev/?page=chat, wait for conv-list/messages to load</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：dom.textHead: &quot;Conversations Alice 2 Project Team 0 Alice Slack A Alice slack Hey, are you free&quot; — conv-list shows both conversations (&quot;Alice&quot;, &quot;Project Team&quot;), header shows &quot;Alice&quot;/&quot;Slack&quot;, messages panel shows conv-001&#x27;s first message &quot;Hey, are you free for lunch?&quot; — matches man page assertions.</div>
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> click the &quot;Project Team&quot; conversation row ([data-entry-id=&quot;/mailbox-demo/data/chat-conversations/conv-002.json&quot;])</h3>
+<div class="exp">期望：conv-list&#x27;s select event sets messages.src to the clicked conversation&#x27;s messagesPath; chat-header&#x27;s static labels (&quot;Alice&quot;/&quot;Slack&quot;) do NOT update (documented caveat in chat.yaml)</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260722T191244Z/mailbox-demo/chat-06.png" alt="click the &quot;Project Team&quot; conversation row ([data-entry-id=&quot;/mailbox-demo/data/chat-conversations/conv-002.json&quot;])" loading="lazy"><figcaption>click the &quot;Project Team&quot; conversation row ([data-entry-id=&quot;/mailbox-demo/data/chat-conversations/conv-002.json&quot;])</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：chat-06.png screenshot: header still reads &quot;Alice&quot; (static, unchanged, exactly as chat.yaml&#x27;s caveat documents) while the message list below switched to Project Team&#x27;s conversation — Dave (&quot;Team, we need to decide on the deployment strategy for next week&quot;), Bob (&quot;I vote for blue-green deployment. Less risk.&quot;), Carol (&quot;Agreed. I&#x27;ll set up the staging environment tonight.&quot; / &quot;I&#x27;ll handle the deploy. Will ping everyone once it&#x27;s done.&quot;). Confirms both the select-swap mechanism and the documented stale-header caveat.</div>
+
+</div>
+<div class="op">
+<h3><span class="pill p-skip">未走到</span> compose bar (cp-input / cp-send &quot;Send&quot; button) — not exercised</h3>
+<div class="exp">期望：n/a</div>
+
+<div class="chk"><b>观察证据</b>：COMMIT_WRITES=0 — skipped per write-gate policy. Per chat.yaml&#x27;s own documented caveat, cp-send carries no events binding in the checked-in tree (dead button, would be a no-op even if clicked), but composing/sending is core-purpose write-shaped so it was not attempted this run regardless.</div>
+
+</div>
+</section><section id="path-forum">
+<h2>Forum topics — read-only card list <span class="rt">anon · /?page=forum</span></h2>
+<video class="video" controls preload="metadata" src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260722T191244Z/mailbox-demo/page@b06726deff9e11759a8d81f228d8d430.webm"><a href="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260722T191244Z/mailbox-demo/page@b06726deff9e11759a8d81f228d8d430.webm">下载该路径录像</a></video><p class="vcap">本测试路径整段走查录像</p>
+<div class="kpis"><div class="kpi"><div class="k">1</div><div class="l">操作步</div></div><div class="kpi"><div class="k">1</div><div class="l">通过</div></div><div class="kpi"><div class="k k-bad">0</div><div class="l">失败</div></div><div class="kpi"><div class="k k-warn">0</div><div class="l">不确定</div></div><div class="kpi"><div class="k">0</div><div class="l">未走到</div></div></div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> navigate to https://mailbox-demo.afsd.dev/?page=forum, wait for forum-list to load</h3>
+<div class="exp">期望：forum-list renders topic cards with subject + reply count + snippet + author + origin badge (forum.yaml&#x27;s node_has_prop assertions), no click handler on any node</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260722T191244Z/mailbox-demo/forum-03.png" alt="navigate to https://mailbox-demo.afsd.dev/?page=forum, wait for forum-list to load" loading="lazy"><figcaption>navigate to https://mailbox-demo.afsd.dev/?page=forum, wait for forum-list to load</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：dom.textHead: &quot;How to deploy to production? 4 replies I&#x27;m new to the platform and trying to figu...&quot; — forum-list rendered multiple topic cards including &quot;How to deploy to production?&quot; (4 replies, newbie@example.com, community.example.com) and &quot;Best practices for DID authentication&quot; (3 replies) — matches man page&#x27;s card-layout assertions. No interaction attempted since forum.yaml documents zero events bindings on this page (intentional browse-only terminal page).</div>
+
+</div>
+</section><section id="path-feed">
+<h2>Social feed — read-only activity list <span class="rt">anon · /?page=feed</span></h2>
+<video class="video" controls preload="metadata" src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260722T191244Z/mailbox-demo/page@8d7d96c0bc3598027a1d0879df325e55.webm"><a href="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260722T191244Z/mailbox-demo/page@8d7d96c0bc3598027a1d0879df325e55.webm">下载该路径录像</a></video><p class="vcap">本测试路径整段走查录像</p>
+<div class="kpis"><div class="kpi"><div class="k">1</div><div class="l">操作步</div></div><div class="kpi"><div class="k">1</div><div class="l">通过</div></div><div class="kpi"><div class="k k-bad">0</div><div class="l">失败</div></div><div class="kpi"><div class="k k-warn">0</div><div class="l">不确定</div></div><div class="kpi"><div class="k">0</div><div class="l">未走到</div></div></div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> navigate to https://mailbox-demo.afsd.dev/?page=feed, wait for feed-list to load</h3>
+<div class="exp">期望：feed-list renders activity items with source badge + sender + snippet (feed.yaml&#x27;s node_has_prop assertions), no click handler</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260722T191244Z/mailbox-demo/feed-03.png" alt="navigate to https://mailbox-demo.afsd.dev/?page=feed, wait for feed-list to load" loading="lazy"><figcaption>navigate to https://mailbox-demo.afsd.dev/?page=feed, wait for feed-list to load</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：dom.textHead: &quot;reaction alice@example.com liked your post \&quot;Building with AFS\&quot; follow dave@exampl...&quot; — feed-list rendered multiple activity rows (reaction/alice, follow/dave, repost/carol &quot;Zero-LLM Memory Architecture&quot;, comment/eve, reaction/frank with Chinese-language content) — matches man page&#x27;s compact-list assertions. No interaction attempted since feed.yaml documents zero events bindings.</div>
+
+</div>
+</section><section id="path-notifications">
+<h2>Notifications — read-only compact list <span class="rt">anon · /?page=notifications</span></h2>
+<video class="video" controls preload="metadata" src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260722T191244Z/mailbox-demo/page@1ca1fe5d7b5463cce4b0e74bcaba333f.webm"><a href="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260722T191244Z/mailbox-demo/page@1ca1fe5d7b5463cce4b0e74bcaba333f.webm">下载该路径录像</a></video><p class="vcap">本测试路径整段走查录像</p>
+<div class="kpis"><div class="kpi"><div class="k">1</div><div class="l">操作步</div></div><div class="kpi"><div class="k">1</div><div class="l">通过</div></div><div class="kpi"><div class="k k-bad">0</div><div class="l">失败</div></div><div class="kpi"><div class="k k-warn">0</div><div class="l">不确定</div></div><div class="kpi"><div class="k">0</div><div class="l">未走到</div></div></div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> navigate to https://mailbox-demo.afsd.dev/?page=notifications, wait for notif-list to load</h3>
+<div class="exp">期望：notif-list renders origin badge + snippet per row, compact layout (notifications.yaml&#x27;s node_has_prop assertions), no click handler</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260722T191244Z/mailbox-demo/notifications-03.png" alt="navigate to https://mailbox-demo.afsd.dev/?page=notifications, wait for notif-list to load" loading="lazy"><figcaption>navigate to https://mailbox-demo.afsd.dev/?page=notifications, wait for notif-list to load</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：dom.textHead: &quot;...deploy Production deployment v2.4.1 completed successfully in 3m 42s security Security alert: 3 failed login attempts from IP 192.168.1.42 storage Storage quota warning: 85% of 10 GB used...&quot; — notif-list rendered 4 notifications (deploy/security/storage/team categories) with origin badges — matches man page&#x27;s compact-list assertions. Note: this page&#x27;s afs-list took longer than the other list pages to leave its loading-skeleton state across repeated attempts this run (up to ~13s in one attempt before a retry succeeded in ~6s) — consistent with general list-load latency variance observed across this run (likely shared load from concurrent sweep activity in this environment), not treated as a page-specific defect since content ultimately rendered correctly and matched the man page.</div>
+
+</div>
+</section>
+<p class="sub" style="margin-top:22px">Generated by test-report-builder (build-agent-report) · issue #1808</p>
+</div></body></html>
