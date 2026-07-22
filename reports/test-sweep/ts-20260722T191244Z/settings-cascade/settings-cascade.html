@@ -1,0 +1,130 @@
+<!doctype html><html><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>settings-cascade — agent 走查报告</title><style>
+:root{--bg:#f7f8f8;--fg:#16201f;--muted:#5c6b69;--card:#fff;--card2:#eef2f1;--border:#dde3e2;--accent:#127a72;--pass:#1f8a54;--warn:#b5771a;--bad:#c0392b}
+@media(prefers-color-scheme:dark){:root{--bg:#0e1413;--fg:#e6ecea;--muted:#8ea19d;--card:#161d1c;--card2:#1d2624;--border:#26302e;--accent:#3fb8ab;--pass:#3fb37a;--warn:#d69a3e;--bad:#e5735f}}
+:root[data-theme=dark]{--bg:#0e1413;--fg:#e6ecea;--muted:#8ea19d;--card:#161d1c;--card2:#1d2624;--border:#26302e;--accent:#3fb8ab;--pass:#3fb37a;--warn:#d69a3e;--bad:#e5735f}
+:root[data-theme=light]{--bg:#f7f8f8;--fg:#16201f;--muted:#5c6b69;--card:#fff;--card2:#eef2f1;--border:#dde3e2;--accent:#127a72;--pass:#1f8a54;--warn:#b5771a;--bad:#c0392b}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--fg);font:15px/1.65 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;padding:24px}
+.wrap{max-width:920px;margin:0 auto}
+h1{font-size:24px;margin:0 0 4px;text-wrap:balance}h2{font-size:19px;margin:30px 0 8px}
+h2 .rt{font-size:13px;color:var(--muted);font-weight:400;font-variant-numeric:tabular-nums}
+.sub{color:var(--muted);margin:0 0 14px;font-size:13px}
+code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.85em;background:var(--card2);padding:1px 5px;border-radius:4px}
+.how{background:var(--card);border:1px solid var(--border);border-left:3px solid var(--accent);border-radius:8px;padding:13px 16px;margin:14px 0;font-size:14px}
+.how b{color:var(--accent)}
+.banner{border-radius:12px;padding:14px 18px;margin:16px 0}
+.banner.ok{background:color-mix(in srgb,var(--pass) 12%,transparent);border:1px solid color-mix(in srgb,var(--pass) 40%,transparent)}
+.banner.ok b{color:var(--pass)}
+.banner.bad{background:color-mix(in srgb,var(--bad) 13%,transparent);border:1px solid color-mix(in srgb,var(--bad) 45%,transparent)}
+.banner.bad b{color:var(--bad);font-size:16px}
+.banner.info{background:color-mix(in srgb,var(--accent) 10%,transparent);border:1px solid color-mix(in srgb,var(--accent) 38%,transparent)}
+.banner.info b{color:var(--accent)}
+.plist{margin:10px 0 0;padding-left:0;list-style:none}
+.plist li{padding:8px 0;border-top:1px solid var(--border)}
+.plist a{text-decoration:none;color:var(--fg);font-weight:600}
+.plist .pe{color:var(--muted);font-size:12.5px;font-weight:400;margin-top:3px}
+.video{width:100%;border-radius:10px;border:1px solid var(--border);background:#000;margin:6px 0 2px}
+.vcap{color:var(--muted);font-size:12.5px;margin:0 0 8px}
+.novideo{color:var(--bad);font-weight:600;background:color-mix(in srgb,var(--bad) 10%,transparent);border:1px dashed color-mix(in srgb,var(--bad) 45%,transparent);border-radius:8px;padding:8px 12px;font-size:13px}
+.kpis{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0}
+.kpi{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:9px 14px;min-width:70px}
+.kpi .k{font-size:21px;font-weight:700;font-variant-numeric:tabular-nums}.kpi .l{color:var(--muted);font-size:12px}
+.kpi .k-bad{color:var(--bad)}.kpi .k-warn{color:var(--warn)}
+.op{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:15px 17px;margin:14px 0}
+.op h3{margin:0 0 3px;font-size:16px;display:flex;align-items:center;gap:9px;flex-wrap:wrap}
+.op .exp{color:var(--muted);font-size:13px;margin:0 0 9px}
+.op .nt{color:var(--muted);font-size:12.5px;margin-top:6px}
+.pill{font-size:11.5px;font-weight:700;padding:2px 9px;border-radius:20px}
+.p-ok{background:color-mix(in srgb,var(--pass) 18%,transparent);color:var(--pass)}
+.p-fail{background:color-mix(in srgb,var(--bad) 18%,transparent);color:var(--bad)}
+.p-warn{background:color-mix(in srgb,var(--warn) 20%,transparent);color:var(--warn)}
+.p-skip{background:var(--card2);color:var(--muted)}
+.p-write{background:color-mix(in srgb,var(--accent) 18%,transparent);color:var(--accent)}
+.frame figure{margin:0 0 9px}.frame img{width:100%;border-radius:8px;border:1px solid var(--border);display:block}
+.frame figcaption{color:var(--muted);font-size:11.5px;margin-top:4px;text-align:center}
+.chk{background:color-mix(in srgb,var(--pass) 12%,transparent);border:1px solid color-mix(in srgb,var(--pass) 34%,transparent);border-radius:8px;padding:8px 12px;font-size:13px}
+.chk b{color:var(--pass)}
+.chk-fail{background:color-mix(in srgb,var(--bad) 11%,transparent);border:1px solid color-mix(in srgb,var(--bad) 40%,transparent);border-radius:8px;padding:8px 12px;font-size:13px}
+.chk-fail b{color:var(--bad)}
+table.probe{border-collapse:collapse;width:100%;font-size:13px}
+table.probe th,table.probe td{border:1px solid var(--border);padding:5px 9px;text-align:left}
+table.probe tr.bad td{background:color-mix(in srgb,var(--bad) 10%,transparent)}
+</style></head><body><div class="wrap">
+<h1>settings-cascade — agent 走查报告</h1>
+<p class="sub">环境 <code>https://settings-cascade.afsd.dev</code> · 2026-07-22T19:30:00Z · 走查 1 / 声明 1 条测试路径 · driver <code>agent-playwright-mcp</code></p>
+<div class="how"><b>这份报告在做什么</b>：test-sweep 让 <b>agent 读被测页面自己写的
+<code>.aup/man</code> 知识</b>，用 Playwright MCP <b>当真人逐条测试路径走查</b>（导航/加标签/编辑/删除/创建…），
+<b>每条路径各自一段录屏</b>、每步截图并<b>自判 verdict + 附观察证据</b>（实际 DOM/文本/值，可复核）。
+<b>unreached</b>=没驱动到（不当失败）；<b>inconclusive</b>=不确定（绝不判失败）。写操作默认真提交、不清理。</div>
+
+<div class="banner ok"><b>✅ 覆盖完整</b>：声明 1 条测试路径全部走查。</div>
+<div class="banner bad"><b>⚠️ 发现 1 个问题</b>（点击跳到对应路径）<ul class="plist"><li><a href="#path-home"><span class="pill p-warn">不确定</span> Settings Cascade home — settings-shell auto-surface + propBind mirrors (anon) · 步3</a> — observe retention field visibility for anon user<div class="pe">No &#x27;retention&#x27; field group appears anywhere in the rendered settings-shell tree for the anon user (only the &#x27;theme&#x27; field group is present under general). The man file only commits to &#x27;retention read-only for non-admin&#x27;, not full hiding, an</div></li></ul></div>
+<section id="probes"><h2>后端探针 （全通过）</h2><table class="probe"><tr><th></th><th>探针</th><th>详情</th></tr><tr class=""><td>✅</td><td>http-reachable</td><td>HTTP 200</td></tr><tr class=""><td>✅</td><td>afs-rpc-list</td><td>ok:true (1 .aup pages)</td></tr></table></section>
+<section id="path-home">
+<h2>Settings Cascade home — settings-shell auto-surface + propBind mirrors (anon) <span class="rt">anon · /app</span></h2>
+<video class="video" controls preload="metadata" src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260722T191244Z/settings-cascade/page@a5cc0ff99873334565976833f115de88.webm"><a href="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260722T191244Z/settings-cascade/page@a5cc0ff99873334565976833f115de88.webm">下载该路径录像</a></video><p class="vcap">本测试路径整段走查录像</p>
+<div class="kpis"><div class="kpi"><div class="k">6</div><div class="l">操作步</div></div><div class="kpi"><div class="k">5</div><div class="l">通过</div></div><div class="kpi"><div class="k k-bad">0</div><div class="l">失败</div></div><div class="kpi"><div class="k k-warn">1</div><div class="l">不确定</div></div><div class="kpi"><div class="k">0</div><div class="l">未走到</div></div></div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> navigate to /app</h3>
+<div class="exp">期望：cascade-settings auto-surface (pattern settings-shell, src /instance/settings/cascade) renders</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260722T191244Z/settings-cascade/home-02.png" alt="navigate to /app" loading="lazy"><figcaption>navigate to /app</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：dom.interactables includes &#x27;div#cascade-settings &quot;Settings Theme system light dark Interface theme —...&quot;&#x27; with h2#cascade-settings-title &quot;Settings&quot; and div#cascade-settings-page-general — confirms node id=cascade-settings exists and renders as the settings-shell surface per man&#x27;s node_exists/node_has_prop assertions (src=/instance/settings/cascade, pattern=settings-shell).</div>
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> observe theme field rendering for anon user</h3>
+<div class="exp">期望：theme field (scope: shared) editable in principle but anon (not signed in) sees it locked with a sign-in prompt, per man caveat on two-level cascade permissions</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260722T191244Z/settings-cascade/home-02.png" alt="observe theme field rendering for anon user" loading="lazy"><figcaption>observe theme field rendering for anon user</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：dom.textHead: &#x27;Theme system light dark Interface theme — anyone can personalize their own; admins set the default. Read-only Sign in to personalize&#x27;; interactables include div#cascade-settings-field-general-theme-readonly &quot;Read-only&quot; and div#cascade-settings-field-general-theme-badge &quot;Sign in to personalize&quot; — matches expected per-role gating for an anonymous viewer.</div>
+
+</div>
+<div class="op">
+<h3><span class="pill p-warn">不确定</span> observe retention field visibility for anon user</h3>
+<div class="exp">期望：retention field (scope: instance, admin-only) is not editable by a non-admin/anon user</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260722T191244Z/settings-cascade/home-02.png" alt="observe retention field visibility for anon user" loading="lazy"><figcaption>observe retention field visibility for anon user</figcaption></figure></div>
+<div class="chk-fail"><b>观察证据</b>：No &#x27;retention&#x27; field group appears anywhere in the rendered settings-shell tree for the anon user (only the &#x27;theme&#x27; field group is present under general). The man file only commits to &#x27;retention read-only for non-admin&#x27;, not full hiding, and explicitly disclaims asserting per-role rendering itself (defers to two-level-settings-render-sentinel.test.ts). Full omission vs. read-only-but-visible could be intended role-based visibility filtering or could be a gap; cannot distinguish from this single anon view without a second authenticated-admin comparison, so not marked fail.</div>
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> observe retention-mirror propBind node</h3>
+<div class="exp">期望：retention-mirror text node propBind.content mirrors /instance/settings/cascade/retention.json/value</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260722T191244Z/settings-cascade/home-02.png" alt="observe retention-mirror propBind node" loading="lazy"><figcaption>observe retention-mirror propBind node</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：dom.interactables: &#x27;div#retention-mirror &quot;30&quot;&#x27; — node with data-aup-id=retention-mirror renders a live non-placeholder value (30), consistent with man&#x27;s node_exists + propBind.content assertion for retention-mirror.</div>
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> observe theme-mirror propBind node</h3>
+<div class="exp">期望：theme-mirror text node propBind.content mirrors /instance/settings/cascade/theme.json/value</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260722T191244Z/settings-cascade/home-02.png" alt="observe theme-mirror propBind node" loading="lazy"><figcaption>observe theme-mirror propBind node</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：dom.interactables: &#x27;div#theme-mirror &quot;system&quot;&#x27; matching the theme field&#x27;s own displayed value (system) shown in the settings-shell surface above it — two independent channels (auto-surface + propBind) agree, confirming the mirror tracks the same underlying path.</div>
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> observe tmp-mirror negative-fixture node (propBind outside /instance must be rejected)</h3>
+<div class="exp">期望：tmp-mirror propBind.content targets /tmp/scratch.json/value (outside /instance/**) and per allow-list contract must be rejected at resolve time, leaving content at its compile-time placeholder &#x27;—&#x27;</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260722T191244Z/settings-cascade/home-02.png" alt="observe tmp-mirror negative-fixture node (propBind outside /instance must be rejected)" loading="lazy"><figcaption>observe tmp-mirror negative-fixture node (propBind outside /instance must be rejected)</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：dom.interactables: &#x27;div#tmp-mirror &quot;—&quot;&#x27; — content is exactly the placeholder em-dash, never updated to a real value, confirming the negative fixture&#x27;s propBind-outside-/instance rejection is working live on the deployed app exactly as man&#x27;s third example asserts.</div>
+
+</div>
+</section><section id="path-settings">
+<h2>Settings Cascade — bare settings-shell mount at ?page=settings (authed, no .man — configDir-only page) <span class="rt">authed · /app?page=settings</span></h2>
+<video class="video" controls preload="metadata" src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260722T191244Z/settings-cascade/page@2802b9865cfb234cfeff64f9f7eba9a2.webm"><a href="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260722T191244Z/settings-cascade/page@2802b9865cfb234cfeff64f9f7eba9a2.webm">下载该路径录像</a></video><p class="vcap">本测试路径整段走查录像</p>
+<div class="kpis"><div class="kpi"><div class="k">2</div><div class="l">操作步</div></div><div class="kpi"><div class="k">1</div><div class="l">通过</div></div><div class="kpi"><div class="k k-bad">0</div><div class="l">失败</div></div><div class="kpi"><div class="k k-warn">0</div><div class="l">不确定</div></div><div class="kpi"><div class="k">1</div><div class="l">未走到</div></div></div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> navigate to /app?page=settings with login_token cookie (authed JWT)</h3>
+<div class="exp">期望：settings-shell surface renders for the authenticated user; per app.json this page has configDir (no tree), so no .man knowledge to check assertions against — read-only rendering check only</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260722T191244Z/settings-cascade/settings-02.png" alt="navigate to /app?page=settings with login_token cookie (authed JWT)" loading="lazy"><figcaption>navigate to /app?page=settings with login_token cookie (authed JWT)</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：dom after settle: title &#x27;Settings Cascade&#x27;, header shows &#x27;Test Fixture User&#x27; / &#x27;User Center&#x27; / &#x27;Sign Out&#x27; buttons (confirms authed session took effect via cookie), and div#settings-settings renders a &#x27;Settings&#x27; surface with &#x27;Nickname&#x27; (input, value &#x27;tsweep-qa-20260721&#x27;, badge &#x27;Overridden (personalized)&#x27;, &#x27;Reset to default&#x27; button) and &#x27;Theme&#x27; (badge &#x27;Overridden (default = system)&#x27;, &#x27;Reset to default&#x27; button) fields — both fields editable/interactive for the authed user, contrasting correctly with the anon-locked theme field seen on /app.</div>
+
+</div>
+<div class="op">
+<h3><span class="pill p-skip">未走到</span> check nickname field write control present but not submitted (write-gate)</h3>
+<div class="exp">期望：N/A — no persistence-write assertion declared for this page (man is null); write-gate policy applies regardless</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260722T191244Z/settings-cascade/settings-02.png" alt="check nickname field write control present but not submitted (write-gate)" loading="lazy"><figcaption>check nickname field write control present but not submitted (write-gate)</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：COMMIT_WRITES=0 — skipped per write-gate policy. Only rendering/current-value display was judged (input shows pre-existing value &#x27;tsweep-qa-20260721&#x27; and &#x27;Overridden (personalized)&#x27; badge, i.e. this reflects a prior write from an earlier test run, not one made in this walk); no new save action was submitted this run.</div>
+
+</div>
+</section>
+<p class="sub" style="margin-top:22px">Generated by test-report-builder (build-agent-report) · issue #1808</p>
+</div></body></html>
