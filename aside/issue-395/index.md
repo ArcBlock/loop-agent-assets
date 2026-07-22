@@ -11,3 +11,4 @@
 | 20260721-144547-home-feed-selection-r3.png | https://github.com/ArcBlock/aside/issues/395 | 2026-07-21T14:45:50Z | codex-issue-review |
 | 20260721-144610-collection-feed-reuse-r3.png | https://github.com/ArcBlock/aside/issues/395 | 2026-07-21T14:46:12Z | codex-issue-review |
 | 20260721-144631-item-notes-r3.png | https://github.com/ArcBlock/aside/issues/395 | 2026-07-21T14:46:34Z | codex-issue-review |
+| 20260722-005800-organize-clues-home-r4.png | https://github.com/ArcBlock/aside/issues/395 | 2026-07-22T00:58:03Z | codex-issue-review |
