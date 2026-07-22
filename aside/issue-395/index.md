@@ -13,3 +13,4 @@
 | 20260721-144631-item-notes-r3.png | https://github.com/ArcBlock/aside/issues/395 | 2026-07-21T14:46:34Z | codex-issue-review |
 | 20260722-005800-organize-clues-home-r4.png | https://github.com/ArcBlock/aside/issues/395 | 2026-07-22T00:58:03Z | codex-issue-review |
 | 20260722-005822-organize-clue-detail-r4.png | https://github.com/ArcBlock/aside/issues/395 | 2026-07-22T00:58:25Z | codex-issue-review |
+| 20260722-005844-organize-no-clues-r4.png | https://github.com/ArcBlock/aside/issues/395 | 2026-07-22T00:58:47Z | codex-issue-review |
