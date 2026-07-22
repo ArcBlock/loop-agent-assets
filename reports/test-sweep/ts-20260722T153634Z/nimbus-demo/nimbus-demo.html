@@ -1,0 +1,113 @@
+<!doctype html><html><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>nimbus-demo — agent 走查报告</title><style>
+:root{--bg:#f7f8f8;--fg:#16201f;--muted:#5c6b69;--card:#fff;--card2:#eef2f1;--border:#dde3e2;--accent:#127a72;--pass:#1f8a54;--warn:#b5771a;--bad:#c0392b}
+@media(prefers-color-scheme:dark){:root{--bg:#0e1413;--fg:#e6ecea;--muted:#8ea19d;--card:#161d1c;--card2:#1d2624;--border:#26302e;--accent:#3fb8ab;--pass:#3fb37a;--warn:#d69a3e;--bad:#e5735f}}
+:root[data-theme=dark]{--bg:#0e1413;--fg:#e6ecea;--muted:#8ea19d;--card:#161d1c;--card2:#1d2624;--border:#26302e;--accent:#3fb8ab;--pass:#3fb37a;--warn:#d69a3e;--bad:#e5735f}
+:root[data-theme=light]{--bg:#f7f8f8;--fg:#16201f;--muted:#5c6b69;--card:#fff;--card2:#eef2f1;--border:#dde3e2;--accent:#127a72;--pass:#1f8a54;--warn:#b5771a;--bad:#c0392b}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--fg);font:15px/1.65 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;padding:24px}
+.wrap{max-width:920px;margin:0 auto}
+h1{font-size:24px;margin:0 0 4px;text-wrap:balance}h2{font-size:19px;margin:30px 0 8px}
+h2 .rt{font-size:13px;color:var(--muted);font-weight:400;font-variant-numeric:tabular-nums}
+.sub{color:var(--muted);margin:0 0 14px;font-size:13px}
+code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.85em;background:var(--card2);padding:1px 5px;border-radius:4px}
+.how{background:var(--card);border:1px solid var(--border);border-left:3px solid var(--accent);border-radius:8px;padding:13px 16px;margin:14px 0;font-size:14px}
+.how b{color:var(--accent)}
+.banner{border-radius:12px;padding:14px 18px;margin:16px 0}
+.banner.ok{background:color-mix(in srgb,var(--pass) 12%,transparent);border:1px solid color-mix(in srgb,var(--pass) 40%,transparent)}
+.banner.ok b{color:var(--pass)}
+.banner.bad{background:color-mix(in srgb,var(--bad) 13%,transparent);border:1px solid color-mix(in srgb,var(--bad) 45%,transparent)}
+.banner.bad b{color:var(--bad);font-size:16px}
+.banner.info{background:color-mix(in srgb,var(--accent) 10%,transparent);border:1px solid color-mix(in srgb,var(--accent) 38%,transparent)}
+.banner.info b{color:var(--accent)}
+.plist{margin:10px 0 0;padding-left:0;list-style:none}
+.plist li{padding:8px 0;border-top:1px solid var(--border)}
+.plist a{text-decoration:none;color:var(--fg);font-weight:600}
+.plist .pe{color:var(--muted);font-size:12.5px;font-weight:400;margin-top:3px}
+.video{width:100%;border-radius:10px;border:1px solid var(--border);background:#000;margin:6px 0 2px}
+.vcap{color:var(--muted);font-size:12.5px;margin:0 0 8px}
+.novideo{color:var(--bad);font-weight:600;background:color-mix(in srgb,var(--bad) 10%,transparent);border:1px dashed color-mix(in srgb,var(--bad) 45%,transparent);border-radius:8px;padding:8px 12px;font-size:13px}
+.kpis{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0}
+.kpi{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:9px 14px;min-width:70px}
+.kpi .k{font-size:21px;font-weight:700;font-variant-numeric:tabular-nums}.kpi .l{color:var(--muted);font-size:12px}
+.kpi .k-bad{color:var(--bad)}.kpi .k-warn{color:var(--warn)}
+.op{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:15px 17px;margin:14px 0}
+.op h3{margin:0 0 3px;font-size:16px;display:flex;align-items:center;gap:9px;flex-wrap:wrap}
+.op .exp{color:var(--muted);font-size:13px;margin:0 0 9px}
+.op .nt{color:var(--muted);font-size:12.5px;margin-top:6px}
+.pill{font-size:11.5px;font-weight:700;padding:2px 9px;border-radius:20px}
+.p-ok{background:color-mix(in srgb,var(--pass) 18%,transparent);color:var(--pass)}
+.p-fail{background:color-mix(in srgb,var(--bad) 18%,transparent);color:var(--bad)}
+.p-warn{background:color-mix(in srgb,var(--warn) 20%,transparent);color:var(--warn)}
+.p-skip{background:var(--card2);color:var(--muted)}
+.p-write{background:color-mix(in srgb,var(--accent) 18%,transparent);color:var(--accent)}
+.frame figure{margin:0 0 9px}.frame img{width:100%;border-radius:8px;border:1px solid var(--border);display:block}
+.frame figcaption{color:var(--muted);font-size:11.5px;margin-top:4px;text-align:center}
+.chk{background:color-mix(in srgb,var(--pass) 12%,transparent);border:1px solid color-mix(in srgb,var(--pass) 34%,transparent);border-radius:8px;padding:8px 12px;font-size:13px}
+.chk b{color:var(--pass)}
+.chk-fail{background:color-mix(in srgb,var(--bad) 11%,transparent);border:1px solid color-mix(in srgb,var(--bad) 40%,transparent);border-radius:8px;padding:8px 12px;font-size:13px}
+.chk-fail b{color:var(--bad)}
+table.probe{border-collapse:collapse;width:100%;font-size:13px}
+table.probe th,table.probe td{border:1px solid var(--border);padding:5px 9px;text-align:left}
+table.probe tr.bad td{background:color-mix(in srgb,var(--bad) 10%,transparent)}
+</style></head><body><div class="wrap">
+<h1>nimbus-demo — agent 走查报告</h1>
+<p class="sub">环境 <code>https://nimbus-demo.afsd.dev</code> · 2026-07-22T15:36:34Z · 走查 2 / 声明 2 条测试路径 · driver <code>agent-playwright-mcp</code></p>
+<div class="how"><b>这份报告在做什么</b>：test-sweep 让 <b>agent 读被测页面自己写的
+<code>.aup/man</code> 知识</b>，用 Playwright MCP <b>当真人逐条测试路径走查</b>（导航/加标签/编辑/删除/创建…），
+<b>每条路径各自一段录屏</b>、每步截图并<b>自判 verdict + 附观察证据</b>（实际 DOM/文本/值，可复核）。
+<b>unreached</b>=没驱动到（不当失败）；<b>inconclusive</b>=不确定（绝不判失败）。写操作默认真提交、不清理。</div>
+
+<div class="banner ok"><b>✅ 覆盖完整</b>：声明 2 条测试路径全部走查。</div>
+<div class="banner bad"><b>⚠️ 发现 2 个问题</b>（点击跳到对应路径）<ul class="plist"><li><a href="#path-settings"><span class="pill p-fail">失败</span> Settings 导航（home → configDir 生成的设置页，需登录） · 步2</a> — 点击 &#x27;Settings&#x27; 按钮（role=button name=Settings），settle 3s<div class="pe">点击后 URL 仍是 https://nimbus-demo.afsd.dev/app（未变为 ?page=settings），textHead 与点击前相同（仍是 home 首页内容），未发生页面切换。用 #id 选择器（#open-settings）复测两次均 click 超时 10s；role/name 定位方式点击不报错但同样无导航效果。</div></li><li><a href="#path-settings"><span class="pill p-fail">失败</span> Settings 导航（home → configDir 生成的设置页，需登录） · 步3</a> — 改用直接深链接 navigate https://nimbus-demo.afsd.dev/app?page=settings（带 authed cookie），settle 5s<div class="pe">页面停留在初始连接态：textHead=&#x27;... CONNECTED — WAITING FOR CONTENT POWERED BY ARC&#x27;，5 秒 settle 后仍未收到该页内容。settings 页是 app.json 里 configDir: &#x27;/instance/settings/settings-shell/app&#x27; 生成的自动化页面（非静态 .aup/pages/*.json），怀疑与本仓库 CLAUDE.md &#x27;DID Space fail-closed </div></li></ul></div>
+<section id="probes"><h2>后端探针 （全通过）</h2><table class="probe"><tr><th></th><th>探针</th><th>详情</th></tr><tr class=""><td>✅</td><td>http-reachable</td><td>HTTP 200</td></tr><tr class=""><td>✅</td><td>afs-rpc-list</td><td>ok:true (2 .aup pages)</td></tr></table></section>
+<section id="path-home">
+<h2>Home 首页（默认页，落地卡片） <span class="rt">anon · /app</span></h2>
+<video class="video" controls preload="metadata" src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260722T153634Z/nimbus-demo/page@d872b2ca34ce46b0d86e5cf3c66f5321.webm"><a href="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260722T153634Z/nimbus-demo/page@d872b2ca34ce46b0d86e5cf3c66f5321.webm">下载该路径录像</a></video><p class="vcap">本测试路径整段走查录像</p>
+<div class="kpis"><div class="kpi"><div class="k">1</div><div class="l">操作步</div></div><div class="kpi"><div class="k">1</div><div class="l">通过</div></div><div class="kpi"><div class="k k-bad">0</div><div class="l">失败</div></div><div class="kpi"><div class="k k-warn">0</div><div class="l">不确定</div></div><div class="kpi"><div class="k">0</div><div class="l">未走到</div></div></div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> navigate /app，settle 3s</h3>
+<div class="exp">期望：intro 卡片：标题 &#x27;A tiny complete app.&#x27; + 正文 + Agent/Settings 两个导航按钮</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260722T153634Z/nimbus-demo/home-01.png" alt="navigate /app，settle 3s" loading="lazy"><figcaption>navigate /app，settle 3s</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：渲染出 h2#title &#x27;A tiny complete app.&#x27;，div#body 含 &#x27;Nimbus has one web page, this AUP app, one agent, and one generated settings shell.&#x27;，button#open-agent &#x27;Agent&#x27;、button#open-settings &#x27;Settings&#x27; 均存在，与 .man home.yaml 文档逐字段一致。</div>
+
+</div>
+</section><section id="path-agent">
+<h2>Agent 导航（home → agent，client-side page swap） <span class="rt">anon · /app?page=agent</span></h2>
+<video class="video" controls preload="metadata" src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260722T153634Z/nimbus-demo/page@9b6de38cb1b4076d8ed88b465beb22cf.webm"><a href="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260722T153634Z/nimbus-demo/page@9b6de38cb1b4076d8ed88b465beb22cf.webm">下载该路径录像</a></video><p class="vcap">本测试路径整段走查录像</p>
+<div class="kpis"><div class="kpi"><div class="k">1</div><div class="l">操作步</div></div><div class="kpi"><div class="k">1</div><div class="l">通过</div></div><div class="kpi"><div class="k k-bad">0</div><div class="l">失败</div></div><div class="kpi"><div class="k k-warn">0</div><div class="l">不确定</div></div><div class="kpi"><div class="k">0</div><div class="l">未走到</div></div></div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> navigate /app，settle 6s 后点击 &#x27;Agent&#x27; 按钮（role=button name=Agent），settle 2.5s</h3>
+<div class="exp">期望：client-side 切到 agent 页（events.click.target=_root, set.page=agent），展示 agent-surface 聊天界面</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260722T153634Z/nimbus-demo/agent-nav3-03.png" alt="navigate /app，settle 6s 后点击 &#x27;Agent&#x27; 按钮（role=button name=Agent），settle 2.5s" loading="lazy"><figcaption>navigate /app，settle 6s 后点击 &#x27;Agent&#x27; 按钮（role=button name=Agent），settle 2.5s</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：URL 变为 https://nimbus-demo.afsd.dev/app?page=agent；textHead 含 &#x27;Nimbus Agent A tiny product-aware assistant declared as a first-class app module. How can I help? AI Device · balanced What can you help with? Show me around this workspace ...&#x27;，agent-surface 嵌入渲染正常。首次尝试（settle 2.5s 后立即点击）click 超时/点击后无反应，加长首屏 settle 到 6s 后复测点击即正常生效——推测是页面刚连接时短暂的 hydration/稳定窗口，非该按钮本身故障（见下 note）。</div>
+<div class="nt">对比 blocklet-manager 的 create-action/back-btn：那边即便加到 6s settle + 3s 点击后等待仍 100% 无法导航，而本页只需要一次性加长首屏 settle 即可稳定复现成功，两者性质不同——本页判定 pass，blocklet-manager 判定 fail。</div>
+</div>
+</section><section id="path-settings">
+<h2>Settings 导航（home → configDir 生成的设置页，需登录） <span class="rt">authed · /app?page=settings</span></h2>
+<video class="video" controls preload="metadata" src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260722T153634Z/nimbus-demo/page@2c884179070757c43551abd147d7a2f6.webm"><a href="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260722T153634Z/nimbus-demo/page@2c884179070757c43551abd147d7a2f6.webm">下载该路径录像</a></video><p class="vcap">本测试路径整段走查录像</p>
+<div class="kpis"><div class="kpi"><div class="k">3</div><div class="l">操作步</div></div><div class="kpi"><div class="k">1</div><div class="l">通过</div></div><div class="kpi"><div class="k k-bad">2</div><div class="l">失败</div></div><div class="kpi"><div class="k k-warn">0</div><div class="l">不确定</div></div><div class="kpi"><div class="k">0</div><div class="l">未走到</div></div></div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> 以 authed cookie（login_token）navigate /app，确认已登录态（header 显示用户菜单而非 Login）</h3>
+<div class="exp">期望：header 显示已登录状态（非 Login 按钮）</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260722T153634Z/nimbus-demo/settings-nav2-01.png" alt="以 authed cookie（login_token）navigate /app，确认已登录态（header 显示用户菜单而非 Login）" loading="lazy"><figcaption>以 authed cookie（login_token）navigate /app，确认已登录态（header 显示用户菜单而非 Login）</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：interactables 中 Login 按钮消失，代之以下拉箭头 &#x27;▾&#x27;（用户菜单），确认 JWT cookie 注入生效、认证态被识别。</div>
+
+</div>
+<div class="op">
+<h3><span class="pill p-fail">失败</span> 点击 &#x27;Settings&#x27; 按钮（role=button name=Settings），settle 3s</h3>
+<div class="exp">期望：client-side 切到 settings 页（configDir 生成的设置壳层）</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260722T153634Z/nimbus-demo/settings-nav2-02.png" alt="点击 &#x27;Settings&#x27; 按钮（role=button name=Settings），settle 3s" loading="lazy"><figcaption>点击 &#x27;Settings&#x27; 按钮（role=button name=Settings），settle 3s</figcaption></figure></div>
+<div class="chk-fail"><b>观察证据</b>：点击后 URL 仍是 https://nimbus-demo.afsd.dev/app（未变为 ?page=settings），textHead 与点击前相同（仍是 home 首页内容），未发生页面切换。用 #id 选择器（#open-settings）复测两次均 click 超时 10s；role/name 定位方式点击不报错但同样无导航效果。</div>
+
+</div>
+<div class="op">
+<h3><span class="pill p-fail">失败</span> 改用直接深链接 navigate https://nimbus-demo.afsd.dev/app?page=settings（带 authed cookie），settle 5s</h3>
+<div class="exp">期望：渲染 configDir 生成的设置壳层内容</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260722T153634Z/nimbus-demo/settings-direct-02.png" alt="改用直接深链接 navigate https://nimbus-demo.afsd.dev/app?page=settings（带 authed cookie），settle 5s" loading="lazy"><figcaption>改用直接深链接 navigate https://nimbus-demo.afsd.dev/app?page=settings（带 authed cookie），settle 5s</figcaption></figure></div>
+<div class="chk-fail"><b>观察证据</b>：页面停留在初始连接态：textHead=&#x27;... CONNECTED — WAITING FOR CONTENT POWERED BY ARC&#x27;，5 秒 settle 后仍未收到该页内容。settings 页是 app.json 里 configDir: &#x27;/instance/settings/settings-shell/app&#x27; 生成的自动化页面（非静态 .aup/pages/*.json），怀疑与本仓库 CLAUDE.md &#x27;DID Space fail-closed rule&#x27; 相关——若本次测试会话未挂载真实部署 DID Space（/instance 不可用），该页应产生显式的 deploy/runtime/诊断失败，而非无限期挂起在 &#x27;WAITING FOR CONTENT&#x27;。当前观测到的是后者（静默挂起），供人工核实是否违反该架构护栏。</div>
+
+</div>
+</section>
+<p class="sub" style="margin-top:22px">Generated by test-report-builder (build-agent-report) · issue #1808</p>
+</div></body></html>
