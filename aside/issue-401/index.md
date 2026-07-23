@@ -16,3 +16,4 @@
 | 20260723-001700-scenario-organize-home-r7.png | https://github.com/ArcBlock/aside/issues/401 | 2026-07-23T00:17:04Z | codex-issue-review |
 | 20260723-001722-scenario-organize-trade-show-r7.png | https://github.com/ArcBlock/aside/issues/401 | 2026-07-23T00:17:25Z | codex-issue-review |
 | 20260723-001746-scenario-organize-travel-r7.png | https://github.com/ArcBlock/aside/issues/401 | 2026-07-23T00:17:49Z | codex-issue-review |
+| 20260723-001806-scenario-organize-research-r7.png | https://github.com/ArcBlock/aside/issues/401 | 2026-07-23T00:18:09Z | codex-issue-review |
