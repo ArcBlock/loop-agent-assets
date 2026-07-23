@@ -10,3 +10,4 @@
 | docs-image-overflow.png | https://github.com/ArcBlock/arcblock-site | 2026-07-23T07:26:40Z | wangshijun@wangshijun-mac-studio |
 | docs-mobile-navigation.png | https://github.com/ArcBlock/arcblock-site | 2026-07-23T07:26:47Z | wangshijun@wangshijun-mac-studio |
 | docs-admonition.png | https://github.com/ArcBlock/arcblock-site | 2026-07-23T07:26:54Z | wangshijun@wangshijun-mac-studio |
+| pr37-fce8b10-en-article.png | https://github.com/ArcBlock/arcblock-site | 2026-07-23T11:25:30Z | wangshijun@wangshijun-mac-studio |
