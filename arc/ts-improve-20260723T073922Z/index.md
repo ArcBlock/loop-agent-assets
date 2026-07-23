@@ -243,3 +243,4 @@
 | 20260723-085333-page@d12a20fc0a51e54e0ccd07eaa54cef1e.webm | https://github.com/ArcBlock/arc | 2026-07-23T08:53:33Z | root@vm |
 | 20260723-085336-back-nav-01.png | https://github.com/ArcBlock/arc | 2026-07-23T08:53:36Z | root@vm |
 | 20260723-085338-back-nav-02.png | https://github.com/ArcBlock/arc | 2026-07-23T08:53:38Z | root@vm |
+| 20260723-085341-back-nav-03.png | https://github.com/ArcBlock/arc | 2026-07-23T08:53:41Z | root@vm |
