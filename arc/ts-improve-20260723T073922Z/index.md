@@ -167,3 +167,4 @@
 | 20260723-084952-settings-01.png | https://github.com/ArcBlock/arc | 2026-07-23T08:49:52Z | root@vm |
 | 20260723-084955-settings-02.png | https://github.com/ArcBlock/arc | 2026-07-23T08:49:55Z | root@vm |
 | 20260723-084957-settings-03.png | https://github.com/ArcBlock/arc | 2026-07-23T08:49:57Z | root@vm |
+| 20260723-085000-tag-detail-01.png | https://github.com/ArcBlock/arc | 2026-07-23T08:50:00Z | root@vm |
