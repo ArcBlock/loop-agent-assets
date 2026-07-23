@@ -101,3 +101,4 @@
 | 20260723-155457-clip-03.png | https://github.com/ArcBlock/arc | 2026-07-23T15:54:57Z | root@vm |
 | 20260723-155501-clipper-03.png | https://github.com/ArcBlock/arc | 2026-07-23T15:55:01Z | root@vm |
 | 20260723-155504-collection-detail-03.png | https://github.com/ArcBlock/arc | 2026-07-23T15:55:04Z | root@vm |
+| 20260723-155507-collections-03.png | https://github.com/ArcBlock/arc | 2026-07-23T15:55:07Z | root@vm |
