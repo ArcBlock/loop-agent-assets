@@ -265,3 +265,4 @@
 | 20260723-085447-collect-flow2-03.png | https://github.com/ArcBlock/arc | 2026-07-23T08:54:47Z | root@vm |
 | 20260723-085450-collect-flow2-04.png | https://github.com/ArcBlock/arc | 2026-07-23T08:54:50Z | root@vm |
 | 20260723-085454-collect-flow2-05.png | https://github.com/ArcBlock/arc | 2026-07-23T08:54:54Z | root@vm |
+| 20260723-085456-detail-01.png | https://github.com/ArcBlock/arc | 2026-07-23T08:54:56Z | root@vm |
