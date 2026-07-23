@@ -52,3 +52,4 @@
 | 20260723-075207-natal-01.png | https://github.com/ArcBlock/arc | 2026-07-23T07:52:07Z | root@vm |
 | 20260723-075209-natal-02.png | https://github.com/ArcBlock/arc | 2026-07-23T07:52:09Z | root@vm |
 | 20260723-075212-natal-03.png | https://github.com/ArcBlock/arc | 2026-07-23T07:52:12Z | root@vm |
+| 20260723-075214-star-trace-01.png | https://github.com/ArcBlock/arc | 2026-07-23T07:52:14Z | root@vm |
