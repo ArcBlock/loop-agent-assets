@@ -70,3 +70,4 @@
 | 20260723-084503-settings-02.png | https://github.com/ArcBlock/arc | 2026-07-23T08:45:03Z | root@vm |
 | 20260723-084506-settings-03.png | https://github.com/ArcBlock/arc | 2026-07-23T08:45:06Z | root@vm |
 | 20260723-084509-page@bf9de93495c7baad3c215d919daafd19.webm | https://github.com/ArcBlock/arc | 2026-07-23T08:45:09Z | root@vm |
+| 20260723-084512-page@e1818aa3479e85153b560a9b22e0b086.webm | https://github.com/ArcBlock/arc | 2026-07-23T08:45:12Z | root@vm |
