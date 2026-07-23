@@ -73,3 +73,4 @@
 | 20260723-052329-page@55581eda89617beb3a6d044bb3a3672d.webm | https://github.com/ArcBlock/arc | 2026-07-23T05:23:29Z | root@vm |
 | 20260723-052339-explorer-01.png | https://github.com/ArcBlock/arc | 2026-07-23T05:23:39Z | root@vm |
 | 20260723-052342-explorer-02.png | https://github.com/ArcBlock/arc | 2026-07-23T05:23:42Z | root@vm |
+| 20260723-052345-explorer-03.png | https://github.com/ArcBlock/arc | 2026-07-23T05:23:45Z | root@vm |
