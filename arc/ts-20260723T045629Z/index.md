@@ -118,3 +118,4 @@
 | 20260723-052546-feed3-02.png | https://github.com/ArcBlock/arc | 2026-07-23T05:25:46Z | root@vm |
 | 20260723-052548-feed3-03.png | https://github.com/ArcBlock/arc | 2026-07-23T05:25:48Z | root@vm |
 | 20260723-052551-landing-01.png | https://github.com/ArcBlock/arc | 2026-07-23T05:25:51Z | root@vm |
+| 20260723-052554-landing-02.png | https://github.com/ArcBlock/arc | 2026-07-23T05:25:54Z | root@vm |
