@@ -231,3 +231,4 @@
 | 20260723-085300-today-01.png | https://github.com/ArcBlock/arc | 2026-07-23T08:53:00Z | root@vm |
 | 20260723-085302-today-02.png | https://github.com/ArcBlock/arc | 2026-07-23T08:53:02Z | root@vm |
 | 20260723-085305-today-03.png | https://github.com/ArcBlock/arc | 2026-07-23T08:53:05Z | root@vm |
+| 20260723-085308-page@083ec68da80aa7e991ef1997103a41f9.webm | https://github.com/ArcBlock/arc | 2026-07-23T08:53:08Z | root@vm |
