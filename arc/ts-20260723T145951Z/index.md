@@ -27,3 +27,4 @@
 | 20260723-155043-files-explorer-03.png | https://github.com/ArcBlock/arc | 2026-07-23T15:50:43Z | root@vm |
 | 20260723-155046-page@b523336a08f6c953efe9501c125e69aa.webm | https://github.com/ArcBlock/arc | 2026-07-23T15:50:46Z | root@vm |
 | 20260723-155049-page@efde33d44784c351900c61eb5c50a1b1.webm | https://github.com/ArcBlock/arc | 2026-07-23T15:50:49Z | root@vm |
+| 20260723-155053-post-detail-05.png | https://github.com/ArcBlock/arc | 2026-07-23T15:50:53Z | root@vm |
