@@ -108,3 +108,4 @@
 | 20260723-155521-item-detail-retry-03.png | https://github.com/ArcBlock/arc | 2026-07-23T15:55:21Z | root@vm |
 | 20260723-155524-publish-authed-03.png | https://github.com/ArcBlock/arc | 2026-07-23T15:55:24Z | root@vm |
 | 20260723-155527-settings-03.png | https://github.com/ArcBlock/arc | 2026-07-23T15:55:27Z | root@vm |
+| 20260723-155531-tag-detail-03.png | https://github.com/ArcBlock/arc | 2026-07-23T15:55:31Z | root@vm |
