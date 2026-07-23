@@ -14,3 +14,4 @@
 | 20260722-151754-scenario-read-later-queue-r6.png | https://github.com/ArcBlock/aside/issues/401 | 2026-07-22T15:17:57Z | codex-issue-review |
 | 20260722-151815-scenario-read-later-process-r6.png | https://github.com/ArcBlock/aside/issues/401 | 2026-07-22T15:18:18Z | codex-issue-review |
 | 20260723-001700-scenario-organize-home-r7.png | https://github.com/ArcBlock/aside/issues/401 | 2026-07-23T00:17:04Z | codex-issue-review |
+| 20260723-001722-scenario-organize-trade-show-r7.png | https://github.com/ArcBlock/aside/issues/401 | 2026-07-23T00:17:25Z | codex-issue-review |
