@@ -86,3 +86,4 @@
 | 20260723-155405-list-pagination-03.png | https://github.com/ArcBlock/arc | 2026-07-23T15:54:05Z | root@vm |
 | 20260723-155408-list-template-03.png | https://github.com/ArcBlock/arc | 2026-07-23T15:54:08Z | root@vm |
 | 20260723-155411-list-virtual-03.png | https://github.com/ArcBlock/arc | 2026-07-23T15:54:11Z | root@vm |
+| 20260723-155414-overlays-03.png | https://github.com/ArcBlock/arc | 2026-07-23T15:54:14Z | root@vm |
