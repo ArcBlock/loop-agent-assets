@@ -19,3 +19,4 @@
 | 20260723-061930-ja-articles-5c6628a7-f1a7-4ec6-a337-53084ed5800b.png | https://github.com/ArcBlock/arcblock-site/issues/24 | 2026-07-23T06:19:30Z | wangshijun@wangshijun-mac-studio |
 | 20260723-061940-zh-TW-articles-2022-01-30-arcbridge-beta.png | https://github.com/ArcBlock/arcblock-site/issues/24 | 2026-07-23T06:19:40Z | wangshijun@wangshijun-mac-studio |
 | 20260723-061949-zh-TW-articles-2022-09-26-wallet-security-tips.png | https://github.com/ArcBlock/arcblock-site/issues/24 | 2026-07-23T06:19:49Z | wangshijun@wangshijun-mac-studio |
+| 20260723-061959-zh-TW-articles-5c6628a7-f1a7-4ec6-a337-53084ed5800b.png | https://github.com/ArcBlock/arcblock-site/issues/24 | 2026-07-23T06:19:59Z | wangshijun@wangshijun-mac-studio |
