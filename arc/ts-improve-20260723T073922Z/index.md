@@ -252,3 +252,4 @@
 | 20260723-085358-collect-flow-04.png | https://github.com/ArcBlock/arc | 2026-07-23T08:53:58Z | root@vm |
 | 20260723-085408-back-nav-01.png | https://github.com/ArcBlock/arc | 2026-07-23T08:54:08Z | root@vm |
 | 20260723-085411-back-nav-02.png | https://github.com/ArcBlock/arc | 2026-07-23T08:54:11Z | root@vm |
+| 20260723-085414-back-nav-03.png | https://github.com/ArcBlock/arc | 2026-07-23T08:54:14Z | root@vm |
