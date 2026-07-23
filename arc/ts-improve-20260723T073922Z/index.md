@@ -75,3 +75,4 @@
 | 20260723-084518-auto-surface-01.png | https://github.com/ArcBlock/arc | 2026-07-23T08:45:18Z | root@vm |
 | 20260723-084520-auto-surface-02.png | https://github.com/ArcBlock/arc | 2026-07-23T08:45:20Z | root@vm |
 | 20260723-084524-auto-surface-03.png | https://github.com/ArcBlock/arc | 2026-07-23T08:45:24Z | root@vm |
+| 20260723-084527-click-nav-list-basic-01.png | https://github.com/ArcBlock/arc | 2026-07-23T08:45:27Z | root@vm |
