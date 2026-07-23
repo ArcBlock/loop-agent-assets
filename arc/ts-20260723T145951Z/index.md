@@ -61,3 +61,4 @@
 | 20260723-155237-page@fd10e2a0961fbdf45aedac15828de9e8.webm | https://github.com/ArcBlock/arc | 2026-07-23T15:52:37Z | root@vm |
 | 20260723-155245-chat-03.png | https://github.com/ArcBlock/arc | 2026-07-23T15:52:45Z | root@vm |
 | 20260723-155248-feed-03.png | https://github.com/ArcBlock/arc | 2026-07-23T15:52:48Z | root@vm |
+| 20260723-155251-forum-03.png | https://github.com/ArcBlock/arc | 2026-07-23T15:52:51Z | root@vm |
