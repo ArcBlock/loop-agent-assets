@@ -67,3 +67,4 @@
 | 20260723-084454-index-02.png | https://github.com/ArcBlock/arc | 2026-07-23T08:44:54Z | root@vm |
 | 20260723-084457-index-03.png | https://github.com/ArcBlock/arc | 2026-07-23T08:44:57Z | root@vm |
 | 20260723-084500-settings-01.png | https://github.com/ArcBlock/arc | 2026-07-23T08:45:00Z | root@vm |
+| 20260723-084503-settings-02.png | https://github.com/ArcBlock/arc | 2026-07-23T08:45:03Z | root@vm |
