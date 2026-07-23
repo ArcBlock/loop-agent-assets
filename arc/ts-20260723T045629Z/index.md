@@ -91,3 +91,4 @@
 | 20260723-052429-page@0db0844eccbe01e50db2af9552df1c1c.webm | https://github.com/ArcBlock/arc | 2026-07-23T05:24:29Z | root@vm |
 | 20260723-052433-page@84ddd592ee1aa28b838d70bec09ddb94.webm | https://github.com/ArcBlock/arc | 2026-07-23T05:24:33Z | root@vm |
 | 20260723-052437-page@eac7522a5a4f2f475210a5ef21fe2c27.webm | https://github.com/ArcBlock/arc | 2026-07-23T05:24:37Z | root@vm |
+| 20260723-052440-create-flow-01.png | https://github.com/ArcBlock/arc | 2026-07-23T05:24:40Z | root@vm |
