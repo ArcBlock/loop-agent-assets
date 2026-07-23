@@ -94,3 +94,4 @@
 | 20260723-052440-create-flow-01.png | https://github.com/ArcBlock/arc | 2026-07-23T05:24:40Z | root@vm |
 | 20260723-052442-create-flow-02.png | https://github.com/ArcBlock/arc | 2026-07-23T05:24:42Z | root@vm |
 | 20260723-052445-create-flow-03.png | https://github.com/ArcBlock/arc | 2026-07-23T05:24:45Z | root@vm |
+| 20260723-052448-create-flow-04.png | https://github.com/ArcBlock/arc | 2026-07-23T05:24:48Z | root@vm |
