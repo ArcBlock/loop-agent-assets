@@ -117,3 +117,4 @@
 | 20260723-084733-overlays-03.png | https://github.com/ArcBlock/arc | 2026-07-23T08:47:33Z | root@vm |
 | 20260723-084736-page@0e6f425908d508e3593d42847fb878a3.webm | https://github.com/ArcBlock/arc | 2026-07-23T08:47:36Z | root@vm |
 | 20260723-084739-page@1c055921f8b46eec5ab5fd8b09bc83ec.webm | https://github.com/ArcBlock/arc | 2026-07-23T08:47:39Z | root@vm |
+| 20260723-084742-page@25c102595cfdc5cc0094590bebe53a0d.webm | https://github.com/ArcBlock/arc | 2026-07-23T08:47:42Z | root@vm |
