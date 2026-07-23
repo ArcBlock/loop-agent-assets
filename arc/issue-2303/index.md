@@ -4,3 +4,4 @@
 |---|---|---|---|
 | docs-nav-mobile-closed.png | https://github.com/ArcBlock/arc/issues/2303 | 2026-07-23T10:47:22Z | root@vm |
 | docs-nav-mobile-open.png | https://github.com/ArcBlock/arc/issues/2303 | 2026-07-23T10:47:38Z | root@vm |
+| docs-nav-desktop.png | https://github.com/ArcBlock/arc/issues/2303 | 2026-07-23T10:47:40Z | root@vm |
