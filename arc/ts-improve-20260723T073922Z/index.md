@@ -93,3 +93,4 @@
 | 20260723-084611-form-contact-lw-03.png | https://github.com/ArcBlock/arc | 2026-07-23T08:46:11Z | root@vm |
 | 20260723-084614-form-wizard-01.png | https://github.com/ArcBlock/arc | 2026-07-23T08:46:14Z | root@vm |
 | 20260723-084616-form-wizard-02.png | https://github.com/ArcBlock/arc | 2026-07-23T08:46:16Z | root@vm |
+| 20260723-084619-form-wizard-03.png | https://github.com/ArcBlock/arc | 2026-07-23T08:46:19Z | root@vm |
