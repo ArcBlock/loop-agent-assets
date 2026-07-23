@@ -109,3 +109,4 @@
 | 20260723-052522-collections-02.png | https://github.com/ArcBlock/arc | 2026-07-23T05:25:22Z | root@vm |
 | 20260723-052524-collections-03.png | https://github.com/ArcBlock/arc | 2026-07-23T05:25:24Z | root@vm |
 | 20260723-052527-feed-01.png | https://github.com/ArcBlock/arc | 2026-07-23T05:25:27Z | root@vm |
+| 20260723-052529-feed-02.png | https://github.com/ArcBlock/arc | 2026-07-23T05:25:29Z | root@vm |
