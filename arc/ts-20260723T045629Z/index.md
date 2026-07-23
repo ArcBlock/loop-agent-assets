@@ -107,3 +107,4 @@
 | 20260723-052516-page@e067899a1e485ad25b6801486dbf2a1b.webm | https://github.com/ArcBlock/arc | 2026-07-23T05:25:16Z | root@vm |
 | 20260723-052519-collections-01.png | https://github.com/ArcBlock/arc | 2026-07-23T05:25:19Z | root@vm |
 | 20260723-052522-collections-02.png | https://github.com/ArcBlock/arc | 2026-07-23T05:25:22Z | root@vm |
+| 20260723-052524-collections-03.png | https://github.com/ArcBlock/arc | 2026-07-23T05:25:24Z | root@vm |
