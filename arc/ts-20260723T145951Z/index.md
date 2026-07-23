@@ -25,3 +25,4 @@
 | 20260723-155030-page@3fd1f4725ef2518fa100082abf643d9b.webm | https://github.com/ArcBlock/arc | 2026-07-23T15:50:30Z | root@vm |
 | 20260723-155039-files-anon-retry-03.png | https://github.com/ArcBlock/arc | 2026-07-23T15:50:39Z | root@vm |
 | 20260723-155043-files-explorer-03.png | https://github.com/ArcBlock/arc | 2026-07-23T15:50:43Z | root@vm |
+| 20260723-155046-page@b523336a08f6c953efe9501c125e69aa.webm | https://github.com/ArcBlock/arc | 2026-07-23T15:50:46Z | root@vm |
