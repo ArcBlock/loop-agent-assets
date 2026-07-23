@@ -244,3 +244,4 @@
 | 20260723-085336-back-nav-01.png | https://github.com/ArcBlock/arc | 2026-07-23T08:53:36Z | root@vm |
 | 20260723-085338-back-nav-02.png | https://github.com/ArcBlock/arc | 2026-07-23T08:53:38Z | root@vm |
 | 20260723-085341-back-nav-03.png | https://github.com/ArcBlock/arc | 2026-07-23T08:53:41Z | root@vm |
+| 20260723-085343-back-nav-04.png | https://github.com/ArcBlock/arc | 2026-07-23T08:53:43Z | root@vm |
