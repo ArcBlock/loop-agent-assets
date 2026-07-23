@@ -154,3 +154,4 @@
 | 20260723-084917-feed3-03.png | https://github.com/ArcBlock/arc | 2026-07-23T08:49:17Z | root@vm |
 | 20260723-084920-item-detail-01.png | https://github.com/ArcBlock/arc | 2026-07-23T08:49:20Z | root@vm |
 | 20260723-084923-item-detail-02.png | https://github.com/ArcBlock/arc | 2026-07-23T08:49:23Z | root@vm |
+| 20260723-084926-item-detail-03.png | https://github.com/ArcBlock/arc | 2026-07-23T08:49:26Z | root@vm |
