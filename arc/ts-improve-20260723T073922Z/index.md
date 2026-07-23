@@ -193,3 +193,4 @@
 | 20260723-085107-page@ecd72190984a9603f009b232d0f6feb5.webm | https://github.com/ArcBlock/arc | 2026-07-23T08:51:07Z | root@vm |
 | 20260723-085110-page@efabc7a7999ba5d3d516e4d08e577ffb.webm | https://github.com/ArcBlock/arc | 2026-07-23T08:51:10Z | root@vm |
 | 20260723-085113-add-friend-01.png | https://github.com/ArcBlock/arc | 2026-07-23T08:51:13Z | root@vm |
+| 20260723-085116-add-friend-02.png | https://github.com/ArcBlock/arc | 2026-07-23T08:51:16Z | root@vm |
