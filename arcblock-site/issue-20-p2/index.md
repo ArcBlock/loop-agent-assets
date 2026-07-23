@@ -9,3 +9,4 @@
 | 20260723-021836-ja.png | https://github.com/ArcBlock/arcblock-site/issues/20-p2 | 2026-07-23T02:18:36Z | wangshijun@wangshijun-mac-studio |
 | 20260723-021844-zh-TW-articles-ai-web3-panel.png | https://github.com/ArcBlock/arcblock-site/issues/20-p2 | 2026-07-23T02:18:45Z | wangshijun@wangshijun-mac-studio |
 | 20260723-021853-zh-TW-articles-evolution-of-arcblock-architect.png | https://github.com/ArcBlock/arcblock-site/issues/20-p2 | 2026-07-23T02:18:53Z | wangshijun@wangshijun-mac-studio |
+| 20260723-021904-zh-TW.png | https://github.com/ArcBlock/arcblock-site/issues/20-p2 | 2026-07-23T02:19:04Z | wangshijun@wangshijun-mac-studio |
