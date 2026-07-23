@@ -70,3 +70,4 @@
 | 20260723-155309-unified-03.png | https://github.com/ArcBlock/arc | 2026-07-23T15:53:09Z | root@vm |
 | 20260723-155312-page@3adea0b11a751c667a02840e800fe84a.webm | https://github.com/ArcBlock/arc | 2026-07-23T15:53:12Z | root@vm |
 | 20260723-155315-page@48b01ad93d5589b4b7f170e17e168afe.webm | https://github.com/ArcBlock/arc | 2026-07-23T15:53:15Z | root@vm |
+| 20260723-155318-page@6389cca3b6bfb6114b610ae96713fd2a.webm | https://github.com/ArcBlock/arc | 2026-07-23T15:53:18Z | root@vm |
