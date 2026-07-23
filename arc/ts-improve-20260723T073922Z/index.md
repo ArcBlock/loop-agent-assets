@@ -269,3 +269,4 @@
 | 20260723-085459-detail-02.png | https://github.com/ArcBlock/arc | 2026-07-23T08:54:59Z | root@vm |
 | 20260723-085502-detail-03.png | https://github.com/ArcBlock/arc | 2026-07-23T08:55:02Z | root@vm |
 | 20260723-085505-detail-04.png | https://github.com/ArcBlock/arc | 2026-07-23T08:55:05Z | root@vm |
+| 20260723-085508-detail-05.png | https://github.com/ArcBlock/arc | 2026-07-23T08:55:08Z | root@vm |
