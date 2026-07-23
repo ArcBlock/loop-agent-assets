@@ -3,3 +3,4 @@
 | file | source | uploaded | by |
 |---|---|---|---|
 | 20260723-151427-ja-articles-2020-01-09-wallet-v21-intro.png | https://github.com/ArcBlock/arcblock-site/pull/41 | 2026-07-23T15:14:27Z | wangshijun@wangshijun-mac-studio |
+| 20260723-151436-ja-articles-2020-06-25-cryptocurrency-cryptoassets-token.png | https://github.com/ArcBlock/arcblock-site/pull/41 | 2026-07-23T15:14:36Z | wangshijun@wangshijun-mac-studio |
