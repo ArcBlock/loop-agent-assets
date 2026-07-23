@@ -165,3 +165,4 @@
 | 20260723-084947-publish-02.png | https://github.com/ArcBlock/arc | 2026-07-23T08:49:47Z | root@vm |
 | 20260723-084950-publish-03.png | https://github.com/ArcBlock/arc | 2026-07-23T08:49:50Z | root@vm |
 | 20260723-084952-settings-01.png | https://github.com/ArcBlock/arc | 2026-07-23T08:49:52Z | root@vm |
+| 20260723-084955-settings-02.png | https://github.com/ArcBlock/arc | 2026-07-23T08:49:55Z | root@vm |
