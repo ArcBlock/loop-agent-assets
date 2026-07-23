@@ -84,3 +84,4 @@
 | 20260723-052410-explorer2-03.png | https://github.com/ArcBlock/arc | 2026-07-23T05:24:10Z | root@vm |
 | 20260723-052412-explorer2-04.png | https://github.com/ArcBlock/arc | 2026-07-23T05:24:12Z | root@vm |
 | 20260723-052415-explorer2-05.png | https://github.com/ArcBlock/arc | 2026-07-23T05:24:15Z | root@vm |
+| 20260723-052417-home-01.png | https://github.com/ArcBlock/arc | 2026-07-23T05:24:17Z | root@vm |
