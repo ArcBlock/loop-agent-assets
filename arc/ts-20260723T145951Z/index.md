@@ -99,3 +99,4 @@
 | 20260723-155445-page@fe772ada34f1c7261daac2c7eeb15452.webm | https://github.com/ArcBlock/arc | 2026-07-23T15:54:45Z | root@vm |
 | 20260723-155454-chat-03.png | https://github.com/ArcBlock/arc | 2026-07-23T15:54:54Z | root@vm |
 | 20260723-155457-clip-03.png | https://github.com/ArcBlock/arc | 2026-07-23T15:54:57Z | root@vm |
+| 20260723-155501-clipper-03.png | https://github.com/ArcBlock/arc | 2026-07-23T15:55:01Z | root@vm |
