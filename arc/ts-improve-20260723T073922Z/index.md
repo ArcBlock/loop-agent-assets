@@ -209,3 +209,4 @@
 | 20260723-085152-add-friend3-05.png | https://github.com/ArcBlock/arc | 2026-07-23T08:51:52Z | root@vm |
 | 20260723-085155-add-friend3-06.png | https://github.com/ArcBlock/arc | 2026-07-23T08:51:55Z | root@vm |
 | 20260723-085157-add-friend3-07.png | https://github.com/ArcBlock/arc | 2026-07-23T08:51:57Z | root@vm |
+| 20260723-085200-add-friend3-08.png | https://github.com/ArcBlock/arc | 2026-07-23T08:52:00Z | root@vm |
