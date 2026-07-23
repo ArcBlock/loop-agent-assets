@@ -21,3 +21,4 @@
 | 20260723-075025-notifications-02.png | https://github.com/ArcBlock/arc | 2026-07-23T07:50:25Z | root@vm |
 | 20260723-075028-notifications-03.png | https://github.com/ArcBlock/arc | 2026-07-23T07:50:28Z | root@vm |
 | 20260723-075031-thread-01.png | https://github.com/ArcBlock/arc | 2026-07-23T07:50:31Z | root@vm |
+| 20260723-075034-thread-02.png | https://github.com/ArcBlock/arc | 2026-07-23T07:50:34Z | root@vm |
