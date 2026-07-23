@@ -114,3 +114,4 @@
 | 20260723-084725-list-virtual-03.png | https://github.com/ArcBlock/arc | 2026-07-23T08:47:25Z | root@vm |
 | 20260723-084728-overlays-01.png | https://github.com/ArcBlock/arc | 2026-07-23T08:47:28Z | root@vm |
 | 20260723-084731-overlays-02.png | https://github.com/ArcBlock/arc | 2026-07-23T08:47:31Z | root@vm |
+| 20260723-084733-overlays-03.png | https://github.com/ArcBlock/arc | 2026-07-23T08:47:33Z | root@vm |
