@@ -52,3 +52,4 @@
 | 20260723-155209-natal-03.png | https://github.com/ArcBlock/arc | 2026-07-23T15:52:09Z | root@vm |
 | 20260723-155212-star-trace-03.png | https://github.com/ArcBlock/arc | 2026-07-23T15:52:12Z | root@vm |
 | 20260723-155216-today-03.png | https://github.com/ArcBlock/arc | 2026-07-23T15:52:16Z | root@vm |
+| 20260723-155219-page@2988ab57e40dc21bcfcd32bf932788d8.webm | https://github.com/ArcBlock/arc | 2026-07-23T15:52:19Z | root@vm |
