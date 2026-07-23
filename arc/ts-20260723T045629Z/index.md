@@ -105,3 +105,4 @@
 | 20260723-052511-page@44324f21a212ab6b1ce1f3d8d03958bb.webm | https://github.com/ArcBlock/arc | 2026-07-23T05:25:11Z | root@vm |
 | 20260723-052513-page@5f3f5b5bc800ddbac7a1c94c8d2e2b33.webm | https://github.com/ArcBlock/arc | 2026-07-23T05:25:13Z | root@vm |
 | 20260723-052516-page@e067899a1e485ad25b6801486dbf2a1b.webm | https://github.com/ArcBlock/arc | 2026-07-23T05:25:16Z | root@vm |
+| 20260723-052519-collections-01.png | https://github.com/ArcBlock/arc | 2026-07-23T05:25:19Z | root@vm |
