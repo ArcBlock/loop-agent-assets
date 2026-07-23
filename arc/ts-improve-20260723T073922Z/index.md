@@ -9,3 +9,4 @@
 | 20260723-074950-feed-02.png | https://github.com/ArcBlock/arc | 2026-07-23T07:49:50Z | root@vm |
 | 20260723-074954-feed-03.png | https://github.com/ArcBlock/arc | 2026-07-23T07:49:54Z | root@vm |
 | 20260723-074957-forum-01.png | https://github.com/ArcBlock/arc | 2026-07-23T07:49:57Z | root@vm |
+| 20260723-075000-forum-02.png | https://github.com/ArcBlock/arc | 2026-07-23T07:50:00Z | root@vm |
