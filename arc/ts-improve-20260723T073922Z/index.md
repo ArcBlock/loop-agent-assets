@@ -83,3 +83,4 @@
 | 20260723-084543-click-nav-list-basic2-01.png | https://github.com/ArcBlock/arc | 2026-07-23T08:45:43Z | root@vm |
 | 20260723-084547-click-nav-list-basic2-02.png | https://github.com/ArcBlock/arc | 2026-07-23T08:45:47Z | root@vm |
 | 20260723-084549-click-nav-list-basic2-03.png | https://github.com/ArcBlock/arc | 2026-07-23T08:45:49Z | root@vm |
+| 20260723-084552-click-nav-list-basic2-04.png | https://github.com/ArcBlock/arc | 2026-07-23T08:45:52Z | root@vm |
