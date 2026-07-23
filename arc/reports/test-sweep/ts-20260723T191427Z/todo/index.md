@@ -9,3 +9,4 @@
 | 20260723-195806-home-retry-02.png | https://github.com/ArcBlock/arc | 2026-07-23T19:58:06Z | root@vm |
 | 20260723-195811-home-retry-03.png | https://github.com/ArcBlock/arc | 2026-07-23T19:58:11Z | root@vm |
 | 20260723-195815-page@84f2081c853ed26a2359ce872c813505.webm | https://github.com/ArcBlock/arc | 2026-07-23T19:58:15Z | root@vm |
+| 20260723-195818-page@bc60e94c2e813dfffe0f424eb36bb490.webm | https://github.com/ArcBlock/arc | 2026-07-23T19:58:18Z | root@vm |
