@@ -172,3 +172,4 @@
 | 20260723-085005-tag-detail-03.png | https://github.com/ArcBlock/arc | 2026-07-23T08:50:05Z | root@vm |
 | 20260723-085008-tag-detail2-01.png | https://github.com/ArcBlock/arc | 2026-07-23T08:50:08Z | root@vm |
 | 20260723-085011-tag-detail2-02.png | https://github.com/ArcBlock/arc | 2026-07-23T08:50:11Z | root@vm |
+| 20260723-085014-tag-detail2-03.png | https://github.com/ArcBlock/arc | 2026-07-23T08:50:14Z | root@vm |
