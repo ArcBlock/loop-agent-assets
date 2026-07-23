@@ -80,3 +80,4 @@
 | 20260723-155348-auto-surface-03.png | https://github.com/ArcBlock/arc | 2026-07-23T15:53:48Z | root@vm |
 | 20260723-155351-form-contact-03.png | https://github.com/ArcBlock/arc | 2026-07-23T15:53:51Z | root@vm |
 | 20260723-155354-form-wizard-03.png | https://github.com/ArcBlock/arc | 2026-07-23T15:53:54Z | root@vm |
+| 20260723-155356-index-03.png | https://github.com/ArcBlock/arc | 2026-07-23T15:53:56Z | root@vm |
