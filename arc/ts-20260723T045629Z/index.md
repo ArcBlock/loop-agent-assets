@@ -56,3 +56,4 @@
 | 20260723-052226-home-03.png | https://github.com/ArcBlock/arc | 2026-07-23T05:22:26Z | root@vm |
 | 20260723-052229-page@cb3a64639a54fd9d08410665333d3c57.webm | https://github.com/ArcBlock/arc | 2026-07-23T05:22:29Z | root@vm |
 | 20260723-052232-home-01.png | https://github.com/ArcBlock/arc | 2026-07-23T05:22:32Z | root@vm |
+| 20260723-052235-home-02.png | https://github.com/ArcBlock/arc | 2026-07-23T05:22:35Z | root@vm |
