@@ -1,24 +1,20 @@
-## ✅ Deploy staging · `9c39ee337` · success
+## ✅ Deploy staging · `3bddb6d9c` · success
 
-- **时间**: 2026-07-23T04:41:35Z
-- **版本**: `9c39ee3379272be35e9db5e6cbd46c2b2ec9f78e`
-- **改动窗口**: 最近 24 小时
+- **时间**: 2026-07-23T17:16:53Z
+- **版本**: `3bddb6d9c6d2970212a2b266c04887405f69b829`
+- **改动窗口**: 过去 24 小时
 
-**11 个 blocklet 有改动**（本节仅列用户可见的行为变化；纯 docs/chore 改动已过滤）
+**19 个 blocklet 有改动**
 
 ### 改动摘要
 
-- **todo**：声明式 action-feedback 标签支持落地（`8874e49df`）；assistant-dock 悬浮层加了登录态门控，未登录不再误显示（#2266）
-- **showcase**：声明式 action-feedback 标签支持落地（`8874e49df`）
-- **mailbox-demo**：列表字段改为拼接展示，不再转储原始 JSON（#2264）
+- 19 个 blocklet 同受一次共享依赖改动影响：afs-list 批量删除操作补上了加载态反馈（`ab975df89` / [#2273](https://github.com/ArcBlock/arc/issues/2273)）：site-arcblock-io、site-blocklet-io、site-aigne-io、site-arcsphere-io、site-didwallet-io、site-didspaces-com、arc、chain-explorer、did-space、showcase、todo、observability-explorer、aistro、arch-qa、discuss-kit、blocklet-manager、mailbox-demo、settings-cascade、sites
+- **showcase**：新增声明式 action 反馈标签支持（`8874e49df`）
+- **todo**：新增声明式 action 反馈标签支持（`8874e49df`）
+- **mailbox-demo**：统一最近列表（unified recent-list）修复了 `pageSize:3` 被忽略、始终显示全部 6 条的问题（`6a45de11d`）
 
-### 说明（本次部署的特殊背景）
+_(docs 类改动——blocklet README 补全 [#2219](https://github.com/ArcBlock/arc/issues/2219)/[#2283](https://github.com/ArcBlock/arc/issues/2283)、arch-qa README 勘误 [#2327](https://github.com/ArcBlock/arc/issues/2327)——不影响用户可见行为，已从摘要过滤。)_
 
-这是一次**手动触发**的补发部署——上一次成功的 staging 部署是 **2026-07-20T17:01:59Z**（run
-[29762089396](https://github.com/ArcBlock/arc/actions/runs/29762089396)），距今近 3 天。
-issue-sweep 例行扫描时发现 [#2210](https://github.com/ArcBlock/arc/issues/2210)（chain-explorer
-测试覆盖率）的困惑其实源于此：PR [#2214](https://github.com/ArcBlock/arc/pull/2214)（把
-chain-explorer `.aup/man` 从 6 条流程扩到 64 条）已在 2026-07-22 合并，但从未随部署推上
-`*.afsd.dev`，导致 test-sweep 报告持续显示旧的"声明 6"而非新的完整测试面。本次部署把
-`main`（含 PR #2214 及以上全部改动）推上 staging，`git merge-base --is-ancestor` 已确认
-`e5366822`（PR #2214 的合并 commit）在本次部署的 `9c39ee337` 祖先链上。
+---
+
+Run: https://github.com/ArcBlock/arc/actions/runs/30028175049
