@@ -49,3 +49,4 @@
 | 20260723-155200-friend-new-03.png | https://github.com/ArcBlock/arc | 2026-07-23T15:52:00Z | root@vm |
 | 20260723-155203-friends-03.png | https://github.com/ArcBlock/arc | 2026-07-23T15:52:03Z | root@vm |
 | 20260723-155206-me-03.png | https://github.com/ArcBlock/arc | 2026-07-23T15:52:06Z | root@vm |
+| 20260723-155209-natal-03.png | https://github.com/ArcBlock/arc | 2026-07-23T15:52:09Z | root@vm |
