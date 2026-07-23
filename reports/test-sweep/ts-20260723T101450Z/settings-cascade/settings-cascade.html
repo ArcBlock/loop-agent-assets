@@ -1,0 +1,170 @@
+<!doctype html><html><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>settings-cascade — agent 走查报告</title><style>
+:root{--bg:#f7f8f8;--fg:#16201f;--muted:#5c6b69;--card:#fff;--card2:#eef2f1;--border:#dde3e2;--accent:#127a72;--pass:#1f8a54;--warn:#b5771a;--bad:#c0392b}
+@media(prefers-color-scheme:dark){:root{--bg:#0e1413;--fg:#e6ecea;--muted:#8ea19d;--card:#161d1c;--card2:#1d2624;--border:#26302e;--accent:#3fb8ab;--pass:#3fb37a;--warn:#d69a3e;--bad:#e5735f}}
+:root[data-theme=dark]{--bg:#0e1413;--fg:#e6ecea;--muted:#8ea19d;--card:#161d1c;--card2:#1d2624;--border:#26302e;--accent:#3fb8ab;--pass:#3fb37a;--warn:#d69a3e;--bad:#e5735f}
+:root[data-theme=light]{--bg:#f7f8f8;--fg:#16201f;--muted:#5c6b69;--card:#fff;--card2:#eef2f1;--border:#dde3e2;--accent:#127a72;--pass:#1f8a54;--warn:#b5771a;--bad:#c0392b}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--fg);font:15px/1.65 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;padding:24px}
+.wrap{max-width:920px;margin:0 auto}
+h1{font-size:24px;margin:0 0 4px;text-wrap:balance}h2{font-size:19px;margin:30px 0 8px}
+h2 .rt{font-size:13px;color:var(--muted);font-weight:400;font-variant-numeric:tabular-nums}
+.sub{color:var(--muted);margin:0 0 14px;font-size:13px}
+code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.85em;background:var(--card2);padding:1px 5px;border-radius:4px}
+.how{background:var(--card);border:1px solid var(--border);border-left:3px solid var(--accent);border-radius:8px;padding:13px 16px;margin:14px 0;font-size:14px}
+.how b{color:var(--accent)}
+.banner{border-radius:12px;padding:14px 18px;margin:16px 0}
+.banner.ok{background:color-mix(in srgb,var(--pass) 12%,transparent);border:1px solid color-mix(in srgb,var(--pass) 40%,transparent)}
+.banner.ok b{color:var(--pass)}
+.banner.bad{background:color-mix(in srgb,var(--bad) 13%,transparent);border:1px solid color-mix(in srgb,var(--bad) 45%,transparent)}
+.banner.bad b{color:var(--bad);font-size:16px}
+.banner.info{background:color-mix(in srgb,var(--accent) 10%,transparent);border:1px solid color-mix(in srgb,var(--accent) 38%,transparent)}
+.banner.info b{color:var(--accent)}
+.plist{margin:10px 0 0;padding-left:0;list-style:none}
+.plist li{padding:8px 0;border-top:1px solid var(--border)}
+.plist a{text-decoration:none;color:var(--fg);font-weight:600}
+.plist .pe{color:var(--muted);font-size:12.5px;font-weight:400;margin-top:3px}
+.video{width:100%;border-radius:10px;border:1px solid var(--border);background:#000;margin:6px 0 2px}
+.vcap{color:var(--muted);font-size:12.5px;margin:0 0 8px}
+.novideo{color:var(--bad);font-weight:600;background:color-mix(in srgb,var(--bad) 10%,transparent);border:1px dashed color-mix(in srgb,var(--bad) 45%,transparent);border-radius:8px;padding:8px 12px;font-size:13px}
+.kpis{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0}
+.kpi{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:9px 14px;min-width:70px}
+.kpi .k{font-size:21px;font-weight:700;font-variant-numeric:tabular-nums}.kpi .l{color:var(--muted);font-size:12px}
+.kpi .k-bad{color:var(--bad)}.kpi .k-warn{color:var(--warn)}
+.op{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:15px 17px;margin:14px 0}
+.op h3{margin:0 0 3px;font-size:16px;display:flex;align-items:center;gap:9px;flex-wrap:wrap}
+.op .exp{color:var(--muted);font-size:13px;margin:0 0 9px}
+.op .nt{color:var(--muted);font-size:12.5px;margin-top:6px}
+.pill{font-size:11.5px;font-weight:700;padding:2px 9px;border-radius:20px}
+.p-ok{background:color-mix(in srgb,var(--pass) 18%,transparent);color:var(--pass)}
+.p-fail{background:color-mix(in srgb,var(--bad) 18%,transparent);color:var(--bad)}
+.p-warn{background:color-mix(in srgb,var(--warn) 20%,transparent);color:var(--warn)}
+.p-skip{background:var(--card2);color:var(--muted)}
+.p-write{background:color-mix(in srgb,var(--accent) 18%,transparent);color:var(--accent)}
+.frame figure{margin:0 0 9px}.frame img{width:100%;border-radius:8px;border:1px solid var(--border);display:block}
+.frame figcaption{color:var(--muted);font-size:11.5px;margin-top:4px;text-align:center}
+.chk{background:color-mix(in srgb,var(--pass) 12%,transparent);border:1px solid color-mix(in srgb,var(--pass) 34%,transparent);border-radius:8px;padding:8px 12px;font-size:13px}
+.chk b{color:var(--pass)}
+.chk-fail{background:color-mix(in srgb,var(--bad) 11%,transparent);border:1px solid color-mix(in srgb,var(--bad) 40%,transparent);border-radius:8px;padding:8px 12px;font-size:13px}
+.chk-fail b{color:var(--bad)}
+table.probe{border-collapse:collapse;width:100%;font-size:13px}
+table.probe th,table.probe td{border:1px solid var(--border);padding:5px 9px;text-align:left}
+table.probe tr.bad td{background:color-mix(in srgb,var(--bad) 10%,transparent)}
+</style></head><body><div class="wrap">
+<h1>settings-cascade — agent 走查报告</h1>
+<p class="sub">环境 <code>https://settings-cascade.afsd.dev</code> · 2026-07-23T10:15:00Z · 走查 1 / 声明 1 条测试路径 · driver <code>agent-playwright-mcp</code></p>
+<div class="how"><b>这份报告在做什么</b>：test-sweep 让 <b>agent 读被测页面自己写的
+<code>.aup/man</code> 知识</b>，用 Playwright MCP <b>当真人逐条测试路径走查</b>（导航/加标签/编辑/删除/创建…），
+<b>每条路径各自一段录屏</b>、每步截图并<b>自判 verdict + 附观察证据</b>（实际 DOM/文本/值，可复核）。
+<b>unreached</b>=没驱动到（不当失败）；<b>inconclusive</b>=不确定（绝不判失败）。写操作默认真提交、不清理。</div>
+
+<div class="banner ok"><b>✅ 覆盖完整</b>：声明 1 条测试路径全部走查。</div>
+<div class="banner bad"><b>⚠️ 发现 1 个问题</b>（点击跳到对应路径）<ul class="plist"><li><a href="#path-home-settings-persistence-write"><span class="pill p-warn">不确定</span> 结构化 settings 保存 — 编辑 Nickname 并提交 · 步3</a> — 同一浏览器上下文内立即 navigate 重新加载 /app（settle 2.5s）<div class="pe">本次刷新耗时不足，落在 WS 重连中间态：textHead 为 &#x27;Settings Cascade Fixture … CONNECTED — WAITING FOR CONTENT&#x27;（AUP 客户端渲染尚未完成，需要更长 settle），因此本步不判定字段值，改在下一条独立 testPath（home-settings-persistence-reload-verify）用更长等待时间验证</div></li></ul></div>
+<section id="probes"><h2>后端探针 （全通过）</h2><table class="probe"><tr><th></th><th>探针</th><th>详情</th></tr><tr class=""><td>✅</td><td>http-reachable</td><td>HTTP 200</td></tr><tr class=""><td>✅</td><td>afs-rpc-list</td><td>ok:true (1 .aup pages)</td></tr></table></section>
+<section id="path-home-anon">
+<h2>Home 页匿名态渲染 — settings-shell auto-surface + propBind mirrors <span class="rt">anon · /app</span></h2>
+<video class="video" controls preload="metadata" src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260723T101450Z/settings-cascade/page@425efc3902fbf4c37320dfed651a5407.webm"><a href="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260723T101450Z/settings-cascade/page@425efc3902fbf4c37320dfed651a5407.webm">下载该路径录像</a></video><p class="vcap">本测试路径整段走查录像</p>
+<div class="kpis"><div class="kpi"><div class="k">3</div><div class="l">操作步</div></div><div class="kpi"><div class="k">3</div><div class="l">通过</div></div><div class="kpi"><div class="k k-bad">0</div><div class="l">失败</div></div><div class="kpi"><div class="k k-warn">0</div><div class="l">不确定</div></div><div class="kpi"><div class="k">0</div><div class="l">未走到</div></div></div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> 导航到 /app（匿名，无 cookie）</h3>
+<div class="exp">期望：settings-shell auto-surface 渲染 cascade-settings 节点；retention/theme/tmp 三个 propBind mirror 节点存在</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260723T101450Z/settings-cascade/explore-home-01.png" alt="导航到 /app（匿名，无 cookie）" loading="lazy"><figcaption>导航到 /app（匿名，无 cookie）</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：DOM 含 div#cascade-settings（interactables 中 &#x27;div#cascade-settings &quot;Settings Theme system light dark Interface theme —…&quot;&#x27;），h2#cascade-settings-title &quot;Settings&quot;；页面底部三个 mirror：div#retention-mirror 文本 &quot;30&quot;、div#theme-mirror 文本 &quot;system&quot;、div#tmp-mirror 文本 &quot;—&quot;</div>
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> 检查 Theme 字段在匿名态下的可编辑性标注</h3>
+<div class="exp">期望：Theme 字段应显示为不可编辑（未登录），提示登录后可个性化</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260723T101450Z/settings-cascade/explore-home-02.png" alt="检查 Theme 字段在匿名态下的可编辑性标注" loading="lazy"><figcaption>检查 Theme 字段在匿名态下的可编辑性标注</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：interactables 含 &#x27;div#cascade-settings-field-general-theme-readonly &quot;Read-only&quot;&#x27; 与 &#x27;div#cascade-settings-field-general-theme-badge &quot;Sign in to personalize&quot;&#x27;，textHead 含 &#x27;Read-only Sign in to personalize&#x27;</div>
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> 校验负向 propBind 夹具：/tmp/scratch.json 不在 /instance/** 白名单内，tmp-mirror 应保持编译期占位符 &quot;—&quot; 不更新</h3>
+<div class="exp">期望：tmp-mirror 内容恒为 &quot;—&quot;（node_has_prop content=&quot;—&quot;）</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260723T101450Z/settings-cascade/explore-home-03.png" alt="校验负向 propBind 夹具：/tmp/scratch.json 不在 /instance/** 白名单内，tmp-mirror 应保持编译期占位符 &quot;—&quot; 不更新" loading="lazy"><figcaption>校验负向 propBind 夹具：/tmp/scratch.json 不在 /instance/** 白名单内，tmp-mirror 应保持编译期占位符 &quot;—&quot; 不更新</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：三次快照（explore-home-01/02/03）中 div#tmp-mirror 文本均为 &quot;—&quot;，未出现任何 /tmp 路径的真实值，符合 man 断言 &#x27;A deliberate negative fixture — propBind outside /instance is rejected&#x27;</div>
+
+</div>
+</section><section id="path-home-authed-view">
+<h2>Home 页认证态渲染 — 两级 cascade（instance/shared/user scope）字段与徽标 <span class="rt">authed · /app</span></h2>
+<video class="video" controls preload="metadata" src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260723T101450Z/settings-cascade/page@23c44a494875007bb3198ac6997420a7.webm"><a href="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260723T101450Z/settings-cascade/page@23c44a494875007bb3198ac6997420a7.webm">下载该路径录像</a></video><p class="vcap">本测试路径整段走查录像</p>
+<div class="kpis"><div class="kpi"><div class="k">3</div><div class="l">操作步</div></div><div class="kpi"><div class="k">3</div><div class="l">通过</div></div><div class="kpi"><div class="k k-bad">0</div><div class="l">失败</div></div><div class="kpi"><div class="k k-warn">0</div><div class="l">不确定</div></div><div class="kpi"><div class="k">0</div><div class="l">未走到</div></div></div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> 以测试用户身份（login_token cookie）导航到 /app</h3>
+<div class="exp">期望：登录后渲染出 Nickname（user-scope）与 Theme（shared-scope）两个可编辑字段，Header 显示已登录用户菜单</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260723T101450Z/settings-cascade/explore-home-authed-01.png" alt="以测试用户身份（login_token cookie）导航到 /app" loading="lazy"><figcaption>以测试用户身份（login_token cookie）导航到 /app</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：interactables 含 &#x27;button &quot;Test Fixture User&quot;&#x27;、&#x27;button &quot;User Center&quot;&#x27;、&#x27;button &quot;Sign Out&quot;&#x27;；input 字段值为 &quot;tsweep-qa-20260721&quot;（此前某轮 sweep 留下的个性化值，证明该值确实持久化在服务端而非会话内存）；Theme 下拉框值 &quot;dark&quot;</div>
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> 检查 cascade 覆盖徽标（override badge）</h3>
+<div class="exp">期望：Nickname 显示 &#x27;Overridden (personalized)&#x27;，Theme 显示 &#x27;Overridden (default = system)&#x27;，体现 user-scope 覆盖 instance 默认值的两级 cascade</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260723T101450Z/settings-cascade/explore-home-authed-02.png" alt="检查 cascade 覆盖徽标（override badge）" loading="lazy"><figcaption>检查 cascade 覆盖徽标（override badge）</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：interactables 含 &#x27;div#cascade-settings-field-general-nickname-badge &quot;Overridden (personalized)&quot;&#x27; 与 &#x27;div#cascade-settings-field-general-theme-badge &quot;Overridden (default = system)&quot;&#x27;，且各自旁有 &#x27;Reset to default&#x27; 按钮</div>
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> 确认 retention 字段（scope:instance，仅 admin 可写）对非 admin 测试用户不渲染可编辑控件</h3>
+<div class="exp">期望：per man caveat：非 admin 用户不应看到 retention 的可编辑输入（该字段属于 instance-scope，与 nickname/theme 的 shared/user-scope 不同）</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260723T101450Z/settings-cascade/explore-home-authed-03.png" alt="确认 retention 字段（scope:instance，仅 admin 可写）对非 admin 测试用户不渲染可编辑控件" loading="lazy"><figcaption>确认 retention 字段（scope:instance，仅 admin 可写）对非 admin 测试用户不渲染可编辑控件</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：settings-shell 渲染出的字段清单只有 Nickname 与 Theme 两组（&#x27;cascade-settings-field-general-nickname-group&#x27; 与 &#x27;cascade-settings-field-general-theme-group&#x27;），未出现任何 retention 编辑字段；retention-mirror 仍通过独立 propBind 通道显示只读值 &quot;30&quot;</div>
+
+</div>
+</section><section id="path-home-settings-persistence-write">
+<h2>结构化 settings 保存 — 编辑 Nickname 并提交 <span class="rt">authed · /app</span></h2>
+<video class="video" controls preload="metadata" src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260723T101450Z/settings-cascade/page@665dcf0765cfd4e90e8a108d022db8d7.webm"><a href="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260723T101450Z/settings-cascade/page@665dcf0765cfd4e90e8a108d022db8d7.webm">下载该路径录像</a></video><p class="vcap">本测试路径整段走查录像</p>
+<div class="kpis"><div class="kpi"><div class="k">3</div><div class="l">操作步</div></div><div class="kpi"><div class="k">2</div><div class="l">通过</div></div><div class="kpi"><div class="k k-bad">0</div><div class="l">失败</div></div><div class="kpi"><div class="k k-warn">1</div><div class="l">不确定</div></div><div class="kpi"><div class="k">0</div><div class="l">未走到</div></div></div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> <span class="pill p-write">写</span>把 Nickname 输入框内容替换为 &#x27;tsweep-cascade-1784802265&#x27;</h3>
+<div class="exp">期望：输入框接受新值</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260723T101450Z/settings-cascade/settings-persistence-04.png" alt="把 Nickname 输入框内容替换为 &#x27;tsweep-cascade-1784802265&#x27;" loading="lazy"><figcaption>把 Nickname 输入框内容替换为 &#x27;tsweep-cascade-1784802265&#x27;</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：type 步之后 dom.interactables 中的 input 变为 &#x27;input &quot;tsweep-cascade-1784802265&quot;&#x27;</div>
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> <span class="pill p-write">写</span>按 Tab 使输入框失焦，触发自动保存</h3>
+<div class="exp">期望：出现保存成功提示（无独立 Save 按钮，字段级 auto-surface 自行处理写入）</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260723T101450Z/settings-cascade/settings-persistence-05.png" alt="按 Tab 使输入框失焦，触发自动保存" loading="lazy"><figcaption>按 Tab 使输入框失焦，触发自动保存</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：textHead 新增 &#x27;✅ Saved Nickname&#x27; 提示文案（对比 press 步之前的 textLen 371 → press 步之后 textLen 388，且新增文本正是 &#x27;✅ Saved Nickname&#x27;）</div>
+
+</div>
+<div class="op">
+<h3><span class="pill p-warn">不确定</span> 同一浏览器上下文内立即 navigate 重新加载 /app（settle 2.5s）</h3>
+<div class="exp">期望：重新渲染出该字段，理想情况下已显示新值</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260723T101450Z/settings-cascade/settings-persistence-08.png" alt="同一浏览器上下文内立即 navigate 重新加载 /app（settle 2.5s）" loading="lazy"><figcaption>同一浏览器上下文内立即 navigate 重新加载 /app（settle 2.5s）</figcaption></figure></div>
+<div class="chk-fail"><b>观察证据</b>：本次刷新耗时不足，落在 WS 重连中间态：textHead 为 &#x27;Settings Cascade Fixture … CONNECTED — WAITING FOR CONTENT&#x27;（AUP 客户端渲染尚未完成，需要更长 settle），因此本步不判定字段值，改在下一条独立 testPath（home-settings-persistence-reload-verify）用更长等待时间验证</div>
+<div class="nt">settle 2500ms 不足以等到 aupNodes 就绪，非保存失败——后续 reload-verify testPath 用 waitAup+更长 settle 复核，见该 testPath 的 pass 结论</div>
+</div>
+</section><section id="path-home-settings-persistence-reload-verify">
+<h2>结构化 settings 保存 — 独立会话刷新后复核持久化（核心验证点） <span class="rt">authed · /app</span></h2>
+<video class="video" controls preload="metadata" src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260723T101450Z/settings-cascade/page@b00702bb5d8a63a116c3113d1cf0092d.webm"><a href="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260723T101450Z/settings-cascade/page@b00702bb5d8a63a116c3113d1cf0092d.webm">下载该路径录像</a></video><p class="vcap">本测试路径整段走查录像</p>
+<div class="kpis"><div class="kpi"><div class="k">2</div><div class="l">操作步</div></div><div class="kpi"><div class="k">2</div><div class="l">通过</div></div><div class="kpi"><div class="k k-bad">0</div><div class="l">失败</div></div><div class="kpi"><div class="k k-warn">0</div><div class="l">不确定</div></div><div class="kpi"><div class="k">0</div><div class="l">未走到</div></div></div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> 全新 navigate 到 /app（同一测试账号 cookie），等待 aupNodes&gt;=10 且 settle 5s+2s，确保 AUP 客户端完全渲染后再读值</h3>
+<div class="exp">期望：Nickname 输入框应回显上一 testPath 保存的 &#x27;tsweep-cascade-1784802265&#x27;，证明写入已落到服务端持久层（/instance/settings/cascade 的 user-scope overlay），而非仅停留在前端本地状态</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260723T101450Z/settings-cascade/settings-persistence-reload-03.png" alt="全新 navigate 到 /app（同一测试账号 cookie），等待 aupNodes&gt;=10 且 settle 5s+2s，确保 AUP 客户端完全渲染后再读值" loading="lazy"><figcaption>全新 navigate 到 /app（同一测试账号 cookie），等待 aupNodes&gt;=10 且 settle 5s+2s，确保 AUP 客户端完全渲染后再读值</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：刷新后 dom.interactables 含 &#x27;input &quot;tsweep-cascade-1784802265&quot;&#x27;（与写入值完全一致，跨越全新页面导航+新 WS 连接），且 &#x27;div#cascade-settings-field-general-nickname-badge &quot;Overridden (personalized)&quot;&#x27; 依旧存在；截图 settings-persistence-reload-03.png 直观显示输入框内容与右上角用户头像因新昵称首字母变为绿色 &#x27;Z&#x27;</div>
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> 同一快照核对 Theme/retention 两个 propBind mirror 未受本次 Nickname 写入影响（隔离性）</h3>
+<div class="exp">期望：retention-mirror 仍为 &quot;30&quot;，theme-mirror 仍为 &quot;dark&quot;（未被 Nickname 的写入意外污染）</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260723T101450Z/settings-cascade/settings-persistence-reload-03.png" alt="同一快照核对 Theme/retention 两个 propBind mirror 未受本次 Nickname 写入影响（隔离性）" loading="lazy"><figcaption>同一快照核对 Theme/retention 两个 propBind mirror 未受本次 Nickname 写入影响（隔离性）</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：interactables 含 &#x27;div#retention-mirror &quot;30&quot;&#x27;、&#x27;div#theme-mirror &quot;dark&quot;&#x27;、&#x27;div#tmp-mirror &quot;—&quot;&#x27;，三者与写入前一致</div>
+
+</div>
+</section><section id="path-settings-page-query-bonus">
+<h2>（额外覆盖，非 man 必走）/app?page=settings 裸 settings-shell 挂载点渲染冒烟 <span class="rt">authed · /app?page=settings</span></h2>
+<video class="video" controls preload="metadata" src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260723T101450Z/settings-cascade/page@fd1841cfb3a638b0eb1b466b09848e31.webm"><a href="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260723T101450Z/settings-cascade/page@fd1841cfb3a638b0eb1b466b09848e31.webm">下载该路径录像</a></video><p class="vcap">本测试路径整段走查录像</p>
+<div class="kpis"><div class="kpi"><div class="k">1</div><div class="l">操作步</div></div><div class="kpi"><div class="k">1</div><div class="l">通过</div></div><div class="kpi"><div class="k k-bad">0</div><div class="l">失败</div></div><div class="kpi"><div class="k k-warn">0</div><div class="l">不确定</div></div><div class="kpi"><div class="k">0</div><div class="l">未走到</div></div></div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> 导航到 app.json 声明的第二页 &#x27;settings&#x27;（该页只有 configDir、无 tree，.man 判定层明确将其排除在必走清单外，见 discover-aup 输出 man:null）</h3>
+<div class="exp">期望：作为裸 settings-shell 挂载点仍应正常渲染，无控制台报错、无 Unknown 组件降级框</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260723T101450Z/settings-cascade/settings-page-query-01.png" alt="导航到 app.json 声明的第二页 &#x27;settings&#x27;（该页只有 configDir、无 tree，.man 判定层明确将其排除在必走清单外，见 discover-aup 输出 man:null）" loading="lazy"><figcaption>导航到 app.json 声明的第二页 &#x27;settings&#x27;（该页只有 configDir、无 tree，.man 判定层明确将其排除在必走清单外，见 discover-aup 输出 man:null）</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：标题 &#x27;Settings Cascade&#x27;，textHead 含 &#x27;Settings ▾ Settings Nickname Your personal display name. Private to your account. Overridden (personalized) Reset to default Theme sy…&#x27;，与 home 页内嵌的同一 settings-shell 渲染一致，consoleErrors 为空</div>
+
+</div>
+</section>
+<p class="sub" style="margin-top:22px">Generated by test-report-builder (build-agent-report) · issue #1808</p>
+</div></body></html>
