@@ -162,3 +162,4 @@
 | 20260723-084939-landing-02.png | https://github.com/ArcBlock/arc | 2026-07-23T08:49:39Z | root@vm |
 | 20260723-084942-landing-03.png | https://github.com/ArcBlock/arc | 2026-07-23T08:49:42Z | root@vm |
 | 20260723-084945-publish-01.png | https://github.com/ArcBlock/arc | 2026-07-23T08:49:45Z | root@vm |
+| 20260723-084947-publish-02.png | https://github.com/ArcBlock/arc | 2026-07-23T08:49:47Z | root@vm |
