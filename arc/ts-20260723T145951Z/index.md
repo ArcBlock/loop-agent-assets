@@ -104,3 +104,4 @@
 | 20260723-155507-collections-03.png | https://github.com/ArcBlock/arc | 2026-07-23T15:55:07Z | root@vm |
 | 20260723-155510-explore-authed-03.png | https://github.com/ArcBlock/arc | 2026-07-23T15:55:10Z | root@vm |
 | 20260723-155513-feed-03.png | https://github.com/ArcBlock/arc | 2026-07-23T15:55:13Z | root@vm |
+| 20260723-155517-index-03.png | https://github.com/ArcBlock/arc | 2026-07-23T15:55:17Z | root@vm |
