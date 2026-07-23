@@ -276,3 +276,4 @@
 | 20260723-085519-probe-01.png | https://github.com/ArcBlock/arc | 2026-07-23T08:55:19Z | root@vm |
 | 20260723-085521-probe-02.png | https://github.com/ArcBlock/arc | 2026-07-23T08:55:21Z | root@vm |
 | 20260723-085524-probe-03.png | https://github.com/ArcBlock/arc | 2026-07-23T08:55:24Z | root@vm |
+| 20260723-085527-page@1e4e51a9e33570b7f882edef6bd3e4d9.webm | https://github.com/ArcBlock/arc | 2026-07-23T08:55:27Z | root@vm |
