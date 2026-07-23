@@ -96,3 +96,4 @@
 | 20260723-084619-form-wizard-03.png | https://github.com/ArcBlock/arc | 2026-07-23T08:46:19Z | root@vm |
 | 20260723-084622-home-01.png | https://github.com/ArcBlock/arc | 2026-07-23T08:46:22Z | root@vm |
 | 20260723-084625-home-02.png | https://github.com/ArcBlock/arc | 2026-07-23T08:46:25Z | root@vm |
+| 20260723-084628-home-03.png | https://github.com/ArcBlock/arc | 2026-07-23T08:46:28Z | root@vm |
