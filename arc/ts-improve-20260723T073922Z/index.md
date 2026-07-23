@@ -55,3 +55,4 @@
 | 20260723-075214-star-trace-01.png | https://github.com/ArcBlock/arc | 2026-07-23T07:52:14Z | root@vm |
 | 20260723-075217-star-trace-02.png | https://github.com/ArcBlock/arc | 2026-07-23T07:52:17Z | root@vm |
 | 20260723-075220-star-trace-03.png | https://github.com/ArcBlock/arc | 2026-07-23T07:52:20Z | root@vm |
+| 20260723-075222-page@1b12e5c7bc883d5424c8217cb0e97d07.webm | https://github.com/ArcBlock/arc | 2026-07-23T07:52:22Z | root@vm |
