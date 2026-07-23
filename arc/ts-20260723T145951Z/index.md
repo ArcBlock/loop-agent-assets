@@ -34,3 +34,4 @@
 | 20260723-155106-page@c5d9ed429eac71fe6158f166893ee959.webm | https://github.com/ArcBlock/arc | 2026-07-23T15:51:06Z | root@vm |
 | 20260723-155109-create2-06.png | https://github.com/ArcBlock/arc | 2026-07-23T15:51:09Z | root@vm |
 | 20260723-155112-index-03.png | https://github.com/ArcBlock/arc | 2026-07-23T15:51:12Z | root@vm |
+| 20260723-155115-page@1e6d46b1f24c9a2a67d24b7d01f04208.webm | https://github.com/ArcBlock/arc | 2026-07-23T15:51:15Z | root@vm |
