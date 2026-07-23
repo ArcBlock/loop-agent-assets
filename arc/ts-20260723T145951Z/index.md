@@ -65,3 +65,4 @@
 | 20260723-155253-inbox-03.png | https://github.com/ArcBlock/arc | 2026-07-23T15:52:53Z | root@vm |
 | 20260723-155256-message-retry-03.png | https://github.com/ArcBlock/arc | 2026-07-23T15:52:56Z | root@vm |
 | 20260723-155259-notifications-03.png | https://github.com/ArcBlock/arc | 2026-07-23T15:52:59Z | root@vm |
+| 20260723-155302-thread-03.png | https://github.com/ArcBlock/arc | 2026-07-23T15:53:02Z | root@vm |
