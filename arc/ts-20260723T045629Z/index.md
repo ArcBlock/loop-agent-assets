@@ -122,3 +122,4 @@
 | 20260723-052557-landing-03.png | https://github.com/ArcBlock/arc | 2026-07-23T05:25:57Z | root@vm |
 | 20260723-052559-tags-01.png | https://github.com/ArcBlock/arc | 2026-07-23T05:25:59Z | root@vm |
 | 20260723-052602-tags-02.png | https://github.com/ArcBlock/arc | 2026-07-23T05:26:02Z | root@vm |
+| 20260723-052605-tags-03.png | https://github.com/ArcBlock/arc | 2026-07-23T05:26:05Z | root@vm |
