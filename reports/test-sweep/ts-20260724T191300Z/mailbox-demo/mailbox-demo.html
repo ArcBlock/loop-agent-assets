@@ -1,0 +1,339 @@
+<!doctype html><html><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>mailbox-demo — agent 走查报告</title><style>
+:root{--bg:#f7f8f8;--fg:#16201f;--muted:#5c6b69;--card:#fff;--card2:#eef2f1;--border:#dde3e2;--accent:#127a72;--pass:#1f8a54;--warn:#b5771a;--bad:#c0392b}
+@media(prefers-color-scheme:dark){:root{--bg:#0e1413;--fg:#e6ecea;--muted:#8ea19d;--card:#161d1c;--card2:#1d2624;--border:#26302e;--accent:#3fb8ab;--pass:#3fb37a;--warn:#d69a3e;--bad:#e5735f}}
+:root[data-theme=dark]{--bg:#0e1413;--fg:#e6ecea;--muted:#8ea19d;--card:#161d1c;--card2:#1d2624;--border:#26302e;--accent:#3fb8ab;--pass:#3fb37a;--warn:#d69a3e;--bad:#e5735f}
+:root[data-theme=light]{--bg:#f7f8f8;--fg:#16201f;--muted:#5c6b69;--card:#fff;--card2:#eef2f1;--border:#dde3e2;--accent:#127a72;--pass:#1f8a54;--warn:#b5771a;--bad:#c0392b}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--fg);font:15px/1.65 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;padding:24px}
+.wrap{max-width:920px;margin:0 auto}
+h1{font-size:24px;margin:0 0 4px;text-wrap:balance}h2{font-size:19px;margin:30px 0 8px}
+h2 .rt{font-size:13px;color:var(--muted);font-weight:400;font-variant-numeric:tabular-nums}
+.sub{color:var(--muted);margin:0 0 14px;font-size:13px}
+code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.85em;background:var(--card2);padding:1px 5px;border-radius:4px}
+.how{background:var(--card);border:1px solid var(--border);border-left:3px solid var(--accent);border-radius:8px;padding:13px 16px;margin:14px 0;font-size:14px}
+.how b{color:var(--accent)}
+.banner{border-radius:12px;padding:14px 18px;margin:16px 0}
+.banner.ok{background:color-mix(in srgb,var(--pass) 12%,transparent);border:1px solid color-mix(in srgb,var(--pass) 40%,transparent)}
+.banner.ok b{color:var(--pass)}
+.banner.bad{background:color-mix(in srgb,var(--bad) 13%,transparent);border:1px solid color-mix(in srgb,var(--bad) 45%,transparent)}
+.banner.bad b{color:var(--bad);font-size:16px}
+.banner.info{background:color-mix(in srgb,var(--accent) 10%,transparent);border:1px solid color-mix(in srgb,var(--accent) 38%,transparent)}
+.banner.info b{color:var(--accent)}
+.plist{margin:10px 0 0;padding-left:0;list-style:none}
+.plist li{padding:8px 0;border-top:1px solid var(--border)}
+.plist a{text-decoration:none;color:var(--fg);font-weight:600}
+.plist .pe{color:var(--muted);font-size:12.5px;font-weight:400;margin-top:3px}
+.video{width:100%;border-radius:10px;border:1px solid var(--border);background:#000;margin:6px 0 2px}
+.vcap{color:var(--muted);font-size:12.5px;margin:0 0 8px}
+.novideo{color:var(--bad);font-weight:600;background:color-mix(in srgb,var(--bad) 10%,transparent);border:1px dashed color-mix(in srgb,var(--bad) 45%,transparent);border-radius:8px;padding:8px 12px;font-size:13px}
+.kpis{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0}
+.kpi{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:9px 14px;min-width:70px}
+.kpi .k{font-size:21px;font-weight:700;font-variant-numeric:tabular-nums}.kpi .l{color:var(--muted);font-size:12px}
+.kpi .k-bad{color:var(--bad)}.kpi .k-warn{color:var(--warn)}
+.op{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:15px 17px;margin:14px 0}
+.op h3{margin:0 0 3px;font-size:16px;display:flex;align-items:center;gap:9px;flex-wrap:wrap}
+.op .exp{color:var(--muted);font-size:13px;margin:0 0 9px}
+.op .nt{color:var(--muted);font-size:12.5px;margin-top:6px}
+.pill{font-size:11.5px;font-weight:700;padding:2px 9px;border-radius:20px}
+.p-ok{background:color-mix(in srgb,var(--pass) 18%,transparent);color:var(--pass)}
+.p-fail{background:color-mix(in srgb,var(--bad) 18%,transparent);color:var(--bad)}
+.p-warn{background:color-mix(in srgb,var(--warn) 20%,transparent);color:var(--warn)}
+.p-skip{background:var(--card2);color:var(--muted)}
+.p-write{background:color-mix(in srgb,var(--accent) 18%,transparent);color:var(--accent)}
+.frame figure{margin:0 0 9px}.frame img{width:100%;border-radius:8px;border:1px solid var(--border);display:block}
+.frame figcaption{color:var(--muted);font-size:11.5px;margin-top:4px;text-align:center}
+.chk{background:color-mix(in srgb,var(--pass) 12%,transparent);border:1px solid color-mix(in srgb,var(--pass) 34%,transparent);border-radius:8px;padding:8px 12px;font-size:13px}
+.chk b{color:var(--pass)}
+.chk-fail{background:color-mix(in srgb,var(--bad) 11%,transparent);border:1px solid color-mix(in srgb,var(--bad) 40%,transparent);border-radius:8px;padding:8px 12px;font-size:13px}
+.chk-fail b{color:var(--bad)}
+table.probe{border-collapse:collapse;width:100%;font-size:13px}
+table.probe th,table.probe td{border:1px solid var(--border);padding:5px 9px;text-align:left}
+table.probe tr.bad td{background:color-mix(in srgb,var(--bad) 10%,transparent)}
+.err{background:color-mix(in srgb,var(--bad) 11%,transparent);border:1px solid color-mix(in srgb,var(--bad) 40%,transparent);border-radius:8px;padding:7px 12px;font-size:12.5px;margin-top:6px}
+.err b{color:var(--bad)}.err code{background:transparent;color:var(--bad)}
+.dbg{margin:10px 0 2px;background:var(--card);border:1px solid var(--border);border-radius:10px;padding:6px 14px;font-size:13px}
+.dbg summary{cursor:pointer;color:var(--muted);font-weight:600;padding:5px 0}
+.dbg-none{color:var(--muted);padding:4px 0;font-size:12.5px}
+.dbg-has{padding:5px 0}.dbg-has b{color:var(--warn)}
+.dbg-has ul{margin:5px 0 8px;padding-left:18px}.dbg-has li{font-size:12px;color:var(--fg);margin:2px 0;word-break:break-all}
+.dbg-has code{background:var(--card2)}
+.pdesc{color:var(--muted);font-size:13.5px;margin:1px 0 11px;line-height:1.5}
+.pdesc code{font-size:.85em}
+details.steps{margin:6px 0 2px;border:1px solid var(--border);border-radius:10px;background:var(--card2);padding:2px 14px}
+details.steps>summary{cursor:pointer;color:var(--accent);font-weight:600;padding:9px 0;font-size:13.5px;list-style:none}
+details.steps>summary::-webkit-details-marker{display:none}
+details.steps[open]>summary{border-bottom:1px solid var(--border);margin-bottom:8px}
+details.steps>summary:hover{color:var(--fg)}
+</style></head><body><div class="wrap">
+<h1>mailbox-demo — agent 走查报告</h1>
+<p class="sub">环境 <code>https://mailbox-demo.afsd.dev</code> · 2026-07-24T19:30:56.000105Z · 走查 9 / 声明 9 条测试路径 · driver <code>agent-playwright-mcp</code></p>
+<div class="how"><b>这份报告在做什么</b>：test-sweep 让 <b>agent 读被测页面自己写的
+<code>.aup/man</code> 知识</b>，用 Playwright MCP <b>当真人逐条测试路径走查</b>（导航/加标签/编辑/删除/创建…），
+<b>每条路径各自一段录屏</b>、每步截图并<b>自判 verdict + 附观察证据</b>（实际 DOM/文本/值，可复核）。
+<b>unreached</b>=没驱动到（不当失败）；<b>inconclusive</b>=不确定（绝不判失败）。写操作默认真提交、不清理。</div>
+
+<div class="banner ok"><b>✅ 覆盖完整</b>：声明 9 条测试路径全部走查。</div>
+<div class="banner ok"><b>✅ 未发现问题</b>：所有路径的操作步均 pass 或 unreached（unreached 不计失败）。</div>
+<section id="probes"><h2>后端探针 （全通过）</h2><table class="probe"><tr><th></th><th>探针</th><th>详情</th></tr><tr class=""><td>✅</td><td>http-reachable</td><td>HTTP 200</td></tr><tr class=""><td>✅</td><td>afs-rpc-list</td><td>ok:true (9 .aup pages)</td></tr><tr class=""><td>✅</td><td>afs-rpc-authed-list-/user</td><td>ok:true (Bearer 可读)</td></tr></table></section>
+<section id="path-unified">
+<h2>Unified <span class="rt">anon · https://mailbox-demo.afsd.dev/</span></h2>
+<p class="pdesc">导航到 https://mailbox-demo.afsd.dev/，验证页面加载并渲染出真实内容（unified 页 breadth 走查）。</p>
+<video class="video" controls preload="metadata" src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260724T191300Z/mailbox-demo/page@f2d27171b1047d97b9c45b7540575a16.webm"><a href="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260724T191300Z/mailbox-demo/page@f2d27171b1047d97b9c45b7540575a16.webm">下载该路径录像</a></video><p class="vcap">本测试路径整段走查录像</p>
+<div class="kpis"><div class="kpi"><div class="k">2</div><div class="l">操作步</div></div><div class="kpi"><div class="k">2</div><div class="l">通过</div></div><div class="kpi"><div class="k k-bad">0</div><div class="l">失败</div></div><div class="kpi"><div class="k k-warn">0</div><div class="l">不确定</div></div><div class="kpi"><div class="k">0</div><div class="l">未走到</div></div></div>
+<details class="steps"><summary>▸ 逐步操作详情（2 步，含判定截图）</summary><div class="op">
+<h3><span class="pill p-ok">通过</span> navigate</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260724T191300Z/mailbox-demo/unified-01.png" alt="navigate" loading="lazy"><figcaption>navigate</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：title=&#x27;Mailbox Demo&#x27; url=https://mailbox-demo.afsd.dev/ aupNodes=10 buttons=9 inputs=0 textLen=163 head=&#x27;📬 Mailbox Demo Unified Email Chat Threads Forum Social Notifications 6 messages 3 threads 3 unread Recent Messages ✅ build 65e6f509f · 2026-&#x27;</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> snapshot</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260724T191300Z/mailbox-demo/unified-02.png" alt="snapshot" loading="lazy"><figcaption>snapshot</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：title=&#x27;Mailbox Demo&#x27; url=https://mailbox-demo.afsd.dev/ aupNodes=10 buttons=9 inputs=0 textLen=163 head=&#x27;📬 Mailbox Demo Unified Email Chat Threads Forum Social Notifications 6 messages 3 threads 3 unread Recent Messages ✅ build 65e6f509f · 2026-&#x27;</div>
+
+
+</div></details>
+<details class="dbg"><summary>运行时 debug 上下文（全清）</summary><div class="dbg-none">Console 错误：<b>无</b></div><div class="dbg-none">JS 未捕获异常：<b>无</b></div><div class="dbg-none">网络错误（请求失败 / 4xx–5xx）：<b>无</b></div></details>
+</section><section id="path-inbox">
+<h2>Inbox <span class="rt">anon · https://mailbox-demo.afsd.dev/?page=inbox</span></h2>
+<p class="pdesc">导航到 https://mailbox-demo.afsd.dev/?page=inbox，验证页面加载并渲染出真实内容（inbox 页 breadth 走查）。</p>
+<video class="video" controls preload="metadata" src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260724T191300Z/mailbox-demo/page@deb3ea8f251ba43fe8bef56c87c37f9b.webm"><a href="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260724T191300Z/mailbox-demo/page@deb3ea8f251ba43fe8bef56c87c37f9b.webm">下载该路径录像</a></video><p class="vcap">本测试路径整段走查录像</p>
+<div class="kpis"><div class="kpi"><div class="k">2</div><div class="l">操作步</div></div><div class="kpi"><div class="k">2</div><div class="l">通过</div></div><div class="kpi"><div class="k k-bad">0</div><div class="l">失败</div></div><div class="kpi"><div class="k k-warn">0</div><div class="l">不确定</div></div><div class="kpi"><div class="k">0</div><div class="l">未走到</div></div></div>
+<details class="steps"><summary>▸ 逐步操作详情（2 步，含判定截图）</summary><div class="op">
+<h3><span class="pill p-ok">通过</span> navigate</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260724T191300Z/mailbox-demo/inbox-01.png" alt="navigate" loading="lazy"><figcaption>navigate</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：title=&#x27;Mailbox Demo&#x27; url=https://mailbox-demo.afsd.dev/?page=inbox aupNodes=21 buttons=9 inputs=0 textLen=1579 head=&#x27;📬 Mailbox Demo Unified Email Chat Threads Forum Social Notifications Next Year Is Your Chance 🫵 We missed you at SXSW EDU this year! But the&#x27;</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> snapshot</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260724T191300Z/mailbox-demo/inbox-02.png" alt="snapshot" loading="lazy"><figcaption>snapshot</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：title=&#x27;Mailbox Demo&#x27; url=https://mailbox-demo.afsd.dev/?page=inbox aupNodes=21 buttons=9 inputs=0 textLen=1577 head=&#x27;📬 Mailbox Demo Unified Email Chat Threads Forum Social Notifications Next Year Is Your Chance 🫵 We missed you at SXSW EDU this year! But the&#x27;</div>
+
+
+</div></details>
+<details class="dbg" open><summary>运行时 debug 上下文（25 条错误）</summary><div class="dbg-has"><b>Console 错误（12）</b><ul><li><code>Refused to load the image &#x27;https://explore.sxsw.com/hs-fs/hubfs/2025/EDU/2026presalenonregemailHEADER.gif?width=1300&amp;height=1032&amp;upscale=true&amp;name=2026presalenonregemailHEADER.gif&#x27;</code></li><li><code>Refused to load the image &#x27;https://explore.sxsw.com/hs-fs/hubfs/2025/EDU/2026highlightsSUB2.png?width=1300&amp;height=150&amp;upscale=true&amp;name=2026highlightsSUB2.png&#x27; because it violates </code></li><li><code>Refused to load the image &#x27;https://explore.sxsw.com/hs-fs/hubfs/2025/EDU/2026highlightspicSHORT2.png?width=1300&amp;height=400&amp;upscale=true&amp;name=2026highlightspicSHORT2.png&#x27; because it</code></li><li><code>Refused to load the image &#x27;https://explore.sxsw.com/hubfs/2026/Transactional%20Email%20Headers/SXSWEDU_PRIMARY_black_updated-2025.png&#x27; because it violates the following Content Sec</code></li><li><code>Refused to load the image &#x27;https://explore.sxsw.com/hubfs/2025/SX/25_SXSW_email-bluesky-blk.png&#x27; because it violates the following Content Security Policy directive: &quot;img-src data:</code></li><li><code>Refused to load the image &#x27;https://explore.sxsw.com/hubfs/2025/SX/25_SXSW_email-footer-facebook-blk.png&#x27; because it violates the following Content Security Policy directive: &quot;img-s</code></li><li><code>Refused to load the image &#x27;https://explore.sxsw.com/hubfs/2025/SX/25_SXSW_email-footer-instagram-blk.png&#x27; because it violates the following Content Security Policy directive: &quot;img-</code></li><li><code>Refused to load the image &#x27;https://explore.sxsw.com/hubfs/2025/SX/25_SXSW_email-footer-linkedin-blk.png&#x27; because it violates the following Content Security Policy directive: &quot;img-s</code></li><li><code>Refused to load the image &#x27;https://explore.sxsw.com/hubfs/2025/SX/25_SXSW_email-footer-tiktok-blk.png&#x27; because it violates the following Content Security Policy directive: &quot;img-src</code></li><li><code>Refused to load the image &#x27;https://explore.sxsw.com/hubfs/2025/SX/25_SXSW_email-youtube-blk.png&#x27; because it violates the following Content Security Policy directive: &quot;img-src data:</code></li><li><code>Refused to load the image &#x27;https://explore.sxsw.com/hs-fs/hubfs/2026/Sponsors/SXSWEDU2026PremierSponsors.png?width=1240&amp;upscale=true&amp;name=SXSWEDU2026PremierSponsors.png&#x27; because it</code></li><li><code>Refused to load the image &#x27;https://explore.sxsw.com/e3t/Cto/OL+113/c3yrK04/VVPx9N7c9f0dW7BRdH66ml30KW7zr5cm5LDK-ZW2SX1RW3CzJqv103&#x27; because it violates the following Content Securit</code></li></ul></div><div class="dbg-none">JS 未捕获异常：<b>无</b></div><div class="dbg-has"><b>网络错误（请求失败 / 4xx–5xx）（13）</b><ul><li><code>✗ GET https://explore.sxsw.com/hs-fs/hubfs/2025/EDU/2026presalenonregemailHEADER.gif?width=1300&amp;height=1032&amp;upscale=true&amp;name=2026presalenonregemailHEADER.g — csp</code></li><li><code>✗ GET https://explore.sxsw.com/hs-fs/hubfs/2025/EDU/2026highlightsSUB2.png?width=1300&amp;height=150&amp;upscale=true&amp;name=2026highlightsSUB2.png — csp</code></li><li><code>✗ GET https://explore.sxsw.com/hs-fs/hubfs/2025/EDU/2026highlightspicSHORT2.png?width=1300&amp;height=400&amp;upscale=true&amp;name=2026highlightspicSHORT2.png — csp</code></li><li><code>✗ GET https://explore.sxsw.com/hubfs/2026/Transactional%20Email%20Headers/SXSWEDU_PRIMARY_black_updated-2025.png — csp</code></li><li><code>✗ GET https://explore.sxsw.com/hubfs/2025/SX/25_SXSW_email-bluesky-blk.png — csp</code></li><li><code>✗ GET https://explore.sxsw.com/hubfs/2025/SX/25_SXSW_email-footer-facebook-blk.png — csp</code></li><li><code>✗ GET https://explore.sxsw.com/hubfs/2025/SX/25_SXSW_email-footer-instagram-blk.png — csp</code></li><li><code>✗ GET https://explore.sxsw.com/hubfs/2025/SX/25_SXSW_email-footer-linkedin-blk.png — csp</code></li><li><code>✗ GET https://explore.sxsw.com/hubfs/2025/SX/25_SXSW_email-footer-tiktok-blk.png — csp</code></li><li><code>✗ GET https://explore.sxsw.com/hubfs/2025/SX/25_SXSW_email-youtube-blk.png — csp</code></li><li><code>✗ GET https://explore.sxsw.com/hs-fs/hubfs/2026/Sponsors/SXSWEDU2026PremierSponsors.png?width=1240&amp;upscale=true&amp;name=SXSWEDU2026PremierSponsors.png — csp</code></li><li><code>✗ GET https://explore.sxsw.com/e3t/Cto/OL+113/c3yrK04/VVPx9N7c9f0dW7BRdH66ml30KW7zr5cm5LDK-ZW2SX1RW3CzJqv103 — csp</code></li><li><code>✗ GET https://explore.sxsw.com/hubfs/2026/Email%20Assets/footer-dillo.png?noresize — csp</code></li></ul></div></details>
+</section><section id="path-message">
+<h2>Message <span class="rt">anon · https://mailbox-demo.afsd.dev/?page=message</span></h2>
+<p class="pdesc">导航到 https://mailbox-demo.afsd.dev/?page=message，验证页面加载并渲染出真实内容（message 页 breadth 走查）。</p>
+<video class="video" controls preload="metadata" src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260724T191300Z/mailbox-demo/page@f664da57520bd7c83b57801b09112930.webm"><a href="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260724T191300Z/mailbox-demo/page@f664da57520bd7c83b57801b09112930.webm">下载该路径录像</a></video><p class="vcap">本测试路径整段走查录像</p>
+<div class="kpis"><div class="kpi"><div class="k">2</div><div class="l">操作步</div></div><div class="kpi"><div class="k">2</div><div class="l">通过</div></div><div class="kpi"><div class="k k-bad">0</div><div class="l">失败</div></div><div class="kpi"><div class="k k-warn">0</div><div class="l">不确定</div></div><div class="kpi"><div class="k">0</div><div class="l">未走到</div></div></div>
+<details class="steps"><summary>▸ 逐步操作详情（2 步，含判定截图）</summary><div class="op">
+<h3><span class="pill p-ok">通过</span> navigate</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260724T191300Z/mailbox-demo/message-01.png" alt="navigate" loading="lazy"><figcaption>navigate</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：title=&#x27;Mailbox Demo&#x27; url=https://mailbox-demo.afsd.dev/?page=message aupNodes=30 buttons=10 inputs=0 textLen=2618 head=&#x27;📬 Mailbox Demo Unified Email Chat Threads Forum Social Notifications Back to Inbox Next Year Is Your Chance 🫵 From: SXSW EDU &lt;info@sxswedu.c&#x27;</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> snapshot</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260724T191300Z/mailbox-demo/message-02.png" alt="snapshot" loading="lazy"><figcaption>snapshot</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：title=&#x27;Mailbox Demo&#x27; url=https://mailbox-demo.afsd.dev/?page=message aupNodes=30 buttons=10 inputs=0 textLen=2618 head=&#x27;📬 Mailbox Demo Unified Email Chat Threads Forum Social Notifications Back to Inbox Next Year Is Your Chance 🫵 From: SXSW EDU &lt;info@sxswedu.c&#x27;</div>
+
+
+</div></details>
+<details class="dbg"><summary>运行时 debug 上下文（全清）</summary><div class="dbg-none">Console 错误：<b>无</b></div><div class="dbg-none">JS 未捕获异常：<b>无</b></div><div class="dbg-none">网络错误（请求失败 / 4xx–5xx）：<b>无</b></div></details>
+</section><section id="path-message-read-1">
+<h2>message → inbox <span class="rt">anon · https://mailbox-demo.afsd.dev/?page=message</span></h2>
+<p class="pdesc">读流走查：从「message」进入「inbox」并验证渲染。</p>
+<video class="video" controls preload="metadata" src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260724T191300Z/mailbox-demo/page@bda73745b94b616a7b288f33c33fdb2a.webm"><a href="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260724T191300Z/mailbox-demo/page@bda73745b94b616a7b288f33c33fdb2a.webm">下载该路径录像</a></video><p class="vcap">本测试路径整段走查录像</p>
+<div class="kpis"><div class="kpi"><div class="k">3</div><div class="l">操作步</div></div><div class="kpi"><div class="k">3</div><div class="l">通过</div></div><div class="kpi"><div class="k k-bad">0</div><div class="l">失败</div></div><div class="kpi"><div class="k k-warn">0</div><div class="l">不确定</div></div><div class="kpi"><div class="k">0</div><div class="l">未走到</div></div></div>
+<details class="steps"><summary>▸ 逐步操作详情（3 步，含判定截图）</summary><div class="op">
+<h3><span class="pill p-ok">通过</span> navigate</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260724T191300Z/mailbox-demo/message-read-1-01.png" alt="navigate" loading="lazy"><figcaption>navigate</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：title=&#x27;Mailbox Demo&#x27; url=https://mailbox-demo.afsd.dev/?page=message aupNodes=30 buttons=10 inputs=0 textLen=2618 head=&#x27;📬 Mailbox Demo Unified Email Chat Threads Forum Social Notifications Back to Inbox Next Year Is Your Chance 🫵 From: SXSW EDU &lt;info@sxswedu.c&#x27;</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> 点控件 [back]</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260724T191300Z/mailbox-demo/message-read-1-02.png" alt="点控件 [back]" loading="lazy"><figcaption>点控件 [back]</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：title=&#x27;Mailbox Demo&#x27; url=https://mailbox-demo.afsd.dev/?page=inbox aupNodes=7 buttons=9 inputs=0 textLen=117 head=&#x27;📬 Mailbox Demo Unified Email Chat Threads Forum Social Notifications ✅ build 65e6f509f · 2026-07-24T17:20:01Z · test&#x27;</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> snapshot</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260724T191300Z/mailbox-demo/message-read-1-03.png" alt="snapshot" loading="lazy"><figcaption>snapshot</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：title=&#x27;Mailbox Demo&#x27; url=https://mailbox-demo.afsd.dev/?page=inbox aupNodes=7 buttons=9 inputs=0 textLen=117 head=&#x27;📬 Mailbox Demo Unified Email Chat Threads Forum Social Notifications ✅ build 65e6f509f · 2026-07-24T17:20:01Z · test&#x27;</div>
+
+
+</div></details>
+<details class="dbg" open><summary>运行时 debug 上下文（25 条错误）</summary><div class="dbg-has"><b>Console 错误（12）</b><ul><li><code>Refused to load the image &#x27;https://explore.sxsw.com/hs-fs/hubfs/2025/EDU/2026presalenonregemailHEADER.gif?width=1300&amp;height=1032&amp;upscale=true&amp;name=2026presalenonregemailHEADER.gif&#x27;</code></li><li><code>Refused to load the image &#x27;https://explore.sxsw.com/hs-fs/hubfs/2025/EDU/2026highlightsSUB2.png?width=1300&amp;height=150&amp;upscale=true&amp;name=2026highlightsSUB2.png&#x27; because it violates </code></li><li><code>Refused to load the image &#x27;https://explore.sxsw.com/hs-fs/hubfs/2025/EDU/2026highlightspicSHORT2.png?width=1300&amp;height=400&amp;upscale=true&amp;name=2026highlightspicSHORT2.png&#x27; because it</code></li><li><code>Refused to load the image &#x27;https://explore.sxsw.com/hubfs/2026/Transactional%20Email%20Headers/SXSWEDU_PRIMARY_black_updated-2025.png&#x27; because it violates the following Content Sec</code></li><li><code>Refused to load the image &#x27;https://explore.sxsw.com/hubfs/2025/SX/25_SXSW_email-bluesky-blk.png&#x27; because it violates the following Content Security Policy directive: &quot;img-src data:</code></li><li><code>Refused to load the image &#x27;https://explore.sxsw.com/hubfs/2025/SX/25_SXSW_email-footer-facebook-blk.png&#x27; because it violates the following Content Security Policy directive: &quot;img-s</code></li><li><code>Refused to load the image &#x27;https://explore.sxsw.com/hubfs/2025/SX/25_SXSW_email-footer-instagram-blk.png&#x27; because it violates the following Content Security Policy directive: &quot;img-</code></li><li><code>Refused to load the image &#x27;https://explore.sxsw.com/hubfs/2025/SX/25_SXSW_email-footer-linkedin-blk.png&#x27; because it violates the following Content Security Policy directive: &quot;img-s</code></li><li><code>Refused to load the image &#x27;https://explore.sxsw.com/hubfs/2025/SX/25_SXSW_email-footer-tiktok-blk.png&#x27; because it violates the following Content Security Policy directive: &quot;img-src</code></li><li><code>Refused to load the image &#x27;https://explore.sxsw.com/hubfs/2025/SX/25_SXSW_email-youtube-blk.png&#x27; because it violates the following Content Security Policy directive: &quot;img-src data:</code></li><li><code>Refused to load the image &#x27;https://explore.sxsw.com/hs-fs/hubfs/2026/Sponsors/SXSWEDU2026PremierSponsors.png?width=1240&amp;upscale=true&amp;name=SXSWEDU2026PremierSponsors.png&#x27; because it</code></li><li><code>Refused to load the image &#x27;https://explore.sxsw.com/e3t/Cto/OL+113/c3yrK04/VVPx9N7c9f0dW7BRdH66ml30KW7zr5cm5LDK-ZW2SX1RW3CzJqv103&#x27; because it violates the following Content Securit</code></li></ul></div><div class="dbg-none">JS 未捕获异常：<b>无</b></div><div class="dbg-has"><b>网络错误（请求失败 / 4xx–5xx）（13）</b><ul><li><code>✗ GET https://explore.sxsw.com/hs-fs/hubfs/2025/EDU/2026presalenonregemailHEADER.gif?width=1300&amp;height=1032&amp;upscale=true&amp;name=2026presalenonregemailHEADER.g — csp</code></li><li><code>✗ GET https://explore.sxsw.com/hs-fs/hubfs/2025/EDU/2026highlightsSUB2.png?width=1300&amp;height=150&amp;upscale=true&amp;name=2026highlightsSUB2.png — csp</code></li><li><code>✗ GET https://explore.sxsw.com/hs-fs/hubfs/2025/EDU/2026highlightspicSHORT2.png?width=1300&amp;height=400&amp;upscale=true&amp;name=2026highlightspicSHORT2.png — csp</code></li><li><code>✗ GET https://explore.sxsw.com/hubfs/2026/Transactional%20Email%20Headers/SXSWEDU_PRIMARY_black_updated-2025.png — csp</code></li><li><code>✗ GET https://explore.sxsw.com/hubfs/2025/SX/25_SXSW_email-bluesky-blk.png — csp</code></li><li><code>✗ GET https://explore.sxsw.com/hubfs/2025/SX/25_SXSW_email-footer-facebook-blk.png — csp</code></li><li><code>✗ GET https://explore.sxsw.com/hubfs/2025/SX/25_SXSW_email-footer-instagram-blk.png — csp</code></li><li><code>✗ GET https://explore.sxsw.com/hubfs/2025/SX/25_SXSW_email-footer-linkedin-blk.png — csp</code></li><li><code>✗ GET https://explore.sxsw.com/hubfs/2025/SX/25_SXSW_email-footer-tiktok-blk.png — csp</code></li><li><code>✗ GET https://explore.sxsw.com/hubfs/2025/SX/25_SXSW_email-youtube-blk.png — csp</code></li><li><code>✗ GET https://explore.sxsw.com/hs-fs/hubfs/2026/Sponsors/SXSWEDU2026PremierSponsors.png?width=1240&amp;upscale=true&amp;name=SXSWEDU2026PremierSponsors.png — csp</code></li><li><code>✗ GET https://explore.sxsw.com/e3t/Cto/OL+113/c3yrK04/VVPx9N7c9f0dW7BRdH66ml30KW7zr5cm5LDK-ZW2SX1RW3CzJqv103 — csp</code></li><li><code>✗ GET https://explore.sxsw.com/hubfs/2026/Email%20Assets/footer-dillo.png?noresize — csp</code></li></ul></div></details>
+</section><section id="path-threads">
+<h2>Threads <span class="rt">anon · https://mailbox-demo.afsd.dev/?page=threads</span></h2>
+<p class="pdesc">导航到 https://mailbox-demo.afsd.dev/?page=threads，验证页面加载并渲染出真实内容（threads 页 breadth 走查）。</p>
+<video class="video" controls preload="metadata" src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260724T191300Z/mailbox-demo/page@c30574ac34e52871cdb61ec804e0eca7.webm"><a href="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260724T191300Z/mailbox-demo/page@c30574ac34e52871cdb61ec804e0eca7.webm">下载该路径录像</a></video><p class="vcap">本测试路径整段走查录像</p>
+<div class="kpis"><div class="kpi"><div class="k">2</div><div class="l">操作步</div></div><div class="kpi"><div class="k">2</div><div class="l">通过</div></div><div class="kpi"><div class="k k-bad">0</div><div class="l">失败</div></div><div class="kpi"><div class="k k-warn">0</div><div class="l">不确定</div></div><div class="kpi"><div class="k">0</div><div class="l">未走到</div></div></div>
+<details class="steps"><summary>▸ 逐步操作详情（2 步，含判定截图）</summary><div class="op">
+<h3><span class="pill p-ok">通过</span> navigate</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260724T191300Z/mailbox-demo/threads-01.png" alt="navigate" loading="lazy"><figcaption>navigate</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：title=&#x27;Mailbox Demo&#x27; url=https://mailbox-demo.afsd.dev/?page=threads aupNodes=54 buttons=9 inputs=0 textLen=1684 head=&#x27;📬 Mailbox Demo Unified Email Chat Threads Forum Social Notifications Q3 Budget Review alice@example.com, bob@example.com, carol@example.com &#x27;</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> snapshot</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260724T191300Z/mailbox-demo/threads-02.png" alt="snapshot" loading="lazy"><figcaption>snapshot</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：title=&#x27;Mailbox Demo&#x27; url=https://mailbox-demo.afsd.dev/?page=threads aupNodes=54 buttons=9 inputs=0 textLen=1684 head=&#x27;📬 Mailbox Demo Unified Email Chat Threads Forum Social Notifications Q3 Budget Review alice@example.com, bob@example.com, carol@example.com &#x27;</div>
+
+
+</div></details>
+<details class="dbg"><summary>运行时 debug 上下文（全清）</summary><div class="dbg-none">Console 错误：<b>无</b></div><div class="dbg-none">JS 未捕获异常：<b>无</b></div><div class="dbg-none">网络错误（请求失败 / 4xx–5xx）：<b>无</b></div></details>
+</section><section id="path-thread">
+<h2>Thread <span class="rt">anon · https://mailbox-demo.afsd.dev/?page=thread</span></h2>
+<p class="pdesc">导航到 https://mailbox-demo.afsd.dev/?page=thread，验证页面加载并渲染出真实内容（thread 页 breadth 走查）。</p>
+<video class="video" controls preload="metadata" src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260724T191300Z/mailbox-demo/page@758b881b516ecee0ba88deaaba8693b7.webm"><a href="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260724T191300Z/mailbox-demo/page@758b881b516ecee0ba88deaaba8693b7.webm">下载该路径录像</a></video><p class="vcap">本测试路径整段走查录像</p>
+<div class="kpis"><div class="kpi"><div class="k">2</div><div class="l">操作步</div></div><div class="kpi"><div class="k">2</div><div class="l">通过</div></div><div class="kpi"><div class="k k-bad">0</div><div class="l">失败</div></div><div class="kpi"><div class="k k-warn">0</div><div class="l">不确定</div></div><div class="kpi"><div class="k">0</div><div class="l">未走到</div></div></div>
+<details class="steps"><summary>▸ 逐步操作详情（2 步，含判定截图）</summary><div class="op">
+<h3><span class="pill p-ok">通过</span> navigate</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260724T191300Z/mailbox-demo/thread-01.png" alt="navigate" loading="lazy"><figcaption>navigate</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：title=&#x27;Mailbox Demo&#x27; url=https://mailbox-demo.afsd.dev/?page=thread aupNodes=7 buttons=10 inputs=0 textLen=150 head=&#x27;📬 Mailbox Demo Unified Email Chat Threads Forum Social Notifications Back to Threads Q3 Budget Review ✅ build 65e6f509f · 2026-07-24T17:20:0&#x27;</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> snapshot</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260724T191300Z/mailbox-demo/thread-02.png" alt="snapshot" loading="lazy"><figcaption>snapshot</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：title=&#x27;Mailbox Demo&#x27; url=https://mailbox-demo.afsd.dev/?page=thread aupNodes=35 buttons=10 inputs=0 textLen=1455 head=&#x27;📬 Mailbox Demo Unified Email Chat Threads Forum Social Notifications Back to Threads Q3 Budget Review A alice@example.com inbound Hi team, I&#x27;</div>
+
+
+</div></details>
+<details class="dbg"><summary>运行时 debug 上下文（全清）</summary><div class="dbg-none">Console 错误：<b>无</b></div><div class="dbg-none">JS 未捕获异常：<b>无</b></div><div class="dbg-none">网络错误（请求失败 / 4xx–5xx）：<b>无</b></div></details>
+</section><section id="path-thread-read-1">
+<h2>thread → threads <span class="rt">anon · https://mailbox-demo.afsd.dev/?page=thread</span></h2>
+<p class="pdesc">读流走查：从「thread」进入「threads」并验证渲染。</p>
+<video class="video" controls preload="metadata" src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260724T191300Z/mailbox-demo/page@0f544b897247d9c2e08949c617acae83.webm"><a href="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260724T191300Z/mailbox-demo/page@0f544b897247d9c2e08949c617acae83.webm">下载该路径录像</a></video><p class="vcap">本测试路径整段走查录像</p>
+<div class="kpis"><div class="kpi"><div class="k">3</div><div class="l">操作步</div></div><div class="kpi"><div class="k">3</div><div class="l">通过</div></div><div class="kpi"><div class="k k-bad">0</div><div class="l">失败</div></div><div class="kpi"><div class="k k-warn">0</div><div class="l">不确定</div></div><div class="kpi"><div class="k">0</div><div class="l">未走到</div></div></div>
+<details class="steps"><summary>▸ 逐步操作详情（3 步，含判定截图）</summary><div class="op">
+<h3><span class="pill p-ok">通过</span> navigate</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260724T191300Z/mailbox-demo/thread-read-1-01.png" alt="navigate" loading="lazy"><figcaption>navigate</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：title=&#x27;Mailbox Demo&#x27; url=https://mailbox-demo.afsd.dev/?page=thread aupNodes=35 buttons=10 inputs=0 textLen=1461 head=&#x27;📬 Mailbox Demo Unified Email Chat Threads Forum Social Notifications Back to Threads Q3 Budget Review A alice@example.com inbound Hi team, I&#x27;</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> 点控件 [back]</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260724T191300Z/mailbox-demo/thread-read-1-02.png" alt="点控件 [back]" loading="lazy"><figcaption>点控件 [back]</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：title=&#x27;Mailbox Demo&#x27; url=https://mailbox-demo.afsd.dev/?page=threads aupNodes=54 buttons=9 inputs=0 textLen=1684 head=&#x27;📬 Mailbox Demo Unified Email Chat Threads Forum Social Notifications Q3 Budget Review alice@example.com, bob@example.com, carol@example.com &#x27;</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> snapshot</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260724T191300Z/mailbox-demo/thread-read-1-03.png" alt="snapshot" loading="lazy"><figcaption>snapshot</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：title=&#x27;Mailbox Demo&#x27; url=https://mailbox-demo.afsd.dev/?page=threads aupNodes=54 buttons=9 inputs=0 textLen=1684 head=&#x27;📬 Mailbox Demo Unified Email Chat Threads Forum Social Notifications Q3 Budget Review alice@example.com, bob@example.com, carol@example.com &#x27;</div>
+
+
+</div></details>
+<details class="dbg"><summary>运行时 debug 上下文（全清）</summary><div class="dbg-none">Console 错误：<b>无</b></div><div class="dbg-none">JS 未捕获异常：<b>无</b></div><div class="dbg-none">网络错误（请求失败 / 4xx–5xx）：<b>无</b></div></details>
+</section><section id="path-chat">
+<h2>Chat <span class="rt">anon · https://mailbox-demo.afsd.dev/?page=chat</span></h2>
+<p class="pdesc">导航到 https://mailbox-demo.afsd.dev/?page=chat，验证页面加载并渲染出真实内容（chat 页 breadth 走查）。</p>
+<video class="video" controls preload="metadata" src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260724T191300Z/mailbox-demo/page@f8d5c0b5407084b1e2be39a5b75b0f3c.webm"><a href="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260724T191300Z/mailbox-demo/page@f8d5c0b5407084b1e2be39a5b75b0f3c.webm">下载该路径录像</a></video><p class="vcap">本测试路径整段走查录像</p>
+<div class="kpis"><div class="kpi"><div class="k">2</div><div class="l">操作步</div></div><div class="kpi"><div class="k">2</div><div class="l">通过</div></div><div class="kpi"><div class="k k-bad">0</div><div class="l">失败</div></div><div class="kpi"><div class="k k-warn">0</div><div class="l">不确定</div></div><div class="kpi"><div class="k">0</div><div class="l">未走到</div></div></div>
+<details class="steps"><summary>▸ 逐步操作详情（2 步，含判定截图）</summary><div class="op">
+<h3><span class="pill p-ok">通过</span> navigate</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260724T191300Z/mailbox-demo/chat-01.png" alt="navigate" loading="lazy"><figcaption>navigate</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：title=&#x27;Mailbox Demo&#x27; url=https://mailbox-demo.afsd.dev/?page=chat aupNodes=17 buttons=11 inputs=1 textLen=150 head=&#x27;📬 Mailbox Demo Unified Email Chat Threads Forum Social Notifications Conversations Alice Slack + Send ✅ build 65e6f509f · 2026-07-24T17:20:0&#x27;</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> snapshot</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260724T191300Z/mailbox-demo/chat-02.png" alt="snapshot" loading="lazy"><figcaption>snapshot</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：title=&#x27;Mailbox Demo&#x27; url=https://mailbox-demo.afsd.dev/?page=chat aupNodes=17 buttons=11 inputs=1 textLen=173 head=&#x27;📬 Mailbox Demo Unified Email Chat Threads Forum Social Notifications Conversations Alice 2 Project Team 0 Alice Slack + Send ✅ build 65e6f50&#x27;</div>
+
+
+</div></details>
+<details class="dbg"><summary>运行时 debug 上下文（全清）</summary><div class="dbg-none">Console 错误：<b>无</b></div><div class="dbg-none">JS 未捕获异常：<b>无</b></div><div class="dbg-none">网络错误（请求失败 / 4xx–5xx）：<b>无</b></div></details>
+</section><section id="path-forum">
+<h2>Forum <span class="rt">anon · https://mailbox-demo.afsd.dev/?page=forum</span></h2>
+<p class="pdesc">导航到 https://mailbox-demo.afsd.dev/?page=forum，验证页面加载并渲染出真实内容（forum 页 breadth 走查）。</p>
+<video class="video" controls preload="metadata" src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260724T191300Z/mailbox-demo/page@1b0b08538c2e7c1c27870e056f3411f4.webm"><a href="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260724T191300Z/mailbox-demo/page@1b0b08538c2e7c1c27870e056f3411f4.webm">下载该路径录像</a></video><p class="vcap">本测试路径整段走查录像</p>
+<div class="kpis"><div class="kpi"><div class="k">2</div><div class="l">操作步</div></div><div class="kpi"><div class="k">2</div><div class="l">通过</div></div><div class="kpi"><div class="k k-bad">0</div><div class="l">失败</div></div><div class="kpi"><div class="k k-warn">0</div><div class="l">不确定</div></div><div class="kpi"><div class="k">0</div><div class="l">未走到</div></div></div>
+<details class="steps"><summary>▸ 逐步操作详情（2 步，含判定截图）</summary><div class="op">
+<h3><span class="pill p-ok">通过</span> navigate</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260724T191300Z/mailbox-demo/forum-01.png" alt="navigate" loading="lazy"><figcaption>navigate</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：title=&#x27;Mailbox Demo&#x27; url=https://mailbox-demo.afsd.dev/?page=forum aupNodes=35 buttons=9 inputs=0 textLen=712 head=&quot;📬 Mailbox Demo Unified Email Chat Threads Forum Social Notifications How to deploy to production? 4 replies I&#x27;m new to the platform and tryi&quot;</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> snapshot</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260724T191300Z/mailbox-demo/forum-02.png" alt="snapshot" loading="lazy"><figcaption>snapshot</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：title=&#x27;Mailbox Demo&#x27; url=https://mailbox-demo.afsd.dev/?page=forum aupNodes=35 buttons=9 inputs=0 textLen=712 head=&quot;📬 Mailbox Demo Unified Email Chat Threads Forum Social Notifications How to deploy to production? 4 replies I&#x27;m new to the platform and tryi&quot;</div>
+
+
+</div></details>
+<details class="dbg"><summary>运行时 debug 上下文（全清）</summary><div class="dbg-none">Console 错误：<b>无</b></div><div class="dbg-none">JS 未捕获异常：<b>无</b></div><div class="dbg-none">网络错误（请求失败 / 4xx–5xx）：<b>无</b></div></details>
+</section><section id="path-feed">
+<h2>Feed <span class="rt">anon · https://mailbox-demo.afsd.dev/?page=feed</span></h2>
+<p class="pdesc">导航到 https://mailbox-demo.afsd.dev/?page=feed，验证页面加载并渲染出真实内容（feed 页 breadth 走查）。</p>
+<video class="video" controls preload="metadata" src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260724T191300Z/mailbox-demo/page@901539ac06dff983c2d3e974013f9fac.webm"><a href="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260724T191300Z/mailbox-demo/page@901539ac06dff983c2d3e974013f9fac.webm">下载该路径录像</a></video><p class="vcap">本测试路径整段走查录像</p>
+<div class="kpis"><div class="kpi"><div class="k">2</div><div class="l">操作步</div></div><div class="kpi"><div class="k">2</div><div class="l">通过</div></div><div class="kpi"><div class="k k-bad">0</div><div class="l">失败</div></div><div class="kpi"><div class="k k-warn">0</div><div class="l">不确定</div></div><div class="kpi"><div class="k">0</div><div class="l">未走到</div></div></div>
+<details class="steps"><summary>▸ 逐步操作详情（2 步，含判定截图）</summary><div class="op">
+<h3><span class="pill p-ok">通过</span> navigate</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260724T191300Z/mailbox-demo/feed-01.png" alt="navigate" loading="lazy"><figcaption>navigate</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：title=&#x27;Mailbox Demo&#x27; url=https://mailbox-demo.afsd.dev/?page=feed aupNodes=25 buttons=9 inputs=0 textLen=420 head=&#x27;📬 Mailbox Demo Unified Email Chat Threads Forum Social Notifications reaction alice@example.com liked your post &quot;Building with AFS&quot; follow d&#x27;</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> snapshot</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260724T191300Z/mailbox-demo/feed-02.png" alt="snapshot" loading="lazy"><figcaption>snapshot</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：title=&#x27;Mailbox Demo&#x27; url=https://mailbox-demo.afsd.dev/?page=feed aupNodes=25 buttons=9 inputs=0 textLen=420 head=&#x27;📬 Mailbox Demo Unified Email Chat Threads Forum Social Notifications reaction alice@example.com liked your post &quot;Building with AFS&quot; follow d&#x27;</div>
+
+
+</div></details>
+<details class="dbg"><summary>运行时 debug 上下文（全清）</summary><div class="dbg-none">Console 错误：<b>无</b></div><div class="dbg-none">JS 未捕获异常：<b>无</b></div><div class="dbg-none">网络错误（请求失败 / 4xx–5xx）：<b>无</b></div></details>
+</section><section id="path-notifications">
+<h2>Notifications <span class="rt">anon · https://mailbox-demo.afsd.dev/?page=notifications</span></h2>
+<p class="pdesc">导航到 https://mailbox-demo.afsd.dev/?page=notifications，验证页面加载并渲染出真实内容（notifications 页 breadth 走查）。</p>
+<video class="video" controls preload="metadata" src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260724T191300Z/mailbox-demo/page@9593ecf296bb9264b6c24134d7ada1bb.webm"><a href="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260724T191300Z/mailbox-demo/page@9593ecf296bb9264b6c24134d7ada1bb.webm">下载该路径录像</a></video><p class="vcap">本测试路径整段走查录像</p>
+<div class="kpis"><div class="kpi"><div class="k">2</div><div class="l">操作步</div></div><div class="kpi"><div class="k">2</div><div class="l">通过</div></div><div class="kpi"><div class="k k-bad">0</div><div class="l">失败</div></div><div class="kpi"><div class="k k-warn">0</div><div class="l">不确定</div></div><div class="kpi"><div class="k">0</div><div class="l">未走到</div></div></div>
+<details class="steps"><summary>▸ 逐步操作详情（2 步，含判定截图）</summary><div class="op">
+<h3><span class="pill p-ok">通过</span> navigate</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260724T191300Z/mailbox-demo/notifications-01.png" alt="navigate" loading="lazy"><figcaption>navigate</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：title=&#x27;Mailbox Demo&#x27; url=https://mailbox-demo.afsd.dev/?page=notifications aupNodes=17 buttons=9 inputs=0 textLen=422 head=&#x27;📬 Mailbox Demo Unified Email Chat Threads Forum Social Notifications deploy Production deployment v2.4.1 completed successfully in 3m 42s se&#x27;</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> snapshot</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260724T191300Z/mailbox-demo/notifications-02.png" alt="snapshot" loading="lazy"><figcaption>snapshot</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：title=&#x27;Mailbox Demo&#x27; url=https://mailbox-demo.afsd.dev/?page=notifications aupNodes=17 buttons=9 inputs=0 textLen=422 head=&#x27;📬 Mailbox Demo Unified Email Chat Threads Forum Social Notifications deploy Production deployment v2.4.1 completed successfully in 3m 42s se&#x27;</div>
+
+
+</div></details>
+<details class="dbg"><summary>运行时 debug 上下文（全清）</summary><div class="dbg-none">Console 错误：<b>无</b></div><div class="dbg-none">JS 未捕获异常：<b>无</b></div><div class="dbg-none">网络错误（请求失败 / 4xx–5xx）：<b>无</b></div></details>
+</section>
+<p class="sub" style="margin-top:22px">由 test-report-builder（build-agent-report）生成 · issue #1808</p>
+</div></body></html>
