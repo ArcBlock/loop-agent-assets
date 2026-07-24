@@ -9,3 +9,4 @@
 | 20260724-005912-zh-articles-2018-02-02-Bloomberg.png | https://github.com/ArcBlock/arcblock-site/pull/43 | 2026-07-24T00:59:12Z | wangshijun@wangshijun-mac-studio |
 | 20260724-005926-ja-articles-2018-03-04-Chainnews.png | https://github.com/ArcBlock/arcblock-site/pull/43 | 2026-07-24T00:59:26Z | wangshijun@wangshijun-mac-studio |
 | 20260724-005936-ja-articles-2018-11-20-baimeiliantan.png | https://github.com/ArcBlock/arcblock-site/pull/43 | 2026-07-24T00:59:36Z | wangshijun@wangshijun-mac-studio |
+| 20260724-005946-zh-TW-articles-2018-07-20-CoinVoice.png | https://github.com/ArcBlock/arcblock-site/pull/43 | 2026-07-24T00:59:46Z | wangshijun@wangshijun-mac-studio |
