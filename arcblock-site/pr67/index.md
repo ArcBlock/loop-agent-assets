@@ -3,3 +3,4 @@
 | file | source | uploaded | by |
 |---|---|---|---|
 | 20260724-111504-ja-nov.png | https://github.com/ArcBlock/arcblock-site/pull/67 | 2026-07-24T11:15:04Z | wangshijun@wangshijun-mac-studio |
+| 20260724-111512-zhtw-dec.png | https://github.com/ArcBlock/arcblock-site/pull/67 | 2026-07-24T11:15:12Z | wangshijun@wangshijun-mac-studio |
