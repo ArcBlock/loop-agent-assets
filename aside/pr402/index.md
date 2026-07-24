@@ -6,3 +6,4 @@
 | 20260724-032328-b4-row-02-start-trade-show.png | https://github.com/ArcBlock/aside/pull/402 | 2026-07-24T03:23:30Z | codex-issue-401-design |
 | 20260724-032338-b4-row-03-travel.png | https://github.com/ArcBlock/aside/pull/402 | 2026-07-24T03:23:41Z | codex-issue-401-design |
 | 20260724-032349-b4-row-04-research.png | https://github.com/ArcBlock/aside/pull/402 | 2026-07-24T03:23:51Z | codex-issue-401-design |
+| 20260724-032400-b4-row-05-collection.png | https://github.com/ArcBlock/aside/pull/402 | 2026-07-24T03:24:02Z | codex-issue-401-design |
