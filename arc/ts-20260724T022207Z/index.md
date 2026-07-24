@@ -115,3 +115,7 @@
 | 20260724-033121-todo-page@9b2095856da294c132863873f47346a2.webm | https://github.com/ArcBlock/arc | 2026-07-24T03:31:21Z | test-sweep@cloud-routine |
 | 20260724-033121-todo-page@a1f3b33e2de2823f95f16186a7613342.webm | https://github.com/ArcBlock/arc | 2026-07-24T03:31:21Z | test-sweep@cloud-routine |
 | 20260724-033121-todo-page@e053f50975bfe50253acf998e2fa6cf9.webm | https://github.com/ArcBlock/arc | 2026-07-24T03:31:21Z | test-sweep@cloud-routine |
+| 20260724-033124-observability-explorer-index-04.png | https://github.com/ArcBlock/arc | 2026-07-24T03:31:24Z | test-sweep@cloud-routine |
+| 20260724-033124-observability-explorer-index-06.png | https://github.com/ArcBlock/arc | 2026-07-24T03:31:24Z | test-sweep@cloud-routine |
+| 20260724-033124-observability-explorer-index-10.png | https://github.com/ArcBlock/arc | 2026-07-24T03:31:24Z | test-sweep@cloud-routine |
+| 20260724-033124-observability-explorer-page@a192d987a0ce6826e03b470843640505.webm | https://github.com/ArcBlock/arc | 2026-07-24T03:31:24Z | test-sweep@cloud-routine |
