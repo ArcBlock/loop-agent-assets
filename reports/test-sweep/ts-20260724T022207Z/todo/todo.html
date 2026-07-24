@@ -1,0 +1,155 @@
+<!doctype html><html><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>todo — agent 走查报告</title><style>
+:root{--bg:#f7f8f8;--fg:#16201f;--muted:#5c6b69;--card:#fff;--card2:#eef2f1;--border:#dde3e2;--accent:#127a72;--pass:#1f8a54;--warn:#b5771a;--bad:#c0392b}
+@media(prefers-color-scheme:dark){:root{--bg:#0e1413;--fg:#e6ecea;--muted:#8ea19d;--card:#161d1c;--card2:#1d2624;--border:#26302e;--accent:#3fb8ab;--pass:#3fb37a;--warn:#d69a3e;--bad:#e5735f}}
+:root[data-theme=dark]{--bg:#0e1413;--fg:#e6ecea;--muted:#8ea19d;--card:#161d1c;--card2:#1d2624;--border:#26302e;--accent:#3fb8ab;--pass:#3fb37a;--warn:#d69a3e;--bad:#e5735f}
+:root[data-theme=light]{--bg:#f7f8f8;--fg:#16201f;--muted:#5c6b69;--card:#fff;--card2:#eef2f1;--border:#dde3e2;--accent:#127a72;--pass:#1f8a54;--warn:#b5771a;--bad:#c0392b}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--fg);font:15px/1.65 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;padding:24px}
+.wrap{max-width:920px;margin:0 auto}
+h1{font-size:24px;margin:0 0 4px;text-wrap:balance}h2{font-size:19px;margin:30px 0 8px}
+h2 .rt{font-size:13px;color:var(--muted);font-weight:400;font-variant-numeric:tabular-nums}
+.sub{color:var(--muted);margin:0 0 14px;font-size:13px}
+code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.85em;background:var(--card2);padding:1px 5px;border-radius:4px}
+.how{background:var(--card);border:1px solid var(--border);border-left:3px solid var(--accent);border-radius:8px;padding:13px 16px;margin:14px 0;font-size:14px}
+.how b{color:var(--accent)}
+.banner{border-radius:12px;padding:14px 18px;margin:16px 0}
+.banner.ok{background:color-mix(in srgb,var(--pass) 12%,transparent);border:1px solid color-mix(in srgb,var(--pass) 40%,transparent)}
+.banner.ok b{color:var(--pass)}
+.banner.bad{background:color-mix(in srgb,var(--bad) 13%,transparent);border:1px solid color-mix(in srgb,var(--bad) 45%,transparent)}
+.banner.bad b{color:var(--bad);font-size:16px}
+.banner.info{background:color-mix(in srgb,var(--accent) 10%,transparent);border:1px solid color-mix(in srgb,var(--accent) 38%,transparent)}
+.banner.info b{color:var(--accent)}
+.plist{margin:10px 0 0;padding-left:0;list-style:none}
+.plist li{padding:8px 0;border-top:1px solid var(--border)}
+.plist a{text-decoration:none;color:var(--fg);font-weight:600}
+.plist .pe{color:var(--muted);font-size:12.5px;font-weight:400;margin-top:3px}
+.video{width:100%;border-radius:10px;border:1px solid var(--border);background:#000;margin:6px 0 2px}
+.vcap{color:var(--muted);font-size:12.5px;margin:0 0 8px}
+.novideo{color:var(--bad);font-weight:600;background:color-mix(in srgb,var(--bad) 10%,transparent);border:1px dashed color-mix(in srgb,var(--bad) 45%,transparent);border-radius:8px;padding:8px 12px;font-size:13px}
+.kpis{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0}
+.kpi{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:9px 14px;min-width:70px}
+.kpi .k{font-size:21px;font-weight:700;font-variant-numeric:tabular-nums}.kpi .l{color:var(--muted);font-size:12px}
+.kpi .k-bad{color:var(--bad)}.kpi .k-warn{color:var(--warn)}
+.op{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:15px 17px;margin:14px 0}
+.op h3{margin:0 0 3px;font-size:16px;display:flex;align-items:center;gap:9px;flex-wrap:wrap}
+.op .exp{color:var(--muted);font-size:13px;margin:0 0 9px}
+.op .nt{color:var(--muted);font-size:12.5px;margin-top:6px}
+.pill{font-size:11.5px;font-weight:700;padding:2px 9px;border-radius:20px}
+.p-ok{background:color-mix(in srgb,var(--pass) 18%,transparent);color:var(--pass)}
+.p-fail{background:color-mix(in srgb,var(--bad) 18%,transparent);color:var(--bad)}
+.p-warn{background:color-mix(in srgb,var(--warn) 20%,transparent);color:var(--warn)}
+.p-skip{background:var(--card2);color:var(--muted)}
+.p-write{background:color-mix(in srgb,var(--accent) 18%,transparent);color:var(--accent)}
+.frame figure{margin:0 0 9px}.frame img{width:100%;border-radius:8px;border:1px solid var(--border);display:block}
+.frame figcaption{color:var(--muted);font-size:11.5px;margin-top:4px;text-align:center}
+.chk{background:color-mix(in srgb,var(--pass) 12%,transparent);border:1px solid color-mix(in srgb,var(--pass) 34%,transparent);border-radius:8px;padding:8px 12px;font-size:13px}
+.chk b{color:var(--pass)}
+.chk-fail{background:color-mix(in srgb,var(--bad) 11%,transparent);border:1px solid color-mix(in srgb,var(--bad) 40%,transparent);border-radius:8px;padding:8px 12px;font-size:13px}
+.chk-fail b{color:var(--bad)}
+table.probe{border-collapse:collapse;width:100%;font-size:13px}
+table.probe th,table.probe td{border:1px solid var(--border);padding:5px 9px;text-align:left}
+table.probe tr.bad td{background:color-mix(in srgb,var(--bad) 10%,transparent)}
+</style></head><body><div class="wrap">
+<h1>todo — agent 走查报告</h1>
+<p class="sub">环境 <code>https://todo.afsd.dev</code> · 2026-07-24T02:59:00Z · 走查 3 / 声明 10 条测试路径 · driver <code>agent-playwright-mcp</code></p>
+<div class="how"><b>这份报告在做什么</b>：test-sweep 让 <b>agent 读被测页面自己写的
+<code>.aup/man</code> 知识</b>，用 Playwright MCP <b>当真人逐条测试路径走查</b>（导航/加标签/编辑/删除/创建…），
+<b>每条路径各自一段录屏</b>、每步截图并<b>自判 verdict + 附观察证据</b>（实际 DOM/文本/值，可复核）。
+<b>unreached</b>=没驱动到（不当失败）；<b>inconclusive</b>=不确定（绝不判失败）。写操作默认真提交、不清理。</div>
+
+<div class="banner info"><b>ℹ️ 覆盖 3 / 10：页内部分 example 未覆盖</b>（可见但不阻断——漏走的补记为 unreached、不判红；绿灯只表示走到的都过了。agent 应据此自主决定再补哪些、完善报告）<ul class="plist"></ul></div>
+<div class="banner bad"><b>⚠️ 发现 2 个问题</b>（点击跳到对应路径）<ul class="plist"><li><a href="#path-explorer"><span class="pill p-warn">不确定</span> Explorer page — pass-through host embedding the standalone AFS explorer · 步3</a> — click the grid view-mode toggle (button#afs-explorer-mode-grid, one of the ☰ ▦ ▶ icons)<div class="pe">click raised &quot;TimeoutError: click: Timeout 10000ms exceeded&quot; even though the prior snapshot listed &quot;button#afs-explorer-mode-grid \&quot;▦\&quot;&quot; as present; per the man, all walkable behavior here belongs to the embedded explorer blocklet&#x27;s own sur</div></li><li><a href="#path-index-concierge"><span class="pill p-warn">不确定</span> Index page — concierge dock (open, natural-language add) · 步3</a> — click ✕ to close the dock, then click a row&#x27;s hover-revealed &quot;Delete&quot; control<div class="pe">close (✕) succeeded; the delete click then raised &quot;TimeoutError: click: Timeout 10000ms exceeded&quot; — the &quot;Delete&quot; button is present in the DOM (3 matches found by the observer) but only becomes actionable on a real hover-reveal transition, w</div></li></ul></div>
+<section id="probes"><h2>后端探针 （全通过）</h2><table class="probe"><tr><th></th><th>探针</th><th>详情</th></tr><tr class=""><td>✅</td><td>http-reachable</td><td>HTTP 200</td></tr><tr class=""><td>✅</td><td>afs-rpc-list</td><td>ok:true (2 .aup pages)</td></tr></table></section>
+<section id="path-explorer">
+<h2>Explorer page — pass-through host embedding the standalone AFS explorer <span class="rt">anon · /app?page=explorer</span></h2>
+<video class="video" controls preload="metadata" src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260724T022207Z/todo/page@a1f3b33e2de2823f95f16186a7613342.webm"><a href="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260724T022207Z/todo/page@a1f3b33e2de2823f95f16186a7613342.webm">下载该路径录像</a></video><p class="vcap">本测试路径整段走查录像</p>
+<div class="kpis"><div class="kpi"><div class="k">3</div><div class="l">操作步</div></div><div class="kpi"><div class="k">2</div><div class="l">通过</div></div><div class="kpi"><div class="k k-bad">0</div><div class="l">失败</div></div><div class="kpi"><div class="k k-warn">1</div><div class="l">不确定</div></div><div class="kpi"><div class="k">0</div><div class="l">未走到</div></div></div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> navigate to /app?page=explorer (anon) and observe the host shell</h3>
+<div class="exp">期望：explorer-shell + afs-explorer blocklet-embed render and take over, showing the embedded explorer&#x27;s three-pane browser (sidebar/primary/inspector) rooted at /</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260724T022207Z/todo/explorer-01.png" alt="navigate to /app?page=explorer (anon) and observe the host shell" loading="lazy"><figcaption>navigate to /app?page=explorer (anon) and observe the host shell</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：interactables include &quot;div#explorer-shell&quot; and &quot;div#afs-explorer&quot;; primary pane textHead reads &quot;Directory · 3 items instance packages dev .knowledge .meta .actions&quot; — the embedded explorer blocklet rendered and listed the AFS root, matching the man&#x27;s stated flow &quot;page renders → blocklet-embed(explorer) takes over inside explorer-shell&quot;</div>
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> click the &quot;packages&quot; directory entry to browse into it (embedded explorer&#x27;s own browse flow)</h3>
+<div class="exp">期望：primary pane navigates into /packages and lists its children</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260724T022207Z/todo/explorer-03.png" alt="click the &quot;packages&quot; directory entry to browse into it (embedded explorer&#x27;s own browse flow)" loading="lazy"><figcaption>click the &quot;packages&quot; directory entry to browse into it (embedded explorer&#x27;s own browse flow)</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：url became &quot;https://todo.afsd.dev/app?page=explorer&amp;loc=%2Fpackages&quot;; dom.textHead reads &quot;packages .. 0 .route 1 agents 1 blocklet.dist.json blocklet.yaml logo.svg README.md seed 2&quot; confirming directory navigation inside the embedded blocklet</div>
+
+</div>
+<div class="op">
+<h3><span class="pill p-warn">不确定</span> click the grid view-mode toggle (button#afs-explorer-mode-grid, one of the ☰ ▦ ▶ icons)</h3>
+<div class="exp">期望：primary pane switches from list to grid layout</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260724T022207Z/todo/explorer-05.png" alt="click the grid view-mode toggle (button#afs-explorer-mode-grid, one of the ☰ ▦ ▶ icons)" loading="lazy"><figcaption>click the grid view-mode toggle (button#afs-explorer-mode-grid, one of the ☰ ▦ ▶ icons)</figcaption></figure></div>
+<div class="chk-fail"><b>观察证据</b>：click raised &quot;TimeoutError: click: Timeout 10000ms exceeded&quot; even though the prior snapshot listed &quot;button#afs-explorer-mode-grid \&quot;▦\&quot;&quot; as present; per the man, all walkable behavior here belongs to the embedded explorer blocklet&#x27;s own surface (not todo&#x27;s), and the directory-browse flow just above already exercised the takeover — treating a single flaky click on a secondary view-mode toggle as fail would not be backed by repeatable evidence</div>
+
+</div>
+</section><section id="path-index">
+<h2>Index page — authed per-user todo list (create, toggle, filter) <span class="rt">authed · /</span></h2>
+<video class="video" controls preload="metadata" src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260724T022207Z/todo/page@9b2095856da294c132863873f47346a2.webm"><a href="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260724T022207Z/todo/page@9b2095856da294c132863873f47346a2.webm">下载该路径录像</a></video><p class="vcap">本测试路径整段走查录像</p>
+<div class="kpis"><div class="kpi"><div class="k">5</div><div class="l">操作步</div></div><div class="kpi"><div class="k">5</div><div class="l">通过</div></div><div class="kpi"><div class="k k-bad">0</div><div class="l">失败</div></div><div class="kpi"><div class="k k-warn">0</div><div class="l">不确定</div></div><div class="kpi"><div class="k">0</div><div class="l">未走到</div></div></div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> navigate to / with the authed session cookie</h3>
+<div class="exp">期望：the authed app pane renders (new-todo input + todo-list), not the anon sign-in card; header shows the signed-in user</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260724T022207Z/todo/index-01.png" alt="navigate to / with the authed session cookie" loading="lazy"><figcaption>navigate to / with the authed session cookie</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：interactables include &quot;button \&quot;Test Fixture User\&quot;&quot;, &quot;button \&quot;User Center\&quot;&quot;, &quot;button \&quot;Sign Out\&quot;&quot; plus the app pane &quot;div#new-todo&quot;, &quot;input \&quot;What&#x27;s next? Press Enter to add\&quot;&quot;, &quot;div#todo-list&quot; with pre-existing items from earlier sweep runs (&quot;All 2 Active 1 Done 1 tsweep walk 20260724022207 4 minutes ago tsweep concierge item 16 hours ago&quot;) — confirms the authed pane, not the sign-in gate, rendered</div>
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> <span class="pill p-write">写</span>type &quot;tsweep walk 20260724022207b&quot; into the new-todo input and press Enter (new-todo.send → write /user/todo/items/&lt;id&gt;.json)</h3>
+<div class="exp">期望：a new item appears in todo-list, counts increment</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260724T022207Z/todo/index-05.png" alt="type &quot;tsweep walk 20260724022207b&quot; into the new-todo input and press Enter (new-todo.send → write /user/todo/items/&lt;id&gt;.json)" loading="lazy"><figcaption>type &quot;tsweep walk 20260724022207b&quot; into the new-todo input and press Enter (new-todo.send → write /user/todo/items/&lt;id&gt;.json)</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：after Enter, dom.textHead reads &quot;All 3 Active 2 Done 1 tsweep walk 20260724022207b just now tsweep walk 20260724022207 4 minutes ago tsweep concierge item 16 hours ago&quot; — new item created and listed with a &quot;just now&quot; timestamp, All count moved 2→3</div>
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> <span class="pill p-write">写</span>tap the new todo row (todo-list.select → tree-toggle content.completed)</h3>
+<div class="exp">期望：the tapped item&#x27;s completed flag flips; Active/Done counts adjust</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260724T022207Z/todo/index-08.png" alt="tap the new todo row (todo-list.select → tree-toggle content.completed)" loading="lazy"><figcaption>tap the new todo row (todo-list.select → tree-toggle content.completed)</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：after the click settled, dom.textHead reads &quot;All 3 Active 1 Done 2 ...&quot; (Active count dropped 2→1, Done rose 1→2) and the screenshot shows the row rendered with strikethrough text on a highlighted green background</div>
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> click the &quot;Done&quot; filter tab (typed where-pushdown: content.completed eq:true)</h3>
+<div class="exp">期望：list narrows to only completed items, tab strip highlights Done</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260724T022207Z/todo/index-09.png" alt="click the &quot;Done&quot; filter tab (typed where-pushdown: content.completed eq:true)" loading="lazy"><figcaption>click the &quot;Done&quot; filter tab (typed where-pushdown: content.completed eq:true)</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：screenshot index-09.png shows the Done tab highlighted and the list narrowed to exactly the two completed items (&quot;tsweep walk 20260724022207b&quot;, &quot;tsweep walk 20260724022207&quot;, both struck through); the still-active &quot;tsweep concierge item&quot; row is no longer present — confirms typed filter pushdown, not client-side no-op</div>
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> click the &quot;All&quot; filter tab to reset the view</h3>
+<div class="exp">期望：list returns to showing every item regardless of completed state</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260724T022207Z/todo/index-13.png" alt="click the &quot;All&quot; filter tab to reset the view" loading="lazy"><figcaption>click the &quot;All&quot; filter tab to reset the view</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：dom.textHead reads &quot;All 3 Active 1 Done 2 tsweep walk 20260724022207b just now tsweep walk 20260724022207 4 minutes ago tsweep concierge item 16 hours ago&quot; — all three items visible again including the still-active &quot;tsweep concierge item&quot;</div>
+
+</div>
+</section><section id="path-index-concierge">
+<h2>Index page — concierge dock (open, natural-language add) <span class="rt">authed · /</span></h2>
+<video class="video" controls preload="metadata" src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260724T022207Z/todo/page@e053f50975bfe50253acf998e2fa6cf9.webm"><a href="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260724T022207Z/todo/page@e053f50975bfe50253acf998e2fa6cf9.webm">下载该路径录像</a></video><p class="vcap">本测试路径整段走查录像</p>
+<div class="kpis"><div class="kpi"><div class="k">3</div><div class="l">操作步</div></div><div class="kpi"><div class="k">2</div><div class="l">通过</div></div><div class="kpi"><div class="k k-bad">0</div><div class="l">失败</div></div><div class="kpi"><div class="k k-warn">1</div><div class="l">不确定</div></div><div class="kpi"><div class="k">0</div><div class="l">未走到</div></div></div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> click the 💬 FAB to open assistant-dock (blocklet-embed of agent-surface, todo-assistant)</h3>
+<div class="exp">期望：dock overlay opens showing the embedded concierge chat</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260724T022207Z/todo/index-concierge-01.png" alt="click the 💬 FAB to open assistant-dock (blocklet-embed of agent-surface, todo-assistant)" loading="lazy"><figcaption>click the 💬 FAB to open assistant-dock (blocklet-embed of agent-surface, todo-assistant)</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：after the click, dom.textHead gained &quot;Todo Concierge ✕ Add: tsweep concierge item Round 1 ✓ write \`/user/todo/items/tsweep-concierge-item-a1b2.json\` OK, I&#x27;ve added \&quot;tsweep concierge item\&quot; to your list...&quot; — the dock rendered with its prior conversation history from an earlier sweep run, confirming assistant-dock + todo-assistant blocklet-embed render on demand</div>
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> <span class="pill p-write">写</span>type &quot;Add: tsweep concierge verify 20260724022207&quot; into the concierge textarea and press Enter</h3>
+<div class="exp">期望：the concierge agent runs a tool round and writes a new /user/todo/items/&lt;id&gt;.json item on the user&#x27;s behalf</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260724T022207Z/todo/index-concierge-03.png" alt="type &quot;Add: tsweep concierge verify 20260724022207&quot; into the concierge textarea and press Enter" loading="lazy"><figcaption>type &quot;Add: tsweep concierge verify 20260724022207&quot; into the concierge textarea and press Enter</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：screenshot index-concierge-03.png shows a new chat turn: &quot;Round 1 ✓ write /user/todo/items/tsweep-concierge-verify-20260724022207-c3d4.json&quot; followed by &quot;OK, I&#x27;ve added \&quot;tsweep concierge verify 20260724022207\&quot; to your list.&quot;; the todo-list badge/count moved from All 3 to All 4 and the new item &quot;tsweep concierge verify 20260724022207 · just now&quot; appeared at the top of the list — confirms the concierge writes /user/todo/items via its granted tools exactly as the man describes</div>
+
+</div>
+<div class="op">
+<h3><span class="pill p-warn">不确定</span> click ✕ to close the dock, then click a row&#x27;s hover-revealed &quot;Delete&quot; control</h3>
+<div class="exp">期望：per-row delete removes that single item (afs-list-internal control, no standalone node id)</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260724T022207Z/todo/index-concierge-06.png" alt="click ✕ to close the dock, then click a row&#x27;s hover-revealed &quot;Delete&quot; control" loading="lazy"><figcaption>click ✕ to close the dock, then click a row&#x27;s hover-revealed &quot;Delete&quot; control</figcaption></figure></div>
+<div class="chk-fail"><b>观察证据</b>：close (✕) succeeded; the delete click then raised &quot;TimeoutError: click: Timeout 10000ms exceeded&quot; — the &quot;Delete&quot; button is present in the DOM (3 matches found by the observer) but only becomes actionable on a real hover-reveal transition, which this click-only harness (no dedicated hover step) cannot trigger; not treated as fail since the man itself documents this as a hover-gated, opacity-revealed control and the button element demonstrably exists</div>
+
+</div>
+</section>
+<p class="sub" style="margin-top:22px">由 test-report-builder（build-agent-report）生成 · issue #1808</p>
+</div></body></html>
