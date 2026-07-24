@@ -7,3 +7,4 @@
 | 20260724-005853-zh-TW-articles-2018-07-20-CoinVoice.png | https://github.com/ArcBlock/arcblock-site/pull/43 | 2026-07-24T00:58:53Z | wangshijun@wangshijun-mac-studio |
 | 20260724-005903-zh-TW-articles-2018-12-31-December-Monthly-Report.png | https://github.com/ArcBlock/arcblock-site/pull/43 | 2026-07-24T00:59:03Z | wangshijun@wangshijun-mac-studio |
 | 20260724-005912-zh-articles-2018-02-02-Bloomberg.png | https://github.com/ArcBlock/arcblock-site/pull/43 | 2026-07-24T00:59:12Z | wangshijun@wangshijun-mac-studio |
+| 20260724-005926-ja-articles-2018-03-04-Chainnews.png | https://github.com/ArcBlock/arcblock-site/pull/43 | 2026-07-24T00:59:26Z | wangshijun@wangshijun-mac-studio |
