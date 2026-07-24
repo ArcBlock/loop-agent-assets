@@ -171,3 +171,7 @@
 | 20260724-033132-discuss-kit-page@749f6bbe4ba53945cd175b3db9784146.webm | https://github.com/ArcBlock/arc | 2026-07-24T03:31:32Z | test-sweep@cloud-routine |
 | 20260724-033132-discuss-kit-page@adf09349d47b9d17512111ad96458222.webm | https://github.com/ArcBlock/arc | 2026-07-24T03:31:32Z | test-sweep@cloud-routine |
 | 20260724-033132-discuss-kit-page@b592a065fa30f90b963c0764a103758f.webm | https://github.com/ArcBlock/arc | 2026-07-24T03:31:32Z | test-sweep@cloud-routine |
+| 20260724-033134-blocklet-manager-home-01.png | https://github.com/ArcBlock/arc | 2026-07-24T03:31:34Z | test-sweep@cloud-routine |
+| 20260724-033134-blocklet-manager-home-02.png | https://github.com/ArcBlock/arc | 2026-07-24T03:31:34Z | test-sweep@cloud-routine |
+| 20260724-033134-blocklet-manager-home-03.png | https://github.com/ArcBlock/arc | 2026-07-24T03:31:34Z | test-sweep@cloud-routine |
+| 20260724-033134-blocklet-manager-page@6bd41962b97d504b03d7f9be6e69c891.webm | https://github.com/ArcBlock/arc | 2026-07-24T03:31:34Z | test-sweep@cloud-routine |
