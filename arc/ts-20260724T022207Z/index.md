@@ -16,3 +16,7 @@
 | 20260724-033104-site-arcsphere-io-home-01.png | https://github.com/ArcBlock/arc | 2026-07-24T03:31:04Z | test-sweep@cloud-routine |
 | 20260724-033104-site-arcsphere-io-home-02.png | https://github.com/ArcBlock/arc | 2026-07-24T03:31:04Z | test-sweep@cloud-routine |
 | 20260724-033104-site-arcsphere-io-page@0fd89071016f15669344d2494df76b28.webm | https://github.com/ArcBlock/arc | 2026-07-24T03:31:04Z | test-sweep@cloud-routine |
+| 20260724-033106-site-didwallet-io-home-01.png | https://github.com/ArcBlock/arc | 2026-07-24T03:31:06Z | test-sweep@cloud-routine |
+| 20260724-033106-site-didwallet-io-home-02.png | https://github.com/ArcBlock/arc | 2026-07-24T03:31:06Z | test-sweep@cloud-routine |
+| 20260724-033106-site-didwallet-io-home-03.png | https://github.com/ArcBlock/arc | 2026-07-24T03:31:06Z | test-sweep@cloud-routine |
+| 20260724-033106-site-didwallet-io-page@1b53b545f843725891c735fc6cf91fda.webm | https://github.com/ArcBlock/arc | 2026-07-24T03:31:06Z | test-sweep@cloud-routine |
