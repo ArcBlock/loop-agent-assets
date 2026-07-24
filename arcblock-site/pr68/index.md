@@ -10,3 +10,4 @@
 | 20260724-110737-zh-articles-2018-01-22-Inc-0122.png | https://github.com/ArcBlock/arcblock-site/pull/68 | 2026-07-24T11:07:37Z | wangshijun@wangshijun-mac-studio |
 | 20260724-115643-ja.png | https://github.com/ArcBlock/arcblock-site/pull/68 | 2026-07-24T11:56:43Z | wangshijun@wangshijun-mac-studio |
 | 20260724-115650-zh.png | https://github.com/ArcBlock/arcblock-site/pull/68 | 2026-07-24T11:56:50Z | wangshijun@wangshijun-mac-studio |
+| 20260724-115659-zhtw.png | https://github.com/ArcBlock/arcblock-site/pull/68 | 2026-07-24T11:56:59Z | wangshijun@wangshijun-mac-studio |
