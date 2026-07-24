@@ -7,3 +7,4 @@
 | 20260724-071221-ja-pages-kit-new-ui-and-project-management.png | https://github.com/ArcBlock/arcblock-site/issues/51 | 2026-07-24T07:12:21Z | wangshijun@wangshijun-mac-studio |
 | 20260724-071230-zh-TW-anatomy-of-arcblocks-new-website.png | https://github.com/ArcBlock/arcblock-site/issues/51 | 2026-07-24T07:12:30Z | wangshijun@wangshijun-mac-studio |
 | 20260724-071237-zh-TW-did-domain-free-trial.png | https://github.com/ArcBlock/arcblock-site/issues/51 | 2026-07-24T07:12:37Z | wangshijun@wangshijun-mac-studio |
+| 20260724-071245-zh-TW-nft-tutorial-2-nft-studio.png | https://github.com/ArcBlock/arcblock-site/issues/51 | 2026-07-24T07:12:45Z | wangshijun@wangshijun-mac-studio |
