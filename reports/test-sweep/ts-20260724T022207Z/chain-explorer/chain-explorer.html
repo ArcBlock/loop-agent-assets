@@ -1,0 +1,277 @@
+<!doctype html><html><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>chain-explorer — agent 走查报告</title><style>
+:root{--bg:#f7f8f8;--fg:#16201f;--muted:#5c6b69;--card:#fff;--card2:#eef2f1;--border:#dde3e2;--accent:#127a72;--pass:#1f8a54;--warn:#b5771a;--bad:#c0392b}
+@media(prefers-color-scheme:dark){:root{--bg:#0e1413;--fg:#e6ecea;--muted:#8ea19d;--card:#161d1c;--card2:#1d2624;--border:#26302e;--accent:#3fb8ab;--pass:#3fb37a;--warn:#d69a3e;--bad:#e5735f}}
+:root[data-theme=dark]{--bg:#0e1413;--fg:#e6ecea;--muted:#8ea19d;--card:#161d1c;--card2:#1d2624;--border:#26302e;--accent:#3fb8ab;--pass:#3fb37a;--warn:#d69a3e;--bad:#e5735f}
+:root[data-theme=light]{--bg:#f7f8f8;--fg:#16201f;--muted:#5c6b69;--card:#fff;--card2:#eef2f1;--border:#dde3e2;--accent:#127a72;--pass:#1f8a54;--warn:#b5771a;--bad:#c0392b}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--fg);font:15px/1.65 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;padding:24px}
+.wrap{max-width:920px;margin:0 auto}
+h1{font-size:24px;margin:0 0 4px;text-wrap:balance}h2{font-size:19px;margin:30px 0 8px}
+h2 .rt{font-size:13px;color:var(--muted);font-weight:400;font-variant-numeric:tabular-nums}
+.sub{color:var(--muted);margin:0 0 14px;font-size:13px}
+code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.85em;background:var(--card2);padding:1px 5px;border-radius:4px}
+.how{background:var(--card);border:1px solid var(--border);border-left:3px solid var(--accent);border-radius:8px;padding:13px 16px;margin:14px 0;font-size:14px}
+.how b{color:var(--accent)}
+.banner{border-radius:12px;padding:14px 18px;margin:16px 0}
+.banner.ok{background:color-mix(in srgb,var(--pass) 12%,transparent);border:1px solid color-mix(in srgb,var(--pass) 40%,transparent)}
+.banner.ok b{color:var(--pass)}
+.banner.bad{background:color-mix(in srgb,var(--bad) 13%,transparent);border:1px solid color-mix(in srgb,var(--bad) 45%,transparent)}
+.banner.bad b{color:var(--bad);font-size:16px}
+.banner.info{background:color-mix(in srgb,var(--accent) 10%,transparent);border:1px solid color-mix(in srgb,var(--accent) 38%,transparent)}
+.banner.info b{color:var(--accent)}
+.plist{margin:10px 0 0;padding-left:0;list-style:none}
+.plist li{padding:8px 0;border-top:1px solid var(--border)}
+.plist a{text-decoration:none;color:var(--fg);font-weight:600}
+.plist .pe{color:var(--muted);font-size:12.5px;font-weight:400;margin-top:3px}
+.video{width:100%;border-radius:10px;border:1px solid var(--border);background:#000;margin:6px 0 2px}
+.vcap{color:var(--muted);font-size:12.5px;margin:0 0 8px}
+.novideo{color:var(--bad);font-weight:600;background:color-mix(in srgb,var(--bad) 10%,transparent);border:1px dashed color-mix(in srgb,var(--bad) 45%,transparent);border-radius:8px;padding:8px 12px;font-size:13px}
+.kpis{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0}
+.kpi{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:9px 14px;min-width:70px}
+.kpi .k{font-size:21px;font-weight:700;font-variant-numeric:tabular-nums}.kpi .l{color:var(--muted);font-size:12px}
+.kpi .k-bad{color:var(--bad)}.kpi .k-warn{color:var(--warn)}
+.op{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:15px 17px;margin:14px 0}
+.op h3{margin:0 0 3px;font-size:16px;display:flex;align-items:center;gap:9px;flex-wrap:wrap}
+.op .exp{color:var(--muted);font-size:13px;margin:0 0 9px}
+.op .nt{color:var(--muted);font-size:12.5px;margin-top:6px}
+.pill{font-size:11.5px;font-weight:700;padding:2px 9px;border-radius:20px}
+.p-ok{background:color-mix(in srgb,var(--pass) 18%,transparent);color:var(--pass)}
+.p-fail{background:color-mix(in srgb,var(--bad) 18%,transparent);color:var(--bad)}
+.p-warn{background:color-mix(in srgb,var(--warn) 20%,transparent);color:var(--warn)}
+.p-skip{background:var(--card2);color:var(--muted)}
+.p-write{background:color-mix(in srgb,var(--accent) 18%,transparent);color:var(--accent)}
+.frame figure{margin:0 0 9px}.frame img{width:100%;border-radius:8px;border:1px solid var(--border);display:block}
+.frame figcaption{color:var(--muted);font-size:11.5px;margin-top:4px;text-align:center}
+.chk{background:color-mix(in srgb,var(--pass) 12%,transparent);border:1px solid color-mix(in srgb,var(--pass) 34%,transparent);border-radius:8px;padding:8px 12px;font-size:13px}
+.chk b{color:var(--pass)}
+.chk-fail{background:color-mix(in srgb,var(--bad) 11%,transparent);border:1px solid color-mix(in srgb,var(--bad) 40%,transparent);border-radius:8px;padding:8px 12px;font-size:13px}
+.chk-fail b{color:var(--bad)}
+table.probe{border-collapse:collapse;width:100%;font-size:13px}
+table.probe th,table.probe td{border:1px solid var(--border);padding:5px 9px;text-align:left}
+table.probe tr.bad td{background:color-mix(in srgb,var(--bad) 10%,transparent)}
+</style></head><body><div class="wrap">
+<h1>chain-explorer — agent 走查报告</h1>
+<p class="sub">环境 <code>https://chain-explorer.afsd.dev</code> · 2026-07-24T03:06:09Z · 走查 9 / 声明 64 条测试路径 · driver <code>agent-playwright-mcp</code></p>
+<div class="how"><b>这份报告在做什么</b>：test-sweep 让 <b>agent 读被测页面自己写的
+<code>.aup/man</code> 知识</b>，用 Playwright MCP <b>当真人逐条测试路径走查</b>（导航/加标签/编辑/删除/创建…），
+<b>每条路径各自一段录屏</b>、每步截图并<b>自判 verdict + 附观察证据</b>（实际 DOM/文本/值，可复核）。
+<b>unreached</b>=没驱动到（不当失败）；<b>inconclusive</b>=不确定（绝不判失败）。写操作默认真提交、不清理。</div>
+
+<div class="banner info"><b>ℹ️ 覆盖 9 / 64：页内部分 example 未覆盖</b>（可见但不阻断——漏走的补记为 unreached、不判红；绿灯只表示走到的都过了。agent 应据此自主决定再补哪些、完善报告）<ul class="plist"></ul></div>
+<div class="banner bad"><b>⚠️ 发现 7 个问题</b>（点击跳到对应路径）<ul class="plist"><li><a href="#path-index"><span class="pill p-warn">不确定</span> Chain Explorer shell — network resolution, Home dashboard, nav to Transactions, filter dialog, row drill-down, search · 步3</a> — Repeat cold navigation to https://chain-explorer.afsd.dev/main/ across 5 separate independent browser sessions to check load reliability<div class="pe">2 of 5 navigation attempts (including one with a 15s settle window) hung indefinitely on the pre-app splash — screenshot text &quot;Chain Explorer / ArcBlock Main Chain / ● CONNECTING... / POWERED BY ARC&quot; never progressed to the AUP shell (0 dat</div></li><li><a href="#path-index"><span class="pill p-fail">失败</span> Chain Explorer shell — network resolution, Home dashboard, nav to Transactions, filter dialog, row drill-down, search · 步5</a> — Click the &quot;Open transaction filter&quot; funnel icon (#tx-filter-toggle) in primary-toolbar, on a fully-rendered, fully-loaded Transactions list, to open the filter dialog (man example &quot;Filter transactions by type and validity&quot;)<div class="pe">TimeoutError: click: Timeout 10000ms exceeded. button#tx-filter-toggle &quot;Open transaction filter&quot; is confirmed visible on screen (funnel icon top-right of the Transactions table, same screenshot as the passing list-load step) but Playwright&#x27;</div></li><li><a href="#path-index"><span class="pill p-warn">不确定</span> Chain Explorer shell — network resolution, Home dashboard, nav to Transactions, filter dialog, row drill-down, search · 步7</a> — Type &quot;AIGNE&quot; into the header search box (app-header.search-input)<div class="pe">search input value became &quot;AIGNE&quot;; an overlay opened directly under the box showing the text &quot;Searching...&quot; (index-16.png). Did not wait long enough in this run to observe the resolved result rows, so only the open+query-trigger behavior is</div></li><li><a href="#path-accounts-flow"><span class="pill p-warn">不确定</span> Accounts: list -&gt; detail (self-heal) · 步3</a> — Click text &#x27;Tokens&#x27; while on the account detail page, intending to open the account&#x27;s Tokens tab<div class="pe">The click landed on the top app-header nav link &#x27;Tokens&#x27; instead (URL changed to /main/tokens, the section list) rather than the account&#x27;s own Tokens tab -- ambiguous text locator matched the wrong &#x27;Tokens&#x27; element on the page, a walker pla</div></li><li><a href="#path-chain-selector-flow"><span class="pill p-fail">失败</span> Switch chain Main &lt;-&gt; Beta (self-heal) · 步1</a> — Click the header chain selector labelled &#x27;Main&#x27; (top-right, next to the theme toggle) on a fully-rendered, stable Home dashboard, via role=button name=Main<div class="pe">TimeoutError: click: Timeout 10000ms exceeded. Screenshot confirms the dashboard is fully loaded and stable (stat cards + Recent Transactions/Tokens/Factories all populated) and the &#x27;Main ⌄&#x27; control is visibly present top-right, yet no drop</div></li><li><a href="#path-chain-selector-flow"><span class="pill p-fail">失败</span> Switch chain Main &lt;-&gt; Beta (self-heal) · 步2</a> — Retry with a different locator strategy: click by visible text &#x27;Main&#x27; instead of role=button<div class="pe">TimeoutError: click: Timeout 10000ms exceeded again, on a fresh navigation/fresh session, same fully-loaded stable Home dashboard. Two independent locator strategies (role+name, and plain text) both fail identically.</div></li><li><a href="#path-assistant-dock-flow"><span class="pill p-warn">不确定</span> Open the Chain Assistant dock (self-heal) · 步1</a> — Click selector #assistant-dock (the floating chat dock container) on a fully-loaded Home dashboard to open the Chain Assistant<div class="pe">TimeoutError: click: Timeout 10000ms exceeded when targeting the CSS id #assistant-dock directly.</div></li></ul></div>
+<section id="probes"><h2>后端探针 （1 项失败）</h2><table class="probe"><tr><th></th><th>探针</th><th>详情</th></tr><tr class=""><td>✅</td><td>http-reachable</td><td>HTTP 301</td></tr><tr class="bad"><td>❌</td><td>afs-rpc-list</td><td> </td></tr></table></section>
+<section id="path-index">
+<h2>Chain Explorer shell — network resolution, Home dashboard, nav to Transactions, filter dialog, row drill-down, search <span class="rt">anon · /{network}</span></h2>
+<video class="video" controls preload="metadata" src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260724T022207Z/chain-explorer/page@6b8bb5063870ecaa558f86a5d6b6c391.webm"><a href="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260724T022207Z/chain-explorer/page@6b8bb5063870ecaa558f86a5d6b6c391.webm">下载该路径录像</a></video><p class="vcap">本测试路径整段走查录像</p>
+<div class="kpis"><div class="kpi"><div class="k">7</div><div class="l">操作步</div></div><div class="kpi"><div class="k">4</div><div class="l">通过</div></div><div class="kpi"><div class="k k-bad">1</div><div class="l">失败</div></div><div class="kpi"><div class="k k-warn">2</div><div class="l">不确定</div></div><div class="kpi"><div class="k">0</div><div class="l">未走到</div></div></div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> Resolve declared placeholder route /{network} to a concrete network segment by loading the base URL and observing the redirect + chain selector</h3>
+<div class="exp">期望：a real, anon-reachable network segment exists (per man&#x27;s Main/Beta chain selector)</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260724T022207Z/chain-explorer/explore-03.png" alt="Resolve declared placeholder route /{network} to a concrete network segment by loading the base URL and observing the redirect + chain selector" loading="lazy"><figcaption>Resolve declared placeholder route /{network} to a concrete network segment by loading the base URL and observing the redirect + chain selector</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：GET https://chain-explorer.afsd.dev/ returns HTTP 301 (probeResults[0]) and browser navigation lands on https://chain-explorer.afsd.dev/main/; header shows a chain selector button labelled &quot;Main&quot; with &quot;Beta&quot; as the other option (interactable: div#app-header &quot;...Main Beta Chain Explorer...&quot;). No seed-dynamic-entry.py needed — &#x27;main&#x27; is the real segment.</div>
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> Load Home dashboard at /main/ (default route, node chain-overview)</h3>
+<div class="exp">期望：chain-overview renders stat cards (Transactions/Accounts/Tokens/Assets/Factories/Stakes/Bridges) + Recent Transactions/Tokens/Factories panels</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260724T022207Z/chain-explorer/index-02.png" alt="Load Home dashboard at /main/ (default route, node chain-overview)" loading="lazy"><figcaption>Load Home dashboard at /main/ (default route, node chain-overview)</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：h2#co-stat-numTxs-v &quot;570,779&quot;; h2#co-stat-accountCount-v &quot;77,822&quot;; h2#co-stat-tokenCount-v &quot;4&quot;; h2#co-stat-assetCount-v &quot;82,377&quot;; h2#co-stat-factoryCount-v &quot;386&quot;; div#co-stat-stakeCount &quot;Stakes 2,322&quot;; textHead includes &quot;RECENT TRANSACTIONS View all → HASH TYPE FROM VALUE TIME 0AE0011D…BED6CC Transfer V3 z1oHa79x…AaRRmS 0.00000128 AIGNEP 9 minutes ago&quot; and a TOKENS table (AIGNEP/AIGNET/AIGNES/ABT) and FACTORIES table.</div>
+<div class="nt">Cold-load is not instant: took ~4-8s after navigate before content replaced the empty shell; a 2s wait alone (first attempt) still showed only the header/footer chrome with an empty primary-surface (see explore-03.png) — needed the full settle window.</div>
+</div>
+<div class="op">
+<h3><span class="pill p-warn">不确定</span> Repeat cold navigation to https://chain-explorer.afsd.dev/main/ across 5 separate independent browser sessions to check load reliability</h3>
+<div class="exp">期望：consistent load of the app shell past the client bootstrap splash</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260724T022207Z/chain-explorer/index-02.png" alt="Repeat cold navigation to https://chain-explorer.afsd.dev/main/ across 5 separate independent browser sessions to check load reliability" loading="lazy"><figcaption>Repeat cold navigation to https://chain-explorer.afsd.dev/main/ across 5 separate independent browser sessions to check load reliability</figcaption></figure></div>
+<div class="chk-fail"><b>观察证据</b>：2 of 5 navigation attempts (including one with a 15s settle window) hung indefinitely on the pre-app splash — screenshot text &quot;Chain Explorer / ArcBlock Main Chain / ● CONNECTING... / POWERED BY ARC&quot; never progressed to the AUP shell (0 data-aup-id nodes). The other 3 attempts loaded the full dashboard successfully within 4-12s.</div>
+<div class="nt">Correlates with the independent backend probe result probeResults[1] = {&quot;probe&quot;:&quot;afs-rpc-list&quot;,&quot;ok&quot;:false,&quot;detail&quot;:&quot; &quot;} — suggests a real intermittent AFS RPC/WS connection issue behind this page (not purely sandbox CPU contention: one hang occurred with ~14GiB free memory and only moderate load).</div>
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> Click nav item &quot;Transactions&quot; (app-header.nav-click) from the Home dashboard</h3>
+<div class="exp">期望：primary-surface re-roots to the Transactions section list (txs-view-list)</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260724T022207Z/chain-explorer/index-05.png" alt="Click nav item &quot;Transactions&quot; (app-header.nav-click) from the Home dashboard" loading="lazy"><figcaption>Click nav item &quot;Transactions&quot; (app-header.nav-click) from the Home dashboard</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：URL becomes https://chain-explorer.afsd.dev/main/transactions; breadcrumb &quot;main / transactions&quot;; table renders HASH/TYPE/FROM/TO/VALUE/FEE/TIME columns with live rows e.g. &quot;B29EAA72…072B5C Transfer V3 z1hYKLrv…NyuwQi zNKi6YiP…tusvye 0.0205105 AIGNEP 0.0010831 ABT just now&quot;; &quot;Live updates&quot; toggle is ON.</div>
+
+</div>
+<div class="op">
+<h3><span class="pill p-fail">失败</span> Click the &quot;Open transaction filter&quot; funnel icon (#tx-filter-toggle) in primary-toolbar, on a fully-rendered, fully-loaded Transactions list, to open the filter dialog (man example &quot;Filter transactions by type and validity&quot;)</h3>
+<div class="exp">期望：tx-filter-overlay opens showing a Transaction Type multi-select + Validity select + Cancel/Apply actions</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260724T022207Z/chain-explorer/index-06.png" alt="Click the &quot;Open transaction filter&quot; funnel icon (#tx-filter-toggle) in primary-toolbar, on a fully-rendered, fully-loaded Transactions list, to open the filter dialog (man example &quot;Filter transactions by type and validity&quot;)" loading="lazy"><figcaption>Click the &quot;Open transaction filter&quot; funnel icon (#tx-filter-toggle) in primary-toolbar, on a fully-rendered, fully-loaded Transactions list, to open the filter dialog (man example &quot;Filter transactions by type and validity&quot;)</figcaption></figure></div>
+<div class="chk-fail"><b>观察证据</b>：TimeoutError: click: Timeout 10000ms exceeded. button#tx-filter-toggle &quot;Open transaction filter&quot; is confirmed visible on screen (funnel icon top-right of the Transactions table, same screenshot as the passing list-load step) but Playwright&#x27;s click never registers; the DOM/screenshot after the failed click (index-06.png) is pixel-identical to before it — no dialog appears. Reproduced in 3 independent sessions, including one where the very first click attempted was #txs-view-toggle (the &quot;Live updates&quot; switch, also inside primary-toolbar) which timed out the same way, and a follow-up click on #tx-filter-toggle in that same session also timed out.</div>
+<div class="nt">Nav-bar clicks (header, a separate wm-surface) and row clicks inside the list body succeeded in the same sessions, narrowing the failure to controls inside `primary-toolbar` specifically while &quot;Live updates&quot; streaming is active — consistent with the toolbar continuously reflowing as new rows stream in, which can starve Playwright&#x27;s click-target-stability check. This is worth a human look: even if it is a stability-check artifact rather than a literal unclickable button for a human mouse user, a toolbar that keeps shifting under a live stream is a real UX smell for precise clicking.</div>
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> Click a transaction row (&quot;Transfer V3&quot;, hash B29EAA72…072B5C) in the Transactions list</h3>
+<div class="exp">期望：re-roots to that transaction&#x27;s detail page (tx-detail) with Receipts/Raw tabs</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260724T022207Z/chain-explorer/index-13.png" alt="Click a transaction row (&quot;Transfer V3&quot;, hash B29EAA72…072B5C) in the Transactions list" loading="lazy"><figcaption>Click a transaction row (&quot;Transfer V3&quot;, hash B29EAA72…072B5C) in the Transactions list</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：URL becomes https://chain-explorer.afsd.dev/main/transactions/B29EAA72FC8464E0B01941B9FBEDE225741FF7DBC6533C27B71602F2D4072B5C; page shows heading &quot;Transfer V3&quot;, a &quot;Success&quot; badge, &quot;Jul 24, 2026, 2:59 AM&quot;, and a DETAILS panel with Transaction Hash/Type/Sender/Receiver/Time/Nonce/Gas Fee (&quot;Saved by staking ABT&quot;)/Service Fee (&quot;Free&quot;); tabs &quot;Receipts&quot; (active) and &quot;Raw&quot; are both present below.</div>
+
+</div>
+<div class="op">
+<h3><span class="pill p-warn">不确定</span> Type &quot;AIGNE&quot; into the header search box (app-header.search-input)</h3>
+<div class="exp">期望：search-overlay opens and drives search-results-list query</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260724T022207Z/chain-explorer/index-16.png" alt="Type &quot;AIGNE&quot; into the header search box (app-header.search-input)" loading="lazy"><figcaption>Type &quot;AIGNE&quot; into the header search box (app-header.search-input)</figcaption></figure></div>
+<div class="chk-fail"><b>观察证据</b>：search input value became &quot;AIGNE&quot;; an overlay opened directly under the box showing the text &quot;Searching...&quot; (index-16.png). Did not wait long enough in this run to observe the resolved result rows, so only the open+query-trigger behavior is confirmed, not the final result list content.</div>
+
+</div>
+</section><section id="path-accounts-flow">
+<h2>Accounts: list -&gt; detail (self-heal) <span class="rt">anon · /main/accounts</span></h2>
+<video class="video" controls preload="metadata" src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260724T022207Z/chain-explorer/page@66fc5e247585d4f006366f53d64e4bdf.webm"><a href="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260724T022207Z/chain-explorer/page@66fc5e247585d4f006366f53d64e4bdf.webm">下载该路径录像</a></video><p class="vcap">本测试路径整段走查录像</p>
+<div class="kpis"><div class="kpi"><div class="k">3</div><div class="l">操作步</div></div><div class="kpi"><div class="k">2</div><div class="l">通过</div></div><div class="kpi"><div class="k k-bad">0</div><div class="l">失败</div></div><div class="kpi"><div class="k k-warn">1</div><div class="l">不确定</div></div><div class="kpi"><div class="k">0</div><div class="l">未走到</div></div></div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> Click nav item &#x27;Accounts&#x27; from Home dashboard</h3>
+<div class="exp">期望：primary-surface re-roots to the accounts list (accts-view-list)</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260724T022207Z/chain-explorer/selfheal-04.png" alt="Click nav item &#x27;Accounts&#x27; from Home dashboard" loading="lazy"><figcaption>Click nav item &#x27;Accounts&#x27; from Home dashboard</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：URL -&gt; /main/accounts; table ADDRESS/NAME/CREATED/UPDATED with rows e.g. &quot;zNKi6YiP…tusvye ai-kit 2 months ago 4 minutes ago&quot;</div>
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> Click the first account row</h3>
+<div class="exp">期望：re-roots to that account&#x27;s detail page (account-detail)</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260724T022207Z/chain-explorer/selfheal-07.png" alt="Click the first account row" loading="lazy"><figcaption>Click the first account row</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：URL -&gt; /main/accounts/zNKi6YiPShda1vt9WNuHt4JUqmJkHatusvye; heading &quot;ai-kit&quot;, badge &quot;Application&quot;, ACCOUNT INFO panel with Address/Moniker/Nonce fields</div>
+
+</div>
+<div class="op">
+<h3><span class="pill p-warn">不确定</span> Click text &#x27;Tokens&#x27; while on the account detail page, intending to open the account&#x27;s Tokens tab</h3>
+<div class="exp">期望：acc-tab-tokens-list activates in place (URL unchanged)</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260724T022207Z/chain-explorer/selfheal4-04.png" alt="Click text &#x27;Tokens&#x27; while on the account detail page, intending to open the account&#x27;s Tokens tab" loading="lazy"><figcaption>Click text &#x27;Tokens&#x27; while on the account detail page, intending to open the account&#x27;s Tokens tab</figcaption></figure></div>
+<div class="chk-fail"><b>观察证据</b>：The click landed on the top app-header nav link &#x27;Tokens&#x27; instead (URL changed to /main/tokens, the section list) rather than the account&#x27;s own Tokens tab -- ambiguous text locator matched the wrong &#x27;Tokens&#x27; element on the page, a walker plan issue, not evidence about the tab itself.</div>
+<div class="nt">Not a judgement on the app; the account&#x27;s Tokens tab itself was not actually exercised this round due to selector ambiguity.</div>
+</div>
+</section><section id="path-tokens-flow">
+<h2>Tokens: list -&gt; detail -&gt; Holders tab (self-heal) <span class="rt">anon · /main/tokens</span></h2>
+<video class="video" controls preload="metadata" src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260724T022207Z/chain-explorer/page@66fc5e247585d4f006366f53d64e4bdf.webm"><a href="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260724T022207Z/chain-explorer/page@66fc5e247585d4f006366f53d64e4bdf.webm">下载该路径录像</a></video><p class="vcap">本测试路径整段走查录像</p>
+<div class="kpis"><div class="kpi"><div class="k">3</div><div class="l">操作步</div></div><div class="kpi"><div class="k">3</div><div class="l">通过</div></div><div class="kpi"><div class="k k-bad">0</div><div class="l">失败</div></div><div class="kpi"><div class="k k-warn">0</div><div class="l">不确定</div></div><div class="kpi"><div class="k">0</div><div class="l">未走到</div></div></div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> Click nav item &#x27;Tokens&#x27; from Home dashboard</h3>
+<div class="exp">期望：primary-surface re-roots to the tokens list (tokens-view-list)</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260724T022207Z/chain-explorer/selfheal-10.png" alt="Click nav item &#x27;Tokens&#x27; from Home dashboard" loading="lazy"><figcaption>Click nav item &#x27;Tokens&#x27; from Home dashboard</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：URL -&gt; /main/tokens; table NAME/SYMBOL/ADDRESS/SUPPLY/CREATED/UPDATED e.g. &quot;AIGNE Hub AIGNEP z35nQNyu…JV3hoC 32,165 7 months ago 7 months ago&quot;</div>
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> Click the first token row</h3>
+<div class="exp">期望：re-roots to that token&#x27;s detail page (token-detail)</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260724T022207Z/chain-explorer/selfheal-13.png" alt="Click the first token row" loading="lazy"><figcaption>Click the first token row</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：URL -&gt; /main/tokens/z35nQNyuhz8wXi9uZkmLw9HYJLk4DSaJV3hoC; heading &quot;AIGNE Hub&quot; (AIGNEP), OVERVIEW panel with Total Supply &quot;32,165 AIGNEP&quot;, Type &quot;Credit Token&quot;</div>
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> Direct-navigate back to the same token detail and click its &#x27;Holders&#x27; tab</h3>
+<div class="exp">期望：tok-tab-holders-list activates showing per-address balances</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260724T022207Z/chain-explorer/selfheal4-08.png" alt="Direct-navigate back to the same token detail and click its &#x27;Holders&#x27; tab" loading="lazy"><figcaption>Direct-navigate back to the same token detail and click its &#x27;Holders&#x27; tab</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：Text &#x27;Transactions Top Holders&#x27; + table ADDRESS/NAME/BALANCE/CREATED/UPDATED with real rows e.g. &quot;zNKi6YiP…tusvye ai-kit 30,935.152624665 AIGNEP 2 months ago 1 minute ago&quot;; pager shows &quot;Page 1 of 72&quot; and &quot;Total: 714 records&quot;</div>
+
+</div>
+</section><section id="path-assets-flow">
+<h2>Assets: list -&gt; detail (self-heal) <span class="rt">anon · /main/assets</span></h2>
+<video class="video" controls preload="metadata" src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260724T022207Z/chain-explorer/page@66fc5e247585d4f006366f53d64e4bdf.webm"><a href="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260724T022207Z/chain-explorer/page@66fc5e247585d4f006366f53d64e4bdf.webm">下载该路径录像</a></video><p class="vcap">本测试路径整段走查录像</p>
+<div class="kpis"><div class="kpi"><div class="k">2</div><div class="l">操作步</div></div><div class="kpi"><div class="k">2</div><div class="l">通过</div></div><div class="kpi"><div class="k k-bad">0</div><div class="l">失败</div></div><div class="kpi"><div class="k k-warn">0</div><div class="l">不确定</div></div><div class="kpi"><div class="k">0</div><div class="l">未走到</div></div></div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> Click nav item &#x27;Assets&#x27; from Home dashboard</h3>
+<div class="exp">期望：primary-surface re-roots to the assets list (assets-view-list)</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260724T022207Z/chain-explorer/selfheal-16.png" alt="Click nav item &#x27;Assets&#x27; from Home dashboard" loading="lazy"><figcaption>Click nav item &#x27;Assets&#x27; from Home dashboard</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：URL -&gt; /main/assets; table ADDRESS/NAME/OWNER/CREATED/UPDATED e.g. &quot;zjdrANMt…9V77zr ystar.did.rocks z1WnD78z…aQttPw 2 years ago 3 days ago&quot;</div>
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> Click the first asset row</h3>
+<div class="exp">期望：re-roots to that asset&#x27;s detail page (asset-detail)</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260724T022207Z/chain-explorer/selfheal-19.png" alt="Click the first asset row" loading="lazy"><figcaption>Click the first asset row</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：URL -&gt; /main/assets/zjdrANMtf4z8grLBcPUJxnBy2gN9So9V77zr; heading &quot;ystar.did.rocks&quot;, badge &quot;Asset&quot;, ASSET INFO panel with Address/Moniker/NFT Factory fields</div>
+
+</div>
+</section><section id="path-factories-flow">
+<h2>Factories: list -&gt; detail (self-heal) <span class="rt">anon · /main/factories</span></h2>
+<video class="video" controls preload="metadata" src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260724T022207Z/chain-explorer/page@66fc5e247585d4f006366f53d64e4bdf.webm"><a href="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260724T022207Z/chain-explorer/page@66fc5e247585d4f006366f53d64e4bdf.webm">下载该路径录像</a></video><p class="vcap">本测试路径整段走查录像</p>
+<div class="kpis"><div class="kpi"><div class="k">2</div><div class="l">操作步</div></div><div class="kpi"><div class="k">2</div><div class="l">通过</div></div><div class="kpi"><div class="k k-bad">0</div><div class="l">失败</div></div><div class="kpi"><div class="k k-warn">0</div><div class="l">不确定</div></div><div class="kpi"><div class="k">0</div><div class="l">未走到</div></div></div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> Click nav item &#x27;Factories&#x27; from Home dashboard</h3>
+<div class="exp">期望：primary-surface re-roots to the factories list (factories-view-list)</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260724T022207Z/chain-explorer/selfheal-22.png" alt="Click nav item &#x27;Factories&#x27; from Home dashboard" loading="lazy"><figcaption>Click nav item &#x27;Factories&#x27; from Home dashboard</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：URL -&gt; /main/factories; table NAME/ADDRESS/MINTED/LIMIT/CREATED/UPDATED e.g. &quot;第二居所IP财富密码 z3Ct9mEr…g4P8Sm 1 Unlimited 2 months ago 2 months ago&quot;</div>
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> Click the first factory row</h3>
+<div class="exp">期望：re-roots to that factory&#x27;s detail page (factory-detail)</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260724T022207Z/chain-explorer/selfheal-25.png" alt="Click the first factory row" loading="lazy"><figcaption>Click the first factory row</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：URL -&gt; /main/factories/z3Ct9mErFkLa7fqPKwZes69VrZfG2RHg4P8Sm; heading &quot;第二居所IP财富密码&quot;, badge &quot;Factory&quot;, FACTORY INFO panel with Address/Name/Description fields</div>
+
+</div>
+</section><section id="path-stakes-flow">
+<h2>Stakes: list -&gt; detail (self-heal) <span class="rt">anon · /main/stakes</span></h2>
+<video class="video" controls preload="metadata" src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260724T022207Z/chain-explorer/page@66fc5e247585d4f006366f53d64e4bdf.webm"><a href="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260724T022207Z/chain-explorer/page@66fc5e247585d4f006366f53d64e4bdf.webm">下载该路径录像</a></video><p class="vcap">本测试路径整段走查录像</p>
+<div class="kpis"><div class="kpi"><div class="k">2</div><div class="l">操作步</div></div><div class="kpi"><div class="k">2</div><div class="l">通过</div></div><div class="kpi"><div class="k k-bad">0</div><div class="l">失败</div></div><div class="kpi"><div class="k k-warn">0</div><div class="l">不确定</div></div><div class="kpi"><div class="k">0</div><div class="l">未走到</div></div></div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> Click nav item &#x27;Stakes&#x27; from Home dashboard</h3>
+<div class="exp">期望：primary-surface re-roots to the stakes list (stakes-view-list)</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260724T022207Z/chain-explorer/selfheal-28.png" alt="Click nav item &#x27;Stakes&#x27; from Home dashboard" loading="lazy"><figcaption>Click nav item &#x27;Stakes&#x27; from Home dashboard</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：URL -&gt; /main/stakes; table ADDRESS/SENDER/RECEIVER/MESSAGE/CREATED/UPDATED e.g. &quot;zrjzyftU…ZSN1dQ z1U7siPr…VwiirH z1U7siPr…VwiirH stake-for-gas 2 years ago 3 days ago&quot;</div>
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> Click the first stake row</h3>
+<div class="exp">期望：re-roots to that stake&#x27;s detail page (stake-detail)</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260724T022207Z/chain-explorer/selfheal-31.png" alt="Click the first stake row" loading="lazy"><figcaption>Click the first stake row</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：URL -&gt; /main/stakes/zrjzyftUx7gudTMZxPyutqK5KM8REAZSN1dQ; heading &quot;Stake&quot;, badge &quot;Revocable&quot;, STAKE INFO panel with Address/Sender/Receiver fields</div>
+
+</div>
+</section><section id="path-bridges-flow">
+<h2>Bridges: list -&gt; detail -&gt; Nodes tab (self-heal) <span class="rt">anon · /main/bridges</span></h2>
+<video class="video" controls preload="metadata" src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260724T022207Z/chain-explorer/page@c0856bf03b09b4db4a0c411cab87542f.webm"><a href="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260724T022207Z/chain-explorer/page@c0856bf03b09b4db4a0c411cab87542f.webm">下载该路径录像</a></video><p class="vcap">本测试路径整段走查录像</p>
+<div class="kpis"><div class="kpi"><div class="k">3</div><div class="l">操作步</div></div><div class="kpi"><div class="k">3</div><div class="l">通过</div></div><div class="kpi"><div class="k k-bad">0</div><div class="l">失败</div></div><div class="kpi"><div class="k k-warn">0</div><div class="l">不确定</div></div><div class="kpi"><div class="k">0</div><div class="l">未走到</div></div></div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> Click nav item &#x27;Bridges&#x27; from Home dashboard</h3>
+<div class="exp">期望：primary-surface re-roots to the bridges list (bridges-view-list)</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260724T022207Z/chain-explorer/selfheal-34.png" alt="Click nav item &#x27;Bridges&#x27; from Home dashboard" loading="lazy"><figcaption>Click nav item &#x27;Bridges&#x27; from Home dashboard</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：URL -&gt; /main/bridges; table ADDRESS/TOKEN/HEIGHT/STATUS/CREATED/UPDATED e.g. &quot;z3KzQxLF…Pb7nPq z35nNRvY…PBLxYD 497 Active 3 years ago 5 days ago&quot;</div>
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> Click the first bridge row</h3>
+<div class="exp">期望：re-roots to that bridge&#x27;s detail page (bridge-detail)</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260724T022207Z/chain-explorer/selfheal-37.png" alt="Click the first bridge row" loading="lazy"><figcaption>Click the first bridge row</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：URL -&gt; /main/bridges/z3KzQxLFQqDo9tmRh53eE47A6K52bZBPb7nPq; heading &quot;ABT Bridge&quot;, badge &quot;Active&quot;, &quot;ArcBlock ↔ mainnet&quot;, CHAIN STATS panel (Total In/Out, Block Height/Hash)</div>
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> Direct-navigate back to the same bridge detail and click its &#x27;Nodes&#x27; tab</h3>
+<div class="exp">期望：br-tab-nodes activates showing validator/node rows</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260724T022207Z/chain-explorer/selfheal4-12.png" alt="Direct-navigate back to the same bridge detail and click its &#x27;Nodes&#x27; tab" loading="lazy"><figcaption>Direct-navigate back to the same bridge detail and click its &#x27;Nodes&#x27; tab</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：Tab bar &quot;Deposit Withdraw Blocks Nodes Stakes Governance Slash&quot; with Nodes selected; table MONIKER/ADDRESS/STATUS/TOTAL STAKE/AVAILABLE/PROPOSED/VERIFIED/LATEST BLOCK with real rows e.g. &quot;arcbridge-node 0xca2bDA…080E0e Active 51,200 50,000 73 120 496&quot;</div>
+
+</div>
+</section><section id="path-chain-selector-flow">
+<h2>Switch chain Main &lt;-&gt; Beta (self-heal) <span class="rt">anon · /main/</span></h2>
+<video class="video" controls preload="metadata" src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260724T022207Z/chain-explorer/page@fe6d3e4038a7c1179e04c9b48f2afa4b.webm"><a href="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260724T022207Z/chain-explorer/page@fe6d3e4038a7c1179e04c9b48f2afa4b.webm">下载该路径录像</a></video><p class="vcap">本测试路径整段走查录像</p>
+<div class="kpis"><div class="kpi"><div class="k">2</div><div class="l">操作步</div></div><div class="kpi"><div class="k">0</div><div class="l">通过</div></div><div class="kpi"><div class="k k-bad">2</div><div class="l">失败</div></div><div class="kpi"><div class="k k-warn">0</div><div class="l">不确定</div></div><div class="kpi"><div class="k">0</div><div class="l">未走到</div></div></div>
+<div class="op">
+<h3><span class="pill p-fail">失败</span> Click the header chain selector labelled &#x27;Main&#x27; (top-right, next to the theme toggle) on a fully-rendered, stable Home dashboard, via role=button name=Main</h3>
+<div class="exp">期望：a Main/Beta picker opens; picking Beta re-roots primary-surface + app-header to /dev/chain/beta</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260724T022207Z/chain-explorer/selfheal3-04.png" alt="Click the header chain selector labelled &#x27;Main&#x27; (top-right, next to the theme toggle) on a fully-rendered, stable Home dashboard, via role=button name=Main" loading="lazy"><figcaption>Click the header chain selector labelled &#x27;Main&#x27; (top-right, next to the theme toggle) on a fully-rendered, stable Home dashboard, via role=button name=Main</figcaption></figure></div>
+<div class="chk-fail"><b>观察证据</b>：TimeoutError: click: Timeout 10000ms exceeded. Screenshot confirms the dashboard is fully loaded and stable (stat cards + Recent Transactions/Tokens/Factories all populated) and the &#x27;Main ⌄&#x27; control is visibly present top-right, yet no dropdown/menu ever appears; page is pixel-identical before/after the failed click.</div>
+<div class="nt">Attempted in the selfheal2 session (video page@94fd4d181d8bc068edd0a72d352e60e0.webm) with role=button name=Main; same timeout there too.</div>
+</div>
+<div class="op">
+<h3><span class="pill p-fail">失败</span> Retry with a different locator strategy: click by visible text &#x27;Main&#x27; instead of role=button</h3>
+<div class="exp">期望：same picker opens</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260724T022207Z/chain-explorer/selfheal3-04.png" alt="Retry with a different locator strategy: click by visible text &#x27;Main&#x27; instead of role=button" loading="lazy"><figcaption>Retry with a different locator strategy: click by visible text &#x27;Main&#x27; instead of role=button</figcaption></figure></div>
+<div class="chk-fail"><b>观察证据</b>：TimeoutError: click: Timeout 10000ms exceeded again, on a fresh navigation/fresh session, same fully-loaded stable Home dashboard. Two independent locator strategies (role+name, and plain text) both fail identically.</div>
+<div class="nt">This reproduced on the Home page (no live-streaming list in view), so it is not explained by the same &#x27;live list reflow&#x27; theory offered for the Transactions filter-toggle failure -- it points at a broader pattern where controls in the header/toolbar chrome region are not reliably clickable via standard pointer interaction, worth a focused human/dev look (e.g. check for a full-bleed invisible overlay or a non-standard custom-element intercepting hits in that region).</div>
+</div>
+</section><section id="path-assistant-dock-flow">
+<h2>Open the Chain Assistant dock (self-heal) <span class="rt">anon · /main/</span></h2>
+<video class="video" controls preload="metadata" src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260724T022207Z/chain-explorer/page@94fd4d181d8bc068edd0a72d352e60e0.webm"><a href="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260724T022207Z/chain-explorer/page@94fd4d181d8bc068edd0a72d352e60e0.webm">下载该路径录像</a></video><p class="vcap">本测试路径整段走查录像</p>
+<div class="kpis"><div class="kpi"><div class="k">1</div><div class="l">操作步</div></div><div class="kpi"><div class="k">0</div><div class="l">通过</div></div><div class="kpi"><div class="k k-bad">0</div><div class="l">失败</div></div><div class="kpi"><div class="k k-warn">1</div><div class="l">不确定</div></div><div class="kpi"><div class="k">0</div><div class="l">未走到</div></div></div>
+<div class="op">
+<h3><span class="pill p-warn">不确定</span> Click selector #assistant-dock (the floating chat dock container) on a fully-loaded Home dashboard to open the Chain Assistant</h3>
+<div class="exp">期望：assistant-dock overlay expands, chain-assistant (agent-surface embed) becomes visible/interactive</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260724T022207Z/chain-explorer/selfheal2-10.png" alt="Click selector #assistant-dock (the floating chat dock container) on a fully-loaded Home dashboard to open the Chain Assistant" loading="lazy"><figcaption>Click selector #assistant-dock (the floating chat dock container) on a fully-loaded Home dashboard to open the Chain Assistant</figcaption></figure></div>
+<div class="chk-fail"><b>观察证据</b>：TimeoutError: click: Timeout 10000ms exceeded when targeting the CSS id #assistant-dock directly.</div>
+<div class="nt">Only one locator was tried and it targeted the whole dock container div (which per the DOM already holds the expanded chat panel markup even while visually collapsed) rather than a specific toggle/FAB element with its own selector -- inconclusive about whether the assistant dock itself is actually hard to open, or the selector simply missed the real clickable target. Needs a follow-up attempt with a more specific locator (e.g. an aria-label on the FAB) before calling this a real defect.</div>
+</div>
+</section>
+<p class="sub" style="margin-top:22px">由 test-report-builder（build-agent-report）生成 · issue #1808</p>
+</div></body></html>
