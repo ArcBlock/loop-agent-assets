@@ -147,3 +147,10 @@
 | 20260724-033126-aistro-today-05.png | https://github.com/ArcBlock/arc | 2026-07-24T03:31:26Z | test-sweep@cloud-routine |
 | 20260724-033126-aistro-today-detail-03.png | https://github.com/ArcBlock/arc | 2026-07-24T03:31:26Z | test-sweep@cloud-routine |
 | 20260724-033126-aistro-today-detail-06.png | https://github.com/ArcBlock/arc | 2026-07-24T03:31:26Z | test-sweep@cloud-routine |
+| 20260724-033130-arch-qa-chat-03.png | https://github.com/ArcBlock/arc | 2026-07-24T03:31:30Z | test-sweep@cloud-routine |
+| 20260724-033130-arch-qa-chat-04.png | https://github.com/ArcBlock/arc | 2026-07-24T03:31:30Z | test-sweep@cloud-routine |
+| 20260724-033130-arch-qa-chat-06.png | https://github.com/ArcBlock/arc | 2026-07-24T03:31:30Z | test-sweep@cloud-routine |
+| 20260724-033130-arch-qa-index-01.png | https://github.com/ArcBlock/arc | 2026-07-24T03:31:30Z | test-sweep@cloud-routine |
+| 20260724-033130-arch-qa-index-03.png | https://github.com/ArcBlock/arc | 2026-07-24T03:31:30Z | test-sweep@cloud-routine |
+| 20260724-033130-arch-qa-page@50da6e39cd7e83330b0c82b04af60238.webm | https://github.com/ArcBlock/arc | 2026-07-24T03:31:30Z | test-sweep@cloud-routine |
+| 20260724-033130-arch-qa-page@bd17bb8a0633df5a4964b96d900927a5.webm | https://github.com/ArcBlock/arc | 2026-07-24T03:31:30Z | test-sweep@cloud-routine |
