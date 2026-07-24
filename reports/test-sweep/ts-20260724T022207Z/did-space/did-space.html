@@ -1,0 +1,141 @@
+<!doctype html><html><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>did-space — agent 走查报告</title><style>
+:root{--bg:#f7f8f8;--fg:#16201f;--muted:#5c6b69;--card:#fff;--card2:#eef2f1;--border:#dde3e2;--accent:#127a72;--pass:#1f8a54;--warn:#b5771a;--bad:#c0392b}
+@media(prefers-color-scheme:dark){:root{--bg:#0e1413;--fg:#e6ecea;--muted:#8ea19d;--card:#161d1c;--card2:#1d2624;--border:#26302e;--accent:#3fb8ab;--pass:#3fb37a;--warn:#d69a3e;--bad:#e5735f}}
+:root[data-theme=dark]{--bg:#0e1413;--fg:#e6ecea;--muted:#8ea19d;--card:#161d1c;--card2:#1d2624;--border:#26302e;--accent:#3fb8ab;--pass:#3fb37a;--warn:#d69a3e;--bad:#e5735f}
+:root[data-theme=light]{--bg:#f7f8f8;--fg:#16201f;--muted:#5c6b69;--card:#fff;--card2:#eef2f1;--border:#dde3e2;--accent:#127a72;--pass:#1f8a54;--warn:#b5771a;--bad:#c0392b}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--fg);font:15px/1.65 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;padding:24px}
+.wrap{max-width:920px;margin:0 auto}
+h1{font-size:24px;margin:0 0 4px;text-wrap:balance}h2{font-size:19px;margin:30px 0 8px}
+h2 .rt{font-size:13px;color:var(--muted);font-weight:400;font-variant-numeric:tabular-nums}
+.sub{color:var(--muted);margin:0 0 14px;font-size:13px}
+code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.85em;background:var(--card2);padding:1px 5px;border-radius:4px}
+.how{background:var(--card);border:1px solid var(--border);border-left:3px solid var(--accent);border-radius:8px;padding:13px 16px;margin:14px 0;font-size:14px}
+.how b{color:var(--accent)}
+.banner{border-radius:12px;padding:14px 18px;margin:16px 0}
+.banner.ok{background:color-mix(in srgb,var(--pass) 12%,transparent);border:1px solid color-mix(in srgb,var(--pass) 40%,transparent)}
+.banner.ok b{color:var(--pass)}
+.banner.bad{background:color-mix(in srgb,var(--bad) 13%,transparent);border:1px solid color-mix(in srgb,var(--bad) 45%,transparent)}
+.banner.bad b{color:var(--bad);font-size:16px}
+.banner.info{background:color-mix(in srgb,var(--accent) 10%,transparent);border:1px solid color-mix(in srgb,var(--accent) 38%,transparent)}
+.banner.info b{color:var(--accent)}
+.plist{margin:10px 0 0;padding-left:0;list-style:none}
+.plist li{padding:8px 0;border-top:1px solid var(--border)}
+.plist a{text-decoration:none;color:var(--fg);font-weight:600}
+.plist .pe{color:var(--muted);font-size:12.5px;font-weight:400;margin-top:3px}
+.video{width:100%;border-radius:10px;border:1px solid var(--border);background:#000;margin:6px 0 2px}
+.vcap{color:var(--muted);font-size:12.5px;margin:0 0 8px}
+.novideo{color:var(--bad);font-weight:600;background:color-mix(in srgb,var(--bad) 10%,transparent);border:1px dashed color-mix(in srgb,var(--bad) 45%,transparent);border-radius:8px;padding:8px 12px;font-size:13px}
+.kpis{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0}
+.kpi{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:9px 14px;min-width:70px}
+.kpi .k{font-size:21px;font-weight:700;font-variant-numeric:tabular-nums}.kpi .l{color:var(--muted);font-size:12px}
+.kpi .k-bad{color:var(--bad)}.kpi .k-warn{color:var(--warn)}
+.op{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:15px 17px;margin:14px 0}
+.op h3{margin:0 0 3px;font-size:16px;display:flex;align-items:center;gap:9px;flex-wrap:wrap}
+.op .exp{color:var(--muted);font-size:13px;margin:0 0 9px}
+.op .nt{color:var(--muted);font-size:12.5px;margin-top:6px}
+.pill{font-size:11.5px;font-weight:700;padding:2px 9px;border-radius:20px}
+.p-ok{background:color-mix(in srgb,var(--pass) 18%,transparent);color:var(--pass)}
+.p-fail{background:color-mix(in srgb,var(--bad) 18%,transparent);color:var(--bad)}
+.p-warn{background:color-mix(in srgb,var(--warn) 20%,transparent);color:var(--warn)}
+.p-skip{background:var(--card2);color:var(--muted)}
+.p-write{background:color-mix(in srgb,var(--accent) 18%,transparent);color:var(--accent)}
+.frame figure{margin:0 0 9px}.frame img{width:100%;border-radius:8px;border:1px solid var(--border);display:block}
+.frame figcaption{color:var(--muted);font-size:11.5px;margin-top:4px;text-align:center}
+.chk{background:color-mix(in srgb,var(--pass) 12%,transparent);border:1px solid color-mix(in srgb,var(--pass) 34%,transparent);border-radius:8px;padding:8px 12px;font-size:13px}
+.chk b{color:var(--pass)}
+.chk-fail{background:color-mix(in srgb,var(--bad) 11%,transparent);border:1px solid color-mix(in srgb,var(--bad) 40%,transparent);border-radius:8px;padding:8px 12px;font-size:13px}
+.chk-fail b{color:var(--bad)}
+table.probe{border-collapse:collapse;width:100%;font-size:13px}
+table.probe th,table.probe td{border:1px solid var(--border);padding:5px 9px;text-align:left}
+table.probe tr.bad td{background:color-mix(in srgb,var(--bad) 10%,transparent)}
+</style></head><body><div class="wrap">
+<h1>did-space — agent 走查报告</h1>
+<p class="sub">环境 <code>https://did-space.afsd.dev</code> · 2026-07-24T02:52:04Z · 走查 2 / 声明 6 条测试路径 · driver <code>agent-playwright-mcp</code></p>
+<div class="how"><b>这份报告在做什么</b>：test-sweep 让 <b>agent 读被测页面自己写的
+<code>.aup/man</code> 知识</b>，用 Playwright MCP <b>当真人逐条测试路径走查</b>（导航/加标签/编辑/删除/创建…），
+<b>每条路径各自一段录屏</b>、每步截图并<b>自判 verdict + 附观察证据</b>（实际 DOM/文本/值，可复核）。
+<b>unreached</b>=没驱动到（不当失败）；<b>inconclusive</b>=不确定（绝不判失败）。写操作默认真提交、不清理。</div>
+
+<div class="banner info"><b>ℹ️ 覆盖 2 / 6：页内部分 example 未覆盖</b>（可见但不阻断——漏走的补记为 unreached、不判红；绿灯只表示走到的都过了。agent 应据此自主决定再补哪些、完善报告）<ul class="plist"></ul></div>
+<div class="banner ok"><b>✅ 未发现问题</b>：所有路径的操作步均 pass 或 unreached（unreached 不计失败）。</div>
+<section id="probes"><h2>后端探针 （1 项失败）</h2><table class="probe"><tr><th></th><th>探针</th><th>详情</th></tr><tr class=""><td>✅</td><td>http-reachable</td><td>HTTP 200</td></tr><tr class="bad"><td>❌</td><td>afs-rpc-list</td><td> </td></tr></table></section>
+<section id="path-files">
+<h2>Files — session-scoped AFS explorer (sidebar select → fan-out, primary file select → preview) <span class="rt">authed · /explorer</span></h2>
+<video class="video" controls preload="metadata" src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260724T022207Z/did-space/page@62d7f0e4e09833aa72855bedd6d7b08b.webm"><a href="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260724T022207Z/did-space/page@62d7f0e4e09833aa72855bedd6d7b08b.webm">下载该路径录像</a></video><p class="vcap">本测试路径整段走查录像</p>
+<div class="kpis"><div class="kpi"><div class="k">6</div><div class="l">操作步</div></div><div class="kpi"><div class="k">6</div><div class="l">通过</div></div><div class="kpi"><div class="k k-bad">0</div><div class="l">失败</div></div><div class="kpi"><div class="k k-warn">0</div><div class="l">不确定</div></div><div class="kpi"><div class="k">0</div><div class="l">未走到</div></div></div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> navigate to https://did-space.afsd.dev/explorer with injected login_token cookie, wait for &gt;=10 [data-aup-id] nodes</h3>
+<div class="exp">期望：Authenticated visitor sees files-explorer-wm (sidebar + primary list + inspector), rooted at &quot;/&quot;, not the anon sign-in gate</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260724T022207Z/did-space/files-01.png" alt="navigate to https://did-space.afsd.dev/explorer with injected login_token cookie, wait for &gt;=10 [data-aup-id] nodes" loading="lazy"><figcaption>navigate to https://did-space.afsd.dev/explorer with injected login_token cookie, wait for &gt;=10 [data-aup-id] nodes</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：interactables include &quot;div#files-sidebar-list&quot;, &quot;div#files-primary-list&quot;, &quot;div#files-inspector-stat&quot;, &quot;div#files-inspector-preview&quot;; div#meta-title &quot;/&quot;; div#meta-summary &quot;Directory · 3 items&quot;; div#preview-dir-list &quot;instance packages dev .knowledge .meta .actions us[er space]&quot;</div>
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> snapshot (settle) of initial root state</h3>
+<div class="exp">期望：root directory listing stable: instance/packages/dev/.knowledge/.meta/.actions/user/space</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260724T022207Z/did-space/files-02.png" alt="snapshot (settle) of initial root state" loading="lazy"><figcaption>snapshot (settle) of initial root state</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：div#preview-dir-item-0..7 = &quot;instance&quot;, &quot;packages&quot;, &quot;dev&quot;, &quot;.knowledge&quot;, &quot;.meta&quot;, &quot;.actions&quot;, &quot;user&quot;, &quot;space&quot;</div>
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> click &quot;packages&quot; row label inside files-sidebar-list (directoriesOnly select)</h3>
+<div class="exp">期望：man example &quot;(authenticated) Browse via the sidebar&quot;: selecting a sidebar directory re-roots files-primary-list + files-inspector-stat + files-inspector-preview to /packages, all three in sync</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260724T022207Z/did-space/files-03.png" alt="click &quot;packages&quot; row label inside files-sidebar-list (directoriesOnly select)" loading="lazy"><figcaption>click &quot;packages&quot; row label inside files-sidebar-list (directoriesOnly select)</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：div#meta-title &quot;packages&quot;; div#meta-summary &quot;Mount · did-space&quot;; div#meta-details-kv &quot;path/packageskindhttp-mount:directoryaccessreadonl[y]&quot;; div#meta-capabilities-chips &quot;listreadstatexplain&quot;; textHead now shows primary list rows &quot;.route 2 .web-cache 3 .web 6 pages 1 test 1&quot; replacing the root listing — all three targets (primary, stat, preview) updated together from one sidebar click</div>
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> snapshot (settle) after sidebar select</h3>
+<div class="exp">期望：fan-out state holds without further interaction</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260724T022207Z/did-space/files-04.png" alt="snapshot (settle) after sidebar select" loading="lazy"><figcaption>snapshot (settle) after sidebar select</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：div#meta-title &quot;packages&quot; and div#meta-summary &quot;Mount · did-space&quot; unchanged from previous step&#x27;s observation</div>
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> click &quot;package.json&quot; row label inside files-primary-list (now rooted at /packages)</h3>
+<div class="exp">期望：man example &quot;(authenticated) Select a file to preview it&quot;: selecting a file row in files-primary-list updates files-inspector-stat + files-inspector-preview directly, and never issues an AFS write</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260724T022207Z/did-space/files-05.png" alt="click &quot;package.json&quot; row label inside files-primary-list (now rooted at /packages)" loading="lazy"><figcaption>click &quot;package.json&quot; row label inside files-primary-list (now rooted at /packages)</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：div#meta-title &quot;package.json&quot;; div#meta-summary &quot;JSON · 353 B&quot;; div#meta-actions &quot;Download Open Copy link&quot;; div#meta-details-kv &quot;path/packages/package.jsonkindhttp-mount:fileacces[s...]&quot;; div#meta-capabilities-chips &quot;listreadstatexplain&quot; — inspector switched from directory-mount metadata to file metadata purely from the click, no write/mutation UI (e.g. no save/confirm dialog) appeared</div>
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> snapshot (settle) after primary file select; also check Preview title placement</h3>
+<div class="exp">期望：h6#files-inspector-preview-title reading &quot;Preview&quot; sits above files-inspector-preview in the same inspector surface as files-inspector-stat</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260724T022207Z/did-space/files-06.png" alt="snapshot (settle) after primary file select; also check Preview title placement" loading="lazy"><figcaption>snapshot (settle) after primary file select; also check Preview title placement</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：interactables include &quot;h6#files-inspector-preview-title \&quot;Preview\&quot;&quot; immediately followed by the file&#x27;s preview pane in the same panel as div#meta-panel &quot;package.json JSON · 353 B Download Open Copy link&quot;</div>
+
+</div>
+</section><section id="path-files-anon">
+<h2>Files — anonymous visitor sees the sign-in gate, not the explorer <span class="rt">anon · /explorer</span></h2>
+<video class="video" controls preload="metadata" src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260724T022207Z/did-space/page@c52ecfbb71982196a875753a438774d4.webm"><a href="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260724T022207Z/did-space/page@c52ecfbb71982196a875753a438774d4.webm">下载该路径录像</a></video><p class="vcap">本测试路径整段走查录像</p>
+<div class="kpis"><div class="kpi"><div class="k">2</div><div class="l">操作步</div></div><div class="kpi"><div class="k">2</div><div class="l">通过</div></div><div class="kpi"><div class="k k-bad">0</div><div class="l">失败</div></div><div class="kpi"><div class="k k-warn">0</div><div class="l">不确定</div></div><div class="kpi"><div class="k">0</div><div class="l">未走到</div></div></div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> navigate to https://did-space.afsd.dev/explorer with no auth cookie</h3>
+<div class="exp">期望：man example &quot;(anon) Unauthenticated visitor sees a sign-in gate, not the browser&quot;: files-anon-wm renders (icon+title+description+login action) and the files-explorer-wm subtree (sidebar/primary/inspector) is not in the DOM at all</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260724T022207Z/did-space/files-anon-01.png" alt="navigate to https://did-space.afsd.dev/explorer with no auth cookie" loading="lazy"><figcaption>navigate to https://did-space.afsd.dev/explorer with no auth cookie</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：interactables = [&quot;div#files-anon-wm ...&quot;, &quot;h2#files-anon-title \&quot;Sign in to browse your space\&quot;&quot;, &quot;div#files-anon-desc \&quot;Your DID Space is private to your account. Sign in...\&quot;&quot;, &quot;a#files-anon-login \&quot;Sign in\&quot;&quot;] — no files-sidebar-list/files-primary-list/files-inspector-stat nodes present anywhere in the interactables list</div>
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> inspect the files-anon-login action element&#x27;s href attribute (data-aup-id=&quot;files-anon-login&quot;)</h3>
+<div class="exp">期望：man flow &quot;anonymous → sign-in redirect: click sign in (no in-page event; navigates to /.well-known/service/login)&quot;</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260724T022207Z/did-space/files-anon-02.png" alt="inspect the files-anon-login action element&#x27;s href attribute (data-aup-id=&quot;files-anon-login&quot;)" loading="lazy"><figcaption>inspect the files-anon-login action element&#x27;s href attribute (data-aup-id=&quot;files-anon-login&quot;)</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：outerHTML = &quot;&lt;a href=\&quot;/.well-known/service/login\&quot; class=\&quot;aup-action\&quot; data-variant=\&quot;primary\&quot; data-aup-id=\&quot;files-anon-login\&quot;&gt;&lt;span&gt;Sign in&lt;/span&gt;&lt;/a&gt;&quot; — href matches the documented redirect target exactly</div>
+
+</div>
+</section><section id="path-files-navigate-attempt">
+<h2>Files — attempt to isolate the &quot;navigate&quot; (drill-in) flows distinct from &quot;select&quot; <span class="rt">authed · /explorer</span></h2>
+<p class="novideo">⛔ 本路径缺录屏（未满足要求 #1）</p>
+<div class="kpis"><div class="kpi"><div class="k">1</div><div class="l">操作步</div></div><div class="kpi"><div class="k">0</div><div class="l">通过</div></div><div class="kpi"><div class="k k-bad">0</div><div class="l">失败</div></div><div class="kpi"><div class="k k-warn">0</div><div class="l">不确定</div></div><div class="kpi"><div class="k">1</div><div class="l">未走到</div></div></div>
+<div class="op">
+<h3><span class="pill p-skip">未走到</span> self-heal attempt: probed whether two sequential agent-walk.mjs `click` steps 800ms apart on the same files-primary-list row reproduce a real double-click drill-in (distinct `navigate` event vs `select`)</h3>
+<div class="exp">期望：man flows &quot;sidebar→primary+inspector via navigate (drill into directory)&quot; and &quot;primary→inspector via navigate (drill via primary list)&quot; — entering the folder should re-root the primary list itself (not just update the inspector)</div>
+
+<div class="chk"><b>观察证据</b>：ad-hoc probe: after page.dblclick() on the /packages row, files-primary-list entries became [&quot;/&quot;,&quot;/packages/.route&quot;,&quot;/packages/.web-cache&quot;,...] (re-rooted); after two separate 800ms-apart .click() calls on the same row, entries stayed [&quot;/instance&quot;,&quot;/packages&quot;,&quot;/ash&quot;,&quot;/dev&quot;,&quot;/.knowledge&quot;,&quot;/user&quot;,&quot;/space&quot;] (root unchanged, select-only) — agent-walk.mjs plan.steps only supports action:&quot;click&quot; (single click), no dblclick, so this distinction cannot be produced through the required harness</div>
+<div class="nt">Confirmed via an ad-hoc Playwright probe (outside agent-walk.mjs) that a real atomic `page.dblclick()` DOES trigger the navigate flow — files-primary-list re-roots to /packages (entries become /packages/.route, /packages/.web-cache, ... instead of the root&#x27;s /instance,/packages,/ash,...) and files-inspector-stat updates in sync. But agent-walk.mjs&#x27;s plan-step vocabulary only exposes `click` (a single Playwright locator.click()), not `dblclick` — two separate `click` steps 800ms apart (verified with the same ad-hoc probe) only re-fire `select` twice and never re-root the primary list. Since testPath steps must be produced by agent-walk.mjs (not hand-rolled Playwright), and it has no double-click action, these two flows cannot be driven through the required harness in this pass. Not fabricated as tested; harness gap, not a product bug — worth filing as a small agent-walk.mjs enhancement (add a `dblclick` action) rather than a did-space defect.</div>
+</div>
+</section>
+<p class="sub" style="margin-top:22px">由 test-report-builder（build-agent-report）生成 · issue #1808</p>
+</div></body></html>
