@@ -6,3 +6,4 @@
 | 20260724-070544-aigne-kuai-su.png | https://github.com/ArcBlock/arcblock-site/issues/59 | 2026-07-24T07:05:44Z | wangshijun@wangshijun-mac-studio |
 | 20260724-070553-aistro-product-of-the-day-producthunt.png | https://github.com/ArcBlock/arcblock-site/issues/59 | 2026-07-24T07:05:53Z | wangshijun@wangshijun-mac-studio |
 | 20260724-070602-cross-site-login.png | https://github.com/ArcBlock/arcblock-site/issues/59 | 2026-07-24T07:06:02Z | wangshijun@wangshijun-mac-studio |
+| 20260724-070610-one-person-billion-dollar-companies.png | https://github.com/ArcBlock/arcblock-site/issues/59 | 2026-07-24T07:06:10Z | wangshijun@wangshijun-mac-studio |
