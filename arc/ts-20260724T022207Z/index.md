@@ -200,3 +200,6 @@
 | 20260724-033136-mailbox-demo-threads-03.png | https://github.com/ArcBlock/arc | 2026-07-24T03:31:36Z | test-sweep@cloud-routine |
 | 20260724-033136-mailbox-demo-unified2-01.png | https://github.com/ArcBlock/arc | 2026-07-24T03:31:36Z | test-sweep@cloud-routine |
 | 20260724-033136-mailbox-demo-unified2-02.png | https://github.com/ArcBlock/arc | 2026-07-24T03:31:36Z | test-sweep@cloud-routine |
+| 20260724-033139-settings-cascade-home-02.png | https://github.com/ArcBlock/arc | 2026-07-24T03:31:39Z | test-sweep@cloud-routine |
+| 20260724-033139-settings-cascade-home-06.png | https://github.com/ArcBlock/arc | 2026-07-24T03:31:39Z | test-sweep@cloud-routine |
+| 20260724-033139-settings-cascade-page@79ca0ec3cd3fae3f67685bfbd5c67d3d.webm | https://github.com/ArcBlock/arc | 2026-07-24T03:31:39Z | test-sweep@cloud-routine |
