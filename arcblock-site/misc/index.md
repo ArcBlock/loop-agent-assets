@@ -13,3 +13,4 @@
 | pr37-fce8b10-en-article.png | https://github.com/ArcBlock/arcblock-site | 2026-07-23T11:25:30Z | wangshijun@wangshijun-mac-studio |
 | pr39-bc7bea8-en-article.png | https://github.com/ArcBlock/arcblock-site | 2026-07-23T11:42:58Z | wangshijun@wangshijun-mac-studio |
 | pr35-15eab35-contact-sheet.png | https://github.com/ArcBlock/arcblock-site | 2026-07-23T12:02:47Z | wangshijun@wangshijun-mac-studio |
+| 20260724-062119-x-links-not-embedded.png | https://github.com/ArcBlock/arcblock-site | 2026-07-24T06:21:19Z | wangshijun@wangshijun-mac-studio |
