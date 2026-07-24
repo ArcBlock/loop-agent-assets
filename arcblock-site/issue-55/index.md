@@ -7,3 +7,4 @@
 | 20260724-070232-2021-ios-wallet.png | https://github.com/ArcBlock/arcblock-site/issues/55 | 2026-07-24T07:02:32Z | wangshijun@wangshijun-mac-studio |
 | 20260724-070241-nft-figma.png | https://github.com/ArcBlock/arcblock-site/issues/55 | 2026-07-24T07:02:41Z | wangshijun@wangshijun-mac-studio |
 | 20260724-070250-one-person-company.png | https://github.com/ArcBlock/arcblock-site/issues/55 | 2026-07-24T07:02:50Z | wangshijun@wangshijun-mac-studio |
+| 20260724-070300-wallet-380.png | https://github.com/ArcBlock/arcblock-site/issues/55 | 2026-07-24T07:03:00Z | wangshijun@wangshijun-mac-studio |
