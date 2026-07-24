@@ -23,3 +23,6 @@
 | 20260724-033107-site-didspaces-com-home-01.png | https://github.com/ArcBlock/arc | 2026-07-24T03:31:07Z | test-sweep@cloud-routine |
 | 20260724-033107-site-didspaces-com-home-03.png | https://github.com/ArcBlock/arc | 2026-07-24T03:31:07Z | test-sweep@cloud-routine |
 | 20260724-033107-site-didspaces-com-page@88ff98f85e455973362beecbe99bd520.webm | https://github.com/ArcBlock/arc | 2026-07-24T03:31:07Z | test-sweep@cloud-routine |
+| 20260724-033109-arc-home-01.png | https://github.com/ArcBlock/arc | 2026-07-24T03:31:09Z | test-sweep@cloud-routine |
+| 20260724-033109-arc-home-03.png | https://github.com/ArcBlock/arc | 2026-07-24T03:31:09Z | test-sweep@cloud-routine |
+| 20260724-033109-arc-page@a2534a5a586af24bdf6ecf62a930d4f0.webm | https://github.com/ArcBlock/arc | 2026-07-24T03:31:09Z | test-sweep@cloud-routine |
