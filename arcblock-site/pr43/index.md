@@ -11,3 +11,4 @@
 | 20260724-005936-ja-articles-2018-11-20-baimeiliantan.png | https://github.com/ArcBlock/arcblock-site/pull/43 | 2026-07-24T00:59:36Z | wangshijun@wangshijun-mac-studio |
 | 20260724-005946-zh-TW-articles-2018-07-20-CoinVoice.png | https://github.com/ArcBlock/arcblock-site/pull/43 | 2026-07-24T00:59:46Z | wangshijun@wangshijun-mac-studio |
 | 20260724-005956-zh-TW-articles-2018-12-31-December-Monthly-Report.png | https://github.com/ArcBlock/arcblock-site/pull/43 | 2026-07-24T00:59:56Z | wangshijun@wangshijun-mac-studio |
+| 20260724-010006-zh-articles-2018-02-02-Bloomberg.png | https://github.com/ArcBlock/arcblock-site/pull/43 | 2026-07-24T01:00:06Z | wangshijun@wangshijun-mac-studio |
