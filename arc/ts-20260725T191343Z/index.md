@@ -225,3 +225,4 @@
 | 20260725-201855-unified-01.png | https://github.com/ArcBlock/arc | 2026-07-25T20:18:55Z | root@vm |
 | 20260725-201857-unified-02.png | https://github.com/ArcBlock/arc | 2026-07-25T20:18:57Z | root@vm |
 | 20260725-201900-page@1cde6666582a6aa5b3c02ab5ac74a9c3.webm | https://github.com/ArcBlock/arc | 2026-07-25T20:19:00Z | root@vm |
+| 20260725-201902-page@4b74192a7bc82bc9d5b35b2b703f2db9.webm | https://github.com/ArcBlock/arc | 2026-07-25T20:19:02Z | root@vm |
