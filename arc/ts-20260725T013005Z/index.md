@@ -189,3 +189,4 @@
 | 20260725-022815-chat-01.png | https://github.com/ArcBlock/arc | 2026-07-25T02:28:15Z | root@vm |
 | 20260725-022818-chat-02.png | https://github.com/ArcBlock/arc | 2026-07-25T02:28:18Z | root@vm |
 | 20260725-022820-index-01.png | https://github.com/ArcBlock/arc | 2026-07-25T02:28:20Z | root@vm |
+| 20260725-022823-index-02.png | https://github.com/ArcBlock/arc | 2026-07-25T02:28:23Z | root@vm |
