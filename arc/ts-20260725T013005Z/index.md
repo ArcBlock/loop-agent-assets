@@ -63,3 +63,4 @@
 | 20260725-022239-index-read-4-02.png | https://github.com/ArcBlock/arc | 2026-07-25T02:22:39Z | root@vm |
 | 20260725-022241-index-read-4-03.png | https://github.com/ArcBlock/arc | 2026-07-25T02:22:41Z | root@vm |
 | 20260725-022244-list-basic-01.png | https://github.com/ArcBlock/arc | 2026-07-25T02:22:44Z | root@vm |
+| 20260725-022247-list-basic-02.png | https://github.com/ArcBlock/arc | 2026-07-25T02:22:47Z | root@vm |
