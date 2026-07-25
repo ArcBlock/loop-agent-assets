@@ -14,3 +14,4 @@
 | mobile-1-initial.png | https://github.com/ArcBlock/arc/issues/2390 | 2026-07-25T07:28:45Z | root@vm |
 | mobile-2-menu-open.png | https://github.com/ArcBlock/arc/issues/2390 | 2026-07-25T07:28:48Z | root@vm |
 | mobile-3-scrolled.png | https://github.com/ArcBlock/arc/issues/2390 | 2026-07-25T07:28:51Z | root@vm |
+| mobile-4-back-to-top.png | https://github.com/ArcBlock/arc/issues/2390 | 2026-07-25T07:28:53Z | root@vm |
