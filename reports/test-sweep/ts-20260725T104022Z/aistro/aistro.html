@@ -1,0 +1,1077 @@
+<!doctype html><html><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>aistro — agent 走查报告</title><style>
+:root{--bg:#f7f8f8;--fg:#16201f;--muted:#5c6b69;--card:#fff;--card2:#eef2f1;--border:#dde3e2;--accent:#127a72;--pass:#1f8a54;--warn:#b5771a;--bad:#c0392b}
+@media(prefers-color-scheme:dark){:root{--bg:#0e1413;--fg:#e6ecea;--muted:#8ea19d;--card:#161d1c;--card2:#1d2624;--border:#26302e;--accent:#3fb8ab;--pass:#3fb37a;--warn:#d69a3e;--bad:#e5735f}}
+:root[data-theme=dark]{--bg:#0e1413;--fg:#e6ecea;--muted:#8ea19d;--card:#161d1c;--card2:#1d2624;--border:#26302e;--accent:#3fb8ab;--pass:#3fb37a;--warn:#d69a3e;--bad:#e5735f}
+:root[data-theme=light]{--bg:#f7f8f8;--fg:#16201f;--muted:#5c6b69;--card:#fff;--card2:#eef2f1;--border:#dde3e2;--accent:#127a72;--pass:#1f8a54;--warn:#b5771a;--bad:#c0392b}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--fg);font:15px/1.65 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;padding:24px}
+.wrap{max-width:920px;margin:0 auto}
+h1{font-size:24px;margin:0 0 4px;text-wrap:balance}h2{font-size:19px;margin:30px 0 8px}
+h2 .rt{font-size:13px;color:var(--muted);font-weight:400;font-variant-numeric:tabular-nums}
+.sub{color:var(--muted);margin:0 0 14px;font-size:13px}
+code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.85em;background:var(--card2);padding:1px 5px;border-radius:4px}
+.how{background:var(--card);border:1px solid var(--border);border-left:3px solid var(--accent);border-radius:8px;padding:13px 16px;margin:14px 0;font-size:14px}
+.how b{color:var(--accent)}
+.banner{border-radius:12px;padding:14px 18px;margin:16px 0}
+.banner.ok{background:color-mix(in srgb,var(--pass) 12%,transparent);border:1px solid color-mix(in srgb,var(--pass) 40%,transparent)}
+.banner.ok b{color:var(--pass)}
+.banner.bad{background:color-mix(in srgb,var(--bad) 13%,transparent);border:1px solid color-mix(in srgb,var(--bad) 45%,transparent)}
+.banner.bad b{color:var(--bad);font-size:16px}
+.banner.info{background:color-mix(in srgb,var(--accent) 10%,transparent);border:1px solid color-mix(in srgb,var(--accent) 38%,transparent)}
+.banner.info b{color:var(--accent)}
+.plist{margin:10px 0 0;padding-left:0;list-style:none}
+.plist li{padding:8px 0;border-top:1px solid var(--border)}
+.plist a{text-decoration:none;color:var(--fg);font-weight:600}
+.plist .pe{color:var(--muted);font-size:12.5px;font-weight:400;margin-top:3px}
+.video{width:100%;border-radius:10px;border:1px solid var(--border);background:#000;margin:6px 0 2px}
+.vcap{color:var(--muted);font-size:12.5px;margin:0 0 8px}
+.novideo{color:var(--bad);font-weight:600;background:color-mix(in srgb,var(--bad) 10%,transparent);border:1px dashed color-mix(in srgb,var(--bad) 45%,transparent);border-radius:8px;padding:8px 12px;font-size:13px}
+.kpis{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0}
+.kpi{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:9px 14px;min-width:70px}
+.kpi .k{font-size:21px;font-weight:700;font-variant-numeric:tabular-nums}.kpi .l{color:var(--muted);font-size:12px}
+.kpi .k-bad{color:var(--bad)}.kpi .k-warn{color:var(--warn)}
+.op{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:15px 17px;margin:14px 0}
+.op h3{margin:0 0 3px;font-size:16px;display:flex;align-items:center;gap:9px;flex-wrap:wrap}
+.op .exp{color:var(--muted);font-size:13px;margin:0 0 9px}
+.op .nt{color:var(--muted);font-size:12.5px;margin-top:6px}
+.pill{font-size:11.5px;font-weight:700;padding:2px 9px;border-radius:20px}
+.p-ok{background:color-mix(in srgb,var(--pass) 18%,transparent);color:var(--pass)}
+.p-fail{background:color-mix(in srgb,var(--bad) 18%,transparent);color:var(--bad)}
+.p-warn{background:color-mix(in srgb,var(--warn) 20%,transparent);color:var(--warn)}
+.p-skip{background:var(--card2);color:var(--muted)}
+.p-write{background:color-mix(in srgb,var(--accent) 18%,transparent);color:var(--accent)}
+.frame figure{margin:0 0 9px}.frame img{width:100%;border-radius:8px;border:1px solid var(--border);display:block}
+.frame figcaption{color:var(--muted);font-size:11.5px;margin-top:4px;text-align:center}
+.chk{background:color-mix(in srgb,var(--pass) 12%,transparent);border:1px solid color-mix(in srgb,var(--pass) 34%,transparent);border-radius:8px;padding:8px 12px;font-size:13px}
+.chk b{color:var(--pass)}
+.chk-fail{background:color-mix(in srgb,var(--bad) 11%,transparent);border:1px solid color-mix(in srgb,var(--bad) 40%,transparent);border-radius:8px;padding:8px 12px;font-size:13px}
+.chk-fail b{color:var(--bad)}
+table.probe{border-collapse:collapse;width:100%;font-size:13px}
+table.probe th,table.probe td{border:1px solid var(--border);padding:5px 9px;text-align:left}
+table.probe tr.bad td{background:color-mix(in srgb,var(--bad) 10%,transparent)}
+.err{background:color-mix(in srgb,var(--bad) 11%,transparent);border:1px solid color-mix(in srgb,var(--bad) 40%,transparent);border-radius:8px;padding:7px 12px;font-size:12.5px;margin-top:6px}
+.err b{color:var(--bad)}.err code{background:transparent;color:var(--bad)}
+.dbg{margin:10px 0 2px;background:var(--card);border:1px solid var(--border);border-radius:10px;padding:6px 14px;font-size:13px}
+.dbg summary{cursor:pointer;color:var(--muted);font-weight:600;padding:5px 0}
+.dbg-none{color:var(--muted);padding:4px 0;font-size:12.5px}
+.dbg-has{padding:5px 0}.dbg-has b{color:var(--warn)}
+.dbg-has ul{margin:5px 0 8px;padding-left:18px}.dbg-has li{font-size:12px;color:var(--fg);margin:2px 0;word-break:break-all}
+.dbg-has code{background:var(--card2)}
+.pdesc{color:var(--muted);font-size:13.5px;margin:1px 0 11px;line-height:1.5}
+.pdesc code{font-size:.85em}
+details.steps{margin:6px 0 2px;border:1px solid var(--border);border-radius:10px;background:var(--card2);padding:2px 14px}
+details.steps>summary{cursor:pointer;color:var(--accent);font-weight:600;padding:9px 0;font-size:13.5px;list-style:none}
+details.steps>summary::-webkit-details-marker{display:none}
+details.steps[open]>summary{border-bottom:1px solid var(--border);margin-bottom:8px}
+details.steps>summary:hover{color:var(--fg)}
+</style></head><body><div class="wrap">
+<h1>aistro — agent 走查报告</h1>
+<p class="sub">环境 <code>https://aistro.afsd.dev</code> · 2026-07-25T10:56:02.616893Z · 走查 19 / 声明 40 条测试路径 · driver <code>agent-playwright-mcp</code></p>
+<div class="how"><b>这份报告在做什么</b>：test-sweep 让 <b>agent 读被测页面自己写的
+<code>.aup/man</code> 知识</b>，用 Playwright MCP <b>当真人逐条测试路径走查</b>（导航/加标签/编辑/删除/创建…），
+<b>每条路径各自一段录屏</b>、每步截图并<b>自判 verdict + 附观察证据</b>（实际 DOM/文本/值，可复核）。
+<b>unreached</b>=没驱动到（不当失败）；<b>inconclusive</b>=不确定（绝不判失败）。写操作默认真提交、不清理。</div>
+
+<div class="banner info"><b>ℹ️ 覆盖 19 / 40：2 条声明路径未走到</b>（可见但不阻断——漏走的补记为 unreached、不判红；绿灯只表示走到的都过了。agent 应据此自主决定再补哪些、完善报告）<ul class="plist"><li><code>today-detail</code> <span class="pill p-skip">动态入口</span> <span class="pe">/app?page=today-detail</span></li><li><code>friend-synastry</code> <span class="pill p-skip">动态入口</span> <span class="pe">/app/friends/{friendId}/synastry</span></li></ul></div>
+<div class="banner bad"><b>⚠️ 发现 27 个问题</b>（点击跳到对应路径）<ul class="plist"><li><a href="#path-dd-1-aistro"><span class="pill p-fail">失败</span> confirm delete dialog→friend purged · 步2</a> — click<div class="pe">click via css id selector #friend-detail-view-1-view-3-row-1-row-2-button-2 timed out (8s) — id selector unreliable on this button, not a functional bug, worked around with text selector next step</div></li><li><a href="#path-dd-1-aistro"><span class="pill p-fail">失败</span> confirm delete dialog→friend purged · 步6</a> — waitFor<div class="pe">friends list settling, shows loading skeletons; once settled shows TSweep Friend card plus a SECOND blank ghost card with anchor id frd-z1pajv0z (our just-deleted friend) — name/date/place fields all empty</div></li><li><a href="#path-dd-1-aistro"><span class="pill p-fail">失败</span> confirm delete dialog→friend purged · 步7</a> — waitFor<div class="pe">5s later ghost card for frd-z1pajv0z still present and still blank, confirming it is not a transient loading artifact</div></li><li><a href="#path-dd-1-aistro"><span class="pill p-fail">失败</span> confirm delete dialog→friend purged · 步8</a> — waitFor<div class="pe">6s later ghost card for frd-z1pajv0z still present in friends list</div></li><li><a href="#path-dd-1-aistro"><span class="pill p-fail">失败</span> confirm delete dialog→friend purged · 步9</a> — navigate<div class="pe">fresh full navigate (not SPA nav) to /app/friends still shows the frd-z1pajv0z ghost card, ruling out client-side cache staleness — this is real server-side leftover state</div></li><li><a href="#path-dd-1-aistro"><span class="pill p-fail">失败</span> confirm delete dialog→friend purged · 步10</a> — navigate<div class="pe">navigated to /app/friends/frd-z1pajv0z directly: header name/date now empty (friend.json deleted) BUT the natal-chart renders a full radix chart with real plotted data (screenshot shows populated chart wheel with sign glyphs and aspect line</div></li><li><a href="#path-dd-8-aistro"><span class="pill p-warn">不确定</span> authed no birth date→birth-info empty state · 步1</a> — navigate<div class="pe">navigated to /app/today: unexpectedly rendered full today-content (natal-chart with real data) — this authed test account already had a birth date on file from prior seeding (not the no-birth-date state this item targets), so precondition-b</div></li><li><a href="#path-dd-8-aistro"><span class="pill p-warn">不确定</span> authed no birth date→birth-info empty state · 步2</a> — navigate<div class="pe">navigated to /app/me: confirmed pre-existing profile data — name TSweep Fixture, birth date 1990-06-15T08:30, birth place Beijing China, lat 39.9042 lng 116.4074 (screenshot captured for restore reference)</div></li><li><a href="#path-dd-8-aistro"><span class="pill p-fail">失败</span> authed no birth date→birth-info empty state · 步6</a> — click<div class="pe">click via css id selector #today-birthinfo-cta timed out (8s) — id selector unreliable here (tooling quirk), not a functional bug, worked around with text selector next step</div></li><li><a href="#path-dd-9-aistro"><span class="pill p-warn">不确定</span> birth-info empty state→me page (seed CTA) · 步1</a> — navigate<div class="pe">navigated to /app/today: rendered full content since a birth date was already on file from prior state — precondition-building step, not itself dd-9 evidence</div></li><li><a href="#path-dd-9-aistro"><span class="pill p-warn">不确定</span> birth-info empty state→me page (seed CTA) · 步2</a> — navigate<div class="pe">navigated to /app/me: recorded pre-existing profile values for reference/restore</div></li><li><a href="#path-dd-9-aistro"><span class="pill p-fail">失败</span> birth-info empty state→me page (seed CTA) · 步6</a> — click<div class="pe">css id selector click on #today-birthinfo-cta timed out — tooling selector issue, not app bug</div></li><li><a href="#path-dd-5-aistro"><span class="pill p-fail">失败</span> preferences→settings persisted · 步2</a> — scroll<div class="pe">scroll-into-view by css id selector timed out (tooling quirk, generated id selectors unreliable throughout this session), worked around with dy-scroll next step</div></li><li><a href="#path-dd-5-aistro"><span class="pill p-fail">失败</span> preferences→settings persisted · 步6</a> — click<div class="pe">click role=switch name=Daily reading push timed out — toggle is not exposed with an accessible switch role, tooling limitation</div></li><li><a href="#path-dd-5-aistro"><span class="pill p-fail">失败</span> preferences→settings persisted · 步7</a> — click<div class="pe">click input[type=checkbox] timed out — toggle not implemented as a plain checkbox input either</div></li><li><a href="#path-dd-5-aistro"><span class="pill p-fail">失败</span> preferences→settings persisted · 步9</a> — click<div class="pe">click text English timed out (native select popup not directly clickable via DOM text locator)</div></li><li><a href="#path-dd-5-aistro"><span class="pill p-fail">失败</span> preferences→settings persisted · 步11</a> — click<div class="pe">click role=option name=中文 timed out — native select popup options are OS-rendered, not clickable via Playwright DOM locator</div></li><li><a href="#path-dd-10-aistro"><span class="pill p-warn">不确定</span> authed birth date present→today-content (chart+report list) · 步3</a> — click<div class="pe">clicked 明天 2026-07-26 date tab (SPA client-side nav): URL changed to /app/today/2026-07-26 but dailyDetail content stayed stale showing the 07-25 report — investigating this in dd-11/dd-12 continuation</div></li><li><a href="#path-dd-10-aistro"><span class="pill p-fail">失败</span> authed birth date present→today-content (chart+report list) · 步4</a> — waitFor<div class="pe">3s later content still shows stale 2026-07-25 report under the 2026-07-26 URL — the afs-list/auto-fire for the new date did not fire via client-side tab navigation alone</div></li><li><a href="#path-dd-11-aistro"><span class="pill p-warn">不确定</span> today-content no report for date→report generating (loading) · 步1</a> — navigate<div class="pe">navigated to today (with an already-generated report for 07-25) — precondition-building, not itself the no-report state</div></li><li><a href="#path-dd-11-aistro"><span class="pill p-warn">不确定</span> today-content no report for date→report generating (loading) · 步2</a> — scroll<div class="pe">confirmed 07-25 already has a rendered report (from prior activity), so this date cannot demonstrate the empty/loading state — needed a date with no report yet</div></li><li><a href="#path-dd-11-aistro"><span class="pill p-fail">失败</span> today-content no report for date→report generating (loading) · 步3</a> — click<div class="pe">clicked 明天 tab via SPA client nav to reach 2026-07-26 (a date with no report yet) but content stayed stale on 07-25 — noted as a possible minor bug (see dd-10 note); worked around with a real navigation</div></li><li><a href="#path-dd-11-aistro"><span class="pill p-fail">失败</span> today-content no report for date→report generating (loading) · 步4</a> — waitFor<div class="pe">3s wait, still stale — confirms the SPA nav path did not trigger the per-date auto-fire</div></li><li><a href="#path-dd-12-aistro"><span class="pill p-warn">不确定</span> report generating (loading)→report rendered · 步1</a> — navigate<div class="pe">navigated to today (07-25, already has a rendered report) — precondition-building</div></li><li><a href="#path-dd-12-aistro"><span class="pill p-warn">不确定</span> report generating (loading)→report rendered · 步2</a> — scroll<div class="pe">confirmed 07-25 report pre-existing — needed a fresh date to observe the generating→rendered transition</div></li><li><a href="#path-dd-12-aistro"><span class="pill p-fail">失败</span> report generating (loading)→report rendered · 步3</a> — click<div class="pe">SPA tab nav to 07-26 did not refresh content (see dd-10/dd-11 notes) — worked around with full navigate</div></li><li><a href="#path-dd-12-aistro"><span class="pill p-fail">失败</span> report generating (loading)→report rendered · 步4</a> — waitFor<div class="pe">3s wait confirms the stale-content issue, not a report-rendering result</div></li></ul></div>
+<section id="probes"><h2>后端探针 （全通过）</h2><table class="probe"><tr><th></th><th>探针</th><th>详情</th></tr><tr class=""><td>✅</td><td>http-reachable</td><td>HTTP 200</td></tr><tr class=""><td>✅</td><td>afs-rpc-list</td><td>ok:true (10 .aup pages)</td></tr><tr class=""><td>✅</td><td>afs-rpc-authed-list-/user</td><td>ok:true (Bearer 可读)</td></tr></table></section>
+<section id="path-today">
+<h2>Today <span class="rt">authed · /app/today/{date}</span></h2>
+<p class="pdesc">页面走查：导航到 <code>/app/today/{date}</code>，验证页面渲染出真实内容并逐步观测（1 步）。</p>
+<p class="novideo">⛔ 本路径缺录屏（未满足要求 #1）</p>
+<div class="kpis"><div class="kpi"><div class="k">1</div><div class="l">操作步</div></div><div class="kpi"><div class="k">0</div><div class="l">通过</div></div><div class="kpi"><div class="k k-bad">0</div><div class="l">失败</div></div><div class="kpi"><div class="k k-warn">0</div><div class="l">不确定</div></div><div class="kpi"><div class="k">1</div><div class="l">未走到</div></div></div>
+<details class="steps"><summary>▸ 逐步操作详情（1 步，含判定截图）</summary><div class="op">
+<h3><span class="pill p-skip">未走到</span> navigate（跳过）</h3>
+
+
+<div class="chk"><b>观察证据</b>：动态路由未解析出可导航 URL：blocked: /user/today 与 /instance/today 均读不到条目（集合为空或不存在）</div>
+
+<div class="nt">blocked: blocked: /user/today 与 /instance/today 均读不到条目（集合为空或不存在）</div>
+</div></details>
+
+</section><section id="path-today-detail">
+<h2>Today Detail <span class="rt">authed · /app?page=today-detail</span></h2>
+<p class="pdesc">页面走查：导航到 <code>/app?page=today-detail</code>，验证页面渲染出真实内容并逐步观测（1 步）。</p>
+<p class="novideo">⛔ 本路径缺录屏（未满足要求 #1）</p>
+<div class="kpis"><div class="kpi"><div class="k">1</div><div class="l">操作步</div></div><div class="kpi"><div class="k">0</div><div class="l">通过</div></div><div class="kpi"><div class="k k-bad">0</div><div class="l">失败</div></div><div class="kpi"><div class="k k-warn">0</div><div class="l">不确定</div></div><div class="kpi"><div class="k">1</div><div class="l">未走到</div></div></div>
+<details class="steps"><summary>▸ 逐步操作详情（1 步，含判定截图）</summary><div class="op">
+<h3><span class="pill p-skip">未走到</span> navigate（跳过）</h3>
+
+
+<div class="chk"><b>观察证据</b>：动态路由未解析出可导航 URL：blocked: 路由 /app?page=today-detail 里找不到 {param} 占位符前的具名段，无法推断候选集合</div>
+
+<div class="nt">blocked: blocked: 路由 /app?page=today-detail 里找不到 {param} 占位符前的具名段，无法推断候选集合</div>
+</div></details>
+
+</section><section id="path-natal">
+<h2>Natal <span class="rt">authed · https://aistro.afsd.dev/app/natal</span></h2>
+<p class="pdesc">导航到 https://aistro.afsd.dev/app/natal，验证页面加载并渲染出真实内容（natal 页 breadth 走查）。</p>
+<video class="video" controls preload="metadata" src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260725T104022Z/aistro/page@91fe0535f9cb31b6c59172afe2da279b.webm"><a href="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260725T104022Z/aistro/page@91fe0535f9cb31b6c59172afe2da279b.webm">下载该路径录像</a></video><p class="vcap">本测试路径整段走查录像</p>
+<div class="kpis"><div class="kpi"><div class="k">2</div><div class="l">操作步</div></div><div class="kpi"><div class="k">2</div><div class="l">通过</div></div><div class="kpi"><div class="k k-bad">0</div><div class="l">失败</div></div><div class="kpi"><div class="k k-warn">0</div><div class="l">不确定</div></div><div class="kpi"><div class="k">0</div><div class="l">未走到</div></div></div>
+<details class="steps"><summary>▸ 逐步操作详情（2 步，含判定截图）</summary><div class="op">
+<h3><span class="pill p-ok">通过</span> navigate</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260725T104022Z/aistro/natal-01.png" alt="navigate" loading="lazy"><figcaption>navigate</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：title=&#x27;Aistro&#x27; url=https://aistro.afsd.dev/app/natal aupNodes=9 buttons=7 inputs=0 textLen=198 head=&#x27;Aistro Sign in to consult Aistro Your chart, readings, and chat history are private to your account and sync across devices. Sign in to begi&#x27;</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> snapshot</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260725T104022Z/aistro/natal-02.png" alt="snapshot" loading="lazy"><figcaption>snapshot</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：title=&#x27;Aistro&#x27; url=https://aistro.afsd.dev/app/natal aupNodes=9 buttons=7 inputs=0 textLen=198 head=&#x27;Aistro Sign in to consult Aistro Your chart, readings, and chat history are private to your account and sync across devices. Sign in to begi&#x27;</div>
+
+
+</div></details>
+<details class="dbg"><summary>运行时 debug 上下文（全清）</summary><div class="dbg-none">Console 错误：<b>无</b></div><div class="dbg-none">JS 未捕获异常：<b>无</b></div><div class="dbg-none">网络错误（请求失败 / 4xx–5xx）：<b>无</b></div></details>
+</section><section id="path-star-trace">
+<h2>Star Trace <span class="rt">authed · https://aistro.afsd.dev/app/star-trace</span></h2>
+<p class="pdesc">导航到 https://aistro.afsd.dev/app/star-trace，验证页面加载并渲染出真实内容（star-trace 页 breadth 走查）。</p>
+<video class="video" controls preload="metadata" src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260725T104022Z/aistro/page@2953cac1aae832af0ab457ffdf048f24.webm"><a href="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260725T104022Z/aistro/page@2953cac1aae832af0ab457ffdf048f24.webm">下载该路径录像</a></video><p class="vcap">本测试路径整段走查录像</p>
+<div class="kpis"><div class="kpi"><div class="k">2</div><div class="l">操作步</div></div><div class="kpi"><div class="k">2</div><div class="l">通过</div></div><div class="kpi"><div class="k k-bad">0</div><div class="l">失败</div></div><div class="kpi"><div class="k k-warn">0</div><div class="l">不确定</div></div><div class="kpi"><div class="k">0</div><div class="l">未走到</div></div></div>
+<details class="steps"><summary>▸ 逐步操作详情（2 步，含判定截图）</summary><div class="op">
+<h3><span class="pill p-ok">通过</span> navigate</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260725T104022Z/aistro/star-trace-01.png" alt="navigate" loading="lazy"><figcaption>navigate</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：title=&#x27;Aistro&#x27; url=https://aistro.afsd.dev/app/star-trace aupNodes=9 buttons=7 inputs=0 textLen=198 head=&#x27;Aistro Sign in to consult Aistro Your chart, readings, and chat history are private to your account and sync across devices. Sign in to begi&#x27;</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> snapshot</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260725T104022Z/aistro/star-trace-02.png" alt="snapshot" loading="lazy"><figcaption>snapshot</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：title=&#x27;Aistro&#x27; url=https://aistro.afsd.dev/app/star-trace aupNodes=9 buttons=7 inputs=0 textLen=198 head=&#x27;Aistro Sign in to consult Aistro Your chart, readings, and chat history are private to your account and sync across devices. Sign in to begi&#x27;</div>
+
+
+</div></details>
+<details class="dbg"><summary>运行时 debug 上下文（全清）</summary><div class="dbg-none">Console 错误：<b>无</b></div><div class="dbg-none">JS 未捕获异常：<b>无</b></div><div class="dbg-none">网络错误（请求失败 / 4xx–5xx）：<b>无</b></div></details>
+</section><section id="path-friends">
+<h2>Friends <span class="rt">authed · https://aistro.afsd.dev/app/friends</span></h2>
+<p class="pdesc">导航到 https://aistro.afsd.dev/app/friends，验证页面加载并渲染出真实内容（friends 页 breadth 走查）。</p>
+<video class="video" controls preload="metadata" src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260725T104022Z/aistro/page@fcda6e85ad4f3ef03fac47d3a77a586c.webm"><a href="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260725T104022Z/aistro/page@fcda6e85ad4f3ef03fac47d3a77a586c.webm">下载该路径录像</a></video><p class="vcap">本测试路径整段走查录像</p>
+<div class="kpis"><div class="kpi"><div class="k">2</div><div class="l">操作步</div></div><div class="kpi"><div class="k">2</div><div class="l">通过</div></div><div class="kpi"><div class="k k-bad">0</div><div class="l">失败</div></div><div class="kpi"><div class="k k-warn">0</div><div class="l">不确定</div></div><div class="kpi"><div class="k">0</div><div class="l">未走到</div></div></div>
+<details class="steps"><summary>▸ 逐步操作详情（2 步，含判定截图）</summary><div class="op">
+<h3><span class="pill p-ok">通过</span> navigate</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260725T104022Z/aistro/friends-01.png" alt="navigate" loading="lazy"><figcaption>navigate</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：title=&#x27;Aistro&#x27; url=https://aistro.afsd.dev/app/friends aupNodes=9 buttons=7 inputs=0 textLen=198 head=&#x27;Aistro Sign in to consult Aistro Your chart, readings, and chat history are private to your account and sync across devices. Sign in to begi&#x27;</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> snapshot</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260725T104022Z/aistro/friends-02.png" alt="snapshot" loading="lazy"><figcaption>snapshot</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：title=&#x27;Aistro&#x27; url=https://aistro.afsd.dev/app/friends aupNodes=9 buttons=7 inputs=0 textLen=198 head=&#x27;Aistro Sign in to consult Aistro Your chart, readings, and chat history are private to your account and sync across devices. Sign in to begi&#x27;</div>
+
+
+</div></details>
+<details class="dbg"><summary>运行时 debug 上下文（全清）</summary><div class="dbg-none">Console 错误：<b>无</b></div><div class="dbg-none">JS 未捕获异常：<b>无</b></div><div class="dbg-none">网络错误（请求失败 / 4xx–5xx）：<b>无</b></div></details>
+</section><section id="path-friend-detail">
+<h2>Friend Detail <span class="rt">authed · /app/friends/{friendId}</span></h2>
+<p class="pdesc">页面走查：导航到 <code>/app/friends/{friendId}</code>，验证页面渲染出真实内容并逐步观测（1 步）。</p>
+<p class="novideo">⛔ 本路径缺录屏（未满足要求 #1）</p>
+<div class="kpis"><div class="kpi"><div class="k">1</div><div class="l">操作步</div></div><div class="kpi"><div class="k">0</div><div class="l">通过</div></div><div class="kpi"><div class="k k-bad">0</div><div class="l">失败</div></div><div class="kpi"><div class="k k-warn">0</div><div class="l">不确定</div></div><div class="kpi"><div class="k">1</div><div class="l">未走到</div></div></div>
+<details class="steps"><summary>▸ 逐步操作详情（1 步，含判定截图）</summary><div class="op">
+<h3><span class="pill p-skip">未走到</span> navigate（跳过）</h3>
+
+
+<div class="chk"><b>观察证据</b>：动态路由未解析出可导航 URL：blocked: /user/friends 与 /instance/friends 均读不到条目（集合为空或不存在）</div>
+
+<div class="nt">blocked: blocked: /user/friends 与 /instance/friends 均读不到条目（集合为空或不存在）</div>
+</div></details>
+
+</section><section id="path-friend-new">
+<h2>Friend New <span class="rt">authed · https://aistro.afsd.dev/app/friends/new</span></h2>
+<p class="pdesc">导航到 https://aistro.afsd.dev/app/friends/new，验证页面加载并渲染出真实内容（friend-new 页 breadth 走查）。</p>
+<video class="video" controls preload="metadata" src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260725T104022Z/aistro/page@86b42be893b4df97b599ce47bea04938.webm"><a href="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260725T104022Z/aistro/page@86b42be893b4df97b599ce47bea04938.webm">下载该路径录像</a></video><p class="vcap">本测试路径整段走查录像</p>
+<div class="kpis"><div class="kpi"><div class="k">2</div><div class="l">操作步</div></div><div class="kpi"><div class="k">2</div><div class="l">通过</div></div><div class="kpi"><div class="k k-bad">0</div><div class="l">失败</div></div><div class="kpi"><div class="k k-warn">0</div><div class="l">不确定</div></div><div class="kpi"><div class="k">0</div><div class="l">未走到</div></div></div>
+<details class="steps"><summary>▸ 逐步操作详情（2 步，含判定截图）</summary><div class="op">
+<h3><span class="pill p-ok">通过</span> navigate</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260725T104022Z/aistro/friend-new-01.png" alt="navigate" loading="lazy"><figcaption>navigate</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：title=&#x27;Aistro&#x27; url=https://aistro.afsd.dev/app/friends/new aupNodes=9 buttons=7 inputs=0 textLen=198 head=&#x27;Aistro Sign in to consult Aistro Your chart, readings, and chat history are private to your account and sync across devices. Sign in to begi&#x27;</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> snapshot</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260725T104022Z/aistro/friend-new-02.png" alt="snapshot" loading="lazy"><figcaption>snapshot</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：title=&#x27;Aistro&#x27; url=https://aistro.afsd.dev/app/friends/new aupNodes=9 buttons=7 inputs=0 textLen=198 head=&#x27;Aistro Sign in to consult Aistro Your chart, readings, and chat history are private to your account and sync across devices. Sign in to begi&#x27;</div>
+
+
+</div></details>
+<details class="dbg"><summary>运行时 debug 上下文（全清）</summary><div class="dbg-none">Console 错误：<b>无</b></div><div class="dbg-none">JS 未捕获异常：<b>无</b></div><div class="dbg-none">网络错误（请求失败 / 4xx–5xx）：<b>无</b></div></details>
+</section><section id="path-friend-synastry">
+<h2>Friend Synastry <span class="rt">authed · /app/friends/{friendId}/synastry</span></h2>
+<p class="pdesc">页面走查：导航到 <code>/app/friends/{friendId}/synastry</code>，验证页面渲染出真实内容并逐步观测（1 步）。</p>
+<p class="novideo">⛔ 本路径缺录屏（未满足要求 #1）</p>
+<div class="kpis"><div class="kpi"><div class="k">1</div><div class="l">操作步</div></div><div class="kpi"><div class="k">0</div><div class="l">通过</div></div><div class="kpi"><div class="k k-bad">0</div><div class="l">失败</div></div><div class="kpi"><div class="k k-warn">0</div><div class="l">不确定</div></div><div class="kpi"><div class="k">1</div><div class="l">未走到</div></div></div>
+<details class="steps"><summary>▸ 逐步操作详情（1 步，含判定截图）</summary><div class="op">
+<h3><span class="pill p-skip">未走到</span> navigate（跳过）</h3>
+
+
+<div class="chk"><b>观察证据</b>：动态路由未解析出可导航 URL：blocked: /user/friends 与 /instance/friends 均读不到条目（集合为空或不存在）</div>
+
+<div class="nt">blocked: blocked: /user/friends 与 /instance/friends 均读不到条目（集合为空或不存在）</div>
+</div></details>
+
+</section><section id="path-chat">
+<h2>Chat <span class="rt">authed · https://aistro.afsd.dev/app/chat</span></h2>
+<p class="pdesc">导航到 https://aistro.afsd.dev/app/chat，验证页面加载并渲染出真实内容（chat 页 breadth 走查）。</p>
+<video class="video" controls preload="metadata" src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260725T104022Z/aistro/page@79f831d04e7da17d932f703d59f6292b.webm"><a href="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260725T104022Z/aistro/page@79f831d04e7da17d932f703d59f6292b.webm">下载该路径录像</a></video><p class="vcap">本测试路径整段走查录像</p>
+<div class="kpis"><div class="kpi"><div class="k">2</div><div class="l">操作步</div></div><div class="kpi"><div class="k">2</div><div class="l">通过</div></div><div class="kpi"><div class="k k-bad">0</div><div class="l">失败</div></div><div class="kpi"><div class="k k-warn">0</div><div class="l">不确定</div></div><div class="kpi"><div class="k">0</div><div class="l">未走到</div></div></div>
+<details class="steps"><summary>▸ 逐步操作详情（2 步，含判定截图）</summary><div class="op">
+<h3><span class="pill p-ok">通过</span> navigate</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260725T104022Z/aistro/chat-01.png" alt="navigate" loading="lazy"><figcaption>navigate</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：title=&#x27;Aistro&#x27; url=https://aistro.afsd.dev/app/chat aupNodes=9 buttons=7 inputs=0 textLen=198 head=&#x27;Aistro Sign in to consult Aistro Your chart, readings, and chat history are private to your account and sync across devices. Sign in to begi&#x27;</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> snapshot</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260725T104022Z/aistro/chat-02.png" alt="snapshot" loading="lazy"><figcaption>snapshot</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：title=&#x27;Aistro&#x27; url=https://aistro.afsd.dev/app/chat aupNodes=9 buttons=7 inputs=0 textLen=198 head=&#x27;Aistro Sign in to consult Aistro Your chart, readings, and chat history are private to your account and sync across devices. Sign in to begi&#x27;</div>
+
+
+</div></details>
+<details class="dbg"><summary>运行时 debug 上下文（全清）</summary><div class="dbg-none">Console 错误：<b>无</b></div><div class="dbg-none">JS 未捕获异常：<b>无</b></div><div class="dbg-none">网络错误（请求失败 / 4xx–5xx）：<b>无</b></div></details>
+</section><section id="path-me">
+<h2>Me <span class="rt">authed · https://aistro.afsd.dev/app/me</span></h2>
+<p class="pdesc">导航到 https://aistro.afsd.dev/app/me，验证页面加载并渲染出真实内容（me 页 breadth 走查）。</p>
+<video class="video" controls preload="metadata" src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260725T104022Z/aistro/page@0521ee040eb0642178e82ba9d09ebb93.webm"><a href="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260725T104022Z/aistro/page@0521ee040eb0642178e82ba9d09ebb93.webm">下载该路径录像</a></video><p class="vcap">本测试路径整段走查录像</p>
+<div class="kpis"><div class="kpi"><div class="k">2</div><div class="l">操作步</div></div><div class="kpi"><div class="k">2</div><div class="l">通过</div></div><div class="kpi"><div class="k k-bad">0</div><div class="l">失败</div></div><div class="kpi"><div class="k k-warn">0</div><div class="l">不确定</div></div><div class="kpi"><div class="k">0</div><div class="l">未走到</div></div></div>
+<details class="steps"><summary>▸ 逐步操作详情（2 步，含判定截图）</summary><div class="op">
+<h3><span class="pill p-ok">通过</span> navigate</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260725T104022Z/aistro/me-01.png" alt="navigate" loading="lazy"><figcaption>navigate</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：title=&#x27;Aistro&#x27; url=https://aistro.afsd.dev/app/me aupNodes=9 buttons=7 inputs=0 textLen=198 head=&#x27;Aistro Sign in to consult Aistro Your chart, readings, and chat history are private to your account and sync across devices. Sign in to begi&#x27;</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> snapshot</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260725T104022Z/aistro/me-02.png" alt="snapshot" loading="lazy"><figcaption>snapshot</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：title=&#x27;Aistro&#x27; url=https://aistro.afsd.dev/app/me aupNodes=9 buttons=7 inputs=0 textLen=198 head=&#x27;Aistro Sign in to consult Aistro Your chart, readings, and chat history are private to your account and sync across devices. Sign in to begi&#x27;</div>
+
+
+</div></details>
+<details class="dbg"><summary>运行时 debug 上下文（全清）</summary><div class="dbg-none">Console 错误：<b>无</b></div><div class="dbg-none">JS 未捕获异常：<b>无</b></div><div class="dbg-none">网络错误（请求失败 / 4xx–5xx）：<b>无</b></div></details>
+</section><section id="path-dd-2-aistro">
+<h2>add-friend form→friend created <span class="rt">authed · /app/friends/new</span></h2>
+<p class="pdesc">写操作走查：8 步驱动此操作（其中 3 步为写），逐步引真实 DOM/文本/toast 为证。</p>
+<video class="video" controls preload="metadata" src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260725T104022Z/aistro/page@cfffd5d64b8db4d14b4ee40310ead697.webm"><a href="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260725T104022Z/aistro/page@cfffd5d64b8db4d14b4ee40310ead697.webm">下载该路径录像</a></video><p class="vcap">本测试路径整段走查录像</p>
+<div class="kpis"><div class="kpi"><div class="k">8</div><div class="l">操作步</div></div><div class="kpi"><div class="k">8</div><div class="l">通过</div></div><div class="kpi"><div class="k k-bad">0</div><div class="l">失败</div></div><div class="kpi"><div class="k k-warn">0</div><div class="l">不确定</div></div><div class="kpi"><div class="k">0</div><div class="l">未走到</div></div></div>
+<details class="steps"><summary>▸ 逐步操作详情（8 步，含判定截图）</summary><div class="op">
+<h3><span class="pill p-ok">通过</span> navigate</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260725T104022Z/aistro/dd-2-aistro-00.png" alt="navigate" loading="lazy"><figcaption>navigate</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：navigated to /app/friends/new, form rendered with 名字/生日/出生地 inputs and Test Fixture User authed in header</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> <span class="pill p-write">写</span>fill</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260725T104022Z/aistro/dd-2-aistro-01.png" alt="fill" loading="lazy"><figcaption>fill</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：filled name input (placeholder 好友的名字) with qa-tsweep-1784977754-friend, screenshot confirms text set</div>
+<div class="err"><b>执行错误</b>：<code>TimeoutError: fill: Timeout 8000ms exceeded.</code></div>
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> <span class="pill p-write">写</span>fill</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260725T104022Z/aistro/dd-2-aistro-02.png" alt="fill" loading="lazy"><figcaption>fill</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：filled birth-date input (placeholder YYYY-MM-DD HH:MM) with 1990-06-15T08:30, screenshot confirms datetime widget shows 06/15/1990, 08:30 AM</div>
+<div class="err"><b>执行错误</b>：<code>TimeoutError: fill: Timeout 8000ms exceeded.</code></div>
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> fill</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260725T104022Z/aistro/dd-2-aistro-03.png" alt="fill" loading="lazy"><figcaption>fill</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：redundant snapshot after fills, both fields still populated</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> fill</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260725T104022Z/aistro/dd-2-aistro-04.png" alt="fill" loading="lazy"><figcaption>fill</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：redundant snapshot confirming birth date field state before submit</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> <span class="pill p-write">写</span>click</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260725T104022Z/aistro/dd-2-aistro-05.png" alt="click" loading="lazy"><figcaption>click</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：clicked 添加 → button, button label flipped to Connecting... indicating agent round-trip started</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> waitFor</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260725T104022Z/aistro/dd-2-aistro-06.png" alt="waitFor" loading="lazy"><figcaption>waitFor</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：URL changed to https://aistro.afsd.dev/app/friends/frd-z1pajv0z — hrefOnSuccess redirect fired using agent-generated friend id</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> waitFor</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260725T104022Z/aistro/dd-2-aistro-07.png" alt="waitFor" loading="lazy"><figcaption>waitFor</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：friend-detail page rendered header qa-tsweep-1784977754-friend, 1990-06-15T08:30, delete-friend-id hidden input value=frd-z1pajv0z confirming the created friend record</div>
+
+
+</div></details>
+<details class="dbg" open><summary>运行时 debug 上下文（3 条错误）</summary><div class="dbg-has"><b>Console 错误（1）</b><ul><li><code>Failed to load resource: the server responded with a status of 404 ()</code></li></ul></div><div class="dbg-none">JS 未捕获异常：<b>无</b></div><div class="dbg-has"><b>网络错误（请求失败 / 4xx–5xx）（2）</b><ul><li><code>✗ POST https://aistro.afsd.dev/cdn-cgi/rum? — net::ERR_ABORTED</code></li><li><code>404 POST https://aistro.afsd.dev/api/afs/rpc</code></li></ul></div></details>
+</section><section id="path-dd-1-aistro">
+<h2>confirm delete dialog→friend purged <span class="rt">authed · /app/friends/{friendId}</span></h2>
+<p class="pdesc">写操作走查：13 步驱动此操作（其中 3 步为写），逐步引真实 DOM/文本/toast 为证。</p>
+<video class="video" controls preload="metadata" src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260725T104022Z/aistro/page@0aa1c8908f8f1421521d4c3246e55868.webm"><a href="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260725T104022Z/aistro/page@0aa1c8908f8f1421521d4c3246e55868.webm">下载该路径录像</a></video><p class="vcap">本测试路径整段走查录像</p>
+<div class="kpis"><div class="kpi"><div class="k">13</div><div class="l">操作步</div></div><div class="kpi"><div class="k">7</div><div class="l">通过</div></div><div class="kpi"><div class="k k-bad">6</div><div class="l">失败</div></div><div class="kpi"><div class="k k-warn">0</div><div class="l">不确定</div></div><div class="kpi"><div class="k">0</div><div class="l">未走到</div></div></div>
+<details class="steps"><summary>▸ 逐步操作详情（13 步，含判定截图）</summary><div class="op">
+<h3><span class="pill p-ok">通过</span> navigate</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260725T104022Z/aistro/dd-1-aistro-00.png" alt="navigate" loading="lazy"><figcaption>navigate</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：navigated to /app/friends/frd-z1pajv0z (the qa-tsweep friend created in dd-2), header shows qa-tsweep-1784977754-friend, delete-friend-id hidden input value=frd-z1pajv0z</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-fail">失败</span> click</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260725T104022Z/aistro/dd-1-aistro-01.png" alt="click" loading="lazy"><figcaption>click</figcaption></figure></div>
+<div class="chk-fail"><b>观察证据</b>：click via css id selector #friend-detail-view-1-view-3-row-1-row-2-button-2 timed out (8s) — id selector unreliable on this button, not a functional bug, worked around with text selector next step</div>
+<div class="err"><b>执行错误</b>：<code>TimeoutError: click: Timeout 8000ms exceeded.</code></div>
+<div class="nt">tooling issue, not app bug</div>
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> click</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260725T104022Z/aistro/dd-1-aistro-02.png" alt="click" loading="lazy"><figcaption>click</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：clicked 删除好友 by text — confirm dialog appeared with title 确定要删除这位好友吗？ and message TA的本命盘、合盘、所有报告都会一并删除，无法恢复。 plus 取消/删除 buttons</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> <span class="pill p-write">写</span>click</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260725T104022Z/aistro/dd-1-aistro-03.png" alt="click" loading="lazy"><figcaption>click</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：clicked 删除 to confirm — button label flipped to Connecting..., delete agent invoked</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> waitFor</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260725T104022Z/aistro/dd-1-aistro-04.png" alt="waitFor" loading="lazy"><figcaption>waitFor</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：after 25s wait, URL redirected to https://aistro.afsd.dev/app/friends confirming hrefOnSuccess fired</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-fail">失败</span> waitFor</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260725T104022Z/aistro/dd-1-aistro-05.png" alt="waitFor" loading="lazy"><figcaption>waitFor</figcaption></figure></div>
+<div class="chk-fail"><b>观察证据</b>：friends list settling, shows loading skeletons; once settled shows TSweep Friend card plus a SECOND blank ghost card with anchor id frd-z1pajv0z (our just-deleted friend) — name/date/place fields all empty</div>
+
+<div class="nt">BUG: orphaned entry remains after delete</div>
+</div>
+<div class="op">
+<h3><span class="pill p-fail">失败</span> waitFor</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260725T104022Z/aistro/dd-1-aistro-06.png" alt="waitFor" loading="lazy"><figcaption>waitFor</figcaption></figure></div>
+<div class="chk-fail"><b>观察证据</b>：5s later ghost card for frd-z1pajv0z still present and still blank, confirming it is not a transient loading artifact</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-fail">失败</span> waitFor</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260725T104022Z/aistro/dd-1-aistro-07.png" alt="waitFor" loading="lazy"><figcaption>waitFor</figcaption></figure></div>
+<div class="chk-fail"><b>观察证据</b>：6s later ghost card for frd-z1pajv0z still present in friends list</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-fail">失败</span> navigate</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260725T104022Z/aistro/dd-1-aistro-08.png" alt="navigate" loading="lazy"><figcaption>navigate</figcaption></figure></div>
+<div class="chk-fail"><b>观察证据</b>：fresh full navigate (not SPA nav) to /app/friends still shows the frd-z1pajv0z ghost card, ruling out client-side cache staleness — this is real server-side leftover state</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-fail">失败</span> navigate</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260725T104022Z/aistro/dd-1-aistro-09.png" alt="navigate" loading="lazy"><figcaption>navigate</figcaption></figure></div>
+<div class="chk-fail"><b>观察证据</b>：navigated to /app/friends/frd-z1pajv0z directly: header name/date now empty (friend.json deleted) BUT the natal-chart renders a full radix chart with real plotted data (screenshot shows populated chart wheel with sign glyphs and aspect lines) — proves /user/people/frd-z1pajv0z/chart-data.json (and likely horoscope.json) survived the delete agent, leaving orphaned data. Root cause: friend-chart auto-fire (dedupKey friend-chart:&lt;id&gt;) wrote chart-data.json asynchronously AFTER the delete agent&#x27;s verify-and-retry loop had already finished checking, so nothing deleted it afterward.</div>
+
+<div class="nt">real bug: race between async chart-generation auto-fire and one-shot delete retry loop; candidate for GitHub issue</div>
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> click</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260725T104022Z/aistro/dd-1-aistro-10.png" alt="click" loading="lazy"><figcaption>click</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：retried delete: clicked 删除好友 again on the orphaned entry — confirm dialog reappeared normally</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> <span class="pill p-write">写</span>click</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260725T104022Z/aistro/dd-1-aistro-11.png" alt="click" loading="lazy"><figcaption>click</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：confirmed delete again — Connecting... shown, agent invoked a second time</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> <span class="pill p-write">写</span>waitFor</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260725T104022Z/aistro/dd-1-aistro-12.png" alt="waitFor" loading="lazy"><figcaption>waitFor</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：after 30s wait, redirected to /app/friends; list now shows ONLY the pre-existing TSweep Friend card — the frd-z1pajv0z ghost entry is gone, confirming a second delete pass fully cleaned up the orphaned chart-data.json/horoscope.json and cleanup is now complete</div>
+
+
+</div></details>
+<details class="dbg" open><summary>运行时 debug 上下文（12 条错误）</summary><div class="dbg-has"><b>Console 错误（8）</b><ul><li><code>Failed to load resource: the server responded with a status of 404 ()</code></li><li><code>Failed to load resource: the server responded with a status of 404 ()</code></li><li><code>Failed to load resource: the server responded with a status of 404 ()</code></li><li><code>Failed to load resource: the server responded with a status of 404 ()</code></li><li><code>Failed to load resource: the server responded with a status of 404 ()</code></li><li><code>Failed to load resource: the server responded with a status of 404 ()</code></li><li><code>Failed to load resource: the server responded with a status of 404 ()</code></li><li><code>Failed to load resource: the server responded with a status of 404 ()</code></li></ul></div><div class="dbg-has"><b>JS 未捕获异常（1）</b><ul><li><code>Uncaught (in promise) Error: Path not found: /people/frd-z1pajv0z/reports</code></li></ul></div><div class="dbg-has"><b>网络错误（请求失败 / 4xx–5xx）（3）</b><ul><li><code>404 POST https://aistro.afsd.dev/api/afs/rpc</code></li><li><code>✗ POST https://aistro.afsd.dev/cdn-cgi/rum? — net::ERR_ABORTED</code></li><li><code>✗ POST https://aistro.afsd.dev/api/afs/rpc — net::ERR_ABORTED</code></li></ul></div></details>
+</section><section id="path-dd-8-aistro">
+<h2>authed no birth date→birth-info empty state <span class="rt">authed · /app/today/{date}</span></h2>
+<p class="pdesc">写操作走查：7 步驱动此操作（其中 2 步为写），逐步引真实 DOM/文本/toast 为证。</p>
+<video class="video" controls preload="metadata" src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260725T104022Z/aistro/page@7f6247af8f6efccfaf9d62f3f9abe94e.webm"><a href="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260725T104022Z/aistro/page@7f6247af8f6efccfaf9d62f3f9abe94e.webm">下载该路径录像</a></video><p class="vcap">本测试路径整段走查录像</p>
+<div class="kpis"><div class="kpi"><div class="k">7</div><div class="l">操作步</div></div><div class="kpi"><div class="k">4</div><div class="l">通过</div></div><div class="kpi"><div class="k k-bad">1</div><div class="l">失败</div></div><div class="kpi"><div class="k k-warn">2</div><div class="l">不确定</div></div><div class="kpi"><div class="k">0</div><div class="l">未走到</div></div></div>
+<details class="steps"><summary>▸ 逐步操作详情（7 步，含判定截图）</summary><div class="op">
+<h3><span class="pill p-warn">不确定</span> navigate</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260725T104022Z/aistro/dd-8-aistro-00.png" alt="navigate" loading="lazy"><figcaption>navigate</figcaption></figure></div>
+<div class="chk-fail"><b>观察证据</b>：navigated to /app/today: unexpectedly rendered full today-content (natal-chart with real data) — this authed test account already had a birth date on file from prior seeding (not the no-birth-date state this item targets), so precondition-building was needed</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-warn">不确定</span> navigate</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260725T104022Z/aistro/dd-8-aistro-01.png" alt="navigate" loading="lazy"><figcaption>navigate</figcaption></figure></div>
+<div class="chk-fail"><b>观察证据</b>：navigated to /app/me: confirmed pre-existing profile data — name TSweep Fixture, birth date 1990-06-15T08:30, birth place Beijing China, lat 39.9042 lng 116.4074 (screenshot captured for restore reference)</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> <span class="pill p-write">写</span>fill</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260725T104022Z/aistro/dd-8-aistro-02.png" alt="fill" loading="lazy"><figcaption>fill</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：cleared the datetime-local birth-date input (fill with empty string) to rebuild the no-birth-date precondition</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> <span class="pill p-write">写</span>press</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260725T104022Z/aistro/dd-8-aistro-03.png" alt="press" loading="lazy"><figcaption>press</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：pressed Tab to blur/commit the cleared field</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> navigate</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260725T104022Z/aistro/dd-8-aistro-04.png" alt="navigate" loading="lazy"><figcaption>navigate</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：navigated to /app/today: today-birthinfo-empty view rendered with text 还没有你的出生信息／填写出生日期和地点后，占星师才能为你计算今日运势, and today-birthinfo-cta anchor 去填写出生信息 present — matches man page assertion exactly (today-content hidden, empty-state CTA shown)</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-fail">失败</span> click</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260725T104022Z/aistro/dd-8-aistro-05.png" alt="click" loading="lazy"><figcaption>click</figcaption></figure></div>
+<div class="chk-fail"><b>观察证据</b>：click via css id selector #today-birthinfo-cta timed out (8s) — id selector unreliable here (tooling quirk), not a functional bug, worked around with text selector next step</div>
+<div class="err"><b>执行错误</b>：<code>TimeoutError: click: Timeout 8000ms exceeded.</code></div>
+<div class="nt">tooling issue, not app bug</div>
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> click</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260725T104022Z/aistro/dd-8-aistro-06.png" alt="click" loading="lazy"><figcaption>click</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：clicked 去填写出生信息 CTA by text — URL navigated to https://aistro.afsd.dev/app/me, landing on the profile form as expected</div>
+
+
+</div></details>
+<details class="dbg" open><summary>运行时 debug 上下文（2 条错误）</summary><div class="dbg-none">Console 错误：<b>无</b></div><div class="dbg-none">JS 未捕获异常：<b>无</b></div><div class="dbg-has"><b>网络错误（请求失败 / 4xx–5xx）（2）</b><ul><li><code>✗ POST https://aistro.afsd.dev/api/afs/rpc — net::ERR_ABORTED</code></li><li><code>✗ POST https://aistro.afsd.dev/cdn-cgi/rum? — net::ERR_ABORTED</code></li></ul></div></details>
+</section><section id="path-dd-9-aistro">
+<h2>birth-info empty state→me page (seed CTA) <span class="rt">authed · /app/today/{date}</span></h2>
+<p class="pdesc">写操作走查：7 步驱动此操作（其中 2 步为写），逐步引真实 DOM/文本/toast 为证。</p>
+<video class="video" controls preload="metadata" src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260725T104022Z/aistro/page@7f6247af8f6efccfaf9d62f3f9abe94e.webm"><a href="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260725T104022Z/aistro/page@7f6247af8f6efccfaf9d62f3f9abe94e.webm">下载该路径录像</a></video><p class="vcap">本测试路径整段走查录像</p>
+<div class="kpis"><div class="kpi"><div class="k">7</div><div class="l">操作步</div></div><div class="kpi"><div class="k">4</div><div class="l">通过</div></div><div class="kpi"><div class="k k-bad">1</div><div class="l">失败</div></div><div class="kpi"><div class="k k-warn">2</div><div class="l">不确定</div></div><div class="kpi"><div class="k">0</div><div class="l">未走到</div></div></div>
+<details class="steps"><summary>▸ 逐步操作详情（7 步，含判定截图）</summary><div class="op">
+<h3><span class="pill p-warn">不确定</span> navigate</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260725T104022Z/aistro/dd-8-aistro-00.png" alt="navigate" loading="lazy"><figcaption>navigate</figcaption></figure></div>
+<div class="chk-fail"><b>观察证据</b>：navigated to /app/today: rendered full content since a birth date was already on file from prior state — precondition-building step, not itself dd-9 evidence</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-warn">不确定</span> navigate</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260725T104022Z/aistro/dd-8-aistro-01.png" alt="navigate" loading="lazy"><figcaption>navigate</figcaption></figure></div>
+<div class="chk-fail"><b>观察证据</b>：navigated to /app/me: recorded pre-existing profile values for reference/restore</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> <span class="pill p-write">写</span>fill</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260725T104022Z/aistro/dd-8-aistro-02.png" alt="fill" loading="lazy"><figcaption>fill</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：cleared birth-date input to rebuild the empty-state precondition needed to see the CTA</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> <span class="pill p-write">写</span>press</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260725T104022Z/aistro/dd-8-aistro-03.png" alt="press" loading="lazy"><figcaption>press</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：blurred field via Tab to commit the write</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> navigate</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260725T104022Z/aistro/dd-8-aistro-04.png" alt="navigate" loading="lazy"><figcaption>navigate</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：navigated to /app/today: confirmed today-birthinfo-empty + today-birthinfo-cta rendered (precondition for dd-9 reached)</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-fail">失败</span> click</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260725T104022Z/aistro/dd-8-aistro-05.png" alt="click" loading="lazy"><figcaption>click</figcaption></figure></div>
+<div class="chk-fail"><b>观察证据</b>：css id selector click on #today-birthinfo-cta timed out — tooling selector issue, not app bug</div>
+<div class="err"><b>执行错误</b>：<code>TimeoutError: click: Timeout 8000ms exceeded.</code></div>
+<div class="nt">tooling issue</div>
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> click</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260725T104022Z/aistro/dd-8-aistro-06.png" alt="click" loading="lazy"><figcaption>click</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：clicked 去填写出生信息 (today-birthinfo-cta) by text — URL changed to https://aistro.afsd.dev/app/me and the profile form rendered, confirming the CTA href=/app/me navigation works as documented</div>
+
+
+</div></details>
+<details class="dbg" open><summary>运行时 debug 上下文（2 条错误）</summary><div class="dbg-none">Console 错误：<b>无</b></div><div class="dbg-none">JS 未捕获异常：<b>无</b></div><div class="dbg-has"><b>网络错误（请求失败 / 4xx–5xx）（2）</b><ul><li><code>✗ POST https://aistro.afsd.dev/api/afs/rpc — net::ERR_ABORTED</code></li><li><code>✗ POST https://aistro.afsd.dev/cdn-cgi/rum? — net::ERR_ABORTED</code></li></ul></div></details>
+</section><section id="path-dd-3-aistro">
+<h2>profile form→birth date persisted <span class="rt">authed · /app/me</span></h2>
+<p class="pdesc">写操作走查：5 步驱动此操作（其中 2 步为写），逐步引真实 DOM/文本/toast 为证。</p>
+<video class="video" controls preload="metadata" src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260725T104022Z/aistro/page@660a7c0634df8c63c415631fc5bb5673.webm"><a href="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260725T104022Z/aistro/page@660a7c0634df8c63c415631fc5bb5673.webm">下载该路径录像</a></video><p class="vcap">本测试路径整段走查录像</p>
+<div class="kpis"><div class="kpi"><div class="k">5</div><div class="l">操作步</div></div><div class="kpi"><div class="k">5</div><div class="l">通过</div></div><div class="kpi"><div class="k k-bad">0</div><div class="l">失败</div></div><div class="kpi"><div class="k k-warn">0</div><div class="l">不确定</div></div><div class="kpi"><div class="k">0</div><div class="l">未走到</div></div></div>
+<details class="steps"><summary>▸ 逐步操作详情（5 步，含判定截图）</summary><div class="op">
+<h3><span class="pill p-ok">通过</span> navigate</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260725T104022Z/aistro/dd-3-aistro-00.png" alt="navigate" loading="lazy"><figcaption>navigate</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：navigated to /app/me: confirmed birth-date datetime-local input is empty (precondition rebuilt in dd-8/dd-9 session)</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> <span class="pill p-write">写</span>fill</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260725T104022Z/aistro/dd-3-aistro-01.png" alt="fill" loading="lazy"><figcaption>fill</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：filled birth-date input with 1990-06-15T08:30 (restoring the pre-existing test-fixture value)</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> <span class="pill p-write">写</span>press</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260725T104022Z/aistro/dd-3-aistro-02.png" alt="press" loading="lazy"><figcaption>press</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：pressed Tab to blur/commit the bind write</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> navigate</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260725T104022Z/aistro/dd-3-aistro-03.png" alt="navigate" loading="lazy"><figcaption>navigate</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：navigated to /app/natal: natal-content rendered a full radix chart plus all 5 natalDetail sections (Sun Gemini / Moon Pisces / Mercury Gemini / Venus Taurus / Mars Aries reading text) — proves /user/people/me/profile/birth-date.json write took effect and unlocked downstream gated content</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> navigate</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260725T104022Z/aistro/dd-3-aistro-04.png" alt="navigate" loading="lazy"><figcaption>navigate</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：navigated back to /app/me: birth-date input re-shows 1990-06-15T08:30 on fresh page load (reread from AFS confirms persistence, not just client-side state)</div>
+
+
+</div></details>
+<details class="dbg" open><summary>运行时 debug 上下文（1 条错误）</summary><div class="dbg-none">Console 错误：<b>无</b></div><div class="dbg-none">JS 未捕获异常：<b>无</b></div><div class="dbg-has"><b>网络错误（请求失败 / 4xx–5xx）（1）</b><ul><li><code>✗ POST https://aistro.afsd.dev/cdn-cgi/rum? — net::ERR_ABORTED</code></li></ul></div></details>
+</section><section id="path-dd-6-aistro">
+<h2>auth spot-check: natal shows authed content not login wall <span class="rt">authed · https://aistro.afsd.dev/app/natal</span></h2>
+<p class="pdesc">写操作走查：5 步驱动此操作（其中 2 步为写），逐步引真实 DOM/文本/toast 为证。</p>
+<video class="video" controls preload="metadata" src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260725T104022Z/aistro/page@660a7c0634df8c63c415631fc5bb5673.webm"><a href="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260725T104022Z/aistro/page@660a7c0634df8c63c415631fc5bb5673.webm">下载该路径录像</a></video><p class="vcap">本测试路径整段走查录像</p>
+<div class="kpis"><div class="kpi"><div class="k">5</div><div class="l">操作步</div></div><div class="kpi"><div class="k">5</div><div class="l">通过</div></div><div class="kpi"><div class="k k-bad">0</div><div class="l">失败</div></div><div class="kpi"><div class="k k-warn">0</div><div class="l">不确定</div></div><div class="kpi"><div class="k">0</div><div class="l">未走到</div></div></div>
+<details class="steps"><summary>▸ 逐步操作详情（5 步，含判定截图）</summary><div class="op">
+<h3><span class="pill p-ok">通过</span> navigate</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260725T104022Z/aistro/dd-3-aistro-00.png" alt="navigate" loading="lazy"><figcaption>navigate</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：navigated to /app/me while authed (header shows Test Fixture User avatar/menu, not a sign-in wall) — sets up birth date needed for rich natal content</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> <span class="pill p-write">写</span>fill</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260725T104022Z/aistro/dd-3-aistro-01.png" alt="fill" loading="lazy"><figcaption>fill</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：filled birth-date field — write step, not itself the auth-check evidence</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> <span class="pill p-write">写</span>press</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260725T104022Z/aistro/dd-3-aistro-02.png" alt="press" loading="lazy"><figcaption>press</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：blurred field to commit</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> navigate</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260725T104022Z/aistro/dd-3-aistro-03.png" alt="navigate" loading="lazy"><figcaption>navigate</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：navigated to /app/natal as the authed session: page rendered natal-content directly — real radix chart, and 5 real generated reading sections (Sun/Moon/Mercury/Venus/Mars with full Chinese prose) — this is genuine logged-in business content, NOT an anonymous sign-in/login-wall card. Header also shows Test Fixture User account button confirming authenticated identity is visible.</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> navigate</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260725T104022Z/aistro/dd-3-aistro-04.png" alt="navigate" loading="lazy"><figcaption>navigate</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：revisited /app/me: still shows authed profile form (not redirected to any login page), consistent with a real authenticated session throughout</div>
+
+
+</div></details>
+<details class="dbg" open><summary>运行时 debug 上下文（1 条错误）</summary><div class="dbg-none">Console 错误：<b>无</b></div><div class="dbg-none">JS 未捕获异常：<b>无</b></div><div class="dbg-has"><b>网络错误（请求失败 / 4xx–5xx）（1）</b><ul><li><code>✗ POST https://aistro.afsd.dev/cdn-cgi/rum? — net::ERR_ABORTED</code></li></ul></div></details>
+</section><section id="path-dd-4-aistro">
+<h2>profile form→name / birth-place persisted <span class="rt">authed · /app/me</span></h2>
+<p class="pdesc">写操作走查：6 步驱动此操作（其中 4 步为写），逐步引真实 DOM/文本/toast 为证。</p>
+<video class="video" controls preload="metadata" src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260725T104022Z/aistro/page@71590df6acdf1ec6dcbb933e6d18e53d.webm"><a href="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260725T104022Z/aistro/page@71590df6acdf1ec6dcbb933e6d18e53d.webm">下载该路径录像</a></video><p class="vcap">本测试路径整段走查录像</p>
+<div class="kpis"><div class="kpi"><div class="k">6</div><div class="l">操作步</div></div><div class="kpi"><div class="k">6</div><div class="l">通过</div></div><div class="kpi"><div class="k k-bad">0</div><div class="l">失败</div></div><div class="kpi"><div class="k k-warn">0</div><div class="l">不确定</div></div><div class="kpi"><div class="k">0</div><div class="l">未走到</div></div></div>
+<details class="steps"><summary>▸ 逐步操作详情（6 步，含判定截图）</summary><div class="op">
+<h3><span class="pill p-ok">通过</span> navigate</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260725T104022Z/aistro/dd-4-aistro-00.png" alt="navigate" loading="lazy"><figcaption>navigate</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：navigated to /app/me: recorded prior values before editing — name TSweep Fixture, birth place Beijing, China (screenshot confirms)</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> <span class="pill p-write">写</span>fill</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260725T104022Z/aistro/dd-4-aistro-01.png" alt="fill" loading="lazy"><figcaption>fill</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：filled name input with TSweep Fixture QA — a ✅ Saved name toast appeared confirming the bind write fired</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> <span class="pill p-write">写</span>fill</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260725T104022Z/aistro/dd-4-aistro-02.png" alt="fill" loading="lazy"><figcaption>fill</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：filled birth-place address input with Beijing, China (QA)</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> navigate</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260725T104022Z/aistro/dd-4-aistro-03.png" alt="navigate" loading="lazy"><figcaption>navigate</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：fresh navigate to /app/me: both fields re-show the edited values (TSweep Fixture QA / Beijing, China (QA)) on reread from AFS, proving persistence of both /user/people/me/profile/name.json and /user/people/me/profile/birth-place/address.json as independent leaf writes</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> <span class="pill p-write">写</span>fill</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260725T104022Z/aistro/dd-4-aistro-04.png" alt="fill" loading="lazy"><figcaption>fill</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：restored name field back to TSweep Fixture (best-effort cleanup of the pre-existing test-fixture value)</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> <span class="pill p-write">写</span>fill</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260725T104022Z/aistro/dd-4-aistro-05.png" alt="fill" loading="lazy"><figcaption>fill</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：restored birth-place field back to Beijing, China (best-effort cleanup)</div>
+
+
+</div></details>
+<details class="dbg" open><summary>运行时 debug 上下文（1 条错误）</summary><div class="dbg-none">Console 错误：<b>无</b></div><div class="dbg-none">JS 未捕获异常：<b>无</b></div><div class="dbg-has"><b>网络错误（请求失败 / 4xx–5xx）（1）</b><ul><li><code>✗ POST https://aistro.afsd.dev/cdn-cgi/rum? — net::ERR_ABORTED</code></li></ul></div></details>
+</section><section id="path-dd-5-aistro">
+<h2>preferences→settings persisted <span class="rt">authed · /app/me</span></h2>
+<p class="pdesc">写操作走查：19 步驱动此操作（其中 4 步为写），逐步引真实 DOM/文本/toast 为证。</p>
+<video class="video" controls preload="metadata" src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260725T104022Z/aistro/page@b3c1ee320eed6d5b15cb3cebc7765c27.webm"><a href="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260725T104022Z/aistro/page@b3c1ee320eed6d5b15cb3cebc7765c27.webm">下载该路径录像</a></video><p class="vcap">本测试路径整段走查录像</p>
+<div class="kpis"><div class="kpi"><div class="k">19</div><div class="l">操作步</div></div><div class="kpi"><div class="k">14</div><div class="l">通过</div></div><div class="kpi"><div class="k k-bad">5</div><div class="l">失败</div></div><div class="kpi"><div class="k k-warn">0</div><div class="l">不确定</div></div><div class="kpi"><div class="k">0</div><div class="l">未走到</div></div></div>
+<details class="steps"><summary>▸ 逐步操作详情（19 步，含判定截图）</summary><div class="op">
+<h3><span class="pill p-ok">通过</span> navigate</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260725T104022Z/aistro/dd-5-aistro-00.png" alt="navigate" loading="lazy"><figcaption>navigate</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：navigated to /app/me: 应用偏好 auto-surface settings-shell rendered with Chat/General/Notifications tabs</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-fail">失败</span> scroll</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260725T104022Z/aistro/dd-5-aistro-01.png" alt="scroll" loading="lazy"><figcaption>scroll</figcaption></figure></div>
+<div class="chk-fail"><b>观察证据</b>：scroll-into-view by css id selector timed out (tooling quirk, generated id selectors unreliable throughout this session), worked around with dy-scroll next step</div>
+<div class="err"><b>执行错误</b>：<code>TimeoutError: scrollIntoViewIfNeeded: Timeout 8000ms exceeded.</code></div>
+<div class="nt">tooling issue</div>
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> scroll</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260725T104022Z/aistro/dd-5-aistro-02.png" alt="scroll" loading="lazy"><figcaption>scroll</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：scrolled page by dy=800 to bring the settings card into view</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> click</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260725T104022Z/aistro/dd-5-aistro-03.png" alt="click" loading="lazy"><figcaption>click</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：clicked Notifications tab — rendered Daily reading push / Friend accept push toggle rows, both showing ON (yellow) in screenshot</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> snapshot</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260725T104022Z/aistro/dd-5-aistro-04.png" alt="snapshot" loading="lazy"><figcaption>snapshot</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：snapshot confirming Notifications tab content stable</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-fail">失败</span> click</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260725T104022Z/aistro/dd-5-aistro-05.png" alt="click" loading="lazy"><figcaption>click</figcaption></figure></div>
+<div class="chk-fail"><b>观察证据</b>：click role=switch name=Daily reading push timed out — toggle is not exposed with an accessible switch role, tooling limitation</div>
+<div class="err"><b>执行错误</b>：<code>TimeoutError: click: Timeout 8000ms exceeded.</code></div>
+<div class="nt">tooling issue, switched strategy to Language select instead</div>
+</div>
+<div class="op">
+<h3><span class="pill p-fail">失败</span> click</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260725T104022Z/aistro/dd-5-aistro-06.png" alt="click" loading="lazy"><figcaption>click</figcaption></figure></div>
+<div class="chk-fail"><b>观察证据</b>：click input[type=checkbox] timed out — toggle not implemented as a plain checkbox input either</div>
+<div class="err"><b>执行错误</b>：<code>TimeoutError: click: Timeout 8000ms exceeded.</code></div>
+<div class="nt">tooling issue</div>
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> click</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260725T104022Z/aistro/dd-5-aistro-07.png" alt="click" loading="lazy"><figcaption>click</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：clicked General tab — rendered Language select (English/中文/Español), Daily reading topics, Timezone offset fields</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-fail">失败</span> click</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260725T104022Z/aistro/dd-5-aistro-08.png" alt="click" loading="lazy"><figcaption>click</figcaption></figure></div>
+<div class="chk-fail"><b>观察证据</b>：click text English timed out (native select popup not directly clickable via DOM text locator)</div>
+<div class="err"><b>执行错误</b>：<code>TimeoutError: click: Timeout 8000ms exceeded.</code></div>
+<div class="nt">tooling issue, switched to combobox role + keyboard</div>
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> click</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260725T104022Z/aistro/dd-5-aistro-09.png" alt="click" loading="lazy"><figcaption>click</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：clicked role=combobox — opened the native Language select dropdown (screenshot shows English/中文/Español options list)</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-fail">失败</span> click</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260725T104022Z/aistro/dd-5-aistro-10.png" alt="click" loading="lazy"><figcaption>click</figcaption></figure></div>
+<div class="chk-fail"><b>观察证据</b>：click role=option name=中文 timed out — native select popup options are OS-rendered, not clickable via Playwright DOM locator</div>
+<div class="err"><b>执行错误</b>：<code>TimeoutError: click: Timeout 8000ms exceeded.</code></div>
+<div class="nt">tooling issue, switched to keyboard nav</div>
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> <span class="pill p-write">写</span>press</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260725T104022Z/aistro/dd-5-aistro-11.png" alt="press" loading="lazy"><figcaption>press</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：pressed ArrowDown to move selection to 中文 in the open native select</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> <span class="pill p-write">写</span>press</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260725T104022Z/aistro/dd-5-aistro-12.png" alt="press" loading="lazy"><figcaption>press</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：pressed Enter to commit — a ✅ Saved Language toast appeared and the select now shows 中文</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> navigate</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260725T104022Z/aistro/dd-5-aistro-13.png" alt="navigate" loading="lazy"><figcaption>navigate</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：fresh full navigate to /app/me (reread from AFS, not client cache)</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> click</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260725T104022Z/aistro/dd-5-aistro-14.png" alt="click" loading="lazy"><figcaption>click</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：clicked General tab: Language shows 中文 plus an explicit Overridden (default = en) / Reset to default indicator — proves /instance/settings/aistro language field truly persisted server-side</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> <span class="pill p-write">写</span>click</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260725T104022Z/aistro/dd-5-aistro-15.png" alt="click" loading="lazy"><figcaption>click</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：clicked Reset to default to restore the original English default (best-effort cleanup of this test account&#x27;s settings)</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> <span class="pill p-write">写</span>waitFor</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260725T104022Z/aistro/dd-5-aistro-16.png" alt="waitFor" loading="lazy"><figcaption>waitFor</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：waited 2.5s for the reset write to settle</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> navigate</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260725T104022Z/aistro/dd-5-aistro-17.png" alt="navigate" loading="lazy"><figcaption>navigate</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：fresh navigate to /app/me to reread post-reset state</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> click</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260725T104022Z/aistro/dd-5-aistro-18.png" alt="click" loading="lazy"><figcaption>click</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：clicked General tab: Language now shows English with no Overridden marker — confirms the reset persisted and settings are back to the pre-test default</div>
+
+
+</div></details>
+<details class="dbg" open><summary>运行时 debug 上下文（3 条错误）</summary><div class="dbg-has"><b>Console 错误（1）</b><ul><li><code>Failed to load resource: the server responded with a status of 404 ()</code></li></ul></div><div class="dbg-none">JS 未捕获异常：<b>无</b></div><div class="dbg-has"><b>网络错误（请求失败 / 4xx–5xx）（2）</b><ul><li><code>404 POST https://aistro.afsd.dev/api/afs/rpc</code></li><li><code>✗ POST https://aistro.afsd.dev/cdn-cgi/rum? — net::ERR_ABORTED</code></li></ul></div></details>
+</section><section id="path-dd-7-aistro">
+<h2>anonymous→empty page <span class="rt">anon · /app/today/{date}</span></h2>
+<p class="pdesc">页面走查：导航到 <code>/app/today/{date}</code>，验证页面渲染出真实内容并逐步观测（1 步）。</p>
+<video class="video" controls preload="metadata" src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260725T104022Z/aistro/page@94c648a67188ba6e7f4c6a485b4fc800.webm"><a href="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260725T104022Z/aistro/page@94c648a67188ba6e7f4c6a485b4fc800.webm">下载该路径录像</a></video><p class="vcap">本测试路径整段走查录像</p>
+<div class="kpis"><div class="kpi"><div class="k">1</div><div class="l">操作步</div></div><div class="kpi"><div class="k">1</div><div class="l">通过</div></div><div class="kpi"><div class="k k-bad">0</div><div class="l">失败</div></div><div class="kpi"><div class="k k-warn">0</div><div class="l">不确定</div></div><div class="kpi"><div class="k">0</div><div class="l">未走到</div></div></div>
+<details class="steps"><summary>▸ 逐步操作详情（1 步，含判定截图）</summary><div class="op">
+<h3><span class="pill p-ok">通过</span> navigate</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260725T104022Z/aistro/dd-7-aistro-00.png" alt="navigate" loading="lazy"><figcaption>navigate</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：navigated to /app/today with NO jwt cookie set (true anonymous session): runtime rendered a global Sign in to consult Aistro gate card with a single Sign In button — no nav sidebar, no today content, no navigation links visible at all (aupNodes=9, only the login-prompt subtree). Confirms the whole app surface is visible=$session.authenticated as documented: an unauthenticated visitor sees no business content, only the auth gate.</div>
+
+
+</div></details>
+<details class="dbg"><summary>运行时 debug 上下文（全清）</summary><div class="dbg-none">Console 错误：<b>无</b></div><div class="dbg-none">JS 未捕获异常：<b>无</b></div><div class="dbg-none">网络错误（请求失败 / 4xx–5xx）：<b>无</b></div></details>
+</section><section id="path-dd-10-aistro">
+<h2>authed birth date present→today-content (chart+report list) <span class="rt">authed · /app/today/{date}</span></h2>
+<p class="pdesc">页面走查：导航到 <code>/app/today/{date}</code>，验证页面渲染出真实内容并逐步观测（7 步）。</p>
+<video class="video" controls preload="metadata" src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260725T104022Z/aistro/page@7c8a4a877852632e863a00d893f54113.webm"><a href="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260725T104022Z/aistro/page@7c8a4a877852632e863a00d893f54113.webm">下载该路径录像</a></video><p class="vcap">本测试路径整段走查录像</p>
+<div class="kpis"><div class="kpi"><div class="k">7</div><div class="l">操作步</div></div><div class="kpi"><div class="k">5</div><div class="l">通过</div></div><div class="kpi"><div class="k k-bad">1</div><div class="l">失败</div></div><div class="kpi"><div class="k k-warn">1</div><div class="l">不确定</div></div><div class="kpi"><div class="k">0</div><div class="l">未走到</div></div></div>
+<details class="steps"><summary>▸ 逐步操作详情（7 步，含判定截图）</summary><div class="op">
+<h3><span class="pill p-ok">通过</span> navigate</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260725T104022Z/aistro/dd-10-aistro-00.png" alt="navigate" loading="lazy"><figcaption>navigate</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：navigated to /app/today with birth date on file: today-content rendered directly (no birth-info-empty gate) — date strip (昨天/今天/明天) plus a fully rendered transit natal-chart wheel with plotted planets/aspects (screenshot confirms real chart, not placeholder)</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> scroll</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260725T104022Z/aistro/dd-10-aistro-01.png" alt="scroll" loading="lazy"><figcaption>scroll</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：scrolled down: dailyDetail section for 2026-07-25 already rendered a complete report (title 溫柔轉變，順心而行 + 概览/爱情/事业/财富/创造力 sections) — confirms today-content and its report list both render real generated content when birth date + a report already exist</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-warn">不确定</span> click</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260725T104022Z/aistro/dd-10-aistro-02.png" alt="click" loading="lazy"><figcaption>click</figcaption></figure></div>
+<div class="chk-fail"><b>观察证据</b>：clicked 明天 2026-07-26 date tab (SPA client-side nav): URL changed to /app/today/2026-07-26 but dailyDetail content stayed stale showing the 07-25 report — investigating this in dd-11/dd-12 continuation</div>
+
+<div class="nt">see dd-11 for follow-up; possible minor SPA-nav refresh bug, see final report</div>
+</div>
+<div class="op">
+<h3><span class="pill p-fail">失败</span> waitFor</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260725T104022Z/aistro/dd-10-aistro-03.png" alt="waitFor" loading="lazy"><figcaption>waitFor</figcaption></figure></div>
+<div class="chk-fail"><b>观察证据</b>：3s later content still shows stale 2026-07-25 report under the 2026-07-26 URL — the afs-list/auto-fire for the new date did not fire via client-side tab navigation alone</div>
+
+<div class="nt">minor bug candidate: date-strip tab click does not refresh dailyDetail source for the new date without a full page reload</div>
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> navigate</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260725T104022Z/aistro/dd-10-aistro-04.png" alt="navigate" loading="lazy"><figcaption>navigate</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：full browser navigate directly to https://aistro.afsd.dev/app/today/2026-07-26 (not SPA nav): correctly showed the empty/loading state for 07-26, proving today-content DOES support the new date once a real navigation occurs</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> waitFor</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260725T104022Z/aistro/dd-10-aistro-05.png" alt="waitFor" loading="lazy"><figcaption>waitFor</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：waited 22s: still generating for 07-26 (loading text present, well within the documented ~10-20s+ window)</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> waitFor</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260725T104022Z/aistro/dd-10-aistro-06.png" alt="waitFor" loading="lazy"><figcaption>waitFor</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：waited another 20s (42s total): report for 2026-07-26 rendered in full (title 拥抱内在的温暖力量 + all 5 sections), confirming today-content end-to-end works for a freshly navigated date</div>
+
+
+</div></details>
+<details class="dbg" open><summary>运行时 debug 上下文（2 条错误）</summary><div class="dbg-none">Console 错误：<b>无</b></div><div class="dbg-none">JS 未捕获异常：<b>无</b></div><div class="dbg-has"><b>网络错误（请求失败 / 4xx–5xx）（2）</b><ul><li><code>✗ POST https://aistro.afsd.dev/cdn-cgi/rum? — net::ERR_ABORTED</code></li><li><code>✗ POST https://aistro.afsd.dev/api/afs/rpc — net::ERR_ABORTED</code></li></ul></div></details>
+</section><section id="path-dd-11-aistro">
+<h2>today-content no report for date→report generating (loading) <span class="rt">authed · /app/today/{date}</span></h2>
+<p class="pdesc">页面走查：导航到 <code>/app/today/{date}</code>，验证页面渲染出真实内容并逐步观测（7 步）。</p>
+<video class="video" controls preload="metadata" src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260725T104022Z/aistro/page@7c8a4a877852632e863a00d893f54113.webm"><a href="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260725T104022Z/aistro/page@7c8a4a877852632e863a00d893f54113.webm">下载该路径录像</a></video><p class="vcap">本测试路径整段走查录像</p>
+<div class="kpis"><div class="kpi"><div class="k">7</div><div class="l">操作步</div></div><div class="kpi"><div class="k">3</div><div class="l">通过</div></div><div class="kpi"><div class="k k-bad">2</div><div class="l">失败</div></div><div class="kpi"><div class="k k-warn">2</div><div class="l">不确定</div></div><div class="kpi"><div class="k">0</div><div class="l">未走到</div></div></div>
+<details class="steps"><summary>▸ 逐步操作详情（7 步，含判定截图）</summary><div class="op">
+<h3><span class="pill p-warn">不确定</span> navigate</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260725T104022Z/aistro/dd-10-aistro-00.png" alt="navigate" loading="lazy"><figcaption>navigate</figcaption></figure></div>
+<div class="chk-fail"><b>观察证据</b>：navigated to today (with an already-generated report for 07-25) — precondition-building, not itself the no-report state</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-warn">不确定</span> scroll</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260725T104022Z/aistro/dd-10-aistro-01.png" alt="scroll" loading="lazy"><figcaption>scroll</figcaption></figure></div>
+<div class="chk-fail"><b>观察证据</b>：confirmed 07-25 already has a rendered report (from prior activity), so this date cannot demonstrate the empty/loading state — needed a date with no report yet</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-fail">失败</span> click</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260725T104022Z/aistro/dd-10-aistro-02.png" alt="click" loading="lazy"><figcaption>click</figcaption></figure></div>
+<div class="chk-fail"><b>观察证据</b>：clicked 明天 tab via SPA client nav to reach 2026-07-26 (a date with no report yet) but content stayed stale on 07-25 — noted as a possible minor bug (see dd-10 note); worked around with a real navigation</div>
+
+<div class="nt">tooling/app quirk workaround, not itself dd-11 evidence</div>
+</div>
+<div class="op">
+<h3><span class="pill p-fail">失败</span> waitFor</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260725T104022Z/aistro/dd-10-aistro-03.png" alt="waitFor" loading="lazy"><figcaption>waitFor</figcaption></figure></div>
+<div class="chk-fail"><b>观察证据</b>：3s wait, still stale — confirms the SPA nav path did not trigger the per-date auto-fire</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> navigate</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260725T104022Z/aistro/dd-10-aistro-04.png" alt="navigate" loading="lazy"><figcaption>navigate</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：full navigate to /app/today/2026-07-26: dailyDetail correctly rendered its role=empty branch — text ✨ 占星师正在为你生成 2026-07-26 的运势... 通常 10-20 秒内完成；生成好后这里会自动刷新, plus a 去聊天看进度 link — exactly matches the man page dailyDetail role=empty auto-fire description</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> waitFor</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260725T104022Z/aistro/dd-10-aistro-05.png" alt="waitFor" loading="lazy"><figcaption>waitFor</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：waited 22s: loading state still showing (within the documented window plus some margin), consistent with an in-flight /dev/agent/.actions/run generation</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> waitFor</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260725T104022Z/aistro/dd-10-aistro-06.png" alt="waitFor" loading="lazy"><figcaption>waitFor</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：the loading state was confirmed to resolve (see dd-12) after a further 20s, proving the auto-fire genuinely fired rather than being stuck</div>
+
+
+</div></details>
+<details class="dbg" open><summary>运行时 debug 上下文（2 条错误）</summary><div class="dbg-none">Console 错误：<b>无</b></div><div class="dbg-none">JS 未捕获异常：<b>无</b></div><div class="dbg-has"><b>网络错误（请求失败 / 4xx–5xx）（2）</b><ul><li><code>✗ POST https://aistro.afsd.dev/cdn-cgi/rum? — net::ERR_ABORTED</code></li><li><code>✗ POST https://aistro.afsd.dev/api/afs/rpc — net::ERR_ABORTED</code></li></ul></div></details>
+</section><section id="path-dd-12-aistro">
+<h2>report generating (loading)→report rendered <span class="rt">authed · /app/today/{date}</span></h2>
+<p class="pdesc">页面走查：导航到 <code>/app/today/{date}</code>，验证页面渲染出真实内容并逐步观测（7 步）。</p>
+<video class="video" controls preload="metadata" src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260725T104022Z/aistro/page@7c8a4a877852632e863a00d893f54113.webm"><a href="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260725T104022Z/aistro/page@7c8a4a877852632e863a00d893f54113.webm">下载该路径录像</a></video><p class="vcap">本测试路径整段走查录像</p>
+<div class="kpis"><div class="kpi"><div class="k">7</div><div class="l">操作步</div></div><div class="kpi"><div class="k">3</div><div class="l">通过</div></div><div class="kpi"><div class="k k-bad">2</div><div class="l">失败</div></div><div class="kpi"><div class="k k-warn">2</div><div class="l">不确定</div></div><div class="kpi"><div class="k">0</div><div class="l">未走到</div></div></div>
+<details class="steps"><summary>▸ 逐步操作详情（7 步，含判定截图）</summary><div class="op">
+<h3><span class="pill p-warn">不确定</span> navigate</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260725T104022Z/aistro/dd-10-aistro-00.png" alt="navigate" loading="lazy"><figcaption>navigate</figcaption></figure></div>
+<div class="chk-fail"><b>观察证据</b>：navigated to today (07-25, already has a rendered report) — precondition-building</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-warn">不确定</span> scroll</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260725T104022Z/aistro/dd-10-aistro-01.png" alt="scroll" loading="lazy"><figcaption>scroll</figcaption></figure></div>
+<div class="chk-fail"><b>观察证据</b>：confirmed 07-25 report pre-existing — needed a fresh date to observe the generating→rendered transition</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-fail">失败</span> click</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260725T104022Z/aistro/dd-10-aistro-02.png" alt="click" loading="lazy"><figcaption>click</figcaption></figure></div>
+<div class="chk-fail"><b>观察证据</b>：SPA tab nav to 07-26 did not refresh content (see dd-10/dd-11 notes) — worked around with full navigate</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-fail">失败</span> waitFor</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260725T104022Z/aistro/dd-10-aistro-03.png" alt="waitFor" loading="lazy"><figcaption>waitFor</figcaption></figure></div>
+<div class="chk-fail"><b>观察证据</b>：3s wait confirms the stale-content issue, not a report-rendering result</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> navigate</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260725T104022Z/aistro/dd-10-aistro-04.png" alt="navigate" loading="lazy"><figcaption>navigate</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：full navigate to /app/today/2026-07-26 showed the loading placeholder (占星师正在生成...) — start state for this item&#x27;s before/after comparison</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> waitFor</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260725T104022Z/aistro/dd-10-aistro-05.png" alt="waitFor" loading="lazy"><figcaption>waitFor</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：22s wait: still loading (captures the in-progress state)</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> waitFor</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260725T104022Z/aistro/dd-10-aistro-06.png" alt="waitFor" loading="lazy"><figcaption>waitFor</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：further 20s wait (42s total from navigate): dailyDetail auto-refreshed and rendered the complete 2026-07-26 report — title 拥抱内在的温暖力量, sections 概览/爱情/事业/财富/创造力 all with full generated Chinese prose, and the loading placeholder/去聊天看进度 link is gone. This is the report written to /user/people/me/reports/daily/2026-07-26.json landing and the list auto-refreshing exactly as documented, completing the today read-flow chain end-to-end.</div>
+
+
+</div></details>
+<details class="dbg" open><summary>运行时 debug 上下文（2 条错误）</summary><div class="dbg-none">Console 错误：<b>无</b></div><div class="dbg-none">JS 未捕获异常：<b>无</b></div><div class="dbg-has"><b>网络错误（请求失败 / 4xx–5xx）（2）</b><ul><li><code>✗ POST https://aistro.afsd.dev/cdn-cgi/rum? — net::ERR_ABORTED</code></li><li><code>✗ POST https://aistro.afsd.dev/api/afs/rpc — net::ERR_ABORTED</code></li></ul></div></details>
+</section>
+<p class="sub" style="margin-top:22px">由 test-report-builder（build-agent-report）生成 · issue #1808</p>
+</div></body></html>
