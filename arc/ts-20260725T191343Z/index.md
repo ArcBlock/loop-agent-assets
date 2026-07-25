@@ -77,3 +77,4 @@
 | 20260725-201155-star-trace-02.png | https://github.com/ArcBlock/arc | 2026-07-25T20:11:55Z | root@vm |
 | 20260725-201157-today-01.png | https://github.com/ArcBlock/arc | 2026-07-25T20:11:57Z | root@vm |
 | 20260725-201159-today-02.png | https://github.com/ArcBlock/arc | 2026-07-25T20:11:59Z | root@vm |
+| 20260725-201202-page@0a816feef1d43e37f8f351329a5dfd4f.webm | https://github.com/ArcBlock/arc | 2026-07-25T20:12:02Z | root@vm |
