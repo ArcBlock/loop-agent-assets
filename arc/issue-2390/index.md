@@ -22,3 +22,4 @@
 | desktop-article-scrolled.png | https://github.com/ArcBlock/arc/issues/2390 | 2026-07-25T07:29:06Z | root@vm |
 | 20260725-104003-issue-2390-aria-open.png | https://github.com/ArcBlock/arc/issues/2390 | 2026-07-25T10:40:03Z | wangshijun@wangshijun-mac-studio |
 | aria-name-initial.png | https://github.com/ArcBlock/arc/issues/2390 | 2026-07-25T10:40:20Z | wangshijun@wangshijun-mac-studio |
+| aria-name-open.png | https://github.com/ArcBlock/arc/issues/2390 | 2026-07-25T10:40:26Z | wangshijun@wangshijun-mac-studio |
