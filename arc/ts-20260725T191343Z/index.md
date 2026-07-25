@@ -193,3 +193,4 @@
 | 20260725-201732-detail-01.png | https://github.com/ArcBlock/arc | 2026-07-25T20:17:32Z | root@vm |
 | 20260725-201735-detail-02.png | https://github.com/ArcBlock/arc | 2026-07-25T20:17:35Z | root@vm |
 | 20260725-201738-index-01.png | https://github.com/ArcBlock/arc | 2026-07-25T20:17:38Z | root@vm |
+| 20260725-201740-index-02.png | https://github.com/ArcBlock/arc | 2026-07-25T20:17:40Z | root@vm |
