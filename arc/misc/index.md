@@ -18,3 +18,4 @@
 | 20260723-195308-home-01.png | https://github.com/ArcBlock/arc | 2026-07-23T19:53:08Z | root@vm |
 | issue-2389-mobile.png | https://github.com/ArcBlock/arc | 2026-07-25T06:55:07Z | wangshijun@wangshijun-mac-studio |
 | issue-2389-lightbox.png | https://github.com/ArcBlock/arc | 2026-07-25T06:55:18Z | wangshijun@wangshijun-mac-studio |
+| 2392-mobile-fix.png | https://github.com/ArcBlock/arc | 2026-07-25T10:25:24Z | wangshijun@wangshijun-mac-studio |
