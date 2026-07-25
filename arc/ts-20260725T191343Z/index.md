@@ -133,3 +133,4 @@
 | 20260725-201444-item-detail-02.png | https://github.com/ArcBlock/arc | 2026-07-25T20:14:44Z | root@vm |
 | 20260725-201446-publish-01.png | https://github.com/ArcBlock/arc | 2026-07-25T20:14:46Z | root@vm |
 | 20260725-201448-publish-02.png | https://github.com/ArcBlock/arc | 2026-07-25T20:14:48Z | root@vm |
+| 20260725-201451-tags-01.png | https://github.com/ArcBlock/arc | 2026-07-25T20:14:51Z | root@vm |
