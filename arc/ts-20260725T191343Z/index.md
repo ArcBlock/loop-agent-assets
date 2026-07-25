@@ -130,3 +130,4 @@
 | 20260725-201436-index-read-2-02.png | https://github.com/ArcBlock/arc | 2026-07-25T20:14:36Z | root@vm |
 | 20260725-201439-index-read-2-03.png | https://github.com/ArcBlock/arc | 2026-07-25T20:14:39Z | root@vm |
 | 20260725-201441-item-detail-01.png | https://github.com/ArcBlock/arc | 2026-07-25T20:14:41Z | root@vm |
+| 20260725-201444-item-detail-02.png | https://github.com/ArcBlock/arc | 2026-07-25T20:14:44Z | root@vm |
