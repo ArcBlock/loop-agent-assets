@@ -10,3 +10,4 @@
 | mobile-home | https://github.com/ArcBlock/arc/issues/2390 | 2026-07-25T07:28:08Z | root@vm |
 | mobile-320-narrow | https://github.com/ArcBlock/arc/issues/2390 | 2026-07-25T07:28:10Z | root@vm |
 | desktop-article | https://github.com/ArcBlock/arc/issues/2390 | 2026-07-25T07:28:12Z | root@vm |
+| desktop-article-scrolled | https://github.com/ArcBlock/arc/issues/2390 | 2026-07-25T07:28:15Z | root@vm |
