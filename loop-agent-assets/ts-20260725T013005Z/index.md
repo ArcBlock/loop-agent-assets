@@ -17,3 +17,4 @@
 | 20260725-021924-message-read-1-03.png | https://github.com/ArcBlock/loop-agent-assets | 2026-07-25T02:19:24Z | root@vm |
 | 20260725-021927-notifications-01.png | https://github.com/ArcBlock/loop-agent-assets | 2026-07-25T02:19:27Z | root@vm |
 | 20260725-021929-notifications-02.png | https://github.com/ArcBlock/loop-agent-assets | 2026-07-25T02:19:29Z | root@vm |
+| 20260725-021932-thread-01.png | https://github.com/ArcBlock/loop-agent-assets | 2026-07-25T02:19:32Z | root@vm |
