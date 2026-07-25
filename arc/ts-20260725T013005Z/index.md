@@ -160,3 +160,4 @@
 | 20260725-022658-aistro-friend-new7-33.png | https://github.com/ArcBlock/arc | 2026-07-25T02:26:58Z | root@vm |
 | 20260725-022700-aistro-friend-new9-37.png | https://github.com/ArcBlock/arc | 2026-07-25T02:27:00Z | root@vm |
 | 20260725-022704-chat-01.png | https://github.com/ArcBlock/arc | 2026-07-25T02:27:04Z | root@vm |
+| 20260725-022706-chat-02.png | https://github.com/ArcBlock/arc | 2026-07-25T02:27:06Z | root@vm |
