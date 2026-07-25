@@ -65,3 +65,4 @@
 | 20260725-201127-dd-today-aistro-06.png | https://github.com/ArcBlock/arc | 2026-07-25T20:11:27Z | root@vm |
 | 20260725-201129-friend-new-01.png | https://github.com/ArcBlock/arc | 2026-07-25T20:11:29Z | root@vm |
 | 20260725-201131-friend-new-02.png | https://github.com/ArcBlock/arc | 2026-07-25T20:11:31Z | root@vm |
+| 20260725-201134-friend-synastry-01.png | https://github.com/ArcBlock/arc | 2026-07-25T20:11:34Z | root@vm |
