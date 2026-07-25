@@ -8,3 +8,4 @@
 | issue73-after-dark-os-light.png | https://github.com/ArcBlock/arcblock-site/pull/78 | 2026-07-25T08:35:46Z | wangshijun@wangshijun-mac-studio |
 | 20260725-085031-desktop-footer-dark.png | https://github.com/ArcBlock/arcblock-site/pull/78 | 2026-07-25T08:50:31Z | wangshijun@wangshijun-mac-studio |
 | 20260725-085131-desktop-header-light.png | https://github.com/ArcBlock/arcblock-site/pull/78 | 2026-07-25T08:51:31Z | wangshijun@wangshijun-mac-studio |
+| 20260725-085145-mobile-390-header-light.png | https://github.com/ArcBlock/arcblock-site/pull/78 | 2026-07-25T08:51:45Z | wangshijun@wangshijun-mac-studio |
