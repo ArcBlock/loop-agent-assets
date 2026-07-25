@@ -213,3 +213,4 @@
 | 20260725-201824-message-read-1-01.png | https://github.com/ArcBlock/arc | 2026-07-25T20:18:24Z | root@vm |
 | 20260725-201826-message-read-1-02.png | https://github.com/ArcBlock/arc | 2026-07-25T20:18:26Z | root@vm |
 | 20260725-201830-message-read-1-03.png | https://github.com/ArcBlock/arc | 2026-07-25T20:18:30Z | root@vm |
+| 20260725-201832-notifications-01.png | https://github.com/ArcBlock/arc | 2026-07-25T20:18:32Z | root@vm |
