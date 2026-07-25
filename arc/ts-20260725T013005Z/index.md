@@ -163,3 +163,4 @@
 | 20260725-022706-chat-02.png | https://github.com/ArcBlock/arc | 2026-07-25T02:27:06Z | root@vm |
 | 20260725-022709-friend-new-01.png | https://github.com/ArcBlock/arc | 2026-07-25T02:27:09Z | root@vm |
 | 20260725-022711-friend-new-02.png | https://github.com/ArcBlock/arc | 2026-07-25T02:27:11Z | root@vm |
+| 20260725-022714-friends-01.png | https://github.com/ArcBlock/arc | 2026-07-25T02:27:14Z | root@vm |
