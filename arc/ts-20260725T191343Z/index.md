@@ -207,3 +207,4 @@
 | 20260725-201808-forum-01.png | https://github.com/ArcBlock/arc | 2026-07-25T20:18:08Z | root@vm |
 | 20260725-201810-forum-02.png | https://github.com/ArcBlock/arc | 2026-07-25T20:18:10Z | root@vm |
 | 20260725-201813-inbox-01.png | https://github.com/ArcBlock/arc | 2026-07-25T20:18:13Z | root@vm |
+| 20260725-201815-inbox-02.png | https://github.com/ArcBlock/arc | 2026-07-25T20:18:15Z | root@vm |
