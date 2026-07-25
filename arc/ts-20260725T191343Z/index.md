@@ -106,3 +106,4 @@
 | 20260725-201322-clipper-read-1-03.png | https://github.com/ArcBlock/arc | 2026-07-25T20:13:22Z | root@vm |
 | 20260725-201325-collection-detail-01.png | https://github.com/ArcBlock/arc | 2026-07-25T20:13:25Z | root@vm |
 | 20260725-201327-collection-detail-02.png | https://github.com/ArcBlock/arc | 2026-07-25T20:13:27Z | root@vm |
+| 20260725-201329-collection-detail-read-1-01.png | https://github.com/ArcBlock/arc | 2026-07-25T20:13:29Z | root@vm |
