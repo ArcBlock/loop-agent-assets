@@ -186,3 +186,4 @@
 | 20260725-022807-page@f89f139be46b580b1a3381c8b7b4a59c.webm | https://github.com/ArcBlock/arc | 2026-07-25T02:28:07Z | root@vm |
 | 20260725-022810-page@fcfec075d21347b8447486b9f9263cee.webm | https://github.com/ArcBlock/arc | 2026-07-25T02:28:10Z | root@vm |
 | 20260725-022813-page@ff63447aa26913853d13bf6e3a1bede2.webm | https://github.com/ArcBlock/arc | 2026-07-25T02:28:13Z | root@vm |
+| 20260725-022815-chat-01.png | https://github.com/ArcBlock/arc | 2026-07-25T02:28:15Z | root@vm |
