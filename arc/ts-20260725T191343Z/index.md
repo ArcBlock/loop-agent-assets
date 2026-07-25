@@ -320,3 +320,4 @@
 | 20260725-202250-overlays-read-5-03.png | https://github.com/ArcBlock/arc | 2026-07-25T20:22:50Z | root@vm |
 | 20260725-202252-overlays-read-6-01.png | https://github.com/ArcBlock/arc | 2026-07-25T20:22:52Z | root@vm |
 | 20260725-202255-overlays-read-6-02.png | https://github.com/ArcBlock/arc | 2026-07-25T20:22:55Z | root@vm |
+| 20260725-202257-overlays-read-6-03.png | https://github.com/ArcBlock/arc | 2026-07-25T20:22:57Z | root@vm |
