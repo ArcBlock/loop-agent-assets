@@ -10,3 +10,4 @@
 | hero-2388-long-zh-mobile.png | https://github.com/ArcBlock/arc/issues/2388 | 2026-07-25T05:58:40Z | root@vm |
 | hero-2388-long-en-zoom200.png | https://github.com/ArcBlock/arc/issues/2388 | 2026-07-25T05:58:43Z | root@vm |
 | hero-2388-long-zh-zoom200.png | https://github.com/ArcBlock/arc/issues/2388 | 2026-07-25T05:58:45Z | root@vm |
+| hero-2388-short-zoom200.png | https://github.com/ArcBlock/arc/issues/2388 | 2026-07-25T05:58:48Z | root@vm |
