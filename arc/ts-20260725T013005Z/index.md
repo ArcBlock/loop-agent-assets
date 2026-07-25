@@ -194,3 +194,4 @@
 | 20260725-022828-page@b8970e42fb0fcc9c5dd13505a86aa937.webm | https://github.com/ArcBlock/arc | 2026-07-25T02:28:28Z | root@vm |
 | 20260725-022830-clip-01.png | https://github.com/ArcBlock/arc | 2026-07-25T02:28:30Z | root@vm |
 | 20260725-022834-clip-02.png | https://github.com/ArcBlock/arc | 2026-07-25T02:28:34Z | root@vm |
+| 20260725-022836-clip-read-1-01.png | https://github.com/ArcBlock/arc | 2026-07-25T02:28:36Z | root@vm |
