@@ -271,3 +271,4 @@
 | 20260725-023144-todo-clear-confirm2-03.png | https://github.com/ArcBlock/arc | 2026-07-25T02:31:44Z | root@vm |
 | 20260725-023146-todo-verify2-03.png | https://github.com/ArcBlock/arc | 2026-07-25T02:31:46Z | root@vm |
 | 20260725-023149-todo-write-06.png | https://github.com/ArcBlock/arc | 2026-07-25T02:31:49Z | root@vm |
+| 20260725-023151-todo-write3-04.png | https://github.com/ArcBlock/arc | 2026-07-25T02:31:51Z | root@vm |
