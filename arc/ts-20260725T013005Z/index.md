@@ -13,3 +13,4 @@
 | 20260725-022035-index-02.png | https://github.com/ArcBlock/arc | 2026-07-25T02:20:35Z | root@vm |
 | 20260725-022037-page@c4c07076bc378a962a900fa9e69933a6.webm | https://github.com/ArcBlock/arc | 2026-07-25T02:20:37Z | root@vm |
 | 20260725-022040-auto-surface-01.png | https://github.com/ArcBlock/arc | 2026-07-25T02:20:40Z | root@vm |
+| 20260725-022043-auto-surface-02.png | https://github.com/ArcBlock/arc | 2026-07-25T02:20:43Z | root@vm |
