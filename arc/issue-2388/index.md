@@ -12,3 +12,4 @@
 | hero-2388-long-zh-zoom200.png | https://github.com/ArcBlock/arc/issues/2388 | 2026-07-25T05:58:45Z | root@vm |
 | hero-2388-short-zoom200.png | https://github.com/ArcBlock/arc/issues/2388 | 2026-07-25T05:58:48Z | root@vm |
 | short-en-desktop.png | https://github.com/ArcBlock/arc/issues/2388 | 2026-07-25T06:22:28Z | root@vm |
+| longen-desktop.png | https://github.com/ArcBlock/arc/issues/2388 | 2026-07-25T06:22:36Z | root@vm |
