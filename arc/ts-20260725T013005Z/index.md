@@ -17,3 +17,4 @@
 | 20260725-022045-form-contact-01.png | https://github.com/ArcBlock/arc | 2026-07-25T02:20:45Z | root@vm |
 | 20260725-022048-form-contact-02.png | https://github.com/ArcBlock/arc | 2026-07-25T02:20:48Z | root@vm |
 | 20260725-022050-form-wizard-01.png | https://github.com/ArcBlock/arc | 2026-07-25T02:20:50Z | root@vm |
+| 20260725-022052-form-wizard-02.png | https://github.com/ArcBlock/arc | 2026-07-25T02:20:52Z | root@vm |
