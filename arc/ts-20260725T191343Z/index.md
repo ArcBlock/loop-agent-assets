@@ -240,3 +240,4 @@
 | 20260725-201934-page@256b3e3b67eed2b1be8e277ec4323612.webm | https://github.com/ArcBlock/arc | 2026-07-25T20:19:34Z | root@vm |
 | 20260725-201936-home-01.png | https://github.com/ArcBlock/arc | 2026-07-25T20:19:36Z | root@vm |
 | 20260725-201939-home-02.png | https://github.com/ArcBlock/arc | 2026-07-25T20:19:39Z | root@vm |
+| 20260725-201942-page@b547824d33c510b0685e34914d8d84a1.webm | https://github.com/ArcBlock/arc | 2026-07-25T20:19:42Z | root@vm |
