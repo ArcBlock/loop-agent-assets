@@ -72,3 +72,4 @@
 | 20260725-201143-me-01.png | https://github.com/ArcBlock/arc | 2026-07-25T20:11:43Z | root@vm |
 | 20260725-201145-me-02.png | https://github.com/ArcBlock/arc | 2026-07-25T20:11:45Z | root@vm |
 | 20260725-201148-natal-01.png | https://github.com/ArcBlock/arc | 2026-07-25T20:11:48Z | root@vm |
+| 20260725-201150-natal-02.png | https://github.com/ArcBlock/arc | 2026-07-25T20:11:50Z | root@vm |
