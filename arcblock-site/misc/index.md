@@ -16,3 +16,4 @@
 | 20260724-062119-x-links-not-embedded.png | https://github.com/ArcBlock/arcblock-site | 2026-07-24T06:21:19Z | wangshijun@wangshijun-mac-studio |
 | wallet-authenticator-en-current-4744ecb.png | https://github.com/ArcBlock/arcblock-site | 2026-07-25T02:55:20Z | wangshijun@wangshijun-mac-studio |
 | 20260725-102246-issue72-release-form.png | https://github.com/ArcBlock/arcblock-site | 2026-07-25T10:22:46Z | wangshijun@wangshijun-mac-studio |
+| 20260725-105006-en-blocklet-developer-the-meaning-of-each-input-item-in-the-release-resource-form.png | https://github.com/ArcBlock/arcblock-site | 2026-07-25T10:50:06Z | wangshijun@wangshijun-mac-studio |
