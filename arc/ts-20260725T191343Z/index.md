@@ -283,3 +283,4 @@
 | 20260725-202117-index-read-1-02.png | https://github.com/ArcBlock/arc | 2026-07-25T20:21:17Z | root@vm |
 | 20260725-202119-index-read-1-03.png | https://github.com/ArcBlock/arc | 2026-07-25T20:21:19Z | root@vm |
 | 20260725-202122-index-read-2-01.png | https://github.com/ArcBlock/arc | 2026-07-25T20:21:22Z | root@vm |
+| 20260725-202124-index-read-2-02.png | https://github.com/ArcBlock/arc | 2026-07-25T20:21:24Z | root@vm |
