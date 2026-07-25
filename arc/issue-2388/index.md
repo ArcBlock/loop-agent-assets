@@ -1,0 +1,5 @@
+# arc/issue-2388
+
+| file | source | uploaded | by |
+|---|---|---|---|
+| hero-2388-short-desktop.png | https://github.com/ArcBlock/arc/issues/2388 | 2026-07-25T05:58:07Z | root@vm |
