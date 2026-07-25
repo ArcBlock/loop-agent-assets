@@ -79,3 +79,4 @@
 | 20260725-201159-today-02.png | https://github.com/ArcBlock/arc | 2026-07-25T20:11:59Z | root@vm |
 | 20260725-201202-page@0a816feef1d43e37f8f351329a5dfd4f.webm | https://github.com/ArcBlock/arc | 2026-07-25T20:12:02Z | root@vm |
 | 20260725-201205-page@134d5ab39d49720a5801f8b638a17be5.webm | https://github.com/ArcBlock/arc | 2026-07-25T20:12:05Z | root@vm |
+| 20260725-201210-page@20d38538e1c9e0c5c3cb6e8a2e1191ca.webm | https://github.com/ArcBlock/arc | 2026-07-25T20:12:10Z | root@vm |
