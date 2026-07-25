@@ -28,7 +28,7 @@ imported from /home/runner/work/arc/arc/runtimes/node/dist/daemon/boot/blocklet-
 `runtimes/node` 的 daemon boot 试图从 `@aigne/blocklet-manager/dist/index.mjs` 加载模块但找不到——
 时间上与本窗口内 `blocklet-manager` 的重构 PR #2382（"extract pure page-tree layer out of Node
 daemon boot"）高度吻合，很可能是该 PR 改动了包的导出结构/路径，而 CI 构建产物未同步更新。已开
-issue 跟进排查（见 issue 链接，随后补充）。
+issue 跟进排查：[ArcBlock/arc#2426](https://github.com/ArcBlock/arc/issues/2426)。
 
 **上一次成功部署**：`65e6f509f`（2026-07-24T17:20:01Z）—— 线上目前仍在跑这个版本，今天的部署
 失败**不影响**当前线上服务，但今天窗口内的 3 个 blocklet 改动尚未上线。
