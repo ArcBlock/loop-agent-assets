@@ -34,3 +34,4 @@
 | 20260725-201011-dd-friend-aistro-27.png | https://github.com/ArcBlock/arc | 2026-07-25T20:10:11Z | root@vm |
 | 20260725-201013-dd-friend-aistro-28.png | https://github.com/ArcBlock/arc | 2026-07-25T20:10:13Z | root@vm |
 | 20260725-201016-dd-friend-aistro-29.png | https://github.com/ArcBlock/arc | 2026-07-25T20:10:16Z | root@vm |
+| 20260725-201019-dd-friend-aistro-30.png | https://github.com/ArcBlock/arc | 2026-07-25T20:10:19Z | root@vm |
