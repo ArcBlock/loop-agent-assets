@@ -210,3 +210,4 @@
 | 20260725-201815-inbox-02.png | https://github.com/ArcBlock/arc | 2026-07-25T20:18:15Z | root@vm |
 | 20260725-201818-message-01.png | https://github.com/ArcBlock/arc | 2026-07-25T20:18:18Z | root@vm |
 | 20260725-201820-message-02.png | https://github.com/ArcBlock/arc | 2026-07-25T20:18:20Z | root@vm |
+| 20260725-201824-message-read-1-01.png | https://github.com/ArcBlock/arc | 2026-07-25T20:18:24Z | root@vm |
