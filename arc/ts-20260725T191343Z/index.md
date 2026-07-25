@@ -41,3 +41,4 @@
 | 20260725-201029-dd-me-aistro-01.png | https://github.com/ArcBlock/arc | 2026-07-25T20:10:29Z | root@vm |
 | 20260725-201031-dd-me-aistro-02.png | https://github.com/ArcBlock/arc | 2026-07-25T20:10:31Z | root@vm |
 | 20260725-201033-dd-me-aistro-03.png | https://github.com/ArcBlock/arc | 2026-07-25T20:10:33Z | root@vm |
+| 20260725-201036-dd-me-aistro-04.png | https://github.com/ArcBlock/arc | 2026-07-25T20:10:36Z | root@vm |
