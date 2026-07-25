@@ -89,3 +89,4 @@
 | 20260725-201231-page@a413149e2c0227768114f1ebff9440b9.webm | https://github.com/ArcBlock/arc | 2026-07-25T20:12:31Z | root@vm |
 | 20260725-201233-page@bc844222de197b0610d1ab89e0c4f3bf.webm | https://github.com/ArcBlock/arc | 2026-07-25T20:12:33Z | root@vm |
 | 20260725-201238-chat-01.png | https://github.com/ArcBlock/arc | 2026-07-25T20:12:38Z | root@vm |
+| 20260725-201241-chat-02.png | https://github.com/ArcBlock/arc | 2026-07-25T20:12:41Z | root@vm |
