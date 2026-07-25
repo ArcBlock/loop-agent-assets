@@ -4,3 +4,4 @@
 |---|---|---|---|
 | detail-desktop-en.png | https://github.com/ArcBlock/arc/issues/2385 | 2026-07-25T04:19:12Z | yechao@issue-sweep |
 | detail-mobile-en.png | https://github.com/ArcBlock/arc/issues/2385 | 2026-07-25T04:19:16Z | yechao@issue-sweep |
+| collection-desktop-en.png | https://github.com/ArcBlock/arc/issues/2385 | 2026-07-25T04:19:18Z | yechao@issue-sweep |
