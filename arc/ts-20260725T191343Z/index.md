@@ -97,3 +97,4 @@
 | 20260725-201253-clip-01.png | https://github.com/ArcBlock/arc | 2026-07-25T20:12:53Z | root@vm |
 | 20260725-201255-clip-02.png | https://github.com/ArcBlock/arc | 2026-07-25T20:12:55Z | root@vm |
 | 20260725-201258-clip-read-1-01.png | https://github.com/ArcBlock/arc | 2026-07-25T20:12:58Z | root@vm |
+| 20260725-201300-clip-read-1-02.png | https://github.com/ArcBlock/arc | 2026-07-25T20:13:00Z | root@vm |
