@@ -138,3 +138,4 @@
 | 20260725-201455-tags-read-1-01.png | https://github.com/ArcBlock/arc | 2026-07-25T20:14:55Z | root@vm |
 | 20260725-201457-tags-read-1-02.png | https://github.com/ArcBlock/arc | 2026-07-25T20:14:57Z | root@vm |
 | 20260725-201500-tags-read-1-03.png | https://github.com/ArcBlock/arc | 2026-07-25T20:15:00Z | root@vm |
+| 20260725-201502-page@1c8cc8d4f416b8b1964a415c4d4e28cc.webm | https://github.com/ArcBlock/arc | 2026-07-25T20:15:02Z | root@vm |
