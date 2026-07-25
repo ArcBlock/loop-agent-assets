@@ -8,3 +8,4 @@
 | desktop-image-first.png | https://github.com/ArcBlock/arc/issues/2393 | 2026-07-25T03:39:01Z | root@vm |
 | desktop-code-first.png | https://github.com/ArcBlock/arc/issues/2393 | 2026-07-25T03:39:03Z | root@vm |
 | desktop-explicit.png | https://github.com/ArcBlock/arc/issues/2393 | 2026-07-25T03:39:06Z | root@vm |
+| mobile-auto-multi-paragraph.png | https://github.com/ArcBlock/arc/issues/2393 | 2026-07-25T03:39:08Z | root@vm |
