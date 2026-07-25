@@ -123,3 +123,4 @@
 | 20260725-201419-feed-read-1-03.png | https://github.com/ArcBlock/arc | 2026-07-25T20:14:19Z | root@vm |
 | 20260725-201422-index-01.png | https://github.com/ArcBlock/arc | 2026-07-25T20:14:22Z | root@vm |
 | 20260725-201424-index-02.png | https://github.com/ArcBlock/arc | 2026-07-25T20:14:24Z | root@vm |
+| 20260725-201427-index-read-1-01.png | https://github.com/ArcBlock/arc | 2026-07-25T20:14:27Z | root@vm |
