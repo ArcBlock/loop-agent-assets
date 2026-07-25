@@ -217,3 +217,4 @@
 | 20260725-201835-notifications-02.png | https://github.com/ArcBlock/arc | 2026-07-25T20:18:35Z | root@vm |
 | 20260725-201837-thread-01.png | https://github.com/ArcBlock/arc | 2026-07-25T20:18:37Z | root@vm |
 | 20260725-201840-thread-02.png | https://github.com/ArcBlock/arc | 2026-07-25T20:18:40Z | root@vm |
+| 20260725-201842-thread-read-1-01.png | https://github.com/ArcBlock/arc | 2026-07-25T20:18:42Z | root@vm |
