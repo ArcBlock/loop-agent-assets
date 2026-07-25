@@ -70,3 +70,4 @@
 | 20260725-201138-friends-01.png | https://github.com/ArcBlock/arc | 2026-07-25T20:11:38Z | root@vm |
 | 20260725-201141-friends-02.png | https://github.com/ArcBlock/arc | 2026-07-25T20:11:41Z | root@vm |
 | 20260725-201143-me-01.png | https://github.com/ArcBlock/arc | 2026-07-25T20:11:43Z | root@vm |
+| 20260725-201145-me-02.png | https://github.com/ArcBlock/arc | 2026-07-25T20:11:45Z | root@vm |
