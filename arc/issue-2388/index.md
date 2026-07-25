@@ -15,3 +15,4 @@
 | longen-desktop.png | https://github.com/ArcBlock/arc/issues/2388 | 2026-07-25T06:22:36Z | root@vm |
 | longen-mobile.png | https://github.com/ArcBlock/arc/issues/2388 | 2026-07-25T06:22:38Z | root@vm |
 | longzh-desktop.png | https://github.com/ArcBlock/arc/issues/2388 | 2026-07-25T06:22:41Z | root@vm |
+| longzh-mobile.png | https://github.com/ArcBlock/arc/issues/2388 | 2026-07-25T06:22:43Z | root@vm |
