@@ -71,3 +71,4 @@
 | 20260725-022300-list-template-01.png | https://github.com/ArcBlock/arc | 2026-07-25T02:23:00Z | root@vm |
 | 20260725-022303-list-template-02.png | https://github.com/ArcBlock/arc | 2026-07-25T02:23:03Z | root@vm |
 | 20260725-022305-list-virtual-01.png | https://github.com/ArcBlock/arc | 2026-07-25T02:23:05Z | root@vm |
+| 20260725-022308-list-virtual-02.png | https://github.com/ArcBlock/arc | 2026-07-25T02:23:08Z | root@vm |
