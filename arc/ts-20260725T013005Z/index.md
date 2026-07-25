@@ -158,3 +158,4 @@
 | 20260725-022652-page@eb67a0aca759bb7e05762cdc5e9b0db7.webm | https://github.com/ArcBlock/arc | 2026-07-25T02:26:52Z | root@vm |
 | 20260725-022655-page@fe116f9cb5d70b157d0f79b091243a84.webm | https://github.com/ArcBlock/arc | 2026-07-25T02:26:55Z | root@vm |
 | 20260725-022658-aistro-friend-new7-33.png | https://github.com/ArcBlock/arc | 2026-07-25T02:26:58Z | root@vm |
+| 20260725-022700-aistro-friend-new9-37.png | https://github.com/ArcBlock/arc | 2026-07-25T02:27:00Z | root@vm |
