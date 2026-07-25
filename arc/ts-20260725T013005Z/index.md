@@ -170,3 +170,4 @@
 | 20260725-022724-natal-01.png | https://github.com/ArcBlock/arc | 2026-07-25T02:27:24Z | root@vm |
 | 20260725-022726-natal-02.png | https://github.com/ArcBlock/arc | 2026-07-25T02:27:26Z | root@vm |
 | 20260725-022728-star-trace-01.png | https://github.com/ArcBlock/arc | 2026-07-25T02:27:28Z | root@vm |
+| 20260725-022731-star-trace-02.png | https://github.com/ArcBlock/arc | 2026-07-25T02:27:31Z | root@vm |
