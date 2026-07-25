@@ -234,3 +234,4 @@
 | 20260725-023006-tag-detail-01.png | https://github.com/ArcBlock/arc | 2026-07-25T02:30:06Z | root@vm |
 | 20260725-023009-tag-detail-02.png | https://github.com/ArcBlock/arc | 2026-07-25T02:30:09Z | root@vm |
 | 20260725-023011-tag-detail-read-1-01.png | https://github.com/ArcBlock/arc | 2026-07-25T02:30:11Z | root@vm |
+| 20260725-023014-tag-detail-read-1-02.png | https://github.com/ArcBlock/arc | 2026-07-25T02:30:14Z | root@vm |
