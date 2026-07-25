@@ -269,3 +269,4 @@
 | 20260725-023139-index-01.png | https://github.com/ArcBlock/arc | 2026-07-25T02:31:39Z | root@vm |
 | 20260725-023141-index-02.png | https://github.com/ArcBlock/arc | 2026-07-25T02:31:41Z | root@vm |
 | 20260725-023144-todo-clear-confirm2-03.png | https://github.com/ArcBlock/arc | 2026-07-25T02:31:44Z | root@vm |
+| 20260725-023146-todo-verify2-03.png | https://github.com/ArcBlock/arc | 2026-07-25T02:31:46Z | root@vm |
