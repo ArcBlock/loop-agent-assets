@@ -171,3 +171,4 @@
 | 20260725-022726-natal-02.png | https://github.com/ArcBlock/arc | 2026-07-25T02:27:26Z | root@vm |
 | 20260725-022728-star-trace-01.png | https://github.com/ArcBlock/arc | 2026-07-25T02:27:28Z | root@vm |
 | 20260725-022731-star-trace-02.png | https://github.com/ArcBlock/arc | 2026-07-25T02:27:31Z | root@vm |
+| 20260725-022733-page@01195d39a603d1f1696c9fa4f096f366.webm | https://github.com/ArcBlock/arc | 2026-07-25T02:27:33Z | root@vm |
