@@ -189,3 +189,4 @@
 | 20260725-201722-page@ff7edc5d52133497065ccca5c0c6382b.webm | https://github.com/ArcBlock/arc | 2026-07-25T20:17:22Z | root@vm |
 | 20260725-201725-files-01.png | https://github.com/ArcBlock/arc | 2026-07-25T20:17:25Z | root@vm |
 | 20260725-201727-files-02.png | https://github.com/ArcBlock/arc | 2026-07-25T20:17:27Z | root@vm |
+| 20260725-201730-page@be508020dc3d78361ace686a649279cb.webm | https://github.com/ArcBlock/arc | 2026-07-25T20:17:30Z | root@vm |
