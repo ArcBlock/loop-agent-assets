@@ -19,3 +19,4 @@
 | mobile-home.png | https://github.com/ArcBlock/arc/issues/2390 | 2026-07-25T07:28:59Z | root@vm |
 | mobile-320-narrow.png | https://github.com/ArcBlock/arc/issues/2390 | 2026-07-25T07:29:01Z | root@vm |
 | desktop-article.png | https://github.com/ArcBlock/arc/issues/2390 | 2026-07-25T07:29:03Z | root@vm |
+| desktop-article-scrolled.png | https://github.com/ArcBlock/arc/issues/2390 | 2026-07-25T07:29:06Z | root@vm |
