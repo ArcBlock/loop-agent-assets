@@ -17,3 +17,4 @@
 | 20260726-163524-websmith-zh-TW-desktop.png | https://github.com/ArcBlock/arcblock-site/issues/81 | 2026-07-26T16:35:24Z | wangshijun@wangshijun-mac-studio |
 | 20260726-163533-websmith-zh-TW-mobile.png | https://github.com/ArcBlock/arcblock-site/issues/81 | 2026-07-26T16:35:33Z | wangshijun@wangshijun-mac-studio |
 | 20260726-163539-websmith-zh-desktop.png | https://github.com/ArcBlock/arcblock-site/issues/81 | 2026-07-26T16:35:40Z | wangshijun@wangshijun-mac-studio |
+| 20260726-163547-websmith-zh-mobile.png | https://github.com/ArcBlock/arcblock-site/issues/81 | 2026-07-26T16:35:47Z | wangshijun@wangshijun-mac-studio |
