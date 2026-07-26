@@ -39,3 +39,4 @@
 | 20260726-204920-index-01.png | https://github.com/ArcBlock/arc | 2026-07-26T20:49:20Z | root@vm |
 | 20260726-204923-index-02.png | https://github.com/ArcBlock/arc | 2026-07-26T20:49:23Z | root@vm |
 | 20260726-204925-page@0938f0972aec579820ab4e8fa868308a.webm | https://github.com/ArcBlock/arc | 2026-07-26T20:49:25Z | root@vm |
+| 20260726-204927-page@42c0ffb3a19f0445f4c696db356d401d.webm | https://github.com/ArcBlock/arc | 2026-07-26T20:49:27Z | root@vm |
