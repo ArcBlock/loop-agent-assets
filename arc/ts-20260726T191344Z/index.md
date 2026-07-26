@@ -7,3 +7,4 @@
 | 20260726-204803-chat-02.png | https://github.com/ArcBlock/arc | 2026-07-26T20:48:03Z | root@vm |
 | 20260726-204806-friend-new-01.png | https://github.com/ArcBlock/arc | 2026-07-26T20:48:06Z | root@vm |
 | 20260726-204808-friend-new-02.png | https://github.com/ArcBlock/arc | 2026-07-26T20:48:08Z | root@vm |
+| 20260726-204810-friend-synastry-01.png | https://github.com/ArcBlock/arc | 2026-07-26T20:48:10Z | root@vm |
