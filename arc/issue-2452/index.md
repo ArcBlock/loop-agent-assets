@@ -3,3 +3,4 @@
 | file | source | uploaded | by |
 |---|---|---|---|
 | docs-actions-desktop.png | https://github.com/ArcBlock/arc/issues/2452 | 2026-07-26T18:55:45Z | root@vm |
+| docs-actions-mobile.png | https://github.com/ArcBlock/arc/issues/2452 | 2026-07-26T18:56:16Z | root@vm |
