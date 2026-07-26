@@ -14,3 +14,4 @@
 | 20260726-204821-me-01.png | https://github.com/ArcBlock/arc | 2026-07-26T20:48:21Z | root@vm |
 | 20260726-204823-me-02.png | https://github.com/ArcBlock/arc | 2026-07-26T20:48:23Z | root@vm |
 | 20260726-204826-natal-01.png | https://github.com/ArcBlock/arc | 2026-07-26T20:48:26Z | root@vm |
+| 20260726-204828-natal-02.png | https://github.com/ArcBlock/arc | 2026-07-26T20:48:28Z | root@vm |
