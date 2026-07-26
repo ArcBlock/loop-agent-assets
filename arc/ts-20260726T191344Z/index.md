@@ -42,3 +42,4 @@
 | 20260726-204927-page@42c0ffb3a19f0445f4c696db356d401d.webm | https://github.com/ArcBlock/arc | 2026-07-26T20:49:27Z | root@vm |
 | 20260726-204930-page@7ef56a3aa93621221900debe02c38a50.webm | https://github.com/ArcBlock/arc | 2026-07-26T20:49:30Z | root@vm |
 | 20260726-204932-page@aed2006d58716ce1c93e822f0fabfe94.webm | https://github.com/ArcBlock/arc | 2026-07-26T20:49:32Z | root@vm |
+| 20260726-204935-cleanup-aside-00.png | https://github.com/ArcBlock/arc | 2026-07-26T20:49:35Z | root@vm |
