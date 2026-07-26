@@ -19,3 +19,4 @@
 | issue-2389-mobile.png | https://github.com/ArcBlock/arc | 2026-07-25T06:55:07Z | wangshijun@wangshijun-mac-studio |
 | issue-2389-lightbox.png | https://github.com/ArcBlock/arc | 2026-07-25T06:55:18Z | wangshijun@wangshijun-mac-studio |
 | 2392-mobile-fix.png | https://github.com/ArcBlock/arc | 2026-07-25T10:25:24Z | wangshijun@wangshijun-mac-studio |
+| 20260726-080949-mount-table.png | https://github.com/ArcBlock/arc | 2026-07-26T08:09:49Z | wangshijun@wangshijun-mac-studio |
