@@ -10,3 +10,4 @@
 | 20260726-163432-web3kit-zh-TW-mobile.png | https://github.com/ArcBlock/arcblock-site/issues/81 | 2026-07-26T16:34:32Z | wangshijun@wangshijun-mac-studio |
 | 20260726-163439-web3kit-zh-desktop.png | https://github.com/ArcBlock/arcblock-site/issues/81 | 2026-07-26T16:34:39Z | wangshijun@wangshijun-mac-studio |
 | 20260726-163447-web3kit-zh-mobile.png | https://github.com/ArcBlock/arcblock-site/issues/81 | 2026-07-26T16:34:47Z | wangshijun@wangshijun-mac-studio |
+| 20260726-163453-websmith-en-desktop.png | https://github.com/ArcBlock/arcblock-site/issues/81 | 2026-07-26T16:34:54Z | wangshijun@wangshijun-mac-studio |
