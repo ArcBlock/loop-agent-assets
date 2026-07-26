@@ -37,3 +37,4 @@
 | 20260726-204916-dd-2-arch-qa-00.png | https://github.com/ArcBlock/arc | 2026-07-26T20:49:16Z | root@vm |
 | 20260726-204918-dd-2-arch-qa-01.png | https://github.com/ArcBlock/arc | 2026-07-26T20:49:18Z | root@vm |
 | 20260726-204920-index-01.png | https://github.com/ArcBlock/arc | 2026-07-26T20:49:20Z | root@vm |
+| 20260726-204923-index-02.png | https://github.com/ArcBlock/arc | 2026-07-26T20:49:23Z | root@vm |
