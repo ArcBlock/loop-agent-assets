@@ -7,3 +7,4 @@
 | 20260727-041241-en-articles.png | https://github.com/ArcBlock/arcblock-site/pull/82 | 2026-07-27T04:12:41Z | wangshijun@wangshijun-mac-studio |
 | 20260727-041248-en-docs-aigne-cli-command-reference-built-in-apps-cdbd13.png | https://github.com/ArcBlock/arcblock-site/pull/82 | 2026-07-27T04:12:48Z | wangshijun@wangshijun-mac-studio |
 | 20260727-041256-en-docs.png | https://github.com/ArcBlock/arcblock-site/pull/82 | 2026-07-27T04:12:56Z | wangshijun@wangshijun-mac-studio |
+| 20260727-041303-root.png | https://github.com/ArcBlock/arcblock-site/pull/82 | 2026-07-27T04:13:03Z | wangshijun@wangshijun-mac-studio |
