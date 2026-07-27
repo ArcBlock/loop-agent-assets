@@ -11,3 +11,4 @@
 | 20260727-010819-dd-3-discuss-kit-00.png | https://github.com/ArcBlock/arc | 2026-07-27T01:08:19Z | root@vm |
 | 20260727-010822-dd-3-discuss-kit-01.png | https://github.com/ArcBlock/arc | 2026-07-27T01:08:22Z | root@vm |
 | 20260727-010824-dd-3-discuss-kit-02.png | https://github.com/ArcBlock/arc | 2026-07-27T01:08:24Z | root@vm |
+| 20260727-010826-dd-4-discuss-kit-00.png | https://github.com/ArcBlock/arc | 2026-07-27T01:08:26Z | root@vm |
