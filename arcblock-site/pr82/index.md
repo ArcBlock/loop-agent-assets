@@ -9,3 +9,4 @@
 | 20260727-041256-en-docs.png | https://github.com/ArcBlock/arcblock-site/pull/82 | 2026-07-27T04:12:56Z | wangshijun@wangshijun-mac-studio |
 | 20260727-041303-root.png | https://github.com/ArcBlock/arcblock-site/pull/82 | 2026-07-27T04:13:03Z | wangshijun@wangshijun-mac-studio |
 | 20260727-054031-en-abt-tokenomics.png | https://github.com/ArcBlock/arcblock-site/pull/82 | 2026-07-27T05:40:31Z | wangshijun@wangshijun-mac-studio |
+| 20260727-054040-en-articles-10-lessons-from-todai-building-real-world-web3-with-arcblock.png | https://github.com/ArcBlock/arcblock-site/pull/82 | 2026-07-27T05:40:40Z | wangshijun@wangshijun-mac-studio |
