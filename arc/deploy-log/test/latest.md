@@ -1,35 +1,13 @@
-## ❌ Deploy test · `ba74dd21a` · failure
+## ✅ Deploy test · `396ba6cf4` · success
 
-- **时间**: 2026-07-26T17:13:04Z
-- **版本**: `ba74dd21afc8a36eaaf852bed5ad00519128aff5`
-- **Run**: https://github.com/ArcBlock/arc/actions/runs/30212039187
+- **时间**: 2026-07-27T08:57:42Z
+- **版本**: `396ba6cf4e1848623ae4bda5519aae2479f28ae3`
 - **改动窗口**: 24 hours ago
 
-**0 个 blocklet 有改动**
+**12 个 blocklet 有改动**
 
-_窗口内无 blocklet 改动。_
+### 改动摘要
 
-### 失败详情
+- 12 个 blocklet（arc、chain-explorer、did-space、showcase、todo、observability-explorer、aistro、arch-qa、discuss-kit、blocklet-manager、mailbox-demo、settings-cascade）同受一次共享依赖改动影响：aos 的索引搜索结果批量补水（batch-hydrate）+ 修复 `/packages` 与 `/instance` 根路径路由（`478fcd9f2`，#2509）。
 
-失败步骤：`Deploy to test` job → `arc blocklet fleet deploy blocklets --fleet blocklets/site-fleet.yaml ...`
-的 `3/6 Stage provider resources` 阶段，`[13/14] provider (--cloud none): ./providers/runtime/ocap`
-执行 `arc provider publish-resources` 时报错：
-
-```
-Error [ERR_MODULE_NOT_FOUND]: Cannot find module
-'/home/runner/work/arc/arc/runtimes/node/node_modules/@aigne/blocklet-manager/dist/index.mjs'
-imported from /home/runner/work/arc/arc/runtimes/node/dist/daemon/boot/blocklet-manager-app.mjs
-```
-
-**连续第二天复发**（昨天 2026-07-25 首次出现，见 [2026-07-25.md](./2026-07-25.md)）。已定位到具体
-机制：`Build` 步骤是 100% turbo 缓存命中（FULL TURBO），但 `.github/workflows/deploy-test.yml` 的
-`Turbo cache` 步骤用 `restore-keys: ${{ runner.os }}-turbo-` 前缀 fallback——精确 `github.sha` key
-未命中时会拉一个任意历史缓存包，其内容与当前源码树的产物集合不一致，导致 `@aigne/blocklet-manager`
-的 `dist/index.mjs` 缓存元数据命中但产物未真正落盘。跟踪 issue：
-[ArcBlock/arc#2426](https://github.com/ArcBlock/arc/issues/2426)（已追加本次复现证据）。
-
-在此之前已成功完成：Build、AUP 资源上传到 R2、Web Provider library 分级、fleet 12 个 blocklet 全部
-staged 成功——失败点是 staging 之后的 provider 资源发布环节。
-
-**上一次成功部署**：`65e6f509f`（2026-07-24T17:20:01Z）——线上目前仍在跑这个版本，本次失败不影响
-当前线上服务，本窗口内也无待上线的 blocklet 改动。
+> 本次触发说明：`deploy-test.yml` 在 2026-07-25、2026-07-26 连续两天因 `@aigne/blocklet-manager/dist/index.mjs` 模块解析失败（`ERR_MODULE_NOT_FOUND`，已在关闭的 #2425/#2426/#2464 追踪）而失败，修复已于 #2505 合并（2026-07-27T05:53:02Z），但部署 workflow 在 #2095 之后已改为仅 `workflow_dispatch` 手动触发（无每日 cron），未再自动重新部署——本次是 issue-sweep 在核实 #2484（discuss-kit test-sweep 失败）时发现 live 环境仍在跑修复前的旧 build（`/app` 客户端 bundle 404，全站卡在 "CONNECTING"），因而手动触发的一次追平部署。部署已成功，`main`（含 #2505、#2510、#2513）已发布到 test 环境。
