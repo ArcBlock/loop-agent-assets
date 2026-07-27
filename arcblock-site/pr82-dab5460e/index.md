@@ -8,3 +8,4 @@
 | 20260727-230119-en-articles.png | https://github.com/ArcBlock/arcblock-site/pull/82-dab5460e | 2026-07-27T23:01:19Z | wangshijun@wangshijun-mac-studio |
 | 20260727-230127-en-docs-createblocklet-create-single-blocklet.png | https://github.com/ArcBlock/arcblock-site/pull/82-dab5460e | 2026-07-27T23:01:27Z | wangshijun@wangshijun-mac-studio |
 | 20260727-230134-en-docs.png | https://github.com/ArcBlock/arcblock-site/pull/82-dab5460e | 2026-07-27T23:01:34Z | wangshijun@wangshijun-mac-studio |
+| 20260727-230141-root.png | https://github.com/ArcBlock/arcblock-site/pull/82-dab5460e | 2026-07-27T23:01:41Z | wangshijun@wangshijun-mac-studio |
