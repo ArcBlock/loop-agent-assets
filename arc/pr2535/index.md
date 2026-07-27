@@ -2,5 +2,4 @@
 
 | file | source | uploaded | by |
 |---|---|---|---|
-| steps-before-fix.png | https://github.com/ArcBlock/arc/pull/2535 | 2026-07-27T18:47:23Z | wangshijun@wangshijun-mac-studio |
-| steps-after-fix.png | https://github.com/ArcBlock/arc/pull/2535 | 2026-07-27T18:47:35Z | wangshijun@wangshijun-mac-studio |
+| 20260727T185835Z-steps-mode-parity.png | https://github.com/ArcBlock/arc/pull/2535 | 20260727T185835Z | robert (pr-sweep, ui-shot fixture render) |
