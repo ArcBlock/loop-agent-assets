@@ -17,3 +17,4 @@
 | 20260728-021728-dd-11-chain-explorer-00.png | https://github.com/ArcBlock/arc | 2026-07-28T02:17:28Z | chao@Yechaos-MBP |
 | 20260728-021736-dd-11-chain-explorer-01.png | https://github.com/ArcBlock/arc | 2026-07-28T02:17:36Z | chao@Yechaos-MBP |
 | 20260728-021743-dd-11-chain-explorer-02.png | https://github.com/ArcBlock/arc | 2026-07-28T02:17:43Z | chao@Yechaos-MBP |
+| 20260728-021750-dd-11b-chain-explorer-00.png | https://github.com/ArcBlock/arc | 2026-07-28T02:17:50Z | chao@Yechaos-MBP |
