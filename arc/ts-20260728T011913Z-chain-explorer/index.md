@@ -106,3 +106,4 @@
 | 20260728-022841-index-read-6-02.png | https://github.com/ArcBlock/arc | 2026-07-28T02:28:41Z | chao@Yechaos-MBP |
 | 20260728-022849-index-read-6-03.png | https://github.com/ArcBlock/arc | 2026-07-28T02:28:49Z | chao@Yechaos-MBP |
 | 20260728-022857-index-read-7-01.png | https://github.com/ArcBlock/arc | 2026-07-28T02:28:57Z | chao@Yechaos-MBP |
+| 20260728-022906-index-read-7-02.png | https://github.com/ArcBlock/arc | 2026-07-28T02:29:06Z | chao@Yechaos-MBP |
