@@ -80,3 +80,4 @@
 | 20260728-020426-dd-1-clean-aside-38.png | https://github.com/ArcBlock/arc | 2026-07-28T02:04:26Z | chao@Yechaos-MBP |
 | 20260728-020434-dd-1-clean-aside-39.png | https://github.com/ArcBlock/arc | 2026-07-28T02:04:34Z | chao@Yechaos-MBP |
 | 20260728-020441-dd-1-clean-aside-40.png | https://github.com/ArcBlock/arc | 2026-07-28T02:04:41Z | chao@Yechaos-MBP |
+| 20260728-020449-dd-10-aside-00.png | https://github.com/ArcBlock/arc | 2026-07-28T02:04:49Z | chao@Yechaos-MBP |
