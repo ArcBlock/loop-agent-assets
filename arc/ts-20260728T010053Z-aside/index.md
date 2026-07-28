@@ -50,3 +50,4 @@
 | 20260728-020038-dd-1-clean-aside-08.png | https://github.com/ArcBlock/arc | 2026-07-28T02:00:38Z | chao@Yechaos-MBP |
 | 20260728-020045-dd-1-clean-aside-09.png | https://github.com/ArcBlock/arc | 2026-07-28T02:00:45Z | chao@Yechaos-MBP |
 | 20260728-020052-dd-1-clean-aside-10.png | https://github.com/ArcBlock/arc | 2026-07-28T02:00:52Z | chao@Yechaos-MBP |
+| 20260728-020100-dd-1-clean-aside-11.png | https://github.com/ArcBlock/arc | 2026-07-28T02:01:00Z | chao@Yechaos-MBP |
