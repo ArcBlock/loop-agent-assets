@@ -88,3 +88,4 @@
 | 20260728-022620-index-01.png | https://github.com/ArcBlock/arc | 2026-07-28T02:26:20Z | chao@Yechaos-MBP |
 | 20260728-022628-index-02.png | https://github.com/ArcBlock/arc | 2026-07-28T02:26:28Z | chao@Yechaos-MBP |
 | 20260728-022636-index-read-1-01.png | https://github.com/ArcBlock/arc | 2026-07-28T02:26:36Z | chao@Yechaos-MBP |
+| 20260728-022644-index-read-1-02.png | https://github.com/ArcBlock/arc | 2026-07-28T02:26:44Z | chao@Yechaos-MBP |
