@@ -6,3 +6,4 @@
 | docs-actions-mobile.png | https://github.com/ArcBlock/arc/issues/2452 | 2026-07-26T18:56:16Z | root@vm |
 | before-click.png | https://github.com/ArcBlock/arc/issues/2452 | 2026-07-28T04:46:24Z | wangshijun@wangshijun-mac-studio |
 | after-click-checkmark.png | https://github.com/ArcBlock/arc/issues/2452 | 2026-07-28T04:46:30Z | wangshijun@wangshijun-mac-studio |
+| restored.png | https://github.com/ArcBlock/arc/issues/2452 | 2026-07-28T04:46:36Z | wangshijun@wangshijun-mac-studio |
