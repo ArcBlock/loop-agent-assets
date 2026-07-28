@@ -73,3 +73,4 @@
 | 20260728-022423-dd-7-chain-explorer-00.png | https://github.com/ArcBlock/arc | 2026-07-28T02:24:23Z | chao@Yechaos-MBP |
 | 20260728-022431-dd-7-chain-explorer-01.png | https://github.com/ArcBlock/arc | 2026-07-28T02:24:31Z | chao@Yechaos-MBP |
 | 20260728-022439-dd-7-chain-explorer-02.png | https://github.com/ArcBlock/arc | 2026-07-28T02:24:39Z | chao@Yechaos-MBP |
+| 20260728-022447-dd-7b-chain-explorer-00.png | https://github.com/ArcBlock/arc | 2026-07-28T02:24:47Z | chao@Yechaos-MBP |
