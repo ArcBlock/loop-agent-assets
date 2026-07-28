@@ -16,3 +16,4 @@
 | 20260728-023627-dd-1-todo-05.png | https://github.com/ArcBlock/arc | 2026-07-28T02:36:27Z | chao@Yechaos-MBP |
 | 20260728-023634-dd-1-todo-06.png | https://github.com/ArcBlock/arc | 2026-07-28T02:36:34Z | chao@Yechaos-MBP |
 | 20260728-023641-dd-1-todo-07.png | https://github.com/ArcBlock/arc | 2026-07-28T02:36:41Z | chao@Yechaos-MBP |
+| 20260728-023648-dd-1-todo-08.png | https://github.com/ArcBlock/arc | 2026-07-28T02:36:48Z | chao@Yechaos-MBP |
