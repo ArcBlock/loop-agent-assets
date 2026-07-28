@@ -62,3 +62,4 @@
 | 20260728-024153-explorer-01.png | https://github.com/ArcBlock/arc | 2026-07-28T02:41:53Z | chao@Yechaos-MBP |
 | 20260728-024200-explorer-02.png | https://github.com/ArcBlock/arc | 2026-07-28T02:42:00Z | chao@Yechaos-MBP |
 | 20260728-024208-index-01.png | https://github.com/ArcBlock/arc | 2026-07-28T02:42:08Z | chao@Yechaos-MBP |
+| 20260728-024215-index-02.png | https://github.com/ArcBlock/arc | 2026-07-28T02:42:15Z | chao@Yechaos-MBP |
