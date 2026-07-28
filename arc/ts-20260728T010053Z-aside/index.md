@@ -6,3 +6,4 @@
 | 20260728-015504-clip-02.png | https://github.com/ArcBlock/arc | 2026-07-28T01:55:04Z | chao@Yechaos-MBP |
 | 20260728-015511-clip-read-1-01.png | https://github.com/ArcBlock/arc | 2026-07-28T01:55:11Z | chao@Yechaos-MBP |
 | 20260728-015519-clip-read-1-02.png | https://github.com/ArcBlock/arc | 2026-07-28T01:55:19Z | chao@Yechaos-MBP |
+| 20260728-015526-clip-read-1-03.png | https://github.com/ArcBlock/arc | 2026-07-28T01:55:26Z | chao@Yechaos-MBP |
