@@ -75,3 +75,4 @@
 | 20260728-024335-page@7c1008cb61968778002ae353bede3c32.webm | https://github.com/ArcBlock/arc | 2026-07-28T02:43:35Z | chao@Yechaos-MBP |
 | 20260728-024343-page@8753a37c649d251e1726c12e95d8074e.webm | https://github.com/ArcBlock/arc | 2026-07-28T02:43:43Z | chao@Yechaos-MBP |
 | 20260728-024351-page@9d87f4ff8e42939aa3c303e1a62ffdd2.webm | https://github.com/ArcBlock/arc | 2026-07-28T02:43:51Z | chao@Yechaos-MBP |
+| 20260728-024359-page@a0a2bdf4b3d8e6362124b8644cebacf8.webm | https://github.com/ArcBlock/arc | 2026-07-28T02:43:59Z | chao@Yechaos-MBP |
