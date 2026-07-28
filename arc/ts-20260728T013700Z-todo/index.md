@@ -59,3 +59,4 @@
 | 20260728-024131-dd-7-todo-02.png | https://github.com/ArcBlock/arc | 2026-07-28T02:41:31Z | chao@Yechaos-MBP |
 | 20260728-024138-dd-8-todo-00.png | https://github.com/ArcBlock/arc | 2026-07-28T02:41:38Z | chao@Yechaos-MBP |
 | 20260728-024145-dd-9-todo-00.png | https://github.com/ArcBlock/arc | 2026-07-28T02:41:46Z | chao@Yechaos-MBP |
+| 20260728-024153-explorer-01.png | https://github.com/ArcBlock/arc | 2026-07-28T02:41:53Z | chao@Yechaos-MBP |
