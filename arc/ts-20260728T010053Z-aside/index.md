@@ -126,3 +126,4 @@
 | 20260728-021036-tags-read-1-01.png | https://github.com/ArcBlock/arc | 2026-07-28T02:10:36Z | chao@Yechaos-MBP |
 | 20260728-021044-tags-read-1-02.png | https://github.com/ArcBlock/arc | 2026-07-28T02:10:44Z | chao@Yechaos-MBP |
 | 20260728-021053-tags-read-1-03.png | https://github.com/ArcBlock/arc | 2026-07-28T02:10:53Z | chao@Yechaos-MBP |
+| 20260728-021100-page@03e7ea9168e358af7ed5e305c5613a7b.webm | https://github.com/ArcBlock/arc | 2026-07-28T02:11:00Z | chao@Yechaos-MBP |
