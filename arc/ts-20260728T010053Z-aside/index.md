@@ -23,3 +23,4 @@
 | 20260728-015713-collections-read-1-02.png | https://github.com/ArcBlock/arc | 2026-07-28T01:57:13Z | chao@Yechaos-MBP |
 | 20260728-015720-collections-read-1-03.png | https://github.com/ArcBlock/arc | 2026-07-28T01:57:20Z | chao@Yechaos-MBP |
 | 20260728-015728-dd-1-aside-00.png | https://github.com/ArcBlock/arc | 2026-07-28T01:57:28Z | chao@Yechaos-MBP |
+| 20260728-015736-dd-1-aside-01.png | https://github.com/ArcBlock/arc | 2026-07-28T01:57:36Z | chao@Yechaos-MBP |
