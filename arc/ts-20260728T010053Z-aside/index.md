@@ -77,3 +77,4 @@
 | 20260728-020404-dd-1-clean-aside-35.png | https://github.com/ArcBlock/arc | 2026-07-28T02:04:04Z | chao@Yechaos-MBP |
 | 20260728-020411-dd-1-clean-aside-36.png | https://github.com/ArcBlock/arc | 2026-07-28T02:04:11Z | chao@Yechaos-MBP |
 | 20260728-020419-dd-1-clean-aside-37.png | https://github.com/ArcBlock/arc | 2026-07-28T02:04:19Z | chao@Yechaos-MBP |
+| 20260728-020426-dd-1-clean-aside-38.png | https://github.com/ArcBlock/arc | 2026-07-28T02:04:26Z | chao@Yechaos-MBP |
