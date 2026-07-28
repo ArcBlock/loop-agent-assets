@@ -23,3 +23,4 @@
 | 20260728-015306-dd-7-did-space-01.png | https://github.com/ArcBlock/arc | 2026-07-28T01:53:07Z | chao@Yechaos-MBP |
 | 20260728-015314-files-01.png | https://github.com/ArcBlock/arc | 2026-07-28T01:53:14Z | chao@Yechaos-MBP |
 | 20260728-015321-files-02.png | https://github.com/ArcBlock/arc | 2026-07-28T01:53:21Z | chao@Yechaos-MBP |
+| 20260728-015328-page@109234dc019dd5eef4b3bdb78fa934ed.webm | https://github.com/ArcBlock/arc | 2026-07-28T01:53:28Z | chao@Yechaos-MBP |
