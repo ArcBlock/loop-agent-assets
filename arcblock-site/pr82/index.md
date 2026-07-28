@@ -21,3 +21,4 @@
 | 20260727-101041-en-docs.png | https://github.com/ArcBlock/arcblock-site/pull/82 | 2026-07-27T10:10:41Z | wangshijun@wangshijun-mac-studio |
 | 20260727-101048-root.png | https://github.com/ArcBlock/arcblock-site/pull/82 | 2026-07-27T10:10:49Z | wangshijun@wangshijun-mac-studio |
 | 20260728-110841-en-legacy-article.png | https://github.com/ArcBlock/arcblock-site/pull/82 | 2026-07-28T11:08:41Z | wangshijun@wangshijun-mac-studio |
+| 20260728-110849-en-legacy-tag-fallback.png | https://github.com/ArcBlock/arcblock-site/pull/82 | 2026-07-28T11:08:49Z | wangshijun@wangshijun-mac-studio |
