@@ -12,3 +12,4 @@
 | 20260728-015550-clipper-read-1-01.png | https://github.com/ArcBlock/arc | 2026-07-28T01:55:50Z | chao@Yechaos-MBP |
 | 20260728-015557-clipper-read-1-02.png | https://github.com/ArcBlock/arc | 2026-07-28T01:55:57Z | chao@Yechaos-MBP |
 | 20260728-015605-clipper-read-1-03.png | https://github.com/ArcBlock/arc | 2026-07-28T01:56:05Z | chao@Yechaos-MBP |
+| 20260728-015613-collection-detail-01.png | https://github.com/ArcBlock/arc | 2026-07-28T01:56:13Z | chao@Yechaos-MBP |
