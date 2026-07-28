@@ -36,3 +36,4 @@
 | 20260728-015850-dd-1-aside-11.png | https://github.com/ArcBlock/arc | 2026-07-28T01:58:50Z | chao@Yechaos-MBP |
 | 20260728-015857-dd-1-aside-12.png | https://github.com/ArcBlock/arc | 2026-07-28T01:58:57Z | chao@Yechaos-MBP |
 | 20260728-015905-dd-1-aside-13.png | https://github.com/ArcBlock/arc | 2026-07-28T01:59:05Z | chao@Yechaos-MBP |
+| 20260728-015912-dd-1-aside-14.png | https://github.com/ArcBlock/arc | 2026-07-28T01:59:12Z | chao@Yechaos-MBP |
