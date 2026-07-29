@@ -3,3 +3,4 @@
 | file | source | uploaded | by |
 |---|---|---|---|
 | 20260729-050233-issue435-before-52fps.png | https://github.com/ArcBlock/aside/issues/435 | 2026-07-29T05:02:35Z | codex-issue-review |
+| 20260729-050255-issue435-after-60fps.png | https://github.com/ArcBlock/aside/issues/435 | 2026-07-29T05:02:57Z | codex-issue-review |
