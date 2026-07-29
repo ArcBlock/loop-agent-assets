@@ -20,3 +20,4 @@
 | 20260729-173458-quick-note-reader-portrait-ratio.png | https://github.com/ArcBlock/aside/pull/452 | 2026-07-29T17:35:00Z | codex-issue-review |
 | 20260729-173520-quick-note-editor-edit-aspect-ratio.png | https://github.com/ArcBlock/aside/pull/452 | 2026-07-29T17:35:23Z | codex-issue-review |
 | 20260729-175416-note-content-only.png | https://github.com/ArcBlock/aside/pull/452 | 2026-07-29T17:54:18Z | codex-issue-review |
+| 20260729-175458-note-capture-metadata-info.png | https://github.com/ArcBlock/aside/pull/452 | 2026-07-29T17:55:00Z | codex-issue-review |
