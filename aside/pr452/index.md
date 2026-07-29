@@ -9,3 +9,4 @@
 | 20260729-155332-quick-capture-empty.jpg | https://github.com/ArcBlock/aside/pull/452 | 2026-07-29T15:53:36Z | codex-issue-review |
 | 20260729-155400-capture-context.jpg | https://github.com/ArcBlock/aside/pull/452 | 2026-07-29T15:54:02Z | codex-issue-review |
 | 20260729-155432-attachment-selected.jpg | https://github.com/ArcBlock/aside/pull/452 | 2026-07-29T15:54:35Z | codex-issue-review |
+| 20260729-155457-reader.jpg | https://github.com/ArcBlock/aside/pull/452 | 2026-07-29T15:55:01Z | codex-issue-review |
