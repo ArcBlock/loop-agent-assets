@@ -22,3 +22,4 @@ schema 与路径约定见 [../README.md](../README.md)（ArcBlock/arc#1698）。
 | 2026-07-27T08:57:42Z | [`396ba6cf4`](https://github.com/ArcBlock/arc/commit/396ba6cf4e1848623ae4bda5519aae2479f28ae3) | ✅ success | [30251301060](https://github.com/ArcBlock/arc/actions/runs/30251301060) |
 | 2026-07-28T08:56:05Z | [`46135d83c`](https://github.com/ArcBlock/arc/commit/46135d83c3eacd371ff2a757529d0f64bcda675d) | ✅ success | [30343892464](https://github.com/ArcBlock/arc/actions/runs/30343892464) |
 | 2026-07-29T14:00:51Z | [`dfb85819e`](https://github.com/ArcBlock/arc/commit/dfb85819e28b793fab20231efab0237574f1e477) | ❌ failure | [30458334768](https://github.com/ArcBlock/arc/actions/runs/30458334768) |
+| 2026-07-29T14:51:39Z | [`406f382ab`](https://github.com/ArcBlock/arc/commit/406f382ab70173045e070506c25797dc23d1d353) | ✅ success | [30462343379](https://github.com/ArcBlock/arc/actions/runs/30462343379) |

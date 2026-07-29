@@ -1,29 +1,8 @@
-## ❌ Deploy test · `dfb85819e` · failure
+## ✅ Deploy test · `406f382ab` · success
 
-- **时间**: 2026-07-29T14:00:51Z
-- **版本**: `dfb85819e28b793fab20231efab0237574f1e477`
-- **Run**: https://github.com/ArcBlock/arc/actions/runs/30458334768
+- **时间**: 2026-07-29T14:51:39Z
+- **版本**: `406f382ab70173045e070506c25797dc23d1d353`
+- **Run**: https://github.com/ArcBlock/arc/actions/runs/30462343379
 - **改动窗口**: last 24 hours ago
 
-_窗口内无（公开部署的）blocklet 改动。_（唯一命中的 `blocklets/explorer` 改动属于 fleet 的
-`dependencies:` 段——仅作为 `todo`/`desktop` 的内嵌依赖，不是独立公开部署的 blocklet，因此
-不计入本报告。）
-
-### 本次失败原因
-
-Build 阶段（Turbo `pnpm build`）里 `@aigne/arc-services-worker#build`
-（`services/cloudflare`，构建脚本 `build.mjs`）执行 `runtimes/cloudflare/scripts/apply-d1-migrations.mjs`
-时抛出 `ERR_MODULE_NOT_FOUND`：
-
-```
-Error [ERR_MODULE_NOT_FOUND]: Cannot find module
-'/home/runner/work/arc/arc/runtimes/cloudflare/node_modules/@aigne/afs-index/dist/index.mjs'
-imported from /home/runner/work/arc/arc/runtimes/cloudflare/scripts/apply-d1-migrations.mjs
-Did you mean to import "file:///home/runner/work/arc/arc/providers/basic/index/dist/index.cjs"?
-```
-
-即 `@aigne/afs-index` 包在这次构建里没有产出 `dist/index.mjs`（ESM）产物就被下游脚本以 ESM
-方式 import——很可能是 Turbo 任务依赖顺序问题（`arc-services-worker#build` 在
-`@aigne/afs-index:build` 完成产出 ESM 产物之前就跑了），也可能是该包近期改动影响了 ESM 导出。
-`Build`/`Deploy to test` 之后的步骤全部 `skipped`；已按 deploy skill Step 6 开 issue 跟进
-（见下方链接）。
+_窗口内无 blocklet 改动。_
