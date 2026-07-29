@@ -16,3 +16,4 @@
 | 20260729-163654-quick-capture-reader-01e5dc31.png | https://github.com/ArcBlock/aside/pull/452 | 2026-07-29T16:36:57Z | codex-issue-review |
 | 20260729-170120-quick-capture-edit-without-title.png | https://github.com/ArcBlock/aside/pull/452 | 2026-07-29T17:01:23Z | codex-issue-review |
 | 20260729-170142-quick-capture-title-free-reader.png | https://github.com/ArcBlock/aside/pull/452 | 2026-07-29T17:01:44Z | codex-issue-review |
+| 20260729-173407-quick-note-editor-create-aspect-ratio.png | https://github.com/ArcBlock/aside/pull/452 | 2026-07-29T17:34:10Z | codex-issue-review |
