@@ -150,3 +150,4 @@
 | 20260730-194754-dd-2-todo-03.png | https://github.com/ArcBlock/arc | 2026-07-30T19:47:54Z | root@vm |
 | 20260730-194758-dd-3-todo-00.png | https://github.com/ArcBlock/arc | 2026-07-30T19:47:58Z | root@vm |
 | 20260730-194801-dd-3-todo-01.png | https://github.com/ArcBlock/arc | 2026-07-30T19:48:01Z | root@vm |
+| 20260730-194804-dd-3-todo-02.png | https://github.com/ArcBlock/arc | 2026-07-30T19:48:04Z | root@vm |
