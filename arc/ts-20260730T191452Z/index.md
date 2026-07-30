@@ -339,3 +339,4 @@
 | 20260730-200255-adv-1-form-contact-06.png | https://github.com/ArcBlock/arc | 2026-07-30T20:02:55Z | root@vm |
 | 20260730-200301-adv-1-form-contact-07.png | https://github.com/ArcBlock/arc | 2026-07-30T20:03:01Z | root@vm |
 | 20260730-200306-adv-1-form-contact-08.png | https://github.com/ArcBlock/arc | 2026-07-30T20:03:06Z | root@vm |
+| 20260730-200309-auto-surface-01.png | https://github.com/ArcBlock/arc | 2026-07-30T20:03:09Z | root@vm |
