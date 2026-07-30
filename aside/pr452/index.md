@@ -25,3 +25,4 @@
 | 20260730-002302-note-place-editor-map-a19fa62f.png | https://github.com/ArcBlock/aside/pull/452 | 2026-07-30T00:23:06Z | codex-issue-review |
 | 20260730-002332-note-place-reader-map-a19fa62f.png | https://github.com/ArcBlock/aside/pull/452 | 2026-07-30T00:23:35Z | codex-issue-review |
 | 20260730-011156-quick-note-location-search.png | https://github.com/ArcBlock/aside/pull/452 | 2026-07-30T01:11:59Z | codex-issue-review |
+| 20260730-011227-quick-note-location-dragged.png | https://github.com/ArcBlock/aside/pull/452 | 2026-07-30T01:12:31Z | codex-issue-review |
