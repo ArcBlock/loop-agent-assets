@@ -32,3 +32,4 @@
 | 20260730-022545-quick-note-rich-link-reader.png | https://github.com/ArcBlock/aside/pull/452 | 2026-07-30T02:25:48Z | codex-issue-review |
 | 20260730-022612-quick-note-link-fallback-reader.png | https://github.com/ArcBlock/aside/pull/452 | 2026-07-30T02:26:15Z | codex-issue-review |
 | 20260730-025457-quick-note-editor-spacing-create.png | https://github.com/ArcBlock/aside/pull/452 | 2026-07-30T02:55:00Z | codex-issue-review |
+| 20260730-025523-quick-note-editor-spacing-edit.png | https://github.com/ArcBlock/aside/pull/452 | 2026-07-30T02:55:26Z | codex-issue-review |
