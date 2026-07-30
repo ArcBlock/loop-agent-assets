@@ -400,3 +400,4 @@
 | 20260730-200709-dd-5-form-contact-07.png | https://github.com/ArcBlock/arc | 2026-07-30T20:07:09Z | root@vm |
 | 20260730-200712-dd-5-form-contact-08.png | https://github.com/ArcBlock/arc | 2026-07-30T20:07:12Z | root@vm |
 | 20260730-200715-dd-5-form-contact-09.png | https://github.com/ArcBlock/arc | 2026-07-30T20:07:15Z | root@vm |
+| 20260730-200718-dd-7-overlays-00.png | https://github.com/ArcBlock/arc | 2026-07-30T20:07:18Z | root@vm |
