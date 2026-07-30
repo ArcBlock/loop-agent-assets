@@ -169,3 +169,4 @@
 | 20260730-194905-dd-4-todo-11.png | https://github.com/ArcBlock/arc | 2026-07-30T19:49:05Z | root@vm |
 | 20260730-194908-dd-5-todo-00.png | https://github.com/ArcBlock/arc | 2026-07-30T19:49:08Z | root@vm |
 | 20260730-194915-dd-5-todo-01.png | https://github.com/ArcBlock/arc | 2026-07-30T19:49:15Z | root@vm |
+| 20260730-194918-dd-5-todo-02.png | https://github.com/ArcBlock/arc | 2026-07-30T19:49:18Z | root@vm |
