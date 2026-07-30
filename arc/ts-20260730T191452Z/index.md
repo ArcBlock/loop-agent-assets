@@ -372,3 +372,4 @@
 | 20260730-200454-dd-12-list-basic-01.png | https://github.com/ArcBlock/arc | 2026-07-30T20:04:54Z | root@vm |
 | 20260730-200457-dd-12-list-basic-02.png | https://github.com/ArcBlock/arc | 2026-07-30T20:04:57Z | root@vm |
 | 20260730-200500-dd-2-auto-surface-00.png | https://github.com/ArcBlock/arc | 2026-07-30T20:05:00Z | root@vm |
+| 20260730-200503-dd-2-auto-surface-01.png | https://github.com/ArcBlock/arc | 2026-07-30T20:05:03Z | root@vm |
