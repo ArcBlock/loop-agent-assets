@@ -89,3 +89,4 @@
 | 20260730-193933-dd-5-sidebar-navigate-01.png | https://github.com/ArcBlock/arc | 2026-07-30T19:39:33Z | root@vm |
 | 20260730-193938-dd-5-sidebar-navigate-02.png | https://github.com/ArcBlock/arc | 2026-07-30T19:39:38Z | root@vm |
 | 20260730-193940-dd-5-sidebar-navigate-03.png | https://github.com/ArcBlock/arc | 2026-07-30T19:39:40Z | root@vm |
+| 20260730-193943-dd-6-primary-select-00.png | https://github.com/ArcBlock/arc | 2026-07-30T19:39:43Z | root@vm |
