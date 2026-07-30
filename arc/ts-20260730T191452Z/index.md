@@ -96,3 +96,4 @@
 | 20260730-193955-dd-7-primary-navigate-01.png | https://github.com/ArcBlock/arc | 2026-07-30T19:39:55Z | root@vm |
 | 20260730-193957-dd-7-primary-navigate-02.png | https://github.com/ArcBlock/arc | 2026-07-30T19:39:57Z | root@vm |
 | 20260730-194000-dd-7-primary-navigate-03.png | https://github.com/ArcBlock/arc | 2026-07-30T19:40:00Z | root@vm |
+| 20260730-194003-dd-7-primary-navigate-04.png | https://github.com/ArcBlock/arc | 2026-07-30T19:40:03Z | root@vm |
