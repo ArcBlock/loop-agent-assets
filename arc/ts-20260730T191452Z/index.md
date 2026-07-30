@@ -365,3 +365,4 @@
 | 20260730-200431-dd-10-list-basic-00.png | https://github.com/ArcBlock/arc | 2026-07-30T20:04:31Z | root@vm |
 | 20260730-200434-dd-10-list-basic-01.png | https://github.com/ArcBlock/arc | 2026-07-30T20:04:34Z | root@vm |
 | 20260730-200437-dd-10-list-basic-02.png | https://github.com/ArcBlock/arc | 2026-07-30T20:04:37Z | root@vm |
+| 20260730-200441-dd-11-list-basic-00.png | https://github.com/ArcBlock/arc | 2026-07-30T20:04:41Z | root@vm |
