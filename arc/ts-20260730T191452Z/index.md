@@ -404,3 +404,4 @@
 | 20260730-200721-dd-7-overlays-01.png | https://github.com/ArcBlock/arc | 2026-07-30T20:07:21Z | root@vm |
 | 20260730-200724-dd-7-overlays-02.png | https://github.com/ArcBlock/arc | 2026-07-30T20:07:24Z | root@vm |
 | 20260730-200728-dd-7-overlays-03.png | https://github.com/ArcBlock/arc | 2026-07-30T20:07:28Z | root@vm |
+| 20260730-200731-dd-7-overlays-04.png | https://github.com/ArcBlock/arc | 2026-07-30T20:07:31Z | root@vm |
