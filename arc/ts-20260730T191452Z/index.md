@@ -83,3 +83,4 @@
 | 20260730-193913-dd-3-login-redirect-00.png | https://github.com/ArcBlock/arc | 2026-07-30T19:39:13Z | root@vm |
 | 20260730-193917-dd-4-sidebar-select-00.png | https://github.com/ArcBlock/arc | 2026-07-30T19:39:17Z | root@vm |
 | 20260730-193920-dd-4-sidebar-select-01.png | https://github.com/ArcBlock/arc | 2026-07-30T19:39:20Z | root@vm |
+| 20260730-193923-dd-4-sidebar-select-02.png | https://github.com/ArcBlock/arc | 2026-07-30T19:39:23Z | root@vm |
