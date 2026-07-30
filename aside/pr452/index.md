@@ -23,3 +23,4 @@
 | 20260729-175458-note-capture-metadata-info.png | https://github.com/ArcBlock/aside/pull/452 | 2026-07-29T17:55:00Z | codex-issue-review |
 | 20260729-181657-quick-note-edit-keyboard-dismissed.png | https://github.com/ArcBlock/aside/pull/452 | 2026-07-29T18:17:00Z | codex-issue-review |
 | 20260730-002302-note-place-editor-map-a19fa62f.png | https://github.com/ArcBlock/aside/pull/452 | 2026-07-30T00:23:06Z | codex-issue-review |
+| 20260730-002332-note-place-reader-map-a19fa62f.png | https://github.com/ArcBlock/aside/pull/452 | 2026-07-30T00:23:35Z | codex-issue-review |
