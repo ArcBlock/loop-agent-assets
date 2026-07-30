@@ -92,3 +92,4 @@
 | 20260730-193943-dd-6-primary-select-00.png | https://github.com/ArcBlock/arc | 2026-07-30T19:39:43Z | root@vm |
 | 20260730-193946-dd-6-primary-select-01.png | https://github.com/ArcBlock/arc | 2026-07-30T19:39:46Z | root@vm |
 | 20260730-193948-dd-6-primary-select-02.png | https://github.com/ArcBlock/arc | 2026-07-30T19:39:48Z | root@vm |
+| 20260730-193951-dd-7-primary-navigate-00.png | https://github.com/ArcBlock/arc | 2026-07-30T19:39:51Z | root@vm |
