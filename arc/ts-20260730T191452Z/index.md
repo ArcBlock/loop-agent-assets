@@ -389,3 +389,4 @@
 | 20260730-200616-dd-4-index-03.png | https://github.com/ArcBlock/arc | 2026-07-30T20:06:16Z | root@vm |
 | 20260730-200636-dd-4-index-04.png | https://github.com/ArcBlock/arc | 2026-07-30T20:06:36Z | root@vm |
 | 20260730-200640-dd-4-index-05.png | https://github.com/ArcBlock/arc | 2026-07-30T20:06:40Z | root@vm |
+| 20260730-200643-dd-4-index-06.png | https://github.com/ArcBlock/arc | 2026-07-30T20:06:43Z | root@vm |
