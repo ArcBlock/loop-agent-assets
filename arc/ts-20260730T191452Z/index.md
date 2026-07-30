@@ -240,3 +240,4 @@
 | 20260730-195247-page@f9bcd2056e3d0b3d468f6d3034beefdf.webm | https://github.com/ArcBlock/arc | 2026-07-30T19:52:47Z | root@vm |
 | 20260730-195258-dd-6-chain-explorer-02.png | https://github.com/ArcBlock/arc | 2026-07-30T19:52:58Z | root@vm |
 | 20260730-195300-dd-6-chain-explorer-03.png | https://github.com/ArcBlock/arc | 2026-07-30T19:53:00Z | root@vm |
+| 20260730-195304-dd-6-chain-explorer-04.png | https://github.com/ArcBlock/arc | 2026-07-30T19:53:04Z | root@vm |
