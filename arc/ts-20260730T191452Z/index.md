@@ -410,3 +410,4 @@
 | 20260730-200740-dd-9-list-basic-02.png | https://github.com/ArcBlock/arc | 2026-07-30T20:07:40Z | root@vm |
 | 20260730-200743-explorer-01.png | https://github.com/ArcBlock/arc | 2026-07-30T20:07:43Z | root@vm |
 | 20260730-200747-explorer-02.png | https://github.com/ArcBlock/arc | 2026-07-30T20:07:47Z | root@vm |
+| 20260730-200749-explorer-read-1-01.png | https://github.com/ArcBlock/arc | 2026-07-30T20:07:49Z | root@vm |
