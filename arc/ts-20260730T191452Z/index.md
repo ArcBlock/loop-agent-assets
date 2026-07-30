@@ -80,3 +80,4 @@
 | 20260730-193905-dd-2-files-anon-00.png | https://github.com/ArcBlock/arc | 2026-07-30T19:39:06Z | root@vm |
 | 20260730-193908-dd-2-files-anon-01.png | https://github.com/ArcBlock/arc | 2026-07-30T19:39:08Z | root@vm |
 | 20260730-193911-dd-2-files-anon-02.png | https://github.com/ArcBlock/arc | 2026-07-30T19:39:11Z | root@vm |
+| 20260730-193913-dd-3-login-redirect-00.png | https://github.com/ArcBlock/arc | 2026-07-30T19:39:13Z | root@vm |
