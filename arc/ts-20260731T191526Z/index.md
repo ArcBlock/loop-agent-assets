@@ -622,3 +622,4 @@
 | 20260731-201951-tags-read-1-02.png | https://github.com/ArcBlock/arc | 2026-07-31T20:19:51Z | root@vm |
 | 20260731-201953-tags-read-1-03.png | https://github.com/ArcBlock/arc | 2026-07-31T20:19:53Z | root@vm |
 | 20260731-201956-page@08caa6587d5d04cff6b06ea8bd5a37c7.webm | https://github.com/ArcBlock/arc | 2026-07-31T20:19:57Z | root@vm |
+| 20260731-201959-page@0a320927460707eb682fcb51de83ff75.webm | https://github.com/ArcBlock/arc | 2026-07-31T20:19:59Z | root@vm |
