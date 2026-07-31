@@ -158,3 +158,4 @@
 | 20260731-194826-index-read-7-02.png | https://github.com/ArcBlock/arc | 2026-07-31T19:48:26Z | root@vm |
 | 20260731-194829-index-read-7-03.png | https://github.com/ArcBlock/arc | 2026-07-31T19:48:29Z | root@vm |
 | 20260731-194831-page@05365f6790843cdb68243ff8ba9fbc38.webm | https://github.com/ArcBlock/arc | 2026-07-31T19:48:31Z | root@vm |
+| 20260731-194834-page@0e8e7c7a5b4eb137b1430d30a1e5388f.webm | https://github.com/ArcBlock/arc | 2026-07-31T19:48:34Z | root@vm |
