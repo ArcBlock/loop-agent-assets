@@ -429,3 +429,4 @@
 | 20260731-201052-collections-read-1-02.png | https://github.com/ArcBlock/arc | 2026-07-31T20:10:52Z | root@vm |
 | 20260731-201054-index-read-2-03.png | https://github.com/ArcBlock/arc | 2026-07-31T20:10:54Z | root@vm |
 | 20260731-201056-index-read-3-01.png | https://github.com/ArcBlock/arc | 2026-07-31T20:10:56Z | root@vm |
+| 20260731-201058-index-read-3-02.png | https://github.com/ArcBlock/arc | 2026-07-31T20:10:58Z | root@vm |
