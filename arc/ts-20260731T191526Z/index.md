@@ -386,3 +386,4 @@
 | 20260731-200828-form-wizard-read-1-03.png | https://github.com/ArcBlock/arc | 2026-07-31T20:08:28Z | root@vm |
 | 20260731-200830-form-wizard-read-10-01.png | https://github.com/ArcBlock/arc | 2026-07-31T20:08:30Z | root@vm |
 | 20260731-200833-form-wizard-read-10-02.png | https://github.com/ArcBlock/arc | 2026-07-31T20:08:33Z | root@vm |
+| 20260731-200835-form-wizard-read-10-03.png | https://github.com/ArcBlock/arc | 2026-07-31T20:08:35Z | root@vm |
