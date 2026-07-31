@@ -443,3 +443,4 @@
 | 20260731-201130-list-template-01.png | https://github.com/ArcBlock/arc | 2026-07-31T20:11:30Z | root@vm |
 | 20260731-201132-list-template-02.png | https://github.com/ArcBlock/arc | 2026-07-31T20:11:32Z | root@vm |
 | 20260731-201135-list-virtual-01.png | https://github.com/ArcBlock/arc | 2026-07-31T20:11:35Z | root@vm |
+| 20260731-201137-list-virtual-02.png | https://github.com/ArcBlock/arc | 2026-07-31T20:11:37Z | root@vm |
