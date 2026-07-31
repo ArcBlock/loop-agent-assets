@@ -332,3 +332,4 @@
 | 20260731-200524-dd-4-index-01.png | https://github.com/ArcBlock/arc | 2026-07-31T20:05:24Z | root@vm |
 | 20260731-200526-dd-4-index-02.png | https://github.com/ArcBlock/arc | 2026-07-31T20:05:26Z | root@vm |
 | 20260731-200528-dd-4-index-03.png | https://github.com/ArcBlock/arc | 2026-07-31T20:05:28Z | root@vm |
+| 20260731-200531-dd-4-index-04.png | https://github.com/ArcBlock/arc | 2026-07-31T20:05:31Z | root@vm |
