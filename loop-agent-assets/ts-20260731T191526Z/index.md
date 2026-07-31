@@ -8,3 +8,4 @@
 | 20260731-195217-dd-1-todo-03.png | https://github.com/ArcBlock/loop-agent-assets | 2026-07-31T19:52:17Z | root@vm |
 | 20260731-195220-dd-1-todo-04.png | https://github.com/ArcBlock/loop-agent-assets | 2026-07-31T19:52:20Z | root@vm |
 | 20260731-195222-dd-1-todo-05.png | https://github.com/ArcBlock/loop-agent-assets | 2026-07-31T19:52:22Z | root@vm |
+| 20260731-195225-dd-1-todo-06.png | https://github.com/ArcBlock/loop-agent-assets | 2026-07-31T19:52:25Z | root@vm |
