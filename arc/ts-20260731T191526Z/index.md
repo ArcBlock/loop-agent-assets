@@ -537,3 +537,4 @@
 | 20260731-201610-dd-item-aside-64.png | https://github.com/ArcBlock/arc | 2026-07-31T20:16:10Z | root@vm |
 | 20260731-201613-dd-item-aside-65.png | https://github.com/ArcBlock/arc | 2026-07-31T20:16:13Z | root@vm |
 | 20260731-201615-dd-item-aside-66.png | https://github.com/ArcBlock/arc | 2026-07-31T20:16:15Z | root@vm |
+| 20260731-201618-dd-item-aside-67.png | https://github.com/ArcBlock/arc | 2026-07-31T20:16:18Z | root@vm |
