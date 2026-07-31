@@ -380,3 +380,4 @@
 | 20260731-200806-form-contact-01.png | https://github.com/ArcBlock/arc | 2026-07-31T20:08:06Z | root@vm |
 | 20260731-200808-form-contact-02.png | https://github.com/ArcBlock/arc | 2026-07-31T20:08:08Z | root@vm |
 | 20260731-200811-form-wizard-01.png | https://github.com/ArcBlock/arc | 2026-07-31T20:08:11Z | root@vm |
+| 20260731-200821-form-wizard-02.png | https://github.com/ArcBlock/arc | 2026-07-31T20:08:21Z | root@vm |
