@@ -101,3 +101,4 @@
 | 20260731-195632-index-01.png | https://github.com/ArcBlock/loop-agent-assets | 2026-07-31T19:56:32Z | root@vm |
 | 20260731-195634-index-02.png | https://github.com/ArcBlock/loop-agent-assets | 2026-07-31T19:56:34Z | root@vm |
 | 20260731-195638-page@10d581a5a7b0eebd98534af34491ed4e.webm | https://github.com/ArcBlock/loop-agent-assets | 2026-07-31T19:56:38Z | root@vm |
+| 20260731-195643-page@1c0a6cc86ad78a6a59ebce653415462d.webm | https://github.com/ArcBlock/loop-agent-assets | 2026-07-31T19:56:43Z | root@vm |
