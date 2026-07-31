@@ -457,3 +457,4 @@
 | 20260731-201204-overlays-read-3-03.png | https://github.com/ArcBlock/arc | 2026-07-31T20:12:04Z | root@vm |
 | 20260731-201208-dd-item-aside-02.png | https://github.com/ArcBlock/arc | 2026-07-31T20:12:08Z | root@vm |
 | 20260731-201210-dd-item-aside-03.png | https://github.com/ArcBlock/arc | 2026-07-31T20:12:10Z | root@vm |
+| 20260731-201212-dd-item-aside-04.png | https://github.com/ArcBlock/arc | 2026-07-31T20:12:12Z | root@vm |
