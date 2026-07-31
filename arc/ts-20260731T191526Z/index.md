@@ -509,3 +509,4 @@
 | 20260731-201426-page@40b1f85fe0f0fea13f922cbe938097f0.webm | https://github.com/ArcBlock/arc | 2026-07-31T20:14:26Z | root@vm |
 | 20260731-201430-dd-item-aside-36.png | https://github.com/ArcBlock/arc | 2026-07-31T20:14:30Z | root@vm |
 | 20260731-201434-dd-item-aside-37.png | https://github.com/ArcBlock/arc | 2026-07-31T20:14:34Z | root@vm |
+| 20260731-201436-dd-item-aside-38.png | https://github.com/ArcBlock/arc | 2026-07-31T20:14:36Z | root@vm |
