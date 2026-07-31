@@ -352,3 +352,4 @@
 | 20260731-200637-dd-6-form-contact-03.png | https://github.com/ArcBlock/arc | 2026-07-31T20:06:37Z | root@vm |
 | 20260731-200639-dd-6-form-contact-04.png | https://github.com/ArcBlock/arc | 2026-07-31T20:06:39Z | root@vm |
 | 20260731-200654-dd-6-form-contact-05.png | https://github.com/ArcBlock/arc | 2026-07-31T20:06:54Z | root@vm |
+| 20260731-200657-dd-6-form-contact-06.png | https://github.com/ArcBlock/arc | 2026-07-31T20:06:57Z | root@vm |
