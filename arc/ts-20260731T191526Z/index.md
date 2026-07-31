@@ -604,3 +604,4 @@
 | 20260731-201904-explore-aside-17.png | https://github.com/ArcBlock/arc | 2026-07-31T20:19:04Z | root@vm |
 | 20260731-201907-explore-aside-18.png | https://github.com/ArcBlock/arc | 2026-07-31T20:19:07Z | root@vm |
 | 20260731-201909-explore-aside-19.png | https://github.com/ArcBlock/arc | 2026-07-31T20:19:09Z | root@vm |
+| 20260731-201915-explore-aside-20.png | https://github.com/ArcBlock/arc | 2026-07-31T20:19:15Z | root@vm |
