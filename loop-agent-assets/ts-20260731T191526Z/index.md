@@ -77,3 +77,4 @@
 | 20260731-195522-dd-5-todo-05.png | https://github.com/ArcBlock/loop-agent-assets | 2026-07-31T19:55:22Z | root@vm |
 | 20260731-195524-dd-5-todo-06.png | https://github.com/ArcBlock/loop-agent-assets | 2026-07-31T19:55:24Z | root@vm |
 | 20260731-195527-dd-5-todo-07.png | https://github.com/ArcBlock/loop-agent-assets | 2026-07-31T19:55:27Z | root@vm |
+| 20260731-195529-dd-5-todo-08.png | https://github.com/ArcBlock/loop-agent-assets | 2026-07-31T19:55:29Z | root@vm |
