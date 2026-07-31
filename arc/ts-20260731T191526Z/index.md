@@ -582,3 +582,4 @@
 | 20260731-201810-page@dc237cc8176ab3ea77daa372a2e7f61e.webm | https://github.com/ArcBlock/arc | 2026-07-31T20:18:10Z | root@vm |
 | 20260731-201810-explore-aside-05.png | https://github.com/ArcBlock/arc | 2026-07-31T20:18:10Z | root@vm |
 | 20260731-201813-explore-aside-06.png | https://github.com/ArcBlock/arc | 2026-07-31T20:18:13Z | root@vm |
+| 20260731-201815-explore-aside-07.png | https://github.com/ArcBlock/arc | 2026-07-31T20:18:15Z | root@vm |
