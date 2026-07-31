@@ -421,3 +421,4 @@
 | 20260731-201013-clip-read-1-03.png | https://github.com/ArcBlock/arc | 2026-07-31T20:10:13Z | root@vm |
 | 20260731-201036-collection-detail-02.png | https://github.com/ArcBlock/arc | 2026-07-31T20:10:36Z | root@vm |
 | 20260731-201039-collection-detail-read-1-01.png | https://github.com/ArcBlock/arc | 2026-07-31T20:10:39Z | root@vm |
+| 20260731-201041-collection-detail-read-1-02.png | https://github.com/ArcBlock/arc | 2026-07-31T20:10:41Z | root@vm |
