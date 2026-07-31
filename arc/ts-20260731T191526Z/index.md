@@ -42,3 +42,4 @@
 | 20260731-193111-page@7fbdbf46ac38c50711e41afaaea5a06b.webm | https://github.com/ArcBlock/arc | 2026-07-31T19:31:11Z | root@vm |
 | 20260731-193714-files-01.png | https://github.com/ArcBlock/arc | 2026-07-31T19:37:14Z | root@vm |
 | 20260731-193723-dd-1-files-00.png | https://github.com/ArcBlock/arc | 2026-07-31T19:37:23Z | root@vm |
+| 20260731-193725-dd-1-files-01.png | https://github.com/ArcBlock/arc | 2026-07-31T19:37:25Z | root@vm |
