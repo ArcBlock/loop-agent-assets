@@ -22,3 +22,4 @@
 | 20260726-080949-mount-table.png | https://github.com/ArcBlock/arc | 2026-07-26T08:09:49Z | wangshijun@wangshijun-mac-studio |
 | 20260727-100345-pr2517-quickstart-steps.png | https://github.com/ArcBlock/arc | 2026-07-27T10:03:45Z | wangshijun@wangshijun-mac-studio |
 | test-single.png | https://github.com/ArcBlock/arc | 2026-07-31T19:29:26Z | root@vm |
+| 20260731-200227-auto-surface-01.png | https://github.com/ArcBlock/arc | 2026-07-31T20:02:27Z | root@vm |
