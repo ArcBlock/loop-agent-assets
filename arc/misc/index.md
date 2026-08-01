@@ -24,3 +24,4 @@
 | test-single.png | https://github.com/ArcBlock/arc | 2026-07-31T19:29:26Z | root@vm |
 | 20260731-200227-auto-surface-01.png | https://github.com/ArcBlock/arc | 2026-07-31T20:02:27Z | root@vm |
 | 20260801-055613-mount_table_nfc.png | https://github.com/ArcBlock/arc | 2026-08-01T05:56:13Z | robmao@Roberts-Mac-mini-M4-Pro |
+| 20260801-055618-nfc_panel.png | https://github.com/ArcBlock/arc | 2026-08-01T05:56:18Z | robmao@Roberts-Mac-mini-M4-Pro |
