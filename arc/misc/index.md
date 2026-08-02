@@ -27,3 +27,4 @@
 | 20260801-055618-nfc_panel.png | https://github.com/ArcBlock/arc | 2026-08-01T05:56:18Z | robmao@Roberts-Mac-mini-M4-Pro |
 | arc/issue-2854/2858-zh-tag.png | https://github.com/ArcBlock/arc | 2026-08-01T06:18:55Z | root@vm |
 | arc/issue-2854/2858-en-tag.png | https://github.com/ArcBlock/arc | 2026-08-01T06:19:16Z | root@vm |
+| 20260802-170213-pr2787-usage-nav-entry.png | https://github.com/ArcBlock/arc | 2026-08-02T17:02:13Z | wangshijun@wangshijun-mac-studio |
