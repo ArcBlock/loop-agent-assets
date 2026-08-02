@@ -7,3 +7,4 @@
 | 20260802-043047-03-docs-grid-view.png | https://github.com/ArcBlock/arc | 2026-08-02T04:30:47Z | robmao@Roberts-Mac-mini-M4-Pro |
 | 20260802-043052-04-file-preview-actions.png | https://github.com/ArcBlock/arc | 2026-08-02T04:30:52Z | robmao@Roberts-Mac-mini-M4-Pro |
 | 20260802-043057-05-back-navigation.png | https://github.com/ArcBlock/arc | 2026-08-02T04:30:57Z | robmao@Roberts-Mac-mini-M4-Pro |
+| 20260802-043102-06-root-list-dark.png | https://github.com/ArcBlock/arc | 2026-08-02T04:31:02Z | robmao@Roberts-Mac-mini-M4-Pro |
