@@ -3,3 +3,4 @@
 | file | source | uploaded | by |
 |---|---|---|---|
 | 20260802-154915-issue-491-final-item-selection-pages.png | https://github.com/ArcBlock/aside/pull/494 | 2026-08-02T15:49:19Z | codex-issue-review |
+| 20260802-154929-issue-491-final-collection-create-pages-a.png | https://github.com/ArcBlock/aside/pull/494 | 2026-08-02T15:49:32Z | codex-issue-review |
