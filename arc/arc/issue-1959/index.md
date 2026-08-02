@@ -5,3 +5,4 @@
 | 20260802-043037-01-root-list-light.png | https://github.com/ArcBlock/arc | 2026-08-02T04:30:37Z | robmao@Roberts-Mac-mini-M4-Pro |
 | 20260802-043042-02-drillin-explorer-demo.png | https://github.com/ArcBlock/arc | 2026-08-02T04:30:43Z | robmao@Roberts-Mac-mini-M4-Pro |
 | 20260802-043047-03-docs-grid-view.png | https://github.com/ArcBlock/arc | 2026-08-02T04:30:47Z | robmao@Roberts-Mac-mini-M4-Pro |
+| 20260802-043052-04-file-preview-actions.png | https://github.com/ArcBlock/arc | 2026-08-02T04:30:52Z | robmao@Roberts-Mac-mini-M4-Pro |
