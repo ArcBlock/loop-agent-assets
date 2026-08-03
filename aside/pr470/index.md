@@ -11,3 +11,4 @@
 | 20260803-090423-iphone-aup-home-search-6e34d492.jpg | https://github.com/ArcBlock/aside/pull/470 | 2026-08-03T09:04:26Z | codex-pr-review |
 | 20260803-090437-iphone-aup-config-failure-6e34d492.jpg | https://github.com/ArcBlock/aside/pull/470 | 2026-08-03T09:04:42Z | codex-pr-review |
 | 20260803-090517-ipad-aup-config-failure-6e34d492.jpg | https://github.com/ArcBlock/aside/pull/470 | 2026-08-03T09:05:19Z | codex-pr-review |
+| 20260803-091408-iphone-aup-home-search-aa7cdc3f.jpg | https://github.com/ArcBlock/aside/pull/470 | 2026-08-03T09:14:12Z | codex-pr-review |
