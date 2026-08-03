@@ -10,3 +10,4 @@
 | 20260803-011203-collection-detail-white-current-head.jpg | https://github.com/ArcBlock/aside/pull/494 | 2026-08-03T01:12:05Z | codex-issue-review |
 | 20260803-014630-item-header-no-glow-current-head.jpg | https://github.com/ArcBlock/aside/pull/494 | 2026-08-03T01:46:33Z | codex-issue-review |
 | 20260803-014649-collection-header-no-glow-current-head.jpg | https://github.com/ArcBlock/aside/pull/494 | 2026-08-03T01:46:52Z | codex-issue-review |
+| 20260803-021300-collection-header-no-glow-final-head.png | https://github.com/ArcBlock/aside/pull/494 | 2026-08-03T02:13:04Z | codex-issue-review |
