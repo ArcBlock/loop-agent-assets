@@ -2,4 +2,4 @@
 
 | file | source | uploaded | by |
 |---|---|---|---|
-| frame-transparent-autoheight.png | https://github.com/ArcBlock/arc/pull/2954 | 2026-08-03T08:55:09Z | wangshijun@wangshijun-mac-studio |
+| frame-transparent-autoheight.png | https://github.com/ArcBlock/arc/pull/2954 | 2026-08-03T09:00:00Z | robert@vm |
