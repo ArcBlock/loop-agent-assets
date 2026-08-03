@@ -29,3 +29,4 @@
 | arc/issue-2854/2858-en-tag.png | https://github.com/ArcBlock/arc | 2026-08-01T06:19:16Z | root@vm |
 | 20260802-170213-pr2787-usage-nav-entry.png | https://github.com/ArcBlock/arc | 2026-08-02T17:02:13Z | wangshijun@wangshijun-mac-studio |
 | 20260803-073157-discuss-kit-search-blank-row.jpg | https://github.com/ArcBlock/arc | 2026-08-03T07:31:57Z | wangshijun@arcblock |
+| pr2999-hero-banner.png | https://github.com/ArcBlock/arc | 2026-08-03T21:44:51Z | wangshijun@wangshijun-mac-studio |
