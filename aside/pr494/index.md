@@ -6,3 +6,4 @@
 | 20260802-145504-organize-start-after.png | https://github.com/ArcBlock/aside/pull/494 | 2026-08-02T14:55:08Z | codex-issue-review |
 | 20260802-145539-collection-detail-before.png | https://github.com/ArcBlock/aside/pull/494 | 2026-08-02T14:55:50Z | codex-issue-review |
 | 20260802-145606-collection-detail-after.png | https://github.com/ArcBlock/aside/pull/494 | 2026-08-02T14:56:09Z | codex-issue-review |
+| 20260803-011144-item-detail-white-current-head.jpg | https://github.com/ArcBlock/aside/pull/494 | 2026-08-03T01:11:47Z | codex-issue-review |
