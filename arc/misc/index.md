@@ -34,3 +34,4 @@
 | pr2997-gallery-after-fix.png | https://github.com/ArcBlock/arc | 2026-08-03T22:20:10Z | wangshijun@wangshijun-mac-studio |
 | persona-root-b98542a.png | https://github.com/ArcBlock/arc | 2026-08-04T02:47:28Z | wangshijun@wangshijun-mac-studio |
 | 20260804-133333-admin-tab.png | https://github.com/ArcBlock/arc | 2026-08-04T13:33:33Z | chao@Yechaos-MBP |
+| 20260804-150940-pr3075-did-space-ga4.png | https://github.com/ArcBlock/arc | 2026-08-04T15:09:40Z | wangshijun@wangshijun-mac-studio |
