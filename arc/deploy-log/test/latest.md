@@ -1,12 +1,14 @@
-## ✅ Deploy test · `19ada39e2` · success
+## ✅ Deploy test · `967e75f6a` · success
 
-- **时间**: 2026-07-31T17:22:30Z
-- **版本**: `19ada39e234a71bdd1225581a094b3447666128a`
-- **改动窗口**: 过去 24 小时
+- **时间**: 2026-08-04T02:51:38Z
+- **版本**: `967e75f6a9916c910091c076033c3cc10d9d714e`
+- **改动窗口**: 最近 24 小时
+- **CI**: https://github.com/ArcBlock/arc/actions/runs/30872721808
 
-**13 个 blocklet 有改动**
+**3 个 blocklet 有改动**
 
 ### 改动摘要
 
-- 12 个 blocklet 同受一次共享依赖改动影响：arc、chain-explorer、did-space、showcase、todo、observability-explorer、aistro、arch-qa、discuss-kit、blocklet-manager、mailbox-demo、settings-cascade（Kotlin 纯 JVM 模块固定 `jvmToolchain(21)`，`2dc153a4a`）
-- **ai-usage-explorer**：新增 AI 用量面板（M1 看得见消耗）（[#2747](https://github.com/ArcBlock/arc/issues/2747)）
+- **observability-explorer**：恢复 session 作用域的 AI 用量审计，Usage 页能读到调用方 DID Space 的 audit（#2983）
+- **showcase**：新增公开 markdown capability 参考页（#2974）；评论 collect 星标改为 opt-in prop 门控（#2950）
+- **discuss-kit**：评论 collect 星标改为 opt-in prop 门控，默认不再展示（#2950）
