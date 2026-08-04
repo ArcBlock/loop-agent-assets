@@ -36,3 +36,4 @@
 | 20260804-133333-admin-tab.png | https://github.com/ArcBlock/arc | 2026-08-04T13:33:33Z | chao@Yechaos-MBP |
 | 20260804-150940-pr3075-did-space-ga4.png | https://github.com/ArcBlock/arc | 2026-08-04T15:09:40Z | wangshijun@wangshijun-mac-studio |
 | 20260804-185227-ui-verify-obex-dashboard.png | https://github.com/ArcBlock/arc | 2026-08-04T18:52:27Z | root@vm |
+| 20260804-185309-ui-verify-obex-usage.png | https://github.com/ArcBlock/arc | 2026-08-04T18:53:09Z | root@vm |
