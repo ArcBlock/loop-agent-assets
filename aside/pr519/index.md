@@ -15,3 +15,4 @@
 | 20260804-031116-reader-statusbar-surface-final.png | https://github.com/ArcBlock/aside/pull/519 | 2026-08-04T03:11:19Z | codex-issue-review |
 | 20260804-033313-collection-detail-navigation-push.jpg | https://github.com/ArcBlock/aside/pull/519 | 2026-08-04T03:33:15Z | nategu@Nate-Mac-Pro |
 | 20260804-033333-reader-return-state-after-collection-push.jpg | https://github.com/ArcBlock/aside/pull/519 | 2026-08-04T03:33:35Z | nategu@Nate-Mac-Pro |
+| 20260804-041255-issue-517-statusbar-sheet-final.jpg | https://github.com/ArcBlock/aside/pull/519 | 2026-08-04T04:12:57Z | codex-issue-review |
