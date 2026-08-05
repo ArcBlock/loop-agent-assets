@@ -1,14 +1,15 @@
-## ✅ Deploy test · `967e75f6a` · success
+## ✅ Deploy test · `9dedb35c1` · success
 
-- **时间**: 2026-08-04T02:51:38Z
-- **版本**: `967e75f6a9916c910091c076033c3cc10d9d714e`
-- **改动窗口**: 最近 24 小时
-- **CI**: https://github.com/ArcBlock/arc/actions/runs/30872721808
+- **时间**: 2026-08-05T00:38:00Z
+- **版本**: `9dedb35c184e745444113a21e06b00949f88eb97`
+- **Run**: https://github.com/ArcBlock/arc/actions/runs/30963382679
+- **改动窗口**: last 24 hours
 
-**3 个 blocklet 有改动**
+**2 个 blocklet 有改动**
 
 ### 改动摘要
 
-- **observability-explorer**：恢复 session 作用域的 AI 用量审计，Usage 页能读到调用方 DID Space 的 audit（#2983）
-- **showcase**：新增公开 markdown capability 参考页（#2974）；评论 collect 星标改为 opt-in prop 门控（#2950）
-- **discuss-kit**：评论 collect 星标改为 opt-in prop 门控，默认不再展示（#2950）
+- **arc**：CLI 安装链路加固——整棵 distribution 树签名认证、Developer ID 校验、checksum 失败 fail-closed（#3055、#3042、#3041）
+- **observability-explorer**：dashboard 总览隐藏右侧 inspector（#3093）；并恢复 inspector / URL sync / 未登录空态（#3044）
+
+_说明：本次为全量 fleet 部署（相对上次成功 commit 存在 packages/providers/runtimes 共享依赖变更）。上方摘要仅列 `--since 24h` 窗口内直接触达 blocklet 目录的 commit；平台层改动（如 web-device / observability / ai-device / ui）已随全量部署一并上线，但不计入 blocklet 专属 commit 列表。_
