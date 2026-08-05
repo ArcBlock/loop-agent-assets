@@ -5,3 +5,4 @@
 | 20260805-151635-iphone-appearance-after-restart.jpg | https://github.com/ArcBlock/aside/pull/563 | 2026-08-05T15:16:39Z | codex-issue-review |
 | 20260805-151655-iphone-language-after-restart.jpg | https://github.com/ArcBlock/aside/pull/563 | 2026-08-05T15:16:58Z | codex-issue-review |
 | 20260805-151714-ipad-appearance-after-restart.jpg | https://github.com/ArcBlock/aside/pull/563 | 2026-08-05T15:17:17Z | codex-issue-review |
+| 20260805-151737-ipad-language-after-restart.jpg | https://github.com/ArcBlock/aside/pull/563 | 2026-08-05T15:17:40Z | codex-issue-review |
