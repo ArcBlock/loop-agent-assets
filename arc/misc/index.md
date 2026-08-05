@@ -41,3 +41,4 @@
 | 20260804-185316-ui-verify-obex-root.png | https://github.com/ArcBlock/arc | 2026-08-04T18:53:16Z | root@vm |
 | 20260805-013251-after-fix-local-dashboard.png | https://github.com/ArcBlock/arc | 2026-08-05T01:32:51Z | chao@Yechaos-MBP |
 | 20260805-013306-after-fix-local-dashboard-full.png | https://github.com/ArcBlock/arc | 2026-08-05T01:33:06Z | chao@Yechaos-MBP |
+| 20260805-013315-after-fix-local-dashboard.png | https://github.com/ArcBlock/arc | 2026-08-05T01:33:15Z | chao@Yechaos-MBP |
