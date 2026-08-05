@@ -39,3 +39,4 @@
 | 20260804-185309-ui-verify-obex-usage.png | https://github.com/ArcBlock/arc | 2026-08-04T18:53:09Z | root@vm |
 | 20260804-185312-ui-verify-obex-traces.png | https://github.com/ArcBlock/arc | 2026-08-04T18:53:12Z | root@vm |
 | 20260804-185316-ui-verify-obex-root.png | https://github.com/ArcBlock/arc | 2026-08-04T18:53:16Z | root@vm |
+| 20260805-013251-after-fix-local-dashboard.png | https://github.com/ArcBlock/arc | 2026-08-05T01:32:51Z | chao@Yechaos-MBP |
