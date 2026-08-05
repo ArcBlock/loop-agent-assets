@@ -54,3 +54,4 @@
 | 20260805-023330-03-after-leaf.png | https://github.com/ArcBlock/arc | 2026-08-05T02:33:30Z | chao@Yechaos-MBP |
 | 20260805-023339-traces-flow.gif | https://github.com/ArcBlock/arc | 2026-08-05T02:33:39Z | chao@Yechaos-MBP |
 | 20260805-023350-traces-flow.webm | https://github.com/ArcBlock/arc | 2026-08-05T02:33:50Z | chao@Yechaos-MBP |
+| 20260805-145209-obs-traces-before.png | https://github.com/ArcBlock/arc | 2026-08-05T14:52:09Z | chao@Yechaos-MacBook-Pro |
