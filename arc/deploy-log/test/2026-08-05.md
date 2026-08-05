@@ -1,15 +1,17 @@
-## ✅ Deploy test · `9dedb35c1` · success
+## ✅ Deploy test · `811e51a48` · success
 
-- **时间**: 2026-08-05T00:38:00Z
-- **版本**: `9dedb35c184e745444113a21e06b00949f88eb97`
-- **Run**: https://github.com/ArcBlock/arc/actions/runs/30963382679
-- **改动窗口**: last 24 hours
+- **时间**: 2026-08-05T17:22:15Z
+- **版本**: `811e51a485bc7083e8ad733122ad9e3db881bac7`
+- **改动窗口**: 24 hours ago
 
-**2 个 blocklet 有改动**
+**12 个 blocklet 有改动**
 
 ### 改动摘要
 
-- **arc**：CLI 安装链路加固——整棵 distribution 树签名认证、Developer ID 校验、checksum 失败 fail-closed（#3055、#3042、#3041）
-- **observability-explorer**：dashboard 总览隐藏右侧 inspector（#3093）；并恢复 inspector / URL sync / 未登录空态（#3044）
+- 12 个 blocklet 同受一次共享依赖改动影响：arc、chain-explorer、did-space、showcase、todo、observability-explorer、aistro、arch-qa、discuss-kit、blocklet-manager、mailbox-demo、settings-cascade — discoverRuns 查询改走 trace 索引，不再全表扫描（Phase 4）（[#3107](https://github.com/ArcBlock/arc/issues/3107)）
+- **observability-explorer**：/traces 页隐藏了用不上的检查器面板，同时修复了一处会导致 UI 构建直接失败的语法问题（[#3176](https://github.com/ArcBlock/arc/issues/3176)、[#3130](https://github.com/ArcBlock/arc/issues/3130)）
+- **showcase**：首页 Explore 导航新增 Docs 入口（[#3164](https://github.com/ArcBlock/arc/issues/3164)）；networkRead 声明补上了自证机制（[#3142](https://github.com/ArcBlock/arc/issues/3142)）
+- **discuss-kit**：关闭 SessionUserAFS 的 base-fallthrough 读通道，破坏性变更（[#3117](https://github.com/ArcBlock/arc/issues/3117)）
 
-_说明：本次为全量 fleet 部署（相对上次成功 commit 存在 packages/providers/runtimes 共享依赖变更）。上方摘要仅列 `--since 24h` 窗口内直接触达 blocklet 目录的 commit；平台层改动（如 web-device / observability / ai-device / ui）已随全量部署一并上线，但不计入 blocklet 专属 commit 列表。_
+---
+Run: https://github.com/ArcBlock/arc/actions/runs/31029017768
