@@ -56,3 +56,4 @@
 | 20260805-023350-traces-flow.webm | https://github.com/ArcBlock/arc | 2026-08-05T02:33:50Z | chao@Yechaos-MBP |
 | 20260805-145209-obs-traces-before.png | https://github.com/ArcBlock/arc | 2026-08-05T14:52:09Z | chao@Yechaos-MacBook-Pro |
 | 20260805-145221-obs-traces-after.png | https://github.com/ArcBlock/arc | 2026-08-05T14:52:21Z | chao@Yechaos-MacBook-Pro |
+| 20260805-145231-obs-run-drilled.png | https://github.com/ArcBlock/arc | 2026-08-05T14:52:31Z | chao@Yechaos-MacBook-Pro |
