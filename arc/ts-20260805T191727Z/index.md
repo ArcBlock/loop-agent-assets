@@ -4,3 +4,4 @@
 |---|---|---|---|
 | 20260805-200720-chat-01.png | https://github.com/ArcBlock/arc | 2026-08-05T20:07:20Z | root@vm |
 | 20260805-200801-clip-01.png | https://github.com/ArcBlock/arc | 2026-08-05T20:08:01Z | root@vm |
+| 20260805-200806-clip-02.png | https://github.com/ArcBlock/arc | 2026-08-05T20:08:06Z | root@vm |
