@@ -1,0 +1,5 @@
+# arc/issue-2972
+
+| file | source | uploaded | by |
+|---|---|---|---|
+| 20260805-223752-1-dashboard.png | https://github.com/ArcBlock/arc/issues/2972 | 2026-08-05T22:37:52Z | wangshijun@shijun-mbp |
