@@ -36,3 +36,4 @@
 | 20260805-201004-publish-02.png | https://github.com/ArcBlock/arc | 2026-08-05T20:10:04Z | root@vm |
 | 20260805-201008-tags-01.png | https://github.com/ArcBlock/arc | 2026-08-05T20:10:08Z | root@vm |
 | 20260805-201013-tags-02.png | https://github.com/ArcBlock/arc | 2026-08-05T20:10:13Z | root@vm |
+| 20260805-201017-tags-read-1-01.png | https://github.com/ArcBlock/arc | 2026-08-05T20:10:17Z | root@vm |
