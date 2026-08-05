@@ -65,3 +65,4 @@
 | 20260805-201237-dd-4-did-space-00.png | https://github.com/ArcBlock/arc | 2026-08-05T20:12:37Z | root@vm |
 | 20260805-201241-dd-4-did-space-01.png | https://github.com/ArcBlock/arc | 2026-08-05T20:12:41Z | root@vm |
 | 20260805-201247-dd-4-did-space-02.png | https://github.com/ArcBlock/arc | 2026-08-05T20:12:47Z | root@vm |
+| 20260805-201253-dd-4-did-space-03.png | https://github.com/ArcBlock/arc | 2026-08-05T20:12:53Z | root@vm |
