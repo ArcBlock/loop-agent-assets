@@ -44,3 +44,4 @@
 | 20260805-013315-after-fix-local-dashboard.png | https://github.com/ArcBlock/arc | 2026-08-05T01:33:15Z | chao@Yechaos-MBP |
 | 20260805-013324-before-fix-live-dashboard-full.png | https://github.com/ArcBlock/arc | 2026-08-05T01:33:24Z | chao@Yechaos-MBP |
 | 20260805-013332-before-fix-live-dashboard.png | https://github.com/ArcBlock/arc | 2026-08-05T01:33:32Z | chao@Yechaos-MBP |
+| 20260805-021057-01-landing.png | https://github.com/ArcBlock/arc | 2026-08-05T02:10:57Z | chao@Yechaos-MBP |
