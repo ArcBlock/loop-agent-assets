@@ -4,3 +4,4 @@
 |---|---|---|---|
 | 20260805-161850-00-before-admin-charts.png | https://github.com/ArcBlock/arc | 2026-08-05T16:18:50Z | chao@Yechaos-MacBook-Pro |
 | 20260805-161900-00-before-mine.png | https://github.com/ArcBlock/arc | 2026-08-05T16:19:00Z | chao@Yechaos-MacBook-Pro |
+| 20260805-161911-01-headline-and-trend.png | https://github.com/ArcBlock/arc | 2026-08-05T16:19:11Z | chao@Yechaos-MacBook-Pro |
