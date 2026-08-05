@@ -48,3 +48,4 @@
 | 20260805-021106-02-after-click.png | https://github.com/ArcBlock/arc | 2026-08-05T02:11:06Z | chao@Yechaos-MBP |
 | 20260805-021115-03-after-leaf.png | https://github.com/ArcBlock/arc | 2026-08-05T02:11:15Z | chao@Yechaos-MBP |
 | 20260805-021124-01-traces-landing.png | https://github.com/ArcBlock/arc | 2026-08-05T02:11:24Z | chao@Yechaos-MBP |
+| 20260805-023255-01-landing.png | https://github.com/ArcBlock/arc | 2026-08-05T02:32:55Z | chao@Yechaos-MBP |
