@@ -50,3 +50,4 @@
 | 20260805-021124-01-traces-landing.png | https://github.com/ArcBlock/arc | 2026-08-05T02:11:24Z | chao@Yechaos-MBP |
 | 20260805-023255-01-landing.png | https://github.com/ArcBlock/arc | 2026-08-05T02:32:55Z | chao@Yechaos-MBP |
 | 20260805-023312-01-landing.png | https://github.com/ArcBlock/arc | 2026-08-05T02:33:12Z | chao@Yechaos-MBP |
+| 20260805-023321-02-after-run.png | https://github.com/ArcBlock/arc | 2026-08-05T02:33:21Z | chao@Yechaos-MBP |
