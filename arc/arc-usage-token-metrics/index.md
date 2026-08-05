@@ -7,3 +7,4 @@
 | 20260805-161911-01-headline-and-trend.png | https://github.com/ArcBlock/arc | 2026-08-05T16:19:11Z | chao@Yechaos-MacBook-Pro |
 | 20260805-161921-02-by-app-table.png | https://github.com/ArcBlock/arc | 2026-08-05T16:19:21Z | chao@Yechaos-MacBook-Pro |
 | 20260805-161932-03-by-model-table.png | https://github.com/ArcBlock/arc | 2026-08-05T16:19:32Z | chao@Yechaos-MacBook-Pro |
+| 20260805-161943-04-admin-by-user-cache.png | https://github.com/ArcBlock/arc | 2026-08-05T16:19:43Z | chao@Yechaos-MacBook-Pro |
