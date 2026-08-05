@@ -3,3 +3,4 @@
 | file | source | uploaded | by |
 |---|---|---|---|
 | list-action-before.png | https://github.com/ArcBlock/arc/pull/3141 | 2026-08-05T03:57:14Z | wangshijun@wangshijun-mac-studio |
+| list-action-after-save-click.png | https://github.com/ArcBlock/arc/pull/3141 | 2026-08-05T03:57:29Z | wangshijun@wangshijun-mac-studio |
