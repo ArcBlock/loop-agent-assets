@@ -64,3 +64,4 @@
 | 20260806-092145-afterfull-observability-explorer_usage.png | https://github.com/ArcBlock/arc | 2026-08-06T09:21:45Z | chao@Yechaos-MacBook-Pro |
 | 20260806-092155-afterfull-observability-explorer_traces.png | https://github.com/ArcBlock/arc | 2026-08-06T09:21:55Z | chao@Yechaos-MacBook-Pro |
 | 20260806-100355-ui-verify-todo-home.png | https://github.com/ArcBlock/arc | 2026-08-06T10:03:55Z | root@vm |
+| 20260806-100450-ui-verify-todo-home.webm | https://github.com/ArcBlock/arc | 2026-08-06T10:04:50Z | root@vm |
