@@ -10,3 +10,4 @@
 | 20260806-195404-page@58f103eea2b40bfc6272f8f69280c2bb.webm | https://github.com/ArcBlock/arc | 2026-08-06T19:54:04Z | root@vm |
 | 20260806-195408-clip-01.png | https://github.com/ArcBlock/arc | 2026-08-06T19:54:08Z | root@vm |
 | 20260806-195411-clip-02.png | https://github.com/ArcBlock/arc | 2026-08-06T19:54:11Z | root@vm |
+| 20260806-195415-clip-read-1-01.png | https://github.com/ArcBlock/arc | 2026-08-06T19:54:15Z | root@vm |
