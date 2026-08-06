@@ -3,3 +3,4 @@
 | file | source | uploaded | by |
 |---|---|---|---|
 | nav-t-bug-before.png | https://github.com/ArcBlock/arc/pull/3244 | 2026-08-06T06:52:13Z | root@vm |
+| nav-t-fixed-after.png | https://github.com/ArcBlock/arc/pull/3244 | 2026-08-06T06:52:21Z | root@vm |
