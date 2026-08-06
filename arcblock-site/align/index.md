@@ -4,3 +4,4 @@
 |---|---|---|---|
 | 20260806-060437-before-home-guides.png | https://github.com/ArcBlock/arcblock-site | 2026-08-06T06:04:37Z | wangshijun@shijun-mbp |
 | 20260806-060444-after-home-guides.png | https://github.com/ArcBlock/arcblock-site | 2026-08-06T06:04:44Z | wangshijun@shijun-mbp |
+| 20260806-060452-before-events-guides.png | https://github.com/ArcBlock/arcblock-site | 2026-08-06T06:04:52Z | wangshijun@shijun-mbp |
