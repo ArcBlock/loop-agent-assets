@@ -255,3 +255,4 @@
 | 20260806-201013-list-pagination-01.png | https://github.com/ArcBlock/arc | 2026-08-06T20:10:13Z | root@vm |
 | 20260806-201017-list-pagination-02.png | https://github.com/ArcBlock/arc | 2026-08-06T20:10:17Z | root@vm |
 | 20260806-201021-list-template-01.png | https://github.com/ArcBlock/arc | 2026-08-06T20:10:21Z | root@vm |
+| 20260806-201025-list-template-02.png | https://github.com/ArcBlock/arc | 2026-08-06T20:10:25Z | root@vm |
