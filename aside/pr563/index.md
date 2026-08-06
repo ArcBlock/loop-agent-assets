@@ -12,3 +12,4 @@
 | 20260805-171947-language-restored-japanese.png | https://github.com/ArcBlock/aside/pull/563 | 2026-08-05T17:19:50Z | codex-issue-review |
 | 20260806-012807-appearance-before.png | https://github.com/ArcBlock/aside/pull/563 | 2026-08-06T01:28:10Z | codex-issue-review |
 | 20260806-012834-appearance-after.png | https://github.com/ArcBlock/aside/pull/563 | 2026-08-06T01:28:37Z | codex-issue-review |
+| 20260806-012856-language-before.png | https://github.com/ArcBlock/aside/pull/563 | 2026-08-06T01:28:58Z | codex-issue-review |
