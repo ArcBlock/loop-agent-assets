@@ -264,3 +264,4 @@
 | 20260806-201047-overlays-read-1-02.png | https://github.com/ArcBlock/arc | 2026-08-06T20:10:47Z | root@vm |
 | 20260806-201051-overlays-read-1-03.png | https://github.com/ArcBlock/arc | 2026-08-06T20:10:51Z | root@vm |
 | 20260806-201054-overlays-read-2-01.png | https://github.com/ArcBlock/arc | 2026-08-06T20:10:54Z | root@vm |
+| 20260806-201058-overlays-read-2-02.png | https://github.com/ArcBlock/arc | 2026-08-06T20:10:58Z | root@vm |
