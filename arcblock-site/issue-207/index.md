@@ -7,3 +7,4 @@
 | 20260806-045948-ja.png | https://github.com/ArcBlock/arcblock-site/issues/207 | 2026-08-06T04:59:48Z | wangshijun@shijun-mbp |
 | 20260806-045954-zh-articles.png | https://github.com/ArcBlock/arcblock-site/issues/207 | 2026-08-06T04:59:54Z | wangshijun@shijun-mbp |
 | 20260806-050001-zh-footer.png | https://github.com/ArcBlock/arcblock-site/issues/207 | 2026-08-06T05:00:01Z | wangshijun@shijun-mbp |
+| 20260806-050007-zh-mobile.png | https://github.com/ArcBlock/arcblock-site/issues/207 | 2026-08-06T05:00:07Z | wangshijun@shijun-mbp |
