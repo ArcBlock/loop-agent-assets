@@ -66,3 +66,4 @@
 | 20260806-100355-ui-verify-todo-home.png | https://github.com/ArcBlock/arc | 2026-08-06T10:03:55Z | root@vm |
 | 20260806-100450-ui-verify-todo-home.webm | https://github.com/ArcBlock/arc | 2026-08-06T10:04:50Z | root@vm |
 | 20260806-122731-before-usage.png | https://github.com/ArcBlock/arc | 2026-08-06T12:27:31Z | chao@Yechaos-MacBook-Pro |
+| 20260806-122747-after-usage.png | https://github.com/ArcBlock/arc | 2026-08-06T12:27:47Z | chao@Yechaos-MacBook-Pro |
