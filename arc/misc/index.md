@@ -68,3 +68,4 @@
 | 20260806-122731-before-usage.png | https://github.com/ArcBlock/arc | 2026-08-06T12:27:31Z | chao@Yechaos-MacBook-Pro |
 | 20260806-122747-after-usage.png | https://github.com/ArcBlock/arc | 2026-08-06T12:27:47Z | chao@Yechaos-MacBook-Pro |
 | 20260806-122802-after-usage-admin.png | https://github.com/ArcBlock/arc | 2026-08-06T12:28:02Z | chao@Yechaos-MacBook-Pro |
+| 20260806-162140-3294-before.png | https://github.com/ArcBlock/arc | 2026-08-06T16:21:40Z | chao@Yechaos-MacBook-Pro |
