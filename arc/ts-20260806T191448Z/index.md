@@ -206,3 +206,4 @@
 | 20260806-200704-page@f7bf21cfaccfd55bbc303ed98d410d66.webm | https://github.com/ArcBlock/arc | 2026-08-06T20:07:04Z | root@vm |
 | 20260806-200708-auto-surface-01.png | https://github.com/ArcBlock/arc | 2026-08-06T20:07:08Z | root@vm |
 | 20260806-200712-auto-surface-02.png | https://github.com/ArcBlock/arc | 2026-08-06T20:07:12Z | root@vm |
+| 20260806-200715-explorer-01.png | https://github.com/ArcBlock/arc | 2026-08-06T20:07:15Z | root@vm |
