@@ -57,3 +57,4 @@
 | 20260805-145209-obs-traces-before.png | https://github.com/ArcBlock/arc | 2026-08-05T14:52:09Z | chao@Yechaos-MacBook-Pro |
 | 20260805-145221-obs-traces-after.png | https://github.com/ArcBlock/arc | 2026-08-05T14:52:21Z | chao@Yechaos-MacBook-Pro |
 | 20260805-145231-obs-run-drilled.png | https://github.com/ArcBlock/arc | 2026-08-05T14:52:31Z | chao@Yechaos-MacBook-Pro |
+| 20260806-092105-before-observability-explorer_dashboard.png | https://github.com/ArcBlock/arc | 2026-08-06T09:21:05Z | chao@Yechaos-MacBook-Pro |
