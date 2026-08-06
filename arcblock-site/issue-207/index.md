@@ -4,3 +4,4 @@
 |---|---|---|---|
 | 20260806-045936-en-footer.png | https://github.com/ArcBlock/arcblock-site/issues/207 | 2026-08-06T04:59:36Z | wangshijun@shijun-mbp |
 | 20260806-045942-en.png | https://github.com/ArcBlock/arcblock-site/issues/207 | 2026-08-06T04:59:42Z | wangshijun@shijun-mbp |
+| 20260806-045948-ja.png | https://github.com/ArcBlock/arcblock-site/issues/207 | 2026-08-06T04:59:48Z | wangshijun@shijun-mbp |
