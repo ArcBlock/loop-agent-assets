@@ -62,3 +62,4 @@
 | 20260806-092126-before-chain-explorer_main_.png | https://github.com/ArcBlock/arc | 2026-08-06T09:21:26Z | chao@Yechaos-MacBook-Pro |
 | 20260806-092136-afterfull-chain-explorer_main_.png | https://github.com/ArcBlock/arc | 2026-08-06T09:21:36Z | chao@Yechaos-MacBook-Pro |
 | 20260806-092145-afterfull-observability-explorer_usage.png | https://github.com/ArcBlock/arc | 2026-08-06T09:21:45Z | chao@Yechaos-MacBook-Pro |
+| 20260806-092155-afterfull-observability-explorer_traces.png | https://github.com/ArcBlock/arc | 2026-08-06T09:21:55Z | chao@Yechaos-MacBook-Pro |
