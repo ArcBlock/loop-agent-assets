@@ -62,3 +62,4 @@
 | 20260806-195729-dd-1-chain-explorer-00.png | https://github.com/ArcBlock/arc | 2026-08-06T19:57:29Z | root@vm |
 | 20260806-195732-dd-1-chain-explorer-01.png | https://github.com/ArcBlock/arc | 2026-08-06T19:57:32Z | root@vm |
 | 20260806-195736-dd-10-chain-explorer-00.png | https://github.com/ArcBlock/arc | 2026-08-06T19:57:36Z | root@vm |
+| 20260806-195740-dd-10-chain-explorer-01.png | https://github.com/ArcBlock/arc | 2026-08-06T19:57:40Z | root@vm |
