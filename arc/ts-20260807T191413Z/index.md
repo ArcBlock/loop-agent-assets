@@ -140,3 +140,4 @@
 | 20260807-200830-index-read-4-03.png | https://github.com/ArcBlock/arc | 2026-08-07T20:08:30Z | root@vm |
 | 20260807-200835-index-read-5-01.png | https://github.com/ArcBlock/arc | 2026-08-07T20:08:35Z | root@vm |
 | 20260807-200838-index-read-5-02.png | https://github.com/ArcBlock/arc | 2026-08-07T20:08:38Z | root@vm |
+| 20260807-200842-index-read-5-03.png | https://github.com/ArcBlock/arc | 2026-08-07T20:08:42Z | root@vm |
