@@ -73,3 +73,4 @@
 | 20260807-202545-reading.png | https://github.com/ArcBlock/arc | 2026-08-07T20:25:45Z | root@vm |
 | 20260807-202605-full.png | https://github.com/ArcBlock/arc | 2026-08-07T20:26:05Z | root@vm |
 | 20260807-202609-full-active.png | https://github.com/ArcBlock/arc | 2026-08-07T20:26:09Z | root@vm |
+| 20260807-210019-ui-verify-3383-didspace-home.png | https://github.com/ArcBlock/arc | 2026-08-07T21:00:19Z | wangshijun@wangshijun-mac-studio |
