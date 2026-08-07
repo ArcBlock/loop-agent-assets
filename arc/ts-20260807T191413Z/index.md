@@ -236,3 +236,4 @@
 | 20260807-201459-list-basic-01.png | https://github.com/ArcBlock/arc | 2026-08-07T20:14:59Z | root@vm |
 | 20260807-201503-list-basic-02.png | https://github.com/ArcBlock/arc | 2026-08-07T20:15:03Z | root@vm |
 | 20260807-201507-list-grid-01.png | https://github.com/ArcBlock/arc | 2026-08-07T20:15:07Z | root@vm |
+| 20260807-201511-list-grid-02.png | https://github.com/ArcBlock/arc | 2026-08-07T20:15:11Z | root@vm |
