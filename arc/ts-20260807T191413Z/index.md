@@ -55,3 +55,4 @@
 | 20260807-200226-page@e70e39d6fc82a7b509f1de4dc16cd206.webm | https://github.com/ArcBlock/arc | 2026-08-07T20:02:26Z | root@vm |
 | 20260807-200232-dd-1-did-space-00.png | https://github.com/ArcBlock/arc | 2026-08-07T20:02:32Z | root@vm |
 | 20260807-200236-dd-1-did-space-01.png | https://github.com/ArcBlock/arc | 2026-08-07T20:02:36Z | root@vm |
+| 20260807-200241-dd-2-did-space-00.png | https://github.com/ArcBlock/arc | 2026-08-07T20:02:41Z | root@vm |
