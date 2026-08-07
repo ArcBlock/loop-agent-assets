@@ -74,3 +74,4 @@
 | 20260807-202605-full.png | https://github.com/ArcBlock/arc | 2026-08-07T20:26:05Z | root@vm |
 | 20260807-202609-full-active.png | https://github.com/ArcBlock/arc | 2026-08-07T20:26:09Z | root@vm |
 | 20260807-210019-ui-verify-3383-didspace-home.png | https://github.com/ArcBlock/arc | 2026-08-07T21:00:19Z | wangshijun@wangshijun-mac-studio |
+| 20260807-211116-ui-verify-3384-tabs-roles.png | https://github.com/ArcBlock/arc | 2026-08-07T21:11:16Z | wangshijun@wangshijun-mac-studio |
