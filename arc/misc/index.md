@@ -72,3 +72,4 @@
 | 20260806-162151-3294-after.png | https://github.com/ArcBlock/arc | 2026-08-06T16:21:51Z | chao@Yechaos-MacBook-Pro |
 | 20260807-202545-reading.png | https://github.com/ArcBlock/arc | 2026-08-07T20:25:45Z | root@vm |
 | 20260807-202605-full.png | https://github.com/ArcBlock/arc | 2026-08-07T20:26:05Z | root@vm |
+| 20260807-202609-full-active.png | https://github.com/ArcBlock/arc | 2026-08-07T20:26:09Z | root@vm |
