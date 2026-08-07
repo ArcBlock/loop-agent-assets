@@ -169,3 +169,4 @@
 | 20260807-201032-page@fda7107247834919326a257673469855.webm | https://github.com/ArcBlock/arc | 2026-08-07T20:10:32Z | root@vm |
 | 20260807-201036-explorer-01.png | https://github.com/ArcBlock/arc | 2026-08-07T20:10:36Z | root@vm |
 | 20260807-201040-explorer-02.png | https://github.com/ArcBlock/arc | 2026-08-07T20:10:40Z | root@vm |
+| 20260807-201043-index-01.png | https://github.com/ArcBlock/arc | 2026-08-07T20:10:43Z | root@vm |
