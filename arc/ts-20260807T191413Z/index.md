@@ -203,3 +203,4 @@
 | 20260807-201250-form-contact-02.png | https://github.com/ArcBlock/arc | 2026-08-07T20:12:50Z | root@vm |
 | 20260807-201254-form-wizard-01.png | https://github.com/ArcBlock/arc | 2026-08-07T20:12:54Z | root@vm |
 | 20260807-201258-form-wizard-02.png | https://github.com/ArcBlock/arc | 2026-08-07T20:12:58Z | root@vm |
+| 20260807-201301-form-wizard-read-1-01.png | https://github.com/ArcBlock/arc | 2026-08-07T20:13:01Z | root@vm |
