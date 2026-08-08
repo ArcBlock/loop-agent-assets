@@ -89,3 +89,4 @@
 | dd-6-overlays-00.png | https://github.com/ArcBlock/arc | 2026-08-08T20:09:26Z | root@vm |
 | dd-6-overlays-01.png | https://github.com/ArcBlock/arc | 2026-08-08T20:09:29Z | root@vm |
 | dd-6-overlays-02.png | https://github.com/ArcBlock/arc | 2026-08-08T20:09:32Z | root@vm |
+| dd-6-overlays-03.png | https://github.com/ArcBlock/arc | 2026-08-08T20:09:35Z | root@vm |
