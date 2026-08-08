@@ -16,3 +16,4 @@
 | 20260808-220446-ui-verify-todo-home.png | https://github.com/ArcBlock/arc/pull/3445 | 2026-08-08T22:04:46Z | robmao@Roberts-Mac-mini-M4-Pro |
 | 20260808-220450-ui-verify-chain-explorer-main.gif | https://github.com/ArcBlock/arc/pull/3445 | 2026-08-08T22:04:50Z | robmao@Roberts-Mac-mini-M4-Pro |
 | 20260808-220453-ui-verify-did-space-browse.gif | https://github.com/ArcBlock/arc/pull/3445 | 2026-08-08T22:04:53Z | robmao@Roberts-Mac-mini-M4-Pro |
+| 20260808-220457-ui-verify-todo-create-item.gif | https://github.com/ArcBlock/arc/pull/3445 | 2026-08-08T22:04:57Z | robmao@Roberts-Mac-mini-M4-Pro |
