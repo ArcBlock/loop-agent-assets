@@ -77,3 +77,4 @@
 | 20260808-194152-dd-9-chain-explorer-04.png | https://github.com/ArcBlock/arc | 2026-08-08T19:41:52Z | root@vm |
 | 20260808-194155-dd-9-chain-explorer-05.png | https://github.com/ArcBlock/arc | 2026-08-08T19:41:55Z | root@vm |
 | 20260808-194158-dd-9-chain-explorer-06.png | https://github.com/ArcBlock/arc | 2026-08-08T19:41:58Z | root@vm |
+| 20260808-194201-index-01.png | https://github.com/ArcBlock/arc | 2026-08-08T19:42:01Z | root@vm |
