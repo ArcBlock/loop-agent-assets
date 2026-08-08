@@ -88,3 +88,4 @@
 | 20260808-194228-index-read-3-01.png | https://github.com/ArcBlock/arc | 2026-08-08T19:42:28Z | root@vm |
 | 20260808-194231-index-read-3-02.png | https://github.com/ArcBlock/arc | 2026-08-08T19:42:31Z | root@vm |
 | 20260808-194235-index-read-3-03.png | https://github.com/ArcBlock/arc | 2026-08-08T19:42:35Z | root@vm |
+| 20260808-194238-index-read-4-01.png | https://github.com/ArcBlock/arc | 2026-08-08T19:42:38Z | root@vm |
