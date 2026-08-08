@@ -8,3 +8,4 @@
 | 20260808-195411-dd-11-aside-04.png | https://github.com/ArcBlock/arc | 2026-08-08T19:54:11Z | root@vm |
 | 20260808-195418-dd-11-aside-05.png | https://github.com/ArcBlock/arc | 2026-08-08T19:54:18Z | root@vm |
 | 20260808-195421-dd-11-aside-06.png | https://github.com/ArcBlock/arc | 2026-08-08T19:54:21Z | root@vm |
+| 20260808-195424-dd-11-aside-07.png | https://github.com/ArcBlock/arc | 2026-08-08T19:54:24Z | root@vm |
