@@ -79,3 +79,4 @@
 | 20260808-205521-pr3434-detail.png | https://github.com/ArcBlock/arc | 2026-08-08T20:55:21Z | wangshijun@wangshijun-mac-studio |
 | 20260808-211542-pr3442-detail.png | https://github.com/ArcBlock/arc | 2026-08-08T21:15:42Z | wangshijun@wangshijun-mac-studio |
 | 20260808-212454-pr3443-contextmenu.png | https://github.com/ArcBlock/arc | 2026-08-08T21:24:54Z | wangshijun@wangshijun-mac-studio |
+| 20260808-231303-chain-explorer-main.png | https://github.com/ArcBlock/arc | 2026-08-08T23:13:03Z | robmao@Roberts-Mac-mini-M4-Pro |
