@@ -49,3 +49,4 @@
 | 20260808-194719-dd-3-todo-02.png | https://github.com/ArcBlock/arc | 2026-08-08T19:47:19Z | root@vm |
 | 20260808-194722-dd-3-todo-03.png | https://github.com/ArcBlock/arc | 2026-08-08T19:47:22Z | root@vm |
 | 20260808-194725-dd-3-todo-04.png | https://github.com/ArcBlock/arc | 2026-08-08T19:47:25Z | root@vm |
+| 20260808-194728-dd-3-todo-05.png | https://github.com/ArcBlock/arc | 2026-08-08T19:47:28Z | root@vm |
