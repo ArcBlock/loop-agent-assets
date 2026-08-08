@@ -7,3 +7,4 @@
 | 20260808-192736-dd-2-discuss-kit-00.png | https://github.com/ArcBlock/arc | 2026-08-08T19:27:36Z | root@vm |
 | 20260808-192922-dd-2-discuss-kit-01.png | https://github.com/ArcBlock/arc | 2026-08-08T19:29:22Z | root@vm |
 | 20260808-192925-dd-2-discuss-kit-02.png | https://github.com/ArcBlock/arc | 2026-08-08T19:29:25Z | root@vm |
+| 20260808-192929-dd-2-discuss-kit-03.png | https://github.com/ArcBlock/arc | 2026-08-08T19:29:29Z | root@vm |
