@@ -105,3 +105,4 @@
 | dd-8-list-basic-11.png | https://github.com/ArcBlock/arc | 2026-08-08T20:10:17Z | root@vm |
 | explorer-01.png | https://github.com/ArcBlock/arc | 2026-08-08T20:10:21Z | root@vm |
 | explorer-02.png | https://github.com/ArcBlock/arc | 2026-08-08T20:10:24Z | root@vm |
+| explorer-read-1-01.png | https://github.com/ArcBlock/arc | 2026-08-08T20:10:28Z | root@vm |
