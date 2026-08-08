@@ -152,3 +152,4 @@
 | 20260808-202252-publish-02.png | https://github.com/ArcBlock/arc | 2026-08-08T20:22:52Z | root@vm |
 | 20260808-202255-tags-01.png | https://github.com/ArcBlock/arc | 2026-08-08T20:22:55Z | root@vm |
 | 20260808-202258-tags-02.png | https://github.com/ArcBlock/arc | 2026-08-08T20:22:58Z | root@vm |
+| 20260808-202301-tags-read-1-01.png | https://github.com/ArcBlock/arc | 2026-08-08T20:23:01Z | root@vm |
