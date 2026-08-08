@@ -126,3 +126,4 @@
 | 20260808-202133-dd-cleanup-aside-02.png | https://github.com/ArcBlock/arc | 2026-08-08T20:21:33Z | root@vm |
 | 20260808-202136-dd-cleanup-aside-03.png | https://github.com/ArcBlock/arc | 2026-08-08T20:21:36Z | root@vm |
 | 20260808-202139-dd-cleanup-aside-04.png | https://github.com/ArcBlock/arc | 2026-08-08T20:21:39Z | root@vm |
+| 20260808-202142-dd-cleanup-aside-05.png | https://github.com/ArcBlock/arc | 2026-08-08T20:21:42Z | root@vm |
