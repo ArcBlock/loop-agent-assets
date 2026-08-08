@@ -112,3 +112,4 @@
 | explorer-read-2-02.png | https://github.com/ArcBlock/arc | 2026-08-08T20:10:41Z | root@vm |
 | explorer-read-2-03.png | https://github.com/ArcBlock/arc | 2026-08-08T20:10:44Z | root@vm |
 | form-wizard-read-10-01.png | https://github.com/ArcBlock/arc | 2026-08-08T20:10:47Z | root@vm |
+| form-wizard-read-10-02.png | https://github.com/ArcBlock/arc | 2026-08-08T20:10:50Z | root@vm |
