@@ -96,3 +96,4 @@
 | 20260808-194949-page@8479e066e073a5b416031333523881e6.webm | https://github.com/ArcBlock/arc | 2026-08-08T19:49:49Z | root@vm |
 | 20260808-194953-page@8645454e44b6d8e8f3505f4a18269980.webm | https://github.com/ArcBlock/arc | 2026-08-08T19:49:53Z | root@vm |
 | 20260808-195022-page@acddcd8509e90814ee9024ce1ccc77d0.webm | https://github.com/ArcBlock/arc | 2026-08-08T19:50:22Z | root@vm |
+| 20260808-195025-page@b28fb0b6f9ad4be7c2d4830f09fb048f.webm | https://github.com/ArcBlock/arc | 2026-08-08T19:50:25Z | root@vm |
