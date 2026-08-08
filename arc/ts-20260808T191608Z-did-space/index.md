@@ -15,3 +15,4 @@
 | 20260808-193217-dd-authed-did-space-09.png | https://github.com/ArcBlock/arc | 2026-08-08T19:32:17Z | root@vm |
 | 20260808-193220-dd-authed-did-space-10.png | https://github.com/ArcBlock/arc | 2026-08-08T19:32:20Z | root@vm |
 | 20260808-193223-dd-authed-did-space-11.png | https://github.com/ArcBlock/arc | 2026-08-08T19:32:23Z | root@vm |
+| 20260808-193227-dd-authed-did-space-12.png | https://github.com/ArcBlock/arc | 2026-08-08T19:32:27Z | root@vm |
