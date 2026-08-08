@@ -102,3 +102,4 @@
 | dd-8-list-basic-08.png | https://github.com/ArcBlock/arc | 2026-08-08T20:10:07Z | root@vm |
 | dd-8-list-basic-09.png | https://github.com/ArcBlock/arc | 2026-08-08T20:10:10Z | root@vm |
 | dd-8-list-basic-10.png | https://github.com/ArcBlock/arc | 2026-08-08T20:10:14Z | root@vm |
+| dd-8-list-basic-11.png | https://github.com/ArcBlock/arc | 2026-08-08T20:10:17Z | root@vm |
