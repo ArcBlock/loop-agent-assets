@@ -83,3 +83,4 @@
 | overlays-01.png | https://github.com/ArcBlock/arc | 2026-08-08T19:57:16Z | root@vm |
 | overlays-02.png | https://github.com/ArcBlock/arc | 2026-08-08T19:57:19Z | root@vm |
 | overlays-read-1-01.png | https://github.com/ArcBlock/arc | 2026-08-08T19:57:22Z | root@vm |
+| auto-surface-01.png | https://github.com/ArcBlock/arc | 2026-08-08T20:09:15Z | root@vm |
