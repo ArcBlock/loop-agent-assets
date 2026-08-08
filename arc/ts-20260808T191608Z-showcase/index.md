@@ -78,3 +78,4 @@
 | list-pagination-02.png | https://github.com/ArcBlock/arc | 2026-08-08T19:57:00Z | root@vm |
 | list-template-01.png | https://github.com/ArcBlock/arc | 2026-08-08T19:57:03Z | root@vm |
 | list-template-02.png | https://github.com/ArcBlock/arc | 2026-08-08T19:57:07Z | root@vm |
+| list-virtual-01.png | https://github.com/ArcBlock/arc | 2026-08-08T19:57:10Z | root@vm |
