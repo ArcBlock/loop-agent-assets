@@ -30,3 +30,4 @@
 | 20260808-195145-dd-1c-form-contact-05.png | https://github.com/ArcBlock/arc | 2026-08-08T19:51:45Z | root@vm |
 | 20260808-195148-dd-1c-form-contact-06.png | https://github.com/ArcBlock/arc | 2026-08-08T19:51:48Z | root@vm |
 | 20260808-195151-dd-1c-form-contact-07.png | https://github.com/ArcBlock/arc | 2026-08-08T19:51:51Z | root@vm |
+| 20260808-195154-dd-2-auto-surface-00.png | https://github.com/ArcBlock/arc | 2026-08-08T19:51:54Z | root@vm |
