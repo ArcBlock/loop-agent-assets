@@ -88,3 +88,4 @@
 | dd-4-form-contact-07.png | https://github.com/ArcBlock/arc | 2026-08-08T20:09:22Z | root@vm |
 | dd-6-overlays-00.png | https://github.com/ArcBlock/arc | 2026-08-08T20:09:26Z | root@vm |
 | dd-6-overlays-01.png | https://github.com/ArcBlock/arc | 2026-08-08T20:09:29Z | root@vm |
+| dd-6-overlays-02.png | https://github.com/ArcBlock/arc | 2026-08-08T20:09:32Z | root@vm |
