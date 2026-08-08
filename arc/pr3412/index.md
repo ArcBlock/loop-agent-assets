@@ -8,3 +8,4 @@
 | 20260808-100545-collections-4-row-delete-menu.png | https://github.com/ArcBlock/arc/pull/3412 | 2026-08-08T10:05:45Z | robmao@Roberts-Mac-mini-M4-Pro |
 | 20260808-100549-collections-5-deleted-no-reload.png | https://github.com/ArcBlock/arc/pull/3412 | 2026-08-08T10:05:49Z | robmao@Roberts-Mac-mini-M4-Pro |
 | 20260808-100553-collections-journey-delete.gif | https://github.com/ArcBlock/arc/pull/3412 | 2026-08-08T10:05:53Z | robmao@Roberts-Mac-mini-M4-Pro |
+| 20260808-100558-collections-journey-import.gif | https://github.com/ArcBlock/arc/pull/3412 | 2026-08-08T10:05:58Z | robmao@Roberts-Mac-mini-M4-Pro |
