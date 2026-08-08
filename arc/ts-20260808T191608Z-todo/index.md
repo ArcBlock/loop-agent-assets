@@ -64,3 +64,4 @@
 | 20260808-194804-dd-5-todo-00.png | https://github.com/ArcBlock/arc | 2026-08-08T19:48:04Z | root@vm |
 | 20260808-194808-dd-5-todo-01.png | https://github.com/ArcBlock/arc | 2026-08-08T19:48:08Z | root@vm |
 | 20260808-194811-dd-5-todo-02.png | https://github.com/ArcBlock/arc | 2026-08-08T19:48:11Z | root@vm |
+| 20260808-194814-dd-5-todo-03.png | https://github.com/ArcBlock/arc | 2026-08-08T19:48:14Z | root@vm |
