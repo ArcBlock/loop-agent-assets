@@ -111,3 +111,4 @@
 | 20260808-202045-dd-bootstrap-aside-35.png | https://github.com/ArcBlock/arc | 2026-08-08T20:20:46Z | root@vm |
 | 20260808-202049-dd-bootstrap-aside-36.png | https://github.com/ArcBlock/arc | 2026-08-08T20:20:49Z | root@vm |
 | 20260808-202052-dd-bootstrap-aside-37.png | https://github.com/ArcBlock/arc | 2026-08-08T20:20:52Z | root@vm |
+| 20260808-202055-dd-bootstrap-aside-38.png | https://github.com/ArcBlock/arc | 2026-08-08T20:20:55Z | root@vm |
