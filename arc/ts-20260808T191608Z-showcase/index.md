@@ -151,3 +151,4 @@
 | overlays-read-7-01.png | https://github.com/ArcBlock/arc | 2026-08-08T20:12:43Z | root@vm |
 | overlays-read-7-02.png | https://github.com/ArcBlock/arc | 2026-08-08T20:12:46Z | root@vm |
 | overlays-read-7-03.png | https://github.com/ArcBlock/arc | 2026-08-08T20:12:50Z | root@vm |
+| page@1129864ac6eccd23ba29dc440add6b19.webm | https://github.com/ArcBlock/arc | 2026-08-08T20:12:53Z | root@vm |
