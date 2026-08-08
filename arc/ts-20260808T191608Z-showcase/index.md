@@ -76,3 +76,4 @@
 | list-grid-02.png | https://github.com/ArcBlock/arc | 2026-08-08T19:56:54Z | root@vm |
 | list-pagination-01.png | https://github.com/ArcBlock/arc | 2026-08-08T19:56:57Z | root@vm |
 | list-pagination-02.png | https://github.com/ArcBlock/arc | 2026-08-08T19:57:00Z | root@vm |
+| list-template-01.png | https://github.com/ArcBlock/arc | 2026-08-08T19:57:03Z | root@vm |
