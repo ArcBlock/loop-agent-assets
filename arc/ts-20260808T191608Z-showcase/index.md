@@ -93,3 +93,4 @@
 | dd-6-overlays-04.png | https://github.com/ArcBlock/arc | 2026-08-08T20:09:38Z | root@vm |
 | dd-8-list-basic-00.png | https://github.com/ArcBlock/arc | 2026-08-08T20:09:41Z | root@vm |
 | dd-8-list-basic-01.png | https://github.com/ArcBlock/arc | 2026-08-08T20:09:44Z | root@vm |
+| dd-8-list-basic-02.png | https://github.com/ArcBlock/arc | 2026-08-08T20:09:48Z | root@vm |
