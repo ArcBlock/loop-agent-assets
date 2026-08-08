@@ -80,3 +80,4 @@
 | list-template-02.png | https://github.com/ArcBlock/arc | 2026-08-08T19:57:07Z | root@vm |
 | list-virtual-01.png | https://github.com/ArcBlock/arc | 2026-08-08T19:57:10Z | root@vm |
 | list-virtual-02.png | https://github.com/ArcBlock/arc | 2026-08-08T19:57:13Z | root@vm |
+| overlays-01.png | https://github.com/ArcBlock/arc | 2026-08-08T19:57:16Z | root@vm |
