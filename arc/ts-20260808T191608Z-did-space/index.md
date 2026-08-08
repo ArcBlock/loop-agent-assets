@@ -33,3 +33,4 @@
 | 20260808-193316-dd-authed-did-space-27.png | https://github.com/ArcBlock/arc | 2026-08-08T19:33:16Z | root@vm |
 | 20260808-193320-files-01.png | https://github.com/ArcBlock/arc | 2026-08-08T19:33:20Z | root@vm |
 | 20260808-193323-files-02.png | https://github.com/ArcBlock/arc | 2026-08-08T19:33:23Z | root@vm |
+| 20260808-193326-page@16cdcc6ab653b8b57e58cefbf72b6598.webm | https://github.com/ArcBlock/arc | 2026-08-08T19:33:26Z | root@vm |
