@@ -72,3 +72,4 @@
 | form-wizard-read-9-03.png | https://github.com/ArcBlock/arc | 2026-08-08T19:56:42Z | root@vm |
 | list-basic-01.png | https://github.com/ArcBlock/arc | 2026-08-08T19:56:45Z | root@vm |
 | list-basic-02.png | https://github.com/ArcBlock/arc | 2026-08-08T19:56:48Z | root@vm |
+| list-grid-01.png | https://github.com/ArcBlock/arc | 2026-08-08T19:56:51Z | root@vm |
