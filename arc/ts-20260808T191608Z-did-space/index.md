@@ -28,3 +28,4 @@
 | 20260808-193300-dd-authed-did-space-22.png | https://github.com/ArcBlock/arc | 2026-08-08T19:33:00Z | root@vm |
 | 20260808-193303-dd-authed-did-space-23.png | https://github.com/ArcBlock/arc | 2026-08-08T19:33:03Z | root@vm |
 | 20260808-193306-dd-authed-did-space-24.png | https://github.com/ArcBlock/arc | 2026-08-08T19:33:06Z | root@vm |
+| 20260808-193309-dd-authed-did-space-25.png | https://github.com/ArcBlock/arc | 2026-08-08T19:33:09Z | root@vm |
