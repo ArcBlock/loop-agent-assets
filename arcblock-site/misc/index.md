@@ -22,3 +22,4 @@
 | 20260729-082932-adm-docs.png | https://github.com/ArcBlock/arcblock-site | 2026-07-29T08:29:32Z | wangshijun@wangshijun-mac-studio |
 | 20260809-051537-events-en-1440-dark.png | https://github.com/ArcBlock/arcblock-site | 2026-08-09T05:15:37Z | robmao@Roberts-Mac-mini-M4-Pro |
 | 20260809-051541-events-zh-1440-dark.png | https://github.com/ArcBlock/arcblock-site | 2026-08-09T05:15:41Z | robmao@Roberts-Mac-mini-M4-Pro |
+| 20260809-051545-events-zh-390-light.png | https://github.com/ArcBlock/arcblock-site | 2026-08-09T05:15:45Z | robmao@Roberts-Mac-mini-M4-Pro |
