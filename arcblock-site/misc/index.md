@@ -36,3 +36,4 @@
 | arcblock-site-ep267/afs-trial-hero-viewport.png | https://github.com/ArcBlock/arcblock-site | 2026-08-09T08:59:41Z | robmao@Roberts-Mac-mini-M4-Pro |
 | arcblock-site-ep267/afs-trial-projections-viewport.png | https://github.com/ArcBlock/arcblock-site | 2026-08-09T08:59:46Z | robmao@Roberts-Mac-mini-M4-Pro |
 | arcblock-site-ep267/afs-cover-fixed.png | https://github.com/ArcBlock/arcblock-site | 2026-08-09T09:07:57Z | robmao@Roberts-Mac-mini-M4-Pro |
+| arcblock-site-ep267/agents-need-computer/hero.png | https://github.com/ArcBlock/arcblock-site | 2026-08-09T09:16:23Z | robmao@Roberts-Mac-mini-M4-Pro |
