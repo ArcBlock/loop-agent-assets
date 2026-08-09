@@ -20,3 +20,4 @@
 | issue-8-did-space-archive-2019.png | https://github.com/ArcBlock/arcblock-site | 2026-07-28T12:24:08Z | wangshijun@wangshijun-mac-studio |
 | 20260729-082917-adm-article.png | https://github.com/ArcBlock/arcblock-site | 2026-07-29T08:29:17Z | wangshijun@wangshijun-mac-studio |
 | 20260729-082932-adm-docs.png | https://github.com/ArcBlock/arcblock-site | 2026-07-29T08:29:32Z | wangshijun@wangshijun-mac-studio |
+| 20260809-051537-events-en-1440-dark.png | https://github.com/ArcBlock/arcblock-site | 2026-08-09T05:15:37Z | robmao@Roberts-Mac-mini-M4-Pro |
