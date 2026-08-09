@@ -76,3 +76,4 @@
 | arcblock-site-ep267/2026/context-governance-not-accumulation-hero-20260809024909.png | https://github.com/ArcBlock/arcblock-site | 2026-08-09T09:50:01Z | robmao@Roberts-Mac-mini-M4-Pro |
 | arcblock-site-ep267/2026/design-review-build-phases-loop-skills-hero-20260809024909.png | https://github.com/ArcBlock/arcblock-site | 2026-08-09T09:50:06Z | robmao@Roberts-Mac-mini-M4-Pro |
 | arcblock-site-ep267/2026/design-review-build-phases-loop-skills-loop-skills.graph-20260809024909.svg | https://github.com/ArcBlock/arcblock-site | 2026-08-09T09:50:12Z | robmao@Roberts-Mac-mini-M4-Pro |
+| arcblock-site-ep267/2026/from-blocklet-server-to-arc-hero-20260809024909.png | https://github.com/ArcBlock/arcblock-site | 2026-08-09T09:50:17Z | robmao@Roberts-Mac-mini-M4-Pro |
