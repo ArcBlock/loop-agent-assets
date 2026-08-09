@@ -7,3 +7,4 @@
 | article-agents-wallet.png | https://github.com/ArcBlock/arc | 2026-08-09T08:49:14Z | robmao@Roberts-Mac-mini-M4-Pro |
 | article-from-blocklet-server.png | https://github.com/ArcBlock/arc | 2026-08-09T08:49:19Z | robmao@Roberts-Mac-mini-M4-Pro |
 | article-seed-current-state.png | https://github.com/ArcBlock/arc | 2026-08-09T08:49:25Z | robmao@Roberts-Mac-mini-M4-Pro |
+| article-web-content.png | https://github.com/ArcBlock/arc | 2026-08-09T08:49:30Z | robmao@Roberts-Mac-mini-M4-Pro |
