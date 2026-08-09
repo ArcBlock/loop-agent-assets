@@ -32,3 +32,4 @@
 | arcblock-site-ep267/dogfood-pipeline.png | https://github.com/ArcBlock/arcblock-site | 2026-08-09T08:13:20Z | robmao@Roberts-Mac-mini-M4-Pro |
 | arcblock-site-ep267/afs-small-world/hero.png | https://github.com/ArcBlock/arcblock-site | 2026-08-09T08:57:51Z | robmao@Roberts-Mac-mini-M4-Pro |
 | arcblock-site-ep267/afs-small-world/projections.svg | https://github.com/ArcBlock/arcblock-site | 2026-08-09T08:57:56Z | robmao@Roberts-Mac-mini-M4-Pro |
+| arcblock-site-ep267/afs-small-world/recursive.svg | https://github.com/ArcBlock/arcblock-site | 2026-08-09T08:58:01Z | robmao@Roberts-Mac-mini-M4-Pro |
