@@ -11,3 +11,4 @@
 | 20260809-190014-07-markdown-slides.png | https://github.com/ArcBlock/arcblock-site | 2026-08-09T19:00:14Z | robmao@Roberts-Mac-mini-M4-Pro |
 | 20260809-190020-08-built-in-components.png | https://github.com/ArcBlock/arcblock-site | 2026-08-09T19:00:20Z | robmao@Roberts-Mac-mini-M4-Pro |
 | 20260809-190024-09-device-capabilities-degradation.png | https://github.com/ArcBlock/arcblock-site | 2026-08-09T19:00:24Z | robmao@Roberts-Mac-mini-M4-Pro |
+| 20260809-190029-10-live-example-contract-narrow.png | https://github.com/ArcBlock/arcblock-site | 2026-08-09T19:00:29Z | robmao@Roberts-Mac-mini-M4-Pro |
