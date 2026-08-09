@@ -79,3 +79,4 @@
 | 20260809-195253-files-02.png | https://github.com/ArcBlock/arc | 2026-08-09T19:52:53Z | root@vm |
 | 20260809-195256-page@8a4b19e3337cf962c28d8624d500e44d.webm | https://github.com/ArcBlock/arc | 2026-08-09T19:52:56Z | root@vm |
 | 20260809-195301-page@a6c0138577ef65ba6847e72cf7810690.webm | https://github.com/ArcBlock/arc | 2026-08-09T19:53:01Z | root@vm |
+| 20260809-195306-page@cdd636ce206f5531ca8d512c95dca665.webm | https://github.com/ArcBlock/arc | 2026-08-09T19:53:06Z | root@vm |
