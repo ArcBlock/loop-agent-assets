@@ -11,3 +11,4 @@
 | agg-coll-products.png | https://github.com/ArcBlock/arc | 2026-08-09T05:01:39Z | robmao@Roberts-Mac-mini-M4-Pro |
 | agg-det-book.png | https://github.com/ArcBlock/arc | 2026-08-09T05:01:44Z | robmao@Roberts-Mac-mini-M4-Pro |
 | agg-det-film.png | https://github.com/ArcBlock/arc | 2026-08-09T05:01:50Z | robmao@Roberts-Mac-mini-M4-Pro |
+| agg-det-article.png | https://github.com/ArcBlock/arc | 2026-08-09T05:01:56Z | robmao@Roberts-Mac-mini-M4-Pro |
