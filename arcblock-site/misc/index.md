@@ -61,3 +61,4 @@
 | arcblock-site-ep267/realm-hero-20260809023836.png | https://github.com/ArcBlock/arcblock-site | 2026-08-09T09:38:38Z | robmao@Roberts-Mac-mini-M4-Pro |
 | arcblock-site-ep267/realm-transition-20260809023836.svg | https://github.com/ArcBlock/arcblock-site | 2026-08-09T09:38:43Z | robmao@Roberts-Mac-mini-M4-Pro |
 | arcblock-site-ep267/realm-surface-20260809023836.svg | https://github.com/ArcBlock/arcblock-site | 2026-08-09T09:38:47Z | robmao@Roberts-Mac-mini-M4-Pro |
+| arcblock-site-ep267/realm-cover-qa.png | https://github.com/ArcBlock/arcblock-site | 2026-08-09T09:39:35Z | robmao@Roberts-Mac-mini-M4-Pro |
