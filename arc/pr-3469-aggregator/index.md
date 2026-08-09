@@ -8,3 +8,4 @@
 | agg-coll-articles.png | https://github.com/ArcBlock/arc | 2026-08-09T05:01:21Z | robmao@Roberts-Mac-mini-M4-Pro |
 | agg-coll-links.png | https://github.com/ArcBlock/arc | 2026-08-09T05:01:27Z | robmao@Roberts-Mac-mini-M4-Pro |
 | agg-coll-places.png | https://github.com/ArcBlock/arc | 2026-08-09T05:01:33Z | robmao@Roberts-Mac-mini-M4-Pro |
+| agg-coll-products.png | https://github.com/ArcBlock/arc | 2026-08-09T05:01:39Z | robmao@Roberts-Mac-mini-M4-Pro |
