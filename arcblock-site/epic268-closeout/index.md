@@ -8,3 +8,4 @@
 | 20260809-185959-04-markdown-cards.png | https://github.com/ArcBlock/arcblock-site | 2026-08-09T18:59:59Z | robmao@Roberts-Mac-mini-M4-Pro |
 | 20260809-190004-05-markdown-steps.png | https://github.com/ArcBlock/arcblock-site | 2026-08-09T19:00:05Z | robmao@Roberts-Mac-mini-M4-Pro |
 | 20260809-190009-06-markdown-embeds.png | https://github.com/ArcBlock/arcblock-site | 2026-08-09T19:00:09Z | robmao@Roberts-Mac-mini-M4-Pro |
+| 20260809-190014-07-markdown-slides.png | https://github.com/ArcBlock/arcblock-site | 2026-08-09T19:00:14Z | robmao@Roberts-Mac-mini-M4-Pro |
