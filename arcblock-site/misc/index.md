@@ -39,3 +39,4 @@
 | arcblock-site-ep267/agents-need-computer/hero.png | https://github.com/ArcBlock/arcblock-site | 2026-08-09T09:16:23Z | robmao@Roberts-Mac-mini-M4-Pro |
 | arcblock-site-ep267/agents-need-computer/layers.svg | https://github.com/ArcBlock/arcblock-site | 2026-08-09T09:16:29Z | robmao@Roberts-Mac-mini-M4-Pro |
 | arcblock-site-ep267/agents-computer-cover-qa.png | https://github.com/ArcBlock/arcblock-site | 2026-08-09T09:17:46Z | robmao@Roberts-Mac-mini-M4-Pro |
+| arcblock-site-ep267/agents-computer-layers-qa.png | https://github.com/ArcBlock/arcblock-site | 2026-08-09T09:17:50Z | robmao@Roberts-Mac-mini-M4-Pro |
