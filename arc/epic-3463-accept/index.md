@@ -16,3 +16,4 @@
 | home.png | https://github.com/ArcBlock/arc | 2026-08-09T08:49:59Z | robmao@Roberts-Mac-mini-M4-Pro |
 | links-list.png | https://github.com/ArcBlock/arc | 2026-08-09T08:50:03Z | robmao@Roberts-Mac-mini-M4-Pro |
 | places-list.png | https://github.com/ArcBlock/arc | 2026-08-09T08:50:08Z | robmao@Roberts-Mac-mini-M4-Pro |
+| products-list.png | https://github.com/ArcBlock/arc | 2026-08-09T08:50:13Z | robmao@Roberts-Mac-mini-M4-Pro |
