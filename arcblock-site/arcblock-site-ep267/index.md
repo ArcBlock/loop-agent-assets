@@ -9,3 +9,4 @@
 | 20260809-074305-05-docs-architecture-overview-desktop.png | https://github.com/ArcBlock/arcblock-site | 2026-08-09T07:43:05Z | robmao@Roberts-Mac-mini-M4-Pro |
 | 20260809-074310-06-article-hd-wallet-cover-desktop.png | https://github.com/ArcBlock/arcblock-site | 2026-08-09T07:43:10Z | robmao@Roberts-Mac-mini-M4-Pro |
 | 20260809-074314-07-article-hd-wallet-diagrams-desktop.png | https://github.com/ArcBlock/arcblock-site | 2026-08-09T07:43:14Z | robmao@Roberts-Mac-mini-M4-Pro |
+| 20260809-074319-08-docs-slides-demo-mobile-390.png | https://github.com/ArcBlock/arcblock-site | 2026-08-09T07:43:19Z | robmao@Roberts-Mac-mini-M4-Pro |
