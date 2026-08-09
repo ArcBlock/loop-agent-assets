@@ -12,3 +12,4 @@
 | 20260809-211050-08-site-period-index.png | https://github.com/ArcBlock/arcblock-site | 2026-08-09T21:10:50Z | robmao@Roberts-Mac-mini-M4-Pro |
 | 20260809-211054-09-surface-docs-page.png | https://github.com/ArcBlock/arcblock-site | 2026-08-09T21:10:54Z | robmao@Roberts-Mac-mini-M4-Pro |
 | 20260809-211058-10-md-steps.png | https://github.com/ArcBlock/arcblock-site | 2026-08-09T21:10:58Z | robmao@Roberts-Mac-mini-M4-Pro |
+| 20260809-211103-11-recipe-first-site.png | https://github.com/ArcBlock/arcblock-site | 2026-08-09T21:11:03Z | robmao@Roberts-Mac-mini-M4-Pro |
