@@ -195,3 +195,4 @@
 | 20260809-200003-index-02.png | https://github.com/ArcBlock/arc | 2026-08-09T20:00:03Z | root@vm |
 | 20260809-200007-page@9cd75f57152c48a72e3be4df2d740e64.webm | https://github.com/ArcBlock/arc | 2026-08-09T20:00:07Z | root@vm |
 | 20260809-200010-page@ad119da0856e316567b7f7d53348cb88.webm | https://github.com/ArcBlock/arc | 2026-08-09T20:00:10Z | root@vm |
+| 20260809-200013-chat-01.png | https://github.com/ArcBlock/arc | 2026-08-09T20:00:13Z | root@vm |
