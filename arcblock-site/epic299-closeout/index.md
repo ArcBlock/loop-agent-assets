@@ -14,3 +14,4 @@
 | 20260809-211058-10-md-steps.png | https://github.com/ArcBlock/arcblock-site | 2026-08-09T21:10:58Z | robmao@Roberts-Mac-mini-M4-Pro |
 | 20260809-211103-11-recipe-first-site.png | https://github.com/ArcBlock/arcblock-site | 2026-08-09T21:11:03Z | robmao@Roberts-Mac-mini-M4-Pro |
 | 20260809-211106-12-showcase-mapping.png | https://github.com/ArcBlock/arcblock-site | 2026-08-09T21:11:06Z | robmao@Roberts-Mac-mini-M4-Pro |
+| 20260809-211111-13-primitive-view-zh.png | https://github.com/ArcBlock/arcblock-site | 2026-08-09T21:11:11Z | robmao@Roberts-Mac-mini-M4-Pro |
