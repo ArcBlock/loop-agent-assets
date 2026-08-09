@@ -12,3 +12,4 @@
 | book-detail-social.png | https://github.com/ArcBlock/arc | 2026-08-09T08:49:40Z | robmao@Roberts-Mac-mini-M4-Pro |
 | books-list.png | https://github.com/ArcBlock/arc | 2026-08-09T08:49:45Z | robmao@Roberts-Mac-mini-M4-Pro |
 | film-detail.png | https://github.com/ArcBlock/arc | 2026-08-09T08:49:50Z | robmao@Roberts-Mac-mini-M4-Pro |
+| films-list.png | https://github.com/ArcBlock/arc | 2026-08-09T08:49:54Z | robmao@Roberts-Mac-mini-M4-Pro |
