@@ -6,3 +6,4 @@
 | 20260809-185950-02-live-example-contract-zh.png | https://github.com/ArcBlock/arcblock-site | 2026-08-09T18:59:51Z | robmao@Roberts-Mac-mini-M4-Pro |
 | 20260809-185955-03-markdown-gfm-callouts.png | https://github.com/ArcBlock/arcblock-site | 2026-08-09T18:59:55Z | robmao@Roberts-Mac-mini-M4-Pro |
 | 20260809-185959-04-markdown-cards.png | https://github.com/ArcBlock/arcblock-site | 2026-08-09T18:59:59Z | robmao@Roberts-Mac-mini-M4-Pro |
+| 20260809-190004-05-markdown-steps.png | https://github.com/ArcBlock/arcblock-site | 2026-08-09T19:00:05Z | robmao@Roberts-Mac-mini-M4-Pro |
