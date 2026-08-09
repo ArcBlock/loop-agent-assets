@@ -263,3 +263,4 @@
 | 20260809-200400-list-pagination-02.png | https://github.com/ArcBlock/arc | 2026-08-09T20:04:00Z | root@vm |
 | 20260809-200403-list-template-01.png | https://github.com/ArcBlock/arc | 2026-08-09T20:04:03Z | root@vm |
 | 20260809-200407-list-template-02.png | https://github.com/ArcBlock/arc | 2026-08-09T20:04:07Z | root@vm |
+| 20260809-200410-list-virtual-01.png | https://github.com/ArcBlock/arc | 2026-08-09T20:04:10Z | root@vm |
