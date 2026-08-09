@@ -13,3 +13,4 @@
 | agg-det-film.png | https://github.com/ArcBlock/arc | 2026-08-09T05:01:50Z | robmao@Roberts-Mac-mini-M4-Pro |
 | agg-det-article.png | https://github.com/ArcBlock/arc | 2026-08-09T05:01:56Z | robmao@Roberts-Mac-mini-M4-Pro |
 | agg-det-place.png | https://github.com/ArcBlock/arc | 2026-08-09T05:02:01Z | robmao@Roberts-Mac-mini-M4-Pro |
+| agg-det-product.png | https://github.com/ArcBlock/arc | 2026-08-09T05:02:06Z | robmao@Roberts-Mac-mini-M4-Pro |
