@@ -71,3 +71,4 @@
 | arcblock-site-ep267/2026/arc-web-content-system-hero-20260809024909.png | https://github.com/ArcBlock/arcblock-site | 2026-08-09T09:49:35Z | robmao@Roberts-Mac-mini-M4-Pro |
 | arcblock-site-ep267/2026/arc-web-device-hero-20260809024909.png | https://github.com/ArcBlock/arcblock-site | 2026-08-09T09:49:41Z | robmao@Roberts-Mac-mini-M4-Pro |
 | arcblock-site-ep267/2026/arc-web-device-declare-render.graph-20260809024909.svg | https://github.com/ArcBlock/arcblock-site | 2026-08-09T09:49:45Z | robmao@Roberts-Mac-mini-M4-Pro |
+| arcblock-site-ep267/2026/arcblock-sponsors-icsa-2027-hero-20260809024909.png | https://github.com/ArcBlock/arcblock-site | 2026-08-09T09:49:50Z | robmao@Roberts-Mac-mini-M4-Pro |
