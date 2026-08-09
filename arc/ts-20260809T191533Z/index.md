@@ -10,3 +10,4 @@
 | 20260809-194835-clipper-01.png | https://github.com/ArcBlock/arc | 2026-08-09T19:48:35Z | root@vm |
 | 20260809-194838-clipper-02.png | https://github.com/ArcBlock/arc | 2026-08-09T19:48:38Z | root@vm |
 | 20260809-194841-clipper-read-1-01.png | https://github.com/ArcBlock/arc | 2026-08-09T19:48:41Z | root@vm |
+| 20260809-194845-clipper-read-1-02.png | https://github.com/ArcBlock/arc | 2026-08-09T19:48:45Z | root@vm |
