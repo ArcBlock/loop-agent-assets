@@ -7,3 +7,4 @@
 | 20260809-074255-03-docs-workflow-sequential-desktop.png | https://github.com/ArcBlock/arcblock-site | 2026-08-09T07:42:55Z | robmao@Roberts-Mac-mini-M4-Pro |
 | 20260809-074300-04-docs-markdown-embeds-desktop.png | https://github.com/ArcBlock/arcblock-site | 2026-08-09T07:43:00Z | robmao@Roberts-Mac-mini-M4-Pro |
 | 20260809-074305-05-docs-architecture-overview-desktop.png | https://github.com/ArcBlock/arcblock-site | 2026-08-09T07:43:05Z | robmao@Roberts-Mac-mini-M4-Pro |
+| 20260809-074310-06-article-hd-wallet-cover-desktop.png | https://github.com/ArcBlock/arcblock-site | 2026-08-09T07:43:10Z | robmao@Roberts-Mac-mini-M4-Pro |
