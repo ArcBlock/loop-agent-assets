@@ -12,3 +12,4 @@
 | 20260809-052743-links-collection.png | https://github.com/ArcBlock/arc/pull/3491 | 2026-08-09T05:27:43Z | robmao@Roberts-Mac-mini-M4-Pro |
 | 20260809-052746-place-detail.png | https://github.com/ArcBlock/arc/pull/3491 | 2026-08-09T05:27:46Z | robmao@Roberts-Mac-mini-M4-Pro |
 | 20260809-052750-places-collection.png | https://github.com/ArcBlock/arc/pull/3491 | 2026-08-09T05:27:50Z | robmao@Roberts-Mac-mini-M4-Pro |
+| 20260809-052754-product-detail.png | https://github.com/ArcBlock/arc/pull/3491 | 2026-08-09T05:27:54Z | robmao@Roberts-Mac-mini-M4-Pro |
