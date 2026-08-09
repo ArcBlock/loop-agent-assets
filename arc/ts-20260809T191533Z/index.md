@@ -193,3 +193,4 @@
 | 20260809-195956-explorer-02.png | https://github.com/ArcBlock/arc | 2026-08-09T19:59:56Z | root@vm |
 | 20260809-195959-index-01.png | https://github.com/ArcBlock/arc | 2026-08-09T19:59:59Z | root@vm |
 | 20260809-200003-index-02.png | https://github.com/ArcBlock/arc | 2026-08-09T20:00:03Z | root@vm |
+| 20260809-200007-page@9cd75f57152c48a72e3be4df2d740e64.webm | https://github.com/ArcBlock/arc | 2026-08-09T20:00:07Z | root@vm |
