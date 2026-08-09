@@ -67,3 +67,4 @@
 | arcblock-site-ep267/2026/afs-context-not-cognition-context-vs-cognition.graph-20260809024909.svg | https://github.com/ArcBlock/arcblock-site | 2026-08-09T09:49:16Z | robmao@Roberts-Mac-mini-M4-Pro |
 | arcblock-site-ep267/2026/afs-not-git-or-semantic-tree-hero-20260809024909.png | https://github.com/ArcBlock/arcblock-site | 2026-08-09T09:49:20Z | robmao@Roberts-Mac-mini-M4-Pro |
 | arcblock-site-ep267/2026/afs-not-git-or-semantic-tree-path-not-git.graph-20260809024909.svg | https://github.com/ArcBlock/arcblock-site | 2026-08-09T09:49:26Z | robmao@Roberts-Mac-mini-M4-Pro |
+| arcblock-site-ep267/2026/ai-agents-need-more-than-a-wallet-hero-20260809024909.png | https://github.com/ArcBlock/arcblock-site | 2026-08-09T09:49:30Z | robmao@Roberts-Mac-mini-M4-Pro |
