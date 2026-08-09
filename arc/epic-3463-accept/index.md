@@ -9,3 +9,4 @@
 | article-seed-current-state.png | https://github.com/ArcBlock/arc | 2026-08-09T08:49:25Z | robmao@Roberts-Mac-mini-M4-Pro |
 | article-web-content.png | https://github.com/ArcBlock/arc | 2026-08-09T08:49:30Z | robmao@Roberts-Mac-mini-M4-Pro |
 | articles-list.png | https://github.com/ArcBlock/arc | 2026-08-09T08:49:35Z | robmao@Roberts-Mac-mini-M4-Pro |
+| book-detail-social.png | https://github.com/ArcBlock/arc | 2026-08-09T08:49:40Z | robmao@Roberts-Mac-mini-M4-Pro |
