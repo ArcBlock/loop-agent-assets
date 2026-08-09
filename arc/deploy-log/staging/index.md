@@ -18,3 +18,4 @@ schema 与路径约定见 [../README.md](../README.md)（ArcBlock/arc#1698）。
 | 2026-08-06T17:31:43Z | `dbc1cc036` | cancelled (GitHub Actions outage — job never got a runner) | https://github.com/ArcBlock/arc/actions/runs/31122611689 |
 | 2026-08-07T17:18:10Z | `2a74cf597` | success | https://github.com/ArcBlock/arc/actions/runs/31201195993 |
 | 2026-08-08T17:21:44Z | `8b106b570` | success | https://github.com/ArcBlock/arc/actions/runs/31268798636 |
+| 2026-08-09T17:20:03Z | `0cc3ce31c` | success | https://github.com/ArcBlock/arc/actions/runs/31325749232 |
