@@ -25,3 +25,4 @@
 | 20260809-051545-events-zh-390-light.png | https://github.com/ArcBlock/arcblock-site | 2026-08-09T05:15:45Z | robmao@Roberts-Mac-mini-M4-Pro |
 | 20260809-051549-emptystate-upcoming-en-1440.png | https://github.com/ArcBlock/arcblock-site | 2026-08-09T05:15:49Z | robmao@Roberts-Mac-mini-M4-Pro |
 | 20260809-051553-year2018-en-1440-dark.png | https://github.com/ArcBlock/arcblock-site | 2026-08-09T05:15:53Z | robmao@Roberts-Mac-mini-M4-Pro |
+| arcblock-site-ep267/03b-docs-workflow-mermaid-fence-as-code.png | https://github.com/ArcBlock/arcblock-site | 2026-08-09T07:46:45Z | robmao@Roberts-Mac-mini-M4-Pro |
