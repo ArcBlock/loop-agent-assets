@@ -81,3 +81,4 @@
 | arcblock-site-ep267/2026/keynote-at-harness4genui-ase-2026-hero-20260809024909.png | https://github.com/ArcBlock/arcblock-site | 2026-08-09T09:50:27Z | robmao@Roberts-Mac-mini-M4-Pro |
 | arcblock-site-ep267/2026/markdown-slides-for-web-device-hero-20260809024909.png | https://github.com/ArcBlock/arcblock-site | 2026-08-09T09:50:32Z | robmao@Roberts-Mac-mini-M4-Pro |
 | arcblock-site-ep267/2026/markdown-slides-for-web-device-one-record-two-modes.graph-20260809024909.svg | https://github.com/ArcBlock/arcblock-site | 2026-08-09T09:50:37Z | robmao@Roberts-Mac-mini-M4-Pro |
+| arcblock-site-ep267/2026/multi-agent-writing-needs-boundaries-hero-20260809024909.png | https://github.com/ArcBlock/arcblock-site | 2026-08-09T09:50:41Z | robmao@Roberts-Mac-mini-M4-Pro |
