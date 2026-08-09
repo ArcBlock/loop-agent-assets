@@ -30,3 +30,4 @@
 | 20260809-194943-feed-read-1-02.png | https://github.com/ArcBlock/arc | 2026-08-09T19:49:43Z | root@vm |
 | 20260809-194946-feed-read-1-03.png | https://github.com/ArcBlock/arc | 2026-08-09T19:49:46Z | root@vm |
 | 20260809-194950-item-detail-01.png | https://github.com/ArcBlock/arc | 2026-08-09T19:49:50Z | root@vm |
+| 20260809-194953-item-detail-02.png | https://github.com/ArcBlock/arc | 2026-08-09T19:49:53Z | root@vm |
