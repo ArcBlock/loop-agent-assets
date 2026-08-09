@@ -64,3 +64,4 @@
 | arcblock-site-ep267/realm-cover-qa.png | https://github.com/ArcBlock/arcblock-site | 2026-08-09T09:39:35Z | robmao@Roberts-Mac-mini-M4-Pro |
 | arcblock-site-ep267/realm-transition-qa.png | https://github.com/ArcBlock/arcblock-site | 2026-08-09T09:39:39Z | robmao@Roberts-Mac-mini-M4-Pro |
 | arcblock-site-ep267/2026/afs-context-not-cognition-hero-20260809024909.png | https://github.com/ArcBlock/arcblock-site | 2026-08-09T09:49:11Z | robmao@Roberts-Mac-mini-M4-Pro |
+| arcblock-site-ep267/2026/afs-context-not-cognition-context-vs-cognition.graph-20260809024909.svg | https://github.com/ArcBlock/arcblock-site | 2026-08-09T09:49:16Z | robmao@Roberts-Mac-mini-M4-Pro |
