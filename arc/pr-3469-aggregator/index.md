@@ -17,3 +17,4 @@
 | agg-det-link.png | https://github.com/ArcBlock/arc | 2026-08-09T05:02:12Z | robmao@Roberts-Mac-mini-M4-Pro |
 | agg-theme-home-dark.png | https://github.com/ArcBlock/arc | 2026-08-09T05:02:17Z | robmao@Roberts-Mac-mini-M4-Pro |
 | agg-theme-books-indigo.png | https://github.com/ArcBlock/arc | 2026-08-09T05:02:23Z | robmao@Roberts-Mac-mini-M4-Pro |
+| agg-theme-home-amber.png | https://github.com/ArcBlock/arc | 2026-08-09T05:02:29Z | robmao@Roberts-Mac-mini-M4-Pro |
