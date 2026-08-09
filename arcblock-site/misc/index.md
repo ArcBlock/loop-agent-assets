@@ -28,3 +28,4 @@
 | arcblock-site-ep267/03b-docs-workflow-mermaid-fence-as-code.png | https://github.com/ArcBlock/arcblock-site | 2026-08-09T07:46:45Z | robmao@Roberts-Mac-mini-M4-Pro |
 | arcblock-site-ep267/when-agents-should-illustrate/hero.png | https://github.com/ArcBlock/arcblock-site | 2026-08-09T08:12:10Z | robmao@Roberts-Mac-mini-M4-Pro |
 | arcblock-site-ep267/when-agents-should-illustrate/pipeline.svg | https://github.com/ArcBlock/arcblock-site | 2026-08-09T08:12:16Z | robmao@Roberts-Mac-mini-M4-Pro |
+| arcblock-site-ep267/dogfood-desktop.png | https://github.com/ArcBlock/arcblock-site | 2026-08-09T08:13:15Z | robmao@Roberts-Mac-mini-M4-Pro |
