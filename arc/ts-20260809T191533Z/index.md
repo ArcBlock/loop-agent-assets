@@ -215,3 +215,4 @@
 | 20260809-200115-auto-surface-02.png | https://github.com/ArcBlock/arc | 2026-08-09T20:01:15Z | root@vm |
 | 20260809-200119-explorer-01.png | https://github.com/ArcBlock/arc | 2026-08-09T20:01:19Z | root@vm |
 | 20260809-200122-explorer-02.png | https://github.com/ArcBlock/arc | 2026-08-09T20:01:22Z | root@vm |
+| 20260809-200125-explorer-read-1-01.png | https://github.com/ArcBlock/arc | 2026-08-09T20:01:25Z | root@vm |
