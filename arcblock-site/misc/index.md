@@ -91,3 +91,4 @@
 | arc3572-docs-afs.png | https://github.com/ArcBlock/arcblock-site | 2026-08-10T05:32:31Z | robmao@Roberts-Mac-mini-M4-Pro |
 | arc3572-article-realm.png | https://github.com/ArcBlock/arcblock-site | 2026-08-10T05:32:35Z | robmao@Roberts-Mac-mini-M4-Pro |
 | arcblock-site/web-device-in-page-review/review-idle-20260809.png | https://github.com/ArcBlock/arcblock-site | 2026-08-10T05:42:59Z | robmao@Roberts-Mac-mini-M4-Pro |
+| arcblock-site/web-device-in-page-review/review-selection-panel-20260809.png | https://github.com/ArcBlock/arcblock-site | 2026-08-10T05:43:03Z | robmao@Roberts-Mac-mini-M4-Pro |
