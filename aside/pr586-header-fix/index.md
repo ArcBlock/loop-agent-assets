@@ -10,3 +10,4 @@
 | 20260810-052039-issue-548-search-reader-back.png | https://github.com/ArcBlock/aside/pull/586-header-fix | 2026-08-10T05:20:39Z | nategu@Nate-Mac-Pro |
 | 20260810-052049-issue-548-search-reader-open.png | https://github.com/ArcBlock/aside/pull/586-header-fix | 2026-08-10T05:20:49Z | nategu@Nate-Mac-Pro |
 | 20260810-052058-issue-548-tag-detail-after-load-more.png | https://github.com/ArcBlock/aside/pull/586-header-fix | 2026-08-10T05:20:58Z | nategu@Nate-Mac-Pro |
+| 20260810-052108-issue-548-tag-detail-empty.png | https://github.com/ArcBlock/aside/pull/586-header-fix | 2026-08-10T05:21:08Z | nategu@Nate-Mac-Pro |
