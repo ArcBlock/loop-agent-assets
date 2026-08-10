@@ -9,3 +9,4 @@
 | 20260810-045152-issue-548-search-query-results.png | https://github.com/ArcBlock/aside/pull/586 | 2026-08-10T04:51:52Z | nategu@Nate-Mac-Pro |
 | 20260810-045205-issue-548-search-reader-back.png | https://github.com/ArcBlock/aside/pull/586 | 2026-08-10T04:52:05Z | nategu@Nate-Mac-Pro |
 | 20260810-045219-issue-548-search-reader-open.png | https://github.com/ArcBlock/aside/pull/586 | 2026-08-10T04:52:19Z | nategu@Nate-Mac-Pro |
+| 20260810-045229-issue-548-tag-detail-after-load-more.png | https://github.com/ArcBlock/aside/pull/586 | 2026-08-10T04:52:29Z | nategu@Nate-Mac-Pro |
