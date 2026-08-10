@@ -6,3 +6,4 @@
 | afs-context-not-cognition-context-vs-cognition-20260809233043.svg | https://github.com/arcblock-site | 2026-08-10T06:30:43Z | robmao@Roberts-Mac-mini-M4-Pro |
 | afs-not-git-or-semantic-tree-path-not-git.graph-20260809233047.svg | https://github.com/arcblock-site | 2026-08-10T06:30:47Z | robmao@Roberts-Mac-mini-M4-Pro |
 | afs-not-git-or-semantic-tree-path-not-git-20260809233051.svg | https://github.com/arcblock-site | 2026-08-10T06:30:52Z | robmao@Roberts-Mac-mini-M4-Pro |
+| afs-small-world-projections-20260809233055.svg | https://github.com/arcblock-site | 2026-08-10T06:30:55Z | robmao@Roberts-Mac-mini-M4-Pro |
