@@ -12,3 +12,4 @@
 | 20260810-133757-mobile-390-article-en.jpg | https://github.com/ArcBlock/aside/pull/612 | 2026-08-10T13:38:01Z | nategu@Nate-Mac-Pro |
 | 20260810-133810-mobile-390-article-zh.jpg | https://github.com/ArcBlock/aside/pull/612 | 2026-08-10T13:38:12Z | nategu@Nate-Mac-Pro |
 | 20260810-133820-mobile-390-doc-en.jpg | https://github.com/ArcBlock/aside/pull/612 | 2026-08-10T13:38:22Z | nategu@Nate-Mac-Pro |
+| 20260810-133834-mobile-390-doc-zh.jpg | https://github.com/ArcBlock/aside/pull/612 | 2026-08-10T13:38:37Z | nategu@Nate-Mac-Pro |
