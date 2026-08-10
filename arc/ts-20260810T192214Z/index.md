@@ -201,3 +201,4 @@
 | 20260810-220451-setup-create-item-aside-07.png | https://github.com/ArcBlock/arc | 2026-08-10T22:04:51Z | root@vm |
 | 20260810-220454-setup-create-item-aside-08.png | https://github.com/ArcBlock/arc | 2026-08-10T22:04:55Z | root@vm |
 | 20260810-220458-setup-create-item-aside-09.png | https://github.com/ArcBlock/arc | 2026-08-10T22:04:58Z | root@vm |
+| 20260810-220502-tags-01.png | https://github.com/ArcBlock/arc | 2026-08-10T22:05:02Z | root@vm |
