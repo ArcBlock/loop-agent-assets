@@ -168,3 +168,4 @@
 | 20260810-220222-dd-7-aside-08.png | https://github.com/ArcBlock/arc | 2026-08-10T22:02:22Z | root@vm |
 | 20260810-220226-dd-8-aside-00.png | https://github.com/ArcBlock/arc | 2026-08-10T22:02:26Z | root@vm |
 | 20260810-220231-dd-8-aside-01.png | https://github.com/ArcBlock/arc | 2026-08-10T22:02:31Z | root@vm |
+| 20260810-220235-dd-8-aside-02.png | https://github.com/ArcBlock/arc | 2026-08-10T22:02:35Z | root@vm |
