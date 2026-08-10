@@ -88,3 +88,4 @@
 | 20260810-135426-usage-user-face.png | https://github.com/ArcBlock/arc | 2026-08-10T13:54:26Z | chao@Yechaos-MacBook-Pro |
 | 20260810-135437-usage-user-face-tables.png | https://github.com/ArcBlock/arc | 2026-08-10T13:54:37Z | chao@Yechaos-MacBook-Pro |
 | 20260810-135448-usage-admin-face.png | https://github.com/ArcBlock/arc | 2026-08-10T13:54:48Z | chao@Yechaos-MacBook-Pro |
+| 20260810-135458-usage-admin-deeplink.png | https://github.com/ArcBlock/arc | 2026-08-10T13:54:58Z | chao@Yechaos-MacBook-Pro |
