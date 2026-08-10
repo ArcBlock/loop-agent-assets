@@ -4,3 +4,4 @@
 |---|---|---|---|
 | 20260810-110209-device-organize-home.png | https://github.com/ArcBlock/aside/pull/595 | 2026-08-10T11:02:09Z | nategu@Nate-Mac-Pro |
 | 20260810-110218-device-organize-home-settle.png | https://github.com/ArcBlock/aside/pull/595 | 2026-08-10T11:02:18Z | nategu@Nate-Mac-Pro |
+| 20260810-110228-sim-after-organize-home.png | https://github.com/ArcBlock/aside/pull/595 | 2026-08-10T11:02:28Z | nategu@Nate-Mac-Pro |
