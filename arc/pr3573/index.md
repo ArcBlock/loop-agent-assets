@@ -13,3 +13,4 @@
 | 20260810-090405-ui-verify-did-space-browse.gif | https://github.com/ArcBlock/arc/pull/3573 | 2026-08-10T09:04:05Z | chao@Yechaos-MacBook-Pro |
 | 20260810-090411-ui-verify-explorer-anon.gif | https://github.com/ArcBlock/arc/pull/3573 | 2026-08-10T09:04:11Z | chao@Yechaos-MacBook-Pro |
 | 20260810-090418-ui-verify-http-fastpath-echo-ctx.gif | https://github.com/ArcBlock/arc/pull/3573 | 2026-08-10T09:04:18Z | chao@Yechaos-MacBook-Pro |
+| 20260810-090424-ui-verify-todo-complete-item.gif | https://github.com/ArcBlock/arc/pull/3573 | 2026-08-10T09:04:24Z | chao@Yechaos-MacBook-Pro |
