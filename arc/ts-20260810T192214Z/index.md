@@ -190,3 +190,4 @@
 | 20260810-220352-publish-01.png | https://github.com/ArcBlock/arc | 2026-08-10T22:03:52Z | root@vm |
 | 20260810-220356-publish-02.png | https://github.com/ArcBlock/arc | 2026-08-10T22:03:56Z | root@vm |
 | 20260810-220400-setup-clipper-code-aside-00.png | https://github.com/ArcBlock/arc | 2026-08-10T22:04:00Z | root@vm |
+| 20260810-220403-setup-clipper-code-aside-01.png | https://github.com/ArcBlock/arc | 2026-08-10T22:04:03Z | root@vm |
