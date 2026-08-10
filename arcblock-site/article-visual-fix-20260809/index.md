@@ -21,3 +21,4 @@
 | markdown-slides-for-web-device-one-record-two-modes-20260809233140.svg | https://github.com/arcblock-site | 2026-08-10T06:31:40Z | robmao@Roberts-Mac-mini-M4-Pro |
 | multi-agent-writing-needs-boundaries-separated-worlds.graph-20260809233144.svg | https://github.com/arcblock-site | 2026-08-10T06:31:44Z | robmao@Roberts-Mac-mini-M4-Pro |
 | multi-agent-writing-needs-boundaries-separated-worlds-20260809233148.svg | https://github.com/arcblock-site | 2026-08-10T06:31:48Z | robmao@Roberts-Mac-mini-M4-Pro |
+| web-as-system-capability-web-layers.graph-20260809233151.svg | https://github.com/arcblock-site | 2026-08-10T06:31:52Z | robmao@Roberts-Mac-mini-M4-Pro |
