@@ -88,3 +88,4 @@
 | arcblock-site-ep267/2026/web-as-system-capability-web-layers.graph-20260809024909.svg | https://github.com/ArcBlock/arcblock-site | 2026-08-09T09:51:02Z | robmao@Roberts-Mac-mini-M4-Pro |
 | arcblock-site-ep267/2026/why-agents-need-an-identity-hero-20260809024909.png | https://github.com/ArcBlock/arcblock-site | 2026-08-09T09:51:06Z | robmao@Roberts-Mac-mini-M4-Pro |
 | arcblock-site-ep267/2026/why-agents-need-an-identity-identity-anchor.graph-20260809024909.svg | https://github.com/ArcBlock/arcblock-site | 2026-08-09T09:51:12Z | robmao@Roberts-Mac-mini-M4-Pro |
+| arc3572-docs-afs.png | https://github.com/ArcBlock/arcblock-site | 2026-08-10T05:32:31Z | robmao@Roberts-Mac-mini-M4-Pro |
