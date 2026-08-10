@@ -8,3 +8,4 @@
 | 20260810-094358-ios-before-populated.png | https://github.com/ArcBlock/aside/pull/595-collections-parity | 2026-08-10T09:43:58Z | nategu@Nate-Mac-Pro |
 | 20260810-094408-ios-populated-side-by-side.png | https://github.com/ArcBlock/aside/pull/595-collections-parity | 2026-08-10T09:44:08Z | nategu@Nate-Mac-Pro |
 | 20260810-094418-web-collections-raw.png | https://github.com/ArcBlock/aside/pull/595-collections-parity | 2026-08-10T09:44:18Z | nategu@Nate-Mac-Pro |
+| 20260810-094426-web-search-raw-control.png | https://github.com/ArcBlock/aside/pull/595-collections-parity | 2026-08-10T09:44:26Z | nategu@Nate-Mac-Pro |
