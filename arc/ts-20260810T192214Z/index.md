@@ -355,3 +355,4 @@
 | 20260810-221530-page@fed78fa7031fc87b018bebb567a59cba.webm | https://github.com/ArcBlock/arc | 2026-08-10T22:15:30Z | root@vm |
 | 20260810-221538-dd-1-todo-00.png | https://github.com/ArcBlock/arc | 2026-08-10T22:15:38Z | root@vm |
 | 20260810-221545-dd-1-todo-01.png | https://github.com/ArcBlock/arc | 2026-08-10T22:15:45Z | root@vm |
+| 20260810-221549-dd-1-todo-02.png | https://github.com/ArcBlock/arc | 2026-08-10T22:15:49Z | root@vm |
