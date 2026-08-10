@@ -515,3 +515,4 @@
 | 20260810-222644-explorer-read-1-02.png | https://github.com/ArcBlock/arc | 2026-08-10T22:26:44Z | root@vm |
 | 20260810-222648-explorer-read-1-03.png | https://github.com/ArcBlock/arc | 2026-08-10T22:26:48Z | root@vm |
 | 20260810-222652-explorer-read-2-01.png | https://github.com/ArcBlock/arc | 2026-08-10T22:26:52Z | root@vm |
+| 20260810-222656-explorer-read-2-02.png | https://github.com/ArcBlock/arc | 2026-08-10T22:26:56Z | root@vm |
