@@ -442,3 +442,4 @@
 | 20260810-222136-dd-5-discuss-kit-04.png | https://github.com/ArcBlock/arc | 2026-08-10T22:21:36Z | root@vm |
 | 20260810-222140-detail-01.png | https://github.com/ArcBlock/arc | 2026-08-10T22:21:40Z | root@vm |
 | 20260810-222145-detail-02.png | https://github.com/ArcBlock/arc | 2026-08-10T22:21:45Z | root@vm |
+| 20260810-222148-index-01.png | https://github.com/ArcBlock/arc | 2026-08-10T22:21:48Z | root@vm |
