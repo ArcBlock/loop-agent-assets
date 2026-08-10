@@ -18,3 +18,4 @@
 | 20260810-090437-ui-verify-todo-home.gif | https://github.com/ArcBlock/arc/pull/3573 | 2026-08-10T09:04:37Z | chao@Yechaos-MacBook-Pro |
 | 20260810-090443-ui-verify-aup-event-seam.webm | https://github.com/ArcBlock/arc/pull/3573 | 2026-08-10T09:04:43Z | chao@Yechaos-MacBook-Pro |
 | 20260810-090449-ui-verify-did-space-browse.webm | https://github.com/ArcBlock/arc/pull/3573 | 2026-08-10T09:04:49Z | chao@Yechaos-MacBook-Pro |
+| 20260810-090456-ui-verify-explorer-anon.webm | https://github.com/ArcBlock/arc/pull/3573 | 2026-08-10T09:04:57Z | chao@Yechaos-MacBook-Pro |
