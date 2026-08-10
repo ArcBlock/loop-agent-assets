@@ -8,3 +8,4 @@
 | 20260810-110241-sim-before-organize-home.png | https://github.com/ArcBlock/aside/pull/595 | 2026-08-10T11:02:41Z | nategu@Nate-Mac-Pro |
 | 20260810-111124-device-organize-parity-fix.png | https://github.com/ArcBlock/aside/pull/595 | 2026-08-10T11:11:24Z | nategu@Nate-Mac-Pro |
 | 20260810-113131-web-organize-raw.png | https://github.com/ArcBlock/aside/pull/595 | 2026-08-10T11:31:31Z | nategu@Nate-Mac-Pro |
+| 20260810-113139-web-collections-raw-legacy.png | https://github.com/ArcBlock/aside/pull/595 | 2026-08-10T11:31:39Z | nategu@Nate-Mac-Pro |
