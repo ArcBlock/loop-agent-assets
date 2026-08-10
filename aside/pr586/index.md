@@ -7,3 +7,4 @@
 | 20260810-045127-issue-548-search-initial-ready.png | https://github.com/ArcBlock/aside/pull/586 | 2026-08-10T04:51:27Z | nategu@Nate-Mac-Pro |
 | 20260810-045142-issue-548-search-query-empty.png | https://github.com/ArcBlock/aside/pull/586 | 2026-08-10T04:51:42Z | nategu@Nate-Mac-Pro |
 | 20260810-045152-issue-548-search-query-results.png | https://github.com/ArcBlock/aside/pull/586 | 2026-08-10T04:51:52Z | nategu@Nate-Mac-Pro |
+| 20260810-045205-issue-548-search-reader-back.png | https://github.com/ArcBlock/aside/pull/586 | 2026-08-10T04:52:05Z | nategu@Nate-Mac-Pro |
