@@ -432,3 +432,4 @@
 | 20260810-222056-page@cf223ef3181f230515b0aef86db24b54.webm | https://github.com/ArcBlock/arc | 2026-08-10T22:20:56Z | root@vm |
 | 20260810-222100-dd-1-discuss-kit-00.png | https://github.com/ArcBlock/arc | 2026-08-10T22:21:00Z | root@vm |
 | 20260810-222104-dd-2-discuss-kit-00.png | https://github.com/ArcBlock/arc | 2026-08-10T22:21:04Z | root@vm |
+| 20260810-222108-dd-2-discuss-kit-01.png | https://github.com/ArcBlock/arc | 2026-08-10T22:21:08Z | root@vm |
