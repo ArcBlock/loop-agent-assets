@@ -456,3 +456,4 @@
 | 20260810-222241-page@cb5b31fc37710a3cf01d9fa1e3f239cc.webm | https://github.com/ArcBlock/arc | 2026-08-10T22:22:41Z | root@vm |
 | 20260810-222245-auto-surface-01.png | https://github.com/ArcBlock/arc | 2026-08-10T22:22:45Z | root@vm |
 | 20260810-222250-auto-surface-02.png | https://github.com/ArcBlock/arc | 2026-08-10T22:22:50Z | root@vm |
+| 20260810-222255-dd-1-showcase-00.png | https://github.com/ArcBlock/arc | 2026-08-10T22:22:55Z | root@vm |
