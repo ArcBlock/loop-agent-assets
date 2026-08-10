@@ -84,3 +84,4 @@
 | 20260808-231325-did-space-browse.png | https://github.com/ArcBlock/arc | 2026-08-08T23:13:25Z | robmao@Roberts-Mac-mini-M4-Pro |
 | pr3464 | https://github.com/ArcBlock/arc | 2026-08-09T03:12:41Z | root@vm |
 | 20260809-081048-book-detail-social.png | https://github.com/ArcBlock/arc | 2026-08-09T08:10:48Z | robmao@Roberts-Mac-mini-M4-Pro |
+| --context | https://github.com/ArcBlock/arc | 2026-08-10T06:52:39Z | robmao@Roberts-Mac-mini-M4-Pro |
