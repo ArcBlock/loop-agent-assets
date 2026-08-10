@@ -10,3 +10,4 @@
 | afs-small-world-recursive-20260809233059.svg | https://github.com/arcblock-site | 2026-08-10T06:30:59Z | robmao@Roberts-Mac-mini-M4-Pro |
 | agents-need-a-computer-not-a-sandbox-layers-20260809233102.svg | https://github.com/arcblock-site | 2026-08-10T06:31:03Z | robmao@Roberts-Mac-mini-M4-Pro |
 | arc-web-device-declare-render.graph-20260809233106.svg | https://github.com/arcblock-site | 2026-08-10T06:31:06Z | robmao@Roberts-Mac-mini-M4-Pro |
+| arc-web-device-declare-render-20260809233110.svg | https://github.com/arcblock-site | 2026-08-10T06:31:10Z | robmao@Roberts-Mac-mini-M4-Pro |
