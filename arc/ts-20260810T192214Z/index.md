@@ -459,3 +459,4 @@
 | 20260810-222255-dd-1-showcase-00.png | https://github.com/ArcBlock/arc | 2026-08-10T22:22:55Z | root@vm |
 | 20260810-222259-dd-1-showcase-01.png | https://github.com/ArcBlock/arc | 2026-08-10T22:22:59Z | root@vm |
 | 20260810-222303-dd-1-showcase-02.png | https://github.com/ArcBlock/arc | 2026-08-10T22:23:03Z | root@vm |
+| 20260810-222307-dd-1-showcase-03.png | https://github.com/ArcBlock/arc | 2026-08-10T22:23:07Z | root@vm |
