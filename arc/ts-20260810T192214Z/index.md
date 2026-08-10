@@ -412,3 +412,4 @@
 | 20260810-221930-index-02.png | https://github.com/ArcBlock/arc | 2026-08-10T22:19:30Z | root@vm |
 | 20260810-221934-page@02013527ed3cd8a07e7d0fb102dea331.webm | https://github.com/ArcBlock/arc | 2026-08-10T22:19:34Z | root@vm |
 | 20260810-221938-page@0b663e480d52a4101c41660b374e15b3.webm | https://github.com/ArcBlock/arc | 2026-08-10T22:19:38Z | root@vm |
+| 20260810-221942-page@145f846f1e2b4e36a927182c7ffd2581.webm | https://github.com/ArcBlock/arc | 2026-08-10T22:19:42Z | root@vm |
