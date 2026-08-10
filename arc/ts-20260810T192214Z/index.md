@@ -243,3 +243,4 @@
 | 20260810-220759-dd-2-did-space-01.png | https://github.com/ArcBlock/arc | 2026-08-10T22:07:59Z | root@vm |
 | 20260810-220803-dd-4-did-space-00.png | https://github.com/ArcBlock/arc | 2026-08-10T22:08:03Z | root@vm |
 | 20260810-220807-dd-4-did-space-01.png | https://github.com/ArcBlock/arc | 2026-08-10T22:08:07Z | root@vm |
+| 20260810-220810-dd-4-did-space-02.png | https://github.com/ArcBlock/arc | 2026-08-10T22:08:10Z | root@vm |
