@@ -87,3 +87,4 @@
 | --context | https://github.com/ArcBlock/arc | 2026-08-10T06:52:39Z | robmao@Roberts-Mac-mini-M4-Pro |
 | 20260810-135426-usage-user-face.png | https://github.com/ArcBlock/arc | 2026-08-10T13:54:26Z | chao@Yechaos-MacBook-Pro |
 | 20260810-135437-usage-user-face-tables.png | https://github.com/ArcBlock/arc | 2026-08-10T13:54:37Z | chao@Yechaos-MacBook-Pro |
+| 20260810-135448-usage-admin-face.png | https://github.com/ArcBlock/arc | 2026-08-10T13:54:48Z | chao@Yechaos-MacBook-Pro |
