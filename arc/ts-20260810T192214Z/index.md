@@ -32,3 +32,4 @@
 | 20260810-215326-clip-01.png | https://github.com/ArcBlock/arc | 2026-08-10T21:53:26Z | root@vm |
 | 20260810-215330-clip-02.png | https://github.com/ArcBlock/arc | 2026-08-10T21:53:30Z | root@vm |
 | 20260810-215333-clip-read-1-01.png | https://github.com/ArcBlock/arc | 2026-08-10T21:53:33Z | root@vm |
+| 20260810-215337-clip-read-1-02.png | https://github.com/ArcBlock/arc | 2026-08-10T21:53:37Z | root@vm |
