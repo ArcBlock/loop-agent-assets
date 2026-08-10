@@ -237,3 +237,4 @@
 | 20260810-220733-page@fd2e59d9aaa0621336ad27e98e830d4d.webm | https://github.com/ArcBlock/arc | 2026-08-10T22:07:33Z | root@vm |
 | 20260810-220738-page@fe38d750b8fb5a2a62559c98858d2a2f.webm | https://github.com/ArcBlock/arc | 2026-08-10T22:07:38Z | root@vm |
 | 20260810-220744-dd-1-did-space-00.png | https://github.com/ArcBlock/arc | 2026-08-10T22:07:44Z | root@vm |
+| 20260810-220747-dd-1-did-space-01.png | https://github.com/ArcBlock/arc | 2026-08-10T22:07:47Z | root@vm |
