@@ -6,3 +6,4 @@
 | 20260810-114130-articles-list.png | https://github.com/ArcBlock/aside/pull/606 | 2026-08-10T11:41:32Z | nategu@Nate-Mac-Pro |
 | 20260810-114139-article-detail.png | https://github.com/ArcBlock/aside/pull/606 | 2026-08-10T11:41:42Z | nategu@Nate-Mac-Pro |
 | 20260810-114149-docs-list.png | https://github.com/ArcBlock/aside/pull/606 | 2026-08-10T11:41:51Z | nategu@Nate-Mac-Pro |
+| 20260810-114158-app-aup-boundary.png | https://github.com/ArcBlock/aside/pull/606 | 2026-08-10T11:42:00Z | nategu@Nate-Mac-Pro |
