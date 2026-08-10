@@ -13,3 +13,4 @@
 | arc-web-device-declare-render-20260809233110.svg | https://github.com/arcblock-site | 2026-08-10T06:31:10Z | robmao@Roberts-Mac-mini-M4-Pro |
 | design-review-build-phases-loop-skills-loop-skills.graph-20260809233114.svg | https://github.com/arcblock-site | 2026-08-10T06:31:14Z | robmao@Roberts-Mac-mini-M4-Pro |
 | design-review-build-phases-loop-skills-loop-skills-20260809233117.svg | https://github.com/arcblock-site | 2026-08-10T06:31:18Z | robmao@Roberts-Mac-mini-M4-Pro |
+| from-blocklet-server-to-arc-server-to-arc.graph-20260809233121.svg | https://github.com/arcblock-site | 2026-08-10T06:31:22Z | robmao@Roberts-Mac-mini-M4-Pro |
