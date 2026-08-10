@@ -15,3 +15,4 @@
 | 20260810-090418-ui-verify-http-fastpath-echo-ctx.gif | https://github.com/ArcBlock/arc/pull/3573 | 2026-08-10T09:04:18Z | chao@Yechaos-MacBook-Pro |
 | 20260810-090424-ui-verify-todo-complete-item.gif | https://github.com/ArcBlock/arc/pull/3573 | 2026-08-10T09:04:24Z | chao@Yechaos-MacBook-Pro |
 | 20260810-090430-ui-verify-todo-create-item.gif | https://github.com/ArcBlock/arc/pull/3573 | 2026-08-10T09:04:30Z | chao@Yechaos-MacBook-Pro |
+| 20260810-090437-ui-verify-todo-home.gif | https://github.com/ArcBlock/arc/pull/3573 | 2026-08-10T09:04:37Z | chao@Yechaos-MacBook-Pro |
