@@ -15,3 +15,4 @@
 | 20260810-045258-issue-548-tag-detail-offline-retry-recovered.png | https://github.com/ArcBlock/aside/pull/586 | 2026-08-10T04:52:58Z | nategu@Nate-Mac-Pro |
 | 20260810-045314-issue-548-tag-detail-offline.png | https://github.com/ArcBlock/aside/pull/586 | 2026-08-10T04:53:14Z | nategu@Nate-Mac-Pro |
 | 20260810-045324-issue-548-tag-detail-populated-first-page.png | https://github.com/ArcBlock/aside/pull/586 | 2026-08-10T04:53:24Z | nategu@Nate-Mac-Pro |
+| 20260810-045334-issue-548-tag-detail-provider-error-retry-recovered.png | https://github.com/ArcBlock/aside/pull/586 | 2026-08-10T04:53:34Z | nategu@Nate-Mac-Pro |
