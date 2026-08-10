@@ -12,3 +12,4 @@
 | 20260810-113149-web-search-raw-from-earlier.png | https://github.com/ArcBlock/aside/pull/595 | 2026-08-10T11:31:49Z | nategu@Nate-Mac-Pro |
 | 20260810-113254-web-organize-raw-final.png | https://github.com/ArcBlock/aside/pull/595 | 2026-08-10T11:32:54Z | nategu@Nate-Mac-Pro |
 | 20260810-113302-web-collections-raw-final.png | https://github.com/ArcBlock/aside/pull/595 | 2026-08-10T11:33:02Z | nategu@Nate-Mac-Pro |
+| 20260810-113309-web-search-raw-control.png | https://github.com/ArcBlock/aside/pull/595 | 2026-08-10T11:33:09Z | nategu@Nate-Mac-Pro |
