@@ -555,3 +555,4 @@
 | 20260810-222927-list-basic-02.png | https://github.com/ArcBlock/arc | 2026-08-10T22:29:27Z | root@vm |
 | 20260810-222931-list-grid-01.png | https://github.com/ArcBlock/arc | 2026-08-10T22:29:31Z | root@vm |
 | 20260810-222935-list-grid-02.png | https://github.com/ArcBlock/arc | 2026-08-10T22:29:35Z | root@vm |
+| 20260810-222939-list-pagination-01.png | https://github.com/ArcBlock/arc | 2026-08-10T22:29:39Z | root@vm |
