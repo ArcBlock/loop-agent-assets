@@ -510,3 +510,4 @@
 | 20260810-222624-dd-9-showcase-01.png | https://github.com/ArcBlock/arc | 2026-08-10T22:26:24Z | root@vm |
 | 20260810-222628-dd-9-showcase-02.png | https://github.com/ArcBlock/arc | 2026-08-10T22:26:28Z | root@vm |
 | 20260810-222632-explorer-01.png | https://github.com/ArcBlock/arc | 2026-08-10T22:26:32Z | root@vm |
+| 20260810-222636-explorer-02.png | https://github.com/ArcBlock/arc | 2026-08-10T22:26:36Z | root@vm |
