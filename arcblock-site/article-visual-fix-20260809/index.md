@@ -23,3 +23,4 @@
 | multi-agent-writing-needs-boundaries-separated-worlds-20260809233148.svg | https://github.com/arcblock-site | 2026-08-10T06:31:48Z | robmao@Roberts-Mac-mini-M4-Pro |
 | web-as-system-capability-web-layers.graph-20260809233151.svg | https://github.com/arcblock-site | 2026-08-10T06:31:52Z | robmao@Roberts-Mac-mini-M4-Pro |
 | web-as-system-capability-web-layers-20260809233155.svg | https://github.com/arcblock-site | 2026-08-10T06:31:55Z | robmao@Roberts-Mac-mini-M4-Pro |
+| when-agents-should-illustrate-pipeline-20260809233158.svg | https://github.com/arcblock-site | 2026-08-10T06:31:59Z | robmao@Roberts-Mac-mini-M4-Pro |
