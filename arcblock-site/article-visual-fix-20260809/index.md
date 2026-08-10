@@ -25,3 +25,4 @@
 | web-as-system-capability-web-layers-20260809233155.svg | https://github.com/arcblock-site | 2026-08-10T06:31:55Z | robmao@Roberts-Mac-mini-M4-Pro |
 | when-agents-should-illustrate-pipeline-20260809233158.svg | https://github.com/arcblock-site | 2026-08-10T06:31:59Z | robmao@Roberts-Mac-mini-M4-Pro |
 | why-agents-need-an-identity-identity-anchor.graph-20260809233202.svg | https://github.com/arcblock-site | 2026-08-10T06:32:03Z | robmao@Roberts-Mac-mini-M4-Pro |
+| why-agents-need-an-identity-identity-anchor-20260809233206.svg | https://github.com/arcblock-site | 2026-08-10T06:32:06Z | robmao@Roberts-Mac-mini-M4-Pro |
