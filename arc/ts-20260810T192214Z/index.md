@@ -205,3 +205,4 @@
 | 20260810-220506-tags-02.png | https://github.com/ArcBlock/arc | 2026-08-10T22:05:06Z | root@vm |
 | 20260810-220510-tags-read-1-01.png | https://github.com/ArcBlock/arc | 2026-08-10T22:05:10Z | root@vm |
 | 20260810-220514-tags-read-1-02.png | https://github.com/ArcBlock/arc | 2026-08-10T22:05:14Z | root@vm |
+| 20260810-220518-tags-read-1-03.png | https://github.com/ArcBlock/arc | 2026-08-10T22:05:18Z | root@vm |
