@@ -18,3 +18,4 @@
 | invite-agents-into-your-realm-surface-20260809233129.svg | https://github.com/arcblock-site | 2026-08-10T06:31:29Z | robmao@Roberts-Mac-mini-M4-Pro |
 | invite-agents-into-your-realm-transition-20260809233132.svg | https://github.com/arcblock-site | 2026-08-10T06:31:33Z | robmao@Roberts-Mac-mini-M4-Pro |
 | markdown-slides-for-web-device-one-record-two-modes.graph-20260809233136.svg | https://github.com/arcblock-site | 2026-08-10T06:31:37Z | robmao@Roberts-Mac-mini-M4-Pro |
+| markdown-slides-for-web-device-one-record-two-modes-20260809233140.svg | https://github.com/arcblock-site | 2026-08-10T06:31:40Z | robmao@Roberts-Mac-mini-M4-Pro |
