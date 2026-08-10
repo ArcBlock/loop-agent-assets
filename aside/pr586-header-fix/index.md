@@ -13,3 +13,4 @@
 | 20260810-052108-issue-548-tag-detail-empty.png | https://github.com/ArcBlock/aside/pull/586-header-fix | 2026-08-10T05:21:08Z | nategu@Nate-Mac-Pro |
 | 20260810-052121-issue-548-tag-detail-loading.png | https://github.com/ArcBlock/aside/pull/586-header-fix | 2026-08-10T05:21:21Z | nategu@Nate-Mac-Pro |
 | 20260810-052131-issue-548-tag-detail-offline-retry-recovered.png | https://github.com/ArcBlock/aside/pull/586-header-fix | 2026-08-10T05:21:31Z | nategu@Nate-Mac-Pro |
+| 20260810-052142-issue-548-tag-detail-offline.png | https://github.com/ArcBlock/aside/pull/586-header-fix | 2026-08-10T05:21:42Z | nategu@Nate-Mac-Pro |
