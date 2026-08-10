@@ -19,3 +19,4 @@
 | 20260810-090443-ui-verify-aup-event-seam.webm | https://github.com/ArcBlock/arc/pull/3573 | 2026-08-10T09:04:43Z | chao@Yechaos-MacBook-Pro |
 | 20260810-090449-ui-verify-did-space-browse.webm | https://github.com/ArcBlock/arc/pull/3573 | 2026-08-10T09:04:49Z | chao@Yechaos-MacBook-Pro |
 | 20260810-090456-ui-verify-explorer-anon.webm | https://github.com/ArcBlock/arc/pull/3573 | 2026-08-10T09:04:57Z | chao@Yechaos-MacBook-Pro |
+| 20260810-090504-ui-verify-http-fastpath-echo-ctx.webm | https://github.com/ArcBlock/arc/pull/3573 | 2026-08-10T09:05:04Z | chao@Yechaos-MacBook-Pro |
