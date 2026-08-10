@@ -208,3 +208,4 @@
 | 20260810-220518-tags-read-1-03.png | https://github.com/ArcBlock/arc | 2026-08-10T22:05:18Z | root@vm |
 | 20260810-220522-page@043f775a2f19a555efaa5e378934c3a0.webm | https://github.com/ArcBlock/arc | 2026-08-10T22:05:22Z | root@vm |
 | 20260810-220526-page@05c9769df07b06f2787dfec6761965cf.webm | https://github.com/ArcBlock/arc | 2026-08-10T22:05:26Z | root@vm |
+| 20260810-220530-page@1313bd0f064d340ddc32f1b15a11973e.webm | https://github.com/ArcBlock/arc | 2026-08-10T22:05:30Z | root@vm |
