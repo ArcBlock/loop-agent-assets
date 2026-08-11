@@ -19,3 +19,4 @@
 | 20260811-072727-11-identity-local-inspection.png | https://github.com/ArcBlock/arcblock-site | 2026-08-11T07:27:27Z | robmao@Roberts-Mac-mini-M4-Pro |
 | 20260811-072731-12-identity-session-views.png | https://github.com/ArcBlock/arcblock-site | 2026-08-11T07:27:31Z | robmao@Roberts-Mac-mini-M4-Pro |
 | 20260811-072736-13-afs-overview-zh.png | https://github.com/ArcBlock/arcblock-site | 2026-08-11T07:27:36Z | robmao@Roberts-Mac-mini-M4-Pro |
+| 20260811-072740-14-blocklets-create-run-zh-full.png | https://github.com/ArcBlock/arcblock-site | 2026-08-11T07:27:40Z | robmao@Roberts-Mac-mini-M4-Pro |
