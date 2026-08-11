@@ -10,3 +10,4 @@
 | 3591-deeplink-before-651853cd3.png | https://github.com/ArcBlock/arc/issues/3591 | 2026-08-10T16:08:00Z | chao@Yechaos-MacBook-Pro |
 | 3591-deeplink-after-6a5d6e276.png | https://github.com/ArcBlock/arc/issues/3591 | 2026-08-11T00:54:20Z | chao@Yechaos-MacBook-Pro |
 | 3591-deeplink-before-6a5d6e276.png | https://github.com/ArcBlock/arc/issues/3591 | 2026-08-11T00:54:30Z | chao@Yechaos-MacBook-Pro |
+| 3591-run-accept-6a5d6e276.png | https://github.com/ArcBlock/arc/issues/3591 | 2026-08-11T00:54:39Z | chao@Yechaos-MacBook-Pro |
