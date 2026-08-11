@@ -97,3 +97,4 @@
 | arcblock-site/web-device-in-page-review/review-page-note-panel-20260809.png | https://github.com/ArcBlock/arcblock-site | 2026-08-10T05:43:14Z | robmao@Roberts-Mac-mini-M4-Pro |
 | gallery-demo-layout-large.png | https://github.com/ArcBlock/arcblock-site | 2026-08-11T07:34:10Z | robmao@Roberts-Mac-mini-M4-Pro |
 | gallery-demo-layout-grid.png | https://github.com/ArcBlock/arcblock-site | 2026-08-11T07:34:17Z | robmao@Roberts-Mac-mini-M4-Pro |
+| gallery-demo-layout-masonry.png | https://github.com/ArcBlock/arcblock-site | 2026-08-11T07:34:22Z | robmao@Roberts-Mac-mini-M4-Pro |
