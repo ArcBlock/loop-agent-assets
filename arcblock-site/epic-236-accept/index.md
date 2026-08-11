@@ -12,3 +12,4 @@
 | 20260811-072656-06-afs-search-and-query.png | https://github.com/ArcBlock/arcblock-site | 2026-08-11T07:26:56Z | robmao@Roberts-Mac-mini-M4-Pro |
 | 20260811-072700-07-blocklets-overview.png | https://github.com/ArcBlock/arcblock-site | 2026-08-11T07:27:00Z | robmao@Roberts-Mac-mini-M4-Pro |
 | 20260811-072705-08-blocklets-create-run-locally-full.png | https://github.com/ArcBlock/arcblock-site | 2026-08-11T07:27:05Z | robmao@Roberts-Mac-mini-M4-Pro |
+| 20260811-072709-08-blocklets-create-run-locally.png | https://github.com/ArcBlock/arcblock-site | 2026-08-11T07:27:09Z | robmao@Roberts-Mac-mini-M4-Pro |
