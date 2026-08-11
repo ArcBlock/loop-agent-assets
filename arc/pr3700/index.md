@@ -8,3 +8,4 @@
 | 20260811-131709-todo-create-item.png | https://github.com/ArcBlock/arc/pull/3700 | 2026-08-11T13:17:09Z | chao@Yechaos-MacBook-Pro |
 | 20260811-131714-todo-home.png | https://github.com/ArcBlock/arc/pull/3700 | 2026-08-11T13:17:14Z | chao@Yechaos-MacBook-Pro |
 | 20260811-131720-chain-explorer-main.gif | https://github.com/ArcBlock/arc/pull/3700 | 2026-08-11T13:17:20Z | chao@Yechaos-MacBook-Pro |
+| 20260811-131726-did-space-browse.gif | https://github.com/ArcBlock/arc/pull/3700 | 2026-08-11T13:17:26Z | chao@Yechaos-MacBook-Pro |
