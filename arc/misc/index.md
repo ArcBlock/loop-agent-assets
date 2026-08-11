@@ -91,3 +91,4 @@
 | 20260810-135458-usage-admin-deeplink.png | https://github.com/ArcBlock/arc | 2026-08-10T13:54:58Z | chao@Yechaos-MacBook-Pro |
 | 20260810-135509-usage-admin-deeplink-unknown.png | https://github.com/ArcBlock/arc | 2026-08-10T13:55:09Z | chao@Yechaos-MacBook-Pro |
 | product-stage-vp | https://github.com/ArcBlock/arc | 2026-08-11T08:09:33Z | robmao@Roberts-Mac-mini-M4-Pro |
+| product-story-vp | https://github.com/ArcBlock/arc | 2026-08-11T08:09:39Z | robmao@Roberts-Mac-mini-M4-Pro |
