@@ -239,3 +239,4 @@
 | 20260812-202714-index-read-7-03.png | https://github.com/ArcBlock/arc | 2026-08-12T20:27:14Z | root@vm |
 | 20260812-202718-page@01909fad3d8b3ed662fe5f63b0b52dd2.webm | https://github.com/ArcBlock/arc | 2026-08-12T20:27:18Z | root@vm |
 | 20260812-202721-page@03cd065db093fe7dc67b83b0ddd1a32c.webm | https://github.com/ArcBlock/arc | 2026-08-12T20:27:21Z | root@vm |
+| 20260812-202725-page@047438585fcdd1d8bff1869291d27aab.webm | https://github.com/ArcBlock/arc | 2026-08-12T20:27:25Z | root@vm |
