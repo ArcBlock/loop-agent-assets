@@ -102,3 +102,4 @@
 | pixel-replica-expose-vp.png | https://github.com/ArcBlock/arcblock-site | 2026-08-11T07:47:03Z | robmao@Roberts-Mac-mini-M4-Pro |
 | pixel-replica-exposure-cover.png | https://github.com/ArcBlock/arcblock-site | 2026-08-11T07:47:08Z | robmao@Roberts-Mac-mini-M4-Pro |
 | pixel-replica-exposure-bleed.png | https://github.com/ArcBlock/arcblock-site | 2026-08-11T07:47:13Z | robmao@Roberts-Mac-mini-M4-Pro |
+| folder-backed-media-gallery-cover.jpg | https://github.com/ArcBlock/arcblock-site | 2026-08-12T03:25:34Z | robmao@Roberts-Mac-mini-M4-Pro |
