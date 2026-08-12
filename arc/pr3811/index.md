@@ -15,3 +15,4 @@
 | 20260812-160120-ui-verify-chain-explorer-main.webm | https://github.com/ArcBlock/arc/pull/3811 | 2026-08-12T16:01:20Z | chao@Yechaos-MacBook-Pro |
 | 20260812-160128-ui-verify-did-space-browse.webm | https://github.com/ArcBlock/arc/pull/3811 | 2026-08-12T16:01:28Z | chao@Yechaos-MacBook-Pro |
 | 20260812-160137-ui-verify-todo-complete-item.webm | https://github.com/ArcBlock/arc/pull/3811 | 2026-08-12T16:01:37Z | chao@Yechaos-MacBook-Pro |
+| 20260812-160145-ui-verify-todo-create-item.webm | https://github.com/ArcBlock/arc/pull/3811 | 2026-08-12T16:01:45Z | chao@Yechaos-MacBook-Pro |
