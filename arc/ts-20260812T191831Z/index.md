@@ -128,3 +128,4 @@
 | 20260812-202015-explore-01.png | https://github.com/ArcBlock/arc | 2026-08-12T20:20:15Z | root@vm |
 | 20260812-202018-explore-02.png | https://github.com/ArcBlock/arc | 2026-08-12T20:20:18Z | root@vm |
 | 20260812-202022-feed-01.png | https://github.com/ArcBlock/arc | 2026-08-12T20:20:22Z | root@vm |
+| 20260812-202026-feed-02.png | https://github.com/ArcBlock/arc | 2026-08-12T20:20:26Z | root@vm |
