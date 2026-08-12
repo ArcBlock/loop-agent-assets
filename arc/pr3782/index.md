@@ -3,3 +3,4 @@
 | file | source | uploaded | by |
 |---|---|---|---|
 | desktop-home.png | https://github.com/ArcBlock/arc/pull/3782 | 2026-08-12T10:00:27Z | root@vm |
+| agent-surface-home.png | https://github.com/ArcBlock/arc/pull/3782 | 2026-08-12T10:00:36Z | root@vm |
