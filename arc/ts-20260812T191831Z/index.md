@@ -557,3 +557,4 @@
 | 20260812-204712-chat-02.png | https://github.com/ArcBlock/arc | 2026-08-12T20:47:12Z | root@vm |
 | 20260812-204715-index-01.png | https://github.com/ArcBlock/arc | 2026-08-12T20:47:15Z | root@vm |
 | 20260812-204719-index-02.png | https://github.com/ArcBlock/arc | 2026-08-12T20:47:19Z | root@vm |
+| 20260812-204722-page@82f8a18d27f7171e077acf1a3554f212.webm | https://github.com/ArcBlock/arc | 2026-08-12T20:47:22Z | root@vm |
