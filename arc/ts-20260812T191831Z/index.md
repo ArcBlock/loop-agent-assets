@@ -575,3 +575,4 @@
 | 20260812-204815-index-01.png | https://github.com/ArcBlock/arc | 2026-08-12T20:48:15Z | root@vm |
 | 20260812-204818-index-02.png | https://github.com/ArcBlock/arc | 2026-08-12T20:48:18Z | root@vm |
 | 20260812-204821-index-read-1-01.png | https://github.com/ArcBlock/arc | 2026-08-12T20:48:21Z | root@vm |
+| 20260812-204825-index-read-1-02.png | https://github.com/ArcBlock/arc | 2026-08-12T20:48:25Z | root@vm |
