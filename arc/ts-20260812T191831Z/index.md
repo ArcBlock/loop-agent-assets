@@ -424,3 +424,4 @@
 | 20260812-203852-explorer-read-2-03.png | https://github.com/ArcBlock/arc | 2026-08-12T20:38:52Z | root@vm |
 | 20260812-203857-form-contact-01.png | https://github.com/ArcBlock/arc | 2026-08-12T20:38:57Z | root@vm |
 | 20260812-203901-form-contact-02.png | https://github.com/ArcBlock/arc | 2026-08-12T20:39:01Z | root@vm |
+| 20260812-203905-form-wizard-01.png | https://github.com/ArcBlock/arc | 2026-08-12T20:39:05Z | root@vm |
