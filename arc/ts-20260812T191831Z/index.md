@@ -416,3 +416,4 @@
 | 20260812-203824-dd-8-showcase-11.png | https://github.com/ArcBlock/arc | 2026-08-12T20:38:24Z | root@vm |
 | 20260812-203827-explorer-01.png | https://github.com/ArcBlock/arc | 2026-08-12T20:38:27Z | root@vm |
 | 20260812-203831-explorer-02.png | https://github.com/ArcBlock/arc | 2026-08-12T20:38:31Z | root@vm |
+| 20260812-203834-explorer-read-1-01.png | https://github.com/ArcBlock/arc | 2026-08-12T20:38:34Z | root@vm |
