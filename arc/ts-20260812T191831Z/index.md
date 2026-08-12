@@ -386,3 +386,4 @@
 | 20260812-203638-dd-5-showcase-05.png | https://github.com/ArcBlock/arc | 2026-08-12T20:36:38Z | root@vm |
 | 20260812-203641-dd-5-showcase-06.png | https://github.com/ArcBlock/arc | 2026-08-12T20:36:41Z | root@vm |
 | 20260812-203645-dd-5-showcase-07.png | https://github.com/ArcBlock/arc | 2026-08-12T20:36:45Z | root@vm |
+| 20260812-203649-dd-5-showcase-08.png | https://github.com/ArcBlock/arc | 2026-08-12T20:36:49Z | root@vm |
