@@ -19,3 +19,4 @@
 | 20260812-201329-cleanup-aside-13.png | https://github.com/ArcBlock/arc | 2026-08-12T20:13:29Z | root@vm |
 | 20260812-201332-cleanup-aside-14.png | https://github.com/ArcBlock/arc | 2026-08-12T20:13:32Z | root@vm |
 | 20260812-201336-cleanup-aside-15.png | https://github.com/ArcBlock/arc | 2026-08-12T20:13:36Z | root@vm |
+| 20260812-201340-clip-01.png | https://github.com/ArcBlock/arc | 2026-08-12T20:13:40Z | root@vm |
