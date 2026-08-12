@@ -134,3 +134,4 @@
 | 20260812-202036-feed-read-1-03.png | https://github.com/ArcBlock/arc | 2026-08-12T20:20:36Z | root@vm |
 | 20260812-202040-item-detail-01.png | https://github.com/ArcBlock/arc | 2026-08-12T20:20:40Z | root@vm |
 | 20260812-202043-item-detail-02.png | https://github.com/ArcBlock/arc | 2026-08-12T20:20:43Z | root@vm |
+| 20260812-202047-publish-01.png | https://github.com/ArcBlock/arc | 2026-08-12T20:20:47Z | root@vm |
