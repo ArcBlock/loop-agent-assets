@@ -141,3 +141,4 @@
 | 20260812-202101-tags-read-1-01.png | https://github.com/ArcBlock/arc | 2026-08-12T20:21:01Z | root@vm |
 | 20260812-202105-tags-read-1-02.png | https://github.com/ArcBlock/arc | 2026-08-12T20:21:05Z | root@vm |
 | 20260812-202108-tags-read-1-03.png | https://github.com/ArcBlock/arc | 2026-08-12T20:21:08Z | root@vm |
+| 20260812-202112-page@0c9a63d6782a415fd7a552bf157f5ac7.webm | https://github.com/ArcBlock/arc | 2026-08-12T20:21:12Z | root@vm |
