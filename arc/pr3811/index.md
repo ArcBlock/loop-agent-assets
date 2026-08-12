@@ -9,3 +9,4 @@
 | 20260812-160035-ui-verify-todo-home.png | https://github.com/ArcBlock/arc/pull/3811 | 2026-08-12T16:00:35Z | chao@Yechaos-MacBook-Pro |
 | 20260812-160042-ui-verify-chain-explorer-main.gif | https://github.com/ArcBlock/arc/pull/3811 | 2026-08-12T16:00:42Z | chao@Yechaos-MacBook-Pro |
 | 20260812-160049-ui-verify-did-space-browse.gif | https://github.com/ArcBlock/arc/pull/3811 | 2026-08-12T16:00:49Z | chao@Yechaos-MacBook-Pro |
+| 20260812-160057-ui-verify-todo-complete-item.gif | https://github.com/ArcBlock/arc/pull/3811 | 2026-08-12T16:00:57Z | chao@Yechaos-MacBook-Pro |
