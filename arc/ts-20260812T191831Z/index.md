@@ -8,3 +8,4 @@
 | 20260812-201248-cleanup-aside-02.png | https://github.com/ArcBlock/arc | 2026-08-12T20:12:48Z | root@vm |
 | 20260812-201252-cleanup-aside-03.png | https://github.com/ArcBlock/arc | 2026-08-12T20:12:52Z | root@vm |
 | 20260812-201255-cleanup-aside-04.png | https://github.com/ArcBlock/arc | 2026-08-12T20:12:55Z | root@vm |
+| 20260812-201259-cleanup-aside-05.png | https://github.com/ArcBlock/arc | 2026-08-12T20:12:59Z | root@vm |
