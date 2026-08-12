@@ -561,3 +561,4 @@
 | 20260812-204726-page@c781275e9abdea2870d28a0ece1d1114.webm | https://github.com/ArcBlock/arc | 2026-08-12T20:47:26Z | root@vm |
 | 20260812-204729-dd-1-discuss-kit-00.png | https://github.com/ArcBlock/arc | 2026-08-12T20:47:29Z | root@vm |
 | 20260812-204733-dd-1-discuss-kit-01.png | https://github.com/ArcBlock/arc | 2026-08-12T20:47:33Z | root@vm |
+| 20260812-204736-dd-2-discuss-kit-00.png | https://github.com/ArcBlock/arc | 2026-08-12T20:47:36Z | root@vm |
