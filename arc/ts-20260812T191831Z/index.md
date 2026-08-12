@@ -555,3 +555,4 @@
 | 20260812-204705-page@dd9d3f65f821828af59d10cdf3e5dea4.webm | https://github.com/ArcBlock/arc | 2026-08-12T20:47:05Z | root@vm |
 | 20260812-204709-chat-01.png | https://github.com/ArcBlock/arc | 2026-08-12T20:47:09Z | root@vm |
 | 20260812-204712-chat-02.png | https://github.com/ArcBlock/arc | 2026-08-12T20:47:12Z | root@vm |
+| 20260812-204715-index-01.png | https://github.com/ArcBlock/arc | 2026-08-12T20:47:15Z | root@vm |
