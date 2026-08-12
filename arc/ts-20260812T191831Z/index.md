@@ -5,3 +5,4 @@
 | debug-test-upload.png | https://github.com/ArcBlock/arc | 2026-08-12T20:12:21Z | root@vm |
 | 20260812-201241-cleanup-aside-00.png | https://github.com/ArcBlock/arc | 2026-08-12T20:12:41Z | root@vm |
 | 20260812-201245-cleanup-aside-01.png | https://github.com/ArcBlock/arc | 2026-08-12T20:12:45Z | root@vm |
+| 20260812-201248-cleanup-aside-02.png | https://github.com/ArcBlock/arc | 2026-08-12T20:12:48Z | root@vm |
