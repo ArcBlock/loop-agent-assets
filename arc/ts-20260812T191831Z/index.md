@@ -74,3 +74,4 @@
 | 20260812-201646-dd-2-aside-02.png | https://github.com/ArcBlock/arc | 2026-08-12T20:16:46Z | root@vm |
 | 20260812-201649-dd-2-aside-03.png | https://github.com/ArcBlock/arc | 2026-08-12T20:16:49Z | root@vm |
 | 20260812-201653-dd-2-aside-04.png | https://github.com/ArcBlock/arc | 2026-08-12T20:16:53Z | root@vm |
+| 20260812-201656-dd-2-aside-05.png | https://github.com/ArcBlock/arc | 2026-08-12T20:16:56Z | root@vm |
