@@ -170,3 +170,4 @@
 | 20260812-202307-page@e9423301732635c998ab12bb327275c8.webm | https://github.com/ArcBlock/arc | 2026-08-12T20:23:07Z | root@vm |
 | 20260812-202311-page@f52467f851eb4ef84f5bd920d0dc092e.webm | https://github.com/ArcBlock/arc | 2026-08-12T20:23:11Z | root@vm |
 | 20260812-202315-dd-1-chain-explorer-00.png | https://github.com/ArcBlock/arc | 2026-08-12T20:23:15Z | root@vm |
+| 20260812-202319-dd-1-chain-explorer-01.png | https://github.com/ArcBlock/arc | 2026-08-12T20:23:19Z | root@vm |
