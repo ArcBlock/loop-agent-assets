@@ -96,3 +96,4 @@
 | 20260811-195302-ui-verify-seo-fixture.png | https://github.com/ArcBlock/arc | 2026-08-11T19:53:02Z | wangshijun@wangshijun-mac-studio |
 | 20260811-195310-ui-verify-showcase.png | https://github.com/ArcBlock/arc | 2026-08-11T19:53:10Z | wangshijun@wangshijun-mac-studio |
 | 20260811-200209-ui-verify-404-cf.png | https://github.com/ArcBlock/arc | 2026-08-11T20:02:09Z | wangshijun@wangshijun-mac-studio |
+| 20260812-183329-3820-explorer.png | https://github.com/ArcBlock/arc | 2026-08-12T18:33:29Z | wangshijun@wangshijun-mac-studio |
