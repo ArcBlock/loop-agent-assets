@@ -137,3 +137,4 @@
 | 20260812-202047-publish-01.png | https://github.com/ArcBlock/arc | 2026-08-12T20:20:47Z | root@vm |
 | 20260812-202050-publish-02.png | https://github.com/ArcBlock/arc | 2026-08-12T20:20:50Z | root@vm |
 | 20260812-202055-tags-01.png | https://github.com/ArcBlock/arc | 2026-08-12T20:20:55Z | root@vm |
+| 20260812-202058-tags-02.png | https://github.com/ArcBlock/arc | 2026-08-12T20:20:58Z | root@vm |
