@@ -6,3 +6,4 @@
 | 20260813-005814-3643-fixed-after-reload.png | https://github.com/ArcBlock/arc/issues/3643 | 2026-08-13T00:58:14Z | chao@Yechaos-MacBook-Pro |
 | 20260813-005819-3643-delete-still-broken.png | https://github.com/ArcBlock/arc/issues/3643 | 2026-08-13T00:58:19Z | chao@Yechaos-MacBook-Pro |
 | 20260813-012036-3643-postdeploy-delete-still-broken.png | https://github.com/ArcBlock/arc/issues/3643 | 2026-08-13T01:20:36Z | chao@Yechaos-MacBook-Pro |
+| 20260813-013256-3643-delete-fixed-verified.png | https://github.com/ArcBlock/arc/issues/3643 | 2026-08-13T01:32:56Z | chao@Yechaos-MacBook-Pro |
