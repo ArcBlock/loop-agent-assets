@@ -107,3 +107,4 @@
 | issue-3813/20260813-verify-dev-5-6-6.png | https://github.com/ArcBlock/arc | 2026-08-13T12:33:28Z | chao@Yechaos-MacBook-Pro |
 | 20260813-165954-root-explorer-3908.png | https://github.com/ArcBlock/arc | 2026-08-13T16:59:54Z | wangshijun@wangshijun-mac-studio |
 | 20260813-192643-pr3907-usage-app-todo-clean.png | https://github.com/ArcBlock/arc | 2026-08-13T19:26:43Z | wangshijun@wangshijun-mac-studio |
+| 20260813-230927-pr3922-todo-home.png | https://github.com/ArcBlock/arc | 2026-08-13T23:09:27Z | wangshijun@wangshijun-mac-studio |
