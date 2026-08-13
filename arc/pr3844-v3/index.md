@@ -8,3 +8,4 @@
 | 20260813-035703-uivc-cf-setup-step2.png | https://github.com/ArcBlock/arc/pull/3844-v3 | 2026-08-13T03:57:03Z | chao@Yechaos-MacBook-Pro |
 | 20260813-035709-uivc-node-blank-final.png | https://github.com/ArcBlock/arc/pull/3844-v3 | 2026-08-13T03:57:09Z | chao@Yechaos-MacBook-Pro |
 | 20260813-035715-uivc-node-setup-step2.png | https://github.com/ArcBlock/arc/pull/3844-v3 | 2026-08-13T03:57:15Z | chao@Yechaos-MacBook-Pro |
+| 20260813-035721-uivc-cf-accept.gif | https://github.com/ArcBlock/arc/pull/3844-v3 | 2026-08-13T03:57:21Z | chao@Yechaos-MacBook-Pro |
