@@ -9,3 +9,4 @@
 | 20260813-015544-ui-verify-node-setup-blankname-error.png | https://github.com/ArcBlock/arc/pull/3844 | 2026-08-13T01:55:45Z | chao@Yechaos-MacBook-Pro |
 | 20260813-015553-ui-verify-node-setup-step2.png | https://github.com/ArcBlock/arc/pull/3844 | 2026-08-13T01:55:53Z | chao@Yechaos-MacBook-Pro |
 | 20260813-015559-ui-verify-cf-badtoken.gif | https://github.com/ArcBlock/arc/pull/3844 | 2026-08-13T01:55:59Z | chao@Yechaos-MacBook-Pro |
+| 20260813-015612-ui-verify-node-setup.gif | https://github.com/ArcBlock/arc/pull/3844 | 2026-08-13T01:56:12Z | chao@Yechaos-MacBook-Pro |
