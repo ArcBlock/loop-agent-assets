@@ -9,3 +9,4 @@
 | 20260813-215835-05-list-menu-multiselect.png | https://github.com/ArcBlock/arc | 2026-08-13T21:58:35Z | robmao@Roberts-Mac-mini-M4-Pro |
 | 20260813-215906-07-slideshow-view.png | https://github.com/ArcBlock/arc | 2026-08-13T21:59:06Z | robmao@Roberts-Mac-mini-M4-Pro |
 | 20260813-215912-08-mobile-view.png | https://github.com/ArcBlock/arc | 2026-08-13T21:59:12Z | robmao@Roberts-Mac-mini-M4-Pro |
+| 20260813-215917-09-classic-explorer.png | https://github.com/ArcBlock/arc | 2026-08-13T21:59:17Z | robmao@Roberts-Mac-mini-M4-Pro |
