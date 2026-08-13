@@ -11,3 +11,4 @@
 | 20260813-030037-uiv2-node-persona-mountform.png | https://github.com/ArcBlock/arc/pull/3844-v2 | 2026-08-13T03:00:37Z | chao@Yechaos-MacBook-Pro |
 | 20260813-030044-uiv2-cf-accept.gif | https://github.com/ArcBlock/arc/pull/3844-v2 | 2026-08-13T03:00:44Z | chao@Yechaos-MacBook-Pro |
 | 20260813-030050-uiv2-cf-reject.gif | https://github.com/ArcBlock/arc/pull/3844-v2 | 2026-08-13T03:00:50Z | chao@Yechaos-MacBook-Pro |
+| 20260813-030057-uiv2-node-setup.gif | https://github.com/ArcBlock/arc/pull/3844-v2 | 2026-08-13T03:00:57Z | chao@Yechaos-MacBook-Pro |
