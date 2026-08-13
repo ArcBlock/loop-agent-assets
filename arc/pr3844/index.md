@@ -11,3 +11,4 @@
 | 20260813-015559-ui-verify-cf-badtoken.gif | https://github.com/ArcBlock/arc/pull/3844 | 2026-08-13T01:55:59Z | chao@Yechaos-MacBook-Pro |
 | 20260813-015612-ui-verify-node-setup.gif | https://github.com/ArcBlock/arc/pull/3844 | 2026-08-13T01:56:12Z | chao@Yechaos-MacBook-Pro |
 | 20260813-015623-ui-verify-persona-cf.gif | https://github.com/ArcBlock/arc/pull/3844 | 2026-08-13T01:56:23Z | chao@Yechaos-MacBook-Pro |
+| 20260813-015634-ui-verify-persona-node.gif | https://github.com/ArcBlock/arc/pull/3844 | 2026-08-13T01:56:34Z | chao@Yechaos-MacBook-Pro |
