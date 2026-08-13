@@ -103,3 +103,4 @@
 | 20260813-041442-todo_created.jpg | https://github.com/ArcBlock/arc | 2026-08-13T04:14:42Z | chao@Yechaos-MacBook-Pro |
 | 20260813-041451-todo_after_delete.jpg | https://github.com/ArcBlock/arc | 2026-08-13T04:14:51Z | chao@Yechaos-MacBook-Pro |
 | 20260813-112134-did-space-home.png | https://github.com/ArcBlock/arc | 2026-08-13T11:21:34Z | wangshijun@wangshijun-mac-studio |
+| issue-3813/20260813-verify-root-6-5-3.png | https://github.com/ArcBlock/arc | 2026-08-13T12:33:14Z | chao@Yechaos-MacBook-Pro |
