@@ -11,3 +11,4 @@
 | 20260813-035721-uivc-cf-accept.gif | https://github.com/ArcBlock/arc/pull/3844-v3 | 2026-08-13T03:57:21Z | chao@Yechaos-MacBook-Pro |
 | 20260813-035729-uivc-cf-reject.gif | https://github.com/ArcBlock/arc/pull/3844-v3 | 2026-08-13T03:57:29Z | chao@Yechaos-MacBook-Pro |
 | 20260813-035736-uivc-node-blank.gif | https://github.com/ArcBlock/arc/pull/3844-v3 | 2026-08-13T03:57:36Z | chao@Yechaos-MacBook-Pro |
+| 20260813-035743-uivc-cf-accept.webm | https://github.com/ArcBlock/arc/pull/3844-v3 | 2026-08-13T03:57:43Z | chao@Yechaos-MacBook-Pro |
