@@ -11,3 +11,4 @@
 | r2-layout-side-reverse.png | https://github.com/ArcBlock/arc/issues/3953 | 2026-08-14T05:52:10Z | robmao@Roberts-Mac-mini-M4-Pro |
 | r2-layout-stacked.png | https://github.com/ArcBlock/arc/issues/3953 | 2026-08-14T05:52:16Z | robmao@Roberts-Mac-mini-M4-Pro |
 | r2-layout-stacked-reverse.png | https://github.com/ArcBlock/arc/issues/3953 | 2026-08-14T05:52:21Z | robmao@Roberts-Mac-mini-M4-Pro |
+| r2-narrow.png | https://github.com/ArcBlock/arc/issues/3953 | 2026-08-14T05:52:26Z | robmao@Roberts-Mac-mini-M4-Pro |
