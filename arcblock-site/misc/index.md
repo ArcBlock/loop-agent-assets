@@ -104,3 +104,4 @@
 | pixel-replica-exposure-bleed.png | https://github.com/ArcBlock/arcblock-site | 2026-08-11T07:47:13Z | robmao@Roberts-Mac-mini-M4-Pro |
 | folder-backed-media-gallery-cover.jpg | https://github.com/ArcBlock/arcblock-site | 2026-08-12T03:25:34Z | robmao@Roberts-Mac-mini-M4-Pro |
 | git-hygiene-worktree-cleanup-cover-20260813175329.jpg | https://github.com/ArcBlock/arcblock-site | 2026-08-14T00:53:29Z | robmao@Roberts-Mac-mini-M4-Pro |
+| arc-mcp-for-agents-cover-20260813235826.jpg | https://github.com/ArcBlock/arcblock-site | 2026-08-14T06:58:27Z | robmao@Roberts-Mac-mini-M4-Pro |
