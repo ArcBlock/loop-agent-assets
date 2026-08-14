@@ -16,3 +16,4 @@
 | 20260814-205103-ui-verify-launch-kit-invite-authed.png | https://github.com/ArcBlock/arc/pull/3984 | 2026-08-14T20:51:03Z | robmao@Roberts-Mac-mini-M4-Pro |
 | 20260814-205107-ui-verify-launch-kit-fetch-status-authed.gif | https://github.com/ArcBlock/arc/pull/3984 | 2026-08-14T20:51:07Z | robmao@Roberts-Mac-mini-M4-Pro |
 | 20260814-205111-ui-verify-launch-kit-invite-anon.gif | https://github.com/ArcBlock/arc/pull/3984 | 2026-08-14T20:51:11Z | robmao@Roberts-Mac-mini-M4-Pro |
+| 20260814-205115-ui-verify-launch-kit-invite-authed.gif | https://github.com/ArcBlock/arc/pull/3984 | 2026-08-14T20:51:15Z | robmao@Roberts-Mac-mini-M4-Pro |
