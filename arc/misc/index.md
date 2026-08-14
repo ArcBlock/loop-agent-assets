@@ -112,3 +112,4 @@
 | 20260813-234418-pr3929-todo-home.png | https://github.com/ArcBlock/arc | 2026-08-13T23:44:18Z | wangshijun@wangshijun-mac-studio |
 | 20260814-004340-pr3915-usage-authed.png | https://github.com/ArcBlock/arc | 2026-08-14T00:43:40Z | wangshijun@wangshijun-mac-studio |
 | 20260814-004930-pr3935-explorer-home.png | https://github.com/ArcBlock/arc | 2026-08-14T00:49:30Z | wangshijun@wangshijun-mac-studio |
+| 20260814-133404-ui-verify-todo-home.png | https://github.com/ArcBlock/arc | 2026-08-14T13:34:04Z | root@vm |
