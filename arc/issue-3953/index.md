@@ -18,3 +18,4 @@
 | deck-series-overlap-before.png | https://github.com/ArcBlock/arc/issues/3953 | 2026-08-14T08:34:14Z | robmao@Roberts-Mac-mini-M4-Pro |
 | deck-series-after.png | https://github.com/ArcBlock/arc/issues/3953 | 2026-08-14T08:34:20Z | robmao@Roberts-Mac-mini-M4-Pro |
 | deck-article-en.png | https://github.com/ArcBlock/arc/issues/3953 | 2026-08-14T08:34:26Z | robmao@Roberts-Mac-mini-M4-Pro |
+| deck-article-zh.png | https://github.com/ArcBlock/arc/issues/3953 | 2026-08-14T08:34:31Z | robmao@Roberts-Mac-mini-M4-Pro |
