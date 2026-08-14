@@ -34,3 +34,4 @@
 | 20260814-223519-lk-status.webm | https://github.com/ArcBlock/arc/pull/4022 | 2026-08-14T22:35:19Z | robmao@Roberts-Mac-mini-M4-Pro |
 | 20260814-225155-lk-card.png | https://github.com/ArcBlock/arc/pull/4022 | 2026-08-14T22:51:55Z | robmao@Roberts-Mac-mini-M4-Pro |
 | 20260814-225200-lk-joined.png | https://github.com/ArcBlock/arc/pull/4022 | 2026-08-14T22:52:00Z | robmao@Roberts-Mac-mini-M4-Pro |
+| 20260814-225205-lk-status-anon.png | https://github.com/ArcBlock/arc/pull/4022 | 2026-08-14T22:52:05Z | robmao@Roberts-Mac-mini-M4-Pro |
