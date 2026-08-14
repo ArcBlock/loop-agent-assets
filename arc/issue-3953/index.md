@@ -16,3 +16,4 @@
 | site-demo-zh-mobile.png | https://github.com/ArcBlock/arc/issues/3953 | 2026-08-14T06:20:54Z | robmao@Roberts-Mac-mini-M4-Pro |
 | site-guide-layout-section.png | https://github.com/ArcBlock/arc/issues/3953 | 2026-08-14T06:21:00Z | robmao@Roberts-Mac-mini-M4-Pro |
 | deck-series-overlap-before.png | https://github.com/ArcBlock/arc/issues/3953 | 2026-08-14T08:34:14Z | robmao@Roberts-Mac-mini-M4-Pro |
+| deck-series-after.png | https://github.com/ArcBlock/arc/issues/3953 | 2026-08-14T08:34:20Z | robmao@Roberts-Mac-mini-M4-Pro |
