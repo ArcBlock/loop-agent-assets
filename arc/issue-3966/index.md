@@ -8,3 +8,4 @@
 | accept-a4-unlock-bob-nonholder.png | https://github.com/ArcBlock/arc/issues/3966 | 2026-08-15T10:02:53Z | robmao@Roberts-Mac-mini-M4-Pro |
 | accept-a5-leaderboard.png | https://github.com/ArcBlock/arc/issues/3966 | 2026-08-15T10:02:59Z | robmao@Roberts-Mac-mini-M4-Pro |
 | accept-a6-hostdemo-widgets.png | https://github.com/ArcBlock/arc/issues/3966 | 2026-08-15T10:03:04Z | robmao@Roberts-Mac-mini-M4-Pro |
+| accept-a7-wall.png | https://github.com/ArcBlock/arc/issues/3966 | 2026-08-15T10:03:09Z | robmao@Roberts-Mac-mini-M4-Pro |
