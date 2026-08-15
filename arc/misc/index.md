@@ -117,3 +117,4 @@
 | 20260815-053304-ui-verify-s7-widgets.png | https://github.com/ArcBlock/arc | 2026-08-15T05:33:04Z | robmao@Roberts-Mac-mini-M4-Pro |
 | 20260815-053309-ui-verify-s7-about.png | https://github.com/ArcBlock/arc | 2026-08-15T05:33:09Z | robmao@Roberts-Mac-mini-M4-Pro |
 | 20260815-061201-ui-verify-s7-join.png | https://github.com/ArcBlock/arc | 2026-08-15T06:12:01Z | robmao@Roberts-Mac-mini-M4-Pro |
+| 20260815-061206-ui-verify-s7-about2.png | https://github.com/ArcBlock/arc | 2026-08-15T06:12:06Z | robmao@Roberts-Mac-mini-M4-Pro |
