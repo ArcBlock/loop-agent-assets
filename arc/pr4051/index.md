@@ -10,3 +10,4 @@
 | 20260815-063211-unlock-holder.png | https://github.com/ArcBlock/arc/pull/4051 | 2026-08-15T06:32:11Z | robmao@Roberts-Mac-mini-M4-Pro |
 | 20260815-063216-unlock-nonholder.png | https://github.com/ArcBlock/arc/pull/4051 | 2026-08-15T06:32:16Z | robmao@Roberts-Mac-mini-M4-Pro |
 | 20260815-070019-unlock-anon.png | https://github.com/ArcBlock/arc/pull/4051 | 2026-08-15T07:00:19Z | robmao@Roberts-Mac-mini-M4-Pro |
+| 20260815-070024-unlock-holder.png | https://github.com/ArcBlock/arc/pull/4051 | 2026-08-15T07:00:24Z | robmao@Roberts-Mac-mini-M4-Pro |
