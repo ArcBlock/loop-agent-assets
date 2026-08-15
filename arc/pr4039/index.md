@@ -33,3 +33,4 @@
 | 20260815-050136-20260814-215949-b5-self.webm | https://github.com/ArcBlock/arc/pull/4039 | 2026-08-15T05:01:36Z | robmao@Roberts-Mac-mini-M4-Pro |
 | 20260815-050142-20260814-215952-b6-expired.webm | https://github.com/ArcBlock/arc/pull/4039 | 2026-08-15T05:01:42Z | robmao@Roberts-Mac-mini-M4-Pro |
 | 20260815-050148-20260814-215953-b6-invalid-anon.webm | https://github.com/ArcBlock/arc/pull/4039 | 2026-08-15T05:01:48Z | robmao@Roberts-Mac-mini-M4-Pro |
+| 20260815-050153-20260814-215958-f2-conflict-query.webm | https://github.com/ArcBlock/arc/pull/4039 | 2026-08-15T05:01:53Z | robmao@Roberts-Mac-mini-M4-Pro |
