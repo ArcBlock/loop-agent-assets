@@ -115,3 +115,4 @@
 | 20260814-133404-ui-verify-todo-home.png | https://github.com/ArcBlock/arc | 2026-08-14T13:34:04Z | root@vm |
 | pr4038 | https://github.com/ArcBlock/arc | 2026-08-15T00:55:41Z | wangshijun@wangshijun-mac-studio |
 | 20260815-053304-ui-verify-s7-widgets.png | https://github.com/ArcBlock/arc | 2026-08-15T05:33:04Z | robmao@Roberts-Mac-mini-M4-Pro |
+| 20260815-053309-ui-verify-s7-about.png | https://github.com/ArcBlock/arc | 2026-08-15T05:33:09Z | robmao@Roberts-Mac-mini-M4-Pro |
