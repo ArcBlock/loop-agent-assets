@@ -121,3 +121,4 @@
 | 20260815-093931-10-doc-en-rendered.png | https://github.com/ArcBlock/arc | 2026-08-15T09:39:31Z | chao@Yechaos-MacBook-Pro |
 | 20260815-093944-12-doc-zh-rendered.png | https://github.com/ArcBlock/arc | 2026-08-15T09:39:44Z | chao@Yechaos-MacBook-Pro |
 | 20260815-093954-11-doc-en-body.png | https://github.com/ArcBlock/arc | 2026-08-15T09:39:54Z | chao@Yechaos-MacBook-Pro |
+| 20260815-094626-13-article-zh.png | https://github.com/ArcBlock/arc | 2026-08-15T09:46:26Z | chao@Yechaos-MacBook-Pro |
