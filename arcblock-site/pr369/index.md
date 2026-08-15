@@ -8,3 +8,4 @@
 | 04-zh-access-keys.jpg | https://github.com/ArcBlock/arcblock-site/pull/369 | 2026-08-14T04:54:47Z | wangshijun@shijun-mbp |
 | 05-en-access-tiers.jpg | https://github.com/ArcBlock/arcblock-site/pull/369 | 2026-08-14T08:03:15Z | wangshijun@shijun-mbp |
 | 06-zh-errors.jpg | https://github.com/ArcBlock/arcblock-site/pull/369 | 2026-08-14T08:03:22Z | wangshijun@shijun-mbp |
+| 08-claude-code-consent.png | https://github.com/ArcBlock/arcblock-site/pull/369 | 2026-08-15T05:29:18Z | wangshijun@shijun-mbp |
