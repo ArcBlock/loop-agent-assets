@@ -10,3 +10,4 @@
 | s10-06b-unlock-preview.png | https://github.com/ArcBlock/arc/issues/3976 | 2026-08-15T08:42:40Z | robmao@Roberts-Mac-mini-M4-Pro |
 | s10-07-status.png | https://github.com/ArcBlock/arc/issues/3976 | 2026-08-15T08:42:45Z | robmao@Roberts-Mac-mini-M4-Pro |
 | s10-08-leaderboard.png | https://github.com/ArcBlock/arc/issues/3976 | 2026-08-15T08:42:50Z | robmao@Roberts-Mac-mini-M4-Pro |
+| s10-09-wall.png | https://github.com/ArcBlock/arc/issues/3976 | 2026-08-15T08:42:55Z | robmao@Roberts-Mac-mini-M4-Pro |
