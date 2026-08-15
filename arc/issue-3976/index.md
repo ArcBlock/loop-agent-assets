@@ -12,3 +12,4 @@
 | s10-08-leaderboard.png | https://github.com/ArcBlock/arc/issues/3976 | 2026-08-15T08:42:50Z | robmao@Roberts-Mac-mini-M4-Pro |
 | s10-09-wall.png | https://github.com/ArcBlock/arc/issues/3976 | 2026-08-15T08:42:55Z | robmao@Roberts-Mac-mini-M4-Pro |
 | s10-10-claim.png | https://github.com/ArcBlock/arc/issues/3976 | 2026-08-15T08:43:00Z | robmao@Roberts-Mac-mini-M4-Pro |
+| s10-12-about.png | https://github.com/ArcBlock/arc/issues/3976 | 2026-08-15T08:43:04Z | robmao@Roberts-Mac-mini-M4-Pro |
