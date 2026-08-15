@@ -1,8 +1,0 @@
-# arc/reports/test-sweep/ts-20260723T191427Z/chain-explorer
-
-| file | source | uploaded | by |
-|---|---|---|---|
-| 20260723-195513-home-01.png | https://github.com/ArcBlock/arc | 2026-07-23T19:55:13Z | root@vm |
-| 20260723-195515-home-02.png | https://github.com/ArcBlock/arc | 2026-07-23T19:55:15Z | root@vm |
-| 20260723-195518-home-03.png | https://github.com/ArcBlock/arc | 2026-07-23T19:55:18Z | root@vm |
-| 20260723-195536-page@c179b390b7197f47c1a7042143c13052.webm | https://github.com/ArcBlock/arc | 2026-07-23T19:55:36Z | root@vm |
