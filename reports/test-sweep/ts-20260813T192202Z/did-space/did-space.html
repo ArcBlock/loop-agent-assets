@@ -1,0 +1,921 @@
+<!doctype html><html><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>did-space — agent 走查报告</title><style>
+:root{--bg:#f7f8f8;--fg:#16201f;--muted:#5c6b69;--card:#fff;--card2:#eef2f1;--border:#dde3e2;--accent:#127a72;--pass:#1f8a54;--warn:#b5771a;--bad:#c0392b}
+@media(prefers-color-scheme:dark){:root{--bg:#0e1413;--fg:#e6ecea;--muted:#8ea19d;--card:#161d1c;--card2:#1d2624;--border:#26302e;--accent:#3fb8ab;--pass:#3fb37a;--warn:#d69a3e;--bad:#e5735f}}
+:root[data-theme=dark]{--bg:#0e1413;--fg:#e6ecea;--muted:#8ea19d;--card:#161d1c;--card2:#1d2624;--border:#26302e;--accent:#3fb8ab;--pass:#3fb37a;--warn:#d69a3e;--bad:#e5735f}
+:root[data-theme=light]{--bg:#f7f8f8;--fg:#16201f;--muted:#5c6b69;--card:#fff;--card2:#eef2f1;--border:#dde3e2;--accent:#127a72;--pass:#1f8a54;--warn:#b5771a;--bad:#c0392b}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--fg);font:15px/1.65 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;padding:24px}
+.wrap{max-width:920px;margin:0 auto}
+h1{font-size:24px;margin:0 0 4px;text-wrap:balance}h2{font-size:19px;margin:30px 0 8px}
+h2 .rt{font-size:13px;color:var(--muted);font-weight:400;font-variant-numeric:tabular-nums}
+.sub{color:var(--muted);margin:0 0 14px;font-size:13px}
+code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.85em;background:var(--card2);padding:1px 5px;border-radius:4px}
+.how{background:var(--card);border:1px solid var(--border);border-left:3px solid var(--accent);border-radius:8px;padding:13px 16px;margin:14px 0;font-size:14px}
+.how b{color:var(--accent)}
+.banner{border-radius:12px;padding:14px 18px;margin:16px 0}
+.banner.ok{background:color-mix(in srgb,var(--pass) 12%,transparent);border:1px solid color-mix(in srgb,var(--pass) 40%,transparent)}
+.banner.ok b{color:var(--pass)}
+.banner.bad{background:color-mix(in srgb,var(--bad) 13%,transparent);border:1px solid color-mix(in srgb,var(--bad) 45%,transparent)}
+.banner.bad b{color:var(--bad);font-size:16px}
+.banner.info{background:color-mix(in srgb,var(--accent) 10%,transparent);border:1px solid color-mix(in srgb,var(--accent) 38%,transparent)}
+.banner.info b{color:var(--accent)}
+.plist{margin:10px 0 0;padding-left:0;list-style:none}
+.plist li{padding:8px 0;border-top:1px solid var(--border)}
+.plist a{text-decoration:none;color:var(--fg);font-weight:600}
+.plist .pe{color:var(--muted);font-size:12.5px;font-weight:400;margin-top:3px}
+.video{width:100%;border-radius:10px;border:1px solid var(--border);background:#000;margin:6px 0 2px}
+.vcap{color:var(--muted);font-size:12.5px;margin:0 0 8px}
+.novideo{color:var(--bad);font-weight:600;background:color-mix(in srgb,var(--bad) 10%,transparent);border:1px dashed color-mix(in srgb,var(--bad) 45%,transparent);border-radius:8px;padding:8px 12px;font-size:13px}
+.kpis{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0}
+.kpi{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:9px 14px;min-width:70px}
+.kpi .k{font-size:21px;font-weight:700;font-variant-numeric:tabular-nums}.kpi .l{color:var(--muted);font-size:12px}
+.kpi .k-bad{color:var(--bad)}.kpi .k-warn{color:var(--warn)}
+.op{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:15px 17px;margin:14px 0}
+.op h3{margin:0 0 3px;font-size:16px;display:flex;align-items:center;gap:9px;flex-wrap:wrap}
+.op .exp{color:var(--muted);font-size:13px;margin:0 0 9px}
+.op .nt{color:var(--muted);font-size:12.5px;margin-top:6px}
+.pill{font-size:11.5px;font-weight:700;padding:2px 9px;border-radius:20px}
+.p-ok{background:color-mix(in srgb,var(--pass) 18%,transparent);color:var(--pass)}
+.p-fail{background:color-mix(in srgb,var(--bad) 18%,transparent);color:var(--bad)}
+.p-warn{background:color-mix(in srgb,var(--warn) 20%,transparent);color:var(--warn)}
+.p-skip{background:var(--card2);color:var(--muted)}
+.p-write{background:color-mix(in srgb,var(--accent) 18%,transparent);color:var(--accent)}
+.frame figure{margin:0 0 9px}.frame img{width:100%;border-radius:8px;border:1px solid var(--border);display:block}
+.frame figcaption{color:var(--muted);font-size:11.5px;margin-top:4px;text-align:center}
+.chk{background:color-mix(in srgb,var(--pass) 12%,transparent);border:1px solid color-mix(in srgb,var(--pass) 34%,transparent);border-radius:8px;padding:8px 12px;font-size:13px}
+.chk b{color:var(--pass)}
+.chk-fail{background:color-mix(in srgb,var(--bad) 11%,transparent);border:1px solid color-mix(in srgb,var(--bad) 40%,transparent);border-radius:8px;padding:8px 12px;font-size:13px}
+.chk-fail b{color:var(--bad)}
+table.probe{border-collapse:collapse;width:100%;font-size:13px}
+table.probe th,table.probe td{border:1px solid var(--border);padding:5px 9px;text-align:left}
+table.probe tr.bad td{background:color-mix(in srgb,var(--bad) 10%,transparent)}
+.err{background:color-mix(in srgb,var(--bad) 11%,transparent);border:1px solid color-mix(in srgb,var(--bad) 40%,transparent);border-radius:8px;padding:7px 12px;font-size:12.5px;margin-top:6px}
+.err b{color:var(--bad)}.err code{background:transparent;color:var(--bad)}
+.dbg{margin:10px 0 2px;background:var(--card);border:1px solid var(--border);border-radius:10px;padding:6px 14px;font-size:13px}
+.dbg summary{cursor:pointer;color:var(--muted);font-weight:600;padding:5px 0}
+.dbg-none{color:var(--muted);padding:4px 0;font-size:12.5px}
+.dbg-has{padding:5px 0}.dbg-has b{color:var(--warn)}
+.dbg-has ul{margin:5px 0 8px;padding-left:18px}.dbg-has li{font-size:12px;color:var(--fg);margin:2px 0;word-break:break-all}
+.dbg-has code{background:var(--card2)}
+.pdesc{color:var(--muted);font-size:13.5px;margin:1px 0 11px;line-height:1.5}
+.pdesc code{font-size:.85em}
+details.steps{margin:6px 0 2px;border:1px solid var(--border);border-radius:10px;background:var(--card2);padding:2px 14px}
+details.steps>summary{cursor:pointer;color:var(--accent);font-weight:600;padding:9px 0;font-size:13.5px;list-style:none}
+details.steps>summary::-webkit-details-marker{display:none}
+details.steps[open]>summary{border-bottom:1px solid var(--border);margin-bottom:8px}
+details.steps>summary:hover{color:var(--fg)}
+</style></head><body><div class="wrap">
+<h1>did-space — agent 走查报告</h1>
+<p class="sub">环境 <code>https://did-space.afsd.dev</code> · 2026-08-13T19:25:19.572558Z · 走查 6 / 声明 6 条测试路径 · driver <code>agent-playwright-mcp</code></p>
+<div class="how"><b>这份报告在做什么</b>：test-sweep 让 <b>agent 读被测页面自己写的
+<code>.aup/man</code> 知识</b>，用 Playwright MCP <b>当真人逐条测试路径走查</b>（导航/加标签/编辑/删除/创建…），
+<b>每条路径各自一段录屏</b>、每步截图并<b>自判 verdict + 附观察证据</b>（实际 DOM/文本/值，可复核）。
+<b>unreached</b>=没驱动到（不当失败）；<b>inconclusive</b>=不确定（绝不判失败）。写操作默认真提交、不清理。</div>
+
+<div class="banner ok"><b>✅ 覆盖完整</b>：声明 6 条测试路径全部走查。</div>
+<div class="banner bad"><b>⚠️ 发现 32 个问题</b>（点击跳到对应路径）<ul class="plist"><li><a href="#path-dd-4-did-space"><span class="pill p-warn">不确定</span> read-flow files|r2: sidebar select 扇出 primary+inspector · 步2</a> — click<div class="pe">agent 探路误用 CSS id 选择器 `#files-sidebar-list &gt;&gt; text=packages`（AUP node id 落点是 data-aup-id 属性而非原生 id=，CLAUDE.md 已警告此坑）导致 0 元素匹配，click 8s 超时——这是走查工具本身的选择器写法问题，不是产品缺陷；DOM 状态确认未变（meta-title 仍 &#x27;/&#x27;）。</div></li><li><a href="#path-dd-4-did-space"><span class="pill p-warn">不确定</span> read-flow files|r2: sidebar select 扇出 primary+inspector · 步4</a> — click<div class="pe">同类错误的 `#files-sidebar-list &gt;&gt; text=instance`（附带不受支持的 clickCount 字段）选择器再次 8s 超时——同一工具选择器坑，非产品问题，状态未变。</div></li><li><a href="#path-dd-4-did-space"><span class="pill p-warn">不确定</span> read-flow files|r2: sidebar select 扇出 primary+inspector · 步6</a> — click<div class="pe">重试 `#files-sidebar-list &gt;&gt; text=instance`（去掉 clickCount）选择器仍 0 匹配超时——同一工具选择器坑，状态未变（meta-title 仍 &#x27;packages&#x27;）。</div></li><li><a href="#path-dd-4-did-space"><span class="pill p-warn">不确定</span> read-flow files|r2: sidebar select 扇出 primary+inspector · 步7</a> — click<div class="pe">再次尝试用错误的原生 id 前缀选择器定位 sidebar 中 &#x27;instance&#x27; 行，仍 0 匹配超时——继续印证 CLAUDE.md 提前警告的 `#&lt;id&gt;` 陷阱，改用全局 text 匹配才是正确写法（下一步验证）。</div></li><li><a href="#path-dd-4-did-space"><span class="pill p-warn">不确定</span> read-flow files|r2: sidebar select 扇出 primary+inspector · 步11</a> — click<div class="pe">尝试 `#files-primary-list &gt;&gt; text=pages` 选择器（同样的原生 id 坑）8s 超时——工具选择器问题，状态未变。</div></li><li><a href="#path-dd-4-did-space"><span class="pill p-warn">不确定</span> read-flow files|r2: sidebar select 扇出 primary+inspector · 步12</a> — click<div class="pe">尝试 `#files-primary-list [data-entry-id=&quot;pages&quot;]` 选择器仍 0 匹配超时——复合选择器里的 `#id` 部分依旧无效，状态未变。</div></li><li><a href="#path-dd-4-did-space"><span class="pill p-warn">不确定</span> read-flow files|r2: sidebar select 扇出 primary+inspector · 步14</a> — click<div class="pe">改用正确的 `[data-aup-id=&quot;files-primary-list&quot;]` 前缀但整体复合选择器 `[data-aup-id=&quot;files-primary-list&quot;] [data-entry-id=&quot;pages&quot;]` 仍 0 匹配超时——后两步 waitFor 探测证实是 `[data-entry-id=&quot;pages&quot;]` 的字面值假设不成立，非语法错误。</div></li><li><a href="#path-dd-4-did-space"><span class="pill p-warn">不确定</span> read-flow files|r2: sidebar select 扇出 primary+inspector · 步16</a> — waitFor<div class="pe">waitFor `[data-entry-id=&quot;pages&quot;]` 5s 超时——确认 entry.id 字面值假设 &#x27;pages&#x27; 不成立（渲染行的 data-entry-id 与展示名不完全一致，或该行处于未挂载/虚拟滚动之外）。</div></li><li><a href="#path-dd-5-did-space"><span class="pill p-warn">不确定</span> read-flow files|r3: sidebar navigate 钻入目录（同一 fan-out） · 步2</a> — click<div class="pe">agent 探路误用 CSS id 选择器 `#files-sidebar-list &gt;&gt; text=packages`（AUP node id 落点是 data-aup-id 属性而非原生 id=，CLAUDE.md 已警告此坑）导致 0 元素匹配，click 8s 超时——这是走查工具本身的选择器写法问题，不是产品缺陷；DOM 状态确认未变（meta-title 仍 &#x27;/&#x27;）。</div></li><li><a href="#path-dd-5-did-space"><span class="pill p-warn">不确定</span> read-flow files|r3: sidebar navigate 钻入目录（同一 fan-out） · 步4</a> — click<div class="pe">同类错误的 `#files-sidebar-list &gt;&gt; text=instance`（附带不受支持的 clickCount 字段）选择器再次 8s 超时——同一工具选择器坑，非产品问题，状态未变。</div></li><li><a href="#path-dd-5-did-space"><span class="pill p-warn">不确定</span> read-flow files|r3: sidebar navigate 钻入目录（同一 fan-out） · 步6</a> — click<div class="pe">重试 `#files-sidebar-list &gt;&gt; text=instance`（去掉 clickCount）选择器仍 0 匹配超时——同一工具选择器坑，状态未变（meta-title 仍 &#x27;packages&#x27;）。</div></li><li><a href="#path-dd-5-did-space"><span class="pill p-warn">不确定</span> read-flow files|r3: sidebar navigate 钻入目录（同一 fan-out） · 步7</a> — click<div class="pe">再次尝试用错误的原生 id 前缀选择器定位 sidebar 中 &#x27;instance&#x27; 行，仍 0 匹配超时——继续印证 CLAUDE.md 提前警告的 `#&lt;id&gt;` 陷阱，改用全局 text 匹配才是正确写法（下一步验证）。</div></li><li><a href="#path-dd-5-did-space"><span class="pill p-warn">不确定</span> read-flow files|r3: sidebar navigate 钻入目录（同一 fan-out） · 步11</a> — click<div class="pe">尝试 `#files-primary-list &gt;&gt; text=pages` 选择器（同样的原生 id 坑）8s 超时——工具选择器问题，状态未变。</div></li><li><a href="#path-dd-5-did-space"><span class="pill p-warn">不确定</span> read-flow files|r3: sidebar navigate 钻入目录（同一 fan-out） · 步12</a> — click<div class="pe">尝试 `#files-primary-list [data-entry-id=&quot;pages&quot;]` 选择器仍 0 匹配超时——复合选择器里的 `#id` 部分依旧无效，状态未变。</div></li><li><a href="#path-dd-5-did-space"><span class="pill p-warn">不确定</span> read-flow files|r3: sidebar navigate 钻入目录（同一 fan-out） · 步14</a> — click<div class="pe">改用正确的 `[data-aup-id=&quot;files-primary-list&quot;]` 前缀但整体复合选择器 `[data-aup-id=&quot;files-primary-list&quot;] [data-entry-id=&quot;pages&quot;]` 仍 0 匹配超时——后两步 waitFor 探测证实是 `[data-entry-id=&quot;pages&quot;]` 的字面值假设不成立，非语法错误。</div></li><li><a href="#path-dd-5-did-space"><span class="pill p-warn">不确定</span> read-flow files|r3: sidebar navigate 钻入目录（同一 fan-out） · 步16</a> — waitFor<div class="pe">waitFor `[data-entry-id=&quot;pages&quot;]` 5s 超时——确认 entry.id 字面值假设 &#x27;pages&#x27; 不成立（渲染行的 data-entry-id 与展示名不完全一致，或该行处于未挂载/虚拟滚动之外）。</div></li><li><a href="#path-dd-6-did-space"><span class="pill p-warn">不确定</span> read-flow files|r4: primary select 文件（inspector 更新，列表不动） · 步2</a> — click<div class="pe">agent 探路误用 CSS id 选择器 `#files-sidebar-list &gt;&gt; text=packages`（AUP node id 落点是 data-aup-id 属性而非原生 id=，CLAUDE.md 已警告此坑）导致 0 元素匹配，click 8s 超时——这是走查工具本身的选择器写法问题，不是产品缺陷；DOM 状态确认未变（meta-title 仍 &#x27;/&#x27;）。</div></li><li><a href="#path-dd-6-did-space"><span class="pill p-warn">不确定</span> read-flow files|r4: primary select 文件（inspector 更新，列表不动） · 步4</a> — click<div class="pe">同类错误的 `#files-sidebar-list &gt;&gt; text=instance`（附带不受支持的 clickCount 字段）选择器再次 8s 超时——同一工具选择器坑，非产品问题，状态未变。</div></li><li><a href="#path-dd-6-did-space"><span class="pill p-warn">不确定</span> read-flow files|r4: primary select 文件（inspector 更新，列表不动） · 步6</a> — click<div class="pe">重试 `#files-sidebar-list &gt;&gt; text=instance`（去掉 clickCount）选择器仍 0 匹配超时——同一工具选择器坑，状态未变（meta-title 仍 &#x27;packages&#x27;）。</div></li><li><a href="#path-dd-6-did-space"><span class="pill p-warn">不确定</span> read-flow files|r4: primary select 文件（inspector 更新，列表不动） · 步7</a> — click<div class="pe">再次尝试用错误的原生 id 前缀选择器定位 sidebar 中 &#x27;instance&#x27; 行，仍 0 匹配超时——继续印证 CLAUDE.md 提前警告的 `#&lt;id&gt;` 陷阱，改用全局 text 匹配才是正确写法（下一步验证）。</div></li><li><a href="#path-dd-6-did-space"><span class="pill p-warn">不确定</span> read-flow files|r4: primary select 文件（inspector 更新，列表不动） · 步11</a> — click<div class="pe">尝试 `#files-primary-list &gt;&gt; text=pages` 选择器（同样的原生 id 坑）8s 超时——工具选择器问题，状态未变。</div></li><li><a href="#path-dd-6-did-space"><span class="pill p-warn">不确定</span> read-flow files|r4: primary select 文件（inspector 更新，列表不动） · 步12</a> — click<div class="pe">尝试 `#files-primary-list [data-entry-id=&quot;pages&quot;]` 选择器仍 0 匹配超时——复合选择器里的 `#id` 部分依旧无效，状态未变。</div></li><li><a href="#path-dd-6-did-space"><span class="pill p-warn">不确定</span> read-flow files|r4: primary select 文件（inspector 更新，列表不动） · 步14</a> — click<div class="pe">改用正确的 `[data-aup-id=&quot;files-primary-list&quot;]` 前缀但整体复合选择器 `[data-aup-id=&quot;files-primary-list&quot;] [data-entry-id=&quot;pages&quot;]` 仍 0 匹配超时——后两步 waitFor 探测证实是 `[data-entry-id=&quot;pages&quot;]` 的字面值假设不成立，非语法错误。</div></li><li><a href="#path-dd-6-did-space"><span class="pill p-warn">不确定</span> read-flow files|r4: primary select 文件（inspector 更新，列表不动） · 步16</a> — waitFor<div class="pe">waitFor `[data-entry-id=&quot;pages&quot;]` 5s 超时——确认 entry.id 字面值假设 &#x27;pages&#x27; 不成立（渲染行的 data-entry-id 与展示名不完全一致，或该行处于未挂载/虚拟滚动之外）。</div></li><li><a href="#path-dd-7-did-space"><span class="pill p-warn">不确定</span> read-flow files|r5: primary 单击目录行钻入（drill via primary list） · 步2</a> — click<div class="pe">agent 探路误用 CSS id 选择器 `#files-sidebar-list &gt;&gt; text=packages`（AUP node id 落点是 data-aup-id 属性而非原生 id=，CLAUDE.md 已警告此坑）导致 0 元素匹配，click 8s 超时——这是走查工具本身的选择器写法问题，不是产品缺陷；DOM 状态确认未变（meta-title 仍 &#x27;/&#x27;）。</div></li><li><a href="#path-dd-7-did-space"><span class="pill p-warn">不确定</span> read-flow files|r5: primary 单击目录行钻入（drill via primary list） · 步4</a> — click<div class="pe">同类错误的 `#files-sidebar-list &gt;&gt; text=instance`（附带不受支持的 clickCount 字段）选择器再次 8s 超时——同一工具选择器坑，非产品问题，状态未变。</div></li><li><a href="#path-dd-7-did-space"><span class="pill p-warn">不确定</span> read-flow files|r5: primary 单击目录行钻入（drill via primary list） · 步6</a> — click<div class="pe">重试 `#files-sidebar-list &gt;&gt; text=instance`（去掉 clickCount）选择器仍 0 匹配超时——同一工具选择器坑，状态未变（meta-title 仍 &#x27;packages&#x27;）。</div></li><li><a href="#path-dd-7-did-space"><span class="pill p-warn">不确定</span> read-flow files|r5: primary 单击目录行钻入（drill via primary list） · 步7</a> — click<div class="pe">再次尝试用错误的原生 id 前缀选择器定位 sidebar 中 &#x27;instance&#x27; 行，仍 0 匹配超时——继续印证 CLAUDE.md 提前警告的 `#&lt;id&gt;` 陷阱，改用全局 text 匹配才是正确写法（下一步验证）。</div></li><li><a href="#path-dd-7-did-space"><span class="pill p-warn">不确定</span> read-flow files|r5: primary 单击目录行钻入（drill via primary list） · 步11</a> — click<div class="pe">尝试 `#files-primary-list &gt;&gt; text=pages` 选择器（同样的原生 id 坑）8s 超时——工具选择器问题，状态未变。</div></li><li><a href="#path-dd-7-did-space"><span class="pill p-warn">不确定</span> read-flow files|r5: primary 单击目录行钻入（drill via primary list） · 步12</a> — click<div class="pe">尝试 `#files-primary-list [data-entry-id=&quot;pages&quot;]` 选择器仍 0 匹配超时——复合选择器里的 `#id` 部分依旧无效，状态未变。</div></li><li><a href="#path-dd-7-did-space"><span class="pill p-warn">不确定</span> read-flow files|r5: primary 单击目录行钻入（drill via primary list） · 步14</a> — click<div class="pe">改用正确的 `[data-aup-id=&quot;files-primary-list&quot;]` 前缀但整体复合选择器 `[data-aup-id=&quot;files-primary-list&quot;] [data-entry-id=&quot;pages&quot;]` 仍 0 匹配超时——后两步 waitFor 探测证实是 `[data-entry-id=&quot;pages&quot;]` 的字面值假设不成立，非语法错误。</div></li><li><a href="#path-dd-7-did-space"><span class="pill p-warn">不确定</span> read-flow files|r5: primary 单击目录行钻入（drill via primary list） · 步16</a> — waitFor<div class="pe">waitFor `[data-entry-id=&quot;pages&quot;]` 5s 超时——确认 entry.id 字面值假设 &#x27;pages&#x27; 不成立（渲染行的 data-entry-id 与展示名不完全一致，或该行处于未挂载/虚拟滚动之外）。</div></li></ul></div>
+<section id="probes"><h2>后端探针 （全通过）</h2><table class="probe"><tr><th></th><th>探针</th><th>详情</th></tr><tr class=""><td>✅</td><td>http-reachable</td><td>HTTP 200</td></tr><tr class=""><td>✅</td><td>afs-rpc-list</td><td>ok:true (1 .aup pages)</td></tr><tr class=""><td>✅</td><td>afs-rpc-authed-list-/user</td><td>ok:true (Bearer 可读)</td></tr></table></section>
+<section id="path-files">
+<h2>Files <span class="rt">authed · https://did-space.afsd.dev/explorer</span></h2>
+<p class="pdesc">导航到 https://did-space.afsd.dev/explorer，验证页面加载并渲染出真实内容（files 页 breadth 走查）。</p>
+<video class="video" controls preload="metadata" src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260813T192202Z/did-space/page@1db975a5a1b84740deef7a6cce27c7b0.webm"><a href="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260813T192202Z/did-space/page@1db975a5a1b84740deef7a6cce27c7b0.webm">下载该路径录像</a></video><p class="vcap">本测试路径整段走查录像</p>
+<div class="kpis"><div class="kpi"><div class="k">2</div><div class="l">操作步</div></div><div class="kpi"><div class="k">2</div><div class="l">通过</div></div><div class="kpi"><div class="k k-bad">0</div><div class="l">失败</div></div><div class="kpi"><div class="k k-warn">0</div><div class="l">不确定</div></div><div class="kpi"><div class="k">0</div><div class="l">未走到</div></div></div>
+<details class="steps"><summary>▸ 逐步操作详情（2 步，含判定截图）</summary><div class="op">
+<h3><span class="pill p-ok">通过</span> navigate</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260813T192202Z/did-space/files-01.png" alt="navigate" loading="lazy"><figcaption>navigate</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：title=&#x27;DID Space&#x27; url=https://did-space.afsd.dev/explorer/ aupNodes=39 buttons=16 inputs=5 textLen=674 head=&#x27;DID Space Open Explorer ▾ / instance DID-scoped persistent storage with CID-based content deduplication. - Per-user data isolation via DID p&#x27;</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> snapshot</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260813T192202Z/did-space/files-02.png" alt="snapshot" loading="lazy"><figcaption>snapshot</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：title=&#x27;DID Space&#x27; url=https://did-space.afsd.dev/explorer/ aupNodes=39 buttons=16 inputs=5 textLen=674 head=&#x27;DID Space Open Explorer ▾ / instance DID-scoped persistent storage with CID-based content deduplication. - Per-user data isolation via DID p&#x27;</div>
+
+
+</div></details>
+<details class="dbg" open><summary>运行时 debug 上下文（2 条错误）</summary><div class="dbg-has"><b>Console 错误（1）</b><ul><li><code>Failed to load resource: the server responded with a status of 403 ()</code></li></ul></div><div class="dbg-none">JS 未捕获异常：<b>无</b></div><div class="dbg-has"><b>网络错误（请求失败 / 4xx–5xx）（1）</b><ul><li><code>403 POST https://did-space.afsd.dev/api/afs/rpc</code></li></ul></div></details>
+</section><section id="path-dd-1-did-space">
+<h2>authed spot-check: /explorer 渲染登录态内容而非匿名门禁卡片 <span class="rt">authed · https://did-space.afsd.dev/explorer</span></h2>
+<p class="pdesc">页面走查：导航到 <code>https://did-space.afsd.dev/explorer</code>，验证页面渲染出真实内容并逐步观测（2 步）。</p>
+<video class="video" controls preload="metadata" src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260813T192202Z/did-space/page@0448384b57e7170845948788235edb2d.webm"><a href="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260813T192202Z/did-space/page@0448384b57e7170845948788235edb2d.webm">下载该路径录像</a></video><p class="vcap">本测试路径整段走查录像</p>
+<div class="kpis"><div class="kpi"><div class="k">2</div><div class="l">操作步</div></div><div class="kpi"><div class="k">2</div><div class="l">通过</div></div><div class="kpi"><div class="k k-bad">0</div><div class="l">失败</div></div><div class="kpi"><div class="k k-warn">0</div><div class="l">不确定</div></div><div class="kpi"><div class="k">0</div><div class="l">未走到</div></div></div>
+<details class="steps"><summary>▸ 逐步操作详情（2 步，含判定截图）</summary><div class="op">
+<h3><span class="pill p-ok">通过</span> snapshot</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260813T192202Z/did-space/dd-1-did-space-00.png" alt="snapshot" loading="lazy"><figcaption>snapshot</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：session 起始空白页快照（driver 刚 ready，尚未 navigate），url=about:blank，仅确认 driver 就绪。</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> navigate</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260813T192202Z/did-space/dd-1-did-space-01.png" alt="navigate" loading="lazy"><figcaption>navigate</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：navigate 到 https://did-space.afsd.dev/explorer（注入 authed JWT cookie）后，DOM 渲染的是 files-explorer-wm 子树（不是 files-anon-wm 门禁卡片）：interactables 含用户身份/业务面板按钮 button&quot;Test Fixture User&quot;、button&quot;User Center&quot;、button&quot;Admin Console&quot;、button&quot;Sign Out&quot;，以及 files-sidebar-list/files-primary-list/files-inspector-stat/files-inspector-preview 全部渲染（aupNodes=39，六项子目录 instance/packages/ash/dev/user/space 列出，meta-title=&quot;/&quot;，meta-summary=&quot;Directory · 6 items&quot;）。console 有 1 条 403 POST /api/afs/rpc（非阻断性，主体内容仍完整渲染，供参考，不影响本条判定）。确认了 floor 走查里的假阳性疑虑：/explorer 在 authed 态确实渲染登录态内容，不是登录墙。</div>
+
+
+</div></details>
+<details class="dbg" open><summary>运行时 debug 上下文（2 条错误）</summary><div class="dbg-has"><b>Console 错误（1）</b><ul><li><code>Failed to load resource: the server responded with a status of 403 ()</code></li></ul></div><div class="dbg-none">JS 未捕获异常：<b>无</b></div><div class="dbg-has"><b>网络错误（请求失败 / 4xx–5xx）（1）</b><ul><li><code>403 POST https://did-space.afsd.dev/api/afs/rpc</code></li></ul></div></details>
+</section><section id="path-dd-2-did-space">
+<h2>read-flow files|r0: anonymous → sign-in redirect <span class="rt">anonymous · /explorer</span></h2>
+<p class="pdesc">页面走查：导航到 <code>/explorer</code>，验证页面渲染出真实内容并逐步观测（2 步）。</p>
+<video class="video" controls preload="metadata" src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260813T192202Z/did-space/page@b9159bbe1be6af6f37368bb9ee73dd15.webm"><a href="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260813T192202Z/did-space/page@b9159bbe1be6af6f37368bb9ee73dd15.webm">下载该路径录像</a></video><p class="vcap">本测试路径整段走查录像</p>
+<div class="kpis"><div class="kpi"><div class="k">2</div><div class="l">操作步</div></div><div class="kpi"><div class="k">2</div><div class="l">通过</div></div><div class="kpi"><div class="k k-bad">0</div><div class="l">失败</div></div><div class="kpi"><div class="k k-warn">0</div><div class="l">不确定</div></div><div class="kpi"><div class="k">0</div><div class="l">未走到</div></div></div>
+<details class="steps"><summary>▸ 逐步操作详情（2 步，含判定截图）</summary><div class="op">
+<h3><span class="pill p-ok">通过</span> navigate</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260813T192202Z/did-space/dd-2-did-space-00.png" alt="navigate" loading="lazy"><figcaption>navigate</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：匿名态（无 jwt）navigate 到 https://did-space.afsd.dev/explorer，渲染 files-anon-wm 门禁子树：h2#files-anon-title=&quot;Sign in to browse your space&quot;，div#files-anon-desc=&quot;Your DID Space is private to your account. Sign in to view and manage your files.&quot;，仅一个 a#files-anon-login &quot;Sign in&quot; 可交互，aupNodes=12，无 files-explorer-wm 迹象——符合匿名门禁预期。</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> click</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260813T192202Z/did-space/dd-2-did-space-01.png" alt="click" loading="lazy"><figcaption>click</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：点击 role=link name=&quot;Sign in&quot; 后页面导航到 https://did-space.afsd.dev/.well-known/service/login，title=&quot;ARC services (Test) — Sign In&quot;，渲染出 Sign in with Passkey / Continue with DID Wallet 等真实登录入口——确认 label 所述「navigates to /.well-known/service/login」，且无 in-page 事件（整页导航）。</div>
+
+
+</div></details>
+<details class="dbg" open><summary>运行时 debug 上下文（1 条错误）</summary><div class="dbg-none">Console 错误：<b>无</b></div><div class="dbg-none">JS 未捕获异常：<b>无</b></div><div class="dbg-has"><b>网络错误（请求失败 / 4xx–5xx）（1）</b><ul><li><code>✗ POST https://did-space.afsd.dev/cdn-cgi/rum? — net::ERR_ABORTED</code></li></ul></div></details>
+</section><section id="path-dd-3-did-space">
+<h2>read-flow files|r1: sign-in redirect → explorer (authenticated) <span class="rt">authed · /explorer</span></h2>
+<p class="pdesc">页面走查：导航到 <code>/explorer</code>，验证页面渲染出真实内容并逐步观测（1 步）。</p>
+<video class="video" controls preload="metadata" src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260813T192202Z/did-space/page@ed4d5eaca2206dd855715ec8f0238cbc.webm"><a href="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260813T192202Z/did-space/page@ed4d5eaca2206dd855715ec8f0238cbc.webm">下载该路径录像</a></video><p class="vcap">本测试路径整段走查录像</p>
+<div class="kpis"><div class="kpi"><div class="k">1</div><div class="l">操作步</div></div><div class="kpi"><div class="k">1</div><div class="l">通过</div></div><div class="kpi"><div class="k k-bad">0</div><div class="l">失败</div></div><div class="kpi"><div class="k k-warn">0</div><div class="l">不确定</div></div><div class="kpi"><div class="k">0</div><div class="l">未走到</div></div></div>
+<details class="steps"><summary>▸ 逐步操作详情（1 步，含判定截图）</summary><div class="op">
+<h3><span class="pill p-ok">通过</span> navigate</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260813T192202Z/did-space/dd-3-did-space-00.png" alt="navigate" loading="lazy"><figcaption>navigate</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：authed 态 navigate 到 /explorer 后，DOM 渲染 files-explorer-wm 子树（files-anon-wm 完全不在 DOM 中）：出现 button&quot;Test Fixture User&quot;/button&quot;Sign Out&quot;/button&quot;User Center&quot; 等登录态专属控件，files-sidebar-list/files-primary-list/files-inspector-stat/files-inspector-preview 全部渲染并含真实数据（6 items: instance/packages/ash/dev/user/space）——确认「session becomes authenticated 后页面正确 re-render 为 files-explorer-wm」这一转换的落地状态。</div>
+
+
+</div></details>
+<details class="dbg" open><summary>运行时 debug 上下文（2 条错误）</summary><div class="dbg-has"><b>Console 错误（1）</b><ul><li><code>Failed to load resource: the server responded with a status of 403 ()</code></li></ul></div><div class="dbg-none">JS 未捕获异常：<b>无</b></div><div class="dbg-has"><b>网络错误（请求失败 / 4xx–5xx）（1）</b><ul><li><code>403 POST https://did-space.afsd.dev/api/afs/rpc</code></li></ul></div></details>
+</section><section id="path-dd-4-did-space">
+<h2>read-flow files|r2: sidebar select 扇出 primary+inspector <span class="rt">authed · /explorer</span></h2>
+<p class="pdesc">页面走查：导航到 <code>/explorer</code>，验证页面渲染出真实内容并逐步观测（23 步）。</p>
+<video class="video" controls preload="metadata" src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260813T192202Z/did-space/page@0e02e1c232b68b2a50a4e5b53a5c5478.webm"><a href="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260813T192202Z/did-space/page@0e02e1c232b68b2a50a4e5b53a5c5478.webm">下载该路径录像</a></video><p class="vcap">本测试路径整段走查录像</p>
+<div class="kpis"><div class="kpi"><div class="k">23</div><div class="l">操作步</div></div><div class="kpi"><div class="k">15</div><div class="l">通过</div></div><div class="kpi"><div class="k k-bad">0</div><div class="l">失败</div></div><div class="kpi"><div class="k k-warn">8</div><div class="l">不确定</div></div><div class="kpi"><div class="k">0</div><div class="l">未走到</div></div></div>
+<details class="steps"><summary>▸ 逐步操作详情（23 步，含判定截图）</summary><div class="op">
+<h3><span class="pill p-ok">通过</span> navigate</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260813T192202Z/did-space/dd-4-did-space-00.png" alt="navigate" loading="lazy"><figcaption>navigate</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：navigate 到 https://did-space.afsd.dev/explorer（authed cookie）渲染 files-explorer-wm：sidebar 与 primary-list 均显示根目录 6 项（instance/packages/ash/dev/user/space），meta-title=&#x27;/&#x27;。</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-warn">不确定</span> click</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260813T192202Z/did-space/dd-4-did-space-01.png" alt="click" loading="lazy"><figcaption>click</figcaption></figure></div>
+<div class="chk-fail"><b>观察证据</b>：agent 探路误用 CSS id 选择器 `#files-sidebar-list &gt;&gt; text=packages`（AUP node id 落点是 data-aup-id 属性而非原生 id=，CLAUDE.md 已警告此坑）导致 0 元素匹配，click 8s 超时——这是走查工具本身的选择器写法问题，不是产品缺陷；DOM 状态确认未变（meta-title 仍 &#x27;/&#x27;）。</div>
+<div class="err"><b>执行错误</b>：<code>TimeoutError: click: Timeout 8000ms exceeded.</code></div>
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> snapshot</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260813T192202Z/did-space/dd-4-did-space-02.png" alt="snapshot" loading="lazy"><figcaption>snapshot</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：snapshot 确认上一步失败点击确实未造成任何状态变化：meta-title 仍为 &#x27;/&#x27;，sidebar/primary-list 均仍为根目录列表——印证上一步是选择器未命中，而非产品无响应。</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-warn">不确定</span> click</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260813T192202Z/did-space/dd-4-did-space-03.png" alt="click" loading="lazy"><figcaption>click</figcaption></figure></div>
+<div class="chk-fail"><b>观察证据</b>：同类错误的 `#files-sidebar-list &gt;&gt; text=instance`（附带不受支持的 clickCount 字段）选择器再次 8s 超时——同一工具选择器坑，非产品问题，状态未变。</div>
+<div class="err"><b>执行错误</b>：<code>TimeoutError: click: Timeout 8000ms exceeded.</code></div>
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> click</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260813T192202Z/did-space/dd-4-did-space-04.png" alt="click" loading="lazy"><figcaption>click</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：改用全局 text=&#x27;packages&#x27; 精确匹配点击后，url 变为 .../explorer/packages，meta-title 变为 &#x27;packages&#x27;，files-primary-list 内容变为 &#x27;/ / packages .. 0 blocklet.dist.json blocklet.yaml&#x27;——确认 files-sidebar-list.select 按 man 声明正确 fan-out 到 files-primary-list + files-inspector-stat + files-inspector-preview 三个目标（dd-4 核心证据之一）。</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-warn">不确定</span> click</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260813T192202Z/did-space/dd-4-did-space-05.png" alt="click" loading="lazy"><figcaption>click</figcaption></figure></div>
+<div class="chk-fail"><b>观察证据</b>：重试 `#files-sidebar-list &gt;&gt; text=instance`（去掉 clickCount）选择器仍 0 匹配超时——同一工具选择器坑，状态未变（meta-title 仍 &#x27;packages&#x27;）。</div>
+<div class="err"><b>执行错误</b>：<code>TimeoutError: click: Timeout 8000ms exceeded.</code></div>
+
+</div>
+<div class="op">
+<h3><span class="pill p-warn">不确定</span> click</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260813T192202Z/did-space/dd-4-did-space-06.png" alt="click" loading="lazy"><figcaption>click</figcaption></figure></div>
+<div class="chk-fail"><b>观察证据</b>：再次尝试用错误的原生 id 前缀选择器定位 sidebar 中 &#x27;instance&#x27; 行，仍 0 匹配超时——继续印证 CLAUDE.md 提前警告的 `#&lt;id&gt;` 陷阱，改用全局 text 匹配才是正确写法（下一步验证）。</div>
+<div class="err"><b>执行错误</b>：<code>TimeoutError: click: Timeout 8000ms exceeded.</code></div>
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> click</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260813T192202Z/did-space/dd-4-did-space-07.png" alt="click" loading="lazy"><figcaption>click</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：改用全局 text=&#x27;instance&#x27; 精确点击成功：url 变为 .../explorer/instance，primary-list 变为 &#x27;/ / instance You do not have access to this list.&#x27;，meta-title=&#x27;instance&#x27;——确认 select 事件三目标 fan-out 依然生效；同时意外发现 /instance 挂载对该测试用户返回访问拒绝（与根 CLAUDE.md 的 DID Space fail-closed 规则一致，属预期行为非产品缺陷）。</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> click</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260813T192202Z/did-space/dd-4-did-space-08.png" alt="click" loading="lazy"><figcaption>click</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：重新点击 text=&#x27;packages&#x27; 精确匹配，恢复选中 packages（url/meta-title/primary-list 均回到 packages 状态），为下一步键盘 navigate 测试建立前置状态。</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> press</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260813T192202Z/did-space/dd-4-did-space-09.png" alt="press" loading="lazy"><figcaption>press</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：对已选中的 &#x27;packages&#x27; 行按键盘 ArrowRight 后，files-sidebar-list 自身的树根从 &#x27;/&#x27; 变为 &#x27;packages&#x27;（sidebar 现在只显示 &#x27;packages pages 1 test 1&#x27;，即 packages 自己的子项），而 primary-list/inspector 内容不变——这是 files-sidebar-list.navigate 与 .select 的真实区分点：navigate 额外调用了 sidebar 自身的 navigateTo() 重新扎根，select 只高亮+fan-out、不动 sidebar 自身根（dd-5 核心证据）。</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-warn">不确定</span> click</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260813T192202Z/did-space/dd-4-did-space-10.png" alt="click" loading="lazy"><figcaption>click</figcaption></figure></div>
+<div class="chk-fail"><b>观察证据</b>：尝试 `#files-primary-list &gt;&gt; text=pages` 选择器（同样的原生 id 坑）8s 超时——工具选择器问题，状态未变。</div>
+<div class="err"><b>执行错误</b>：<code>TimeoutError: click: Timeout 8000ms exceeded.</code></div>
+
+</div>
+<div class="op">
+<h3><span class="pill p-warn">不确定</span> click</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260813T192202Z/did-space/dd-4-did-space-11.png" alt="click" loading="lazy"><figcaption>click</figcaption></figure></div>
+<div class="chk-fail"><b>观察证据</b>：尝试 `#files-primary-list [data-entry-id=&quot;pages&quot;]` 选择器仍 0 匹配超时——复合选择器里的 `#id` 部分依旧无效，状态未变。</div>
+<div class="err"><b>执行错误</b>：<code>TimeoutError: click: Timeout 8000ms exceeded.</code></div>
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> snapshot</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260813T192202Z/did-space/dd-4-did-space-12.png" alt="snapshot" loading="lazy"><figcaption>snapshot</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：snapshot 确认当前真实状态：url=.../explorer/packages，sidebar=&#x27;packages pages 1 test 1&#x27;（已重新扎根），primary-list/inspector 内容仍为 packages 的 7 项——与前一步 ArrowRight navigate 的效果一致，状态稳定可复核。</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-warn">不确定</span> click</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260813T192202Z/did-space/dd-4-did-space-13.png" alt="click" loading="lazy"><figcaption>click</figcaption></figure></div>
+<div class="chk-fail"><b>观察证据</b>：改用正确的 `[data-aup-id=&quot;files-primary-list&quot;]` 前缀但整体复合选择器 `[data-aup-id=&quot;files-primary-list&quot;] [data-entry-id=&quot;pages&quot;]` 仍 0 匹配超时——后两步 waitFor 探测证实是 `[data-entry-id=&quot;pages&quot;]` 的字面值假设不成立，非语法错误。</div>
+<div class="err"><b>执行错误</b>：<code>TimeoutError: click: Timeout 8000ms exceeded.</code></div>
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> waitFor</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260813T192202Z/did-space/dd-4-did-space-14.png" alt="waitFor" loading="lazy"><figcaption>waitFor</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：waitFor `[data-aup-id=&quot;files-primary-list&quot;]` 命中——确认该正确前缀选择器语法本身可用。</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-warn">不确定</span> waitFor</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260813T192202Z/did-space/dd-4-did-space-15.png" alt="waitFor" loading="lazy"><figcaption>waitFor</figcaption></figure></div>
+<div class="chk-fail"><b>观察证据</b>：waitFor `[data-entry-id=&quot;pages&quot;]` 5s 超时——确认 entry.id 字面值假设 &#x27;pages&#x27; 不成立（渲染行的 data-entry-id 与展示名不完全一致，或该行处于未挂载/虚拟滚动之外）。</div>
+<div class="err"><b>执行错误</b>：<code>TimeoutError: waitForSelector: Timeout 5000ms exceeded.</code></div>
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> waitFor</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260813T192202Z/did-space/dd-4-did-space-16.png" alt="waitFor" loading="lazy"><figcaption>waitFor</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：waitFor `[data-entry-id]`（无值过滤）命中——确认 primary-list 行确实携带 data-entry-id 属性，只是具体取值与猜测不同；工具排查到此为止，改回全局 text 点击继续测试。</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> click</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260813T192202Z/did-space/dd-4-did-space-17.png" alt="click" loading="lazy"><figcaption>click</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：全局 text=&#x27;pages&#x27; 精确点击命中的是 sidebar 树里刚展开显示的 &#x27;pages&#x27; 子项（而非 primary-list 同名行）：url 变为 .../explorer/packages/pages，sidebar 展开出 pages 的子项 &#x27;index&#x27;（sidebar=&#x27;packages pages 1 index 2 test 1&#x27;），primary-list 整体重扎根为 &#x27;/ / packages / pages&#x27;，meta-title=&#x27;pages&#x27;——再次印证 sidebar select 对 primary-list 的 fan-out set-src 效果，无论点击对象在 sidebar 还是 primary，只要目标路径相同效果一致（dd-4 补充证据）。</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> click</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260813T192202Z/did-space/dd-4-did-space-18.png" alt="click" loading="lazy"><figcaption>click</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：点击 primary-list 内 &#x27;..&#x27; 行（单击）：meta-title 变为 &#x27;packages&#x27;（选中了父目录条目对应路径），但 primary-list 自身仍停留在 &#x27;/ / packages / pages&#x27;（url 除追加 ?sel= 外未变、breadcrumb/内容未变）——清晰证明 files-primary-list.select 只 fan-out 到 inspector 两个目标，不改变 primary-list 自身根（dd-6 核心证据之一：select 不驱动列表自身导航）。</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> click</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260813T192202Z/did-space/dd-4-did-space-19.png" alt="click" loading="lazy"><figcaption>click</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：尝试用两次快速独立 click 调用模拟浏览器原生双击（part 1，settle=150ms），点击同一 &#x27;..&#x27; 行：状态与上一步相同（meta-title=&#x27;packages&#x27;，primary-list 未变）——单次点击效果与预期一致（select 幂等）。</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> click</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260813T192202Z/did-space/dd-4-did-space-20.png" alt="click" loading="lazy"><figcaption>click</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：双击模拟 part 2（settle=1200ms，仍点击 &#x27;..&#x27;）：primary-list 仍停留在 &#x27;/ / packages / pages&#x27;，未发生二次导航——确认两次独立 driver click 调用（各自含 Playwright actionability 等待+进程往返）未能落入浏览器原生 dblclick 时间阈值，这是 walker 工具能力局限，不代表产品行为异常；真正验证 navigate 语义改用点击真实目录行（见下一步）。</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> click</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260813T192202Z/did-space/dd-4-did-space-21.png" alt="click" loading="lazy"><figcaption>click</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：点击 primary-list 内目录行 &#x27;index&#x27;（单击，非 &#x27;..&#x27;）：url 变为 .../explorer/packages/pages/index，meta-title=&#x27;index&#x27;，primary-list 内容变为 index 目录的真实子项列表 &#x27;.. 0 layout.json seo&#x27;，sidebar 同步展开显示 index 的子项 seo——确认在活产品里，对 primary-list 目录行的单击即完成「drill 进入」效果（dd-7 核心证据：files-primary-list.navigate 语义在此列表配置下由单击目录行触发，而非仅双击/键盘）。</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> click</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260813T192202Z/did-space/dd-4-did-space-22.png" alt="click" loading="lazy"><figcaption>click</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：点击 primary-list 内文件行 &#x27;layout.json&#x27;（单击）：meta-title 变为 &#x27;layout.json&#x27;，url 的 ?sel= 参数更新为该文件路径，但 primary-list 自身仍停留在 &#x27;/ / packages / pages / index&#x27;（breadcrumb/内容完全未变，未发生任何目录跳转）——干净证明对文件的单击是纯 select（dd-6 核心证据之二：files-primary-list.select 对文件只更新 inspector/selectSync，不触发任何导航，与目录单击「即刻 drill」形成对照）。</div>
+
+
+</div></details>
+<details class="dbg" open><summary>运行时 debug 上下文（13 条错误）</summary><div class="dbg-has"><b>Console 错误（12）</b><ul><li><code>Failed to load resource: the server responded with a status of 403 ()</code></li><li><code>Failed to load resource: the server responded with a status of 403 ()</code></li><li><code>Failed to load resource: the server responded with a status of 403 ()</code></li><li><code>Failed to load resource: the server responded with a status of 403 ()</code></li><li><code>Failed to load resource: the server responded with a status of 403 ()</code></li><li><code>Failed to load resource: the server responded with a status of 403 ()</code></li><li><code>Failed to load resource: the server responded with a status of 403 ()</code></li><li><code>Failed to load resource: the server responded with a status of 403 ()</code></li><li><code>Failed to load resource: the server responded with a status of 403 ()</code></li><li><code>Failed to load resource: the server responded with a status of 403 ()</code></li><li><code>Failed to load resource: the server responded with a status of 403 ()</code></li><li><code>Failed to load resource: the server responded with a status of 403 ()</code></li></ul></div><div class="dbg-none">JS 未捕获异常：<b>无</b></div><div class="dbg-has"><b>网络错误（请求失败 / 4xx–5xx）（1）</b><ul><li><code>403 POST https://did-space.afsd.dev/api/afs/rpc</code></li></ul></div></details>
+</section><section id="path-dd-5-did-space">
+<h2>read-flow files|r3: sidebar navigate 钻入目录（同一 fan-out） <span class="rt">authed · /explorer</span></h2>
+<p class="pdesc">页面走查：导航到 <code>/explorer</code>，验证页面渲染出真实内容并逐步观测（23 步）。</p>
+<video class="video" controls preload="metadata" src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260813T192202Z/did-space/page@0e02e1c232b68b2a50a4e5b53a5c5478.webm"><a href="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260813T192202Z/did-space/page@0e02e1c232b68b2a50a4e5b53a5c5478.webm">下载该路径录像</a></video><p class="vcap">本测试路径整段走查录像</p>
+<div class="kpis"><div class="kpi"><div class="k">23</div><div class="l">操作步</div></div><div class="kpi"><div class="k">15</div><div class="l">通过</div></div><div class="kpi"><div class="k k-bad">0</div><div class="l">失败</div></div><div class="kpi"><div class="k k-warn">8</div><div class="l">不确定</div></div><div class="kpi"><div class="k">0</div><div class="l">未走到</div></div></div>
+<details class="steps"><summary>▸ 逐步操作详情（23 步，含判定截图）</summary><div class="op">
+<h3><span class="pill p-ok">通过</span> navigate</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260813T192202Z/did-space/dd-4-did-space-00.png" alt="navigate" loading="lazy"><figcaption>navigate</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：navigate 到 https://did-space.afsd.dev/explorer（authed cookie）渲染 files-explorer-wm：sidebar 与 primary-list 均显示根目录 6 项（instance/packages/ash/dev/user/space），meta-title=&#x27;/&#x27;。</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-warn">不确定</span> click</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260813T192202Z/did-space/dd-4-did-space-01.png" alt="click" loading="lazy"><figcaption>click</figcaption></figure></div>
+<div class="chk-fail"><b>观察证据</b>：agent 探路误用 CSS id 选择器 `#files-sidebar-list &gt;&gt; text=packages`（AUP node id 落点是 data-aup-id 属性而非原生 id=，CLAUDE.md 已警告此坑）导致 0 元素匹配，click 8s 超时——这是走查工具本身的选择器写法问题，不是产品缺陷；DOM 状态确认未变（meta-title 仍 &#x27;/&#x27;）。</div>
+<div class="err"><b>执行错误</b>：<code>TimeoutError: click: Timeout 8000ms exceeded.</code></div>
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> snapshot</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260813T192202Z/did-space/dd-4-did-space-02.png" alt="snapshot" loading="lazy"><figcaption>snapshot</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：snapshot 确认上一步失败点击确实未造成任何状态变化：meta-title 仍为 &#x27;/&#x27;，sidebar/primary-list 均仍为根目录列表——印证上一步是选择器未命中，而非产品无响应。</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-warn">不确定</span> click</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260813T192202Z/did-space/dd-4-did-space-03.png" alt="click" loading="lazy"><figcaption>click</figcaption></figure></div>
+<div class="chk-fail"><b>观察证据</b>：同类错误的 `#files-sidebar-list &gt;&gt; text=instance`（附带不受支持的 clickCount 字段）选择器再次 8s 超时——同一工具选择器坑，非产品问题，状态未变。</div>
+<div class="err"><b>执行错误</b>：<code>TimeoutError: click: Timeout 8000ms exceeded.</code></div>
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> click</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260813T192202Z/did-space/dd-4-did-space-04.png" alt="click" loading="lazy"><figcaption>click</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：改用全局 text=&#x27;packages&#x27; 精确匹配点击后，url 变为 .../explorer/packages，meta-title 变为 &#x27;packages&#x27;，files-primary-list 内容变为 &#x27;/ / packages .. 0 blocklet.dist.json blocklet.yaml&#x27;——确认 files-sidebar-list.select 按 man 声明正确 fan-out 到 files-primary-list + files-inspector-stat + files-inspector-preview 三个目标（dd-4 核心证据之一）。</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-warn">不确定</span> click</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260813T192202Z/did-space/dd-4-did-space-05.png" alt="click" loading="lazy"><figcaption>click</figcaption></figure></div>
+<div class="chk-fail"><b>观察证据</b>：重试 `#files-sidebar-list &gt;&gt; text=instance`（去掉 clickCount）选择器仍 0 匹配超时——同一工具选择器坑，状态未变（meta-title 仍 &#x27;packages&#x27;）。</div>
+<div class="err"><b>执行错误</b>：<code>TimeoutError: click: Timeout 8000ms exceeded.</code></div>
+
+</div>
+<div class="op">
+<h3><span class="pill p-warn">不确定</span> click</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260813T192202Z/did-space/dd-4-did-space-06.png" alt="click" loading="lazy"><figcaption>click</figcaption></figure></div>
+<div class="chk-fail"><b>观察证据</b>：再次尝试用错误的原生 id 前缀选择器定位 sidebar 中 &#x27;instance&#x27; 行，仍 0 匹配超时——继续印证 CLAUDE.md 提前警告的 `#&lt;id&gt;` 陷阱，改用全局 text 匹配才是正确写法（下一步验证）。</div>
+<div class="err"><b>执行错误</b>：<code>TimeoutError: click: Timeout 8000ms exceeded.</code></div>
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> click</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260813T192202Z/did-space/dd-4-did-space-07.png" alt="click" loading="lazy"><figcaption>click</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：改用全局 text=&#x27;instance&#x27; 精确点击成功：url 变为 .../explorer/instance，primary-list 变为 &#x27;/ / instance You do not have access to this list.&#x27;，meta-title=&#x27;instance&#x27;——确认 select 事件三目标 fan-out 依然生效；同时意外发现 /instance 挂载对该测试用户返回访问拒绝（与根 CLAUDE.md 的 DID Space fail-closed 规则一致，属预期行为非产品缺陷）。</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> click</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260813T192202Z/did-space/dd-4-did-space-08.png" alt="click" loading="lazy"><figcaption>click</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：重新点击 text=&#x27;packages&#x27; 精确匹配，恢复选中 packages（url/meta-title/primary-list 均回到 packages 状态），为下一步键盘 navigate 测试建立前置状态。</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> press</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260813T192202Z/did-space/dd-4-did-space-09.png" alt="press" loading="lazy"><figcaption>press</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：对已选中的 &#x27;packages&#x27; 行按键盘 ArrowRight 后，files-sidebar-list 自身的树根从 &#x27;/&#x27; 变为 &#x27;packages&#x27;（sidebar 现在只显示 &#x27;packages pages 1 test 1&#x27;，即 packages 自己的子项），而 primary-list/inspector 内容不变——这是 files-sidebar-list.navigate 与 .select 的真实区分点：navigate 额外调用了 sidebar 自身的 navigateTo() 重新扎根，select 只高亮+fan-out、不动 sidebar 自身根（dd-5 核心证据）。</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-warn">不确定</span> click</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260813T192202Z/did-space/dd-4-did-space-10.png" alt="click" loading="lazy"><figcaption>click</figcaption></figure></div>
+<div class="chk-fail"><b>观察证据</b>：尝试 `#files-primary-list &gt;&gt; text=pages` 选择器（同样的原生 id 坑）8s 超时——工具选择器问题，状态未变。</div>
+<div class="err"><b>执行错误</b>：<code>TimeoutError: click: Timeout 8000ms exceeded.</code></div>
+
+</div>
+<div class="op">
+<h3><span class="pill p-warn">不确定</span> click</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260813T192202Z/did-space/dd-4-did-space-11.png" alt="click" loading="lazy"><figcaption>click</figcaption></figure></div>
+<div class="chk-fail"><b>观察证据</b>：尝试 `#files-primary-list [data-entry-id=&quot;pages&quot;]` 选择器仍 0 匹配超时——复合选择器里的 `#id` 部分依旧无效，状态未变。</div>
+<div class="err"><b>执行错误</b>：<code>TimeoutError: click: Timeout 8000ms exceeded.</code></div>
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> snapshot</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260813T192202Z/did-space/dd-4-did-space-12.png" alt="snapshot" loading="lazy"><figcaption>snapshot</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：snapshot 确认当前真实状态：url=.../explorer/packages，sidebar=&#x27;packages pages 1 test 1&#x27;（已重新扎根），primary-list/inspector 内容仍为 packages 的 7 项——与前一步 ArrowRight navigate 的效果一致，状态稳定可复核。</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-warn">不确定</span> click</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260813T192202Z/did-space/dd-4-did-space-13.png" alt="click" loading="lazy"><figcaption>click</figcaption></figure></div>
+<div class="chk-fail"><b>观察证据</b>：改用正确的 `[data-aup-id=&quot;files-primary-list&quot;]` 前缀但整体复合选择器 `[data-aup-id=&quot;files-primary-list&quot;] [data-entry-id=&quot;pages&quot;]` 仍 0 匹配超时——后两步 waitFor 探测证实是 `[data-entry-id=&quot;pages&quot;]` 的字面值假设不成立，非语法错误。</div>
+<div class="err"><b>执行错误</b>：<code>TimeoutError: click: Timeout 8000ms exceeded.</code></div>
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> waitFor</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260813T192202Z/did-space/dd-4-did-space-14.png" alt="waitFor" loading="lazy"><figcaption>waitFor</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：waitFor `[data-aup-id=&quot;files-primary-list&quot;]` 命中——确认该正确前缀选择器语法本身可用。</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-warn">不确定</span> waitFor</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260813T192202Z/did-space/dd-4-did-space-15.png" alt="waitFor" loading="lazy"><figcaption>waitFor</figcaption></figure></div>
+<div class="chk-fail"><b>观察证据</b>：waitFor `[data-entry-id=&quot;pages&quot;]` 5s 超时——确认 entry.id 字面值假设 &#x27;pages&#x27; 不成立（渲染行的 data-entry-id 与展示名不完全一致，或该行处于未挂载/虚拟滚动之外）。</div>
+<div class="err"><b>执行错误</b>：<code>TimeoutError: waitForSelector: Timeout 5000ms exceeded.</code></div>
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> waitFor</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260813T192202Z/did-space/dd-4-did-space-16.png" alt="waitFor" loading="lazy"><figcaption>waitFor</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：waitFor `[data-entry-id]`（无值过滤）命中——确认 primary-list 行确实携带 data-entry-id 属性，只是具体取值与猜测不同；工具排查到此为止，改回全局 text 点击继续测试。</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> click</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260813T192202Z/did-space/dd-4-did-space-17.png" alt="click" loading="lazy"><figcaption>click</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：全局 text=&#x27;pages&#x27; 精确点击命中的是 sidebar 树里刚展开显示的 &#x27;pages&#x27; 子项（而非 primary-list 同名行）：url 变为 .../explorer/packages/pages，sidebar 展开出 pages 的子项 &#x27;index&#x27;（sidebar=&#x27;packages pages 1 index 2 test 1&#x27;），primary-list 整体重扎根为 &#x27;/ / packages / pages&#x27;，meta-title=&#x27;pages&#x27;——再次印证 sidebar select 对 primary-list 的 fan-out set-src 效果，无论点击对象在 sidebar 还是 primary，只要目标路径相同效果一致（dd-4 补充证据）。</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> click</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260813T192202Z/did-space/dd-4-did-space-18.png" alt="click" loading="lazy"><figcaption>click</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：点击 primary-list 内 &#x27;..&#x27; 行（单击）：meta-title 变为 &#x27;packages&#x27;（选中了父目录条目对应路径），但 primary-list 自身仍停留在 &#x27;/ / packages / pages&#x27;（url 除追加 ?sel= 外未变、breadcrumb/内容未变）——清晰证明 files-primary-list.select 只 fan-out 到 inspector 两个目标，不改变 primary-list 自身根（dd-6 核心证据之一：select 不驱动列表自身导航）。</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> click</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260813T192202Z/did-space/dd-4-did-space-19.png" alt="click" loading="lazy"><figcaption>click</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：尝试用两次快速独立 click 调用模拟浏览器原生双击（part 1，settle=150ms），点击同一 &#x27;..&#x27; 行：状态与上一步相同（meta-title=&#x27;packages&#x27;，primary-list 未变）——单次点击效果与预期一致（select 幂等）。</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> click</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260813T192202Z/did-space/dd-4-did-space-20.png" alt="click" loading="lazy"><figcaption>click</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：双击模拟 part 2（settle=1200ms，仍点击 &#x27;..&#x27;）：primary-list 仍停留在 &#x27;/ / packages / pages&#x27;，未发生二次导航——确认两次独立 driver click 调用（各自含 Playwright actionability 等待+进程往返）未能落入浏览器原生 dblclick 时间阈值，这是 walker 工具能力局限，不代表产品行为异常；真正验证 navigate 语义改用点击真实目录行（见下一步）。</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> click</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260813T192202Z/did-space/dd-4-did-space-21.png" alt="click" loading="lazy"><figcaption>click</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：点击 primary-list 内目录行 &#x27;index&#x27;（单击，非 &#x27;..&#x27;）：url 变为 .../explorer/packages/pages/index，meta-title=&#x27;index&#x27;，primary-list 内容变为 index 目录的真实子项列表 &#x27;.. 0 layout.json seo&#x27;，sidebar 同步展开显示 index 的子项 seo——确认在活产品里，对 primary-list 目录行的单击即完成「drill 进入」效果（dd-7 核心证据：files-primary-list.navigate 语义在此列表配置下由单击目录行触发，而非仅双击/键盘）。</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> click</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260813T192202Z/did-space/dd-4-did-space-22.png" alt="click" loading="lazy"><figcaption>click</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：点击 primary-list 内文件行 &#x27;layout.json&#x27;（单击）：meta-title 变为 &#x27;layout.json&#x27;，url 的 ?sel= 参数更新为该文件路径，但 primary-list 自身仍停留在 &#x27;/ / packages / pages / index&#x27;（breadcrumb/内容完全未变，未发生任何目录跳转）——干净证明对文件的单击是纯 select（dd-6 核心证据之二：files-primary-list.select 对文件只更新 inspector/selectSync，不触发任何导航，与目录单击「即刻 drill」形成对照）。</div>
+
+
+</div></details>
+<details class="dbg" open><summary>运行时 debug 上下文（13 条错误）</summary><div class="dbg-has"><b>Console 错误（12）</b><ul><li><code>Failed to load resource: the server responded with a status of 403 ()</code></li><li><code>Failed to load resource: the server responded with a status of 403 ()</code></li><li><code>Failed to load resource: the server responded with a status of 403 ()</code></li><li><code>Failed to load resource: the server responded with a status of 403 ()</code></li><li><code>Failed to load resource: the server responded with a status of 403 ()</code></li><li><code>Failed to load resource: the server responded with a status of 403 ()</code></li><li><code>Failed to load resource: the server responded with a status of 403 ()</code></li><li><code>Failed to load resource: the server responded with a status of 403 ()</code></li><li><code>Failed to load resource: the server responded with a status of 403 ()</code></li><li><code>Failed to load resource: the server responded with a status of 403 ()</code></li><li><code>Failed to load resource: the server responded with a status of 403 ()</code></li><li><code>Failed to load resource: the server responded with a status of 403 ()</code></li></ul></div><div class="dbg-none">JS 未捕获异常：<b>无</b></div><div class="dbg-has"><b>网络错误（请求失败 / 4xx–5xx）（1）</b><ul><li><code>403 POST https://did-space.afsd.dev/api/afs/rpc</code></li></ul></div></details>
+</section><section id="path-dd-6-did-space">
+<h2>read-flow files|r4: primary select 文件（inspector 更新，列表不动） <span class="rt">authed · /explorer</span></h2>
+<p class="pdesc">页面走查：导航到 <code>/explorer</code>，验证页面渲染出真实内容并逐步观测（23 步）。</p>
+<video class="video" controls preload="metadata" src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260813T192202Z/did-space/page@0e02e1c232b68b2a50a4e5b53a5c5478.webm"><a href="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260813T192202Z/did-space/page@0e02e1c232b68b2a50a4e5b53a5c5478.webm">下载该路径录像</a></video><p class="vcap">本测试路径整段走查录像</p>
+<div class="kpis"><div class="kpi"><div class="k">23</div><div class="l">操作步</div></div><div class="kpi"><div class="k">15</div><div class="l">通过</div></div><div class="kpi"><div class="k k-bad">0</div><div class="l">失败</div></div><div class="kpi"><div class="k k-warn">8</div><div class="l">不确定</div></div><div class="kpi"><div class="k">0</div><div class="l">未走到</div></div></div>
+<details class="steps"><summary>▸ 逐步操作详情（23 步，含判定截图）</summary><div class="op">
+<h3><span class="pill p-ok">通过</span> navigate</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260813T192202Z/did-space/dd-4-did-space-00.png" alt="navigate" loading="lazy"><figcaption>navigate</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：navigate 到 https://did-space.afsd.dev/explorer（authed cookie）渲染 files-explorer-wm：sidebar 与 primary-list 均显示根目录 6 项（instance/packages/ash/dev/user/space），meta-title=&#x27;/&#x27;。</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-warn">不确定</span> click</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260813T192202Z/did-space/dd-4-did-space-01.png" alt="click" loading="lazy"><figcaption>click</figcaption></figure></div>
+<div class="chk-fail"><b>观察证据</b>：agent 探路误用 CSS id 选择器 `#files-sidebar-list &gt;&gt; text=packages`（AUP node id 落点是 data-aup-id 属性而非原生 id=，CLAUDE.md 已警告此坑）导致 0 元素匹配，click 8s 超时——这是走查工具本身的选择器写法问题，不是产品缺陷；DOM 状态确认未变（meta-title 仍 &#x27;/&#x27;）。</div>
+<div class="err"><b>执行错误</b>：<code>TimeoutError: click: Timeout 8000ms exceeded.</code></div>
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> snapshot</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260813T192202Z/did-space/dd-4-did-space-02.png" alt="snapshot" loading="lazy"><figcaption>snapshot</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：snapshot 确认上一步失败点击确实未造成任何状态变化：meta-title 仍为 &#x27;/&#x27;，sidebar/primary-list 均仍为根目录列表——印证上一步是选择器未命中，而非产品无响应。</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-warn">不确定</span> click</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260813T192202Z/did-space/dd-4-did-space-03.png" alt="click" loading="lazy"><figcaption>click</figcaption></figure></div>
+<div class="chk-fail"><b>观察证据</b>：同类错误的 `#files-sidebar-list &gt;&gt; text=instance`（附带不受支持的 clickCount 字段）选择器再次 8s 超时——同一工具选择器坑，非产品问题，状态未变。</div>
+<div class="err"><b>执行错误</b>：<code>TimeoutError: click: Timeout 8000ms exceeded.</code></div>
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> click</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260813T192202Z/did-space/dd-4-did-space-04.png" alt="click" loading="lazy"><figcaption>click</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：改用全局 text=&#x27;packages&#x27; 精确匹配点击后，url 变为 .../explorer/packages，meta-title 变为 &#x27;packages&#x27;，files-primary-list 内容变为 &#x27;/ / packages .. 0 blocklet.dist.json blocklet.yaml&#x27;——确认 files-sidebar-list.select 按 man 声明正确 fan-out 到 files-primary-list + files-inspector-stat + files-inspector-preview 三个目标（dd-4 核心证据之一）。</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-warn">不确定</span> click</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260813T192202Z/did-space/dd-4-did-space-05.png" alt="click" loading="lazy"><figcaption>click</figcaption></figure></div>
+<div class="chk-fail"><b>观察证据</b>：重试 `#files-sidebar-list &gt;&gt; text=instance`（去掉 clickCount）选择器仍 0 匹配超时——同一工具选择器坑，状态未变（meta-title 仍 &#x27;packages&#x27;）。</div>
+<div class="err"><b>执行错误</b>：<code>TimeoutError: click: Timeout 8000ms exceeded.</code></div>
+
+</div>
+<div class="op">
+<h3><span class="pill p-warn">不确定</span> click</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260813T192202Z/did-space/dd-4-did-space-06.png" alt="click" loading="lazy"><figcaption>click</figcaption></figure></div>
+<div class="chk-fail"><b>观察证据</b>：再次尝试用错误的原生 id 前缀选择器定位 sidebar 中 &#x27;instance&#x27; 行，仍 0 匹配超时——继续印证 CLAUDE.md 提前警告的 `#&lt;id&gt;` 陷阱，改用全局 text 匹配才是正确写法（下一步验证）。</div>
+<div class="err"><b>执行错误</b>：<code>TimeoutError: click: Timeout 8000ms exceeded.</code></div>
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> click</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260813T192202Z/did-space/dd-4-did-space-07.png" alt="click" loading="lazy"><figcaption>click</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：改用全局 text=&#x27;instance&#x27; 精确点击成功：url 变为 .../explorer/instance，primary-list 变为 &#x27;/ / instance You do not have access to this list.&#x27;，meta-title=&#x27;instance&#x27;——确认 select 事件三目标 fan-out 依然生效；同时意外发现 /instance 挂载对该测试用户返回访问拒绝（与根 CLAUDE.md 的 DID Space fail-closed 规则一致，属预期行为非产品缺陷）。</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> click</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260813T192202Z/did-space/dd-4-did-space-08.png" alt="click" loading="lazy"><figcaption>click</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：重新点击 text=&#x27;packages&#x27; 精确匹配，恢复选中 packages（url/meta-title/primary-list 均回到 packages 状态），为下一步键盘 navigate 测试建立前置状态。</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> press</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260813T192202Z/did-space/dd-4-did-space-09.png" alt="press" loading="lazy"><figcaption>press</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：对已选中的 &#x27;packages&#x27; 行按键盘 ArrowRight 后，files-sidebar-list 自身的树根从 &#x27;/&#x27; 变为 &#x27;packages&#x27;（sidebar 现在只显示 &#x27;packages pages 1 test 1&#x27;，即 packages 自己的子项），而 primary-list/inspector 内容不变——这是 files-sidebar-list.navigate 与 .select 的真实区分点：navigate 额外调用了 sidebar 自身的 navigateTo() 重新扎根，select 只高亮+fan-out、不动 sidebar 自身根（dd-5 核心证据）。</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-warn">不确定</span> click</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260813T192202Z/did-space/dd-4-did-space-10.png" alt="click" loading="lazy"><figcaption>click</figcaption></figure></div>
+<div class="chk-fail"><b>观察证据</b>：尝试 `#files-primary-list &gt;&gt; text=pages` 选择器（同样的原生 id 坑）8s 超时——工具选择器问题，状态未变。</div>
+<div class="err"><b>执行错误</b>：<code>TimeoutError: click: Timeout 8000ms exceeded.</code></div>
+
+</div>
+<div class="op">
+<h3><span class="pill p-warn">不确定</span> click</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260813T192202Z/did-space/dd-4-did-space-11.png" alt="click" loading="lazy"><figcaption>click</figcaption></figure></div>
+<div class="chk-fail"><b>观察证据</b>：尝试 `#files-primary-list [data-entry-id=&quot;pages&quot;]` 选择器仍 0 匹配超时——复合选择器里的 `#id` 部分依旧无效，状态未变。</div>
+<div class="err"><b>执行错误</b>：<code>TimeoutError: click: Timeout 8000ms exceeded.</code></div>
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> snapshot</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260813T192202Z/did-space/dd-4-did-space-12.png" alt="snapshot" loading="lazy"><figcaption>snapshot</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：snapshot 确认当前真实状态：url=.../explorer/packages，sidebar=&#x27;packages pages 1 test 1&#x27;（已重新扎根），primary-list/inspector 内容仍为 packages 的 7 项——与前一步 ArrowRight navigate 的效果一致，状态稳定可复核。</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-warn">不确定</span> click</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260813T192202Z/did-space/dd-4-did-space-13.png" alt="click" loading="lazy"><figcaption>click</figcaption></figure></div>
+<div class="chk-fail"><b>观察证据</b>：改用正确的 `[data-aup-id=&quot;files-primary-list&quot;]` 前缀但整体复合选择器 `[data-aup-id=&quot;files-primary-list&quot;] [data-entry-id=&quot;pages&quot;]` 仍 0 匹配超时——后两步 waitFor 探测证实是 `[data-entry-id=&quot;pages&quot;]` 的字面值假设不成立，非语法错误。</div>
+<div class="err"><b>执行错误</b>：<code>TimeoutError: click: Timeout 8000ms exceeded.</code></div>
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> waitFor</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260813T192202Z/did-space/dd-4-did-space-14.png" alt="waitFor" loading="lazy"><figcaption>waitFor</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：waitFor `[data-aup-id=&quot;files-primary-list&quot;]` 命中——确认该正确前缀选择器语法本身可用。</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-warn">不确定</span> waitFor</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260813T192202Z/did-space/dd-4-did-space-15.png" alt="waitFor" loading="lazy"><figcaption>waitFor</figcaption></figure></div>
+<div class="chk-fail"><b>观察证据</b>：waitFor `[data-entry-id=&quot;pages&quot;]` 5s 超时——确认 entry.id 字面值假设 &#x27;pages&#x27; 不成立（渲染行的 data-entry-id 与展示名不完全一致，或该行处于未挂载/虚拟滚动之外）。</div>
+<div class="err"><b>执行错误</b>：<code>TimeoutError: waitForSelector: Timeout 5000ms exceeded.</code></div>
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> waitFor</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260813T192202Z/did-space/dd-4-did-space-16.png" alt="waitFor" loading="lazy"><figcaption>waitFor</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：waitFor `[data-entry-id]`（无值过滤）命中——确认 primary-list 行确实携带 data-entry-id 属性，只是具体取值与猜测不同；工具排查到此为止，改回全局 text 点击继续测试。</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> click</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260813T192202Z/did-space/dd-4-did-space-17.png" alt="click" loading="lazy"><figcaption>click</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：全局 text=&#x27;pages&#x27; 精确点击命中的是 sidebar 树里刚展开显示的 &#x27;pages&#x27; 子项（而非 primary-list 同名行）：url 变为 .../explorer/packages/pages，sidebar 展开出 pages 的子项 &#x27;index&#x27;（sidebar=&#x27;packages pages 1 index 2 test 1&#x27;），primary-list 整体重扎根为 &#x27;/ / packages / pages&#x27;，meta-title=&#x27;pages&#x27;——再次印证 sidebar select 对 primary-list 的 fan-out set-src 效果，无论点击对象在 sidebar 还是 primary，只要目标路径相同效果一致（dd-4 补充证据）。</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> click</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260813T192202Z/did-space/dd-4-did-space-18.png" alt="click" loading="lazy"><figcaption>click</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：点击 primary-list 内 &#x27;..&#x27; 行（单击）：meta-title 变为 &#x27;packages&#x27;（选中了父目录条目对应路径），但 primary-list 自身仍停留在 &#x27;/ / packages / pages&#x27;（url 除追加 ?sel= 外未变、breadcrumb/内容未变）——清晰证明 files-primary-list.select 只 fan-out 到 inspector 两个目标，不改变 primary-list 自身根（dd-6 核心证据之一：select 不驱动列表自身导航）。</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> click</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260813T192202Z/did-space/dd-4-did-space-19.png" alt="click" loading="lazy"><figcaption>click</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：尝试用两次快速独立 click 调用模拟浏览器原生双击（part 1，settle=150ms），点击同一 &#x27;..&#x27; 行：状态与上一步相同（meta-title=&#x27;packages&#x27;，primary-list 未变）——单次点击效果与预期一致（select 幂等）。</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> click</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260813T192202Z/did-space/dd-4-did-space-20.png" alt="click" loading="lazy"><figcaption>click</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：双击模拟 part 2（settle=1200ms，仍点击 &#x27;..&#x27;）：primary-list 仍停留在 &#x27;/ / packages / pages&#x27;，未发生二次导航——确认两次独立 driver click 调用（各自含 Playwright actionability 等待+进程往返）未能落入浏览器原生 dblclick 时间阈值，这是 walker 工具能力局限，不代表产品行为异常；真正验证 navigate 语义改用点击真实目录行（见下一步）。</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> click</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260813T192202Z/did-space/dd-4-did-space-21.png" alt="click" loading="lazy"><figcaption>click</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：点击 primary-list 内目录行 &#x27;index&#x27;（单击，非 &#x27;..&#x27;）：url 变为 .../explorer/packages/pages/index，meta-title=&#x27;index&#x27;，primary-list 内容变为 index 目录的真实子项列表 &#x27;.. 0 layout.json seo&#x27;，sidebar 同步展开显示 index 的子项 seo——确认在活产品里，对 primary-list 目录行的单击即完成「drill 进入」效果（dd-7 核心证据：files-primary-list.navigate 语义在此列表配置下由单击目录行触发，而非仅双击/键盘）。</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> click</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260813T192202Z/did-space/dd-4-did-space-22.png" alt="click" loading="lazy"><figcaption>click</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：点击 primary-list 内文件行 &#x27;layout.json&#x27;（单击）：meta-title 变为 &#x27;layout.json&#x27;，url 的 ?sel= 参数更新为该文件路径，但 primary-list 自身仍停留在 &#x27;/ / packages / pages / index&#x27;（breadcrumb/内容完全未变，未发生任何目录跳转）——干净证明对文件的单击是纯 select（dd-6 核心证据之二：files-primary-list.select 对文件只更新 inspector/selectSync，不触发任何导航，与目录单击「即刻 drill」形成对照）。</div>
+
+
+</div></details>
+<details class="dbg" open><summary>运行时 debug 上下文（13 条错误）</summary><div class="dbg-has"><b>Console 错误（12）</b><ul><li><code>Failed to load resource: the server responded with a status of 403 ()</code></li><li><code>Failed to load resource: the server responded with a status of 403 ()</code></li><li><code>Failed to load resource: the server responded with a status of 403 ()</code></li><li><code>Failed to load resource: the server responded with a status of 403 ()</code></li><li><code>Failed to load resource: the server responded with a status of 403 ()</code></li><li><code>Failed to load resource: the server responded with a status of 403 ()</code></li><li><code>Failed to load resource: the server responded with a status of 403 ()</code></li><li><code>Failed to load resource: the server responded with a status of 403 ()</code></li><li><code>Failed to load resource: the server responded with a status of 403 ()</code></li><li><code>Failed to load resource: the server responded with a status of 403 ()</code></li><li><code>Failed to load resource: the server responded with a status of 403 ()</code></li><li><code>Failed to load resource: the server responded with a status of 403 ()</code></li></ul></div><div class="dbg-none">JS 未捕获异常：<b>无</b></div><div class="dbg-has"><b>网络错误（请求失败 / 4xx–5xx）（1）</b><ul><li><code>403 POST https://did-space.afsd.dev/api/afs/rpc</code></li></ul></div></details>
+</section><section id="path-dd-7-did-space">
+<h2>read-flow files|r5: primary 单击目录行钻入（drill via primary list） <span class="rt">authed · /explorer</span></h2>
+<p class="pdesc">页面走查：导航到 <code>/explorer</code>，验证页面渲染出真实内容并逐步观测（23 步）。</p>
+<video class="video" controls preload="metadata" src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260813T192202Z/did-space/page@0e02e1c232b68b2a50a4e5b53a5c5478.webm"><a href="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260813T192202Z/did-space/page@0e02e1c232b68b2a50a4e5b53a5c5478.webm">下载该路径录像</a></video><p class="vcap">本测试路径整段走查录像</p>
+<div class="kpis"><div class="kpi"><div class="k">23</div><div class="l">操作步</div></div><div class="kpi"><div class="k">15</div><div class="l">通过</div></div><div class="kpi"><div class="k k-bad">0</div><div class="l">失败</div></div><div class="kpi"><div class="k k-warn">8</div><div class="l">不确定</div></div><div class="kpi"><div class="k">0</div><div class="l">未走到</div></div></div>
+<details class="steps"><summary>▸ 逐步操作详情（23 步，含判定截图）</summary><div class="op">
+<h3><span class="pill p-ok">通过</span> navigate</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260813T192202Z/did-space/dd-4-did-space-00.png" alt="navigate" loading="lazy"><figcaption>navigate</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：navigate 到 https://did-space.afsd.dev/explorer（authed cookie）渲染 files-explorer-wm：sidebar 与 primary-list 均显示根目录 6 项（instance/packages/ash/dev/user/space），meta-title=&#x27;/&#x27;。</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-warn">不确定</span> click</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260813T192202Z/did-space/dd-4-did-space-01.png" alt="click" loading="lazy"><figcaption>click</figcaption></figure></div>
+<div class="chk-fail"><b>观察证据</b>：agent 探路误用 CSS id 选择器 `#files-sidebar-list &gt;&gt; text=packages`（AUP node id 落点是 data-aup-id 属性而非原生 id=，CLAUDE.md 已警告此坑）导致 0 元素匹配，click 8s 超时——这是走查工具本身的选择器写法问题，不是产品缺陷；DOM 状态确认未变（meta-title 仍 &#x27;/&#x27;）。</div>
+<div class="err"><b>执行错误</b>：<code>TimeoutError: click: Timeout 8000ms exceeded.</code></div>
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> snapshot</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260813T192202Z/did-space/dd-4-did-space-02.png" alt="snapshot" loading="lazy"><figcaption>snapshot</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：snapshot 确认上一步失败点击确实未造成任何状态变化：meta-title 仍为 &#x27;/&#x27;，sidebar/primary-list 均仍为根目录列表——印证上一步是选择器未命中，而非产品无响应。</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-warn">不确定</span> click</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260813T192202Z/did-space/dd-4-did-space-03.png" alt="click" loading="lazy"><figcaption>click</figcaption></figure></div>
+<div class="chk-fail"><b>观察证据</b>：同类错误的 `#files-sidebar-list &gt;&gt; text=instance`（附带不受支持的 clickCount 字段）选择器再次 8s 超时——同一工具选择器坑，非产品问题，状态未变。</div>
+<div class="err"><b>执行错误</b>：<code>TimeoutError: click: Timeout 8000ms exceeded.</code></div>
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> click</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260813T192202Z/did-space/dd-4-did-space-04.png" alt="click" loading="lazy"><figcaption>click</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：改用全局 text=&#x27;packages&#x27; 精确匹配点击后，url 变为 .../explorer/packages，meta-title 变为 &#x27;packages&#x27;，files-primary-list 内容变为 &#x27;/ / packages .. 0 blocklet.dist.json blocklet.yaml&#x27;——确认 files-sidebar-list.select 按 man 声明正确 fan-out 到 files-primary-list + files-inspector-stat + files-inspector-preview 三个目标（dd-4 核心证据之一）。</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-warn">不确定</span> click</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260813T192202Z/did-space/dd-4-did-space-05.png" alt="click" loading="lazy"><figcaption>click</figcaption></figure></div>
+<div class="chk-fail"><b>观察证据</b>：重试 `#files-sidebar-list &gt;&gt; text=instance`（去掉 clickCount）选择器仍 0 匹配超时——同一工具选择器坑，状态未变（meta-title 仍 &#x27;packages&#x27;）。</div>
+<div class="err"><b>执行错误</b>：<code>TimeoutError: click: Timeout 8000ms exceeded.</code></div>
+
+</div>
+<div class="op">
+<h3><span class="pill p-warn">不确定</span> click</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260813T192202Z/did-space/dd-4-did-space-06.png" alt="click" loading="lazy"><figcaption>click</figcaption></figure></div>
+<div class="chk-fail"><b>观察证据</b>：再次尝试用错误的原生 id 前缀选择器定位 sidebar 中 &#x27;instance&#x27; 行，仍 0 匹配超时——继续印证 CLAUDE.md 提前警告的 `#&lt;id&gt;` 陷阱，改用全局 text 匹配才是正确写法（下一步验证）。</div>
+<div class="err"><b>执行错误</b>：<code>TimeoutError: click: Timeout 8000ms exceeded.</code></div>
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> click</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260813T192202Z/did-space/dd-4-did-space-07.png" alt="click" loading="lazy"><figcaption>click</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：改用全局 text=&#x27;instance&#x27; 精确点击成功：url 变为 .../explorer/instance，primary-list 变为 &#x27;/ / instance You do not have access to this list.&#x27;，meta-title=&#x27;instance&#x27;——确认 select 事件三目标 fan-out 依然生效；同时意外发现 /instance 挂载对该测试用户返回访问拒绝（与根 CLAUDE.md 的 DID Space fail-closed 规则一致，属预期行为非产品缺陷）。</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> click</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260813T192202Z/did-space/dd-4-did-space-08.png" alt="click" loading="lazy"><figcaption>click</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：重新点击 text=&#x27;packages&#x27; 精确匹配，恢复选中 packages（url/meta-title/primary-list 均回到 packages 状态），为下一步键盘 navigate 测试建立前置状态。</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> press</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260813T192202Z/did-space/dd-4-did-space-09.png" alt="press" loading="lazy"><figcaption>press</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：对已选中的 &#x27;packages&#x27; 行按键盘 ArrowRight 后，files-sidebar-list 自身的树根从 &#x27;/&#x27; 变为 &#x27;packages&#x27;（sidebar 现在只显示 &#x27;packages pages 1 test 1&#x27;，即 packages 自己的子项），而 primary-list/inspector 内容不变——这是 files-sidebar-list.navigate 与 .select 的真实区分点：navigate 额外调用了 sidebar 自身的 navigateTo() 重新扎根，select 只高亮+fan-out、不动 sidebar 自身根（dd-5 核心证据）。</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-warn">不确定</span> click</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260813T192202Z/did-space/dd-4-did-space-10.png" alt="click" loading="lazy"><figcaption>click</figcaption></figure></div>
+<div class="chk-fail"><b>观察证据</b>：尝试 `#files-primary-list &gt;&gt; text=pages` 选择器（同样的原生 id 坑）8s 超时——工具选择器问题，状态未变。</div>
+<div class="err"><b>执行错误</b>：<code>TimeoutError: click: Timeout 8000ms exceeded.</code></div>
+
+</div>
+<div class="op">
+<h3><span class="pill p-warn">不确定</span> click</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260813T192202Z/did-space/dd-4-did-space-11.png" alt="click" loading="lazy"><figcaption>click</figcaption></figure></div>
+<div class="chk-fail"><b>观察证据</b>：尝试 `#files-primary-list [data-entry-id=&quot;pages&quot;]` 选择器仍 0 匹配超时——复合选择器里的 `#id` 部分依旧无效，状态未变。</div>
+<div class="err"><b>执行错误</b>：<code>TimeoutError: click: Timeout 8000ms exceeded.</code></div>
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> snapshot</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260813T192202Z/did-space/dd-4-did-space-12.png" alt="snapshot" loading="lazy"><figcaption>snapshot</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：snapshot 确认当前真实状态：url=.../explorer/packages，sidebar=&#x27;packages pages 1 test 1&#x27;（已重新扎根），primary-list/inspector 内容仍为 packages 的 7 项——与前一步 ArrowRight navigate 的效果一致，状态稳定可复核。</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-warn">不确定</span> click</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260813T192202Z/did-space/dd-4-did-space-13.png" alt="click" loading="lazy"><figcaption>click</figcaption></figure></div>
+<div class="chk-fail"><b>观察证据</b>：改用正确的 `[data-aup-id=&quot;files-primary-list&quot;]` 前缀但整体复合选择器 `[data-aup-id=&quot;files-primary-list&quot;] [data-entry-id=&quot;pages&quot;]` 仍 0 匹配超时——后两步 waitFor 探测证实是 `[data-entry-id=&quot;pages&quot;]` 的字面值假设不成立，非语法错误。</div>
+<div class="err"><b>执行错误</b>：<code>TimeoutError: click: Timeout 8000ms exceeded.</code></div>
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> waitFor</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260813T192202Z/did-space/dd-4-did-space-14.png" alt="waitFor" loading="lazy"><figcaption>waitFor</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：waitFor `[data-aup-id=&quot;files-primary-list&quot;]` 命中——确认该正确前缀选择器语法本身可用。</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-warn">不确定</span> waitFor</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260813T192202Z/did-space/dd-4-did-space-15.png" alt="waitFor" loading="lazy"><figcaption>waitFor</figcaption></figure></div>
+<div class="chk-fail"><b>观察证据</b>：waitFor `[data-entry-id=&quot;pages&quot;]` 5s 超时——确认 entry.id 字面值假设 &#x27;pages&#x27; 不成立（渲染行的 data-entry-id 与展示名不完全一致，或该行处于未挂载/虚拟滚动之外）。</div>
+<div class="err"><b>执行错误</b>：<code>TimeoutError: waitForSelector: Timeout 5000ms exceeded.</code></div>
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> waitFor</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260813T192202Z/did-space/dd-4-did-space-16.png" alt="waitFor" loading="lazy"><figcaption>waitFor</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：waitFor `[data-entry-id]`（无值过滤）命中——确认 primary-list 行确实携带 data-entry-id 属性，只是具体取值与猜测不同；工具排查到此为止，改回全局 text 点击继续测试。</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> click</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260813T192202Z/did-space/dd-4-did-space-17.png" alt="click" loading="lazy"><figcaption>click</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：全局 text=&#x27;pages&#x27; 精确点击命中的是 sidebar 树里刚展开显示的 &#x27;pages&#x27; 子项（而非 primary-list 同名行）：url 变为 .../explorer/packages/pages，sidebar 展开出 pages 的子项 &#x27;index&#x27;（sidebar=&#x27;packages pages 1 index 2 test 1&#x27;），primary-list 整体重扎根为 &#x27;/ / packages / pages&#x27;，meta-title=&#x27;pages&#x27;——再次印证 sidebar select 对 primary-list 的 fan-out set-src 效果，无论点击对象在 sidebar 还是 primary，只要目标路径相同效果一致（dd-4 补充证据）。</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> click</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260813T192202Z/did-space/dd-4-did-space-18.png" alt="click" loading="lazy"><figcaption>click</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：点击 primary-list 内 &#x27;..&#x27; 行（单击）：meta-title 变为 &#x27;packages&#x27;（选中了父目录条目对应路径），但 primary-list 自身仍停留在 &#x27;/ / packages / pages&#x27;（url 除追加 ?sel= 外未变、breadcrumb/内容未变）——清晰证明 files-primary-list.select 只 fan-out 到 inspector 两个目标，不改变 primary-list 自身根（dd-6 核心证据之一：select 不驱动列表自身导航）。</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> click</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260813T192202Z/did-space/dd-4-did-space-19.png" alt="click" loading="lazy"><figcaption>click</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：尝试用两次快速独立 click 调用模拟浏览器原生双击（part 1，settle=150ms），点击同一 &#x27;..&#x27; 行：状态与上一步相同（meta-title=&#x27;packages&#x27;，primary-list 未变）——单次点击效果与预期一致（select 幂等）。</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> click</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260813T192202Z/did-space/dd-4-did-space-20.png" alt="click" loading="lazy"><figcaption>click</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：双击模拟 part 2（settle=1200ms，仍点击 &#x27;..&#x27;）：primary-list 仍停留在 &#x27;/ / packages / pages&#x27;，未发生二次导航——确认两次独立 driver click 调用（各自含 Playwright actionability 等待+进程往返）未能落入浏览器原生 dblclick 时间阈值，这是 walker 工具能力局限，不代表产品行为异常；真正验证 navigate 语义改用点击真实目录行（见下一步）。</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> click</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260813T192202Z/did-space/dd-4-did-space-21.png" alt="click" loading="lazy"><figcaption>click</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：点击 primary-list 内目录行 &#x27;index&#x27;（单击，非 &#x27;..&#x27;）：url 变为 .../explorer/packages/pages/index，meta-title=&#x27;index&#x27;，primary-list 内容变为 index 目录的真实子项列表 &#x27;.. 0 layout.json seo&#x27;，sidebar 同步展开显示 index 的子项 seo——确认在活产品里，对 primary-list 目录行的单击即完成「drill 进入」效果（dd-7 核心证据：files-primary-list.navigate 语义在此列表配置下由单击目录行触发，而非仅双击/键盘）。</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> click</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260813T192202Z/did-space/dd-4-did-space-22.png" alt="click" loading="lazy"><figcaption>click</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：点击 primary-list 内文件行 &#x27;layout.json&#x27;（单击）：meta-title 变为 &#x27;layout.json&#x27;，url 的 ?sel= 参数更新为该文件路径，但 primary-list 自身仍停留在 &#x27;/ / packages / pages / index&#x27;（breadcrumb/内容完全未变，未发生任何目录跳转）——干净证明对文件的单击是纯 select（dd-6 核心证据之二：files-primary-list.select 对文件只更新 inspector/selectSync，不触发任何导航，与目录单击「即刻 drill」形成对照）。</div>
+
+
+</div></details>
+<details class="dbg" open><summary>运行时 debug 上下文（13 条错误）</summary><div class="dbg-has"><b>Console 错误（12）</b><ul><li><code>Failed to load resource: the server responded with a status of 403 ()</code></li><li><code>Failed to load resource: the server responded with a status of 403 ()</code></li><li><code>Failed to load resource: the server responded with a status of 403 ()</code></li><li><code>Failed to load resource: the server responded with a status of 403 ()</code></li><li><code>Failed to load resource: the server responded with a status of 403 ()</code></li><li><code>Failed to load resource: the server responded with a status of 403 ()</code></li><li><code>Failed to load resource: the server responded with a status of 403 ()</code></li><li><code>Failed to load resource: the server responded with a status of 403 ()</code></li><li><code>Failed to load resource: the server responded with a status of 403 ()</code></li><li><code>Failed to load resource: the server responded with a status of 403 ()</code></li><li><code>Failed to load resource: the server responded with a status of 403 ()</code></li><li><code>Failed to load resource: the server responded with a status of 403 ()</code></li></ul></div><div class="dbg-none">JS 未捕获异常：<b>无</b></div><div class="dbg-has"><b>网络错误（请求失败 / 4xx–5xx）（1）</b><ul><li><code>403 POST https://did-space.afsd.dev/api/afs/rpc</code></li></ul></div></details>
+</section>
+<p class="sub" style="margin-top:22px">由 test-report-builder（build-agent-report）生成 · issue #1808</p>
+</div></body></html>
