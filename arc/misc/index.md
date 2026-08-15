@@ -124,3 +124,4 @@
 | 20260815-094626-13-article-zh.png | https://github.com/ArcBlock/arc | 2026-08-15T09:46:26Z | chao@Yechaos-MacBook-Pro |
 | 20260815-102634-30-dashboard-top.png | https://github.com/ArcBlock/arc | 2026-08-15T10:26:34Z | chao@Yechaos-MacBook-Pro |
 | 20260815-102651-34-trace-timeline.png | https://github.com/ArcBlock/arc | 2026-08-15T10:26:51Z | chao@Yechaos-MacBook-Pro |
+| 20260815-102702-37-multihop-drill.png | https://github.com/ArcBlock/arc | 2026-08-15T10:27:02Z | chao@Yechaos-MacBook-Pro |
