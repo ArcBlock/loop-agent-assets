@@ -29,3 +29,4 @@
 | 20260815-050115-20260814-215940-b1-anon-landing.webm | https://github.com/ArcBlock/arc/pull/4039 | 2026-08-15T05:01:15Z | robmao@Roberts-Mac-mini-M4-Pro |
 | 20260815-050121-20260814-215942-b2-login-redirect.webm | https://github.com/ArcBlock/arc/pull/4039 | 2026-08-15T05:01:21Z | robmao@Roberts-Mac-mini-M4-Pro |
 | 20260815-050126-20260814-215946-b3-joined.webm | https://github.com/ArcBlock/arc/pull/4039 | 2026-08-15T05:01:26Z | robmao@Roberts-Mac-mini-M4-Pro |
+| 20260815-050131-20260814-215947-b4-already.webm | https://github.com/ArcBlock/arc/pull/4039 | 2026-08-15T05:01:31Z | robmao@Roberts-Mac-mini-M4-Pro |
