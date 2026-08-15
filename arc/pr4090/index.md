@@ -11,3 +11,4 @@
 | 20260815-105109-ui-verify-aggregator-article-three-sf-places.gif | https://github.com/ArcBlock/arc/pull/4090 | 2026-08-15T10:51:09Z | robmao@Roberts-Mac-mini-M4-Pro |
 | 20260815-105113-ui-verify-aggregator-place-green-apple-books.gif | https://github.com/ArcBlock/arc/pull/4090 | 2026-08-15T10:51:13Z | robmao@Roberts-Mac-mini-M4-Pro |
 | 20260815-105118-ui-verify-aggregator-article-three-sf-places.webm | https://github.com/ArcBlock/arc/pull/4090 | 2026-08-15T10:51:18Z | robmao@Roberts-Mac-mini-M4-Pro |
+| 20260815-105124-ui-verify-aggregator-place-green-apple-books.webm | https://github.com/ArcBlock/arc/pull/4090 | 2026-08-15T10:51:24Z | robmao@Roberts-Mac-mini-M4-Pro |
