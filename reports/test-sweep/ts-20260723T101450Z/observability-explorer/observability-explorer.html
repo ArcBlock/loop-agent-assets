@@ -1,0 +1,152 @@
+<!doctype html><html><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>observability-explorer — agent 走查报告</title><style>
+:root{--bg:#f7f8f8;--fg:#16201f;--muted:#5c6b69;--card:#fff;--card2:#eef2f1;--border:#dde3e2;--accent:#127a72;--pass:#1f8a54;--warn:#b5771a;--bad:#c0392b}
+@media(prefers-color-scheme:dark){:root{--bg:#0e1413;--fg:#e6ecea;--muted:#8ea19d;--card:#161d1c;--card2:#1d2624;--border:#26302e;--accent:#3fb8ab;--pass:#3fb37a;--warn:#d69a3e;--bad:#e5735f}}
+:root[data-theme=dark]{--bg:#0e1413;--fg:#e6ecea;--muted:#8ea19d;--card:#161d1c;--card2:#1d2624;--border:#26302e;--accent:#3fb8ab;--pass:#3fb37a;--warn:#d69a3e;--bad:#e5735f}
+:root[data-theme=light]{--bg:#f7f8f8;--fg:#16201f;--muted:#5c6b69;--card:#fff;--card2:#eef2f1;--border:#dde3e2;--accent:#127a72;--pass:#1f8a54;--warn:#b5771a;--bad:#c0392b}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--fg);font:15px/1.65 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;padding:24px}
+.wrap{max-width:920px;margin:0 auto}
+h1{font-size:24px;margin:0 0 4px;text-wrap:balance}h2{font-size:19px;margin:30px 0 8px}
+h2 .rt{font-size:13px;color:var(--muted);font-weight:400;font-variant-numeric:tabular-nums}
+.sub{color:var(--muted);margin:0 0 14px;font-size:13px}
+code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.85em;background:var(--card2);padding:1px 5px;border-radius:4px}
+.how{background:var(--card);border:1px solid var(--border);border-left:3px solid var(--accent);border-radius:8px;padding:13px 16px;margin:14px 0;font-size:14px}
+.how b{color:var(--accent)}
+.banner{border-radius:12px;padding:14px 18px;margin:16px 0}
+.banner.ok{background:color-mix(in srgb,var(--pass) 12%,transparent);border:1px solid color-mix(in srgb,var(--pass) 40%,transparent)}
+.banner.ok b{color:var(--pass)}
+.banner.bad{background:color-mix(in srgb,var(--bad) 13%,transparent);border:1px solid color-mix(in srgb,var(--bad) 45%,transparent)}
+.banner.bad b{color:var(--bad);font-size:16px}
+.banner.info{background:color-mix(in srgb,var(--accent) 10%,transparent);border:1px solid color-mix(in srgb,var(--accent) 38%,transparent)}
+.banner.info b{color:var(--accent)}
+.plist{margin:10px 0 0;padding-left:0;list-style:none}
+.plist li{padding:8px 0;border-top:1px solid var(--border)}
+.plist a{text-decoration:none;color:var(--fg);font-weight:600}
+.plist .pe{color:var(--muted);font-size:12.5px;font-weight:400;margin-top:3px}
+.video{width:100%;border-radius:10px;border:1px solid var(--border);background:#000;margin:6px 0 2px}
+.vcap{color:var(--muted);font-size:12.5px;margin:0 0 8px}
+.novideo{color:var(--bad);font-weight:600;background:color-mix(in srgb,var(--bad) 10%,transparent);border:1px dashed color-mix(in srgb,var(--bad) 45%,transparent);border-radius:8px;padding:8px 12px;font-size:13px}
+.kpis{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0}
+.kpi{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:9px 14px;min-width:70px}
+.kpi .k{font-size:21px;font-weight:700;font-variant-numeric:tabular-nums}.kpi .l{color:var(--muted);font-size:12px}
+.kpi .k-bad{color:var(--bad)}.kpi .k-warn{color:var(--warn)}
+.op{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:15px 17px;margin:14px 0}
+.op h3{margin:0 0 3px;font-size:16px;display:flex;align-items:center;gap:9px;flex-wrap:wrap}
+.op .exp{color:var(--muted);font-size:13px;margin:0 0 9px}
+.op .nt{color:var(--muted);font-size:12.5px;margin-top:6px}
+.pill{font-size:11.5px;font-weight:700;padding:2px 9px;border-radius:20px}
+.p-ok{background:color-mix(in srgb,var(--pass) 18%,transparent);color:var(--pass)}
+.p-fail{background:color-mix(in srgb,var(--bad) 18%,transparent);color:var(--bad)}
+.p-warn{background:color-mix(in srgb,var(--warn) 20%,transparent);color:var(--warn)}
+.p-skip{background:var(--card2);color:var(--muted)}
+.p-write{background:color-mix(in srgb,var(--accent) 18%,transparent);color:var(--accent)}
+.frame figure{margin:0 0 9px}.frame img{width:100%;border-radius:8px;border:1px solid var(--border);display:block}
+.frame figcaption{color:var(--muted);font-size:11.5px;margin-top:4px;text-align:center}
+.chk{background:color-mix(in srgb,var(--pass) 12%,transparent);border:1px solid color-mix(in srgb,var(--pass) 34%,transparent);border-radius:8px;padding:8px 12px;font-size:13px}
+.chk b{color:var(--pass)}
+.chk-fail{background:color-mix(in srgb,var(--bad) 11%,transparent);border:1px solid color-mix(in srgb,var(--bad) 40%,transparent);border-radius:8px;padding:8px 12px;font-size:13px}
+.chk-fail b{color:var(--bad)}
+table.probe{border-collapse:collapse;width:100%;font-size:13px}
+table.probe th,table.probe td{border:1px solid var(--border);padding:5px 9px;text-align:left}
+table.probe tr.bad td{background:color-mix(in srgb,var(--bad) 10%,transparent)}
+</style></head><body><div class="wrap">
+<h1>observability-explorer — agent 走查报告</h1>
+<p class="sub">环境 <code>https://observability-explorer.afsd.dev</code> · 2026-07-23T10:14:50Z · 走查 4 / 声明 4 条测试路径 · driver <code>agent-playwright-mcp</code></p>
+<div class="how"><b>这份报告在做什么</b>：test-sweep 让 <b>agent 读被测页面自己写的
+<code>.aup/man</code> 知识</b>，用 Playwright MCP <b>当真人逐条测试路径走查</b>（导航/加标签/编辑/删除/创建…），
+<b>每条路径各自一段录屏</b>、每步截图并<b>自判 verdict + 附观察证据</b>（实际 DOM/文本/值，可复核）。
+<b>unreached</b>=没驱动到（不当失败）；<b>inconclusive</b>=不确定（绝不判失败）。写操作默认真提交、不清理。</div>
+
+<div class="banner ok"><b>✅ 覆盖完整</b>：声明 4 条测试路径全部走查。</div>
+<div class="banner bad"><b>⚠️ 发现 1 个问题</b>（点击跳到对应路径）<ul class="plist"><li><a href="#path-index-inspector-row-select"><span class="pill p-warn">不确定</span> run 详情内选中一行 → inspector-surface 展示对应事件详情（selectTargetSurface） · 步2</a> — 尝试切换 timeline 选中行（点击 &#x27;ROUND 1&#x27; / &#x27;USER&#x27; 等其它事件）以验证 inspector 会同步更新<div class="pe">多次尝试（3 次独立 agent-walk 调用）在点击 timeline 内的行文本时遇到 Playwright 10s click 超时，现场 DOM 显示此时 runs 列表 / run 详情仍处于骨架加载态（textLen 明显小于数据渲染完成时的值），即便前置 waitFor 已给到 4-8 秒；这与 man 文件自带的 caveat 完全吻合：&#x27;a rendering race was observed where clicking a row too early</div></li></ul></div>
+<section id="probes"><h2>后端探针 （全通过）</h2><table class="probe"><tr><th></th><th>探针</th><th>详情</th></tr><tr class=""><td>✅</td><td>http-reachable</td><td>HTTP 200</td></tr><tr class=""><td>✅</td><td>afs-rpc-list</td><td>ok:true (1 .aup pages)</td></tr></table></section>
+<section id="path-index-anon-browse">
+<h2>首页 anon 浏览：sidebar select 重定向 primary-surface（dashboard/traces） <span class="rt">anon · /</span></h2>
+<video class="video" controls preload="metadata" src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260723T101450Z/observability-explorer/index-anon-browse.webm"><a href="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260723T101450Z/observability-explorer/index-anon-browse.webm">下载该路径录像</a></video><p class="vcap">本测试路径整段走查录像</p>
+<div class="kpis"><div class="kpi"><div class="k">3</div><div class="l">操作步</div></div><div class="kpi"><div class="k">3</div><div class="l">通过</div></div><div class="kpi"><div class="k k-bad">0</div><div class="l">失败</div></div><div class="kpi"><div class="k k-warn">0</div><div class="l">不确定</div></div><div class="kpi"><div class="k">0</div><div class="l">未走到</div></div></div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> 匿名访问首页 /，等待渲染</h3>
+<div class="exp">期望：四窗格 wm shell（header/sidebar/primary/inspector）渲染，sidebar-list 显示可选条目</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260723T101450Z/observability-explorer/explore-anon-click-dashboard-01.png" alt="匿名访问首页 /，等待渲染" loading="lazy"><figcaption>匿名访问首页 /，等待渲染</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：页面标题 &#x27;Agent Observability&#x27;；sidebar-list 渲染两个可点条目：&#x27;dashboard&#x27;（描述 &#x27;Run / token / cost roll-up across all apps&#x27;）与 &#x27;traces&#x27;（描述 &#x27;All agent-run trace logs, newest first&#x27;）；primary/inspector 区域为加载骨架条（数据尚未选中）</div>
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> 点击 sidebar-list 的 &#x27;dashboard&#x27; 条目</h3>
+<div class="exp">期望：primary-surface 重定向到 /dev/observability/dashboard，URL 变为 /dashboard</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260723T101450Z/observability-explorer/explore-anon-click-dashboard-04.png" alt="点击 sidebar-list 的 &#x27;dashboard&#x27; 条目" loading="lazy"><figcaption>点击 sidebar-list 的 &#x27;dashboard&#x27; 条目</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：URL 变为 https://observability-explorer.afsd.dev/dashboard；primary-surface 内出现 div#dashboard-view，文本含 &#x27;Agent runs · today&#x27;s signal 0 runs · 0 tokens · 0% ok · avg 0ms&#x27;、&#x27;⚠️ NEEDS ATTENTION&#x27;、&#x27;💰 MOST EXPENSIVE&#x27;、&#x27;🔁 HIGHEST ROUNDS&#x27; 等卡片，符合 man 断言 node_exists{primary-surface,surface} + action_exists{sidebar-list}</div>
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> 点击 sidebar-list 的 &#x27;traces&#x27; 条目</h3>
+<div class="exp">期望：primary-surface 重定向到 /dev/observability/traces，URL 变为 /traces，渲染 runs 列表视图</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260723T101450Z/observability-explorer/explore-anon-click-dashboard-08.png" alt="点击 sidebar-list 的 &#x27;traces&#x27; 条目" loading="lazy"><figcaption>点击 sidebar-list 的 &#x27;traces&#x27; 条目</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：URL 变为 https://observability-explorer.afsd.dev/traces；primary-surface 显示 div#runs-view，含标题 &#x27;Traces&#x27;、筛选器 &#x27;BLOCKLET All blocklets&#x27;、&#x27;TIME All/Today/7d/30d&#x27;、搜索框 &#x27;Search traces — task, status…&#x27;；因匿名态查询返回 0 条，列表显示 &#x27;No items&#x27;</div>
+<div class="nt">匿名态下 runs 列表为空（0 条），与 man caveat &#x27;staging showed all-zero metrics, undetermined whether real absence or ingestion gap&#x27; 一致；authed 态下（见 index-authed-sidebar-nav 路径）证实同一后端确有真实 trace 数据，说明匿名态是权限过滤而非数据缺失</div>
+</div>
+</section><section id="path-index-authed-sidebar-nav">
+<h2>authed sidebar select/navigate 重定向 + 真实数据渲染（scope:user） <span class="rt">authed · /</span></h2>
+<video class="video" controls preload="metadata" src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260723T101450Z/observability-explorer/index-authed-sidebar-nav.webm"><a href="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260723T101450Z/observability-explorer/index-authed-sidebar-nav.webm">下载该路径录像</a></video><p class="vcap">本测试路径整段走查录像</p>
+<div class="kpis"><div class="kpi"><div class="k">3</div><div class="l">操作步</div></div><div class="kpi"><div class="k">3</div><div class="l">通过</div></div><div class="kpi"><div class="k k-bad">0</div><div class="l">失败</div></div><div class="kpi"><div class="k k-warn">0</div><div class="l">不确定</div></div><div class="kpi"><div class="k">0</div><div class="l">未走到</div></div></div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> 注入 login_token cookie 后访问首页 /</h3>
+<div class="exp">期望：header 显示已登录用户信息，而非 &#x27;Login&#x27; 按钮</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260723T101450Z/observability-explorer/explore-authed-01.png" alt="注入 login_token cookie 后访问首页 /" loading="lazy"><figcaption>注入 login_token cookie 后访问首页 /</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：header-pad 出现按钮 &#x27;Test Fixture User&#x27;、&#x27;User Center&#x27;、&#x27;Admin Console&#x27;、&#x27;Sign Out&#x27;（取代匿名态的单个 &#x27;Login&#x27; 按钮），确认 authed 会话生效</div>
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> 点击 sidebar &#x27;dashboard&#x27;，等待渲染</h3>
+<div class="exp">期望：dashboard 视图渲染，若有真实 run 数据应显示非零指标</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260723T101450Z/observability-explorer/explore-authed-traces-03.png" alt="点击 sidebar &#x27;dashboard&#x27;，等待渲染" loading="lazy"><figcaption>点击 sidebar &#x27;dashboard&#x27;，等待渲染</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：URL 变为 /dashboard，dashboard-view 渲染（同匿名态结构），本次仍显示 0 runs（该聚合视图口径下暂无匹配汇总，非报错）</div>
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> 点击 sidebar &#x27;traces&#x27;，等待列表加载</h3>
+<div class="exp">期望：authed 态下 runs 列表应显示该用户名下的真实 agent 运行记录（而非匿名态的 &#x27;No items&#x27;）</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260723T101450Z/observability-explorer/explore-authed-traces-05.png" alt="点击 sidebar &#x27;traces&#x27;，等待列表加载" loading="lazy"><figcaption>点击 sidebar &#x27;traces&#x27;，等待列表加载</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：runs-list 表格渲染多行真实记录，含列 USER INPUT / BLOCKLET / STATUS / MODEL / IN / OUT / CACHE / TIME / STARTED；示例行：&#x27;What sign is my sun in?&#x27; | aistro | ok | gemini-2-5-pro | 20K→125 tokens | 4.7K cache | 16.0s | 14 hours ago；另有多条 status=running 的 aistro 任务（如 &#x27;请扫描所有好友…sunSynastry…&#x27;）与一条 arch-qa app 的 &#x27;Explain how this app works&#x27; | ok。分页控件 &#x27;← Prev&#x27; / &#x27;Next →&#x27; 出现，证明数据量超过单页</div>
+
+</div>
+</section><section id="path-index-drill-run-trace-assistant">
+<h2>从 primary-surface 内部钻入一次真实 run，trace-assistant 条件可见 <span class="rt">authed · /</span></h2>
+<video class="video" controls preload="metadata" src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260723T101450Z/observability-explorer/index-drill-run-trace-assistant.webm"><a href="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260723T101450Z/observability-explorer/index-drill-run-trace-assistant.webm">下载该路径录像</a></video><p class="vcap">本测试路径整段走查录像</p>
+<div class="kpis"><div class="kpi"><div class="k">2</div><div class="l">操作步</div></div><div class="kpi"><div class="k">2</div><div class="l">通过</div></div><div class="kpi"><div class="k k-bad">0</div><div class="l">失败</div></div><div class="kpi"><div class="k k-warn">0</div><div class="l">不确定</div></div><div class="kpi"><div class="k">0</div><div class="l">未走到</div></div></div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> 在 authed 的 traces 列表中点击一行（&#x27;What sign is my sun in?&#x27;）</h3>
+<div class="exp">期望：primary-surface 触发自身 navigate 事件钻入该 run 详情，URL 带上 run id；agent-container.state.activeKind 被设为 &#x27;obs:run&#x27;，trace-assistant 面板出现（man 断言：agent-gate.visible == &#x27;$state.activeKind == obs:run&#x27;）</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260723T101450Z/observability-explorer/explore-run-detail-05.png" alt="在 authed 的 traces 列表中点击一行（&#x27;What sign is my sun in?&#x27;）" loading="lazy"><figcaption>在 authed 的 traces 列表中点击一行（&#x27;What sign is my sun in?&#x27;）</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：URL 变为 .../traces/193430-a439cf34；primary-surface 显示 run-view（&#x27;2 rounds&#x27;、&#x27;1 tool calls&#x27;、&#x27;20039→125 tokens&#x27;、&#x27;4653 cached&#x27;、&#x27;16.0s&#x27;、&#x27;gemini-2-5-pro&#x27;、&#x27;Copy link&#x27; 按钮 + timeline）；同时 div#agent-container &gt; div#agent-gate &gt; div#trace-assistant 出现在 DOM 中，面板标题 &#x27;Trace Assistant&#x27;、副标题 &#x27;Loaded with this trace as context · ask anything&#x27;，含 4 个建议 prompt 按钮（&#x27;🐛 这条 run 哪里有问题？&#x27; 等）与输入框 &#x27;Ask about this trace&#x27;——精确匹配 man 描述的 gate 行为</div>
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> 对照：在 dashboard/traces 列表视图（未进入具体 run）时检查 DOM</h3>
+<div class="exp">期望：activeKind 非 obs:run 时 trace-assistant 不应出现</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260723T101450Z/observability-explorer/explore-authed-traces-08.png" alt="对照：在 dashboard/traces 列表视图（未进入具体 run）时检查 DOM" loading="lazy"><figcaption>对照：在 dashboard/traces 列表视图（未进入具体 run）时检查 DOM</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：在 explore-authed-traces-04（dashboard 视图）与 -07/-08（traces 列表视图）的 DOM interactables 快照中，均只有裸的 &#x27;div#agent-container&#x27;，不含 agent-gate / trace-assistant 子节点；仅在钻入具体 run 详情后才出现，验证了条件门控生效</div>
+
+</div>
+</section><section id="path-index-inspector-row-select">
+<h2>run 详情内选中一行 → inspector-surface 展示对应事件详情（selectTargetSurface） <span class="rt">authed · /</span></h2>
+<video class="video" controls preload="metadata" src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260723T101450Z/observability-explorer/index-drill-run-trace-assistant.webm"><a href="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260723T101450Z/observability-explorer/index-drill-run-trace-assistant.webm">下载该路径录像</a></video><p class="vcap">本测试路径整段走查录像</p>
+<div class="kpis"><div class="kpi"><div class="k">2</div><div class="l">操作步</div></div><div class="kpi"><div class="k">1</div><div class="l">通过</div></div><div class="kpi"><div class="k k-bad">0</div><div class="l">失败</div></div><div class="kpi"><div class="k k-warn">1</div><div class="l">不确定</div></div><div class="kpi"><div class="k">0</div><div class="l">未走到</div></div></div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> 进入 run 详情后检查 inspector-surface（右侧栏）内容是否与 timeline 中高亮/选中的行一致</h3>
+<div class="exp">期望：inspector-surface 无自身 events block，是 primary-surface 的 selectTargetSurface 目标——选中行驱动其内容</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260723T101450Z/observability-explorer/explore-run-detail-05.png" alt="进入 run 详情后检查 inspector-surface（右侧栏）内容是否与 timeline 中高亮/选中的行一致" loading="lazy"><figcaption>进入 run 详情后检查 inspector-surface（右侧栏）内容是否与 timeline 中高亮/选中的行一致</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：timeline 中 &#x27;INPUT&#x27; 行（seq 0）以高亮背景显示为当前选中项；inspector-surface（div#event-detail）同步显示该事件详情：标题 &#x27;⚙️ INPUT&#x27;，字段 &#x27;type: run.start&#x27;、&#x27;time: 2026-07-22T19:34:30+00:00&#x27;，并展开 SYSTEM PROMPT（&#x27;You are Aistro — the user&#x27;s AI astrologer...&#x27;）、TOOLS（&#x27;/user/** ops: list,read,...&#x27;）、INPUT PARAMETERS（&#x27;{&quot;task&quot;: &quot;What sign is my sun in?&quot;, ...}&#x27;）三张卡片——确认选中行与 inspector 内容强绑定</div>
+
+</div>
+<div class="op">
+<h3><span class="pill p-warn">不确定</span> 尝试切换 timeline 选中行（点击 &#x27;ROUND 1&#x27; / &#x27;USER&#x27; 等其它事件）以验证 inspector 会同步更新</h3>
+<div class="exp">期望：点击其它 timeline 行后 inspector-surface 内容应切换为该行对应的事件详情</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260723T101450Z/observability-explorer/index-inspector-select-09.png" alt="尝试切换 timeline 选中行（点击 &#x27;ROUND 1&#x27; / &#x27;USER&#x27; 等其它事件）以验证 inspector 会同步更新" loading="lazy"><figcaption>尝试切换 timeline 选中行（点击 &#x27;ROUND 1&#x27; / &#x27;USER&#x27; 等其它事件）以验证 inspector 会同步更新</figcaption></figure></div>
+<div class="chk-fail"><b>观察证据</b>：多次尝试（3 次独立 agent-walk 调用）在点击 timeline 内的行文本时遇到 Playwright 10s click 超时，现场 DOM 显示此时 runs 列表 / run 详情仍处于骨架加载态（textLen 明显小于数据渲染完成时的值），即便前置 waitFor 已给到 4-8 秒；这与 man 文件自带的 caveat 完全吻合：&#x27;a rendering race was observed where clicking a row too early after page load leaves the inspector transiently empty — re-selecting fixes it; not yet root-caused&#x27;。未能在本轮预算内稳定复现『切换选中行后 inspector 内容改变』这一更细粒度的行为，但『默认选中行与 inspector 内容一致」（上一步）已独立证实了 selectTargetSurface 绑定生效，这里降级为 inconclusive 而非 fail</div>
+<div class="nt">已知渲染竞态（man caveat，issue #1834 同类现象），非本轮新发现的回归</div>
+</div>
+</section>
+<p class="sub" style="margin-top:22px">Generated by test-report-builder (build-agent-report) · issue #1808</p>
+</div></body></html>

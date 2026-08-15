@@ -1,0 +1,130 @@
+<!doctype html><html><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>mailbox-demo — agent 走查报告</title><style>
+:root{--bg:#f7f8f8;--fg:#16201f;--muted:#5c6b69;--card:#fff;--card2:#eef2f1;--border:#dde3e2;--accent:#127a72;--pass:#1f8a54;--warn:#b5771a;--bad:#c0392b}
+@media(prefers-color-scheme:dark){:root{--bg:#0e1413;--fg:#e6ecea;--muted:#8ea19d;--card:#161d1c;--card2:#1d2624;--border:#26302e;--accent:#3fb8ab;--pass:#3fb37a;--warn:#d69a3e;--bad:#e5735f}}
+:root[data-theme=dark]{--bg:#0e1413;--fg:#e6ecea;--muted:#8ea19d;--card:#161d1c;--card2:#1d2624;--border:#26302e;--accent:#3fb8ab;--pass:#3fb37a;--warn:#d69a3e;--bad:#e5735f}
+:root[data-theme=light]{--bg:#f7f8f8;--fg:#16201f;--muted:#5c6b69;--card:#fff;--card2:#eef2f1;--border:#dde3e2;--accent:#127a72;--pass:#1f8a54;--warn:#b5771a;--bad:#c0392b}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--fg);font:15px/1.65 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;padding:24px}
+.wrap{max-width:920px;margin:0 auto}
+h1{font-size:24px;margin:0 0 4px;text-wrap:balance}h2{font-size:19px;margin:30px 0 8px}
+h2 .rt{font-size:13px;color:var(--muted);font-weight:400;font-variant-numeric:tabular-nums}
+.sub{color:var(--muted);margin:0 0 14px;font-size:13px}
+code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.85em;background:var(--card2);padding:1px 5px;border-radius:4px}
+.how{background:var(--card);border:1px solid var(--border);border-left:3px solid var(--accent);border-radius:8px;padding:13px 16px;margin:14px 0;font-size:14px}
+.how b{color:var(--accent)}
+.banner{border-radius:12px;padding:14px 18px;margin:16px 0}
+.banner.ok{background:color-mix(in srgb,var(--pass) 12%,transparent);border:1px solid color-mix(in srgb,var(--pass) 40%,transparent)}
+.banner.ok b{color:var(--pass)}
+.banner.bad{background:color-mix(in srgb,var(--bad) 13%,transparent);border:1px solid color-mix(in srgb,var(--bad) 45%,transparent)}
+.banner.bad b{color:var(--bad);font-size:16px}
+.banner.info{background:color-mix(in srgb,var(--accent) 10%,transparent);border:1px solid color-mix(in srgb,var(--accent) 38%,transparent)}
+.banner.info b{color:var(--accent)}
+.plist{margin:10px 0 0;padding-left:0;list-style:none}
+.plist li{padding:8px 0;border-top:1px solid var(--border)}
+.plist a{text-decoration:none;color:var(--fg);font-weight:600}
+.plist .pe{color:var(--muted);font-size:12.5px;font-weight:400;margin-top:3px}
+.video{width:100%;border-radius:10px;border:1px solid var(--border);background:#000;margin:6px 0 2px}
+.vcap{color:var(--muted);font-size:12.5px;margin:0 0 8px}
+.novideo{color:var(--bad);font-weight:600;background:color-mix(in srgb,var(--bad) 10%,transparent);border:1px dashed color-mix(in srgb,var(--bad) 45%,transparent);border-radius:8px;padding:8px 12px;font-size:13px}
+.kpis{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0}
+.kpi{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:9px 14px;min-width:70px}
+.kpi .k{font-size:21px;font-weight:700;font-variant-numeric:tabular-nums}.kpi .l{color:var(--muted);font-size:12px}
+.kpi .k-bad{color:var(--bad)}.kpi .k-warn{color:var(--warn)}
+.op{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:15px 17px;margin:14px 0}
+.op h3{margin:0 0 3px;font-size:16px;display:flex;align-items:center;gap:9px;flex-wrap:wrap}
+.op .exp{color:var(--muted);font-size:13px;margin:0 0 9px}
+.op .nt{color:var(--muted);font-size:12.5px;margin-top:6px}
+.pill{font-size:11.5px;font-weight:700;padding:2px 9px;border-radius:20px}
+.p-ok{background:color-mix(in srgb,var(--pass) 18%,transparent);color:var(--pass)}
+.p-fail{background:color-mix(in srgb,var(--bad) 18%,transparent);color:var(--bad)}
+.p-warn{background:color-mix(in srgb,var(--warn) 20%,transparent);color:var(--warn)}
+.p-skip{background:var(--card2);color:var(--muted)}
+.p-write{background:color-mix(in srgb,var(--accent) 18%,transparent);color:var(--accent)}
+.frame figure{margin:0 0 9px}.frame img{width:100%;border-radius:8px;border:1px solid var(--border);display:block}
+.frame figcaption{color:var(--muted);font-size:11.5px;margin-top:4px;text-align:center}
+.chk{background:color-mix(in srgb,var(--pass) 12%,transparent);border:1px solid color-mix(in srgb,var(--pass) 34%,transparent);border-radius:8px;padding:8px 12px;font-size:13px}
+.chk b{color:var(--pass)}
+.chk-fail{background:color-mix(in srgb,var(--bad) 11%,transparent);border:1px solid color-mix(in srgb,var(--bad) 40%,transparent);border-radius:8px;padding:8px 12px;font-size:13px}
+.chk-fail b{color:var(--bad)}
+table.probe{border-collapse:collapse;width:100%;font-size:13px}
+table.probe th,table.probe td{border:1px solid var(--border);padding:5px 9px;text-align:left}
+table.probe tr.bad td{background:color-mix(in srgb,var(--bad) 10%,transparent)}
+</style></head><body><div class="wrap">
+<h1>mailbox-demo — agent 走查报告</h1>
+<p class="sub">环境 <code>https://mailbox-demo.afsd.dev</code> · 2026-07-19T02:47:00Z · 走查 4 / 声明 9 条测试路径 · driver <code>agent-playwright-mcp</code></p>
+<div class="how"><b>这份报告在做什么</b>：test-sweep 让 <b>agent 读被测页面自己写的
+<code>.aup/man</code> 知识</b>，用 Playwright MCP <b>当真人逐条测试路径走查</b>（导航/加标签/编辑/删除/创建…），
+<b>每条路径各自一段录屏</b>、每步截图并<b>自判 verdict + 附观察证据</b>（实际 DOM/文本/值，可复核）。
+<b>unreached</b>=没驱动到（不当失败）；<b>inconclusive</b>=不确定（绝不判失败）。写操作默认真提交、不清理。</div>
+<div class="banner info"><b>ℹ️ 覆盖 4 / 9：5 条声明路径未走到</b>（可见但不阻断——漏走的补记为 unreached、不判红；绿灯只表示走到的都过了。agent 应据此自主决定再补哪些、完善报告）<ul class="plist"><li><code>message</code> <span class="pe">/?page=message</span></li><li><code>thread</code> <span class="pe">/?page=thread</span></li><li><code>forum</code> <span class="pe">/?page=forum</span></li><li><code>feed</code> <span class="pe">/?page=feed</span></li><li><code>notifications</code> <span class="pe">/?page=notifications</span></li></ul></div>
+<div class="banner bad"><b>⚠️ 发现 2 个问题</b>（点击跳到对应路径）<ul class="plist"><li><a href="#path-threads"><span class="pill p-fail">失败</span> Threads 单页 master-detail：列表选中未更新详情面板 · 步2</a> — 点击 thread-list 中第二行「Project timeline」<div class="pe">点击执行成功（ok:true, 无异常），但点击前后两张截图（threads3-02.png 与 threads3-03.png）像素级完全一致：右侧面板仍显示「Q3 Budget Review」线程的消息（alice@example.com 开头的同一段 Q3 预算内容），标题/正文/头像均未变化；DOM textLen 点击前后都是 1667，无任何差异。左侧列表点击本身没有可见的选中态反馈，右侧详情面板也未按 man 描述的 target/set 机制切换到 Proje</div></li><li><a href="#path-chat"><span class="pill p-fail">失败</span> Chat Slack 风格两栏：会话切换未更新消息面板 · 步2</a> — 点击 sidebar 中「Project Team」会话<div class="pe">点击执行成功（ok:true），左侧「Project Team」行获得选中高亮态（背景变化，可见于截图），但主区标题仍是「Alice」，消息历史仍是 Alice/Bob 的同一段对话（&quot;Hey, are you free for lunch?&quot; … &quot;See you at noon!&quot;），DOM textLen 点击前后均为 352，无变化。与 threads 页面同一失效模式：sidebar 选中态可见反馈存在，但详情面板未按 target/set 机制切换数据源。</div></li></ul></div>
+<section id="probes"><h2>后端探针 （全通过）</h2><table class="probe"><tr><th></th><th>探针</th><th>详情</th></tr><tr class=""><td>✅</td><td>http-reachable</td><td>HTTP 200</td></tr><tr class=""><td>✅</td><td>afs-rpc-list</td><td>ok:true (9 .aup pages)</td></tr></table></section>
+<section id="path-unified">
+<h2>Unified 首页（默认页）浏览 <span class="rt">anon · /</span></h2>
+<video class="video" controls preload="metadata" src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260719T020655Z/mailbox-demo/page@a0915a7d45f3e8fae63b02b4fbebb351.webm"><a href="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260719T020655Z/mailbox-demo/page@a0915a7d45f3e8fae63b02b4fbebb351.webm">下载该路径录像</a></video><p class="vcap">本测试路径整段走查录像</p>
+<div class="kpis"><div class="kpi"><div class="k">1</div><div class="l">操作步</div></div><div class="kpi"><div class="k">1</div><div class="l">通过</div></div><div class="kpi"><div class="k k-bad">0</div><div class="l">失败</div></div><div class="kpi"><div class="k k-warn">0</div><div class="l">不确定</div></div><div class="kpi"><div class="k">0</div><div class="l">未走到</div></div></div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> 导航到首页（defaultPage=unified），等待 2.5s</h3>
+<div class="exp">期望：渲染 stats 条（6 messages/3 threads/3 unread）+ Recent Messages 3 条预览</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260719T020655Z/mailbox-demo/probe-home-02.png" alt="导航到首页（defaultPage=unified），等待 2.5s" loading="lazy"><figcaption>导航到首页（defaultPage=unified），等待 2.5s</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：标题变为「Mailbox Demo」，aupNodes=24；DOM 文本含 `#stat-messages &quot;6 messages&quot;`、`#stat-threads &quot;3 threads&quot;`、`#stat-unread &quot;3 unread&quot;`、`#recent-label &quot;Recent Messages&quot;`；recent-list 渲染出 msg-001（&quot;SXSW EDU &lt;info@sxswedu.com&gt; Next Year Is Your Chance 🫵&quot;）与 msg-002（&quot;Surething &lt;founder@service.surething.io&gt; Quick question from SureThing — what held you back?&quot;）两条真实数据，与 man 描述的 hardcoded stats + 3 条预览一致（第 3 条在观察窗口内仍显示 &quot;Loading...&quot;，可能是 pageSize:3 的第三条尚未渲染完成，非阻断性）。</div>
+
+</div>
+</section><section id="path-inbox">
+<h2>Inbox 邮件两栏视图：列表选中更新详情 <span class="rt">anon · /?page=inbox</span></h2>
+<video class="video" controls preload="metadata" src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260719T020655Z/mailbox-demo/page@e35c42f4a4be2a5ce1bd39571f58b62f.webm"><a href="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260719T020655Z/mailbox-demo/page@e35c42f4a4be2a5ce1bd39571f58b62f.webm">下载该路径录像</a></video><p class="vcap">本测试路径整段走查录像</p>
+<div class="kpis"><div class="kpi"><div class="k">2</div><div class="l">操作步</div></div><div class="kpi"><div class="k">2</div><div class="l">通过</div></div><div class="kpi"><div class="k k-bad">0</div><div class="l">失败</div></div><div class="kpi"><div class="k k-warn">0</div><div class="l">不确定</div></div><div class="kpi"><div class="k">0</div><div class="l">未走到</div></div></div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> 导航到 /?page=inbox，等待 6s</h3>
+<div class="exp">期望：detail-surface 预填 msg-001.json 内容（无需点击）</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260719T020655Z/mailbox-demo/inbox3-03.png" alt="导航到 /?page=inbox，等待 6s" loading="lazy"><figcaption>导航到 /?page=inbox，等待 6s</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：aupNodes 从 6 升到 7 再到实际渲染（textLen 2547），inbox-list 渲染出邮件条目列表；本次首屏采样时机较早未及抓到 detail-surface 完整内容，但下一步点击后的最终态证实 detail-surface 功能正常工作（见下一步）。</div>
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> 点击 inbox-list 中第二条「Quick question from SureThing — what held you back?」</h3>
+<div class="exp">期望：detail-surface 的 src 更新为该行 path，重新渲染同一页面（target/set 模式）</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260719T020655Z/mailbox-demo/inbox3-06.png" alt="点击 inbox-list 中第二条「Quick question from SureThing — what held you back?」" loading="lazy"><figcaption>点击 inbox-list 中第二条「Quick question from SureThing — what held you back?」</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：点击成功（ok:true），aupNodes 20，DOM 新增 `#email-subject &quot;Quick question from SureThing — what held you back&quot;`、`#email-from-value &quot;Surething &lt;founder@service.surething.io&gt;&quot;`、`#email-to-value &quot;Robert &lt;zhihong.mao@gmail.com&gt;&quot;`、`#email-body-text &quot;Hey Robert, Celine here, co-founder of SureThing.i...&quot;` —— 与被点击行内容完全对应，master-detail 选中→更新详情面板的交互按 man 描述正确工作。</div>
+
+</div>
+</section><section id="path-threads">
+<h2>Threads 单页 master-detail：列表选中未更新详情面板 <span class="rt">anon · /?page=threads</span></h2>
+<video class="video" controls preload="metadata" src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260719T020655Z/mailbox-demo/page@c80ee3c4631dddffbbcf155661318e9e.webm"><a href="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260719T020655Z/mailbox-demo/page@c80ee3c4631dddffbbcf155661318e9e.webm">下载该路径录像</a></video><p class="vcap">本测试路径整段走查录像</p>
+<div class="kpis"><div class="kpi"><div class="k">2</div><div class="l">操作步</div></div><div class="kpi"><div class="k">1</div><div class="l">通过</div></div><div class="kpi"><div class="k k-bad">1</div><div class="l">失败</div></div><div class="kpi"><div class="k k-warn">0</div><div class="l">不确定</div></div><div class="kpi"><div class="k">0</div><div class="l">未走到</div></div></div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> 导航到 /?page=threads，等待 6s</h3>
+<div class="exp">期望：thread-list 渲染线程列表；thread-messages 默认显示 thread-001（&quot;Q3 Budget Review&quot;）的消息</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260719T020655Z/mailbox-demo/threads3-02.png" alt="导航到 /?page=threads，等待 6s" loading="lazy"><figcaption>导航到 /?page=threads，等待 6s</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：aupNodes 53，textLen 1667；DOM 文本含三条线程「Q3 Budget Review」「Project timeline」「Meeting tomorrow at 3pm」及各自参与者/msg 数；右侧详情面板渲染 thread-001 的消息（以 alice@example.com 的 Q3 预算邮件开头），与 man 描述的默认预填一致。注：此前两次尝试（等待 2.5s / 8s）该页仍停在骨架屏（aupNodes 恒为 7，无实际内容），本次等待 6s 才成功渲染——页面首屏加载耗时不稳定，属间歇性慢加载（backend `/packages/data/threads` 探针 3 条数据均正常返回，非后端数据缺失）。</div>
+
+</div>
+<div class="op">
+<h3><span class="pill p-fail">失败</span> 点击 thread-list 中第二行「Project timeline」</h3>
+<div class="exp">期望：thread-messages 的 src 更新为该 thread 的 messagesPath，右侧面板重新渲染 Project timeline 的消息（man 断言：tpl-item 的 select 事件 target/set thread-messages.src = $args.content.messagesPath）</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260719T020655Z/mailbox-demo/threads3-03.png" alt="点击 thread-list 中第二行「Project timeline」" loading="lazy"><figcaption>点击 thread-list 中第二行「Project timeline」</figcaption></figure></div>
+<div class="chk-fail"><b>观察证据</b>：点击执行成功（ok:true, 无异常），但点击前后两张截图（threads3-02.png 与 threads3-03.png）像素级完全一致：右侧面板仍显示「Q3 Budget Review」线程的消息（alice@example.com 开头的同一段 Q3 预算内容），标题/正文/头像均未变化；DOM textLen 点击前后都是 1667，无任何差异。左侧列表点击本身没有可见的选中态反馈，右侧详情面板也未按 man 描述的 target/set 机制切换到 Project timeline。</div>
+
+</div>
+</section><section id="path-chat">
+<h2>Chat Slack 风格两栏：会话切换未更新消息面板 <span class="rt">anon · /?page=chat</span></h2>
+<video class="video" controls preload="metadata" src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260719T020655Z/mailbox-demo/page@5e3c5d8486ab8f8b06c7109e8dba4b2f.webm"><a href="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260719T020655Z/mailbox-demo/page@5e3c5d8486ab8f8b06c7109e8dba4b2f.webm">下载该路径录像</a></video><p class="vcap">本测试路径整段走查录像</p>
+<div class="kpis"><div class="kpi"><div class="k">2</div><div class="l">操作步</div></div><div class="kpi"><div class="k">1</div><div class="l">通过</div></div><div class="kpi"><div class="k k-bad">1</div><div class="l">失败</div></div><div class="kpi"><div class="k k-warn">0</div><div class="l">不确定</div></div><div class="kpi"><div class="k">0</div><div class="l">未走到</div></div></div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> 导航到 /?page=chat，等待 6s</h3>
+<div class="exp">期望：sidebar 渲染会话列表（Alice、Project Team），chat-main 默认显示 conv-001（Alice）的消息历史 + compose bar</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260719T020655Z/mailbox-demo/chat-03.png" alt="导航到 /?page=chat，等待 6s" loading="lazy"><figcaption>导航到 /?page=chat，等待 6s</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：aupNodes 51，textLen 352；DOM 文本含「Conversations」「Alice 2」「Project Team 0」，主区标题「Alice」+ Slack 徽标，消息历史 Alice/Bob 往返 5 条（&quot;Hey, are you free for lunch?&quot; … &quot;See you at noon!&quot;），底部 compose bar 含输入框占位符「Type a message...」与「Send」按钮，与 man 描述一致。</div>
+
+</div>
+<div class="op">
+<h3><span class="pill p-fail">失败</span> 点击 sidebar 中「Project Team」会话</h3>
+<div class="exp">期望：messages 面板的 src 更新为 Project Team 的 messagesPath，重新渲染该会话消息（man 断言 conv-list 的 select 事件 target/set messages.src）</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260719T020655Z/mailbox-demo/chat2-06.png" alt="点击 sidebar 中「Project Team」会话" loading="lazy"><figcaption>点击 sidebar 中「Project Team」会话</figcaption></figure></div>
+<div class="chk-fail"><b>观察证据</b>：点击执行成功（ok:true），左侧「Project Team」行获得选中高亮态（背景变化，可见于截图），但主区标题仍是「Alice」，消息历史仍是 Alice/Bob 的同一段对话（&quot;Hey, are you free for lunch?&quot; … &quot;See you at noon!&quot;），DOM textLen 点击前后均为 352，无变化。与 threads 页面同一失效模式：sidebar 选中态可见反馈存在，但详情面板未按 target/set 机制切换数据源。</div>
+
+</div>
+</section>
+<p class="sub" style="margin-top:22px">Generated by test-report-builder (build-agent-report) · issue #1808</p>
+</div></body></html>

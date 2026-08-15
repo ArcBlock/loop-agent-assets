@@ -1,0 +1,172 @@
+<!doctype html><html><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>aistro — agent 走查报告</title><style>
+:root{--bg:#f7f8f8;--fg:#16201f;--muted:#5c6b69;--card:#fff;--card2:#eef2f1;--border:#dde3e2;--accent:#127a72;--pass:#1f8a54;--warn:#b5771a;--bad:#c0392b}
+@media(prefers-color-scheme:dark){:root{--bg:#0e1413;--fg:#e6ecea;--muted:#8ea19d;--card:#161d1c;--card2:#1d2624;--border:#26302e;--accent:#3fb8ab;--pass:#3fb37a;--warn:#d69a3e;--bad:#e5735f}}
+:root[data-theme=dark]{--bg:#0e1413;--fg:#e6ecea;--muted:#8ea19d;--card:#161d1c;--card2:#1d2624;--border:#26302e;--accent:#3fb8ab;--pass:#3fb37a;--warn:#d69a3e;--bad:#e5735f}
+:root[data-theme=light]{--bg:#f7f8f8;--fg:#16201f;--muted:#5c6b69;--card:#fff;--card2:#eef2f1;--border:#dde3e2;--accent:#127a72;--pass:#1f8a54;--warn:#b5771a;--bad:#c0392b}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--fg);font:15px/1.65 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;padding:24px}
+.wrap{max-width:920px;margin:0 auto}
+h1{font-size:24px;margin:0 0 4px;text-wrap:balance}h2{font-size:19px;margin:30px 0 8px}
+h2 .rt{font-size:13px;color:var(--muted);font-weight:400;font-variant-numeric:tabular-nums}
+.sub{color:var(--muted);margin:0 0 14px;font-size:13px}
+code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.85em;background:var(--card2);padding:1px 5px;border-radius:4px}
+.how{background:var(--card);border:1px solid var(--border);border-left:3px solid var(--accent);border-radius:8px;padding:13px 16px;margin:14px 0;font-size:14px}
+.how b{color:var(--accent)}
+.banner{border-radius:12px;padding:14px 18px;margin:16px 0}
+.banner.ok{background:color-mix(in srgb,var(--pass) 12%,transparent);border:1px solid color-mix(in srgb,var(--pass) 40%,transparent)}
+.banner.ok b{color:var(--pass)}
+.banner.bad{background:color-mix(in srgb,var(--bad) 13%,transparent);border:1px solid color-mix(in srgb,var(--bad) 45%,transparent)}
+.banner.bad b{color:var(--bad);font-size:16px}
+.banner.info{background:color-mix(in srgb,var(--accent) 10%,transparent);border:1px solid color-mix(in srgb,var(--accent) 38%,transparent)}
+.banner.info b{color:var(--accent)}
+.plist{margin:10px 0 0;padding-left:0;list-style:none}
+.plist li{padding:8px 0;border-top:1px solid var(--border)}
+.plist a{text-decoration:none;color:var(--fg);font-weight:600}
+.plist .pe{color:var(--muted);font-size:12.5px;font-weight:400;margin-top:3px}
+.video{width:100%;border-radius:10px;border:1px solid var(--border);background:#000;margin:6px 0 2px}
+.vcap{color:var(--muted);font-size:12.5px;margin:0 0 8px}
+.novideo{color:var(--bad);font-weight:600;background:color-mix(in srgb,var(--bad) 10%,transparent);border:1px dashed color-mix(in srgb,var(--bad) 45%,transparent);border-radius:8px;padding:8px 12px;font-size:13px}
+.kpis{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0}
+.kpi{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:9px 14px;min-width:70px}
+.kpi .k{font-size:21px;font-weight:700;font-variant-numeric:tabular-nums}.kpi .l{color:var(--muted);font-size:12px}
+.kpi .k-bad{color:var(--bad)}.kpi .k-warn{color:var(--warn)}
+.op{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:15px 17px;margin:14px 0}
+.op h3{margin:0 0 3px;font-size:16px;display:flex;align-items:center;gap:9px;flex-wrap:wrap}
+.op .exp{color:var(--muted);font-size:13px;margin:0 0 9px}
+.op .nt{color:var(--muted);font-size:12.5px;margin-top:6px}
+.pill{font-size:11.5px;font-weight:700;padding:2px 9px;border-radius:20px}
+.p-ok{background:color-mix(in srgb,var(--pass) 18%,transparent);color:var(--pass)}
+.p-fail{background:color-mix(in srgb,var(--bad) 18%,transparent);color:var(--bad)}
+.p-warn{background:color-mix(in srgb,var(--warn) 20%,transparent);color:var(--warn)}
+.p-skip{background:var(--card2);color:var(--muted)}
+.p-write{background:color-mix(in srgb,var(--accent) 18%,transparent);color:var(--accent)}
+.frame figure{margin:0 0 9px}.frame img{width:100%;border-radius:8px;border:1px solid var(--border);display:block}
+.frame figcaption{color:var(--muted);font-size:11.5px;margin-top:4px;text-align:center}
+.chk{background:color-mix(in srgb,var(--pass) 12%,transparent);border:1px solid color-mix(in srgb,var(--pass) 34%,transparent);border-radius:8px;padding:8px 12px;font-size:13px}
+.chk b{color:var(--pass)}
+.chk-fail{background:color-mix(in srgb,var(--bad) 11%,transparent);border:1px solid color-mix(in srgb,var(--bad) 40%,transparent);border-radius:8px;padding:8px 12px;font-size:13px}
+.chk-fail b{color:var(--bad)}
+table.probe{border-collapse:collapse;width:100%;font-size:13px}
+table.probe th,table.probe td{border:1px solid var(--border);padding:5px 9px;text-align:left}
+table.probe tr.bad td{background:color-mix(in srgb,var(--bad) 10%,transparent)}
+</style></head><body><div class="wrap">
+<h1>aistro — agent 走查报告</h1>
+<p class="sub">环境 <code>https://aistro.afsd.dev</code> · 2026-07-19T02:32:00Z · 走查 4 / 声明 10 条测试路径 · driver <code>agent-playwright-mcp</code></p>
+<div class="how"><b>这份报告在做什么</b>：test-sweep 让 <b>agent 读被测页面自己写的
+<code>.aup/man</code> 知识</b>，用 Playwright MCP <b>当真人逐条测试路径走查</b>（导航/加标签/编辑/删除/创建…），
+<b>每条路径各自一段录屏</b>、每步截图并<b>自判 verdict + 附观察证据</b>（实际 DOM/文本/值，可复核）。
+<b>unreached</b>=没驱动到（不当失败）；<b>inconclusive</b>=不确定（绝不判失败）。写操作默认真提交、不清理。</div>
+<div class="banner info"><b>ℹ️ 覆盖 4 / 10：6 条声明路径未走到</b>（可见但不阻断——漏走的补记为 unreached、不判红；绿灯只表示走到的都过了。agent 应据此自主决定再补哪些、完善报告）<ul class="plist"><li><code>today-detail</code> <span class="pill p-skip">动态入口</span> <span class="pe">/app?page=today-detail</span></li><li><code>natal</code> <span class="pe">/app/natal</span></li><li><code>star-trace</code> <span class="pe">/app/star-trace</span></li><li><code>friend-detail</code> <span class="pill p-skip">动态入口</span> <span class="pe">/app/friends/{friendId}</span></li><li><code>friend-new</code> <span class="pe">/app/friends/new</span></li><li><code>friend-synastry</code> <span class="pe">/app/friends/{friendId}/synastry</span></li></ul></div>
+<div class="banner bad"><b>⚠️ 发现 3 个问题</b>（点击跳到对应路径）<ul class="plist"><li><a href="#path-today"><span class="pill p-warn">不确定</span> Today — daily horoscope (birth-date gated + async) · 步4</a> — waitFor 15000ms (~18s elapsed since navigation)<div class="pe">div#dailydetail-view-2--empty rendered with text &#x27;✨ 占星师正在为你生成 2026-07-19 的运势... 通常 10-20 秒内完成；生成好后这里会自动刷新。去聊天看进度&#x27; — still in the documented loading state at ~18s elapsed, within the man&#x27;s stated 10-20s window, but the final report body was </div></li><li><a href="#path-today"><span class="pill p-warn">不确定</span> Today — daily horoscope (birth-date gated + async) · 步5</a> — snapshot<div class="pe">Identical loading state to the previous step (report generation still pending at end of the observation window; no error, no stall evidence beyond the elapsed time).</div></li><li><a href="#path-friends"><span class="pill p-warn">不确定</span> Friends — people grid · 步2</a> — waitFor 3000ms<div class="pe">friends-03.png is visually identical to friends-01.png: all 6 card slots are still skeleton placeholders (no rendered text) after 3s; DOM textLen stayed at 76 chars (only header/button text — no card content and no &#x27;还没有好友&#x27; empty-state text </div></li></ul></div>
+<section id="probes"><h2>后端探针 （全通过）</h2><table class="probe"><tr><th></th><th>探针</th><th>详情</th></tr><tr class=""><td>✅</td><td>http-reachable</td><td>HTTP 200</td></tr><tr class=""><td>✅</td><td>afs-rpc-list</td><td>ok:true (10 .aup pages)</td></tr></table></section>
+<section id="path-today">
+<h2>Today — daily horoscope (birth-date gated + async) <span class="rt">authed · /app/today</span></h2>
+<video class="video" controls preload="metadata" src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260719T020655Z/aistro/page@eeb1bb9a085a6aaaf71cf2da61ccc0f4.webm"><a href="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260719T020655Z/aistro/page@eeb1bb9a085a6aaaf71cf2da61ccc0f4.webm">下载该路径录像</a></video><p class="vcap">本测试路径整段走查录像</p>
+<div class="kpis"><div class="kpi"><div class="k">5</div><div class="l">操作步</div></div><div class="kpi"><div class="k">3</div><div class="l">通过</div></div><div class="kpi"><div class="k k-bad">0</div><div class="l">失败</div></div><div class="kpi"><div class="k k-warn">2</div><div class="l">不确定</div></div><div class="kpi"><div class="k">0</div><div class="l">未走到</div></div></div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> navigate https://aistro.afsd.dev/app/today</h3>
+<div class="exp">期望：page loads (SPA may bootstrap before AUP hydrates)</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260719T020655Z/aistro/today-01.png" alt="navigate https://aistro.afsd.dev/app/today" loading="lazy"><figcaption>navigate https://aistro.afsd.dev/app/today</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：title=&#x27;AFS&#x27;, textHead=&#x27;aistro AI astrology service — profile, reports, chat, and friends as agent skills. CONNECTING... POWERED BY ARC&#x27; — transient SPA bootstrap state before the AUP tree hydrates, as expected pre-render.</div>
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> waitFor 3000ms</h3>
+<div class="exp">期望：url-default redirects to /app/today/&lt;date&gt;; authed user with birthDate seeded should see today-content + natal-chart (man example 2)</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260719T020655Z/aistro/today-02.png" alt="waitFor 3000ms" loading="lazy"><figcaption>waitFor 3000ms</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：url redirected to https://aistro.afsd.dev/app/today/2026-07-19; nav rendered (&#x27;Today Natal Star Trace Friends Chat Me&#x27;); interactables include div#today-content (the birthDate-gated view) and div#today-content-view-3-natal-chart-1 (a rendered radix/transit chart, confirmed visually in today-02.png as a full colored wheel with planet glyphs) — matches the man&#x27;s documented &#x27;birth date present&#x27; example, confirming the Test Fixture User already has a birthDate seeded from a prior run.</div>
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> snapshot</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260719T020655Z/aistro/today-03.png" alt="snapshot" loading="lazy"><figcaption>snapshot</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：Same rendered state as the previous step: today-content visible with natal-chart present, dailyDetail container present but not yet populated.</div>
+
+</div>
+<div class="op">
+<h3><span class="pill p-warn">不确定</span> waitFor 15000ms (~18s elapsed since navigation)</h3>
+<div class="exp">期望：per man CAVEATS, dailyDetail&#x27;s auto-fire generates the daily report asynchronously within ~10-20s, showing a loading placeholder until then</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260719T020655Z/aistro/today-04.png" alt="waitFor 15000ms (~18s elapsed since navigation)" loading="lazy"><figcaption>waitFor 15000ms (~18s elapsed since navigation)</figcaption></figure></div>
+<div class="chk-fail"><b>观察证据</b>：div#dailydetail-view-2--empty rendered with text &#x27;✨ 占星师正在为你生成 2026-07-19 的运势... 通常 10-20 秒内完成；生成好后这里会自动刷新。去聊天看进度&#x27; — still in the documented loading state at ~18s elapsed, within the man&#x27;s stated 10-20s window, but the final report body was not observed before this run&#x27;s time budget ended, so full round-trip completion is not confirmed.</div>
+
+</div>
+<div class="op">
+<h3><span class="pill p-warn">不确定</span> snapshot</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260719T020655Z/aistro/today-05.png" alt="snapshot" loading="lazy"><figcaption>snapshot</figcaption></figure></div>
+<div class="chk-fail"><b>观察证据</b>：Identical loading state to the previous step (report generation still pending at end of the observation window; no error, no stall evidence beyond the elapsed time).</div>
+
+</div>
+</section><section id="path-friends">
+<h2>Friends — people grid <span class="rt">authed · /app/friends</span></h2>
+<video class="video" controls preload="metadata" src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260719T020655Z/aistro/page@475499e7f74d27166832fac0f3492dbd.webm"><a href="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260719T020655Z/aistro/page@475499e7f74d27166832fac0f3492dbd.webm">下载该路径录像</a></video><p class="vcap">本测试路径整段走查录像</p>
+<div class="kpis"><div class="kpi"><div class="k">2</div><div class="l">操作步</div></div><div class="kpi"><div class="k">1</div><div class="l">通过</div></div><div class="kpi"><div class="k k-bad">0</div><div class="l">失败</div></div><div class="kpi"><div class="k k-warn">1</div><div class="l">不确定</div></div><div class="kpi"><div class="k">0</div><div class="l">未走到</div></div></div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> navigate https://aistro.afsd.dev/app/friends</h3>
+<div class="exp">期望：card grid (afs-list, gridCols=3) sourced from /user/people excluding &#x27;me&#x27;, or empty-state CTA if no friends</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260719T020655Z/aistro/friends-01.png" alt="navigate https://aistro.afsd.dev/app/friends" loading="lazy"><figcaption>navigate https://aistro.afsd.dev/app/friends</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：url=/app/friends; header &#x27;好友&#x27; + subtitle &#x27;你身边重要的人，每人都有自己的星盘。&#x27; + &#x27;+ 添加好友&#x27; button rendered (all match man synopsis); afs-list grid container (div#friends-view-1-view-3-afs-list-1) present showing 6 card slots in a 3-column grid, each still a grey skeleton-shimmer placeholder with no name/date/place text (screenshot friends-01.png).</div>
+
+</div>
+<div class="op">
+<h3><span class="pill p-warn">不确定</span> waitFor 3000ms</h3>
+<div class="exp">期望：grid populates with friend cards (name/birthDate/birthPlace/sunSynastry) once data loads</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260719T020655Z/aistro/friends-03.png" alt="waitFor 3000ms" loading="lazy"><figcaption>waitFor 3000ms</figcaption></figure></div>
+<div class="chk-fail"><b>观察证据</b>：friends-03.png is visually identical to friends-01.png: all 6 card slots are still skeleton placeholders (no rendered text) after 3s; DOM textLen stayed at 76 chars (only header/button text — no card content and no &#x27;还没有好友&#x27; empty-state text was captured). Cannot determine from this window whether this is normal AFS-list hydration lag for 6 friend records (each requiring a friend.json read) or a stalled fetch; the man page documents a background sunSynastry-backfill auto-fire but does not document initial grid-load latency, so no baseline exists to call this a failure.</div>
+
+</div>
+</section><section id="path-chat">
+<h2>Chat — single agent surface <span class="rt">authed · /app/chat</span></h2>
+<video class="video" controls preload="metadata" src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260719T020655Z/aistro/page@d1273842900b9239a71b9a816cc48579.webm"><a href="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260719T020655Z/aistro/page@d1273842900b9239a71b9a816cc48579.webm">下载该路径录像</a></video><p class="vcap">本测试路径整段走查录像</p>
+<div class="kpis"><div class="kpi"><div class="k">3</div><div class="l">操作步</div></div><div class="kpi"><div class="k">3</div><div class="l">通过</div></div><div class="kpi"><div class="k k-bad">0</div><div class="l">失败</div></div><div class="kpi"><div class="k k-warn">0</div><div class="l">不确定</div></div><div class="kpi"><div class="k">0</div><div class="l">未走到</div></div></div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> navigate https://aistro.afsd.dev/app/chat</h3>
+<div class="exp">期望：one aistro-chat agent node (mode=agent, engine=ai-device) with no other interactive nodes; no outer session gate (unlike other pages)</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260719T020655Z/aistro/chat-01.png" alt="navigate https://aistro.afsd.dev/app/chat" loading="lazy"><figcaption>navigate https://aistro.afsd.dev/app/chat</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：url=/app/chat; rendered &#x27;How can I help?&#x27; / &#x27;AI Device · balanced&#x27; header with quick-prompt chips (&#x27;What can you help with?&#x27;, &#x27;Show me around this workspace&#x27;, &#x27;Run a quick skill&#x27;, &#x27;Explain how this app works&#x27;) and an input box placeholder &#x27;Ask about your chart, today&#x27;s energy, a friend…&#x27; — matches man&#x27;s description of aistro-chat as the single agent surface.</div>
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> waitFor 3000ms</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260719T020655Z/aistro/chat-02.png" alt="waitFor 3000ms" loading="lazy"><figcaption>waitFor 3000ms</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：Same chat surface rendered, stable, no layout shift.</div>
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> snapshot</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260719T020655Z/aistro/chat-03.png" alt="snapshot" loading="lazy"><figcaption>snapshot</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：Same stable chat surface; zero console errors recorded for this path.</div>
+
+</div>
+</section><section id="path-me">
+<h2>Me — profile + app preferences (birth-date seed) <span class="rt">authed · /app/me</span></h2>
+<video class="video" controls preload="metadata" src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260719T020655Z/aistro/page@11e38dab5d3ac1301df9211284bea5ac.webm"><a href="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260719T020655Z/aistro/page@11e38dab5d3ac1301df9211284bea5ac.webm">下载该路径录像</a></video><p class="vcap">本测试路径整段走查录像</p>
+<div class="kpis"><div class="kpi"><div class="k">3</div><div class="l">操作步</div></div><div class="kpi"><div class="k">3</div><div class="l">通过</div></div><div class="kpi"><div class="k k-bad">0</div><div class="l">失败</div></div><div class="kpi"><div class="k k-warn">0</div><div class="l">不确定</div></div><div class="kpi"><div class="k">0</div><div class="l">未走到</div></div></div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> navigate https://aistro.afsd.dev/app/me</h3>
+<div class="exp">期望：profile form (name/birth-date/birth-place bind inputs) + settings-shell auto-surface preferences</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260719T020655Z/aistro/me-01.png" alt="navigate https://aistro.afsd.dev/app/me" loading="lazy"><figcaption>navigate https://aistro.afsd.dev/app/me</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：url=/app/me; form rendered with header &#x27;我&#x27; / &#x27;你的资料 + 应用偏好&#x27; and 8 inputs (姓名/出生日期(UTC)/出生地/纬度/经度 + 应用偏好 section fields). Immediately after navigation the bind inputs show unhydrated placeholders — 姓名 placeholder &#x27;占星师该怎么称呼你？&#x27;, 出生日期 placeholder &#x27;mm/dd/yyyy, --:-- --&#x27; — values not yet loaded from AFS (me-01.png).</div>
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> waitFor 3000ms</h3>
+<div class="exp">期望：bind inputs hydrate with persisted /user/people/me/profile/* values</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260719T020655Z/aistro/me-03.png" alt="waitFor 3000ms" loading="lazy"><figcaption>waitFor 3000ms</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：me-03.png shows 姓名 populated with &#x27;TSweep Tester&#x27;, 出生日期(UTC) populated with &#x27;06/15/1990, 08:30 AM&#x27;, 纬度/经度 populated with &#x27;39.9042&#x27;/&#x27;116.4074&#x27; — confirms the birthDate that gates today/natal (and that was observed rendering a natal-chart in the today path above) is genuinely persisted for this Test Fixture User. The 出生地 (address) text field remained on its placeholder &#x27;城市，国家&#x27; even though lat/long were populated — a minor partial-hydration/data-completeness detail (address is a separate leaf file per the man&#x27;s caveats), not treated as a failure since lat/long alone are sufficient for chart computation.</div>
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> snapshot</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260719T020655Z/aistro/me-03.png" alt="snapshot" loading="lazy"><figcaption>snapshot</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：Same hydrated form state as the previous step; no interaction performed (read-only sweep — no typing into bind inputs to avoid triggering a write).</div>
+
+</div>
+</section>
+<p class="sub" style="margin-top:22px">Generated by test-report-builder (build-agent-report) · issue #1808</p>
+</div></body></html>

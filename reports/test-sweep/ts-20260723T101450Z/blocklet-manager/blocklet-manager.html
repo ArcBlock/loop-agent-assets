@@ -1,0 +1,138 @@
+<!doctype html><html><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>blocklet-manager — agent 走查报告</title><style>
+:root{--bg:#f7f8f8;--fg:#16201f;--muted:#5c6b69;--card:#fff;--card2:#eef2f1;--border:#dde3e2;--accent:#127a72;--pass:#1f8a54;--warn:#b5771a;--bad:#c0392b}
+@media(prefers-color-scheme:dark){:root{--bg:#0e1413;--fg:#e6ecea;--muted:#8ea19d;--card:#161d1c;--card2:#1d2624;--border:#26302e;--accent:#3fb8ab;--pass:#3fb37a;--warn:#d69a3e;--bad:#e5735f}}
+:root[data-theme=dark]{--bg:#0e1413;--fg:#e6ecea;--muted:#8ea19d;--card:#161d1c;--card2:#1d2624;--border:#26302e;--accent:#3fb8ab;--pass:#3fb37a;--warn:#d69a3e;--bad:#e5735f}
+:root[data-theme=light]{--bg:#f7f8f8;--fg:#16201f;--muted:#5c6b69;--card:#fff;--card2:#eef2f1;--border:#dde3e2;--accent:#127a72;--pass:#1f8a54;--warn:#b5771a;--bad:#c0392b}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--fg);font:15px/1.65 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;padding:24px}
+.wrap{max-width:920px;margin:0 auto}
+h1{font-size:24px;margin:0 0 4px;text-wrap:balance}h2{font-size:19px;margin:30px 0 8px}
+h2 .rt{font-size:13px;color:var(--muted);font-weight:400;font-variant-numeric:tabular-nums}
+.sub{color:var(--muted);margin:0 0 14px;font-size:13px}
+code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.85em;background:var(--card2);padding:1px 5px;border-radius:4px}
+.how{background:var(--card);border:1px solid var(--border);border-left:3px solid var(--accent);border-radius:8px;padding:13px 16px;margin:14px 0;font-size:14px}
+.how b{color:var(--accent)}
+.banner{border-radius:12px;padding:14px 18px;margin:16px 0}
+.banner.ok{background:color-mix(in srgb,var(--pass) 12%,transparent);border:1px solid color-mix(in srgb,var(--pass) 40%,transparent)}
+.banner.ok b{color:var(--pass)}
+.banner.bad{background:color-mix(in srgb,var(--bad) 13%,transparent);border:1px solid color-mix(in srgb,var(--bad) 45%,transparent)}
+.banner.bad b{color:var(--bad);font-size:16px}
+.banner.info{background:color-mix(in srgb,var(--accent) 10%,transparent);border:1px solid color-mix(in srgb,var(--accent) 38%,transparent)}
+.banner.info b{color:var(--accent)}
+.plist{margin:10px 0 0;padding-left:0;list-style:none}
+.plist li{padding:8px 0;border-top:1px solid var(--border)}
+.plist a{text-decoration:none;color:var(--fg);font-weight:600}
+.plist .pe{color:var(--muted);font-size:12.5px;font-weight:400;margin-top:3px}
+.video{width:100%;border-radius:10px;border:1px solid var(--border);background:#000;margin:6px 0 2px}
+.vcap{color:var(--muted);font-size:12.5px;margin:0 0 8px}
+.novideo{color:var(--bad);font-weight:600;background:color-mix(in srgb,var(--bad) 10%,transparent);border:1px dashed color-mix(in srgb,var(--bad) 45%,transparent);border-radius:8px;padding:8px 12px;font-size:13px}
+.kpis{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0}
+.kpi{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:9px 14px;min-width:70px}
+.kpi .k{font-size:21px;font-weight:700;font-variant-numeric:tabular-nums}.kpi .l{color:var(--muted);font-size:12px}
+.kpi .k-bad{color:var(--bad)}.kpi .k-warn{color:var(--warn)}
+.op{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:15px 17px;margin:14px 0}
+.op h3{margin:0 0 3px;font-size:16px;display:flex;align-items:center;gap:9px;flex-wrap:wrap}
+.op .exp{color:var(--muted);font-size:13px;margin:0 0 9px}
+.op .nt{color:var(--muted);font-size:12.5px;margin-top:6px}
+.pill{font-size:11.5px;font-weight:700;padding:2px 9px;border-radius:20px}
+.p-ok{background:color-mix(in srgb,var(--pass) 18%,transparent);color:var(--pass)}
+.p-fail{background:color-mix(in srgb,var(--bad) 18%,transparent);color:var(--bad)}
+.p-warn{background:color-mix(in srgb,var(--warn) 20%,transparent);color:var(--warn)}
+.p-skip{background:var(--card2);color:var(--muted)}
+.p-write{background:color-mix(in srgb,var(--accent) 18%,transparent);color:var(--accent)}
+.frame figure{margin:0 0 9px}.frame img{width:100%;border-radius:8px;border:1px solid var(--border);display:block}
+.frame figcaption{color:var(--muted);font-size:11.5px;margin-top:4px;text-align:center}
+.chk{background:color-mix(in srgb,var(--pass) 12%,transparent);border:1px solid color-mix(in srgb,var(--pass) 34%,transparent);border-radius:8px;padding:8px 12px;font-size:13px}
+.chk b{color:var(--pass)}
+.chk-fail{background:color-mix(in srgb,var(--bad) 11%,transparent);border:1px solid color-mix(in srgb,var(--bad) 40%,transparent);border-radius:8px;padding:8px 12px;font-size:13px}
+.chk-fail b{color:var(--bad)}
+table.probe{border-collapse:collapse;width:100%;font-size:13px}
+table.probe th,table.probe td{border:1px solid var(--border);padding:5px 9px;text-align:left}
+table.probe tr.bad td{background:color-mix(in srgb,var(--bad) 10%,transparent)}
+</style></head><body><div class="wrap">
+<h1>blocklet-manager — agent 走查报告</h1>
+<p class="sub">环境 <code>https://blocklet-manager.afsd.dev</code> · 2026-07-23T10:20:00Z · 走查 4 / 声明 7 条测试路径 · driver <code>agent-playwright-mcp</code></p>
+<div class="how"><b>这份报告在做什么</b>：test-sweep 让 <b>agent 读被测页面自己写的
+<code>.aup/man</code> 知识</b>，用 Playwright MCP <b>当真人逐条测试路径走查</b>（导航/加标签/编辑/删除/创建…），
+<b>每条路径各自一段录屏</b>、每步截图并<b>自判 verdict + 附观察证据</b>（实际 DOM/文本/值，可复核）。
+<b>unreached</b>=没驱动到（不当失败）；<b>inconclusive</b>=不确定（绝不判失败）。写操作默认真提交、不清理。</div>
+
+<div class="banner info"><b>ℹ️ 覆盖 4 / 7：页内部分 example 未覆盖</b>（可见但不阻断——漏走的补记为 unreached、不判红；绿灯只表示走到的都过了。agent 应据此自主决定再补哪些、完善报告）<ul class="plist"></ul></div>
+<div class="banner bad"><b>⚠️ 发现 5 个问题</b>（点击跳到对应路径）<ul class="plist"><li><a href="#path-index"><span class="pill p-fail">失败</span> 首页 index — 渲染骨架 + 点击「+ Create New」 · 步2</a> — 点击「+ Create New」按钮（create-action，man 声明 events.click.page=create）<div class="pe">点击后 dom 完全无变化：interactables 仍是 div#root/div#header/button#create-action/div#blocklet-grid/footer，url 仍是 https://blocklet-manager.afsd.dev/，未出现 create 页任何节点（name-input 等）；console 无报错。以 login_token cookie 注入的 authed 会话复测（见 create 路径备注）结果一致</div></li><li><a href="#path-create"><span class="pill p-fail">失败</span> Create 页 — 按钮跳转与直接 URL 均不可达 · 步1</a> — 作为 authed 会话（login_token cookie），在 index 页点击「+ Create New」交叉验证<div class="pe">authed 会话下点击后 dom 与点击前逐字相同（仍是 div#root/div#header/button#create-action/div#blocklet-grid/footer，url 未变），未见 create 表单节点；与 anon 会话结果一致</div></li><li><a href="#path-create"><span class="pill p-fail">失败</span> Create 页 — 按钮跳转与直接 URL 均不可达 · 步2</a> — 直接导航到 https://blocklet-manager.afsd.dev/?page=create，等待 6 秒<div class="pe">6 秒等待后 dom.aupNodes 仍为 1（仅 footer#__build-info-footer），dom.textHead 停留在「AFS Agentic File System CONNECTED — WAITING FOR CONTENT POWERED BY ARC」，console 无报错，页面卡在连接建立后的等待内容态，从未渲染出 create 页的任何节点。同一 URL 复测两次（首次 waitFor 2500ms、二次 6000ms）结果一致，排除单</div></li><li><a href="#path-detail"><span class="pill p-fail">失败</span> Detail 页骨架态 — 直接 URL 可达，Back 按钮点击无效 · 步2</a> — 点击 Back 按钮（back-btn，man 声明 events.click.page=index）<div class="pe">点击后 dom 与点击前逐字相同（url 仍是 .../?page=detail，interactables 完全一致，仍显示「# Loading...」骨架），未跳转到 index，console 无报错</div></li><li><a href="#path-deploy"><span class="pill p-fail">失败</span> Deploy 页骨架态 — 直接 URL 可达，Back 按钮点击无效 · 步2</a> — 点击 Back 按钮（back-btn，man 声明 events.click.page=detail）<div class="pe">点击后 dom 与点击前逐字相同（url 仍是 .../?page=deploy，header 仍是「# Deploy Blocklet」，interactables 完全一致），未跳转到 detail，console 无报错</div></li></ul></div>
+<section id="probes"><h2>后端探针 （1 项失败）</h2><table class="probe"><tr><th></th><th>探针</th><th>详情</th></tr><tr class=""><td>✅</td><td>http-reachable</td><td>HTTP 200</td></tr><tr class="bad"><td>❌</td><td>afs-rpc-list</td><td>well-known 探针端点在本 live 环境恒 404（已知框架限制，issue #1338，非本 blocklet 缺陷）；改用 POST /api/afs/rpc 探测 /packages 得 {ok:true,data:[]}——该 scope:root 系统 blocklet 的 .aup 声明未按常规 provider 挂在 /packages 下，discover-aup.py 因而返回空 routes（详见 notes）</td></tr></table></section>
+<section id="path-index">
+<h2>首页 index — 渲染骨架 + 点击「+ Create New」 <span class="rt">anon · /</span></h2>
+<video class="video" controls preload="metadata" src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260723T101450Z/blocklet-manager/page@33fd89e62c78a62f6d1e129db3086e65.webm"><a href="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260723T101450Z/blocklet-manager/page@33fd89e62c78a62f6d1e129db3086e65.webm">下载该路径录像</a></video><p class="vcap">本测试路径整段走查录像</p>
+<div class="kpis"><div class="kpi"><div class="k">2</div><div class="l">操作步</div></div><div class="kpi"><div class="k">1</div><div class="l">通过</div></div><div class="kpi"><div class="k k-bad">1</div><div class="l">失败</div></div><div class="kpi"><div class="k k-warn">0</div><div class="l">不确定</div></div><div class="kpi"><div class="k">0</div><div class="l">未走到</div></div></div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> 打开首页 https://blocklet-manager.afsd.dev/，等待渲染完成</h3>
+<div class="exp">期望：渲染 header 文本「# Blocklet Manager / Select a blocklet to open.」与「+ Create New」按钮（对齐 index.yaml 骨架断言 node_has_prop id=header content 及 action_exists id=create-action）</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260723T101450Z/blocklet-manager/explore-create-02.png" alt="打开首页 https://blocklet-manager.afsd.dev/，等待渲染完成" loading="lazy"><figcaption>打开首页 https://blocklet-manager.afsd.dev/，等待渲染完成</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：dom.textHead = &quot;# Blocklet Manager Select a blocklet to open. + Create New ...&quot;；dom.interactables 含 div#header &quot;# Blocklet Manager Select a blocklet to open.&quot;、button#create-action &quot;+ Create New&quot;、div#blocklet-grid（空），与 index.yaml 第一条 example 的三条 node_exists/node_has_prop 断言逐字一致</div>
+
+</div>
+<div class="op">
+<h3><span class="pill p-fail">失败</span> 点击「+ Create New」按钮（create-action，man 声明 events.click.page=create）</h3>
+<div class="exp">期望：跳转到 create 页（渲染 name-input/template-select/create-btn 表单）</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260723T101450Z/blocklet-manager/explore-create-05.png" alt="点击「+ Create New」按钮（create-action，man 声明 events.click.page=create）" loading="lazy"><figcaption>点击「+ Create New」按钮（create-action，man 声明 events.click.page=create）</figcaption></figure></div>
+<div class="chk-fail"><b>观察证据</b>：点击后 dom 完全无变化：interactables 仍是 div#root/div#header/button#create-action/div#blocklet-grid/footer，url 仍是 https://blocklet-manager.afsd.dev/，未出现 create 页任何节点（name-input 等）；console 无报错。以 login_token cookie 注入的 authed 会话复测（见 create 路径备注）结果一致</div>
+<div class="nt">anon 与 authed 两种会话下复现一致，见 testPath create 的交叉验证步骤</div>
+</div>
+</section><section id="path-create">
+<h2>Create 页 — 按钮跳转与直接 URL 均不可达 <span class="rt">authed · /?page=create</span></h2>
+<video class="video" controls preload="metadata" src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260723T101450Z/blocklet-manager/page@0e263b2f945484b249e18eb3d546fd7a.webm"><a href="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260723T101450Z/blocklet-manager/page@0e263b2f945484b249e18eb3d546fd7a.webm">下载该路径录像</a></video><p class="vcap">本测试路径整段走查录像</p>
+<div class="kpis"><div class="kpi"><div class="k">2</div><div class="l">操作步</div></div><div class="kpi"><div class="k">0</div><div class="l">通过</div></div><div class="kpi"><div class="k k-bad">2</div><div class="l">失败</div></div><div class="kpi"><div class="k k-warn">0</div><div class="l">不确定</div></div><div class="kpi"><div class="k">0</div><div class="l">未走到</div></div></div>
+<div class="op">
+<h3><span class="pill p-fail">失败</span> 作为 authed 会话（login_token cookie），在 index 页点击「+ Create New」交叉验证</h3>
+<div class="exp">期望：跳转到 create 页</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260723T101450Z/blocklet-manager/explore-create-authed-04.png" alt="作为 authed 会话（login_token cookie），在 index 页点击「+ Create New」交叉验证" loading="lazy"><figcaption>作为 authed 会话（login_token cookie），在 index 页点击「+ Create New」交叉验证</figcaption></figure></div>
+<div class="chk-fail"><b>观察证据</b>：authed 会话下点击后 dom 与点击前逐字相同（仍是 div#root/div#header/button#create-action/div#blocklet-grid/footer，url 未变），未见 create 表单节点；与 anon 会话结果一致</div>
+
+</div>
+<div class="op">
+<h3><span class="pill p-fail">失败</span> 直接导航到 https://blocklet-manager.afsd.dev/?page=create，等待 6 秒</h3>
+<div class="exp">期望：渲染 create 页表单（name-input/template-select/create-btn），或至少停在某个可辨认的 AUP 节点上</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260723T101450Z/blocklet-manager/create-retry-03.png" alt="直接导航到 https://blocklet-manager.afsd.dev/?page=create，等待 6 秒" loading="lazy"><figcaption>直接导航到 https://blocklet-manager.afsd.dev/?page=create，等待 6 秒</figcaption></figure></div>
+<div class="chk-fail"><b>观察证据</b>：6 秒等待后 dom.aupNodes 仍为 1（仅 footer#__build-info-footer），dom.textHead 停留在「AFS Agentic File System CONNECTED — WAITING FOR CONTENT POWERED BY ARC」，console 无报错，页面卡在连接建立后的等待内容态，从未渲染出 create 页的任何节点。同一 URL 复测两次（首次 waitFor 2500ms、二次 6000ms）结果一致，排除单纯渲染慢的可能</div>
+
+</div>
+</section><section id="path-detail">
+<h2>Detail 页骨架态 — 直接 URL 可达，Back 按钮点击无效 <span class="rt">anon · /?page=detail</span></h2>
+<video class="video" controls preload="metadata" src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260723T101450Z/blocklet-manager/page@45c5b40921ccc1a4a19f1e6a72c91d2e.webm"><a href="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260723T101450Z/blocklet-manager/page@45c5b40921ccc1a4a19f1e6a72c91d2e.webm">下载该路径录像</a></video><p class="vcap">本测试路径整段走查录像</p>
+<div class="kpis"><div class="kpi"><div class="k">2</div><div class="l">操作步</div></div><div class="kpi"><div class="k">1</div><div class="l">通过</div></div><div class="kpi"><div class="k k-bad">1</div><div class="l">失败</div></div><div class="kpi"><div class="k k-warn">0</div><div class="l">不确定</div></div><div class="kpi"><div class="k">0</div><div class="l">未走到</div></div></div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> 直接导航到 https://blocklet-manager.afsd.dev/?page=detail</h3>
+<div class="exp">期望：渲染骨架：back-btn + 「# Loading...」+ detail-meta/detail-pages 空容器（detail.yaml CAVEATS 明确标注此路由可通过直接 URL/deep-link 到达并展示该占位态）</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260723T101450Z/blocklet-manager/detail-back-01.png" alt="直接导航到 https://blocklet-manager.afsd.dev/?page=detail" loading="lazy"><figcaption>直接导航到 https://blocklet-manager.afsd.dev/?page=detail</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：dom.interactables 含 div#detail-root、button#back-btn &quot;Back&quot;、div#detail-header &quot;# Loading...&quot;、div#detail-meta、div#detail-pages，与 detail.yaml 骨架断言（node_exists/node_has_prop 均命中）逐字一致；另观察到一个骨架未声明的额外节点 div#detail-preview &quot;Unknown: device&quot;（骨架文件中不存在，可能是 pageResolver 侧新增，非本次判定范围内的断言项，如实记录）</div>
+
+</div>
+<div class="op">
+<h3><span class="pill p-fail">失败</span> 点击 Back 按钮（back-btn，man 声明 events.click.page=index）</h3>
+<div class="exp">期望：跳转回 index 页</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260723T101450Z/blocklet-manager/detail-back-04.png" alt="点击 Back 按钮（back-btn，man 声明 events.click.page=index）" loading="lazy"><figcaption>点击 Back 按钮（back-btn，man 声明 events.click.page=index）</figcaption></figure></div>
+<div class="chk-fail"><b>观察证据</b>：点击后 dom 与点击前逐字相同（url 仍是 .../?page=detail，interactables 完全一致，仍显示「# Loading...」骨架），未跳转到 index，console 无报错</div>
+
+</div>
+</section><section id="path-deploy">
+<h2>Deploy 页骨架态 — 直接 URL 可达，Back 按钮点击无效 <span class="rt">anon · /?page=deploy</span></h2>
+<video class="video" controls preload="metadata" src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260723T101450Z/blocklet-manager/page@f20bac59decf61bf74d43680503c3241.webm"><a href="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260723T101450Z/blocklet-manager/page@f20bac59decf61bf74d43680503c3241.webm">下载该路径录像</a></video><p class="vcap">本测试路径整段走查录像</p>
+<div class="kpis"><div class="kpi"><div class="k">2</div><div class="l">操作步</div></div><div class="kpi"><div class="k">1</div><div class="l">通过</div></div><div class="kpi"><div class="k k-bad">1</div><div class="l">失败</div></div><div class="kpi"><div class="k k-warn">0</div><div class="l">不确定</div></div><div class="kpi"><div class="k">0</div><div class="l">未走到</div></div></div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> 直接导航到 https://blocklet-manager.afsd.dev/?page=deploy</h3>
+<div class="exp">期望：渲染 back-btn + 「# Deploy Blocklet」header + deploy-targets/deploy-result 空容器（deploy.yaml 骨架断言）</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260723T101450Z/blocklet-manager/deploy-back-01.png" alt="直接导航到 https://blocklet-manager.afsd.dev/?page=deploy" loading="lazy"><figcaption>直接导航到 https://blocklet-manager.afsd.dev/?page=deploy</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：dom.interactables 含 div#deploy-root、button#back-btn &quot;Back&quot;、div#deploy-header &quot;# Deploy Blocklet&quot;、div#deploy-targets、div#deploy-result，与 deploy.yaml 全部四条骨架断言逐字一致</div>
+
+</div>
+<div class="op">
+<h3><span class="pill p-fail">失败</span> 点击 Back 按钮（back-btn，man 声明 events.click.page=detail）</h3>
+<div class="exp">期望：跳转回 detail 页</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260723T101450Z/blocklet-manager/deploy-back-04.png" alt="点击 Back 按钮（back-btn，man 声明 events.click.page=detail）" loading="lazy"><figcaption>点击 Back 按钮（back-btn，man 声明 events.click.page=detail）</figcaption></figure></div>
+<div class="chk-fail"><b>观察证据</b>：点击后 dom 与点击前逐字相同（url 仍是 .../?page=deploy，header 仍是「# Deploy Blocklet」，interactables 完全一致），未跳转到 detail，console 无报错</div>
+
+</div>
+</section>
+<p class="sub" style="margin-top:22px">Generated by test-report-builder (build-agent-report) · issue #1808</p>
+</div></body></html>

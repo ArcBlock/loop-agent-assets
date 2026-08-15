@@ -1,0 +1,402 @@
+<!doctype html><html><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>chain-explorer — agent 走查报告</title><style>
+:root{--bg:#f7f8f8;--fg:#16201f;--muted:#5c6b69;--card:#fff;--card2:#eef2f1;--border:#dde3e2;--accent:#127a72;--pass:#1f8a54;--warn:#b5771a;--bad:#c0392b}
+@media(prefers-color-scheme:dark){:root{--bg:#0e1413;--fg:#e6ecea;--muted:#8ea19d;--card:#161d1c;--card2:#1d2624;--border:#26302e;--accent:#3fb8ab;--pass:#3fb37a;--warn:#d69a3e;--bad:#e5735f}}
+:root[data-theme=dark]{--bg:#0e1413;--fg:#e6ecea;--muted:#8ea19d;--card:#161d1c;--card2:#1d2624;--border:#26302e;--accent:#3fb8ab;--pass:#3fb37a;--warn:#d69a3e;--bad:#e5735f}
+:root[data-theme=light]{--bg:#f7f8f8;--fg:#16201f;--muted:#5c6b69;--card:#fff;--card2:#eef2f1;--border:#dde3e2;--accent:#127a72;--pass:#1f8a54;--warn:#b5771a;--bad:#c0392b}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--fg);font:15px/1.65 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;padding:24px}
+.wrap{max-width:920px;margin:0 auto}
+h1{font-size:24px;margin:0 0 4px;text-wrap:balance}h2{font-size:19px;margin:30px 0 8px}
+h2 .rt{font-size:13px;color:var(--muted);font-weight:400;font-variant-numeric:tabular-nums}
+.sub{color:var(--muted);margin:0 0 14px;font-size:13px}
+code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.85em;background:var(--card2);padding:1px 5px;border-radius:4px}
+.how{background:var(--card);border:1px solid var(--border);border-left:3px solid var(--accent);border-radius:8px;padding:13px 16px;margin:14px 0;font-size:14px}
+.how b{color:var(--accent)}
+.banner{border-radius:12px;padding:14px 18px;margin:16px 0}
+.banner.ok{background:color-mix(in srgb,var(--pass) 12%,transparent);border:1px solid color-mix(in srgb,var(--pass) 40%,transparent)}
+.banner.ok b{color:var(--pass)}
+.banner.bad{background:color-mix(in srgb,var(--bad) 13%,transparent);border:1px solid color-mix(in srgb,var(--bad) 45%,transparent)}
+.banner.bad b{color:var(--bad);font-size:16px}
+.banner.info{background:color-mix(in srgb,var(--accent) 10%,transparent);border:1px solid color-mix(in srgb,var(--accent) 38%,transparent)}
+.banner.info b{color:var(--accent)}
+.plist{margin:10px 0 0;padding-left:0;list-style:none}
+.plist li{padding:8px 0;border-top:1px solid var(--border)}
+.plist a{text-decoration:none;color:var(--fg);font-weight:600}
+.plist .pe{color:var(--muted);font-size:12.5px;font-weight:400;margin-top:3px}
+.video{width:100%;border-radius:10px;border:1px solid var(--border);background:#000;margin:6px 0 2px}
+.vcap{color:var(--muted);font-size:12.5px;margin:0 0 8px}
+.novideo{color:var(--bad);font-weight:600;background:color-mix(in srgb,var(--bad) 10%,transparent);border:1px dashed color-mix(in srgb,var(--bad) 45%,transparent);border-radius:8px;padding:8px 12px;font-size:13px}
+.kpis{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0}
+.kpi{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:9px 14px;min-width:70px}
+.kpi .k{font-size:21px;font-weight:700;font-variant-numeric:tabular-nums}.kpi .l{color:var(--muted);font-size:12px}
+.kpi .k-bad{color:var(--bad)}.kpi .k-warn{color:var(--warn)}
+.op{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:15px 17px;margin:14px 0}
+.op h3{margin:0 0 3px;font-size:16px;display:flex;align-items:center;gap:9px;flex-wrap:wrap}
+.op .exp{color:var(--muted);font-size:13px;margin:0 0 9px}
+.op .nt{color:var(--muted);font-size:12.5px;margin-top:6px}
+.pill{font-size:11.5px;font-weight:700;padding:2px 9px;border-radius:20px}
+.p-ok{background:color-mix(in srgb,var(--pass) 18%,transparent);color:var(--pass)}
+.p-fail{background:color-mix(in srgb,var(--bad) 18%,transparent);color:var(--bad)}
+.p-warn{background:color-mix(in srgb,var(--warn) 20%,transparent);color:var(--warn)}
+.p-skip{background:var(--card2);color:var(--muted)}
+.p-write{background:color-mix(in srgb,var(--accent) 18%,transparent);color:var(--accent)}
+.frame figure{margin:0 0 9px}.frame img{width:100%;border-radius:8px;border:1px solid var(--border);display:block}
+.frame figcaption{color:var(--muted);font-size:11.5px;margin-top:4px;text-align:center}
+.chk{background:color-mix(in srgb,var(--pass) 12%,transparent);border:1px solid color-mix(in srgb,var(--pass) 34%,transparent);border-radius:8px;padding:8px 12px;font-size:13px}
+.chk b{color:var(--pass)}
+.chk-fail{background:color-mix(in srgb,var(--bad) 11%,transparent);border:1px solid color-mix(in srgb,var(--bad) 40%,transparent);border-radius:8px;padding:8px 12px;font-size:13px}
+.chk-fail b{color:var(--bad)}
+table.probe{border-collapse:collapse;width:100%;font-size:13px}
+table.probe th,table.probe td{border:1px solid var(--border);padding:5px 9px;text-align:left}
+table.probe tr.bad td{background:color-mix(in srgb,var(--bad) 10%,transparent)}
+</style></head><body><div class="wrap">
+<h1>chain-explorer — agent 走查报告</h1>
+<p class="sub">环境 <code>https://chain-explorer.afsd.dev</code> · 2026-07-22T15:36:34Z · 走查 6 / 声明 6 条测试路径 · driver <code>agent-playwright-mcp</code></p>
+<div class="how"><b>这份报告在做什么</b>：test-sweep 让 <b>agent 读被测页面自己写的
+<code>.aup/man</code> 知识</b>，用 Playwright MCP <b>当真人逐条测试路径走查</b>（导航/加标签/编辑/删除/创建…），
+<b>每条路径各自一段录屏</b>、每步截图并<b>自判 verdict + 附观察证据</b>（实际 DOM/文本/值，可复核）。
+<b>unreached</b>=没驱动到（不当失败）；<b>inconclusive</b>=不确定（绝不判失败）。写操作默认真提交、不清理。</div>
+
+<div class="banner ok"><b>✅ 覆盖完整</b>：声明 6 条测试路径全部走查。</div>
+<div class="banner bad"><b>⚠️ 发现 1 个问题</b>（点击跳到对应路径）<ul class="plist"><li><a href="#path-bridges"><span class="pill p-warn">不确定</span> Bridges 列表 → 详情 → Nodes/Blocks 标签页 · 步5</a> — 点击 Blocks 表格首行（未限定 tab 面板作用域的通用 tr 选择器）<div class="pe">点击超时（10s）——用了未限定作用域的 `tr.aup-list-table-row` 选择器，命中的是 DOM 中排在最前但已隐藏的其它标签面板残留行（bridge 详情多个 tab 面板同时挂载于 DOM，仅 data-active 控制可见性），并非应用行为缺陷；用 `.aup-tab-panel[data-active=true] tr.aup-list-table-row` 限定作用域后在独立测试路径 `bridges-block-detail` 中复测成功（见该</div></li></ul></div>
+<section id="probes"><h2>后端探针 （全通过）</h2><table class="probe"><tr><th></th><th>探针</th><th>详情</th></tr><tr class=""><td>✅</td><td>http-reachable</td><td>HTTP 301</td></tr><tr class=""><td>✅</td><td>afs-rpc-list</td><td>ok:true (1 .aup pages)</td></tr></table></section>
+<section id="path-index">
+<h2>Home 概览仪表盘 + Recent Transactions 点击穿透 <span class="rt">anon · /</span></h2>
+<video class="video" controls preload="metadata" src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260722T153634Z/chain-explorer/page@6d76a94b6de48ff8e2dcd8d70a7f39f2.webm"><a href="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260722T153634Z/chain-explorer/page@6d76a94b6de48ff8e2dcd8d70a7f39f2.webm">下载该路径录像</a></video><p class="vcap">本测试路径整段走查录像</p>
+<div class="kpis"><div class="kpi"><div class="k">2</div><div class="l">操作步</div></div><div class="kpi"><div class="k">2</div><div class="l">通过</div></div><div class="kpi"><div class="k k-bad">0</div><div class="l">失败</div></div><div class="kpi"><div class="k k-warn">0</div><div class="l">不确定</div></div><div class="kpi"><div class="k">0</div><div class="l">未走到</div></div></div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> navigate 首页 /</h3>
+<div class="exp">期望：渲染 chain-overview 仪表盘：app-header + 8 个统计卡 + Recent Transactions/Tokens/Factories 卡片</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260722T153634Z/chain-explorer/home-01.png" alt="navigate 首页 /" loading="lazy"><figcaption>navigate 首页 /</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：title=&quot;Chain Explorer&quot;，url 重定向到 /main/，aupNodes=61；正文含 &quot;Transactions 569,977&quot; &quot;Accounts 77,810&quot; &quot;Tokens 4&quot; &quot;Assets 82,377&quot; &quot;Factories 386&quot; &quot;Stakes 2,322&quot; &quot;Bridges 3&quot; &quot;RECENT TRANSACTIONS&quot; &quot;TOKENS&quot; &quot;FACTORIES&quot;</div>
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> 点击 Recent Transactions 卡片的首行交易（co-recent-txs-list 点击穿透）</h3>
+<div class="exp">期望：re-root primary-surface 到该交易详情（navigateTo）</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260722T153634Z/chain-explorer/home-03.png" alt="点击 Recent Transactions 卡片的首行交易（co-recent-txs-list 点击穿透）" loading="lazy"><figcaption>点击 Recent Transactions 卡片的首行交易（co-recent-txs-list 点击穿透）</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：点击后 URL 变为 https://chain-explorer.afsd.dev/main/transactions/47B97E708D70073356828446BF2A4B761034F3337EF6688691632F8ADE2A44BF（交易详情页），符合 .man flow「click a row in the dashboard Recent Transactions list → tx-detail」</div>
+
+</div>
+</section><section id="path-transactions">
+<h2>Transactions 列表 → 详情 → Receipts/Raw 标签页 <span class="rt">anon · /main/transactions</span></h2>
+<video class="video" controls preload="metadata" src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260722T153634Z/chain-explorer/page@cba0b9d267908e30c467f9e5820138e5.webm"><a href="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260722T153634Z/chain-explorer/page@cba0b9d267908e30c467f9e5820138e5.webm">下载该路径录像</a></video><p class="vcap">本测试路径整段走查录像</p>
+<div class="kpis"><div class="kpi"><div class="k">3</div><div class="l">操作步</div></div><div class="kpi"><div class="k">3</div><div class="l">通过</div></div><div class="kpi"><div class="k k-bad">0</div><div class="l">失败</div></div><div class="kpi"><div class="k k-warn">0</div><div class="l">不确定</div></div><div class="kpi"><div class="k">0</div><div class="l">未走到</div></div></div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> 导航 Transactions 列表</h3>
+<div class="exp">期望：渲染交易表格（HASH/TYPE/FROM/TO/VALUE/FEE/TIME）</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260722T153634Z/chain-explorer/transactions-02.png" alt="导航 Transactions 列表" loading="lazy"><figcaption>导航 Transactions 列表</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：url=https://chain-explorer.afsd.dev/main/transactions，aupNodes=27；列表含真实交易行（如 DC73BA2B…BCEB84 Transfer V3）</div>
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> 点击列表首行（tr.aup-list-table-row）</h3>
+<div class="exp">期望：re-root 到 /transactions/:hash，渲染 tx-detail（Type/Sender/Receiver/Time/Nonce/Gas Fee 等）</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260722T153634Z/chain-explorer/transactions-04.png" alt="点击列表首行（tr.aup-list-table-row）" loading="lazy"><figcaption>点击列表首行（tr.aup-list-table-row）</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：url 变为 https://chain-explorer.afsd.dev/main/transactions/87E61298E6DBFD899C376CED76CD96389DD41976489299DA1F848FE153206D09（87E61298…3206D09），tx-detail 卡片渲染 DETAILS 区块</div>
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> 点击 Raw 标签（data-tab-id=tx-tab-raw，role=button name=Raw）</h3>
+<div class="exp">期望：tx-tab-raw 面板激活，显示原始 tx envelope JSON</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260722T153634Z/chain-explorer/transactions-06.png" alt="点击 Raw 标签（data-tab-id=tx-tab-raw，role=button name=Raw）" loading="lazy"><figcaption>点击 Raw 标签（data-tab-id=tx-tab-raw，role=button name=Raw）</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：标签栏切换为 Raw 高亮激活（data-active=true 转移到 tx-tab-raw），下方渲染 JSON 代码块（{ &quot;chainId&quot;: &quot;xenon-2020-... 开头）</div>
+
+</div>
+</section><section id="path-accounts">
+<h2>Accounts 列表 → 详情 → Tokens/Received Stakes 标签页 <span class="rt">anon · /main/accounts</span></h2>
+<video class="video" controls preload="metadata" src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260722T153634Z/chain-explorer/page@a6aa25b68bec4104556574fa7a6f76e1.webm"><a href="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260722T153634Z/chain-explorer/page@a6aa25b68bec4104556574fa7a6f76e1.webm">下载该路径录像</a></video><p class="vcap">本测试路径整段走查录像</p>
+<div class="kpis"><div class="kpi"><div class="k">4</div><div class="l">操作步</div></div><div class="kpi"><div class="k">4</div><div class="l">通过</div></div><div class="kpi"><div class="k k-bad">0</div><div class="l">失败</div></div><div class="kpi"><div class="k k-warn">0</div><div class="l">不确定</div></div><div class="kpi"><div class="k">0</div><div class="l">未走到</div></div></div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> 导航 Accounts 列表</h3>
+<div class="exp">期望：渲染账户表格（Address/Moniker/…）</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260722T153634Z/chain-explorer/accounts-02.png" alt="导航 Accounts 列表" loading="lazy"><figcaption>导航 Accounts 列表</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：url=https://chain-explorer.afsd.dev/main/accounts，aupNodes=24</div>
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> 点击列表首行</h3>
+<div class="exp">期望：re-root 到 /accounts/:address，渲染 account-detail（Address/Moniker/Migrated From 等）+ Tabs（Transactions/Assets/Tokens/Token Flow/Sent Stakes/Received Stakes/Analytics）</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260722T153634Z/chain-explorer/accounts-04.png" alt="点击列表首行" loading="lazy"><figcaption>点击列表首行</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：url 变为 https://chain-explorer.afsd.dev/main/accounts/zNKi6YiPShda1vt9WNuHt4JUqmJkHatusvye（zNKi6YiP…tusvye），account-detail 渲染，默认激活 Transactions 标签</div>
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> 点击 Tokens 标签（data-tab-id=acc-tab-tokens）</h3>
+<div class="exp">期望：acc-tab-tokens 面板激活，显示该账户的 per-token 余额</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260722T153634Z/chain-explorer/accounts-06.png" alt="点击 Tokens 标签（data-tab-id=acc-tab-tokens）" loading="lazy"><figcaption>点击 Tokens 标签（data-tab-id=acc-tab-tokens）</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：标签切换成功，面板渲染 Token/Balance 列（如 z35nNRvY…PBLxYD 157.085103421）</div>
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> 点击 Received Stakes 标签（data-tab-id=acc-tab-stakes-received）</h3>
+<div class="exp">期望：acc-tab-stakes-received 面板激活，显示收到的质押列表</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260722T153634Z/chain-explorer/accounts-08.png" alt="点击 Received Stakes 标签（data-tab-id=acc-tab-stakes-received）" loading="lazy"><figcaption>点击 Received Stakes 标签（data-tab-id=acc-tab-stakes-received）</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：标签切换成功，面板渲染 Stake/From/Created 列（如 zrjhKYkQ…yLMtcf → zNKi6YiP…）</div>
+
+</div>
+</section><section id="path-tokens">
+<h2>Tokens 列表 → 详情 → Top Holders 标签页 <span class="rt">anon · /main/tokens</span></h2>
+<video class="video" controls preload="metadata" src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260722T153634Z/chain-explorer/page@f095d11d2abe97aeeba497e042a8ad94.webm"><a href="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260722T153634Z/chain-explorer/page@f095d11d2abe97aeeba497e042a8ad94.webm">下载该路径录像</a></video><p class="vcap">本测试路径整段走查录像</p>
+<div class="kpis"><div class="kpi"><div class="k">3</div><div class="l">操作步</div></div><div class="kpi"><div class="k">3</div><div class="l">通过</div></div><div class="kpi"><div class="k k-bad">0</div><div class="l">失败</div></div><div class="kpi"><div class="k k-warn">0</div><div class="l">不确定</div></div><div class="kpi"><div class="k">0</div><div class="l">未走到</div></div></div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> 导航 Tokens 列表</h3>
+<div class="exp">期望：渲染代币表格</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260722T153634Z/chain-explorer/tokens-02.png" alt="导航 Tokens 列表" loading="lazy"><figcaption>导航 Tokens 列表</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：url=https://chain-explorer.afsd.dev/main/tokens，aupNodes=24</div>
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> 点击列表首行</h3>
+<div class="exp">期望：re-root 到 /tokens/:address，渲染 token-detail + Tabs（Transactions/Top Holders）</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260722T153634Z/chain-explorer/tokens-04.png" alt="点击列表首行" loading="lazy"><figcaption>点击列表首行</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：url 变为 https://chain-explorer.afsd.dev/main/tokens/z35nQNyuhz8wXi9uZkmLw9HYJLk4DSaJV3hoC（z35nQNyuhz8wXi9uZkmLw9HYJLk4DSaJV3hoC）</div>
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> 点击 Top Holders 标签（data-tab-id=tok-tab-holders）</h3>
+<div class="exp">期望：tok-tab-holders 面板激活，显示持有人排行</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260722T153634Z/chain-explorer/tokens-06.png" alt="点击 Top Holders 标签（data-tab-id=tok-tab-holders）" loading="lazy"><figcaption>点击 Top Holders 标签（data-tab-id=tok-tab-holders）</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：标签切换成功，Holders 面板渲染</div>
+
+</div>
+</section><section id="path-assets">
+<h2>Assets 列表 → 详情 → Stakes/Data 标签页 <span class="rt">anon · /main/assets</span></h2>
+<video class="video" controls preload="metadata" src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260722T153634Z/chain-explorer/page@013ab66a6049d22137b968f306f2a12a.webm"><a href="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260722T153634Z/chain-explorer/page@013ab66a6049d22137b968f306f2a12a.webm">下载该路径录像</a></video><p class="vcap">本测试路径整段走查录像</p>
+<div class="kpis"><div class="kpi"><div class="k">4</div><div class="l">操作步</div></div><div class="kpi"><div class="k">4</div><div class="l">通过</div></div><div class="kpi"><div class="k k-bad">0</div><div class="l">失败</div></div><div class="kpi"><div class="k k-warn">0</div><div class="l">不确定</div></div><div class="kpi"><div class="k">0</div><div class="l">未走到</div></div></div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> 导航 Assets 列表</h3>
+<div class="exp">期望：渲染资产表格</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260722T153634Z/chain-explorer/assets-02.png" alt="导航 Assets 列表" loading="lazy"><figcaption>导航 Assets 列表</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：url=https://chain-explorer.afsd.dev/main/assets，aupNodes=24</div>
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> 点击列表首行</h3>
+<div class="exp">期望：re-root 到 /assets/:address，渲染 asset-detail + Tabs（Transactions/Stakes/Data）</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260722T153634Z/chain-explorer/assets-04.png" alt="点击列表首行" loading="lazy"><figcaption>点击列表首行</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：url 变为 https://chain-explorer.afsd.dev/main/assets/zjdrANMtf4z8grLBcPUJxnBy2gN9So9V77zr（zjdrANMtf4z8grLBcPUJxnBy2gN9So9V77zr）</div>
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> 点击 Stakes 标签（data-tab-id=ast-tab-stakes）</h3>
+<div class="exp">期望：ast-tab-stakes 面板激活</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260722T153634Z/chain-explorer/assets-06.png" alt="点击 Stakes 标签（data-tab-id=ast-tab-stakes）" loading="lazy"><figcaption>点击 Stakes 标签（data-tab-id=ast-tab-stakes）</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：标签切换成功，Stakes 面板渲染</div>
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> 点击 Data 标签（data-tab-id=ast-tab-data）</h3>
+<div class="exp">期望：ast-tab-data 面板激活，展示原始状态数据</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260722T153634Z/chain-explorer/assets-08.png" alt="点击 Data 标签（data-tab-id=ast-tab-data）" loading="lazy"><figcaption>点击 Data 标签（data-tab-id=ast-tab-data）</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：标签切换成功，Data 面板渲染</div>
+
+</div>
+</section><section id="path-factories">
+<h2>Factories 列表 → 详情 → Assets 标签页 <span class="rt">anon · /main/factories</span></h2>
+<video class="video" controls preload="metadata" src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260722T153634Z/chain-explorer/page@184cc780567dc780fa98416f726c487a.webm"><a href="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260722T153634Z/chain-explorer/page@184cc780567dc780fa98416f726c487a.webm">下载该路径录像</a></video><p class="vcap">本测试路径整段走查录像</p>
+<div class="kpis"><div class="kpi"><div class="k">3</div><div class="l">操作步</div></div><div class="kpi"><div class="k">3</div><div class="l">通过</div></div><div class="kpi"><div class="k k-bad">0</div><div class="l">失败</div></div><div class="kpi"><div class="k k-warn">0</div><div class="l">不确定</div></div><div class="kpi"><div class="k">0</div><div class="l">未走到</div></div></div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> 导航 Factories 列表</h3>
+<div class="exp">期望：渲染工厂表格</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260722T153634Z/chain-explorer/factories-02.png" alt="导航 Factories 列表" loading="lazy"><figcaption>导航 Factories 列表</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：url=https://chain-explorer.afsd.dev/main/factories，aupNodes=24</div>
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> 点击列表首行</h3>
+<div class="exp">期望：re-root 到 /factories/:address，渲染 factory-detail + Tabs（Transactions/Assets）</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260722T153634Z/chain-explorer/factories-04.png" alt="点击列表首行" loading="lazy"><figcaption>点击列表首行</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：url 变为 https://chain-explorer.afsd.dev/main/factories/z3Ct9mErFkLa7fqPKwZes69VrZfG2RHg4P8Sm（z3Ct9mErFkLa7fqPKwZes69VrZfG2RHg4P8Sm）</div>
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> 点击 Assets 标签（data-tab-id=fc-tab-assets）</h3>
+<div class="exp">期望：fc-tab-assets 面板激活，展示该工厂铸造的资产</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260722T153634Z/chain-explorer/factories-06.png" alt="点击 Assets 标签（data-tab-id=fc-tab-assets）" loading="lazy"><figcaption>点击 Assets 标签（data-tab-id=fc-tab-assets）</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：标签切换成功，Assets 面板渲染</div>
+
+</div>
+</section><section id="path-stakes">
+<h2>Stakes 列表 → 详情 → Tokens/Data 标签页 <span class="rt">anon · /main/stakes</span></h2>
+<video class="video" controls preload="metadata" src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260722T153634Z/chain-explorer/page@ae8f91e2c5c3d41e60f979952c0b59a2.webm"><a href="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260722T153634Z/chain-explorer/page@ae8f91e2c5c3d41e60f979952c0b59a2.webm">下载该路径录像</a></video><p class="vcap">本测试路径整段走查录像</p>
+<div class="kpis"><div class="kpi"><div class="k">4</div><div class="l">操作步</div></div><div class="kpi"><div class="k">4</div><div class="l">通过</div></div><div class="kpi"><div class="k k-bad">0</div><div class="l">失败</div></div><div class="kpi"><div class="k k-warn">0</div><div class="l">不确定</div></div><div class="kpi"><div class="k">0</div><div class="l">未走到</div></div></div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> 导航 Stakes 列表</h3>
+<div class="exp">期望：渲染质押表格</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260722T153634Z/chain-explorer/stakes-02.png" alt="导航 Stakes 列表" loading="lazy"><figcaption>导航 Stakes 列表</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：url=https://chain-explorer.afsd.dev/main/stakes，aupNodes=24</div>
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> 点击列表首行</h3>
+<div class="exp">期望：re-root 到 /stakes/:address，渲染 stake-detail + Tabs（Transactions/Tokens/Assets/Data）</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260722T153634Z/chain-explorer/stakes-04.png" alt="点击列表首行" loading="lazy"><figcaption>点击列表首行</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：url 变为 https://chain-explorer.afsd.dev/main/stakes/zrjzyftUx7gudTMZxPyutqK5KM8REAZSN1dQ（zrjzyftUx7gudTMZxPyutqK5KM8REAZSN1dQ）</div>
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> 点击 Tokens 标签（data-tab-id=sk-tab-tokens）</h3>
+<div class="exp">期望：sk-tab-tokens 面板激活</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260722T153634Z/chain-explorer/stakes-06.png" alt="点击 Tokens 标签（data-tab-id=sk-tab-tokens）" loading="lazy"><figcaption>点击 Tokens 标签（data-tab-id=sk-tab-tokens）</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：标签切换成功</div>
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> 点击 Data 标签（data-tab-id=sk-tab-data）</h3>
+<div class="exp">期望：sk-tab-data 面板激活，展示原始状态数据</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260722T153634Z/chain-explorer/stakes-08.png" alt="点击 Data 标签（data-tab-id=sk-tab-data）" loading="lazy"><figcaption>点击 Data 标签（data-tab-id=sk-tab-data）</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：标签切换成功</div>
+
+</div>
+</section><section id="path-bridges">
+<h2>Bridges 列表 → 详情 → Nodes/Blocks 标签页 <span class="rt">anon · /main/bridges</span></h2>
+<video class="video" controls preload="metadata" src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260722T153634Z/chain-explorer/page@0d275f2c5ab48299da7582dbc659e132.webm"><a href="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260722T153634Z/chain-explorer/page@0d275f2c5ab48299da7582dbc659e132.webm">下载该路径录像</a></video><p class="vcap">本测试路径整段走查录像</p>
+<div class="kpis"><div class="kpi"><div class="k">5</div><div class="l">操作步</div></div><div class="kpi"><div class="k">4</div><div class="l">通过</div></div><div class="kpi"><div class="k k-bad">0</div><div class="l">失败</div></div><div class="kpi"><div class="k k-warn">1</div><div class="l">不确定</div></div><div class="kpi"><div class="k">0</div><div class="l">未走到</div></div></div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> 导航 Bridges 列表</h3>
+<div class="exp">期望：渲染桥/rollup 表格</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260722T153634Z/chain-explorer/bridges-02.png" alt="导航 Bridges 列表" loading="lazy"><figcaption>导航 Bridges 列表</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：url=https://chain-explorer.afsd.dev/main/bridges，aupNodes=24</div>
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> 点击列表首行</h3>
+<div class="exp">期望：re-root 到 /bridges/:address，渲染 bridge-detail + Tabs（Deposit/Withdraw/Blocks/Nodes/Stakes/Governance/Slash）</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260722T153634Z/chain-explorer/bridges-04.png" alt="点击列表首行" loading="lazy"><figcaption>点击列表首行</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：url 变为 https://chain-explorer.afsd.dev/main/bridges/z3KzQxLFQqDo9tmRh53eE47A6K52bZBPb7nPq（z3KzQxLFQqDo9tmRh53eE47A6K52bZBPb7nPq）</div>
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> 点击 Nodes 标签（data-tab-id=br-tab-nodes）</h3>
+<div class="exp">期望：br-tab-nodes 面板激活，展示验证人列表</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260722T153634Z/chain-explorer/bridges-06.png" alt="点击 Nodes 标签（data-tab-id=br-tab-nodes）" loading="lazy"><figcaption>点击 Nodes 标签（data-tab-id=br-tab-nodes）</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：标签切换成功，Nodes 面板渲染</div>
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> 点击 Blocks 标签（data-tab-id=br-tab-blocks）</h3>
+<div class="exp">期望：br-tab-blocks 面板激活，展示区块列表（HEIGHT/HASH/REWARD/PROPOSED BY/GOVERNANCE/CREATED）</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260722T153634Z/chain-explorer/bridges-08.png" alt="点击 Blocks 标签（data-tab-id=br-tab-blocks）" loading="lazy"><figcaption>点击 Blocks 标签（data-tab-id=br-tab-blocks）</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：标签切换成功，Blocks 表格渲染真实区块行（如 height 497 / 0xa6a7f9…7bd9a3）</div>
+
+</div>
+<div class="op">
+<h3><span class="pill p-warn">不确定</span> 点击 Blocks 表格首行（未限定 tab 面板作用域的通用 tr 选择器）</h3>
+<div class="exp">期望：re-root 到区块详情 /bridges/:addr/blocks/:hash</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260722T153634Z/chain-explorer/bridges-10.png" alt="点击 Blocks 表格首行（未限定 tab 面板作用域的通用 tr 选择器）" loading="lazy"><figcaption>点击 Blocks 表格首行（未限定 tab 面板作用域的通用 tr 选择器）</figcaption></figure></div>
+<div class="chk-fail"><b>观察证据</b>：点击超时（10s）——用了未限定作用域的 `tr.aup-list-table-row` 选择器，命中的是 DOM 中排在最前但已隐藏的其它标签面板残留行（bridge 详情多个 tab 面板同时挂载于 DOM，仅 data-active 控制可见性），并非应用行为缺陷；用 `.aup-tab-panel[data-active=true] tr.aup-list-table-row` 限定作用域后在独立测试路径 `bridges-block-detail` 中复测成功（见该路径），故此步标记 inconclusive 而非 fail，真实行为已在补测路径验证为 pass。</div>
+
+</div>
+</section><section id="path-bridges-block-detail">
+<h2>Bridge 详情 → Blocks 标签 → 区块详情（最深链路，复测确认） <span class="rt">anon · /main/bridges/:addr</span></h2>
+<video class="video" controls preload="metadata" src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260722T153634Z/chain-explorer/page@f1aaf5377d1fb61bb62727e4bdcb204a.webm"><a href="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260722T153634Z/chain-explorer/page@f1aaf5377d1fb61bb62727e4bdcb204a.webm">下载该路径录像</a></video><p class="vcap">本测试路径整段走查录像</p>
+<div class="kpis"><div class="kpi"><div class="k">2</div><div class="l">操作步</div></div><div class="kpi"><div class="k">2</div><div class="l">通过</div></div><div class="kpi"><div class="k k-bad">0</div><div class="l">失败</div></div><div class="kpi"><div class="k k-warn">0</div><div class="l">不确定</div></div><div class="kpi"><div class="k">0</div><div class="l">未走到</div></div></div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> 重新进入该 bridge 详情并切到 Blocks 标签（data-tab-id=br-tab-blocks）</h3>
+<div class="exp">期望：Blocks 面板激活</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260722T153634Z/chain-explorer/bridges-block-02.png" alt="重新进入该 bridge 详情并切到 Blocks 标签（data-tab-id=br-tab-blocks）" loading="lazy"><figcaption>重新进入该 bridge 详情并切到 Blocks 标签（data-tab-id=br-tab-blocks）</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：标签切换成功，Blocks 表格渲染</div>
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> 点击 Blocks 表格首行（限定选择器 `.aup-tab-panel[data-active=true] tr.aup-list-table-row`）</h3>
+<div class="exp">期望：re-root 到区块详情 /bridges/:addr/blocks/:hash</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260722T153634Z/chain-explorer/bridges-block-04.png" alt="点击 Blocks 表格首行（限定选择器 `.aup-tab-panel[data-active=true] tr.aup-list-table-row`）" loading="lazy"><figcaption>点击 Blocks 表格首行（限定选择器 `.aup-tab-panel[data-active=true] tr.aup-list-table-row`）</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：url 变为 https://chain-explorer.afsd.dev/main/bridges/z3KzQxLFQqDo9tmRh53eE47A6K52bZBPb7nPq/blocks/0xa6a7f93185fcc5452685d175742cb54570f831303b9efd8168081f909e7bd9a3（区块 0xa6a7f9…7bd9a3 详情页），确认「点击 Blocks 表格行 → 区块详情」这一 .man 最深链路（block-detail）真实可达，上一条 `bridges` 路径里的 inconclusive 步骤在此复测中被坐实为 pass</div>
+
+</div>
+</section><section id="path-search">
+<h2>Header 搜索 → 结果列表 → 点击结果跳转 <span class="rt">anon · /</span></h2>
+<video class="video" controls preload="metadata" src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260722T153634Z/chain-explorer/page@61df54be2186cef9515fcb2adee8de9b.webm"><a href="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260722T153634Z/chain-explorer/page@61df54be2186cef9515fcb2adee8de9b.webm">下载该路径录像</a></video><p class="vcap">本测试路径整段走查录像</p>
+<div class="kpis"><div class="kpi"><div class="k">2</div><div class="l">操作步</div></div><div class="kpi"><div class="k">2</div><div class="l">通过</div></div><div class="kpi"><div class="k k-bad">0</div><div class="l">失败</div></div><div class="kpi"><div class="k k-warn">0</div><div class="l">不确定</div></div><div class="kpi"><div class="k">0</div><div class="l">未走到</div></div></div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> 在 header 搜索框输入 &quot;z1hYKLrv&quot;（真实地址前缀）</h3>
+<div class="exp">期望：打开 search-overlay，search-results-list 按查询驱动</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260722T153634Z/chain-explorer/search-05.png" alt="在 header 搜索框输入 &quot;z1hYKLrv&quot;（真实地址前缀）" loading="lazy"><figcaption>在 header 搜索框输入 &quot;z1hYKLrv&quot;（真实地址前缀）</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：search-overlay 打开，输入框显示 &quot;z1hYKLrv&quot;，results 列表加载完成（非 Searching... 占位态）</div>
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> 点击 search-results-list 首个结果行</h3>
+<div class="exp">期望：re-root primary-surface 到该结果的 AFS 路径，关闭 overlay + 清空查询</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260722T153634Z/chain-explorer/search-06.png" alt="点击 search-results-list 首个结果行" loading="lazy"><figcaption>点击 search-results-list 首个结果行</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：url 变为 https://chain-explorer.afsd.dev/main/accounts/z1hYKLrvTU8YzvCFJCJVJEWUuqkF6NyuwQi（/accounts/z1hYKLrvTU8YzvCFJCJVJEWUuqkF6NyuwQi），overlay 关闭</div>
+
+</div>
+</section><section id="path-filter">
+<h2>Transactions 类型/有效性过滤（collection-query 下推） <span class="rt">anon · /main/transactions</span></h2>
+<video class="video" controls preload="metadata" src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260722T153634Z/chain-explorer/page@1082086529971b67c1c99aab114cbb20.webm"><a href="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260722T153634Z/chain-explorer/page@1082086529971b67c1c99aab114cbb20.webm">下载该路径录像</a></video><p class="vcap">本测试路径整段走查录像</p>
+<div class="kpis"><div class="kpi"><div class="k">3</div><div class="l">操作步</div></div><div class="kpi"><div class="k">3</div><div class="l">通过</div></div><div class="kpi"><div class="k k-bad">0</div><div class="l">失败</div></div><div class="kpi"><div class="k k-warn">0</div><div class="l">不确定</div></div><div class="kpi"><div class="k">0</div><div class="l">未走到</div></div></div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> 点击 tx-filter-toggle 打开过滤弹窗</h3>
+<div class="exp">期望：tx-filter-overlay 打开，含 Transaction Type 多选 + Validity 下拉</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260722T153634Z/chain-explorer/filter-03.png" alt="点击 tx-filter-toggle 打开过滤弹窗" loading="lazy"><figcaption>点击 tx-filter-toggle 打开过滤弹窗</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：过滤弹窗「Filter Transactions」打开，展示 Transaction Type 列表（Account·AccountMigrate / Trade·Transfer / Asset·CreateAsset …）+ Validity 下拉（All）</div>
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> 点击 Validity 下拉（tx-filter-validity）</h3>
+<div class="exp">期望：本地 overlay state 更新（self-loop，未提交）</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260722T153634Z/chain-explorer/filter-05.png" alt="点击 Validity 下拉（tx-filter-validity）" loading="lazy"><figcaption>点击 Validity 下拉（tx-filter-validity）</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：下拉获得焦点，弹窗仍开启（符合 .man caveat：change 只写本地 state，不立即生效）</div>
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> 点击 Apply（tx-filter-apply）</h3>
+<div class="exp">期望：累积的 type/validity 选择下推进 primary-surface 的 collection-query where，关闭弹窗</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260722T153634Z/chain-explorer/filter-07.png" alt="点击 Apply（tx-filter-apply）" loading="lazy"><figcaption>点击 Apply（tx-filter-apply）</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：弹窗关闭，交易列表重新渲染（Validity 保持 All，故列表内容与过滤前一致，符合默认全量语义）</div>
+
+</div>
+</section><section id="path-chain-switch">
+<h2>切换链（Main ↔ Beta） <span class="rt">anon · /</span></h2>
+<video class="video" controls preload="metadata" src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260722T153634Z/chain-explorer/page@05db687ab50cde845dafbbc4fbfd0cc7.webm"><a href="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260722T153634Z/chain-explorer/page@05db687ab50cde845dafbbc4fbfd0cc7.webm">下载该路径录像</a></video><p class="vcap">本测试路径整段走查录像</p>
+<div class="kpis"><div class="kpi"><div class="k">2</div><div class="l">操作步</div></div><div class="kpi"><div class="k">2</div><div class="l">通过</div></div><div class="kpi"><div class="k k-bad">0</div><div class="l">失败</div></div><div class="kpi"><div class="k k-warn">0</div><div class="l">不确定</div></div><div class="kpi"><div class="k">0</div><div class="l">未走到</div></div></div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> 打开 chain 选择器（select[aria-label=&#x27;Switch chain&#x27;]）并选择 Beta（ArrowDown+Enter）</h3>
+<div class="exp">期望：re-root primary-surface + app-header 到 /dev/chain/beta，关闭 overlay</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260722T153634Z/chain-explorer/chain-switch-04.png" alt="打开 chain 选择器（select[aria-label=&#x27;Switch chain&#x27;]）并选择 Beta（ArrowDown+Enter）" loading="lazy"><figcaption>打开 chain 选择器（select[aria-label=&#x27;Switch chain&#x27;]）并选择 Beta（ArrowDown+Enter）</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：url 变为 https://chain-explorer.afsd.dev/beta/（/beta/），header 选择器显示 Beta</div>
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> 切回 Main（ArrowUp+Enter）</h3>
+<div class="exp">期望：re-root 回 /dev/chain/main</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260722T153634Z/chain-explorer/chain-switch-08.png" alt="切回 Main（ArrowUp+Enter）" loading="lazy"><figcaption>切回 Main（ArrowUp+Enter）</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：url 变回 https://chain-explorer.afsd.dev/main/（/main/）</div>
+
+</div>
+</section><section id="path-assistant-dock">
+<h2>打开 Chain Assistant 悬浮对话框 <span class="rt">anon · /</span></h2>
+<video class="video" controls preload="metadata" src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260722T153634Z/chain-explorer/page@b1ccdc2d3881271bd311571595dce749.webm"><a href="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260722T153634Z/chain-explorer/page@b1ccdc2d3881271bd311571595dce749.webm">下载该路径录像</a></video><p class="vcap">本测试路径整段走查录像</p>
+<div class="kpis"><div class="kpi"><div class="k">2</div><div class="l">操作步</div></div><div class="kpi"><div class="k">2</div><div class="l">通过</div></div><div class="kpi"><div class="k k-bad">0</div><div class="l">失败</div></div><div class="kpi"><div class="k k-warn">0</div><div class="l">不确定</div></div><div class="kpi"><div class="k">0</div><div class="l">未走到</div></div></div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> 点击右下角 🤖 FAB（button.aup-overlay-dock-fab）</h3>
+<div class="exp">期望：assistant-dock 展开，chain-assistant（agent-surface blocklet-embed）挂载</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260722T153634Z/chain-explorer/assistant-dock-02.png" alt="点击右下角 🤖 FAB（button.aup-overlay-dock-fab）" loading="lazy"><figcaption>点击右下角 🤖 FAB（button.aup-overlay-dock-fab）</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：对话框展开，标题「🤖 Chain Assistant」，欢迎语「Open a transaction or address and ask me anything about it」+ 4 个建议 chip（Summarize this transaction / Where did the money go? / Who is this address? / Does this transaction look normal?）+ 输入框「Ask about this transaction, address, token...」</div>
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> 点击关闭按钮（button.aup-overlay-close）</h3>
+<div class="exp">期望：对话框收起回 FAB 态</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260722T153634Z/chain-explorer/assistant-dock-04.png" alt="点击关闭按钮（button.aup-overlay-close）" loading="lazy"><figcaption>点击关闭按钮（button.aup-overlay-close）</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：对话框关闭，页面回到仪表盘视图</div>
+
+</div>
+</section><section id="path-theme-toggle">
+<h2>切换深色/浅色主题 <span class="rt">anon · /</span></h2>
+<video class="video" controls preload="metadata" src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260722T153634Z/chain-explorer/page@f43807f0370c527f722a9efa6a1fb670.webm"><a href="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260722T153634Z/chain-explorer/page@f43807f0370c527f722a9efa6a1fb670.webm">下载该路径录像</a></video><p class="vcap">本测试路径整段走查录像</p>
+<div class="kpis"><div class="kpi"><div class="k">1</div><div class="l">操作步</div></div><div class="kpi"><div class="k">1</div><div class="l">通过</div></div><div class="kpi"><div class="k k-bad">0</div><div class="l">失败</div></div><div class="kpi"><div class="k k-warn">0</div><div class="l">不确定</div></div><div class="kpi"><div class="k">0</div><div class="l">未走到</div></div></div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> 点击 Toggle theme 按钮</h3>
+<div class="exp">期望：视觉切换深色/浅色，路由不变</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260722T153634Z/chain-explorer/theme-toggle-02.png" alt="点击 Toggle theme 按钮" loading="lazy"><figcaption>点击 Toggle theme 按钮</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：页面背景/卡片切换为深色，主题图标由月亮变为太阳，导航/统计卡内容不变（仅视觉，路由保持 /）</div>
+
+</div>
+</section>
+<p class="sub" style="margin-top:22px">Generated by test-report-builder (build-agent-report) · issue #1808</p>
+</div></body></html>

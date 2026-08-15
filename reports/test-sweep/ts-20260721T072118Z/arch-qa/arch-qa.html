@@ -1,0 +1,97 @@
+<!doctype html><html><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>arch-qa — agent 走查报告</title><style>
+:root{--bg:#f7f8f8;--fg:#16201f;--muted:#5c6b69;--card:#fff;--card2:#eef2f1;--border:#dde3e2;--accent:#127a72;--pass:#1f8a54;--warn:#b5771a;--bad:#c0392b}
+@media(prefers-color-scheme:dark){:root{--bg:#0e1413;--fg:#e6ecea;--muted:#8ea19d;--card:#161d1c;--card2:#1d2624;--border:#26302e;--accent:#3fb8ab;--pass:#3fb37a;--warn:#d69a3e;--bad:#e5735f}}
+:root[data-theme=dark]{--bg:#0e1413;--fg:#e6ecea;--muted:#8ea19d;--card:#161d1c;--card2:#1d2624;--border:#26302e;--accent:#3fb8ab;--pass:#3fb37a;--warn:#d69a3e;--bad:#e5735f}
+:root[data-theme=light]{--bg:#f7f8f8;--fg:#16201f;--muted:#5c6b69;--card:#fff;--card2:#eef2f1;--border:#dde3e2;--accent:#127a72;--pass:#1f8a54;--warn:#b5771a;--bad:#c0392b}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--fg);font:15px/1.65 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;padding:24px}
+.wrap{max-width:920px;margin:0 auto}
+h1{font-size:24px;margin:0 0 4px;text-wrap:balance}h2{font-size:19px;margin:30px 0 8px}
+h2 .rt{font-size:13px;color:var(--muted);font-weight:400;font-variant-numeric:tabular-nums}
+.sub{color:var(--muted);margin:0 0 14px;font-size:13px}
+code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.85em;background:var(--card2);padding:1px 5px;border-radius:4px}
+.how{background:var(--card);border:1px solid var(--border);border-left:3px solid var(--accent);border-radius:8px;padding:13px 16px;margin:14px 0;font-size:14px}
+.how b{color:var(--accent)}
+.banner{border-radius:12px;padding:14px 18px;margin:16px 0}
+.banner.ok{background:color-mix(in srgb,var(--pass) 12%,transparent);border:1px solid color-mix(in srgb,var(--pass) 40%,transparent)}
+.banner.ok b{color:var(--pass)}
+.banner.bad{background:color-mix(in srgb,var(--bad) 13%,transparent);border:1px solid color-mix(in srgb,var(--bad) 45%,transparent)}
+.banner.bad b{color:var(--bad);font-size:16px}
+.banner.info{background:color-mix(in srgb,var(--accent) 10%,transparent);border:1px solid color-mix(in srgb,var(--accent) 38%,transparent)}
+.banner.info b{color:var(--accent)}
+.plist{margin:10px 0 0;padding-left:0;list-style:none}
+.plist li{padding:8px 0;border-top:1px solid var(--border)}
+.plist a{text-decoration:none;color:var(--fg);font-weight:600}
+.plist .pe{color:var(--muted);font-size:12.5px;font-weight:400;margin-top:3px}
+.video{width:100%;border-radius:10px;border:1px solid var(--border);background:#000;margin:6px 0 2px}
+.vcap{color:var(--muted);font-size:12.5px;margin:0 0 8px}
+.novideo{color:var(--bad);font-weight:600;background:color-mix(in srgb,var(--bad) 10%,transparent);border:1px dashed color-mix(in srgb,var(--bad) 45%,transparent);border-radius:8px;padding:8px 12px;font-size:13px}
+.kpis{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0}
+.kpi{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:9px 14px;min-width:70px}
+.kpi .k{font-size:21px;font-weight:700;font-variant-numeric:tabular-nums}.kpi .l{color:var(--muted);font-size:12px}
+.kpi .k-bad{color:var(--bad)}.kpi .k-warn{color:var(--warn)}
+.op{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:15px 17px;margin:14px 0}
+.op h3{margin:0 0 3px;font-size:16px;display:flex;align-items:center;gap:9px;flex-wrap:wrap}
+.op .exp{color:var(--muted);font-size:13px;margin:0 0 9px}
+.op .nt{color:var(--muted);font-size:12.5px;margin-top:6px}
+.pill{font-size:11.5px;font-weight:700;padding:2px 9px;border-radius:20px}
+.p-ok{background:color-mix(in srgb,var(--pass) 18%,transparent);color:var(--pass)}
+.p-fail{background:color-mix(in srgb,var(--bad) 18%,transparent);color:var(--bad)}
+.p-warn{background:color-mix(in srgb,var(--warn) 20%,transparent);color:var(--warn)}
+.p-skip{background:var(--card2);color:var(--muted)}
+.p-write{background:color-mix(in srgb,var(--accent) 18%,transparent);color:var(--accent)}
+.frame figure{margin:0 0 9px}.frame img{width:100%;border-radius:8px;border:1px solid var(--border);display:block}
+.frame figcaption{color:var(--muted);font-size:11.5px;margin-top:4px;text-align:center}
+.chk{background:color-mix(in srgb,var(--pass) 12%,transparent);border:1px solid color-mix(in srgb,var(--pass) 34%,transparent);border-radius:8px;padding:8px 12px;font-size:13px}
+.chk b{color:var(--pass)}
+.chk-fail{background:color-mix(in srgb,var(--bad) 11%,transparent);border:1px solid color-mix(in srgb,var(--bad) 40%,transparent);border-radius:8px;padding:8px 12px;font-size:13px}
+.chk-fail b{color:var(--bad)}
+table.probe{border-collapse:collapse;width:100%;font-size:13px}
+table.probe th,table.probe td{border:1px solid var(--border);padding:5px 9px;text-align:left}
+table.probe tr.bad td{background:color-mix(in srgb,var(--bad) 10%,transparent)}
+</style></head><body><div class="wrap">
+<h1>arch-qa — agent 走查报告</h1>
+<p class="sub">环境 <code>https://arch-qa.afsd.dev</code> · 2026-07-21T07:41:00Z · 走查 2 / 声明 2 条测试路径 · driver <code>agent-playwright-mcp</code></p>
+<div class="how"><b>这份报告在做什么</b>：test-sweep 让 <b>agent 读被测页面自己写的
+<code>.aup/man</code> 知识</b>，用 Playwright MCP <b>当真人逐条测试路径走查</b>（导航/加标签/编辑/删除/创建…），
+<b>每条路径各自一段录屏</b>、每步截图并<b>自判 verdict + 附观察证据</b>（实际 DOM/文本/值，可复核）。
+<b>unreached</b>=没驱动到（不当失败）；<b>inconclusive</b>=不确定（绝不判失败）。写操作默认真提交、不清理。</div>
+<div class="banner ok"><b>✅ 覆盖完整</b>：声明 2 条测试路径全部走查。</div>
+<div class="banner ok"><b>✅ 未发现问题</b>：所有路径的操作步均 pass 或 unreached（unreached 不计失败）。</div>
+<section id="probes"><h2>后端探针 （全通过）</h2><table class="probe"><tr><th></th><th>探针</th><th>详情</th></tr><tr class=""><td>✅</td><td>http-reachable</td><td>HTTP 200</td></tr><tr class=""><td>✅</td><td>afs-rpc-list</td><td>ok:true (2 .aup pages)</td></tr></table></section>
+<section id="path-chat">
+<h2>Chat 页面 — RAG 架构问答（含 query action 优雅降级验证） <span class="rt">anon · /</span></h2>
+<video class="video" controls preload="metadata" src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260721T072118Z/arch-qa/arch-qa-chat.webm"><a href="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260721T072118Z/arch-qa/arch-qa-chat.webm">下载该路径录像</a></video><p class="vcap">本测试路径整段走查录像</p>
+<div class="kpis"><div class="kpi"><div class="k">4</div><div class="l">操作步</div></div><div class="kpi"><div class="k">4</div><div class="l">通过</div></div><div class="kpi"><div class="k k-bad">0</div><div class="l">失败</div></div><div class="kpi"><div class="k k-warn">0</div><div class="l">不确定</div></div><div class="kpi"><div class="k">0</div><div class="l">未走到</div></div></div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> 匿名态导航到 / （blocklet defaultPage，chat.json embed agent-surface）</h3>
+<div class="exp">期望：渲染出 chat 输入框与欢迎语，不是空白页/embed 错误框</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260721T072118Z/arch-qa/explore-01.png" alt="匿名态导航到 / （blocklet defaultPage，chat.json embed agent-surface）" loading="lazy"><figcaption>匿名态导航到 / （blocklet defaultPage，chat.json embed agent-surface）</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：dom.textHead: &quot;SESSIONS + Main How can I help? AI Device · balanced What can you help with? Show me around this workspace Run a quick skill Explain how this app works → ✅ build 4a6857534 · 2026-07-21T07:06:31Z · test&quot;；interactables 含 textarea &quot;Ask anything about the AFS architecture…&quot;、button &quot;→&quot;、button &quot;Voice input (en-US)&quot;；aupNodes:3，无 console errors。</div>
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> <span class="pill p-write">写</span>在输入框键入「What is AFS-Only I/O?」并按 Enter 提交</h3>
+<div class="exp">期望：问题出现在对话流中，AI 开始应答（进入 Round 1）</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260721T072118Z/arch-qa/chat-final-04.png" alt="在输入框键入「What is AFS-Only I/O?」并按 Enter 提交" loading="lazy"><figcaption>在输入框键入「What is AFS-Only I/O?」并按 Enter 提交</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：dom.textHead: &quot;SESSIONS + Main What is AFS-Only I/O? ■ ✅ build 4a6857534 · 2026-07-21T07:06:31Z · test&quot;——问题文本已渲染进对话，发送按钮 &quot;→&quot; 变为停止按钮 &quot;■&quot;，说明请求已提交且开始生成。</div>
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> 等待多轮 tool-use 应答生成，观察 index query action 是否成功</h3>
+<div class="exp">期望：按已知 caveat：/modules/index/.actions/query 在本 CF 部署上应抛 &#x27;No module found for path&#x27;，agent 应可见地降级到 list+read 而非静默失败/卡死</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260721T072118Z/arch-qa/chat-final-05.png" alt="等待多轮 tool-use 应答生成，观察 index query action 是否成功" loading="lazy"><figcaption>等待多轮 tool-use 应答生成，观察 index query action 是否成功</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：dom.textHead 完整捕获降级轨迹: &quot;Round 1 ✓ exec `/memory/.actions/recall` Round 2 ✗ exec `/modules/index/.actions/query` Round 3 I tried to retrieve the answer from memory and the search index, but both services seem to be unavailable. I&#x27;ll switch t… ✓ list `/packages/docs/architecture/` Round 4 Method: direct-read (3 files) ✓ read Method: direct-read (3 files)&quot;。证实了 site-fleet.yaml 记录的已知问题：query action 在本部署确实失败（✗ 标记可见），但 agent 没有卡死/报错给用户，而是显式说明并切换到 list+direct-read。</div>
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> 等待最终回答渲染完成（停止按钮 ■ 变回发送按钮 →，textLen 稳定在 3667）</h3>
+<div class="exp">期望：得到与「AFS-Only I/O」相关、有文档依据引用的连贯回答，而非通用/破碎/报错文本</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260721T072118Z/arch-qa/chat-final-07.png" alt="等待最终回答渲染完成（停止按钮 ■ 变回发送按钮 →，textLen 稳定在 3667）" loading="lazy"><figcaption>等待最终回答渲染完成（停止按钮 ■ 变回发送按钮 →，textLen 稳定在 3667）</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：截图 chat-final-07.png 完整可读到最终回答正文（节选）：&#x27;...these system paths, ensuring a consistent and secure environment. This is referred to as the &quot;Small World&quot; model. Why This Architecture? This approach offers several advantages: Isolation and Security: By abstracting all I/O through AFS, blocklets are sandboxed from each other and the host system... Portability and Composability... Simplicity for Developers (and AI)... Convention over Configuration... In summary, AFS-Only I/O is a foundational principle that enforces a unified, secure, and portable interface for all blocklet operations, treating every resource, whether it&#x27;s a local file, a web service, or an AI model, as a path in a file system. Sources: docs/architecture/blocklet-spec.md, docs/architecture/service-binding.md, docs/architecture/runtime-topology.md&#x27; — 底部 footer 显示 &#x27;4 actions in 4 rounds · 39393 tokens · 38407 in · 986 out · 4032 cached · gemini-2-5-pro&#x27;。回答内容准确、结构清晰（4 条要点+总结）、附真实来源引用，是一次成功的 grounded 回答，尽管取数路径经历了 index query 失败后的降级。</div>
+
+</div>
+</section>
+<p class="sub" style="margin-top:22px">Generated by test-report-builder (build-agent-report) · issue #1808</p>
+</div></body></html>

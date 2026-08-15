@@ -1,0 +1,165 @@
+<!doctype html><html><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>settings-cascade — agent 走查报告</title><style>
+:root{--bg:#f7f8f8;--fg:#16201f;--muted:#5c6b69;--card:#fff;--card2:#eef2f1;--border:#dde3e2;--accent:#127a72;--pass:#1f8a54;--warn:#b5771a;--bad:#c0392b}
+@media(prefers-color-scheme:dark){:root{--bg:#0e1413;--fg:#e6ecea;--muted:#8ea19d;--card:#161d1c;--card2:#1d2624;--border:#26302e;--accent:#3fb8ab;--pass:#3fb37a;--warn:#d69a3e;--bad:#e5735f}}
+:root[data-theme=dark]{--bg:#0e1413;--fg:#e6ecea;--muted:#8ea19d;--card:#161d1c;--card2:#1d2624;--border:#26302e;--accent:#3fb8ab;--pass:#3fb37a;--warn:#d69a3e;--bad:#e5735f}
+:root[data-theme=light]{--bg:#f7f8f8;--fg:#16201f;--muted:#5c6b69;--card:#fff;--card2:#eef2f1;--border:#dde3e2;--accent:#127a72;--pass:#1f8a54;--warn:#b5771a;--bad:#c0392b}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--fg);font:15px/1.65 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;padding:24px}
+.wrap{max-width:920px;margin:0 auto}
+h1{font-size:24px;margin:0 0 4px;text-wrap:balance}h2{font-size:19px;margin:30px 0 8px}
+h2 .rt{font-size:13px;color:var(--muted);font-weight:400;font-variant-numeric:tabular-nums}
+.sub{color:var(--muted);margin:0 0 14px;font-size:13px}
+code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.85em;background:var(--card2);padding:1px 5px;border-radius:4px}
+.how{background:var(--card);border:1px solid var(--border);border-left:3px solid var(--accent);border-radius:8px;padding:13px 16px;margin:14px 0;font-size:14px}
+.how b{color:var(--accent)}
+.banner{border-radius:12px;padding:14px 18px;margin:16px 0}
+.banner.ok{background:color-mix(in srgb,var(--pass) 12%,transparent);border:1px solid color-mix(in srgb,var(--pass) 40%,transparent)}
+.banner.ok b{color:var(--pass)}
+.banner.bad{background:color-mix(in srgb,var(--bad) 13%,transparent);border:1px solid color-mix(in srgb,var(--bad) 45%,transparent)}
+.banner.bad b{color:var(--bad);font-size:16px}
+.banner.info{background:color-mix(in srgb,var(--accent) 10%,transparent);border:1px solid color-mix(in srgb,var(--accent) 38%,transparent)}
+.banner.info b{color:var(--accent)}
+.plist{margin:10px 0 0;padding-left:0;list-style:none}
+.plist li{padding:8px 0;border-top:1px solid var(--border)}
+.plist a{text-decoration:none;color:var(--fg);font-weight:600}
+.plist .pe{color:var(--muted);font-size:12.5px;font-weight:400;margin-top:3px}
+.video{width:100%;border-radius:10px;border:1px solid var(--border);background:#000;margin:6px 0 2px}
+.vcap{color:var(--muted);font-size:12.5px;margin:0 0 8px}
+.novideo{color:var(--bad);font-weight:600;background:color-mix(in srgb,var(--bad) 10%,transparent);border:1px dashed color-mix(in srgb,var(--bad) 45%,transparent);border-radius:8px;padding:8px 12px;font-size:13px}
+.kpis{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0}
+.kpi{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:9px 14px;min-width:70px}
+.kpi .k{font-size:21px;font-weight:700;font-variant-numeric:tabular-nums}.kpi .l{color:var(--muted);font-size:12px}
+.kpi .k-bad{color:var(--bad)}.kpi .k-warn{color:var(--warn)}
+.op{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:15px 17px;margin:14px 0}
+.op h3{margin:0 0 3px;font-size:16px;display:flex;align-items:center;gap:9px;flex-wrap:wrap}
+.op .exp{color:var(--muted);font-size:13px;margin:0 0 9px}
+.op .nt{color:var(--muted);font-size:12.5px;margin-top:6px}
+.pill{font-size:11.5px;font-weight:700;padding:2px 9px;border-radius:20px}
+.p-ok{background:color-mix(in srgb,var(--pass) 18%,transparent);color:var(--pass)}
+.p-fail{background:color-mix(in srgb,var(--bad) 18%,transparent);color:var(--bad)}
+.p-warn{background:color-mix(in srgb,var(--warn) 20%,transparent);color:var(--warn)}
+.p-skip{background:var(--card2);color:var(--muted)}
+.p-write{background:color-mix(in srgb,var(--accent) 18%,transparent);color:var(--accent)}
+.frame figure{margin:0 0 9px}.frame img{width:100%;border-radius:8px;border:1px solid var(--border);display:block}
+.frame figcaption{color:var(--muted);font-size:11.5px;margin-top:4px;text-align:center}
+.chk{background:color-mix(in srgb,var(--pass) 12%,transparent);border:1px solid color-mix(in srgb,var(--pass) 34%,transparent);border-radius:8px;padding:8px 12px;font-size:13px}
+.chk b{color:var(--pass)}
+.chk-fail{background:color-mix(in srgb,var(--bad) 11%,transparent);border:1px solid color-mix(in srgb,var(--bad) 40%,transparent);border-radius:8px;padding:8px 12px;font-size:13px}
+.chk-fail b{color:var(--bad)}
+table.probe{border-collapse:collapse;width:100%;font-size:13px}
+table.probe th,table.probe td{border:1px solid var(--border);padding:5px 9px;text-align:left}
+table.probe tr.bad td{background:color-mix(in srgb,var(--bad) 10%,transparent)}
+</style></head><body><div class="wrap">
+<h1>settings-cascade — agent 走查报告</h1>
+<p class="sub">环境 <code>https://settings-cascade.afsd.dev</code> · 2026-07-21T07:45:00Z · 走查 1 / 声明 1 条测试路径 · driver <code>agent-playwright-mcp</code></p>
+<div class="how"><b>这份报告在做什么</b>：test-sweep 让 <b>agent 读被测页面自己写的
+<code>.aup/man</code> 知识</b>，用 Playwright MCP <b>当真人逐条测试路径走查</b>（导航/加标签/编辑/删除/创建…），
+<b>每条路径各自一段录屏</b>、每步截图并<b>自判 verdict + 附观察证据</b>（实际 DOM/文本/值，可复核）。
+<b>unreached</b>=没驱动到（不当失败）；<b>inconclusive</b>=不确定（绝不判失败）。写操作默认真提交、不清理。</div>
+<div class="banner ok"><b>✅ 覆盖完整</b>：声明 1 条测试路径全部走查。</div>
+<div class="banner ok"><b>✅ 未发现问题</b>：所有路径的操作步均 pass 或 unreached（unreached 不计失败）。</div>
+<section id="probes"><h2>后端探针 （全通过）</h2><table class="probe"><tr><th></th><th>探针</th><th>详情</th></tr><tr class=""><td>✅</td><td>http-reachable</td><td>HTTP 200</td></tr><tr class=""><td>✅</td><td>afs-rpc-list</td><td>ok:true (1 .aup pages)</td></tr></table></section>
+<section id="path-home-anon">
+<h2>Home 页匿名访问 — 只读 theme 字段 + propBind mirror 展示 <span class="rt">anon · /app</span></h2>
+<video class="video" controls preload="metadata" src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260721T072118Z/settings-cascade/settings-cascade-home-anon.webm"><a href="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260721T072118Z/settings-cascade/settings-cascade-home-anon.webm">下载该路径录像</a></video><p class="vcap">本测试路径整段走查录像</p>
+<div class="kpis"><div class="kpi"><div class="k">2</div><div class="l">操作步</div></div><div class="kpi"><div class="k">2</div><div class="l">通过</div></div><div class="kpi"><div class="k k-bad">0</div><div class="l">失败</div></div><div class="kpi"><div class="k k-warn">0</div><div class="l">不确定</div></div><div class="kpi"><div class="k">0</div><div class="l">未走到</div></div></div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> 导航到 /app（匿名），等待 AUP 树渲染</h3>
+<div class="exp">期望：settings-shell auto-surface 渲染出 /instance/settings/cascade 的字段 + 三个 propBind mirror 节点（retention-mirror/theme-mirror/tmp-mirror）</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260721T072118Z/settings-cascade/explore-anon-01.png" alt="导航到 /app（匿名），等待 AUP 树渲染" loading="lazy"><figcaption>导航到 /app（匿名），等待 AUP 树渲染</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：aupNodes=18；DOM 含 div#cascade-settings-field-general-theme（select 当前值 &quot;system&quot;）+ div#cascade-settings-field-general-theme-badge 文本 &quot;Sign in to personalize&quot; + div#cascade-settings-field-general-theme-readonly 文本 &quot;Read-only&quot;；底部三个 mirror：div#retention-mirror=&quot;30&quot;，div#theme-mirror=&quot;system&quot;，div#tmp-mirror=&quot;—&quot;</div>
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> 核对 retention 字段（scope:instance，admin-only）对匿名用户是否可编辑</h3>
+<div class="exp">期望：per man caveat，非 admin 应看不到可编辑的 retention 字段，只能通过 mirror 只读观察</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260721T072118Z/settings-cascade/explore-anon-01.png" alt="核对 retention 字段（scope:instance，admin-only）对匿名用户是否可编辑" loading="lazy"><figcaption>核对 retention 字段（scope:instance，admin-only）对匿名用户是否可编辑</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：settings-shell 只渲染了一个字段组（General/Theme），没有出现 retention 的独立可编辑字段；retention 的值仅经 div#retention-mirror=&quot;30&quot; 只读展示，与 man 里 &quot;a walker testing as a non-admin user should expect retention&#x27;s field to be read-only&quot; 的预期一致（这里是完全不渲染，比 read-only 更严格，但方向一致：匿名/非 admin 拿不到 retention 的写权限）</div>
+
+</div>
+</section><section id="path-settings-nickname-write-authed">
+<h2>Settings 页已登录 — 写入 nickname，验证保存 + 刷新持久化 <span class="rt">authed · /app?page=settings</span></h2>
+<video class="video" controls preload="metadata" src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260721T072118Z/settings-cascade/settings-cascade-settings-write-authed.webm"><a href="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260721T072118Z/settings-cascade/settings-cascade-settings-write-authed.webm">下载该路径录像</a></video><p class="vcap">本测试路径整段走查录像</p>
+<div class="kpis"><div class="kpi"><div class="k">4</div><div class="l">操作步</div></div><div class="kpi"><div class="k">4</div><div class="l">通过</div></div><div class="kpi"><div class="k k-bad">0</div><div class="l">失败</div></div><div class="kpi"><div class="k k-warn">0</div><div class="l">不确定</div></div><div class="kpi"><div class="k">0</div><div class="l">未走到</div></div></div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> 导航到 /app?page=settings（已登录 login_token cookie），读取两个字段初始值</h3>
+<div class="exp">期望：渲染 Nickname（scope:user，可编辑）与 Theme（scope:shared，可编辑）两个字段</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260721T072118Z/settings-cascade/settings-write-01.png" alt="导航到 /app?page=settings（已登录 login_token cookie），读取两个字段初始值" loading="lazy"><figcaption>导航到 /app?page=settings（已登录 login_token cookie），读取两个字段初始值</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：aupNodes=15；div#settings-settings-field-general-nickname-group 含空 &lt;input&gt;（无初始文本，无 Overridden 徽标）；div#settings-settings-field-general-theme-group 含 &lt;select&gt; 当前值 &quot;system&quot;；页面上没有 Save 按钮</div>
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> <span class="pill p-write">写</span>在 Nickname 输入框填入 &quot;tsweep-qa-20260721&quot;</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260721T072118Z/settings-cascade/settings-write-03.png" alt="在 Nickname 输入框填入 &quot;tsweep-qa-20260721&quot;" loading="lazy"><figcaption>在 Nickname 输入框填入 &quot;tsweep-qa-20260721&quot;</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：input 元素文本变为 &quot;tsweep-qa-20260721&quot;</div>
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> <span class="pill p-write">写</span>按 Tab 使输入框失焦（触发保存）</h3>
+<div class="exp">期望：出现保存成功提示，值不回退</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260721T072118Z/settings-cascade/settings-write-04.png" alt="按 Tab 使输入框失焦（触发保存）" loading="lazy"><figcaption>按 Tab 使输入框失焦（触发保存）</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：页面文本新增一条 toast &quot;✅ Saved Nickname&quot;；input 仍显示 &quot;tsweep-qa-20260721&quot;</div>
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> 整页刷新（重新 navigate 到同一 /app?page=settings URL，走一次全新的 WS 连接/数据读取）</h3>
+<div class="exp">期望：Nickname 应从后端 SettingsResolver 持久化读回，而不是仅存在于前端临时状态</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260721T072118Z/settings-cascade/settings-write-06.png" alt="整页刷新（重新 navigate 到同一 /app?page=settings URL，走一次全新的 WS 连接/数据读取）" loading="lazy"><figcaption>整页刷新（重新 navigate 到同一 /app?page=settings URL，走一次全新的 WS 连接/数据读取）</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：reload 后 DOM 新增 div#settings-settings-field-general-nickname-badge 文本 &quot;Overridden (personalized)&quot; + button#settings-settings-field-general-nickname-reset &quot;Reset to default&quot;；input 值仍为 &quot;tsweep-qa-20260721&quot;；同时 Theme 字段未受这次写入影响，select 值仍为 &quot;system&quot;（尚未改动过）</div>
+
+</div>
+</section><section id="path-settings-theme-write-authed">
+<h2>Settings 页已登录 — 修改 theme（原生 select），验证持久化 + nickname 不被连带污染 <span class="rt">authed · /app?page=settings</span></h2>
+<video class="video" controls preload="metadata" src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260721T072118Z/settings-cascade/settings-cascade-theme-commit-authed.webm"><a href="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260721T072118Z/settings-cascade/settings-cascade-theme-commit-authed.webm">下载该路径录像</a></video><p class="vcap">本测试路径整段走查录像</p>
+<div class="kpis"><div class="kpi"><div class="k">4</div><div class="l">操作步</div></div><div class="kpi"><div class="k">4</div><div class="l">通过</div></div><div class="kpi"><div class="k k-bad">0</div><div class="l">失败</div></div><div class="kpi"><div class="k k-warn">0</div><div class="l">不确定</div></div><div class="kpi"><div class="k">0</div><div class="l">未走到</div></div></div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> 重新导航到 /app?page=settings，确认 nickname 沿用上一路径写入的值，并读取 theme 当前值</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260721T072118Z/settings-cascade/theme-commit-01.png" alt="重新导航到 /app?page=settings，确认 nickname 沿用上一路径写入的值，并读取 theme 当前值" loading="lazy"><figcaption>重新导航到 /app?page=settings，确认 nickname 沿用上一路径写入的值，并读取 theme 当前值</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：Nickname 显示徽标 &quot;Overridden (personalized)&quot;，input 值 &quot;tsweep-qa-20260721&quot;（延续上一条路径的写入）；Theme select 值为 &quot;system&quot;</div>
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> <span class="pill p-write">写</span>点击 Theme 原生 &lt;select&gt; 展开下拉，键盘输入首字母 &quot;d&quot; type-ahead 选中 &quot;dark&quot;，再按 Enter 提交选择</h3>
+<div class="exp">期望：select.value 变为 dark 并触发 change/save（同 nickname 一样应出现保存反馈）</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260721T072118Z/settings-cascade/theme-commit-05.png" alt="点击 Theme 原生 &lt;select&gt; 展开下拉，键盘输入首字母 &quot;d&quot; type-ahead 选中 &quot;dark&quot;，再按 Enter 提交选择" loading="lazy"><figcaption>点击 Theme 原生 &lt;select&gt; 展开下拉，键盘输入首字母 &quot;d&quot; type-ahead 选中 &quot;dark&quot;，再按 Enter 提交选择</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：select 获得焦点后弹出 system/light/dark 三项，&quot;dark&quot; 高亮为选中态；按 Enter 后下拉收起，主输入框显示 &quot;dark&quot;</div>
+<div class="nt">agent-walk.mjs 无 selectOption 动作，第一次尝试只 click+press(&#x27;d&#x27;) 未按 Enter 提交，reload 后 theme 值回退到 system（前端乐观态未真正提交，不是后端持久化 bug）——补一次 press Enter 后即正确持久化，见下一步。这是本次走查发现的驱动器交互坑，非 blocklet 缺陷。</div>
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> 整页刷新（重新 navigate 到 /app?page=settings）验证 theme 是否真持久化</h3>
+<div class="exp">期望：theme 应保持 dark 且出现 Overridden 徽标；nickname 不应被这次 theme 写入影响</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260721T072118Z/settings-cascade/theme-commit-08.png" alt="整页刷新（重新 navigate 到 /app?page=settings）验证 theme 是否真持久化" loading="lazy"><figcaption>整页刷新（重新 navigate 到 /app?page=settings）验证 theme 是否真持久化</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：reload 后 select 显示 &quot;dark&quot;，新增 div#settings-settings-field-general-theme-badge 文本 &quot;Overridden (default = system)&quot; + &quot;Reset to default&quot; 按钮；同时 div#settings-settings-field-general-nickname-badge 仍是 &quot;Overridden (personalized)&quot;，input 值仍是 &quot;tsweep-qa-20260721&quot; —— theme 的写入没有覆盖/清空 nickname 这个 sibling 字段</div>
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> 再次刷新（导航到 /app 根路径）做二次交叉核对：theme 是否仍持久 + nickname 是否仍未被污染</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260721T072118Z/settings-cascade/theme-commit-10.png" alt="再次刷新（导航到 /app 根路径）做二次交叉核对：theme 是否仍持久 + nickname 是否仍未被污染" loading="lazy"><figcaption>再次刷新（导航到 /app 根路径）做二次交叉核对：theme 是否仍持久 + nickname 是否仍未被污染</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：DOM 同时含 nickname-badge=&quot;Overridden (personalized)&quot;/input=&quot;tsweep-qa-20260721&quot; 与 theme select=&quot;dark&quot;/badge=&quot;Overridden (default = system)&quot;，两字段互不干扰，符合 CLAUDE.md 「wrapper-format settings 必须走 AFSJSON sub-path overlay，否则会丢 sibling 字段」的预期（未观察到 G0 回归）。附注：地址栏最终仍是 /app?page=settings 而非 /app——这是同一浏览器 context 内先访问过 settings 子页后，SPA 记住了上次访问的 tab（疑似 localStorage 粘性导航），不是本次改动引入的持久化问题；已用全新 context 直接访问 /app 交叉验证（见 home-mirror-crosscheck-authed 路径），确认粘性导航只在同 context 复用时出现，不影响数据持久化本身</div>
+
+</div>
+</section><section id="path-home-mirror-crosscheck-authed">
+<h2>Home 页已登录（全新 context）— propBind 双通道一致性 + 三字段互不污染终检 <span class="rt">authed · /app</span></h2>
+<video class="video" controls preload="metadata" src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260721T072118Z/settings-cascade/settings-cascade-home-mirror-crosscheck-authed.webm"><a href="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260721T072118Z/settings-cascade/settings-cascade-home-mirror-crosscheck-authed.webm">下载该路径录像</a></video><p class="vcap">本测试路径整段走查录像</p>
+<div class="kpis"><div class="kpi"><div class="k">2</div><div class="l">操作步</div></div><div class="kpi"><div class="k">2</div><div class="l">通过</div></div><div class="kpi"><div class="k k-bad">0</div><div class="l">失败</div></div><div class="kpi"><div class="k k-warn">0</div><div class="l">不确定</div></div><div class="kpi"><div class="k">0</div><div class="l">未走到</div></div></div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> 用全新浏览器 context（未曾访问过 /app?page=settings，排除 localStorage 粘性导航干扰）直接导航到 /app</h3>
+<div class="exp">期望：正确渲染 cascade-home 树（title + auto-surface + 三个 propBind mirror），而不是被重定向到 settings 子页</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260721T072118Z/settings-cascade/home-fresh-authed-02.png" alt="用全新浏览器 context（未曾访问过 /app?page=settings，排除 localStorage 粘性导航干扰）直接导航到 /app" loading="lazy"><figcaption>用全新浏览器 context（未曾访问过 /app?page=settings，排除 localStorage 粘性导航干扰）直接导航到 /app</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：URL 仍是 https://settings-cascade.afsd.dev/app（未被重定向）；DOM 含 div#cascade-home、h2#title=&quot;Settings Cascade Fixture&quot;、div#cascade-settings，证实上一条路径里看到的「导航到 /app 却停在 settings」是同 context 内的粘性导航记忆，不是服务端路由 bug</div>
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> 读取 home 页 settings-shell 渲染的 nickname/theme 字段值 + 三个 propBind mirror 值，做最终三字段互不污染核对</h3>
+<div class="exp">期望：nickname=tsweep-qa-20260721（Overridden personalized）；theme=dark（Overridden default=system）；retention-mirror=30（这个字段本轮从未改动过，应维持 seed 值 30，不应被 nickname/theme 的两次写入连带改动）；theme-mirror 应通过独立 propBind 通道反映最新 theme 值 dark；tmp-mirror 应仍是 &quot;—&quot;（负向 fixture，propBind 到 /tmp/** 应被 resolve 时拒绝，永不更新）</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260721T072118Z/settings-cascade/home-fresh-authed-02.png" alt="读取 home 页 settings-shell 渲染的 nickname/theme 字段值 + 三个 propBind mirror 值，做最终三字段互不污染核对" loading="lazy"><figcaption>读取 home 页 settings-shell 渲染的 nickname/theme 字段值 + 三个 propBind mirror 值，做最终三字段互不污染核对</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：input#nickname 值精确为 &quot;tsweep-qa-20260721&quot;，徽标 &quot;Overridden (personalized)&quot;；theme &lt;select&gt; 值 &quot;dark&quot;，徽标 &quot;Overridden (default = system)&quot;；div#retention-mirror 文本 &quot;30&quot;（未受影响）；div#theme-mirror 文本 &quot;dark&quot;（已通过独立 propBind 通道反映最新值，与 settings-shell 表单本身的渲染一致）；div#tmp-mirror 文本 &quot;—&quot;（负向 fixture 仍被正确拒绝，从未更新）——三个本轮涉及的字段（nickname 改、theme 改、retention 未改）互不污染，propBind 双通道一致，未发现 sibling-field clobbering 回归</div>
+
+</div>
+</section>
+<p class="sub" style="margin-top:22px">Generated by test-report-builder (build-agent-report) · issue #1808</p>
+</div></body></html>

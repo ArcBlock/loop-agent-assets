@@ -1,0 +1,130 @@
+<!doctype html><html><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>arch-qa — agent 走查报告</title><style>
+:root{--bg:#f7f8f8;--fg:#16201f;--muted:#5c6b69;--card:#fff;--card2:#eef2f1;--border:#dde3e2;--accent:#127a72;--pass:#1f8a54;--warn:#b5771a;--bad:#c0392b}
+@media(prefers-color-scheme:dark){:root{--bg:#0e1413;--fg:#e6ecea;--muted:#8ea19d;--card:#161d1c;--card2:#1d2624;--border:#26302e;--accent:#3fb8ab;--pass:#3fb37a;--warn:#d69a3e;--bad:#e5735f}}
+:root[data-theme=dark]{--bg:#0e1413;--fg:#e6ecea;--muted:#8ea19d;--card:#161d1c;--card2:#1d2624;--border:#26302e;--accent:#3fb8ab;--pass:#3fb37a;--warn:#d69a3e;--bad:#e5735f}
+:root[data-theme=light]{--bg:#f7f8f8;--fg:#16201f;--muted:#5c6b69;--card:#fff;--card2:#eef2f1;--border:#dde3e2;--accent:#127a72;--pass:#1f8a54;--warn:#b5771a;--bad:#c0392b}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--fg);font:15px/1.65 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;padding:24px}
+.wrap{max-width:920px;margin:0 auto}
+h1{font-size:24px;margin:0 0 4px;text-wrap:balance}h2{font-size:19px;margin:30px 0 8px}
+h2 .rt{font-size:13px;color:var(--muted);font-weight:400;font-variant-numeric:tabular-nums}
+.sub{color:var(--muted);margin:0 0 14px;font-size:13px}
+code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.85em;background:var(--card2);padding:1px 5px;border-radius:4px}
+.how{background:var(--card);border:1px solid var(--border);border-left:3px solid var(--accent);border-radius:8px;padding:13px 16px;margin:14px 0;font-size:14px}
+.how b{color:var(--accent)}
+.banner{border-radius:12px;padding:14px 18px;margin:16px 0}
+.banner.ok{background:color-mix(in srgb,var(--pass) 12%,transparent);border:1px solid color-mix(in srgb,var(--pass) 40%,transparent)}
+.banner.ok b{color:var(--pass)}
+.banner.bad{background:color-mix(in srgb,var(--bad) 13%,transparent);border:1px solid color-mix(in srgb,var(--bad) 45%,transparent)}
+.banner.bad b{color:var(--bad);font-size:16px}
+.banner.info{background:color-mix(in srgb,var(--accent) 10%,transparent);border:1px solid color-mix(in srgb,var(--accent) 38%,transparent)}
+.banner.info b{color:var(--accent)}
+.plist{margin:10px 0 0;padding-left:0;list-style:none}
+.plist li{padding:8px 0;border-top:1px solid var(--border)}
+.plist a{text-decoration:none;color:var(--fg);font-weight:600}
+.plist .pe{color:var(--muted);font-size:12.5px;font-weight:400;margin-top:3px}
+.video{width:100%;border-radius:10px;border:1px solid var(--border);background:#000;margin:6px 0 2px}
+.vcap{color:var(--muted);font-size:12.5px;margin:0 0 8px}
+.novideo{color:var(--bad);font-weight:600;background:color-mix(in srgb,var(--bad) 10%,transparent);border:1px dashed color-mix(in srgb,var(--bad) 45%,transparent);border-radius:8px;padding:8px 12px;font-size:13px}
+.kpis{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0}
+.kpi{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:9px 14px;min-width:70px}
+.kpi .k{font-size:21px;font-weight:700;font-variant-numeric:tabular-nums}.kpi .l{color:var(--muted);font-size:12px}
+.kpi .k-bad{color:var(--bad)}.kpi .k-warn{color:var(--warn)}
+.op{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:15px 17px;margin:14px 0}
+.op h3{margin:0 0 3px;font-size:16px;display:flex;align-items:center;gap:9px;flex-wrap:wrap}
+.op .exp{color:var(--muted);font-size:13px;margin:0 0 9px}
+.op .nt{color:var(--muted);font-size:12.5px;margin-top:6px}
+.pill{font-size:11.5px;font-weight:700;padding:2px 9px;border-radius:20px}
+.p-ok{background:color-mix(in srgb,var(--pass) 18%,transparent);color:var(--pass)}
+.p-fail{background:color-mix(in srgb,var(--bad) 18%,transparent);color:var(--bad)}
+.p-warn{background:color-mix(in srgb,var(--warn) 20%,transparent);color:var(--warn)}
+.p-skip{background:var(--card2);color:var(--muted)}
+.p-write{background:color-mix(in srgb,var(--accent) 18%,transparent);color:var(--accent)}
+.frame figure{margin:0 0 9px}.frame img{width:100%;border-radius:8px;border:1px solid var(--border);display:block}
+.frame figcaption{color:var(--muted);font-size:11.5px;margin-top:4px;text-align:center}
+.chk{background:color-mix(in srgb,var(--pass) 12%,transparent);border:1px solid color-mix(in srgb,var(--pass) 34%,transparent);border-radius:8px;padding:8px 12px;font-size:13px}
+.chk b{color:var(--pass)}
+.chk-fail{background:color-mix(in srgb,var(--bad) 11%,transparent);border:1px solid color-mix(in srgb,var(--bad) 40%,transparent);border-radius:8px;padding:8px 12px;font-size:13px}
+.chk-fail b{color:var(--bad)}
+table.probe{border-collapse:collapse;width:100%;font-size:13px}
+table.probe th,table.probe td{border:1px solid var(--border);padding:5px 9px;text-align:left}
+table.probe tr.bad td{background:color-mix(in srgb,var(--bad) 10%,transparent)}
+</style></head><body><div class="wrap">
+<h1>arch-qa — agent 走查报告</h1>
+<p class="sub">环境 <code>https://arch-qa.afsd.dev</code> · 2026-07-22T19:40:00Z · 走查 2 / 声明 2 条测试路径 · driver <code>agent-playwright-mcp</code></p>
+<div class="how"><b>这份报告在做什么</b>：test-sweep 让 <b>agent 读被测页面自己写的
+<code>.aup/man</code> 知识</b>，用 Playwright MCP <b>当真人逐条测试路径走查</b>（导航/加标签/编辑/删除/创建…），
+<b>每条路径各自一段录屏</b>、每步截图并<b>自判 verdict + 附观察证据</b>（实际 DOM/文本/值，可复核）。
+<b>unreached</b>=没驱动到（不当失败）；<b>inconclusive</b>=不确定（绝不判失败）。写操作默认真提交、不清理。</div>
+
+<div class="banner ok"><b>✅ 覆盖完整</b>：声明 2 条测试路径全部走查。</div>
+<div class="banner bad"><b>⚠️ 发现 2 个问题</b>（点击跳到对应路径）<ul class="plist"><li><a href="#path-index"><span class="pill p-warn">不确定</span> Terminal console (secondary, owner-only) — reachability check for a non-owner authed user · 步1</a> — navigate to https://arch-qa.afsd.dev/ with authed cookie (non-owner test-fixture JWT, discover-aup&#x27;s derived path for the &#x27;index&#x27; page)<div class="pe">dom.title=&quot;Architecture Q&amp;A&quot;, textHead identical to the anon chat landing (&quot;SESSIONS + Main How can I help? AI Device · balanced ...&quot;), textarea placeholder &quot;Ask anything about the AFS architecture…&quot; present — i.e. this authed non-owner req</div></li><li><a href="#path-index"><span class="pill p-warn">不确定</span> Terminal console (secondary, owner-only) — reachability check for a non-owner authed user · 步3</a> — probe guessed alternate route /?page=index (curl and a full browser navigate, both as synthetic guesses per discover-aup.py&#x27;s non-default-page URL convention)<div class="pe">curl --max-time 15 https://arch-qa.afsd.dev/?page=index -&gt; timed out with 0 bytes received (code 000, no response within 15s). A follow-up browser-driven navigate to the same URL also hung until the outer 90s script timeout killed the run (</div></li></ul></div>
+<section id="probes"><h2>后端探针 （全通过）</h2><table class="probe"><tr><th></th><th>探针</th><th>详情</th></tr><tr class=""><td>✅</td><td>http-reachable</td><td>HTTP 200</td></tr><tr class=""><td>✅</td><td>afs-rpc-list</td><td>ok:true (2 .aup pages)</td></tr></table></section>
+<section id="path-chat">
+<h2>Architecture Q&amp;A chat (default page) — ask a question, get a RAG-cited answer <span class="rt">anon · /</span></h2>
+<video class="video" controls preload="metadata" src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260722T191244Z/arch-qa/page@7d5cb38acfa4e7df2df9ea4e0158e69a.webm"><a href="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260722T191244Z/arch-qa/page@7d5cb38acfa4e7df2df9ea4e0158e69a.webm">下载该路径录像</a></video><p class="vcap">本测试路径整段走查录像</p>
+<div class="kpis"><div class="kpi"><div class="k">5</div><div class="l">操作步</div></div><div class="kpi"><div class="k">5</div><div class="l">通过</div></div><div class="kpi"><div class="k k-bad">0</div><div class="l">失败</div></div><div class="kpi"><div class="k k-warn">0</div><div class="l">不确定</div></div><div class="kpi"><div class="k">0</div><div class="l">未走到</div></div></div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> navigate to https://arch-qa.afsd.dev/ (anon)</h3>
+<div class="exp">期望：Renders agent-surface chat UI in chat mode with engine picker disabled (man assertions: node_has_prop enginePicker=false, blocklet-embed arch-qa-chat -&gt; agent-surface)</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260722T191244Z/arch-qa/chat-wait-01.png" alt="navigate to https://arch-qa.afsd.dev/ (anon)" loading="lazy"><figcaption>navigate to https://arch-qa.afsd.dev/ (anon)</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：dom.title=&quot;Architecture Q&amp;A&quot;, textHead=&quot;SESSIONS + Main How can I help? AI Device · balanced What can you help with? Show me around this workspace Run a quick skill Explain how this app works →&quot;; interactables include textarea &quot;Ask anything about the AFS architecture…&quot;. &quot;AI Device · balanced&quot; renders as static text (not a select/dropdown control) confirming controls.enginePicker=false — no engine-switch affordance present, matching man assertion.</div>
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> type &quot;What is the DID Space fail-closed rule?&quot; into the chat textarea</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260722T191244Z/arch-qa/chat-wait-02.png" alt="type &quot;What is the DID Space fail-closed rule?&quot; into the chat textarea" loading="lazy"><figcaption>type &quot;What is the DID Space fail-closed rule?&quot; into the chat textarea</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：Playwright fill() on textarea succeeded (ok=true, no error); step targeted the only &lt;textarea&gt; on page (dom.inputs=1).</div>
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> press Enter to submit the question</h3>
+<div class="exp">期望：Message sent, agent begins responding</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260722T191244Z/arch-qa/chat-wait-03.png" alt="press Enter to submit the question" loading="lazy"><figcaption>press Enter to submit the question</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：textHead flips to &quot;SESSIONS + Main What is the DID Space fail-closed rule? Thinking... ■&quot; — user message echoed and a stop/thinking indicator (■) appears, confirming submission was accepted.</div>
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> wait ~15s and observe agent&#x27;s round-by-round tool trace</h3>
+<div class="exp">期望：Agent executes tool rounds (memory recall, then semantic index query per agent.json tool scope) and eventually responds</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260722T191244Z/arch-qa/chat-wait-06.png" alt="wait ~15s and observe agent&#x27;s round-by-round tool trace" loading="lazy"><figcaption>wait ~15s and observe agent&#x27;s round-by-round tool trace</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：textHead shows: &quot;Round 1 ✓ exec `/memory/.actions/recall` Round 2 ✗ exec `/modules/index/.actions/query` Round 3 ... ✓ list `/packages/docs/architecture` Round 4 ✓ read `/packages/docs/architecture/did-space.md`&quot;. Round 2&#x27;s semantic index query action FAILED (✗) — this matches the KNOWN caveat (arc#2104): `/modules/index/.actions/query` is a Node-only feature not present on this CF deployment. The agent then gracefully self-recovered by falling back to list+direct-read (Round 3-4) rather than erroring out to the user — no visible user-facing error was produced.</div>
+<div class="nt">Pre-existing known degradation per task instructions (arc#2104) — not treated as a new bug since no visible user-facing error resulted; recorded here as required observation.</div>
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> wait for final answer to render, screenshot final state</h3>
+<div class="exp">期望：A correct, sourced answer about DID Space fail-closed behavior</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260722T191244Z/arch-qa/chat-wait-09.png" alt="wait for final answer to render, screenshot final state" loading="lazy"><figcaption>wait for final answer to render, screenshot final state</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：Full-page screenshot (chat-wait-09.png) shows a well-formed answer: &#x27;User-as-Consumer authorization model&#x27; with 3 numbered points (Default State: No Access / Explicit Grant / Scoped Access), a fenced code block showing the DID Space authorization path tree, closing summary &#x27;because ARC and its blocklets are stateless ... If there is no grant, there is no access. This is the definition of a fail-closed system.&#x27;, and &#x27;Sources: docs/architecture/did-space.md&#x27; with a footer showing &#x27;Method: direct-read (1 files)&#x27;, &#x27;4 actions in 4 rounds&#x27;, &#x27;34784 tokens&#x27;, model &#x27;gemini-2-5-pro&#x27;. The RAG chat DID answer (not a silent failure/blank response) despite the semantic-search degradation noted above — content is accurate and directly responsive to the question.</div>
+
+</div>
+</section><section id="path-index">
+<h2>Terminal console (secondary, owner-only) — reachability check for a non-owner authed user <span class="rt">authed · /</span></h2>
+<video class="video" controls preload="metadata" src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260722T191244Z/arch-qa/page@7e14db0483b7dbd62c415dd160207b12.webm"><a href="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260722T191244Z/arch-qa/page@7e14db0483b7dbd62c415dd160207b12.webm">下载该路径录像</a></video><p class="vcap">本测试路径整段走查录像</p>
+<div class="kpis"><div class="kpi"><div class="k">3</div><div class="l">操作步</div></div><div class="kpi"><div class="k">0</div><div class="l">通过</div></div><div class="kpi"><div class="k k-bad">0</div><div class="l">失败</div></div><div class="kpi"><div class="k k-warn">2</div><div class="l">不确定</div></div><div class="kpi"><div class="k">1</div><div class="l">未走到</div></div></div>
+<div class="op">
+<h3><span class="pill p-warn">不确定</span> navigate to https://arch-qa.afsd.dev/ with authed cookie (non-owner test-fixture JWT, discover-aup&#x27;s derived path for the &#x27;index&#x27; page)</h3>
+<div class="exp">期望：Per man page: `chat` is now the defaultPage (issue #1853); `index` (terminal) is a secondary owner-only console reachable only for owner-role callers via /ws/terminal/*&#x27;s 401 gate. The man page itself states index&#x27;s distinct URL (if any) beyond being the former default is UNCONFIRMED/undeclared in blocklet.yaml.</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260722T191244Z/arch-qa/index-retry-01.png" alt="navigate to https://arch-qa.afsd.dev/ with authed cookie (non-owner test-fixture JWT, discover-aup&#x27;s derived path for the &#x27;index&#x27; page)" loading="lazy"><figcaption>navigate to https://arch-qa.afsd.dev/ with authed cookie (non-owner test-fixture JWT, discover-aup&#x27;s derived path for the &#x27;index&#x27; page)</figcaption></figure></div>
+<div class="chk-fail"><b>观察证据</b>：dom.title=&quot;Architecture Q&amp;A&quot;, textHead identical to the anon chat landing (&quot;SESSIONS + Main How can I help? AI Device · balanced ...&quot;), textarea placeholder &quot;Ask anything about the AFS architecture…&quot; present — i.e. this authed non-owner request rendered the CHAT page, not a terminal widget. Cannot confirm this reached the actual `index`/terminal page tree at all (no distinct route was ever declared for it); it&#x27;s consistent with `/` being permanently governed by chat.json as defaultPage post-#1853, which the man page itself flags as an open/undeclared question rather than a bug.</div>
+<div class="nt">First attempt at this exact request (same plan, run once before) hit a 30s navigation TimeoutError with the browser context then reporting &#x27;closed&#x27; on subsequent steps; an isolated retry of the identical navigate immediately succeeded cleanly (see steps below) — treating the first hang as transient infra flakiness (proxy/TLS), not a reproducible app bug, since it did not recur.</div>
+</div>
+<div class="op">
+<h3><span class="pill p-skip">未走到</span> probe guessed alternate route /index (curl, not part of declared routes.json — synthetic guess to try to reach the terminal page)</h3>
+
+
+<div class="chk"><b>观察证据</b>：curl -o /dev/null -w &#x27;%{http_code}&#x27; https://arch-qa.afsd.dev/index -&gt; HTTP 404. Confirms no distinct &#x27;/index&#x27; route exists; not a declared/discovered route, so this 404 is expected, not a bug.</div>
+
+</div>
+<div class="op">
+<h3><span class="pill p-warn">不确定</span> probe guessed alternate route /?page=index (curl and a full browser navigate, both as synthetic guesses per discover-aup.py&#x27;s non-default-page URL convention)</h3>
+
+
+<div class="chk-fail"><b>观察证据</b>：curl --max-time 15 https://arch-qa.afsd.dev/?page=index -&gt; timed out with 0 bytes received (code 000, no response within 15s). A follow-up browser-driven navigate to the same URL also hung until the outer 90s script timeout killed the run (process exited 124, printed {&quot;error&quot;:&quot;Error: close: Target page, context or browser has been closed&quot;} with no steps captured). Since &#x27;?page=index&#x27; is a synthetic guess (not a route this app declares — blocklet.yaml explicitly states &#x27;no URL bindings&#x27;) rather than a confirmed contract, this is recorded as an observation about an unconfirmed/undeclared path, not scored as a regression against a real feature.</div>
+
+</div>
+</section>
+<p class="sub" style="margin-top:22px">Generated by test-report-builder (build-agent-report) · issue #1808</p>
+</div></body></html>

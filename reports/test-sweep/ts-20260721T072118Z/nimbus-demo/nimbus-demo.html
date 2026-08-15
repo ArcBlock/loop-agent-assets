@@ -1,0 +1,161 @@
+<!doctype html><html><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>nimbus-demo — agent 走查报告</title><style>
+:root{--bg:#f7f8f8;--fg:#16201f;--muted:#5c6b69;--card:#fff;--card2:#eef2f1;--border:#dde3e2;--accent:#127a72;--pass:#1f8a54;--warn:#b5771a;--bad:#c0392b}
+@media(prefers-color-scheme:dark){:root{--bg:#0e1413;--fg:#e6ecea;--muted:#8ea19d;--card:#161d1c;--card2:#1d2624;--border:#26302e;--accent:#3fb8ab;--pass:#3fb37a;--warn:#d69a3e;--bad:#e5735f}}
+:root[data-theme=dark]{--bg:#0e1413;--fg:#e6ecea;--muted:#8ea19d;--card:#161d1c;--card2:#1d2624;--border:#26302e;--accent:#3fb8ab;--pass:#3fb37a;--warn:#d69a3e;--bad:#e5735f}
+:root[data-theme=light]{--bg:#f7f8f8;--fg:#16201f;--muted:#5c6b69;--card:#fff;--card2:#eef2f1;--border:#dde3e2;--accent:#127a72;--pass:#1f8a54;--warn:#b5771a;--bad:#c0392b}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--fg);font:15px/1.65 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;padding:24px}
+.wrap{max-width:920px;margin:0 auto}
+h1{font-size:24px;margin:0 0 4px;text-wrap:balance}h2{font-size:19px;margin:30px 0 8px}
+h2 .rt{font-size:13px;color:var(--muted);font-weight:400;font-variant-numeric:tabular-nums}
+.sub{color:var(--muted);margin:0 0 14px;font-size:13px}
+code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.85em;background:var(--card2);padding:1px 5px;border-radius:4px}
+.how{background:var(--card);border:1px solid var(--border);border-left:3px solid var(--accent);border-radius:8px;padding:13px 16px;margin:14px 0;font-size:14px}
+.how b{color:var(--accent)}
+.banner{border-radius:12px;padding:14px 18px;margin:16px 0}
+.banner.ok{background:color-mix(in srgb,var(--pass) 12%,transparent);border:1px solid color-mix(in srgb,var(--pass) 40%,transparent)}
+.banner.ok b{color:var(--pass)}
+.banner.bad{background:color-mix(in srgb,var(--bad) 13%,transparent);border:1px solid color-mix(in srgb,var(--bad) 45%,transparent)}
+.banner.bad b{color:var(--bad);font-size:16px}
+.banner.info{background:color-mix(in srgb,var(--accent) 10%,transparent);border:1px solid color-mix(in srgb,var(--accent) 38%,transparent)}
+.banner.info b{color:var(--accent)}
+.plist{margin:10px 0 0;padding-left:0;list-style:none}
+.plist li{padding:8px 0;border-top:1px solid var(--border)}
+.plist a{text-decoration:none;color:var(--fg);font-weight:600}
+.plist .pe{color:var(--muted);font-size:12.5px;font-weight:400;margin-top:3px}
+.video{width:100%;border-radius:10px;border:1px solid var(--border);background:#000;margin:6px 0 2px}
+.vcap{color:var(--muted);font-size:12.5px;margin:0 0 8px}
+.novideo{color:var(--bad);font-weight:600;background:color-mix(in srgb,var(--bad) 10%,transparent);border:1px dashed color-mix(in srgb,var(--bad) 45%,transparent);border-radius:8px;padding:8px 12px;font-size:13px}
+.kpis{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0}
+.kpi{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:9px 14px;min-width:70px}
+.kpi .k{font-size:21px;font-weight:700;font-variant-numeric:tabular-nums}.kpi .l{color:var(--muted);font-size:12px}
+.kpi .k-bad{color:var(--bad)}.kpi .k-warn{color:var(--warn)}
+.op{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:15px 17px;margin:14px 0}
+.op h3{margin:0 0 3px;font-size:16px;display:flex;align-items:center;gap:9px;flex-wrap:wrap}
+.op .exp{color:var(--muted);font-size:13px;margin:0 0 9px}
+.op .nt{color:var(--muted);font-size:12.5px;margin-top:6px}
+.pill{font-size:11.5px;font-weight:700;padding:2px 9px;border-radius:20px}
+.p-ok{background:color-mix(in srgb,var(--pass) 18%,transparent);color:var(--pass)}
+.p-fail{background:color-mix(in srgb,var(--bad) 18%,transparent);color:var(--bad)}
+.p-warn{background:color-mix(in srgb,var(--warn) 20%,transparent);color:var(--warn)}
+.p-skip{background:var(--card2);color:var(--muted)}
+.p-write{background:color-mix(in srgb,var(--accent) 18%,transparent);color:var(--accent)}
+.frame figure{margin:0 0 9px}.frame img{width:100%;border-radius:8px;border:1px solid var(--border);display:block}
+.frame figcaption{color:var(--muted);font-size:11.5px;margin-top:4px;text-align:center}
+.chk{background:color-mix(in srgb,var(--pass) 12%,transparent);border:1px solid color-mix(in srgb,var(--pass) 34%,transparent);border-radius:8px;padding:8px 12px;font-size:13px}
+.chk b{color:var(--pass)}
+.chk-fail{background:color-mix(in srgb,var(--bad) 11%,transparent);border:1px solid color-mix(in srgb,var(--bad) 40%,transparent);border-radius:8px;padding:8px 12px;font-size:13px}
+.chk-fail b{color:var(--bad)}
+table.probe{border-collapse:collapse;width:100%;font-size:13px}
+table.probe th,table.probe td{border:1px solid var(--border);padding:5px 9px;text-align:left}
+table.probe tr.bad td{background:color-mix(in srgb,var(--bad) 10%,transparent)}
+</style></head><body><div class="wrap">
+<h1>nimbus-demo — agent 走查报告</h1>
+<p class="sub">环境 <code>https://nimbus-demo.afsd.dev</code> · 2026-07-21T07:41:00Z · 走查 1 / 声明 2 条测试路径 · driver <code>agent-playwright-mcp</code></p>
+<div class="how"><b>这份报告在做什么</b>：test-sweep 让 <b>agent 读被测页面自己写的
+<code>.aup/man</code> 知识</b>，用 Playwright MCP <b>当真人逐条测试路径走查</b>（导航/加标签/编辑/删除/创建…），
+<b>每条路径各自一段录屏</b>、每步截图并<b>自判 verdict + 附观察证据</b>（实际 DOM/文本/值，可复核）。
+<b>unreached</b>=没驱动到（不当失败）；<b>inconclusive</b>=不确定（绝不判失败）。写操作默认真提交、不清理。</div>
+<div class="banner info"><b>ℹ️ 覆盖 1 / 2：页内部分 example 未覆盖</b>（可见但不阻断——漏走的补记为 unreached、不判红；绿灯只表示走到的都过了。agent 应据此自主决定再补哪些、完善报告）<ul class="plist"></ul></div>
+<div class="banner bad"><b>⚠️ 发现 1 个问题</b>（点击跳到对应路径）<ul class="plist"><li><a href="#path-home"><span class="pill p-fail">失败</span> Home / landing card — 浏览与导航 · 步4</a> — 点击 intro 卡片内的「Settings」按钮（data-aup-id=open-settings，anon 态）<div class="pe">点击前后 dom.url 均为 https://nimbus-demo.afsd.dev/app（未变化），textHead/aupNodes(11) 完全不变，两次截图（nimbus-demo-home-07.png 与点击前 nimbus-demo-home-05.png 前一张）像素级一致，无 console 错误、无登录弹窗、无任何视觉反馈。即声明的 target:_root set:page=settings 客户端跳转对 anon 用户完全没有生效，也没有任何『需</div></li></ul></div>
+<section id="probes"><h2>后端探针 （全通过）</h2><table class="probe"><tr><th></th><th>探针</th><th>详情</th></tr><tr class=""><td>✅</td><td>http-reachable</td><td>HTTP 200</td></tr><tr class=""><td>✅</td><td>afs-rpc-list</td><td>ok:true (2 .aup pages)</td></tr></table></section>
+<section id="path-home">
+<h2>Home / landing card — 浏览与导航 <span class="rt">anon · /app</span></h2>
+<video class="video" controls preload="metadata" src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260721T072118Z/nimbus-demo/nimbus-demo-home.webm"><a href="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260721T072118Z/nimbus-demo/nimbus-demo-home.webm">下载该路径录像</a></video><p class="vcap">本测试路径整段走查录像</p>
+<div class="kpis"><div class="kpi"><div class="k">4</div><div class="l">操作步</div></div><div class="kpi"><div class="k">3</div><div class="l">通过</div></div><div class="kpi"><div class="k k-bad">1</div><div class="l">失败</div></div><div class="kpi"><div class="k k-warn">0</div><div class="l">不确定</div></div><div class="kpi"><div class="k">0</div><div class="l">未走到</div></div></div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> navigate 到 /app（anon）</h3>
+<div class="exp">期望：渲染 intro 卡片：标题「A tiny complete app.」+ 正文 + Agent/Settings 两个 action 按钮</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260721T072118Z/nimbus-demo/nimbus-demo-home-01.png" alt="navigate 到 /app（anon）" loading="lazy"><figcaption>navigate 到 /app（anon）</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：textHead: &#x27;Nimbus App Agent Settings A tiny complete app. Nimbus has one web page, this AUP app, one agent, and one generated settings shell. Agent Settings Nimbus: web + AUP + agent + settings.&#x27;；aupNodes=11；interactables 含 button#open-agent &quot;Agent&quot;、button#open-settings &quot;Settings&quot;（均为 data-aup-id）</div>
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> 点击 intro 卡片内的「Agent」按钮（data-aup-id=open-agent）</h3>
+<div class="exp">期望：man 声明 open-agent.click = {target:_root, set:{page:agent}}，应客户端跳转到 agent 页</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260721T072118Z/nimbus-demo/nimbus-demo-home-03.png" alt="点击 intro 卡片内的「Agent」按钮（data-aup-id=open-agent）" loading="lazy"><figcaption>点击 intro 卡片内的「Agent」按钮（data-aup-id=open-agent）</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：点击后 dom.url 变为 https://nimbus-demo.afsd.dev/app?page=agent，textHead 变为 &#x27;Nimbus App Agent Settings Nimbus Agent A tiny product-aware assistant declared as a first-class app module. How can I help? ...&#x27;，aupNodes=9，符合 agent 页内容</div>
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> 点击顶部导航栏「App」按钮返回 home</h3>
+<div class="exp">期望：客户端页面切换回 home</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260721T072118Z/nimbus-demo/nimbus-demo-home-05.png" alt="点击顶部导航栏「App」按钮返回 home" loading="lazy"><figcaption>点击顶部导航栏「App」按钮返回 home</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：点击后 dom.url 变回 https://nimbus-demo.afsd.dev/app，textHead 恢复为 home 文案（&#x27;A tiny complete app.&#x27;），aupNodes=11</div>
+
+</div>
+<div class="op">
+<h3><span class="pill p-fail">失败</span> 点击 intro 卡片内的「Settings」按钮（data-aup-id=open-settings，anon 态）</h3>
+<div class="exp">期望：man 声明同样是 {target:_root, set:{page:settings}} 的客户端跳转（settings 页 auth=authed）；预期至少有可见反馈（跳转到 settings 页展示未登录态 / 弹出登录提示 / 明确报错），而不是静默无反应</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260721T072118Z/nimbus-demo/nimbus-demo-home-07.png" alt="点击 intro 卡片内的「Settings」按钮（data-aup-id=open-settings，anon 态）" loading="lazy"><figcaption>点击 intro 卡片内的「Settings」按钮（data-aup-id=open-settings，anon 态）</figcaption></figure></div>
+<div class="chk-fail"><b>观察证据</b>：点击前后 dom.url 均为 https://nimbus-demo.afsd.dev/app（未变化），textHead/aupNodes(11) 完全不变，两次截图（nimbus-demo-home-07.png 与点击前 nimbus-demo-home-05.png 前一张）像素级一致，无 console 错误、无登录弹窗、无任何视觉反馈。即声明的 target:_root set:page=settings 客户端跳转对 anon 用户完全没有生效，也没有任何『需要登录』的提示——真实用户点击后会以为按钮坏了。</div>
+<div class="nt">与 open-agent 的行为不对称：两者声明结构相同（同为 target:_root set:page:&lt;x&gt;），但 open-agent 对 anon 正常跳转，open-settings 对 anon 静默无操作。真实 bug 候选，建议报告。</div>
+</div>
+</section><section id="path-agent">
+<h2>Agent 页 — 助手交互（agent-surface 内嵌） <span class="rt">anon · /app?page=agent</span></h2>
+<video class="video" controls preload="metadata" src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260721T072118Z/nimbus-demo/nimbus-demo-agent.webm"><a href="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260721T072118Z/nimbus-demo/nimbus-demo-agent.webm">下载该路径录像</a></video><p class="vcap">本测试路径整段走查录像</p>
+<div class="kpis"><div class="kpi"><div class="k">3</div><div class="l">操作步</div></div><div class="kpi"><div class="k">3</div><div class="l">通过</div></div><div class="kpi"><div class="k k-bad">0</div><div class="l">失败</div></div><div class="kpi"><div class="k k-warn">0</div><div class="l">不确定</div></div><div class="kpi"><div class="k">0</div><div class="l">未走到</div></div></div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> navigate 到 /app?page=agent（anon）</h3>
+<div class="exp">期望：渲染 agent-intro 文案 + 内嵌的 nimbus-agent（agent-surface blocklet-embed）聊天界面，含建议问题按钮、输入框、发送按钮</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260721T072118Z/nimbus-demo/nimbus-demo-agent-01.png" alt="navigate 到 /app?page=agent（anon）" loading="lazy"><figcaption>navigate 到 /app?page=agent（anon）</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：textHead: &#x27;Nimbus App Agent Settings Nimbus Agent A tiny product-aware assistant declared as a first-class app module. How can I help? AI Device · balanced What can you help with? Show me around this workspace Run a quick skill Explain how this app works + →&#x27;；aupNodes=9，interactables 含 textarea &quot;Ask what this app scaffold includes...&quot;、button &quot;Show me around this workspace&quot;、button &quot;→&quot;</div>
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> <span class="pill p-write">写</span>点击建议问题按钮「Show me around this workspace」</h3>
+<div class="exp">期望：触发一轮真实 agent 对话（工具调用 + 回复），会话区出现新内容</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260721T072118Z/nimbus-demo/nimbus-demo-agent-03.png" alt="点击建议问题按钮「Show me around this workspace」" loading="lazy"><figcaption>点击建议问题按钮「Show me around this workspace」</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：点击后 textLen 从 333 增至 354，新增文本：&#x27;Show me around this workspace Round 1 Right, I&#x27;ll start by reading /.knowledge to get an overview of this workspace&#x27;s capabilities. ✓ read `/.knowledge`&#x27;，说明 agent 真实执行了一次带工具调用（read /.knowledge）的对话轮次</div>
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> 等待 4s 观察 agent 是否继续输出后续轮次</h3>
+<div class="exp">期望：agent 继续处理并给出后续回复/操作</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260721T072118Z/nimbus-demo/nimbus-demo-agent-06.png" alt="等待 4s 观察 agent 是否继续输出后续轮次" loading="lazy"><figcaption>等待 4s 观察 agent 是否继续输出后续轮次</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：textLen 继续增至 625，出现 &#x27;Round 2 Okay, this workspace is dev-heavy. I&#x27;ll skip the deep dive and open a &quot;welcome&quot; window to give the user a friendly overv… ✓ exec `/&#x27;，aupNodes 从 9 增至 12（新渲染的对话/工具调用节点），确认 agent 在持续产出多轮回复而非卡死</div>
+
+</div>
+</section><section id="path-settings">
+<h2>Settings 页 — 生成式设置壳（authed）浏览与字段回写 <span class="rt">authed · /app?page=settings</span></h2>
+<video class="video" controls preload="metadata" src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260721T072118Z/nimbus-demo/nimbus-demo-settings.webm"><a href="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260721T072118Z/nimbus-demo/nimbus-demo-settings.webm">下载该路径录像</a></video><p class="vcap">本测试路径整段走查录像</p>
+<div class="kpis"><div class="kpi"><div class="k">5</div><div class="l">操作步</div></div><div class="kpi"><div class="k">5</div><div class="l">通过</div></div><div class="kpi"><div class="k k-bad">0</div><div class="l">失败</div></div><div class="kpi"><div class="k k-warn">0</div><div class="l">不确定</div></div><div class="kpi"><div class="k">0</div><div class="l">未走到</div></div></div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> navigate 到 /app?page=settings（authed，注入 login_token cookie）</h3>
+<div class="exp">期望：authed 态下渲染 configDir 生成的设置壳：ARC SYSTEM/INSTANCE SETTINGS/PACKAGE DEFINITION/USER SETTINGS 四组导航 + 顶部显示已登录用户</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260721T072118Z/nimbus-demo/nimbus-demo-settings-01.png" alt="navigate 到 /app?page=settings（authed，注入 login_token cookie）" loading="lazy"><figcaption>navigate 到 /app?page=settings（authed，注入 login_token cookie）</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：header 出现 button &quot;Test Fixture User&quot;、button &quot;User Center&quot;、button &quot;Sign Out&quot;（确认 authed 态被正确识别，未回退到匿名/登录页）；textHead 含 &#x27;Blocklet Settings ARC SYSTEM Access Identity INSTANCE SETTINGS Workspace PACKAGE DEFINITION Assistant Site Workspace USER SETTINGS Profile Policies Session TTL...&#x27;；Access 页字段 input 初始值 &quot;720&quot;</div>
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> 点击左侧导航「Identity」（data-aup-id=settings-settings-nav-arc-system-identity）</h3>
+<div class="exp">期望：内容区切换/滚动到 Identity 分区（Baseline / Trust domain 字段）</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260721T072118Z/nimbus-demo/nimbus-demo-settings-03.png" alt="点击左侧导航「Identity」（data-aup-id=settings-settings-nav-arc-system-identity）" loading="lazy"><figcaption>点击左侧导航「Identity」（data-aup-id=settings-settings-nav-arc-system-identity）</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：点击后 textHead 从含 &#x27;Policies Session TTL System-level...&#x27; 变为含 &#x27;Baseline Trust domain ARC baselin&#x27;，确认内容区已切到 Identity 分区</div>
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> 点击左侧导航「Access」（data-aup-id=settings-settings-nav-arc-system-access）返回</h3>
+<div class="exp">期望：内容区切回 Access 分区（Session TTL 字段）</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260721T072118Z/nimbus-demo/nimbus-demo-settings-05.png" alt="点击左侧导航「Access」（data-aup-id=settings-settings-nav-arc-system-access）返回" loading="lazy"><figcaption>点击左侧导航「Access」（data-aup-id=settings-settings-nav-arc-system-access）返回</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：点击后 textHead 恢复为含 &#x27;Policies Session TTL System-level session policy...&#x27;，input 值仍为 &quot;720&quot;</div>
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> <span class="pill p-write">写</span>选中 Session TTL 输入框全部内容并改写为「725」，Tab 失焦触发保存（write，计划随后复原）</h3>
+<div class="exp">期望：输入框实时反映新值 725，无报错</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260721T072118Z/nimbus-demo/nimbus-demo-settings-09.png" alt="选中 Session TTL 输入框全部内容并改写为「725」，Tab 失焦触发保存（write，计划随后复原）" loading="lazy"><figcaption>选中 Session TTL 输入框全部内容并改写为「725」，Tab 失焦触发保存（write，计划随后复原）</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：改写后该 input 的渲染文本从 &quot;720&quot; 变为 &quot;725&quot;（interactables 快照 &#x27;input &quot;725&quot;&#x27;），无 console 错误，页面其余结构不变</div>
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> <span class="pill p-write">写</span>复原：Session TTL 输入框重新选中并改回「720」，Tab 失焦</h3>
+<div class="exp">期望：恢复到走查前的原始值 720（本轮为可逆写测试，不留脏数据）</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260721T072118Z/nimbus-demo/nimbus-demo-settings-16.png" alt="复原：Session TTL 输入框重新选中并改回「720」，Tab 失焦" loading="lazy"><figcaption>复原：Session TTL 输入框重新选中并改回「720」，Tab 失焦</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：改回后 interactables 快照显示 &#x27;input &quot;720&quot;&#x27;，与走查前初始状态一致，成功复原</div>
+<div class="nt">仅验证了输入框 DOM 值的即时回写往返；未额外做一次页面 reload 去核实该值是否已落到后端持久化存储（door 之外的 e2e 持久化验证超出本轮走查范围），如需强验证应走 blocklets/CLAUDE.md 要求的『真实 daemon persistence 测试』。</div>
+</div>
+</section>
+<p class="sub" style="margin-top:22px">Generated by test-report-builder (build-agent-report) · issue #1808</p>
+</div></body></html>

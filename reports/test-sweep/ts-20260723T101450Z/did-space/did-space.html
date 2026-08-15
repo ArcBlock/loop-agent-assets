@@ -1,0 +1,174 @@
+<!doctype html><html><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>did-space — agent 走查报告</title><style>
+:root{--bg:#f7f8f8;--fg:#16201f;--muted:#5c6b69;--card:#fff;--card2:#eef2f1;--border:#dde3e2;--accent:#127a72;--pass:#1f8a54;--warn:#b5771a;--bad:#c0392b}
+@media(prefers-color-scheme:dark){:root{--bg:#0e1413;--fg:#e6ecea;--muted:#8ea19d;--card:#161d1c;--card2:#1d2624;--border:#26302e;--accent:#3fb8ab;--pass:#3fb37a;--warn:#d69a3e;--bad:#e5735f}}
+:root[data-theme=dark]{--bg:#0e1413;--fg:#e6ecea;--muted:#8ea19d;--card:#161d1c;--card2:#1d2624;--border:#26302e;--accent:#3fb8ab;--pass:#3fb37a;--warn:#d69a3e;--bad:#e5735f}
+:root[data-theme=light]{--bg:#f7f8f8;--fg:#16201f;--muted:#5c6b69;--card:#fff;--card2:#eef2f1;--border:#dde3e2;--accent:#127a72;--pass:#1f8a54;--warn:#b5771a;--bad:#c0392b}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--fg);font:15px/1.65 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;padding:24px}
+.wrap{max-width:920px;margin:0 auto}
+h1{font-size:24px;margin:0 0 4px;text-wrap:balance}h2{font-size:19px;margin:30px 0 8px}
+h2 .rt{font-size:13px;color:var(--muted);font-weight:400;font-variant-numeric:tabular-nums}
+.sub{color:var(--muted);margin:0 0 14px;font-size:13px}
+code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.85em;background:var(--card2);padding:1px 5px;border-radius:4px}
+.how{background:var(--card);border:1px solid var(--border);border-left:3px solid var(--accent);border-radius:8px;padding:13px 16px;margin:14px 0;font-size:14px}
+.how b{color:var(--accent)}
+.banner{border-radius:12px;padding:14px 18px;margin:16px 0}
+.banner.ok{background:color-mix(in srgb,var(--pass) 12%,transparent);border:1px solid color-mix(in srgb,var(--pass) 40%,transparent)}
+.banner.ok b{color:var(--pass)}
+.banner.bad{background:color-mix(in srgb,var(--bad) 13%,transparent);border:1px solid color-mix(in srgb,var(--bad) 45%,transparent)}
+.banner.bad b{color:var(--bad);font-size:16px}
+.banner.info{background:color-mix(in srgb,var(--accent) 10%,transparent);border:1px solid color-mix(in srgb,var(--accent) 38%,transparent)}
+.banner.info b{color:var(--accent)}
+.plist{margin:10px 0 0;padding-left:0;list-style:none}
+.plist li{padding:8px 0;border-top:1px solid var(--border)}
+.plist a{text-decoration:none;color:var(--fg);font-weight:600}
+.plist .pe{color:var(--muted);font-size:12.5px;font-weight:400;margin-top:3px}
+.video{width:100%;border-radius:10px;border:1px solid var(--border);background:#000;margin:6px 0 2px}
+.vcap{color:var(--muted);font-size:12.5px;margin:0 0 8px}
+.novideo{color:var(--bad);font-weight:600;background:color-mix(in srgb,var(--bad) 10%,transparent);border:1px dashed color-mix(in srgb,var(--bad) 45%,transparent);border-radius:8px;padding:8px 12px;font-size:13px}
+.kpis{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0}
+.kpi{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:9px 14px;min-width:70px}
+.kpi .k{font-size:21px;font-weight:700;font-variant-numeric:tabular-nums}.kpi .l{color:var(--muted);font-size:12px}
+.kpi .k-bad{color:var(--bad)}.kpi .k-warn{color:var(--warn)}
+.op{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:15px 17px;margin:14px 0}
+.op h3{margin:0 0 3px;font-size:16px;display:flex;align-items:center;gap:9px;flex-wrap:wrap}
+.op .exp{color:var(--muted);font-size:13px;margin:0 0 9px}
+.op .nt{color:var(--muted);font-size:12.5px;margin-top:6px}
+.pill{font-size:11.5px;font-weight:700;padding:2px 9px;border-radius:20px}
+.p-ok{background:color-mix(in srgb,var(--pass) 18%,transparent);color:var(--pass)}
+.p-fail{background:color-mix(in srgb,var(--bad) 18%,transparent);color:var(--bad)}
+.p-warn{background:color-mix(in srgb,var(--warn) 20%,transparent);color:var(--warn)}
+.p-skip{background:var(--card2);color:var(--muted)}
+.p-write{background:color-mix(in srgb,var(--accent) 18%,transparent);color:var(--accent)}
+.frame figure{margin:0 0 9px}.frame img{width:100%;border-radius:8px;border:1px solid var(--border);display:block}
+.frame figcaption{color:var(--muted);font-size:11.5px;margin-top:4px;text-align:center}
+.chk{background:color-mix(in srgb,var(--pass) 12%,transparent);border:1px solid color-mix(in srgb,var(--pass) 34%,transparent);border-radius:8px;padding:8px 12px;font-size:13px}
+.chk b{color:var(--pass)}
+.chk-fail{background:color-mix(in srgb,var(--bad) 11%,transparent);border:1px solid color-mix(in srgb,var(--bad) 40%,transparent);border-radius:8px;padding:8px 12px;font-size:13px}
+.chk-fail b{color:var(--bad)}
+table.probe{border-collapse:collapse;width:100%;font-size:13px}
+table.probe th,table.probe td{border:1px solid var(--border);padding:5px 9px;text-align:left}
+table.probe tr.bad td{background:color-mix(in srgb,var(--bad) 10%,transparent)}
+</style></head><body><div class="wrap">
+<h1>did-space — agent 走查报告</h1>
+<p class="sub">环境 <code>https://did-space.afsd.dev</code> · 2026-07-23T10:15:00Z · 走查 6 / 声明 6 条测试路径 · driver <code>agent-playwright-mcp</code></p>
+<div class="how"><b>这份报告在做什么</b>：test-sweep 让 <b>agent 读被测页面自己写的
+<code>.aup/man</code> 知识</b>，用 Playwright MCP <b>当真人逐条测试路径走查</b>（导航/加标签/编辑/删除/创建…），
+<b>每条路径各自一段录屏</b>、每步截图并<b>自判 verdict + 附观察证据</b>（实际 DOM/文本/值，可复核）。
+<b>unreached</b>=没驱动到（不当失败）；<b>inconclusive</b>=不确定（绝不判失败）。写操作默认真提交、不清理。</div>
+
+<div class="banner ok"><b>✅ 覆盖完整</b>：声明 6 条测试路径全部走查。</div>
+<div class="banner bad"><b>⚠️ 发现 1 个问题</b>（点击跳到对应路径）<ul class="plist"><li><a href="#path-files-sidebar-select-fanout"><span class="pill p-warn">不确定</span> 认证态：sidebar 选择目录 → primary + inspector 三向 fan-out · 步2</a> — 同一会话下用文本模糊匹配（getByText &quot;instance&quot;）做对照点击（探路阶段的失败尝试，记录以避免误导）<div class="pe">getByText(&quot;instance&quot;) 命中的是 sidebar 描述文本节点而非行本身，点击后仅使某个 hover/expand 态展开出「members / AFS Index Provider」描述文字，primary-list 与 meta-title 均未真正切换（仍为 &quot;/&quot;）——判为探路噪音，不计入 fan-out 断言的正式判定（正式判定见上一步用精确 data-entry-path 选择器的结果）。</div></li></ul></div>
+<section id="probes"><h2>后端探针 （全通过）</h2><table class="probe"><tr><th></th><th>探针</th><th>详情</th></tr><tr class=""><td>✅</td><td>http-reachable</td><td>HTTP 200</td></tr><tr class=""><td>✅</td><td>afs-rpc-list</td><td>ok:true (1 .aup pages)</td></tr></table></section>
+<section id="path-files-anon">
+<h2>匿名访客看到 Sign-in 门禁，不是浏览器 <span class="rt">anon · /explorer</span></h2>
+<video class="video" controls preload="metadata" src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260723T101450Z/did-space/page@cf6127ebeaadeb234f9758102fc7c776.webm"><a href="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260723T101450Z/did-space/page@cf6127ebeaadeb234f9758102fc7c776.webm">下载该路径录像</a></video><p class="vcap">本测试路径整段走查录像</p>
+<div class="kpis"><div class="kpi"><div class="k">2</div><div class="l">操作步</div></div><div class="kpi"><div class="k">2</div><div class="l">通过</div></div><div class="kpi"><div class="k k-bad">0</div><div class="l">失败</div></div><div class="kpi"><div class="k k-warn">0</div><div class="l">不确定</div></div><div class="kpi"><div class="k">0</div><div class="l">未走到</div></div></div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> 以匿名态导航到 https://did-space.afsd.dev/explorer 并等待渲染</h3>
+<div class="exp">期望：渲染 files-anon-wm（sign-in 门禁卡片），不含 files-explorer-wm 子树</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260723T101450Z/did-space/did-space-anon-02.png" alt="以匿名态导航到 https://did-space.afsd.dev/explorer 并等待渲染" loading="lazy"><figcaption>以匿名态导航到 https://did-space.afsd.dev/explorer 并等待渲染</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：页面 title 变为 &quot;DID Space&quot;，DOM 中出现 div#files-anon-wm（data-aup-id），子节点含 h2#files-anon-title 文本 &quot;Sign in to browse your space&quot;、div#files-anon-desc 文本 &quot;Your DID Space is private to your account. Sign in to view and manage your files.&quot;、a#files-anon-login 文本 &quot;Sign in&quot;。interactables 清单中未出现任何 files-sidebar-list / files-primary-list / files-inspector-* 节点，确认 files-explorer-wm 子树整体不在 DOM 中。</div>
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> 断言 node_exists(files-anon-wm) / action_exists(files-anon-login) / text_contains(files-anon-title, &quot;Sign in&quot;)</h3>
+<div class="exp">期望：三条 man 断言均应成立</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260723T101450Z/did-space/did-space-anon-03.png" alt="断言 node_exists(files-anon-wm) / action_exists(files-anon-login) / text_contains(files-anon-title, &quot;Sign in&quot;)" loading="lazy"><figcaption>断言 node_exists(files-anon-wm) / action_exists(files-anon-login) / text_contains(files-anon-title, &quot;Sign in&quot;)</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：div#files-anon-wm 渲染；a#files-anon-login 为可交互 &lt;a&gt; 节点（label &quot;Sign in&quot;）；h2#files-anon-title 文本精确为 &quot;Sign in to browse your space&quot;，包含 pattern &quot;Sign in&quot;。</div>
+
+</div>
+</section><section id="path-files-authed-explore">
+<h2>认证态首屏：三栏浏览器渲染（sidebar/primary/inspector） <span class="rt">authed · /explorer</span></h2>
+<video class="video" controls preload="metadata" src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260723T101450Z/did-space/page@d0b02cd508f1373bfbec49f9e9645318.webm"><a href="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260723T101450Z/did-space/page@d0b02cd508f1373bfbec49f9e9645318.webm">下载该路径录像</a></video><p class="vcap">本测试路径整段走查录像</p>
+<div class="kpis"><div class="kpi"><div class="k">4</div><div class="l">操作步</div></div><div class="kpi"><div class="k">4</div><div class="l">通过</div></div><div class="kpi"><div class="k k-bad">0</div><div class="l">失败</div></div><div class="kpi"><div class="k k-warn">0</div><div class="l">不确定</div></div><div class="kpi"><div class="k">0</div><div class="l">未走到</div></div></div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> 注入 login_token cookie（domain=did-space.afsd.dev）后导航到 /explorer</h3>
+<div class="exp">期望：渲染 files-explorer-wm：header（用户名/User Center/Admin Console/Sign Out）+ sidebar + primary + inspector + statusbar</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260723T101450Z/did-space/did-space-authed-explore-01.png" alt="注入 login_token cookie（domain=did-space.afsd.dev）后导航到 /explorer" loading="lazy"><figcaption>注入 login_token cookie（domain=did-space.afsd.dev）后导航到 /explorer</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：interactables 中出现 button &quot;Test Fixture User&quot;、button &quot;User Center&quot;、button &quot;Admin Console&quot;、button &quot;Sign Out&quot;（确认已认证态，识别出真实测试用户全名）；div#files-sidebar-list、div#files-primary-list、div#files-inspector-stat、div#files-inspector-preview、div#files-statusbar-surface（文本 &quot;Ready&quot;）均已渲染，aupNodes=41（远高于匿名态的 12）。</div>
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> 断言 node_exists(files-sidebar-list, afs-list) / node_exists(files-primary-list, afs-list) / action_exists(files-sidebar-list)</h3>
+<div class="exp">期望：sidebar/primary 均为可交互 afs-list 组件</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260723T101450Z/did-space/did-space-authed-explore-02.png" alt="断言 node_exists(files-sidebar-list, afs-list) / node_exists(files-primary-list, afs-list) / action_exists(files-sidebar-list)" loading="lazy"><figcaption>断言 node_exists(files-sidebar-list, afs-list) / node_exists(files-primary-list, afs-list) / action_exists(files-sidebar-list)</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：div#files-sidebar-list 与 div#files-primary-list 均渲染（data-aup-id 命中），且各自内含 Filter... 输入框 + Semantic search 按钮等可交互控件，确认为功能性 afs-list，非静态占位。</div>
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> 断言 node_exists(files-inspector-stat, afs-stat) / node_exists(files-inspector-preview, afs-preview) / node_exists(files-inspector-preview-title) / text_contains(files-inspector-preview-title, &quot;Preview&quot;)</h3>
+<div class="exp">期望：inspector 区域含 stat 面板 + preview 面板 + &quot;Preview&quot; 标题</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260723T101450Z/did-space/did-space-authed-explore-03.png" alt="断言 node_exists(files-inspector-stat, afs-stat) / node_exists(files-inspector-preview, afs-preview) / node_exists(files-inspector-preview-title) / text_contains(files-inspector-preview-title, &quot;Preview&quot;)" loading="lazy"><figcaption>断言 node_exists(files-inspector-stat, afs-stat) / node_exists(files-inspector-preview, afs-preview) / node_exists(files-inspector-preview-title) / text_contains(files-inspector-preview-title, &quot;Preview&quot;)</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：div#files-inspector-stat 渲染根路径元信息（&quot;/ Directory · 3 items ▶ DETAILS ▶ ABOUT&quot;）；h6#files-inspector-preview-title 文本精确为 &quot;Preview&quot;，位于 div#files-inspector-preview（&quot;Directory · 3 items instance packages dev .knowledge .meta .actions user space&quot;）上方，符合 man 描述的双区弹性布局。</div>
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> 断言 sidebar 只列目录（directoriesOnly:true 的行为侧写，DOM 无法直接读 AUP prop，改用真实渲染行为核验）</h3>
+<div class="exp">期望：files-sidebar-list 只应出现目录条目，不应出现文件</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260723T101450Z/did-space/did-space-authed-explore-01.png" alt="断言 sidebar 只列目录（directoriesOnly:true 的行为侧写，DOM 无法直接读 AUP prop，改用真实渲染行为核验）" loading="lazy"><figcaption>断言 sidebar 只列目录（directoriesOnly:true 的行为侧写，DOM 无法直接读 AUP prop，改用真实渲染行为核验）</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：补充脚本读取 sidebar body 的 .aup-list-row 得到根级 9 行：/、instance、packages、ash、dev、.knowledge（kind=afs:system）、.meta、.actions、user、space —— 全部是目录（无任何带扩展名的文件行），与 node_has_prop(files-sidebar-list, directoriesOnly, true) 的预期行为一致。DOM 未反射 AUP prop 字面值，故严格判定该 prop 断言本身为 deferred，但行为验证给出 pass。</div>
+
+</div>
+</section><section id="path-files-sidebar-select-fanout">
+<h2>认证态：sidebar 选择目录 → primary + inspector 三向 fan-out <span class="rt">authed · /explorer</span></h2>
+<video class="video" controls preload="metadata" src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260723T101450Z/did-space/page@d7740b3c33b5a6bc013711c044d23f77.webm"><a href="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260723T101450Z/did-space/page@d7740b3c33b5a6bc013711c044d23f77.webm">下载该路径录像</a></video><p class="vcap">本测试路径整段走查录像</p>
+<div class="kpis"><div class="kpi"><div class="k">2</div><div class="l">操作步</div></div><div class="kpi"><div class="k">1</div><div class="l">通过</div></div><div class="kpi"><div class="k k-bad">0</div><div class="l">失败</div></div><div class="kpi"><div class="k k-warn">1</div><div class="l">不确定</div></div><div class="kpi"><div class="k">0</div><div class="l">未走到</div></div></div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> 点击 sidebar 中 [data-entry-path=&quot;/instance&quot;] 行（真实 DOM 选择器，非文本模糊匹配）</h3>
+<div class="exp">期望：files-primary-list / files-inspector-stat / files-inspector-preview 三个目标同时切换到 /instance</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260723T101450Z/did-space/did-space-authed-sidebar-select-03.png" alt="点击 sidebar 中 [data-entry-path=&quot;/instance&quot;] 行（真实 DOM 选择器，非文本模糊匹配）" loading="lazy"><figcaption>点击 sidebar 中 [data-entry-path=&quot;/instance&quot;] 行（真实 DOM 选择器，非文本模糊匹配）</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：点击后 div#files-primary-list 文本变为 &quot;/ / instance .. 0 members Read-only view of connec...&quot;（面包屑切到 instance 目录，含子项 members/index/.seed-complete）；h4#meta-title 变为 &quot;instance&quot;；div#meta-details-kv 变为 &quot;path/instance&quot;；div#files-inspector-preview 变为 &quot;Directory · 1 item index .seed-complete&quot;。三个目标同步更新，验证 man 断言「fans out to 3 targets」为真。</div>
+
+</div>
+<div class="op">
+<h3><span class="pill p-warn">不确定</span> 同一会话下用文本模糊匹配（getByText &quot;instance&quot;）做对照点击（探路阶段的失败尝试，记录以避免误导）</h3>
+<div class="exp">期望：N/A（探路对照，非正式判定）</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260723T101450Z/did-space/did-space-authed-sidebar-nav-03.png" alt="同一会话下用文本模糊匹配（getByText &quot;instance&quot;）做对照点击（探路阶段的失败尝试，记录以避免误导）" loading="lazy"><figcaption>同一会话下用文本模糊匹配（getByText &quot;instance&quot;）做对照点击（探路阶段的失败尝试，记录以避免误导）</figcaption></figure></div>
+<div class="chk-fail"><b>观察证据</b>：getByText(&quot;instance&quot;) 命中的是 sidebar 描述文本节点而非行本身，点击后仅使某个 hover/expand 态展开出「members / AFS Index Provider」描述文字，primary-list 与 meta-title 均未真正切换（仍为 &quot;/&quot;）——判为探路噪音，不计入 fan-out 断言的正式判定（正式判定见上一步用精确 data-entry-path 选择器的结果）。</div>
+
+</div>
+</section><section id="path-files-primary-select-file-no-write">
+<h2>认证态：primary 选择 /instance 下文件 → inspector 更新，且全程只读（无 AFS 写） <span class="rt">authed · /explorer</span></h2>
+<video class="video" controls preload="metadata" src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260723T101450Z/did-space/page@e454ca5e60692117a4f5ce2450a64da8.webm"><a href="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260723T101450Z/did-space/page@e454ca5e60692117a4f5ce2450a64da8.webm">下载该路径录像</a></video><p class="vcap">本测试路径整段走查录像</p>
+<div class="kpis"><div class="kpi"><div class="k">2</div><div class="l">操作步</div></div><div class="kpi"><div class="k">2</div><div class="l">通过</div></div><div class="kpi"><div class="k k-bad">0</div><div class="l">失败</div></div><div class="kpi"><div class="k k-warn">0</div><div class="l">不确定</div></div><div class="kpi"><div class="k">0</div><div class="l">未走到</div></div></div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> 先点 sidebar /instance，再点 primary 中 [data-entry-path=&quot;/instance/.seed-complete&quot;] 文件行</h3>
+<div class="exp">期望：files-inspector-stat / files-inspector-preview 更新为该文件内容，且不触发 AFS 写</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260723T101450Z/did-space/did-space-file-select.png" alt="先点 sidebar /instance，再点 primary 中 [data-entry-path=&quot;/instance/.seed-complete&quot;] 文件行" loading="lazy"><figcaption>先点 sidebar /instance，再点 primary 中 [data-entry-path=&quot;/instance/.seed-complete&quot;] 文件行</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：div#files-inspector-stat 变为 &quot;.seed-complete did-space:file · 61 B Download Open&quot;；div#files-inspector-preview 显示实际文件内容 TEXT &quot;{\&quot;version\&quot;:\&quot;0.1.0\&quot;,\&quot;files\&quot;:0,\&quot;at\&quot;:\&quot;2026-07-02T16:28:30.892Z\&quot;}&quot;（61 chars，与 stat 大小一致）。URL 同步为 https://did-space.afsd.dev/explorer/instance?sel=%2Finstance%2F.seed-complete（selectSync=&quot;sel&quot; 与 urlSync=&quot;loc&quot; 均生效，深链路径正确）。</div>
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> 网络层核验：在同一交互序列（sidebar 选 /instance → primary 选 .seed-complete）期间抓取所有 POST /api/afs/rpc 请求体的 type 字段</h3>
+<div class="exp">期望：全程只应出现 list/read/stat 等只读 type，不应出现 write/put/delete/mkdir</div>
+
+<div class="chk"><b>观察证据</b>：独立补充脚本（非 agent-walk.mjs，用于网络断言，逻辑同框架但加了 page.on(&#x27;request&#x27;) 拦截）捕获到的 /api/afs/rpc POST body.type 序列为：[&quot;list&quot;,&quot;read&quot;,&quot;stat&quot;,&quot;list&quot;,&quot;list&quot;,&quot;read&quot;,&quot;stat&quot;,&quot;list&quot;,&quot;list&quot;,&quot;list&quot;,&quot;list&quot;,&quot;list&quot;]（首次进入 + 选 /instance 阶段），选中 .seed-complete 文件后新增的 body.type 序列为 [&quot;list&quot;,&quot;list&quot;]。全序列不含任何写类型，直接证实 man 断言「selecting a file never issues an AFS write, even under /instance mount」与根 CLAUDE.md 的 /instance 写纪律。</div>
+
+</div>
+</section><section id="path-files-anon-signin-redirect">
+<h2>匿名态：点击 Sign in → 跳转登录页（flow: anonymous → sign-in redirect） <span class="rt">anon · /explorer</span></h2>
+<video class="video" controls preload="metadata" src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260723T101450Z/did-space/page@eaf11611ad3b6116ceaa52699850fb10.webm"><a href="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260723T101450Z/did-space/page@eaf11611ad3b6116ceaa52699850fb10.webm">下载该路径录像</a></video><p class="vcap">本测试路径整段走查录像</p>
+<div class="kpis"><div class="kpi"><div class="k">1</div><div class="l">操作步</div></div><div class="kpi"><div class="k">1</div><div class="l">通过</div></div><div class="kpi"><div class="k k-bad">0</div><div class="l">失败</div></div><div class="kpi"><div class="k k-warn">0</div><div class="l">不确定</div></div><div class="kpi"><div class="k">0</div><div class="l">未走到</div></div></div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> 匿名态导航到 /explorer，点击 a#files-anon-login（&quot;Sign in&quot;）</h3>
+<div class="exp">期望：无 in-page 事件；应整页跳转到 /.well-known/service/login</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260723T101450Z/did-space/did-space-anon-signin-redirect-02.png" alt="匿名态导航到 /explorer，点击 a#files-anon-login（&quot;Sign in&quot;）" loading="lazy"><figcaption>匿名态导航到 /explorer，点击 a#files-anon-login（&quot;Sign in&quot;）</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：点击后浏览器 URL 变为 https://did-space.afsd.dev/.well-known/service/login，页面 title 变为 &quot;ARC services (Test) — Sign In&quot;，确认这是一次真实整页导航（非 SPA 内路由），与 man flow「click sign in (no in-page event; navigates to /.well-known/service/login)」完全一致。</div>
+
+</div>
+</section><section id="path-files-primary-navigate-drill">
+<h2>认证态：primary 双击目录行触发 navigate（drill），区别于单击 select（flow: primary → inspector via navigate） <span class="rt">authed · /explorer</span></h2>
+<video class="video" controls preload="metadata" src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260723T101450Z/did-space/page@87bc736eb6076a32cc630cd90aa8b8d8.webm"><a href="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260723T101450Z/did-space/page@87bc736eb6076a32cc630cd90aa8b8d8.webm">下载该路径录像</a></video><p class="vcap">本测试路径整段走查录像</p>
+<div class="kpis"><div class="kpi"><div class="k">1</div><div class="l">操作步</div></div><div class="kpi"><div class="k">1</div><div class="l">通过</div></div><div class="kpi"><div class="k k-bad">0</div><div class="l">失败</div></div><div class="kpi"><div class="k k-warn">0</div><div class="l">不确定</div></div><div class="kpi"><div class="k">0</div><div class="l">未走到</div></div></div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> 认证态导航到 /explorer（根目录），对 primary 列表中 [data-entry-path=&quot;/instance&quot;] 行执行 dblclick</h3>
+<div class="exp">期望：触发 files-primary-list 的 select 后紧跟 navigate 事件（drill into），primary 列表重新以 /instance 为根渲染，inspector 同步切换</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260723T101450Z/did-space/did-space-primary-navigate.png" alt="认证态导航到 /explorer（根目录），对 primary 列表中 [data-entry-path=&quot;/instance&quot;] 行执行 dblclick" loading="lazy"><figcaption>认证态导航到 /explorer（根目录），对 primary 列表中 [data-entry-path=&quot;/instance&quot;] 行执行 dblclick</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：拦截 /api/aup/event 请求，捕获到顺序两条事件：{nodeId:&quot;files-primary-list&quot;,event:&quot;select&quot;,data:{path:&quot;/instance&quot;,...}} 紧接 {nodeId:&quot;files-primary-list&quot;,event:&quot;navigate&quot;,data:{path:&quot;/instance&quot;,previousPath:&quot;/&quot;,...}}——与单纯单击（只产生 select/expand，见 files-sidebar-select-fanout 路径）不同，dblclick 额外触发了 navigate。之后 files-inspector-stat 区域文本变为 &quot;instance&quot;，files-primary-list 内容变为 &quot;/ instance .. members index .seed-complete&quot;（以 /instance 为新根，含 &quot;..&quot; 返回上级行），确认这是「drill via primary list」而非仅高亮选中。</div>
+
+</div>
+</section>
+<p class="sub" style="margin-top:22px">Generated by test-report-builder (build-agent-report) · issue #1808</p>
+</div></body></html>
