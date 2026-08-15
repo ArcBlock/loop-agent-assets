@@ -20,3 +20,4 @@
 | 20260815-010717-og-card-cara.png | https://github.com/ArcBlock/arc/pull/4039 | 2026-08-15T01:07:17Z | robmao@Roberts-Mac-mini-M4-Pro |
 | 20260815-050030-20260814-215940-b1-anon-landing.png | https://github.com/ArcBlock/arc/pull/4039 | 2026-08-15T05:00:30Z | robmao@Roberts-Mac-mini-M4-Pro |
 | 20260815-050037-20260814-215942-b2-login-redirect.png | https://github.com/ArcBlock/arc/pull/4039 | 2026-08-15T05:00:37Z | robmao@Roberts-Mac-mini-M4-Pro |
+| 20260815-050043-20260814-215946-b3-joined.png | https://github.com/ArcBlock/arc/pull/4039 | 2026-08-15T05:00:43Z | robmao@Roberts-Mac-mini-M4-Pro |
