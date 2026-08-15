@@ -4,3 +4,4 @@
 |---|---|---|---|
 | 20260815-095544-ui-verify-todo-home.png | https://github.com/ArcBlock/arc/pull/4084 | 2026-08-15T09:55:44Z | robmao@Roberts-Mac-mini-M4-Pro |
 | 20260815-095549-ui-verify-todo-home.gif | https://github.com/ArcBlock/arc/pull/4084 | 2026-08-15T09:55:49Z | robmao@Roberts-Mac-mini-M4-Pro |
+| 20260815-095554-ui-verify-todo-home.webm | https://github.com/ArcBlock/arc/pull/4084 | 2026-08-15T09:55:54Z | robmao@Roberts-Mac-mini-M4-Pro |
