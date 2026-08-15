@@ -1,0 +1,1213 @@
+<!doctype html><html><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>showcase — agent 走查报告</title><style>
+:root{--bg:#f7f8f8;--fg:#16201f;--muted:#5c6b69;--card:#fff;--card2:#eef2f1;--border:#dde3e2;--accent:#127a72;--pass:#1f8a54;--warn:#b5771a;--bad:#c0392b}
+@media(prefers-color-scheme:dark){:root{--bg:#0e1413;--fg:#e6ecea;--muted:#8ea19d;--card:#161d1c;--card2:#1d2624;--border:#26302e;--accent:#3fb8ab;--pass:#3fb37a;--warn:#d69a3e;--bad:#e5735f}}
+:root[data-theme=dark]{--bg:#0e1413;--fg:#e6ecea;--muted:#8ea19d;--card:#161d1c;--card2:#1d2624;--border:#26302e;--accent:#3fb8ab;--pass:#3fb37a;--warn:#d69a3e;--bad:#e5735f}
+:root[data-theme=light]{--bg:#f7f8f8;--fg:#16201f;--muted:#5c6b69;--card:#fff;--card2:#eef2f1;--border:#dde3e2;--accent:#127a72;--pass:#1f8a54;--warn:#b5771a;--bad:#c0392b}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--fg);font:15px/1.65 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;padding:24px}
+.wrap{max-width:920px;margin:0 auto}
+h1{font-size:24px;margin:0 0 4px;text-wrap:balance}h2{font-size:19px;margin:30px 0 8px}
+h2 .rt{font-size:13px;color:var(--muted);font-weight:400;font-variant-numeric:tabular-nums}
+.sub{color:var(--muted);margin:0 0 14px;font-size:13px}
+code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.85em;background:var(--card2);padding:1px 5px;border-radius:4px}
+.how{background:var(--card);border:1px solid var(--border);border-left:3px solid var(--accent);border-radius:8px;padding:13px 16px;margin:14px 0;font-size:14px}
+.how b{color:var(--accent)}
+.banner{border-radius:12px;padding:14px 18px;margin:16px 0}
+.banner.ok{background:color-mix(in srgb,var(--pass) 12%,transparent);border:1px solid color-mix(in srgb,var(--pass) 40%,transparent)}
+.banner.ok b{color:var(--pass)}
+.banner.bad{background:color-mix(in srgb,var(--bad) 13%,transparent);border:1px solid color-mix(in srgb,var(--bad) 45%,transparent)}
+.banner.bad b{color:var(--bad);font-size:16px}
+.banner.info{background:color-mix(in srgb,var(--accent) 10%,transparent);border:1px solid color-mix(in srgb,var(--accent) 38%,transparent)}
+.banner.info b{color:var(--accent)}
+.plist{margin:10px 0 0;padding-left:0;list-style:none}
+.plist li{padding:8px 0;border-top:1px solid var(--border)}
+.plist a{text-decoration:none;color:var(--fg);font-weight:600}
+.plist .pe{color:var(--muted);font-size:12.5px;font-weight:400;margin-top:3px}
+.video{width:100%;border-radius:10px;border:1px solid var(--border);background:#000;margin:6px 0 2px}
+.vcap{color:var(--muted);font-size:12.5px;margin:0 0 8px}
+.novideo{color:var(--bad);font-weight:600;background:color-mix(in srgb,var(--bad) 10%,transparent);border:1px dashed color-mix(in srgb,var(--bad) 45%,transparent);border-radius:8px;padding:8px 12px;font-size:13px}
+.kpis{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0}
+.kpi{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:9px 14px;min-width:70px}
+.kpi .k{font-size:21px;font-weight:700;font-variant-numeric:tabular-nums}.kpi .l{color:var(--muted);font-size:12px}
+.kpi .k-bad{color:var(--bad)}.kpi .k-warn{color:var(--warn)}
+.op{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:15px 17px;margin:14px 0}
+.op h3{margin:0 0 3px;font-size:16px;display:flex;align-items:center;gap:9px;flex-wrap:wrap}
+.op .exp{color:var(--muted);font-size:13px;margin:0 0 9px}
+.op .nt{color:var(--muted);font-size:12.5px;margin-top:6px}
+.pill{font-size:11.5px;font-weight:700;padding:2px 9px;border-radius:20px}
+.p-ok{background:color-mix(in srgb,var(--pass) 18%,transparent);color:var(--pass)}
+.p-fail{background:color-mix(in srgb,var(--bad) 18%,transparent);color:var(--bad)}
+.p-warn{background:color-mix(in srgb,var(--warn) 20%,transparent);color:var(--warn)}
+.p-skip{background:var(--card2);color:var(--muted)}
+.p-write{background:color-mix(in srgb,var(--accent) 18%,transparent);color:var(--accent)}
+.frame figure{margin:0 0 9px}.frame img{width:100%;border-radius:8px;border:1px solid var(--border);display:block}
+.frame figcaption{color:var(--muted);font-size:11.5px;margin-top:4px;text-align:center}
+.chk{background:color-mix(in srgb,var(--pass) 12%,transparent);border:1px solid color-mix(in srgb,var(--pass) 34%,transparent);border-radius:8px;padding:8px 12px;font-size:13px}
+.chk b{color:var(--pass)}
+.chk-fail{background:color-mix(in srgb,var(--bad) 11%,transparent);border:1px solid color-mix(in srgb,var(--bad) 40%,transparent);border-radius:8px;padding:8px 12px;font-size:13px}
+.chk-fail b{color:var(--bad)}
+table.probe{border-collapse:collapse;width:100%;font-size:13px}
+table.probe th,table.probe td{border:1px solid var(--border);padding:5px 9px;text-align:left}
+table.probe tr.bad td{background:color-mix(in srgb,var(--bad) 10%,transparent)}
+.err{background:color-mix(in srgb,var(--bad) 11%,transparent);border:1px solid color-mix(in srgb,var(--bad) 40%,transparent);border-radius:8px;padding:7px 12px;font-size:12.5px;margin-top:6px}
+.err b{color:var(--bad)}.err code{background:transparent;color:var(--bad)}
+.dbg{margin:10px 0 2px;background:var(--card);border:1px solid var(--border);border-radius:10px;padding:6px 14px;font-size:13px}
+.dbg summary{cursor:pointer;color:var(--muted);font-weight:600;padding:5px 0}
+.dbg-none{color:var(--muted);padding:4px 0;font-size:12.5px}
+.dbg-has{padding:5px 0}.dbg-has b{color:var(--warn)}
+.dbg-has ul{margin:5px 0 8px;padding-left:18px}.dbg-has li{font-size:12px;color:var(--fg);margin:2px 0;word-break:break-all}
+.dbg-has code{background:var(--card2)}
+.pdesc{color:var(--muted);font-size:13.5px;margin:1px 0 11px;line-height:1.5}
+.pdesc code{font-size:.85em}
+details.steps{margin:6px 0 2px;border:1px solid var(--border);border-radius:10px;background:var(--card2);padding:2px 14px}
+details.steps>summary{cursor:pointer;color:var(--accent);font-weight:600;padding:9px 0;font-size:13.5px;list-style:none}
+details.steps>summary::-webkit-details-marker{display:none}
+details.steps[open]>summary{border-bottom:1px solid var(--border);margin-bottom:8px}
+details.steps>summary:hover{color:var(--fg)}
+</style></head><body><div class="wrap">
+<h1>showcase — agent 走查报告</h1>
+<p class="sub">环境 <code>https://showcase.afsd.dev</code> · 2026-08-15T19:28:26.297928Z · 走查 27 / 声明 51 条测试路径 · driver <code>agent-playwright-mcp</code></p>
+<div class="how"><b>这份报告在做什么</b>：test-sweep 让 <b>agent 读被测页面自己写的
+<code>.aup/man</code> 知识</b>，用 Playwright MCP <b>当真人逐条测试路径走查</b>（导航/加标签/编辑/删除/创建…），
+<b>每条路径各自一段录屏</b>、每步截图并<b>自判 verdict + 附观察证据</b>（实际 DOM/文本/值，可复核）。
+<b>unreached</b>=没驱动到（不当失败）；<b>inconclusive</b>=不确定（绝不判失败）。写操作默认真提交、不清理。</div>
+
+<div class="banner info"><b>ℹ️ 覆盖 27 / 51：1 条声明路径未走到</b>（可见但不阻断——漏走的补记为 unreached、不判红；绿灯只表示走到的都过了。agent 应据此自主决定再补哪些、完善报告）<ul class="plist"><li><code>tx-detail</code> <span class="pill p-skip">动态入口</span> <span class="pe">/app?page=tx-detail</span></li></ul></div>
+<div class="banner bad"><b>⚠️ 发现 6 个问题</b>（点击跳到对应路径）<ul class="plist"><li><a href="#path-dd-1"><span class="pill p-warn">不确定</span> Write-flow: form-contact valid submit (all 4 required fields) · 步2</a> — fill<div class="pe">fill attempt on selector [data-aup-id=&quot;f-name&quot;] failed with Playwright error &#x27;Element is not an &lt;input&gt;...&#x27; — the data-aup-id wrapper is a &lt;div&gt;, not the actual &lt;input&gt;; this is a driver selector-targeting miss, not an app defect (confirmed</div></li><li><a href="#path-dd-1"><span class="pill p-warn">不确定</span> Write-flow: form-contact valid submit (all 4 required fields) · 步10</a> — click<div class="pe">3s after submit, screenshot dd-1-showcase-10.png shows the button reverted to idle label &#x27;Let&#x27;s Connect&#x27; — neither the doneLabel (&#x27;Submitted&#x27;) nor errorLabel (&#x27;Failed&#x27;) text was caught in this snapshot cadence, so the terminal outcome (writ</div></li><li><a href="#path-dd-1"><span class="pill p-warn">不确定</span> Write-flow: form-contact valid submit (all 4 required fields) · 步11</a> — waitFor<div class="pe">session end: result.json shows consoleErrors=[], pageErrors=[], networkErrors=[] for the whole session — no HTTP 4xx/5xx or failed request was observed, but the AFS write goes over the WS session protocol (not plain HTTP fetch), so page.on(</div></li><li><a href="#path-dd-3"><span class="pill p-warn">不确定</span> Write-flow continuation: auto-surface Site title save confirmed persisted (then restored to original) · 步4</a> — click<div class="pe">clicked the &#x27;Reset to default&#x27; button — its label changed to &#x27;Done&#x27; but the Site title field&#x27;s displayed value did NOT change (still showed &#x27;Updated Title (qa-tsweep-1786822804)&#x27;, screenshot dd-2-showcase-10.png). This control&#x27;s behavior di</div></li><li><a href="#path-dd-6"><span class="pill p-warn">不确定</span> Read-flow: overlays alert dismiss (built-in OK control closes alert-demo) · 步3</a> — click<div class="pe">clicked selector &#x27;body&#x27; (center of page) to probe backdrop-dismiss — the dialog remained open and unchanged (screenshot dd-6-showcase-02.png identical to prior); the click likely landed on the modal itself or its backdrop is not click-to-di</div></li><li><a href="#path-dd-9"><span class="pill p-fail">失败</span> Read-flow: list-basic -&gt; Templates variant tab switch · 步2</a> — click<div class="pe">click [data-aup-id=&quot;tab-template&quot;] (settle 800ms) returned ok=true with no JS error, but the URL stayed at /app?page=list-basic and the header/content remained &#x27;afs-list: Basic&#x27; (screenshot dd-8-showcase-03.png, unchanged) — the tab click s</div></li></ul></div>
+<section id="probes"><h2>后端探针 （全通过）</h2><table class="probe"><tr><th></th><th>探针</th><th>详情</th></tr><tr class=""><td>✅</td><td>http-reachable</td><td>HTTP 200</td></tr><tr class=""><td>✅</td><td>afs-rpc-list</td><td>ok:true (61 .aup pages)</td></tr><tr class=""><td>✅</td><td>afs-rpc-authed-list-/user</td><td>ok:true (Bearer 可读)</td></tr></table></section>
+<section id="path-form-contact">
+<h2>Form Contact <span class="rt">anon · https://showcase.afsd.dev/app?page=form-contact</span></h2>
+<p class="pdesc">导航到 https://showcase.afsd.dev/app?page=form-contact，验证页面加载并渲染出真实内容（form-contact 页 breadth 走查）。</p>
+<video class="video" controls preload="metadata" src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260815T191828Z/showcase/page@0d4cf63fbd88524bc9b3abd0d48360c7.webm"><a href="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260815T191828Z/showcase/page@0d4cf63fbd88524bc9b3abd0d48360c7.webm">下载该路径录像</a></video><p class="vcap">本测试路径整段走查录像</p>
+<div class="kpis"><div class="kpi"><div class="k">2</div><div class="l">操作步</div></div><div class="kpi"><div class="k">2</div><div class="l">通过</div></div><div class="kpi"><div class="k k-bad">0</div><div class="l">失败</div></div><div class="kpi"><div class="k k-warn">0</div><div class="l">不确定</div></div><div class="kpi"><div class="k">0</div><div class="l">未走到</div></div></div>
+<details class="steps"><summary>▸ 逐步操作详情（2 步，含判定截图）</summary><div class="op">
+<h3><span class="pill p-ok">通过</span> navigate</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260815T191828Z/showcase/form-contact-01.png" alt="navigate" loading="lazy"><figcaption>navigate</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：title=&#x27;AUP Showcase&#x27; url=https://showcase.afsd.dev/app?page=form-contact aupNodes=106 buttons=72 inputs=5 textLen=1183 head=&#x27;AFS Home Showcase AUP Web Home Functional Dashboard Content Portal Report Workspace Web Sharing WM Desktop Explorer Auto Surface App Setting&#x27;</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> snapshot</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260815T191828Z/showcase/form-contact-02.png" alt="snapshot" loading="lazy"><figcaption>snapshot</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：title=&#x27;AUP Showcase&#x27; url=https://showcase.afsd.dev/app?page=form-contact aupNodes=106 buttons=72 inputs=5 textLen=1183 head=&#x27;AFS Home Showcase AUP Web Home Functional Dashboard Content Portal Report Workspace Web Sharing WM Desktop Explorer Auto Surface App Setting&#x27;</div>
+
+
+</div></details>
+<details class="dbg"><summary>运行时 debug 上下文（全清）</summary><div class="dbg-none">Console 错误：<b>无</b></div><div class="dbg-none">JS 未捕获异常：<b>无</b></div><div class="dbg-none">网络错误（请求失败 / 4xx–5xx）：<b>无</b></div></details>
+</section><section id="path-form-wizard">
+<h2>Form Wizard <span class="rt">anon · https://showcase.afsd.dev/app?page=form-wizard</span></h2>
+<p class="pdesc">导航到 https://showcase.afsd.dev/app?page=form-wizard，验证页面加载并渲染出真实内容（form-wizard 页 breadth 走查）。</p>
+<video class="video" controls preload="metadata" src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260815T191828Z/showcase/page@c0746a05d3a7ef2d22c8e063007856b3.webm"><a href="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260815T191828Z/showcase/page@c0746a05d3a7ef2d22c8e063007856b3.webm">下载该路径录像</a></video><p class="vcap">本测试路径整段走查录像</p>
+<div class="kpis"><div class="kpi"><div class="k">2</div><div class="l">操作步</div></div><div class="kpi"><div class="k">2</div><div class="l">通过</div></div><div class="kpi"><div class="k k-bad">0</div><div class="l">失败</div></div><div class="kpi"><div class="k k-warn">0</div><div class="l">不确定</div></div><div class="kpi"><div class="k">0</div><div class="l">未走到</div></div></div>
+<details class="steps"><summary>▸ 逐步操作详情（2 步，含判定截图）</summary><div class="op">
+<h3><span class="pill p-ok">通过</span> navigate</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260815T191828Z/showcase/form-wizard-01.png" alt="navigate" loading="lazy"><figcaption>navigate</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：title=&#x27;AUP Showcase&#x27; url=https://showcase.afsd.dev/app?page=form-wizard aupNodes=145 buttons=68 inputs=2 textLen=1566 head=&#x27;AFS Home Showcase AUP Web Home Functional Dashboard Content Portal Report Workspace Web Sharing WM Desktop Explorer Auto Surface App Setting&#x27;</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> snapshot</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260815T191828Z/showcase/form-wizard-02.png" alt="snapshot" loading="lazy"><figcaption>snapshot</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：title=&#x27;AUP Showcase&#x27; url=https://showcase.afsd.dev/app?page=form-wizard aupNodes=145 buttons=68 inputs=2 textLen=1566 head=&#x27;AFS Home Showcase AUP Web Home Functional Dashboard Content Portal Report Workspace Web Sharing WM Desktop Explorer Auto Surface App Setting&#x27;</div>
+
+
+</div></details>
+<details class="dbg"><summary>运行时 debug 上下文（全清）</summary><div class="dbg-none">Console 错误：<b>无</b></div><div class="dbg-none">JS 未捕获异常：<b>无</b></div><div class="dbg-none">网络错误（请求失败 / 4xx–5xx）：<b>无</b></div></details>
+</section><section id="path-form-wizard-read-1">
+<h2>step 1 (Vehicle) → step 2 (Retailer) <span class="rt">anon · https://showcase.afsd.dev/app?page=form-wizard</span></h2>
+<p class="pdesc">读流走查：从「step 1 (Vehicle)」进入「step 2 (Retailer)」并验证渲染。</p>
+<video class="video" controls preload="metadata" src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260815T191828Z/showcase/page@a453b199e3c8b0801f1274b604f8376c.webm"><a href="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260815T191828Z/showcase/page@a453b199e3c8b0801f1274b604f8376c.webm">下载该路径录像</a></video><p class="vcap">本测试路径整段走查录像</p>
+<div class="kpis"><div class="kpi"><div class="k">3</div><div class="l">操作步</div></div><div class="kpi"><div class="k">3</div><div class="l">通过</div></div><div class="kpi"><div class="k k-bad">0</div><div class="l">失败</div></div><div class="kpi"><div class="k k-warn">0</div><div class="l">不确定</div></div><div class="kpi"><div class="k">0</div><div class="l">未走到</div></div></div>
+<details class="steps"><summary>▸ 逐步操作详情（3 步，含判定截图）</summary><div class="op">
+<h3><span class="pill p-ok">通过</span> navigate</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260815T191828Z/showcase/form-wizard-read-1-01.png" alt="navigate" loading="lazy"><figcaption>navigate</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：title=&#x27;AUP Showcase&#x27; url=https://showcase.afsd.dev/app?page=form-wizard aupNodes=145 buttons=68 inputs=2 textLen=1566 head=&#x27;AFS Home Showcase AUP Web Home Functional Dashboard Content Portal Report Workspace Web Sharing WM Desktop Explorer Auto Surface App Setting&#x27;</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> 点控件 [btn-next]</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260815T191828Z/showcase/form-wizard-read-1-02.png" alt="点控件 [btn-next]" loading="lazy"><figcaption>点控件 [btn-next]</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：title=&#x27;AUP Showcase&#x27; url=https://showcase.afsd.dev/app?page=form-wizard aupNodes=127 buttons=69 inputs=0 textLen=1092 head=&#x27;AFS Home Showcase AUP Web Home Functional Dashboard Content Portal Report Workspace Web Sharing WM Desktop Explorer Auto Surface App Setting&#x27;</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> snapshot</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260815T191828Z/showcase/form-wizard-read-1-03.png" alt="snapshot" loading="lazy"><figcaption>snapshot</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：title=&#x27;AUP Showcase&#x27; url=https://showcase.afsd.dev/app?page=form-wizard aupNodes=127 buttons=69 inputs=0 textLen=1092 head=&#x27;AFS Home Showcase AUP Web Home Functional Dashboard Content Portal Report Workspace Web Sharing WM Desktop Explorer Auto Surface App Setting&#x27;</div>
+
+
+</div></details>
+<details class="dbg"><summary>运行时 debug 上下文（全清）</summary><div class="dbg-none">Console 错误：<b>无</b></div><div class="dbg-none">JS 未捕获异常：<b>无</b></div><div class="dbg-none">网络错误（请求失败 / 4xx–5xx）：<b>无</b></div></details>
+</section><section id="path-form-wizard-read-2">
+<h2>step 2 → step 1 <span class="rt">anon · https://showcase.afsd.dev/app?page=form-wizard</span></h2>
+<p class="pdesc">读流走查：从「step 2」进入「step 1」并验证渲染。</p>
+<video class="video" controls preload="metadata" src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260815T191828Z/showcase/page@15fa6206e6e54e9765fe7a51bdf6608b.webm"><a href="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260815T191828Z/showcase/page@15fa6206e6e54e9765fe7a51bdf6608b.webm">下载该路径录像</a></video><p class="vcap">本测试路径整段走查录像</p>
+<div class="kpis"><div class="kpi"><div class="k">1</div><div class="l">操作步</div></div><div class="kpi"><div class="k">0</div><div class="l">通过</div></div><div class="kpi"><div class="k k-bad">0</div><div class="l">失败</div></div><div class="kpi"><div class="k k-warn">0</div><div class="l">不确定</div></div><div class="kpi"><div class="k">1</div><div class="l">未走到</div></div></div>
+<details class="steps"><summary>▸ 逐步操作详情（1 步，含判定截图）</summary><div class="op">
+<h3><span class="pill p-skip">未走到</span> 点控件 [step2-back-btn]</h3>
+
+
+<div class="chk"><b>观察证据</b>：导航到 https://showcase.afsd.dev/app?page=form-wizard 后，读流入口不可点：TimeoutError: click: Timeout 4000ms exceeded.</div>
+
+<div class="nt">blocked: read-flow entry not on-load reachable</div>
+</div></details>
+<details class="dbg"><summary>运行时 debug 上下文（全清）</summary><div class="dbg-none">Console 错误：<b>无</b></div><div class="dbg-none">JS 未捕获异常：<b>无</b></div><div class="dbg-none">网络错误（请求失败 / 4xx–5xx）：<b>无</b></div></details>
+</section><section id="path-form-wizard-read-3">
+<h2>step 2 → step 3 <span class="rt">anon · https://showcase.afsd.dev/app?page=form-wizard</span></h2>
+<p class="pdesc">读流走查：从「step 2」进入「step 3」并验证渲染。</p>
+<video class="video" controls preload="metadata" src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260815T191828Z/showcase/page@423920ec8eba5c7e8a1b2e00d15c7904.webm"><a href="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260815T191828Z/showcase/page@423920ec8eba5c7e8a1b2e00d15c7904.webm">下载该路径录像</a></video><p class="vcap">本测试路径整段走查录像</p>
+<div class="kpis"><div class="kpi"><div class="k">1</div><div class="l">操作步</div></div><div class="kpi"><div class="k">0</div><div class="l">通过</div></div><div class="kpi"><div class="k k-bad">0</div><div class="l">失败</div></div><div class="kpi"><div class="k k-warn">0</div><div class="l">不确定</div></div><div class="kpi"><div class="k">1</div><div class="l">未走到</div></div></div>
+<details class="steps"><summary>▸ 逐步操作详情（1 步，含判定截图）</summary><div class="op">
+<h3><span class="pill p-skip">未走到</span> 点控件 [step2-next-btn]</h3>
+
+
+<div class="chk"><b>观察证据</b>：导航到 https://showcase.afsd.dev/app?page=form-wizard 后，读流入口不可点：TimeoutError: click: Timeout 4000ms exceeded.</div>
+
+<div class="nt">blocked: read-flow entry not on-load reachable</div>
+</div></details>
+<details class="dbg"><summary>运行时 debug 上下文（全清）</summary><div class="dbg-none">Console 错误：<b>无</b></div><div class="dbg-none">JS 未捕获异常：<b>无</b></div><div class="dbg-none">网络错误（请求失败 / 4xx–5xx）：<b>无</b></div></details>
+</section><section id="path-form-wizard-read-4">
+<h2>step 3 → step 2 <span class="rt">anon · https://showcase.afsd.dev/app?page=form-wizard</span></h2>
+<p class="pdesc">读流走查：从「step 3」进入「step 2」并验证渲染。</p>
+<video class="video" controls preload="metadata" src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260815T191828Z/showcase/page@7bd841956ab6196ef4439d8dae539cc5.webm"><a href="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260815T191828Z/showcase/page@7bd841956ab6196ef4439d8dae539cc5.webm">下载该路径录像</a></video><p class="vcap">本测试路径整段走查录像</p>
+<div class="kpis"><div class="kpi"><div class="k">1</div><div class="l">操作步</div></div><div class="kpi"><div class="k">0</div><div class="l">通过</div></div><div class="kpi"><div class="k k-bad">0</div><div class="l">失败</div></div><div class="kpi"><div class="k k-warn">0</div><div class="l">不确定</div></div><div class="kpi"><div class="k">1</div><div class="l">未走到</div></div></div>
+<details class="steps"><summary>▸ 逐步操作详情（1 步，含判定截图）</summary><div class="op">
+<h3><span class="pill p-skip">未走到</span> 点控件 [step3-back-btn]</h3>
+
+
+<div class="chk"><b>观察证据</b>：导航到 https://showcase.afsd.dev/app?page=form-wizard 后，读流入口不可点：TimeoutError: click: Timeout 4000ms exceeded.</div>
+
+<div class="nt">blocked: read-flow entry not on-load reachable</div>
+</div></details>
+<details class="dbg"><summary>运行时 debug 上下文（全清）</summary><div class="dbg-none">Console 错误：<b>无</b></div><div class="dbg-none">JS 未捕获异常：<b>无</b></div><div class="dbg-none">网络错误（请求失败 / 4xx–5xx）：<b>无</b></div></details>
+</section><section id="path-form-wizard-read-5">
+<h2>step 3 → step 4 <span class="rt">anon · https://showcase.afsd.dev/app?page=form-wizard</span></h2>
+<p class="pdesc">读流走查：从「step 3」进入「step 4」并验证渲染。</p>
+<video class="video" controls preload="metadata" src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260815T191828Z/showcase/page@47819e41dcee28099154b36ea2e84c9a.webm"><a href="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260815T191828Z/showcase/page@47819e41dcee28099154b36ea2e84c9a.webm">下载该路径录像</a></video><p class="vcap">本测试路径整段走查录像</p>
+<div class="kpis"><div class="kpi"><div class="k">1</div><div class="l">操作步</div></div><div class="kpi"><div class="k">0</div><div class="l">通过</div></div><div class="kpi"><div class="k k-bad">0</div><div class="l">失败</div></div><div class="kpi"><div class="k k-warn">0</div><div class="l">不确定</div></div><div class="kpi"><div class="k">1</div><div class="l">未走到</div></div></div>
+<details class="steps"><summary>▸ 逐步操作详情（1 步，含判定截图）</summary><div class="op">
+<h3><span class="pill p-skip">未走到</span> 点控件 [step3-next-btn]</h3>
+
+
+<div class="chk"><b>观察证据</b>：导航到 https://showcase.afsd.dev/app?page=form-wizard 后，读流入口不可点：TimeoutError: click: Timeout 4000ms exceeded.</div>
+
+<div class="nt">blocked: read-flow entry not on-load reachable</div>
+</div></details>
+<details class="dbg"><summary>运行时 debug 上下文（全清）</summary><div class="dbg-none">Console 错误：<b>无</b></div><div class="dbg-none">JS 未捕获异常：<b>无</b></div><div class="dbg-none">网络错误（请求失败 / 4xx–5xx）：<b>无</b></div></details>
+</section><section id="path-form-wizard-read-6">
+<h2>step 4 → step 3 <span class="rt">anon · https://showcase.afsd.dev/app?page=form-wizard</span></h2>
+<p class="pdesc">读流走查：从「step 4」进入「step 3」并验证渲染。</p>
+<video class="video" controls preload="metadata" src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260815T191828Z/showcase/page@b6bf511d3786f9947d02030a81c5cecf.webm"><a href="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260815T191828Z/showcase/page@b6bf511d3786f9947d02030a81c5cecf.webm">下载该路径录像</a></video><p class="vcap">本测试路径整段走查录像</p>
+<div class="kpis"><div class="kpi"><div class="k">1</div><div class="l">操作步</div></div><div class="kpi"><div class="k">0</div><div class="l">通过</div></div><div class="kpi"><div class="k k-bad">0</div><div class="l">失败</div></div><div class="kpi"><div class="k k-warn">0</div><div class="l">不确定</div></div><div class="kpi"><div class="k">1</div><div class="l">未走到</div></div></div>
+<details class="steps"><summary>▸ 逐步操作详情（1 步，含判定截图）</summary><div class="op">
+<h3><span class="pill p-skip">未走到</span> 点控件 [step4-back-btn]</h3>
+
+
+<div class="chk"><b>观察证据</b>：导航到 https://showcase.afsd.dev/app?page=form-wizard 后，读流入口不可点：TimeoutError: click: Timeout 4000ms exceeded.</div>
+
+<div class="nt">blocked: read-flow entry not on-load reachable</div>
+</div></details>
+<details class="dbg"><summary>运行时 debug 上下文（全清）</summary><div class="dbg-none">Console 错误：<b>无</b></div><div class="dbg-none">JS 未捕获异常：<b>无</b></div><div class="dbg-none">网络错误（请求失败 / 4xx–5xx）：<b>无</b></div></details>
+</section><section id="path-form-wizard-read-7">
+<h2>step 4 → step 5 <span class="rt">anon · https://showcase.afsd.dev/app?page=form-wizard</span></h2>
+<p class="pdesc">读流走查：从「step 4」进入「step 5」并验证渲染。</p>
+<video class="video" controls preload="metadata" src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260815T191828Z/showcase/page@f3b55c490f42ff2b371c4821f62a6952.webm"><a href="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260815T191828Z/showcase/page@f3b55c490f42ff2b371c4821f62a6952.webm">下载该路径录像</a></video><p class="vcap">本测试路径整段走查录像</p>
+<div class="kpis"><div class="kpi"><div class="k">1</div><div class="l">操作步</div></div><div class="kpi"><div class="k">0</div><div class="l">通过</div></div><div class="kpi"><div class="k k-bad">0</div><div class="l">失败</div></div><div class="kpi"><div class="k k-warn">0</div><div class="l">不确定</div></div><div class="kpi"><div class="k">1</div><div class="l">未走到</div></div></div>
+<details class="steps"><summary>▸ 逐步操作详情（1 步，含判定截图）</summary><div class="op">
+<h3><span class="pill p-skip">未走到</span> 点控件 [step4-next-btn]</h3>
+
+
+<div class="chk"><b>观察证据</b>：导航到 https://showcase.afsd.dev/app?page=form-wizard 后，读流入口不可点：TimeoutError: click: Timeout 4000ms exceeded.</div>
+
+<div class="nt">blocked: read-flow entry not on-load reachable</div>
+</div></details>
+<details class="dbg"><summary>运行时 debug 上下文（全清）</summary><div class="dbg-none">Console 错误：<b>无</b></div><div class="dbg-none">JS 未捕获异常：<b>无</b></div><div class="dbg-none">网络错误（请求失败 / 4xx–5xx）：<b>无</b></div></details>
+</section><section id="path-form-wizard-read-8">
+<h2>step 5 → step 4 <span class="rt">anon · https://showcase.afsd.dev/app?page=form-wizard</span></h2>
+<p class="pdesc">读流走查：从「step 5」进入「step 4」并验证渲染。</p>
+<video class="video" controls preload="metadata" src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260815T191828Z/showcase/page@208525a75a4739d62ef2f73c3ef6855d.webm"><a href="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260815T191828Z/showcase/page@208525a75a4739d62ef2f73c3ef6855d.webm">下载该路径录像</a></video><p class="vcap">本测试路径整段走查录像</p>
+<div class="kpis"><div class="kpi"><div class="k">1</div><div class="l">操作步</div></div><div class="kpi"><div class="k">0</div><div class="l">通过</div></div><div class="kpi"><div class="k k-bad">0</div><div class="l">失败</div></div><div class="kpi"><div class="k k-warn">0</div><div class="l">不确定</div></div><div class="kpi"><div class="k">1</div><div class="l">未走到</div></div></div>
+<details class="steps"><summary>▸ 逐步操作详情（1 步，含判定截图）</summary><div class="op">
+<h3><span class="pill p-skip">未走到</span> 点控件 [step5-back-btn]</h3>
+
+
+<div class="chk"><b>观察证据</b>：导航到 https://showcase.afsd.dev/app?page=form-wizard 后，读流入口不可点：TimeoutError: click: Timeout 4000ms exceeded.</div>
+
+<div class="nt">blocked: read-flow entry not on-load reachable</div>
+</div></details>
+<details class="dbg"><summary>运行时 debug 上下文（全清）</summary><div class="dbg-none">Console 错误：<b>无</b></div><div class="dbg-none">JS 未捕获异常：<b>无</b></div><div class="dbg-none">网络错误（请求失败 / 4xx–5xx）：<b>无</b></div></details>
+</section><section id="path-form-wizard-read-9">
+<h2>step 5 → step 6 (Confirm) <span class="rt">anon · https://showcase.afsd.dev/app?page=form-wizard</span></h2>
+<p class="pdesc">读流走查：从「step 5」进入「step 6 (Confirm)」并验证渲染。</p>
+<video class="video" controls preload="metadata" src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260815T191828Z/showcase/page@b5c2b25dad5ec6dd343b1f75197b6063.webm"><a href="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260815T191828Z/showcase/page@b5c2b25dad5ec6dd343b1f75197b6063.webm">下载该路径录像</a></video><p class="vcap">本测试路径整段走查录像</p>
+<div class="kpis"><div class="kpi"><div class="k">1</div><div class="l">操作步</div></div><div class="kpi"><div class="k">0</div><div class="l">通过</div></div><div class="kpi"><div class="k k-bad">0</div><div class="l">失败</div></div><div class="kpi"><div class="k k-warn">0</div><div class="l">不确定</div></div><div class="kpi"><div class="k">1</div><div class="l">未走到</div></div></div>
+<details class="steps"><summary>▸ 逐步操作详情（1 步，含判定截图）</summary><div class="op">
+<h3><span class="pill p-skip">未走到</span> 点控件 [step5-next-btn]</h3>
+
+
+<div class="chk"><b>观察证据</b>：导航到 https://showcase.afsd.dev/app?page=form-wizard 后，读流入口不可点：TimeoutError: click: Timeout 4000ms exceeded.</div>
+
+<div class="nt">blocked: read-flow entry not on-load reachable</div>
+</div></details>
+<details class="dbg"><summary>运行时 debug 上下文（全清）</summary><div class="dbg-none">Console 错误：<b>无</b></div><div class="dbg-none">JS 未捕获异常：<b>无</b></div><div class="dbg-none">网络错误（请求失败 / 4xx–5xx）：<b>无</b></div></details>
+</section><section id="path-form-wizard-read-10">
+<h2>step 6 → step 5 <span class="rt">anon · https://showcase.afsd.dev/app?page=form-wizard</span></h2>
+<p class="pdesc">读流走查：从「step 6」进入「step 5」并验证渲染。</p>
+<video class="video" controls preload="metadata" src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260815T191828Z/showcase/page@bef893ed28cc853894b7d7cd5c24e53d.webm"><a href="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260815T191828Z/showcase/page@bef893ed28cc853894b7d7cd5c24e53d.webm">下载该路径录像</a></video><p class="vcap">本测试路径整段走查录像</p>
+<div class="kpis"><div class="kpi"><div class="k">1</div><div class="l">操作步</div></div><div class="kpi"><div class="k">0</div><div class="l">通过</div></div><div class="kpi"><div class="k k-bad">0</div><div class="l">失败</div></div><div class="kpi"><div class="k k-warn">0</div><div class="l">不确定</div></div><div class="kpi"><div class="k">1</div><div class="l">未走到</div></div></div>
+<details class="steps"><summary>▸ 逐步操作详情（1 步，含判定截图）</summary><div class="op">
+<h3><span class="pill p-skip">未走到</span> 点控件 [step6-back-btn]</h3>
+
+
+<div class="chk"><b>观察证据</b>：导航到 https://showcase.afsd.dev/app?page=form-wizard 后，读流入口不可点：TimeoutError: click: Timeout 4000ms exceeded.</div>
+
+<div class="nt">blocked: read-flow entry not on-load reachable</div>
+</div></details>
+<details class="dbg"><summary>运行时 debug 上下文（全清）</summary><div class="dbg-none">Console 错误：<b>无</b></div><div class="dbg-none">JS 未捕获异常：<b>无</b></div><div class="dbg-none">网络错误（请求失败 / 4xx–5xx）：<b>无</b></div></details>
+</section><section id="path-overlays">
+<h2>Overlays <span class="rt">anon · https://showcase.afsd.dev/app?page=overlays</span></h2>
+<p class="pdesc">导航到 https://showcase.afsd.dev/app?page=overlays，验证页面加载并渲染出真实内容（overlays 页 breadth 走查）。</p>
+<video class="video" controls preload="metadata" src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260815T191828Z/showcase/page@c43a585c6b55678f2bf5c746f3d7fb03.webm"><a href="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260815T191828Z/showcase/page@c43a585c6b55678f2bf5c746f3d7fb03.webm">下载该路径录像</a></video><p class="vcap">本测试路径整段走查录像</p>
+<div class="kpis"><div class="kpi"><div class="k">2</div><div class="l">操作步</div></div><div class="kpi"><div class="k">2</div><div class="l">通过</div></div><div class="kpi"><div class="k k-bad">0</div><div class="l">失败</div></div><div class="kpi"><div class="k k-warn">0</div><div class="l">不确定</div></div><div class="kpi"><div class="k">0</div><div class="l">未走到</div></div></div>
+<details class="steps"><summary>▸ 逐步操作详情（2 步，含判定截图）</summary><div class="op">
+<h3><span class="pill p-ok">通过</span> navigate</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260815T191828Z/showcase/overlays-01.png" alt="navigate" loading="lazy"><figcaption>navigate</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：title=&#x27;AUP Showcase&#x27; url=https://showcase.afsd.dev/app?page=overlays aupNodes=89 buttons=90 inputs=2 textLen=873 head=&#x27;AFS Home Showcase AUP Web Home Functional Dashboard Content Portal Report Workspace Web Sharing WM Desktop Explorer Auto Surface App Setting&#x27;</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> snapshot</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260815T191828Z/showcase/overlays-02.png" alt="snapshot" loading="lazy"><figcaption>snapshot</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：title=&#x27;AUP Showcase&#x27; url=https://showcase.afsd.dev/app?page=overlays aupNodes=89 buttons=90 inputs=2 textLen=873 head=&#x27;AFS Home Showcase AUP Web Home Functional Dashboard Content Portal Report Workspace Web Sharing WM Desktop Explorer Auto Surface App Setting&#x27;</div>
+
+
+</div></details>
+<details class="dbg"><summary>运行时 debug 上下文（全清）</summary><div class="dbg-none">Console 错误：<b>无</b></div><div class="dbg-none">JS 未捕获异常：<b>无</b></div><div class="dbg-none">网络错误（请求失败 / 4xx–5xx）：<b>无</b></div></details>
+</section><section id="path-overlays-read-1">
+<h2>launcher → alert open <span class="rt">anon · https://showcase.afsd.dev/app?page=overlays</span></h2>
+<p class="pdesc">读流走查：从「launcher」进入「alert open」并验证渲染。</p>
+<video class="video" controls preload="metadata" src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260815T191828Z/showcase/page@1ce784eed7ab7f16fa9d622cafb2a524.webm"><a href="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260815T191828Z/showcase/page@1ce784eed7ab7f16fa9d622cafb2a524.webm">下载该路径录像</a></video><p class="vcap">本测试路径整段走查录像</p>
+<div class="kpis"><div class="kpi"><div class="k">3</div><div class="l">操作步</div></div><div class="kpi"><div class="k">3</div><div class="l">通过</div></div><div class="kpi"><div class="k k-bad">0</div><div class="l">失败</div></div><div class="kpi"><div class="k k-warn">0</div><div class="l">不确定</div></div><div class="kpi"><div class="k">0</div><div class="l">未走到</div></div></div>
+<details class="steps"><summary>▸ 逐步操作详情（3 步，含判定截图）</summary><div class="op">
+<h3><span class="pill p-ok">通过</span> navigate</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260815T191828Z/showcase/overlays-read-1-01.png" alt="navigate" loading="lazy"><figcaption>navigate</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：title=&#x27;AUP Showcase&#x27; url=https://showcase.afsd.dev/app?page=overlays aupNodes=89 buttons=90 inputs=2 textLen=873 head=&#x27;AFS Home Showcase AUP Web Home Functional Dashboard Content Portal Report Workspace Web Sharing WM Desktop Explorer Auto Surface App Setting&#x27;</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> 点控件 [btn-alert]</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260815T191828Z/showcase/overlays-read-1-02.png" alt="点控件 [btn-alert]" loading="lazy"><figcaption>点控件 [btn-alert]</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：title=&#x27;AUP Showcase&#x27; url=https://showcase.afsd.dev/app?page=overlays aupNodes=89 buttons=90 inputs=2 textLen=965 head=&#x27;AFS Home Showcase AUP Web Home Functional Dashboard Content Portal Report Workspace Web Sharing WM Desktop Explorer Auto Surface App Setting&#x27;</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> snapshot</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260815T191828Z/showcase/overlays-read-1-03.png" alt="snapshot" loading="lazy"><figcaption>snapshot</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：title=&#x27;AUP Showcase&#x27; url=https://showcase.afsd.dev/app?page=overlays aupNodes=89 buttons=90 inputs=2 textLen=965 head=&#x27;AFS Home Showcase AUP Web Home Functional Dashboard Content Portal Report Workspace Web Sharing WM Desktop Explorer Auto Surface App Setting&#x27;</div>
+
+
+</div></details>
+<details class="dbg"><summary>运行时 debug 上下文（全清）</summary><div class="dbg-none">Console 错误：<b>无</b></div><div class="dbg-none">JS 未捕获异常：<b>无</b></div><div class="dbg-none">网络错误（请求失败 / 4xx–5xx）：<b>无</b></div></details>
+</section><section id="path-overlays-read-2">
+<h2>launcher → confirm open <span class="rt">anon · https://showcase.afsd.dev/app?page=overlays</span></h2>
+<p class="pdesc">读流走查：从「launcher」进入「confirm open」并验证渲染。</p>
+<video class="video" controls preload="metadata" src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260815T191828Z/showcase/page@5b10f368fe4added4603e6156a6930c8.webm"><a href="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260815T191828Z/showcase/page@5b10f368fe4added4603e6156a6930c8.webm">下载该路径录像</a></video><p class="vcap">本测试路径整段走查录像</p>
+<div class="kpis"><div class="kpi"><div class="k">3</div><div class="l">操作步</div></div><div class="kpi"><div class="k">3</div><div class="l">通过</div></div><div class="kpi"><div class="k k-bad">0</div><div class="l">失败</div></div><div class="kpi"><div class="k k-warn">0</div><div class="l">不确定</div></div><div class="kpi"><div class="k">0</div><div class="l">未走到</div></div></div>
+<details class="steps"><summary>▸ 逐步操作详情（3 步，含判定截图）</summary><div class="op">
+<h3><span class="pill p-ok">通过</span> navigate</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260815T191828Z/showcase/overlays-read-2-01.png" alt="navigate" loading="lazy"><figcaption>navigate</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：title=&#x27;AUP Showcase&#x27; url=https://showcase.afsd.dev/app?page=overlays aupNodes=89 buttons=90 inputs=2 textLen=873 head=&#x27;AFS Home Showcase AUP Web Home Functional Dashboard Content Portal Report Workspace Web Sharing WM Desktop Explorer Auto Surface App Setting&#x27;</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> 点控件 [btn-confirm]</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260815T191828Z/showcase/overlays-read-2-02.png" alt="点控件 [btn-confirm]" loading="lazy"><figcaption>点控件 [btn-confirm]</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：title=&#x27;AUP Showcase&#x27; url=https://showcase.afsd.dev/app?page=overlays aupNodes=89 buttons=90 inputs=2 textLen=986 head=&#x27;AFS Home Showcase AUP Web Home Functional Dashboard Content Portal Report Workspace Web Sharing WM Desktop Explorer Auto Surface App Setting&#x27;</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> snapshot</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260815T191828Z/showcase/overlays-read-2-03.png" alt="snapshot" loading="lazy"><figcaption>snapshot</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：title=&#x27;AUP Showcase&#x27; url=https://showcase.afsd.dev/app?page=overlays aupNodes=89 buttons=90 inputs=2 textLen=986 head=&#x27;AFS Home Showcase AUP Web Home Functional Dashboard Content Portal Report Workspace Web Sharing WM Desktop Explorer Auto Surface App Setting&#x27;</div>
+
+
+</div></details>
+<details class="dbg"><summary>运行时 debug 上下文（全清）</summary><div class="dbg-none">Console 错误：<b>无</b></div><div class="dbg-none">JS 未捕获异常：<b>无</b></div><div class="dbg-none">网络错误（请求失败 / 4xx–5xx）：<b>无</b></div></details>
+</section><section id="path-overlays-read-3">
+<h2>launcher → hud open <span class="rt">anon · https://showcase.afsd.dev/app?page=overlays</span></h2>
+<p class="pdesc">读流走查：从「launcher」进入「hud open」并验证渲染。</p>
+<video class="video" controls preload="metadata" src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260815T191828Z/showcase/page@ddcb1a2e5de87d61b8f89d19700c5e9a.webm"><a href="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260815T191828Z/showcase/page@ddcb1a2e5de87d61b8f89d19700c5e9a.webm">下载该路径录像</a></video><p class="vcap">本测试路径整段走查录像</p>
+<div class="kpis"><div class="kpi"><div class="k">3</div><div class="l">操作步</div></div><div class="kpi"><div class="k">3</div><div class="l">通过</div></div><div class="kpi"><div class="k k-bad">0</div><div class="l">失败</div></div><div class="kpi"><div class="k k-warn">0</div><div class="l">不确定</div></div><div class="kpi"><div class="k">0</div><div class="l">未走到</div></div></div>
+<details class="steps"><summary>▸ 逐步操作详情（3 步，含判定截图）</summary><div class="op">
+<h3><span class="pill p-ok">通过</span> navigate</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260815T191828Z/showcase/overlays-read-3-01.png" alt="navigate" loading="lazy"><figcaption>navigate</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：title=&#x27;AUP Showcase&#x27; url=https://showcase.afsd.dev/app?page=overlays aupNodes=89 buttons=90 inputs=2 textLen=873 head=&#x27;AFS Home Showcase AUP Web Home Functional Dashboard Content Portal Report Workspace Web Sharing WM Desktop Explorer Auto Surface App Setting&#x27;</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> 点控件 [btn-hud]</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260815T191828Z/showcase/overlays-read-3-02.png" alt="点控件 [btn-hud]" loading="lazy"><figcaption>点控件 [btn-hud]</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：title=&#x27;AUP Showcase&#x27; url=https://showcase.afsd.dev/app?page=overlays aupNodes=89 buttons=90 inputs=2 textLen=902 head=&#x27;AFS Home Showcase AUP Web Home Functional Dashboard Content Portal Report Workspace Web Sharing WM Desktop Explorer Auto Surface App Setting&#x27;</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> snapshot</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260815T191828Z/showcase/overlays-read-3-03.png" alt="snapshot" loading="lazy"><figcaption>snapshot</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：title=&#x27;AUP Showcase&#x27; url=https://showcase.afsd.dev/app?page=overlays aupNodes=89 buttons=90 inputs=2 textLen=902 head=&#x27;AFS Home Showcase AUP Web Home Functional Dashboard Content Portal Report Workspace Web Sharing WM Desktop Explorer Auto Surface App Setting&#x27;</div>
+
+
+</div></details>
+<details class="dbg"><summary>运行时 debug 上下文（全清）</summary><div class="dbg-none">Console 错误：<b>无</b></div><div class="dbg-none">JS 未捕获异常：<b>无</b></div><div class="dbg-none">网络错误（请求失败 / 4xx–5xx）：<b>无</b></div></details>
+</section><section id="path-overlays-read-4">
+<h2>hud open → launcher <span class="rt">anon · https://showcase.afsd.dev/app?page=overlays</span></h2>
+<p class="pdesc">读流走查：从「hud open」进入「launcher」并验证渲染。</p>
+<video class="video" controls preload="metadata" src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260815T191828Z/showcase/page@743f309f3a4ae8ff36779cf0273d9d56.webm"><a href="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260815T191828Z/showcase/page@743f309f3a4ae8ff36779cf0273d9d56.webm">下载该路径录像</a></video><p class="vcap">本测试路径整段走查录像</p>
+<div class="kpis"><div class="kpi"><div class="k">1</div><div class="l">操作步</div></div><div class="kpi"><div class="k">0</div><div class="l">通过</div></div><div class="kpi"><div class="k k-bad">0</div><div class="l">失败</div></div><div class="kpi"><div class="k k-warn">0</div><div class="l">不确定</div></div><div class="kpi"><div class="k">1</div><div class="l">未走到</div></div></div>
+<details class="steps"><summary>▸ 逐步操作详情（1 步，含判定截图）</summary><div class="op">
+<h3><span class="pill p-skip">未走到</span> 点控件 [hud-demo]</h3>
+
+
+<div class="chk"><b>观察证据</b>：导航到 https://showcase.afsd.dev/app?page=overlays 后，读流入口不可点：TimeoutError: click: Timeout 4000ms exceeded.</div>
+
+<div class="nt">blocked: read-flow entry not on-load reachable</div>
+</div></details>
+<details class="dbg" open><summary>运行时 debug 上下文（3 条错误）</summary><div class="dbg-has"><b>Console 错误（1）</b><ul><li><code>Failed to load resource: the server responded with a status of 404 ()</code></li></ul></div><div class="dbg-none">JS 未捕获异常：<b>无</b></div><div class="dbg-has"><b>网络错误（请求失败 / 4xx–5xx）（2）</b><ul><li><code>404 GET https://fonts.gstatic.com/s/sora/v17/xMQ9uFFYT72X5wkB_18qmnndmScMnh2BAfO5mnuyOo1lICQwV6-x.woff2</code></li><li><code>✗ GET https://fonts.gstatic.com/s/sora/v17/xMQ9uFFYT72X5wkB_18qmnndmScMnh2BAfO5mnuyOo1lICQwV6-x.woff2 — net::ERR_ABORTED</code></li></ul></div></details>
+</section><section id="path-overlays-read-5">
+<h2>launcher → choice open <span class="rt">anon · https://showcase.afsd.dev/app?page=overlays</span></h2>
+<p class="pdesc">读流走查：从「launcher」进入「choice open」并验证渲染。</p>
+<video class="video" controls preload="metadata" src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260815T191828Z/showcase/page@d0f78880aafa3a4e79002c4822fd8b06.webm"><a href="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260815T191828Z/showcase/page@d0f78880aafa3a4e79002c4822fd8b06.webm">下载该路径录像</a></video><p class="vcap">本测试路径整段走查录像</p>
+<div class="kpis"><div class="kpi"><div class="k">3</div><div class="l">操作步</div></div><div class="kpi"><div class="k">3</div><div class="l">通过</div></div><div class="kpi"><div class="k k-bad">0</div><div class="l">失败</div></div><div class="kpi"><div class="k k-warn">0</div><div class="l">不确定</div></div><div class="kpi"><div class="k">0</div><div class="l">未走到</div></div></div>
+<details class="steps"><summary>▸ 逐步操作详情（3 步，含判定截图）</summary><div class="op">
+<h3><span class="pill p-ok">通过</span> navigate</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260815T191828Z/showcase/overlays-read-5-01.png" alt="navigate" loading="lazy"><figcaption>navigate</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：title=&#x27;AUP Showcase&#x27; url=https://showcase.afsd.dev/app?page=overlays aupNodes=89 buttons=90 inputs=2 textLen=873 head=&#x27;AFS Home Showcase AUP Web Home Functional Dashboard Content Portal Report Workspace Web Sharing WM Desktop Explorer Auto Surface App Setting&#x27;</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> 点控件 [btn-choice]</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260815T191828Z/showcase/overlays-read-5-02.png" alt="点控件 [btn-choice]" loading="lazy"><figcaption>点控件 [btn-choice]</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：title=&#x27;AUP Showcase&#x27; url=https://showcase.afsd.dev/app?page=overlays aupNodes=89 buttons=90 inputs=2 textLen=1245 head=&#x27;AFS Home Showcase AUP Web Home Functional Dashboard Content Portal Report Workspace Web Sharing WM Desktop Explorer Auto Surface App Setting&#x27;</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> snapshot</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260815T191828Z/showcase/overlays-read-5-03.png" alt="snapshot" loading="lazy"><figcaption>snapshot</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：title=&#x27;AUP Showcase&#x27; url=https://showcase.afsd.dev/app?page=overlays aupNodes=89 buttons=90 inputs=2 textLen=1245 head=&#x27;AFS Home Showcase AUP Web Home Functional Dashboard Content Portal Report Workspace Web Sharing WM Desktop Explorer Auto Surface App Setting&#x27;</div>
+
+
+</div></details>
+<details class="dbg"><summary>运行时 debug 上下文（全清）</summary><div class="dbg-none">Console 错误：<b>无</b></div><div class="dbg-none">JS 未捕获异常：<b>无</b></div><div class="dbg-none">网络错误（请求失败 / 4xx–5xx）：<b>无</b></div></details>
+</section><section id="path-overlays-read-6">
+<h2>launcher → multi-step choice open <span class="rt">anon · https://showcase.afsd.dev/app?page=overlays</span></h2>
+<p class="pdesc">读流走查：从「launcher」进入「multi-step choice open」并验证渲染。</p>
+<video class="video" controls preload="metadata" src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260815T191828Z/showcase/page@e5b83e33cd77884bed9b457f49be0409.webm"><a href="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260815T191828Z/showcase/page@e5b83e33cd77884bed9b457f49be0409.webm">下载该路径录像</a></video><p class="vcap">本测试路径整段走查录像</p>
+<div class="kpis"><div class="kpi"><div class="k">3</div><div class="l">操作步</div></div><div class="kpi"><div class="k">3</div><div class="l">通过</div></div><div class="kpi"><div class="k k-bad">0</div><div class="l">失败</div></div><div class="kpi"><div class="k k-warn">0</div><div class="l">不确定</div></div><div class="kpi"><div class="k">0</div><div class="l">未走到</div></div></div>
+<details class="steps"><summary>▸ 逐步操作详情（3 步，含判定截图）</summary><div class="op">
+<h3><span class="pill p-ok">通过</span> navigate</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260815T191828Z/showcase/overlays-read-6-01.png" alt="navigate" loading="lazy"><figcaption>navigate</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：title=&#x27;AUP Showcase&#x27; url=https://showcase.afsd.dev/app?page=overlays aupNodes=89 buttons=90 inputs=2 textLen=873 head=&#x27;AFS Home Showcase AUP Web Home Functional Dashboard Content Portal Report Workspace Web Sharing WM Desktop Explorer Auto Surface App Setting&#x27;</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> 点控件 [btn-multi]</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260815T191828Z/showcase/overlays-read-6-02.png" alt="点控件 [btn-multi]" loading="lazy"><figcaption>点控件 [btn-multi]</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：title=&#x27;AUP Showcase&#x27; url=https://showcase.afsd.dev/app?page=overlays aupNodes=89 buttons=90 inputs=2 textLen=1132 head=&#x27;AFS Home Showcase AUP Web Home Functional Dashboard Content Portal Report Workspace Web Sharing WM Desktop Explorer Auto Surface App Setting&#x27;</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> snapshot</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260815T191828Z/showcase/overlays-read-6-03.png" alt="snapshot" loading="lazy"><figcaption>snapshot</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：title=&#x27;AUP Showcase&#x27; url=https://showcase.afsd.dev/app?page=overlays aupNodes=89 buttons=90 inputs=2 textLen=1132 head=&#x27;AFS Home Showcase AUP Web Home Functional Dashboard Content Portal Report Workspace Web Sharing WM Desktop Explorer Auto Surface App Setting&#x27;</div>
+
+
+</div></details>
+<details class="dbg"><summary>运行时 debug 上下文（全清）</summary><div class="dbg-none">Console 错误：<b>无</b></div><div class="dbg-none">JS 未捕获异常：<b>无</b></div><div class="dbg-none">网络错误（请求失败 / 4xx–5xx）：<b>无</b></div></details>
+</section><section id="path-overlays-read-7">
+<h2>launcher → sticky toast open <span class="rt">anon · https://showcase.afsd.dev/app?page=overlays</span></h2>
+<p class="pdesc">读流走查：从「launcher」进入「sticky toast open」并验证渲染。</p>
+<video class="video" controls preload="metadata" src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260815T191828Z/showcase/page@834c071ab24484cf66f9a9b1c4eab6a3.webm"><a href="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260815T191828Z/showcase/page@834c071ab24484cf66f9a9b1c4eab6a3.webm">下载该路径录像</a></video><p class="vcap">本测试路径整段走查录像</p>
+<div class="kpis"><div class="kpi"><div class="k">3</div><div class="l">操作步</div></div><div class="kpi"><div class="k">3</div><div class="l">通过</div></div><div class="kpi"><div class="k k-bad">0</div><div class="l">失败</div></div><div class="kpi"><div class="k k-warn">0</div><div class="l">不确定</div></div><div class="kpi"><div class="k">0</div><div class="l">未走到</div></div></div>
+<details class="steps"><summary>▸ 逐步操作详情（3 步，含判定截图）</summary><div class="op">
+<h3><span class="pill p-ok">通过</span> navigate</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260815T191828Z/showcase/overlays-read-7-01.png" alt="navigate" loading="lazy"><figcaption>navigate</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：title=&#x27;AUP Showcase&#x27; url=https://showcase.afsd.dev/app?page=overlays aupNodes=89 buttons=90 inputs=2 textLen=873 head=&#x27;AFS Home Showcase AUP Web Home Functional Dashboard Content Portal Report Workspace Web Sharing WM Desktop Explorer Auto Surface App Setting&#x27;</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> 点控件 [btn-toast-sticky]</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260815T191828Z/showcase/overlays-read-7-02.png" alt="点控件 [btn-toast-sticky]" loading="lazy"><figcaption>点控件 [btn-toast-sticky]</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：title=&#x27;AUP Showcase&#x27; url=https://showcase.afsd.dev/app?page=overlays aupNodes=89 buttons=90 inputs=2 textLen=936 head=&#x27;AFS Home Showcase AUP Web Home Functional Dashboard Content Portal Report Workspace Web Sharing WM Desktop Explorer Auto Surface App Setting&#x27;</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> snapshot</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260815T191828Z/showcase/overlays-read-7-03.png" alt="snapshot" loading="lazy"><figcaption>snapshot</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：title=&#x27;AUP Showcase&#x27; url=https://showcase.afsd.dev/app?page=overlays aupNodes=89 buttons=90 inputs=2 textLen=936 head=&#x27;AFS Home Showcase AUP Web Home Functional Dashboard Content Portal Report Workspace Web Sharing WM Desktop Explorer Auto Surface App Setting&#x27;</div>
+
+
+</div></details>
+<details class="dbg"><summary>运行时 debug 上下文（全清）</summary><div class="dbg-none">Console 错误：<b>无</b></div><div class="dbg-none">JS 未捕获异常：<b>无</b></div><div class="dbg-none">网络错误（请求失败 / 4xx–5xx）：<b>无</b></div></details>
+</section><section id="path-list-basic">
+<h2>List Basic <span class="rt">anon · https://showcase.afsd.dev/app?page=list-basic</span></h2>
+<p class="pdesc">导航到 https://showcase.afsd.dev/app?page=list-basic，验证页面加载并渲染出真实内容（list-basic 页 breadth 走查）。</p>
+<video class="video" controls preload="metadata" src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260815T191828Z/showcase/page@0a70937ccb6328b1b979ee19450244d1.webm"><a href="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260815T191828Z/showcase/page@0a70937ccb6328b1b979ee19450244d1.webm">下载该路径录像</a></video><p class="vcap">本测试路径整段走查录像</p>
+<div class="kpis"><div class="kpi"><div class="k">2</div><div class="l">操作步</div></div><div class="kpi"><div class="k">2</div><div class="l">通过</div></div><div class="kpi"><div class="k k-bad">0</div><div class="l">失败</div></div><div class="kpi"><div class="k k-warn">0</div><div class="l">不确定</div></div><div class="kpi"><div class="k">0</div><div class="l">未走到</div></div></div>
+<details class="steps"><summary>▸ 逐步操作详情（2 步，含判定截图）</summary><div class="op">
+<h3><span class="pill p-ok">通过</span> navigate</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260815T191828Z/showcase/list-basic-01.png" alt="navigate" loading="lazy"><figcaption>navigate</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：title=&#x27;AUP Showcase&#x27; url=https://showcase.afsd.dev/app?page=list-basic aupNodes=80 buttons=72 inputs=0 textLen=4335 head=&#x27;AFS Home Showcase AUP Web Home Functional Dashboard Content Portal Report Workspace Web Sharing WM Desktop Explorer Auto Surface App Setting&#x27;</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> snapshot</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260815T191828Z/showcase/list-basic-02.png" alt="snapshot" loading="lazy"><figcaption>snapshot</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：title=&#x27;AUP Showcase&#x27; url=https://showcase.afsd.dev/app?page=list-basic aupNodes=80 buttons=72 inputs=0 textLen=4335 head=&#x27;AFS Home Showcase AUP Web Home Functional Dashboard Content Portal Report Workspace Web Sharing WM Desktop Explorer Auto Surface App Setting&#x27;</div>
+
+
+</div></details>
+<details class="dbg"><summary>运行时 debug 上下文（全清）</summary><div class="dbg-none">Console 错误：<b>无</b></div><div class="dbg-none">JS 未捕获异常：<b>无</b></div><div class="dbg-none">网络错误（请求失败 / 4xx–5xx）：<b>无</b></div></details>
+</section><section id="path-list-pagination">
+<h2>List Pagination <span class="rt">anon · https://showcase.afsd.dev/app?page=list-pagination</span></h2>
+<p class="pdesc">导航到 https://showcase.afsd.dev/app?page=list-pagination，验证页面加载并渲染出真实内容（list-pagination 页 breadth 走查）。</p>
+<video class="video" controls preload="metadata" src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260815T191828Z/showcase/page@b5b053f9831f2eba7ef3a0e97fa3270b.webm"><a href="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260815T191828Z/showcase/page@b5b053f9831f2eba7ef3a0e97fa3270b.webm">下载该路径录像</a></video><p class="vcap">本测试路径整段走查录像</p>
+<div class="kpis"><div class="kpi"><div class="k">2</div><div class="l">操作步</div></div><div class="kpi"><div class="k">2</div><div class="l">通过</div></div><div class="kpi"><div class="k k-bad">0</div><div class="l">失败</div></div><div class="kpi"><div class="k k-warn">0</div><div class="l">不确定</div></div><div class="kpi"><div class="k">0</div><div class="l">未走到</div></div></div>
+<details class="steps"><summary>▸ 逐步操作详情（2 步，含判定截图）</summary><div class="op">
+<h3><span class="pill p-ok">通过</span> navigate</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260815T191828Z/showcase/list-pagination-01.png" alt="navigate" loading="lazy"><figcaption>navigate</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：title=&#x27;AUP Showcase&#x27; url=https://showcase.afsd.dev/app?page=list-pagination aupNodes=80 buttons=74 inputs=0 textLen=1128 head=&#x27;AFS Home Showcase AUP Web Home Functional Dashboard Content Portal Report Workspace Web Sharing WM Desktop Explorer Auto Surface App Setting&#x27;</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> snapshot</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260815T191828Z/showcase/list-pagination-02.png" alt="snapshot" loading="lazy"><figcaption>snapshot</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：title=&#x27;AUP Showcase&#x27; url=https://showcase.afsd.dev/app?page=list-pagination aupNodes=80 buttons=74 inputs=0 textLen=1128 head=&#x27;AFS Home Showcase AUP Web Home Functional Dashboard Content Portal Report Workspace Web Sharing WM Desktop Explorer Auto Surface App Setting&#x27;</div>
+
+
+</div></details>
+<details class="dbg"><summary>运行时 debug 上下文（全清）</summary><div class="dbg-none">Console 错误：<b>无</b></div><div class="dbg-none">JS 未捕获异常：<b>无</b></div><div class="dbg-none">网络错误（请求失败 / 4xx–5xx）：<b>无</b></div></details>
+</section><section id="path-list-template">
+<h2>List Template <span class="rt">anon · https://showcase.afsd.dev/app?page=list-template</span></h2>
+<p class="pdesc">导航到 https://showcase.afsd.dev/app?page=list-template，验证页面加载并渲染出真实内容（list-template 页 breadth 走查）。</p>
+<video class="video" controls preload="metadata" src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260815T191828Z/showcase/page@2b2efbdf5c6b49fb3ccb77f8f60c67a2.webm"><a href="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260815T191828Z/showcase/page@2b2efbdf5c6b49fb3ccb77f8f60c67a2.webm">下载该路径录像</a></video><p class="vcap">本测试路径整段走查录像</p>
+<div class="kpis"><div class="kpi"><div class="k">2</div><div class="l">操作步</div></div><div class="kpi"><div class="k">2</div><div class="l">通过</div></div><div class="kpi"><div class="k k-bad">0</div><div class="l">失败</div></div><div class="kpi"><div class="k k-warn">0</div><div class="l">不确定</div></div><div class="kpi"><div class="k">0</div><div class="l">未走到</div></div></div>
+<details class="steps"><summary>▸ 逐步操作详情（2 步，含判定截图）</summary><div class="op">
+<h3><span class="pill p-ok">通过</span> navigate</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260815T191828Z/showcase/list-template-01.png" alt="navigate" loading="lazy"><figcaption>navigate</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：title=&#x27;AUP Showcase&#x27; url=https://showcase.afsd.dev/app?page=list-template aupNodes=156 buttons=72 inputs=0 textLen=4892 head=&#x27;AFS Home Showcase AUP Web Home Functional Dashboard Content Portal Report Workspace Web Sharing WM Desktop Explorer Auto Surface App Setting&#x27;</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> snapshot</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260815T191828Z/showcase/list-template-02.png" alt="snapshot" loading="lazy"><figcaption>snapshot</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：title=&#x27;AUP Showcase&#x27; url=https://showcase.afsd.dev/app?page=list-template aupNodes=156 buttons=72 inputs=0 textLen=4892 head=&#x27;AFS Home Showcase AUP Web Home Functional Dashboard Content Portal Report Workspace Web Sharing WM Desktop Explorer Auto Surface App Setting&#x27;</div>
+
+
+</div></details>
+<details class="dbg"><summary>运行时 debug 上下文（全清）</summary><div class="dbg-none">Console 错误：<b>无</b></div><div class="dbg-none">JS 未捕获异常：<b>无</b></div><div class="dbg-none">网络错误（请求失败 / 4xx–5xx）：<b>无</b></div></details>
+</section><section id="path-list-grid">
+<h2>List Grid <span class="rt">anon · https://showcase.afsd.dev/app?page=list-grid</span></h2>
+<p class="pdesc">导航到 https://showcase.afsd.dev/app?page=list-grid，验证页面加载并渲染出真实内容（list-grid 页 breadth 走查）。</p>
+<video class="video" controls preload="metadata" src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260815T191828Z/showcase/page@afc6965e97d223d308f2c16a643e3687.webm"><a href="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260815T191828Z/showcase/page@afc6965e97d223d308f2c16a643e3687.webm">下载该路径录像</a></video><p class="vcap">本测试路径整段走查录像</p>
+<div class="kpis"><div class="kpi"><div class="k">2</div><div class="l">操作步</div></div><div class="kpi"><div class="k">2</div><div class="l">通过</div></div><div class="kpi"><div class="k k-bad">0</div><div class="l">失败</div></div><div class="kpi"><div class="k k-warn">0</div><div class="l">不确定</div></div><div class="kpi"><div class="k">0</div><div class="l">未走到</div></div></div>
+<details class="steps"><summary>▸ 逐步操作详情（2 步，含判定截图）</summary><div class="op">
+<h3><span class="pill p-ok">通过</span> navigate</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260815T191828Z/showcase/list-grid-01.png" alt="navigate" loading="lazy"><figcaption>navigate</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：title=&#x27;AUP Showcase&#x27; url=https://showcase.afsd.dev/app?page=list-grid aupNodes=128 buttons=72 inputs=0 textLen=4438 head=&#x27;AFS Home Showcase AUP Web Home Functional Dashboard Content Portal Report Workspace Web Sharing WM Desktop Explorer Auto Surface App Setting&#x27;</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> snapshot</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260815T191828Z/showcase/list-grid-02.png" alt="snapshot" loading="lazy"><figcaption>snapshot</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：title=&#x27;AUP Showcase&#x27; url=https://showcase.afsd.dev/app?page=list-grid aupNodes=128 buttons=72 inputs=0 textLen=4438 head=&#x27;AFS Home Showcase AUP Web Home Functional Dashboard Content Portal Report Workspace Web Sharing WM Desktop Explorer Auto Surface App Setting&#x27;</div>
+
+
+</div></details>
+<details class="dbg"><summary>运行时 debug 上下文（全清）</summary><div class="dbg-none">Console 错误：<b>无</b></div><div class="dbg-none">JS 未捕获异常：<b>无</b></div><div class="dbg-none">网络错误（请求失败 / 4xx–5xx）：<b>无</b></div></details>
+</section><section id="path-list-virtual">
+<h2>List Virtual <span class="rt">anon · https://showcase.afsd.dev/app?page=list-virtual</span></h2>
+<p class="pdesc">导航到 https://showcase.afsd.dev/app?page=list-virtual，验证页面加载并渲染出真实内容（list-virtual 页 breadth 走查）。</p>
+<video class="video" controls preload="metadata" src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260815T191828Z/showcase/page@f9aeb6f6cd9382d7dd9d4156379e5e36.webm"><a href="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260815T191828Z/showcase/page@f9aeb6f6cd9382d7dd9d4156379e5e36.webm">下载该路径录像</a></video><p class="vcap">本测试路径整段走查录像</p>
+<div class="kpis"><div class="kpi"><div class="k">2</div><div class="l">操作步</div></div><div class="kpi"><div class="k">2</div><div class="l">通过</div></div><div class="kpi"><div class="k k-bad">0</div><div class="l">失败</div></div><div class="kpi"><div class="k k-warn">0</div><div class="l">不确定</div></div><div class="kpi"><div class="k">0</div><div class="l">未走到</div></div></div>
+<details class="steps"><summary>▸ 逐步操作详情（2 步，含判定截图）</summary><div class="op">
+<h3><span class="pill p-ok">通过</span> navigate</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260815T191828Z/showcase/list-virtual-01.png" alt="navigate" loading="lazy"><figcaption>navigate</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：title=&#x27;AUP Showcase&#x27; url=https://showcase.afsd.dev/app?page=list-virtual aupNodes=80 buttons=72 inputs=0 textLen=985 head=&#x27;AFS Home Showcase AUP Web Home Functional Dashboard Content Portal Report Workspace Web Sharing WM Desktop Explorer Auto Surface App Setting&#x27;</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> snapshot</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260815T191828Z/showcase/list-virtual-02.png" alt="snapshot" loading="lazy"><figcaption>snapshot</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：title=&#x27;AUP Showcase&#x27; url=https://showcase.afsd.dev/app?page=list-virtual aupNodes=80 buttons=72 inputs=0 textLen=985 head=&#x27;AFS Home Showcase AUP Web Home Functional Dashboard Content Portal Report Workspace Web Sharing WM Desktop Explorer Auto Surface App Setting&#x27;</div>
+
+
+</div></details>
+<details class="dbg"><summary>运行时 debug 上下文（全清）</summary><div class="dbg-none">Console 错误：<b>无</b></div><div class="dbg-none">JS 未捕获异常：<b>无</b></div><div class="dbg-none">网络错误（请求失败 / 4xx–5xx）：<b>无</b></div></details>
+</section><section id="path-explorer">
+<h2>Explorer <span class="rt">anon · https://showcase.afsd.dev/app?page=explorer</span></h2>
+<p class="pdesc">导航到 https://showcase.afsd.dev/app?page=explorer，验证页面加载并渲染出真实内容（explorer 页 breadth 走查）。</p>
+<video class="video" controls preload="metadata" src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260815T191828Z/showcase/page@c8d66e9d7cb3281f049776ca9b0ce3a3.webm"><a href="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260815T191828Z/showcase/page@c8d66e9d7cb3281f049776ca9b0ce3a3.webm">下载该路径录像</a></video><p class="vcap">本测试路径整段走查录像</p>
+<div class="kpis"><div class="kpi"><div class="k">2</div><div class="l">操作步</div></div><div class="kpi"><div class="k">2</div><div class="l">通过</div></div><div class="kpi"><div class="k k-bad">0</div><div class="l">失败</div></div><div class="kpi"><div class="k k-warn">0</div><div class="l">不确定</div></div><div class="kpi"><div class="k">0</div><div class="l">未走到</div></div></div>
+<details class="steps"><summary>▸ 逐步操作详情（2 步，含判定截图）</summary><div class="op">
+<h3><span class="pill p-ok">通过</span> navigate</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260815T191828Z/showcase/explorer-01.png" alt="navigate" loading="lazy"><figcaption>navigate</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：title=&#x27;AUP Showcase&#x27; url=https://showcase.afsd.dev/app?page=explorer aupNodes=111 buttons=69 inputs=2 textLen=2489 head=&#x27;AFS Home Showcase AUP Web Home Functional Dashboard Content Portal Report Workspace Web Sharing WM Desktop Explorer Auto Surface App Setting&#x27;</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> snapshot</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260815T191828Z/showcase/explorer-02.png" alt="snapshot" loading="lazy"><figcaption>snapshot</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：title=&#x27;AUP Showcase&#x27; url=https://showcase.afsd.dev/app?page=explorer aupNodes=111 buttons=69 inputs=2 textLen=2489 head=&#x27;AFS Home Showcase AUP Web Home Functional Dashboard Content Portal Report Workspace Web Sharing WM Desktop Explorer Auto Surface App Setting&#x27;</div>
+
+
+</div></details>
+<details class="dbg"><summary>运行时 debug 上下文（全清）</summary><div class="dbg-none">Console 错误：<b>无</b></div><div class="dbg-none">JS 未捕获异常：<b>无</b></div><div class="dbg-none">网络错误（请求失败 / 4xx–5xx）：<b>无</b></div></details>
+</section><section id="path-explorer-read-1">
+<h2>tree (data) → contents shows selected folder <span class="rt">anon · https://showcase.afsd.dev/app?page=explorer</span></h2>
+<p class="pdesc">读流走查：从「tree (data)」进入「contents shows selected folder」并验证渲染。</p>
+<video class="video" controls preload="metadata" src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260815T191828Z/showcase/page@52ac1d8918cb6adaecc767e95dd2e9a3.webm"><a href="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260815T191828Z/showcase/page@52ac1d8918cb6adaecc767e95dd2e9a3.webm">下载该路径录像</a></video><p class="vcap">本测试路径整段走查录像</p>
+<div class="kpis"><div class="kpi"><div class="k">3</div><div class="l">操作步</div></div><div class="kpi"><div class="k">3</div><div class="l">通过</div></div><div class="kpi"><div class="k k-bad">0</div><div class="l">失败</div></div><div class="kpi"><div class="k k-warn">0</div><div class="l">不确定</div></div><div class="kpi"><div class="k">0</div><div class="l">未走到</div></div></div>
+<details class="steps"><summary>▸ 逐步操作详情（3 步，含判定截图）</summary><div class="op">
+<h3><span class="pill p-ok">通过</span> navigate</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260815T191828Z/showcase/explorer-read-1-01.png" alt="navigate" loading="lazy"><figcaption>navigate</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：title=&#x27;AUP Showcase&#x27; url=https://showcase.afsd.dev/app?page=explorer aupNodes=111 buttons=69 inputs=2 textLen=2821 head=&#x27;AFS Home Showcase AUP Web Home Functional Dashboard Content Portal Report Workspace Web Sharing WM Desktop Explorer Auto Surface App Setting&#x27;</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> 点控件 [exp-tree]</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260815T191828Z/showcase/explorer-read-1-02.png" alt="点控件 [exp-tree]" loading="lazy"><figcaption>点控件 [exp-tree]</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：title=&#x27;AUP Showcase&#x27; url=https://showcase.afsd.dev/app?page=explorer aupNodes=111 buttons=69 inputs=2 textLen=2923 head=&#x27;AFS Home Showcase AUP Web Home Functional Dashboard Content Portal Report Workspace Web Sharing WM Desktop Explorer Auto Surface App Setting&#x27;</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> snapshot</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260815T191828Z/showcase/explorer-read-1-03.png" alt="snapshot" loading="lazy"><figcaption>snapshot</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：title=&#x27;AUP Showcase&#x27; url=https://showcase.afsd.dev/app?page=explorer aupNodes=111 buttons=69 inputs=2 textLen=2923 head=&#x27;AFS Home Showcase AUP Web Home Functional Dashboard Content Portal Report Workspace Web Sharing WM Desktop Explorer Auto Surface App Setting&#x27;</div>
+
+
+</div></details>
+<details class="dbg"><summary>运行时 debug 上下文（全清）</summary><div class="dbg-none">Console 错误：<b>无</b></div><div class="dbg-none">JS 未捕获异常：<b>无</b></div><div class="dbg-none">网络错误（请求失败 / 4xx–5xx）：<b>无</b></div></details>
+</section><section id="path-explorer-read-2">
+<h2>contents → inspector shows selected entry <span class="rt">anon · https://showcase.afsd.dev/app?page=explorer</span></h2>
+<p class="pdesc">读流走查：从「contents」进入「inspector shows selected entry」并验证渲染。</p>
+<video class="video" controls preload="metadata" src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260815T191828Z/showcase/page@052cf71ada7ed0ef347fd939df2b381a.webm"><a href="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260815T191828Z/showcase/page@052cf71ada7ed0ef347fd939df2b381a.webm">下载该路径录像</a></video><p class="vcap">本测试路径整段走查录像</p>
+<div class="kpis"><div class="kpi"><div class="k">3</div><div class="l">操作步</div></div><div class="kpi"><div class="k">3</div><div class="l">通过</div></div><div class="kpi"><div class="k k-bad">0</div><div class="l">失败</div></div><div class="kpi"><div class="k k-warn">0</div><div class="l">不确定</div></div><div class="kpi"><div class="k">0</div><div class="l">未走到</div></div></div>
+<details class="steps"><summary>▸ 逐步操作详情（3 步，含判定截图）</summary><div class="op">
+<h3><span class="pill p-ok">通过</span> navigate</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260815T191828Z/showcase/explorer-read-2-01.png" alt="navigate" loading="lazy"><figcaption>navigate</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：title=&#x27;AUP Showcase&#x27; url=https://showcase.afsd.dev/app?page=explorer aupNodes=111 buttons=69 inputs=2 textLen=2821 head=&#x27;AFS Home Showcase AUP Web Home Functional Dashboard Content Portal Report Workspace Web Sharing WM Desktop Explorer Auto Surface App Setting&#x27;</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> 点控件 [exp-files]</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260815T191828Z/showcase/explorer-read-2-02.png" alt="点控件 [exp-files]" loading="lazy"><figcaption>点控件 [exp-files]</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：title=&#x27;AUP Showcase&#x27; url=https://showcase.afsd.dev/app?page=explorer aupNodes=111 buttons=69 inputs=2 textLen=2488 head=&#x27;AFS Home Showcase AUP Web Home Functional Dashboard Content Portal Report Workspace Web Sharing WM Desktop Explorer Auto Surface App Setting&#x27;</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> snapshot</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260815T191828Z/showcase/explorer-read-2-03.png" alt="snapshot" loading="lazy"><figcaption>snapshot</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：title=&#x27;AUP Showcase&#x27; url=https://showcase.afsd.dev/app?page=explorer aupNodes=111 buttons=69 inputs=2 textLen=2488 head=&#x27;AFS Home Showcase AUP Web Home Functional Dashboard Content Portal Report Workspace Web Sharing WM Desktop Explorer Auto Surface App Setting&#x27;</div>
+
+
+</div></details>
+<details class="dbg"><summary>运行时 debug 上下文（全清）</summary><div class="dbg-none">Console 错误：<b>无</b></div><div class="dbg-none">JS 未捕获异常：<b>无</b></div><div class="dbg-none">网络错误（请求失败 / 4xx–5xx）：<b>无</b></div></details>
+</section><section id="path-auto-surface">
+<h2>Auto Surface <span class="rt">anon · https://showcase.afsd.dev/app?page=auto-surface</span></h2>
+<p class="pdesc">导航到 https://showcase.afsd.dev/app?page=auto-surface，验证页面加载并渲染出真实内容（auto-surface 页 breadth 走查）。</p>
+<video class="video" controls preload="metadata" src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260815T191828Z/showcase/page@a59d3664b9c1dd242f2387de441c9c57.webm"><a href="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260815T191828Z/showcase/page@a59d3664b9c1dd242f2387de441c9c57.webm">下载该路径录像</a></video><p class="vcap">本测试路径整段走查录像</p>
+<div class="kpis"><div class="kpi"><div class="k">2</div><div class="l">操作步</div></div><div class="kpi"><div class="k">2</div><div class="l">通过</div></div><div class="kpi"><div class="k k-bad">0</div><div class="l">失败</div></div><div class="kpi"><div class="k k-warn">0</div><div class="l">不确定</div></div><div class="kpi"><div class="k">0</div><div class="l">未走到</div></div></div>
+<details class="steps"><summary>▸ 逐步操作详情（2 步，含判定截图）</summary><div class="op">
+<h3><span class="pill p-ok">通过</span> navigate</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260815T191828Z/showcase/auto-surface-01.png" alt="navigate" loading="lazy"><figcaption>navigate</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：title=&#x27;AUP Showcase&#x27; url=https://showcase.afsd.dev/app?page=auto-surface aupNodes=314 buttons=82 inputs=30 textLen=3411 head=&#x27;AFS Home Showcase AUP Web Home Functional Dashboard Content Portal Report Workspace Web Sharing WM Desktop Explorer Auto Surface App Setting&#x27;</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> snapshot</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260815T191828Z/showcase/auto-surface-02.png" alt="snapshot" loading="lazy"><figcaption>snapshot</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：title=&#x27;AUP Showcase&#x27; url=https://showcase.afsd.dev/app?page=auto-surface aupNodes=314 buttons=82 inputs=30 textLen=3411 head=&#x27;AFS Home Showcase AUP Web Home Functional Dashboard Content Portal Report Workspace Web Sharing WM Desktop Explorer Auto Surface App Setting&#x27;</div>
+
+
+</div></details>
+<details class="dbg" open><summary>运行时 debug 上下文（2 条错误）</summary><div class="dbg-has"><b>Console 错误（1）</b><ul><li><code>Failed to load resource: the server responded with a status of 403 ()</code></li></ul></div><div class="dbg-none">JS 未捕获异常：<b>无</b></div><div class="dbg-has"><b>网络错误（请求失败 / 4xx–5xx）（1）</b><ul><li><code>403 POST https://showcase.afsd.dev/api/afs/rpc</code></li></ul></div></details>
+</section><section id="path-tx-detail">
+<h2>Tx Detail <span class="rt">anon · /app?page=tx-detail</span></h2>
+<p class="pdesc">页面走查：导航到 <code>/app?page=tx-detail</code>，验证页面渲染出真实内容并逐步观测（1 步）。</p>
+<p class="novideo">⛔ 本路径缺录屏（未满足要求 #1）</p>
+<div class="kpis"><div class="kpi"><div class="k">1</div><div class="l">操作步</div></div><div class="kpi"><div class="k">0</div><div class="l">通过</div></div><div class="kpi"><div class="k k-bad">0</div><div class="l">失败</div></div><div class="kpi"><div class="k k-warn">0</div><div class="l">不确定</div></div><div class="kpi"><div class="k">1</div><div class="l">未走到</div></div></div>
+<details class="steps"><summary>▸ 逐步操作详情（1 步，含判定截图）</summary><div class="op">
+<h3><span class="pill p-skip">未走到</span> navigate（跳过）</h3>
+
+
+<div class="chk"><b>观察证据</b>：动态路由未解析出可导航 URL：blocked: 路由 /app?page=tx-detail 里找不到 {param} 占位符前的具名段，无法推断候选集合</div>
+
+<div class="nt">blocked: blocked: 路由 /app?page=tx-detail 里找不到 {param} 占位符前的具名段，无法推断候选集合</div>
+</div></details>
+
+</section><section id="path-dd-1">
+<h2>Write-flow: form-contact valid submit (all 4 required fields) <span class="rt">authed · https://showcase.afsd.dev/app?page=form-contact</span></h2>
+<p class="pdesc">页面走查：导航到 <code>https://showcase.afsd.dev/app?page=form-contact</code>，验证页面渲染出真实内容并逐步观测（11 步）。</p>
+<video class="video" controls preload="metadata" src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260815T191828Z/showcase/page@724f1edcb42970cb6af94a438f3a16e9.webm"><a href="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260815T191828Z/showcase/page@724f1edcb42970cb6af94a438f3a16e9.webm">下载该路径录像</a></video><p class="vcap">本测试路径整段走查录像</p>
+<div class="kpis"><div class="kpi"><div class="k">11</div><div class="l">操作步</div></div><div class="kpi"><div class="k">8</div><div class="l">通过</div></div><div class="kpi"><div class="k k-bad">0</div><div class="l">失败</div></div><div class="kpi"><div class="k k-warn">3</div><div class="l">不确定</div></div><div class="kpi"><div class="k">0</div><div class="l">未走到</div></div></div>
+<details class="steps"><summary>▸ 逐步操作详情（11 步，含判定截图）</summary><div class="op">
+<h3><span class="pill p-ok">通过</span> navigate</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260815T191828Z/showcase/dd-1-showcase-00.png" alt="navigate" loading="lazy"><figcaption>navigate</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：navigate to /app?page=form-contact as authed Test Fixture User; header shows &#x27;Test Fixture User / User Center / Sign Out&#x27; (not anon gate); form-contact card renders with Full name*, Email*, Phone, Company, Inquiry Reason* (select), Project budget chips, Project details* (textarea), and &#x27;Let&#x27;s Connect&#x27; submit button.</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-warn">不确定</span> fill</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260815T191828Z/showcase/dd-1-showcase-01.png" alt="fill" loading="lazy"><figcaption>fill</figcaption></figure></div>
+<div class="chk-fail"><b>观察证据</b>：fill attempt on selector [data-aup-id=&quot;f-name&quot;] failed with Playwright error &#x27;Element is not an &lt;input&gt;...&#x27; — the data-aup-id wrapper is a &lt;div&gt;, not the actual &lt;input&gt;; this is a driver selector-targeting miss, not an app defect (confirmed by next step succeeding with the corrected nested selector).</div>
+<div class="err"><b>执行错误</b>：<code>Error: fill: Error: Element is not an &lt;input&gt;, &lt;textarea&gt;, &lt;select&gt; or [contenteditable] and does not have a role allowing [aria-readonly]</code></div>
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> fill</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260815T191828Z/showcase/dd-1-showcase-02.png" alt="fill" loading="lazy"><figcaption>fill</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：fill [data-aup-id=&quot;f-name&quot;] input succeeded with &#x27;QA Tester qa-tsweep-1786822804&#x27;.</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> fill</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260815T191828Z/showcase/dd-1-showcase-03.png" alt="fill" loading="lazy"><figcaption>fill</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：fill [data-aup-id=&quot;f-email&quot;] input succeeded with &#x27;qa-tsweep@example.com&#x27;.</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> fill</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260815T191828Z/showcase/dd-1-showcase-04.png" alt="fill" loading="lazy"><figcaption>fill</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：fill [data-aup-id=&quot;contact-details&quot;] textarea succeeded with &#x27;QA sweep automated test message qa-tsweep-1786822804 verifying contact write flow.&#x27; (&gt;10 chars, contains letters, satisfies minLength+pattern rules).</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> click</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260815T191828Z/showcase/dd-1-showcase-05.png" alt="click" loading="lazy"><figcaption>click</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：click on [data-aup-id=&quot;f-reason&quot;] select focused the native &lt;select&gt; element (type=select per page JSON, rendered as a real HTML &lt;select&gt;).</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> click</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260815T191828Z/showcase/dd-1-showcase-06.png" alt="click" loading="lazy"><figcaption>click</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：press &#x27;N&#x27; on the focused native select used browser typeahead to select the option starting with N (&#x27;New project&#x27;) — confirmed visually in the post-submit screenshot (dd-1-showcase-09.png) showing &#x27;New project&#x27; selected in the Inquiry Reason dropdown.</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> press</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260815T191828Z/showcase/dd-1-showcase-07.png" alt="press" loading="lazy"><figcaption>press</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：press &#x27;Tab&#x27; moved focus off the select, committing the selection (no state change / error observed).</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> press</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260815T191828Z/showcase/dd-1-showcase-08.png" alt="press" loading="lazy"><figcaption>press</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：click [data-aup-id=&quot;contact-submit&quot;] transitioned the button to &#x27;Sending... (spinner)&#x27; (loadingLabel) per screenshot dd-1-showcase-09.png — this only happens after client-side validation passes (all 4 required fields valid: f-name, f-email, f-reason=&#x27;New project&#x27;, contact-details), confirming an AFS write via /.actions/write to /instance/contact/submissions/&lt;uuid&gt;.json (routed through the `contact` replicated collection) was actually attempted, per .aup/man/form-contact.yaml semantics.</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-warn">不确定</span> click</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260815T191828Z/showcase/dd-1-showcase-09.png" alt="click" loading="lazy"><figcaption>click</figcaption></figure></div>
+<div class="chk-fail"><b>观察证据</b>：3s after submit, screenshot dd-1-showcase-10.png shows the button reverted to idle label &#x27;Let&#x27;s Connect&#x27; — neither the doneLabel (&#x27;Submitted&#x27;) nor errorLabel (&#x27;Failed&#x27;) text was caught in this snapshot cadence, so the terminal outcome (write persisted vs failed) could not be visually confirmed at this granularity.</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-warn">不确定</span> waitFor</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260815T191828Z/showcase/dd-1-showcase-10.png" alt="waitFor" loading="lazy"><figcaption>waitFor</figcaption></figure></div>
+<div class="chk-fail"><b>观察证据</b>：session end: result.json shows consoleErrors=[], pageErrors=[], networkErrors=[] for the whole session — no HTTP 4xx/5xx or failed request was observed, but the AFS write goes over the WS session protocol (not plain HTTP fetch), so page.on(&#x27;response&#x27;)/&#x27;requestfailed&#x27; listeners would not capture a WS-level rejection either; absence of HTTP errors is not proof the write persisted. showcase ships no admin/contact-list page (verified: `ls .aup/pages/` has no such page) and the live Explorer page (nav-explorer) is explicitly scoped to &#x27;/packages/data&#x27; read-only demo data, not /instance — so there is no UI-reachable surface to read back or delete the submitted record; `readRole: admin` on the `contact` collection means even if such a page existed, this authed member-role test user could not read it back. No deletion path exists to attempt.</div>
+
+
+</div></details>
+<details class="dbg"><summary>运行时 debug 上下文（全清）</summary><div class="dbg-none">Console 错误：<b>无</b></div><div class="dbg-none">JS 未捕获异常：<b>无</b></div><div class="dbg-none">网络错误（请求失败 / 4xx–5xx）：<b>无</b></div></details>
+</section><section id="path-dd-2">
+<h2>Write-flow: auto-surface Blocklet Settings &quot;Site title&quot; field edit (dirty -&gt; saving) <span class="rt">authed · https://showcase.afsd.dev/app?page=auto-surface</span></h2>
+<p class="pdesc">写操作走查：7 步驱动此操作（其中 1 步为写），逐步引真实 DOM/文本/toast 为证。</p>
+<video class="video" controls preload="metadata" src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260815T191828Z/showcase/page@ceb89c6ddf1090b0f4038e936c4023f1.webm"><a href="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260815T191828Z/showcase/page@ceb89c6ddf1090b0f4038e936c4023f1.webm">下载该路径录像</a></video><p class="vcap">本测试路径整段走查录像</p>
+<div class="kpis"><div class="kpi"><div class="k">7</div><div class="l">操作步</div></div><div class="kpi"><div class="k">7</div><div class="l">通过</div></div><div class="kpi"><div class="k k-bad">0</div><div class="l">失败</div></div><div class="kpi"><div class="k k-warn">0</div><div class="l">不确定</div></div><div class="kpi"><div class="k">0</div><div class="l">未走到</div></div></div>
+<details class="steps"><summary>▸ 逐步操作详情（7 步，含判定截图）</summary><div class="op">
+<h3><span class="pill p-ok">通过</span> navigate</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260815T191828Z/showcase/dd-2-showcase-00.png" alt="navigate" loading="lazy"><figcaption>navigate</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：navigate to /app?page=auto-surface as authed Test Fixture User; page renders &#x27;Blocklet Settings&#x27; (tabs: Access/Appearance/General/Input Types/Integrations) and &#x27;User Settings&#x27; (tabs: Notifications/Profile) auto-surface panels.</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> click</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260815T191828Z/showcase/dd-2-showcase-01.png" alt="click" loading="lazy"><figcaption>click</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：click &#x27;General&#x27; tab switched Blocklet Settings to General panel showing Public mode toggle, Region select (&#x27;US West&#x27;), and &#x27;Site title&#x27; text field seeded with value &#x27;AUP Showcase&#x27; (screenshot dd-2-showcase-01.png) — this IS the auto-settings-blocklet field referenced by the worklist.</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> snapshot</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260815T191828Z/showcase/dd-2-showcase-02.png" alt="snapshot" loading="lazy"><figcaption>snapshot</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：snapshot confirms General tab state stable, Site title still &#x27;AUP Showcase&#x27;.</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> click</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260815T191828Z/showcase/dd-2-showcase-03.png" alt="click" loading="lazy"><figcaption>click</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：click on textbox role name=&#x27;Site title&#x27; focused the field (blue focus ring, screenshot dd-2-showcase-03.png) — ORIGINAL SEEDED VALUE CAPTURED HERE: &#x27;AUP Showcase&#x27;.</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> <span class="pill p-write">写</span>fill</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260815T191828Z/showcase/dd-2-showcase-04.png" alt="fill" loading="lazy"><figcaption>fill</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：fill set the field to &#x27;Updated Title (qa-tsweep-1786822804)&#x27; — field now shows the QA-tagged dirty value (screenshot dd-2-showcase-04.png).</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> press</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260815T191828Z/showcase/dd-2-showcase-05.png" alt="press" loading="lazy"><figcaption>press</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：press Tab (blur) committed the edit; screenshot dd-2-showcase-05.png shows a new label &#x27;Overridden (default = AUP Showcase)&#x27; appearing beneath the field — confirms the runtime registered a real write against the /instance/settings/settings/blocklet mount (dirty-&gt;saving/committed transition). No separate transient &#x27;Saving…&#x27; spinner text was caught at this ~600ms snapshot cadence, but the override-registered state is direct evidence of a write attempt/commit.</div>
+
+<div class="nt">Session-level networkErrors captured 403/404 POST https://showcase.afsd.dev/api/afs/rpc across this session (see dd-3 for continuation) — could not attribute to a specific step; the Site-title save itself is independently confirmed by the persisted-value reload check in dd-3, so these errors likely belong to an unrelated background fetch (possibly an Input Types/Integrations tab prefetch), not this write.</div>
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> scroll</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260815T191828Z/showcase/dd-2-showcase-06.png" alt="scroll" loading="lazy"><figcaption>scroll</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：scrolled to fully reveal &#x27;Site title: Updated Title (qa-tsweep-1786822804)&#x27; + &#x27;Overridden (default = AUP Showcase)&#x27; + &#x27;Reset to default&#x27; control (screenshot dd-2-showcase-06.png) — dirty/saved-override state fully visible.</div>
+
+
+</div></details>
+<details class="dbg" open><summary>运行时 debug 上下文（8 条错误）</summary><div class="dbg-has"><b>Console 错误（5）</b><ul><li><code>Failed to load resource: the server responded with a status of 403 ()</code></li><li><code>Failed to load resource: the server responded with a status of 404 ()</code></li><li><code>Failed to load resource: the server responded with a status of 403 ()</code></li><li><code>Failed to load resource: the server responded with a status of 404 ()</code></li><li><code>Failed to load resource: the server responded with a status of 403 ()</code></li></ul></div><div class="dbg-none">JS 未捕获异常：<b>无</b></div><div class="dbg-has"><b>网络错误（请求失败 / 4xx–5xx）（3）</b><ul><li><code>403 POST https://showcase.afsd.dev/api/afs/rpc</code></li><li><code>404 POST https://showcase.afsd.dev/api/afs/rpc</code></li><li><code>✗ POST https://showcase.afsd.dev/cdn-cgi/rum? — net::ERR_ABORTED</code></li></ul></div></details>
+</section><section id="path-dd-3">
+<h2>Write-flow continuation: auto-surface Site title save confirmed persisted (then restored to original) <span class="rt">authed · https://showcase.afsd.dev/app?page=auto-surface</span></h2>
+<p class="pdesc">写操作走查：8 步驱动此操作（其中 1 步为写），逐步引真实 DOM/文本/toast 为证。</p>
+<video class="video" controls preload="metadata" src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260815T191828Z/showcase/page@ceb89c6ddf1090b0f4038e936c4023f1.webm"><a href="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260815T191828Z/showcase/page@ceb89c6ddf1090b0f4038e936c4023f1.webm">下载该路径录像</a></video><p class="vcap">本测试路径整段走查录像</p>
+<div class="kpis"><div class="kpi"><div class="k">8</div><div class="l">操作步</div></div><div class="kpi"><div class="k">7</div><div class="l">通过</div></div><div class="kpi"><div class="k k-bad">0</div><div class="l">失败</div></div><div class="kpi"><div class="k k-warn">1</div><div class="l">不确定</div></div><div class="kpi"><div class="k">0</div><div class="l">未走到</div></div></div>
+<details class="steps"><summary>▸ 逐步操作详情（8 步，含判定截图）</summary><div class="op">
+<h3><span class="pill p-ok">通过</span> navigate</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260815T191828Z/showcase/dd-2-showcase-07.png" alt="navigate" loading="lazy"><figcaption>navigate</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：full re-navigate (fresh document load, not client-side re-render) to /app?page=auto-surface — a real round-trip re-fetch of AFS state, not cached UI state.</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> click</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260815T191828Z/showcase/dd-2-showcase-08.png" alt="click" loading="lazy"><figcaption>click</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：click &#x27;General&#x27; tab post-reload: Site title field reads &#x27;Updated Title (qa-tsweep-1786822804)&#x27; (screenshot dd-2-showcase-08.png) — CONFIRMS THE EDIT PERSISTED across a real reload/re-read of /instance/settings/settings/blocklet. No visible toast notification was captured in this or the prior screenshot&#x27;s cadence, so the &#x27;toast host opens&#x27; half of the declared to-state was not visually confirmed; the value-persisted half is confirmed with strong evidence (cross-render reload).</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> scroll</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260815T191828Z/showcase/dd-2-showcase-09.png" alt="scroll" loading="lazy"><figcaption>scroll</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：scrolled down: &#x27;Overridden (default = AUP Showcase)&#x27; label + &#x27;Reset to default&#x27; button both still present post-reload (screenshot dd-2-showcase-10.png before the click below) — consistent with a persisted override.</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-warn">不确定</span> click</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260815T191828Z/showcase/dd-2-showcase-10.png" alt="click" loading="lazy"><figcaption>click</figcaption></figure></div>
+<div class="chk-fail"><b>观察证据</b>：clicked the &#x27;Reset to default&#x27; button — its label changed to &#x27;Done&#x27; but the Site title field&#x27;s displayed value did NOT change (still showed &#x27;Updated Title (qa-tsweep-1786822804)&#x27;, screenshot dd-2-showcase-10.png). This control&#x27;s behavior did not match its label&#x27;s implied instant-revert semantics; it was NOT relied on for restoration — restoration was instead done by directly typing the captured original value back in the next step. Recorded as an observed app quirk, not a QA action against declared item scope.</div>
+
+<div class="nt">Reset-to-default UI quirk: click did not visibly restore the field value, contrary to its label. Restoration proceeded via direct fill of the captured original value instead.</div>
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> <span class="pill p-write">写</span>fill</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260815T191828Z/showcase/dd-2-showcase-11.png" alt="fill" loading="lazy"><figcaption>fill</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：fill set Site title back to &#x27;AUP Showcase&#x27; — the EXACT original value captured in dd-2 step 4 before any edit.</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> press</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260815T191828Z/showcase/dd-2-showcase-12.png" alt="press" loading="lazy"><figcaption>press</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：press Tab (blur) committed the restoration edit; screenshot dd-2-showcase-12.png shows the field with the restored value.</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> navigate</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260815T191828Z/showcase/dd-2-showcase-13.png" alt="navigate" loading="lazy"><figcaption>navigate</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：full re-navigate again to independently re-verify the restoration persisted (not just client state).</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> click</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260815T191828Z/showcase/dd-2-showcase-14.png" alt="click" loading="lazy"><figcaption>click</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：click &#x27;General&#x27; tab post-reload: Site title field reads exactly &#x27;AUP Showcase&#x27; (screenshot dd-2-showcase-14.png) — RESTORATION TO THE ORIGINAL SEEDED VALUE CONFIRMED PERSISTED. App left in its original pre-test state.</div>
+
+<div class="nt">Session-level networkErrors captured 403/404 POST https://showcase.afsd.dev/api/afs/rpc and a blocked /cdn-cgi/rum beacon across the session; these did not prevent the Site-title write/read-back from working correctly (both the edit and the restoration independently round-tripped through a full page reload) and are noted here for completeness rather than attributed to this specific field.</div>
+</div></details>
+<details class="dbg" open><summary>运行时 debug 上下文（8 条错误）</summary><div class="dbg-has"><b>Console 错误（5）</b><ul><li><code>Failed to load resource: the server responded with a status of 403 ()</code></li><li><code>Failed to load resource: the server responded with a status of 404 ()</code></li><li><code>Failed to load resource: the server responded with a status of 403 ()</code></li><li><code>Failed to load resource: the server responded with a status of 404 ()</code></li><li><code>Failed to load resource: the server responded with a status of 403 ()</code></li></ul></div><div class="dbg-none">JS 未捕获异常：<b>无</b></div><div class="dbg-has"><b>网络错误（请求失败 / 4xx–5xx）（3）</b><ul><li><code>403 POST https://showcase.afsd.dev/api/afs/rpc</code></li><li><code>404 POST https://showcase.afsd.dev/api/afs/rpc</code></li><li><code>✗ POST https://showcase.afsd.dev/cdn-cgi/rum? — net::ERR_ABORTED</code></li></ul></div></details>
+</section><section id="path-dd-4">
+<h2>Read-flow: form-contact anon empty submit blocked (validation_failed, no write) <span class="rt">anon · https://showcase.afsd.dev/app?page=form-contact</span></h2>
+<p class="pdesc">页面走查：导航到 <code>https://showcase.afsd.dev/app?page=form-contact</code>，验证页面渲染出真实内容并逐步观测（2 步）。</p>
+<video class="video" controls preload="metadata" src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260815T191828Z/showcase/page@bfbef911b36eb1351cbb38b2cd05fc88.webm"><a href="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260815T191828Z/showcase/page@bfbef911b36eb1351cbb38b2cd05fc88.webm">下载该路径录像</a></video><p class="vcap">本测试路径整段走查录像</p>
+<div class="kpis"><div class="kpi"><div class="k">2</div><div class="l">操作步</div></div><div class="kpi"><div class="k">2</div><div class="l">通过</div></div><div class="kpi"><div class="k k-bad">0</div><div class="l">失败</div></div><div class="kpi"><div class="k k-warn">0</div><div class="l">不确定</div></div><div class="kpi"><div class="k">0</div><div class="l">未走到</div></div></div>
+<details class="steps"><summary>▸ 逐步操作详情（2 步，含判定截图）</summary><div class="op">
+<h3><span class="pill p-ok">通过</span> navigate</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260815T191828Z/showcase/dd-4-showcase-00.png" alt="navigate" loading="lazy"><figcaption>navigate</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：navigate to /app?page=form-contact as anon (header shows a bare avatar icon, no username/sign-out — confirmed anonymous); form renders with all fields empty, submit button reads &#x27;Let&#x27;s Connect&#x27;.</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> click</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260815T191828Z/showcase/dd-4-showcase-01.png" alt="click" loading="lazy"><figcaption>click</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：click [data-aup-id=&quot;contact-submit&quot;] with every field empty: all 4 required fields (Full name, Email, Inquiry Reason, Project details) immediately show a red error outline (screenshot dd-4-showcase-01.png); the submit button remains the idle &#x27;Let&#x27;s Connect&#x27; label (never transitioned to &#x27;Sending...&#x27;), and the session-end result.json shows networkErrors=[] and consoleErrors=[] for the whole 2-step session — no network request of any kind was fired, confirming the submit was BLOCKED client-side by collect-all validation and no AFS write was attempted, matching the man page&#x27;s declared validation_failed/no-write behavior.</div>
+
+
+</div></details>
+<details class="dbg"><summary>运行时 debug 上下文（全清）</summary><div class="dbg-none">Console 错误：<b>无</b></div><div class="dbg-none">JS 未捕获异常：<b>无</b></div><div class="dbg-none">网络错误（请求失败 / 4xx–5xx）：<b>无</b></div></details>
+</section><section id="path-dd-5">
+<h2>Read-flow: form-contact anon submit with letterless contact-details (pattern rule failure only, no write) <span class="rt">anon · https://showcase.afsd.dev/app?page=form-contact</span></h2>
+<p class="pdesc">页面走查：导航到 <code>https://showcase.afsd.dev/app?page=form-contact</code>，验证页面渲染出真实内容并逐步观测（7 步）。</p>
+<video class="video" controls preload="metadata" src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260815T191828Z/showcase/page@ed5ccd42a87542c8c078281aa92f6ec1.webm"><a href="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260815T191828Z/showcase/page@ed5ccd42a87542c8c078281aa92f6ec1.webm">下载该路径录像</a></video><p class="vcap">本测试路径整段走查录像</p>
+<div class="kpis"><div class="kpi"><div class="k">7</div><div class="l">操作步</div></div><div class="kpi"><div class="k">7</div><div class="l">通过</div></div><div class="kpi"><div class="k k-bad">0</div><div class="l">失败</div></div><div class="kpi"><div class="k k-warn">0</div><div class="l">不确定</div></div><div class="kpi"><div class="k">0</div><div class="l">未走到</div></div></div>
+<details class="steps"><summary>▸ 逐步操作详情（7 步，含判定截图）</summary><div class="op">
+<h3><span class="pill p-ok">通过</span> navigate</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260815T191828Z/showcase/dd-5-showcase-00.png" alt="navigate" loading="lazy"><figcaption>navigate</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：navigate to /app?page=form-contact anon; form renders empty.</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> fill</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260815T191828Z/showcase/dd-5-showcase-01.png" alt="fill" loading="lazy"><figcaption>fill</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：fill f-name input with &#x27;Ada Lovelace&#x27; (valid).</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> fill</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260815T191828Z/showcase/dd-5-showcase-02.png" alt="fill" loading="lazy"><figcaption>fill</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：fill f-email input with &#x27;ada@example.com&#x27; (valid).</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> click</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260815T191828Z/showcase/dd-5-showcase-03.png" alt="click" loading="lazy"><figcaption>click</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：click f-reason select to focus it.</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> press</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260815T191828Z/showcase/dd-5-showcase-04.png" alt="press" loading="lazy"><figcaption>press</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：press &#x27;N&#x27; selected &#x27;New project&#x27; via native-select typeahead (valid, non-empty, satisfies required).</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> fill</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260815T191828Z/showcase/dd-5-showcase-05.png" alt="fill" loading="lazy"><figcaption>fill</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：fill contact-details textarea with &#x27;1234567890&#x27; — 10 digits, letterless: passes required (non-empty) and minLength=10, but fails the letter-required pattern [\s\S]*[A-Za-z][\s\S]*.</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> click</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260815T191828Z/showcase/dd-5-showcase-06.png" alt="click" loading="lazy"><figcaption>click</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：click contact-submit: screenshot dd-5-showcase-06.png shows ONLY the Project details textarea with a red error outline — Full name, Email, and Inquiry Reason all show their valid values with no error styling (collect-all correctly reports only the offending field, not over-reporting). Submit button remained the idle &#x27;Let&#x27;s Connect&#x27; label (no &#x27;Sending...&#x27; transition), and session-end result.json shows networkErrors=[] / consoleErrors=[] across all 7 steps — no network request was fired, confirming submit was blocked by the pattern rule alone and no AFS write was attempted, exactly matching the man page&#x27;s declared collect-all/pattern-only-failure semantics.</div>
+
+
+</div></details>
+<details class="dbg"><summary>运行时 debug 上下文（全清）</summary><div class="dbg-none">Console 错误：<b>无</b></div><div class="dbg-none">JS 未捕获异常：<b>无</b></div><div class="dbg-none">网络错误（请求失败 / 4xx–5xx）：<b>无</b></div></details>
+</section><section id="path-dd-6">
+<h2>Read-flow: overlays alert dismiss (built-in OK control closes alert-demo) <span class="rt">anon · https://showcase.afsd.dev/app?page=overlays</span></h2>
+<p class="pdesc">页面走查：导航到 <code>https://showcase.afsd.dev/app?page=overlays</code>，验证页面渲染出真实内容并逐步观测（4 步）。</p>
+<video class="video" controls preload="metadata" src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260815T191828Z/showcase/page@d8ca27d8588dd1c57a196644ecca5a49.webm"><a href="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260815T191828Z/showcase/page@d8ca27d8588dd1c57a196644ecca5a49.webm">下载该路径录像</a></video><p class="vcap">本测试路径整段走查录像</p>
+<div class="kpis"><div class="kpi"><div class="k">4</div><div class="l">操作步</div></div><div class="kpi"><div class="k">3</div><div class="l">通过</div></div><div class="kpi"><div class="k k-bad">0</div><div class="l">失败</div></div><div class="kpi"><div class="k k-warn">1</div><div class="l">不确定</div></div><div class="kpi"><div class="k">0</div><div class="l">未走到</div></div></div>
+<details class="steps"><summary>▸ 逐步操作详情（4 步，含判定截图）</summary><div class="op">
+<h3><span class="pill p-ok">通过</span> navigate</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260815T191828Z/showcase/dd-6-showcase-00.png" alt="navigate" loading="lazy"><figcaption>navigate</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：navigate to /app?page=overlays anon; &#x27;Overlay Components&#x27; launcher renders 8 demo buttons (Alert/Confirm/HUD/Choice/Multi-Step/Toast Success/Toast Error/Toast Sticky).</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> click</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260815T191828Z/showcase/dd-6-showcase-01.png" alt="click" loading="lazy"><figcaption>click</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：click &#x27;Alert&#x27; button opened the alert-demo overlay: a modal titled &#x27;Connection Lost&#x27; (intent=error, red X icon) with message &#x27;The server is not responding...&#x27; and a single &#x27;OK&#x27; button (screenshot dd-6-showcase-01.png).</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-warn">不确定</span> click</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260815T191828Z/showcase/dd-6-showcase-02.png" alt="click" loading="lazy"><figcaption>click</figcaption></figure></div>
+<div class="chk-fail"><b>观察证据</b>：clicked selector &#x27;body&#x27; (center of page) to probe backdrop-dismiss — the dialog remained open and unchanged (screenshot dd-6-showcase-02.png identical to prior); the click likely landed on the modal itself or its backdrop is not click-to-dismiss for alert mode. Not conclusive evidence either way about backdrop dismissal specifically; the built-in OK control (next step) is the confirmed dismiss path.</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> click</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260815T191828Z/showcase/dd-6-showcase-03.png" alt="click" loading="lazy"><figcaption>click</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：click role=button name=&#x27;OK&#x27; closed the alert overlay — screenshot dd-6-showcase-03.png shows the page back to the plain launcher state (alert-demo.open reset to false via the overlay&#x27;s built-in OK control), matching the declared &#x27;launcher&#x27; end state.</div>
+
+
+</div></details>
+<details class="dbg"><summary>运行时 debug 上下文（全清）</summary><div class="dbg-none">Console 错误：<b>无</b></div><div class="dbg-none">JS 未捕获异常：<b>无</b></div><div class="dbg-none">网络错误（请求失败 / 4xx–5xx）：<b>无</b></div></details>
+</section><section id="path-dd-7">
+<h2>Read-flow: overlays confirm dismiss via Keep (built-in control closes confirm-demo) <span class="rt">anon · https://showcase.afsd.dev/app?page=overlays</span></h2>
+<p class="pdesc">页面走查：导航到 <code>https://showcase.afsd.dev/app?page=overlays</code>，验证页面渲染出真实内容并逐步观测（2 步）。</p>
+<video class="video" controls preload="metadata" src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260815T191828Z/showcase/page@d8ca27d8588dd1c57a196644ecca5a49.webm"><a href="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260815T191828Z/showcase/page@d8ca27d8588dd1c57a196644ecca5a49.webm">下载该路径录像</a></video><p class="vcap">本测试路径整段走查录像</p>
+<div class="kpis"><div class="kpi"><div class="k">2</div><div class="l">操作步</div></div><div class="kpi"><div class="k">2</div><div class="l">通过</div></div><div class="kpi"><div class="k k-bad">0</div><div class="l">失败</div></div><div class="kpi"><div class="k k-warn">0</div><div class="l">不确定</div></div><div class="kpi"><div class="k">0</div><div class="l">未走到</div></div></div>
+<details class="steps"><summary>▸ 逐步操作详情（2 步，含判定截图）</summary><div class="op">
+<h3><span class="pill p-ok">通过</span> click</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260815T191828Z/showcase/dd-6-showcase-04.png" alt="click" loading="lazy"><figcaption>click</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：click &#x27;Confirm&#x27; button opened the confirm-demo overlay: modal titled &#x27;Delete Project?&#x27; (intent=warning, yellow triangle icon) with message &#x27;This action cannot be undone...&#x27; and two buttons &#x27;Keep&#x27; / &#x27;Delete&#x27; (screenshot dd-6-showcase-04.png) — reaching the declared precondition &#x27;confirm open&#x27;.</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> click</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260815T191828Z/showcase/dd-6-showcase-05.png" alt="click" loading="lazy"><figcaption>click</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：click role=button name=&#x27;Keep&#x27; (the cancel-equivalent, chosen over &#x27;Delete&#x27; per driving-safety discipline even though this demo overlay is not wired to any real deletion) closed the confirm overlay — screenshot dd-6-showcase-05.png shows the page back to the plain launcher state, matching the declared &#x27;launcher&#x27; end state (confirm-demo.open reset to false via the built-in Keep/cancel control).</div>
+
+
+</div></details>
+<details class="dbg"><summary>运行时 debug 上下文（全清）</summary><div class="dbg-none">Console 错误：<b>无</b></div><div class="dbg-none">JS 未捕获异常：<b>无</b></div><div class="dbg-none">网络错误（请求失败 / 4xx–5xx）：<b>无</b></div></details>
+</section><section id="path-dd-8">
+<h2>Read-flow: list-basic -&gt; Pagination variant tab switch <span class="rt">anon · https://showcase.afsd.dev/app?page=list-basic</span></h2>
+<p class="pdesc">页面走查：导航到 <code>https://showcase.afsd.dev/app?page=list-basic</code>，验证页面渲染出真实内容并逐步观测（2 步）。</p>
+<video class="video" controls preload="metadata" src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260815T191828Z/showcase/page@c3dde52f8a426cfb7cf6e854fe70d443.webm"><a href="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260815T191828Z/showcase/page@c3dde52f8a426cfb7cf6e854fe70d443.webm">下载该路径录像</a></video><p class="vcap">本测试路径整段走查录像</p>
+<div class="kpis"><div class="kpi"><div class="k">2</div><div class="l">操作步</div></div><div class="kpi"><div class="k">2</div><div class="l">通过</div></div><div class="kpi"><div class="k k-bad">0</div><div class="l">失败</div></div><div class="kpi"><div class="k k-warn">0</div><div class="l">不确定</div></div><div class="kpi"><div class="k">0</div><div class="l">未走到</div></div></div>
+<details class="steps"><summary>▸ 逐步操作详情（2 步，含判定截图）</summary><div class="op">
+<h3><span class="pill p-ok">通过</span> navigate</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260815T191828Z/showcase/dd-8-showcase-00.png" alt="navigate" loading="lazy"><figcaption>navigate</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：navigate to /app?page=list-basic anon; page renders &#x27;afs-list: Basic&#x27; with tab bar (Basic/Pagination/Templates/Grid/Virtual/Live), Basic active, flat card list of 12 items bound to data/items.</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> click</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260815T191828Z/showcase/dd-8-showcase-01.png" alt="click" loading="lazy"><figcaption>click</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：click [data-aup-id=&quot;tab-pagination&quot;]: page header changed to &#x27;afs-list: Pagination&#x27;, URL updated to /app?page=list-pagination, nav bar&#x27;s &#x27;List Pagination&#x27; entry now highlighted, description text changed to &#x27;pageSize: 8. The provider returns 12 items; the manual pager shows page 1 first (8 items) with Prev/Next controls...&#x27; and item-001..004 render (screenshot dd-8-showcase-01.png) — tab click correctly navigated to the Pagination variant.</div>
+
+
+</div></details>
+<details class="dbg" open><summary>运行时 debug 上下文（1 条错误）</summary><div class="dbg-none">Console 错误：<b>无</b></div><div class="dbg-none">JS 未捕获异常：<b>无</b></div><div class="dbg-has"><b>网络错误（请求失败 / 4xx–5xx）（1）</b><ul><li><code>✗ POST https://showcase.afsd.dev/cdn-cgi/rum? — net::ERR_ABORTED</code></li></ul></div></details>
+</section><section id="path-dd-9">
+<h2>Read-flow: list-basic -&gt; Templates variant tab switch <span class="rt">anon · https://showcase.afsd.dev/app?page=list-basic</span></h2>
+<p class="pdesc">页面走查：导航到 <code>https://showcase.afsd.dev/app?page=list-basic</code>，验证页面渲染出真实内容并逐步观测（3 步）。</p>
+<video class="video" controls preload="metadata" src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260815T191828Z/showcase/page@c3dde52f8a426cfb7cf6e854fe70d443.webm"><a href="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260815T191828Z/showcase/page@c3dde52f8a426cfb7cf6e854fe70d443.webm">下载该路径录像</a></video><p class="vcap">本测试路径整段走查录像</p>
+<div class="kpis"><div class="kpi"><div class="k">3</div><div class="l">操作步</div></div><div class="kpi"><div class="k">2</div><div class="l">通过</div></div><div class="kpi"><div class="k k-bad">1</div><div class="l">失败</div></div><div class="kpi"><div class="k k-warn">0</div><div class="l">不确定</div></div><div class="kpi"><div class="k">0</div><div class="l">未走到</div></div></div>
+<details class="steps"><summary>▸ 逐步操作详情（3 步，含判定截图）</summary><div class="op">
+<h3><span class="pill p-ok">通过</span> click</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260815T191828Z/showcase/dd-8-showcase-02.png" alt="click" loading="lazy"><figcaption>click</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：click [data-aup-id=&quot;tab-basic&quot;] returned to /app?page=list-basic, header &#x27;afs-list: Basic&#x27; (screenshot dd-8-showcase-03.png).</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-fail">失败</span> click</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260815T191828Z/showcase/dd-8-showcase-03.png" alt="click" loading="lazy"><figcaption>click</figcaption></figure></div>
+<div class="chk-fail"><b>观察证据</b>：click [data-aup-id=&quot;tab-template&quot;] (settle 800ms) returned ok=true with no JS error, but the URL stayed at /app?page=list-basic and the header/content remained &#x27;afs-list: Basic&#x27; (screenshot dd-8-showcase-03.png, unchanged) — the tab click silently failed to navigate to the Templates variant on the first attempt.</div>
+
+<div class="nt">Reproducible-once flakiness: an identical click on the same selector immediately afterward (next step) succeeded and navigated correctly. Recorded as fail because on this attempt the declared transition (list-basic -&gt; list-template) did not happen; whether it&#x27;s a genuine intermittent nav-handler bug or a settle-timing artifact of this driver is not fully resolved, but the observed behavior (click registers, no navigation, no error surfaced to the user) is worth a maintainer look.</div>
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> click</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260815T191828Z/showcase/dd-8-showcase-04.png" alt="click" loading="lazy"><figcaption>click</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：retrying the identical click [data-aup-id=&quot;tab-template&quot;] (settle 2000ms) succeeded: URL changed to /app?page=list-template, header &#x27;afs-list: Item Templates&#x27;, description &#x27;Custom AUP templates: role=&quot;header&quot; banner, role=&quot;item&quot; card with bound fields...&#x27;, item cards render with custom template layout (screenshot dd-8-showcase-04.png) — declared end state reached.</div>
+
+
+</div></details>
+<details class="dbg" open><summary>运行时 debug 上下文（1 条错误）</summary><div class="dbg-none">Console 错误：<b>无</b></div><div class="dbg-none">JS 未捕获异常：<b>无</b></div><div class="dbg-has"><b>网络错误（请求失败 / 4xx–5xx）（1）</b><ul><li><code>✗ POST https://showcase.afsd.dev/cdn-cgi/rum? — net::ERR_ABORTED</code></li></ul></div></details>
+</section><section id="path-dd-10">
+<h2>Read-flow: list-basic -&gt; Grid variant tab switch <span class="rt">anon · https://showcase.afsd.dev/app?page=list-basic</span></h2>
+<p class="pdesc">页面走查：导航到 <code>https://showcase.afsd.dev/app?page=list-basic</code>，验证页面渲染出真实内容并逐步观测（2 步）。</p>
+<video class="video" controls preload="metadata" src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260815T191828Z/showcase/page@c3dde52f8a426cfb7cf6e854fe70d443.webm"><a href="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260815T191828Z/showcase/page@c3dde52f8a426cfb7cf6e854fe70d443.webm">下载该路径录像</a></video><p class="vcap">本测试路径整段走查录像</p>
+<div class="kpis"><div class="kpi"><div class="k">2</div><div class="l">操作步</div></div><div class="kpi"><div class="k">2</div><div class="l">通过</div></div><div class="kpi"><div class="k k-bad">0</div><div class="l">失败</div></div><div class="kpi"><div class="k k-warn">0</div><div class="l">不确定</div></div><div class="kpi"><div class="k">0</div><div class="l">未走到</div></div></div>
+<details class="steps"><summary>▸ 逐步操作详情（2 步，含判定截图）</summary><div class="op">
+<h3><span class="pill p-ok">通过</span> navigate</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260815T191828Z/showcase/dd-8-showcase-05.png" alt="navigate" loading="lazy"><figcaption>navigate</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：navigate back to /app?page=list-basic (fresh reload) to restart from the declared &#x27;list-basic&#x27; precondition.</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> click</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260815T191828Z/showcase/dd-8-showcase-06.png" alt="click" loading="lazy"><figcaption>click</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：click [data-aup-id=&quot;tab-grid&quot;]: URL changed to /app?page=list-grid on the first attempt (no retry needed), nav bar &#x27;List Grid&#x27; highlighted (screenshot dd-8-showcase-06.png) — correct navigation to the Grid variant.</div>
+
+
+</div></details>
+<details class="dbg" open><summary>运行时 debug 上下文（1 条错误）</summary><div class="dbg-none">Console 错误：<b>无</b></div><div class="dbg-none">JS 未捕获异常：<b>无</b></div><div class="dbg-has"><b>网络错误（请求失败 / 4xx–5xx）（1）</b><ul><li><code>✗ POST https://showcase.afsd.dev/cdn-cgi/rum? — net::ERR_ABORTED</code></li></ul></div></details>
+</section><section id="path-dd-11">
+<h2>Read-flow: list-basic -&gt; Virtual variant tab switch <span class="rt">anon · https://showcase.afsd.dev/app?page=list-basic</span></h2>
+<p class="pdesc">页面走查：导航到 <code>https://showcase.afsd.dev/app?page=list-basic</code>，验证页面渲染出真实内容并逐步观测（2 步）。</p>
+<video class="video" controls preload="metadata" src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260815T191828Z/showcase/page@c3dde52f8a426cfb7cf6e854fe70d443.webm"><a href="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260815T191828Z/showcase/page@c3dde52f8a426cfb7cf6e854fe70d443.webm">下载该路径录像</a></video><p class="vcap">本测试路径整段走查录像</p>
+<div class="kpis"><div class="kpi"><div class="k">2</div><div class="l">操作步</div></div><div class="kpi"><div class="k">2</div><div class="l">通过</div></div><div class="kpi"><div class="k k-bad">0</div><div class="l">失败</div></div><div class="kpi"><div class="k k-warn">0</div><div class="l">不确定</div></div><div class="kpi"><div class="k">0</div><div class="l">未走到</div></div></div>
+<details class="steps"><summary>▸ 逐步操作详情（2 步，含判定截图）</summary><div class="op">
+<h3><span class="pill p-ok">通过</span> navigate</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260815T191828Z/showcase/dd-8-showcase-07.png" alt="navigate" loading="lazy"><figcaption>navigate</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：navigate back to /app?page=list-basic (fresh reload) to restart from the declared &#x27;list-basic&#x27; precondition.</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> click</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260815T191828Z/showcase/dd-8-showcase-08.png" alt="click" loading="lazy"><figcaption>click</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：click [data-aup-id=&quot;tab-virtual&quot;]: URL changed to /app?page=list-virtual on the first attempt, header &#x27;afs-list: Virtual Scroll&#x27;, description &#x27;virtual: true, estimatedItemHeight: 56, bufferItems: 3. Only visible rows are in the DOM...&#x27; (screenshot dd-8-showcase-08.png) — correct navigation to the Virtual variant.</div>
+
+
+</div></details>
+<details class="dbg" open><summary>运行时 debug 上下文（1 条错误）</summary><div class="dbg-none">Console 错误：<b>无</b></div><div class="dbg-none">JS 未捕获异常：<b>无</b></div><div class="dbg-has"><b>网络错误（请求失败 / 4xx–5xx）（1）</b><ul><li><code>✗ POST https://showcase.afsd.dev/cdn-cgi/rum? — net::ERR_ABORTED</code></li></ul></div></details>
+</section><section id="path-dd-12">
+<h2>Read-flow: list-basic -&gt; Live Updates demo tab switch <span class="rt">anon · https://showcase.afsd.dev/app?page=list-basic</span></h2>
+<p class="pdesc">页面走查：导航到 <code>https://showcase.afsd.dev/app?page=list-basic</code>，验证页面渲染出真实内容并逐步观测（2 步）。</p>
+<video class="video" controls preload="metadata" src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260815T191828Z/showcase/page@c3dde52f8a426cfb7cf6e854fe70d443.webm"><a href="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260815T191828Z/showcase/page@c3dde52f8a426cfb7cf6e854fe70d443.webm">下载该路径录像</a></video><p class="vcap">本测试路径整段走查录像</p>
+<div class="kpis"><div class="kpi"><div class="k">2</div><div class="l">操作步</div></div><div class="kpi"><div class="k">2</div><div class="l">通过</div></div><div class="kpi"><div class="k k-bad">0</div><div class="l">失败</div></div><div class="kpi"><div class="k k-warn">0</div><div class="l">不确定</div></div><div class="kpi"><div class="k">0</div><div class="l">未走到</div></div></div>
+<details class="steps"><summary>▸ 逐步操作详情（2 步，含判定截图）</summary><div class="op">
+<h3><span class="pill p-ok">通过</span> navigate</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260815T191828Z/showcase/dd-8-showcase-09.png" alt="navigate" loading="lazy"><figcaption>navigate</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：navigate back to /app?page=list-basic (fresh reload) to restart from the declared &#x27;list-basic&#x27; precondition.</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> click</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260815T191828Z/showcase/dd-8-showcase-10.png" alt="click" loading="lazy"><figcaption>click</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：click [data-aup-id=&quot;tab-live&quot;]: URL changed to /app?page=live-updates on the first attempt, header &#x27;afs-list: Live Updates&#x27;, description &#x27;An afs-list with subscribe: true bound to /instance/feed. New writes to that path stream into this page in real time over WebSocket — no reload, no polling.&#x27; and a &#x27;Try it&#x27; panel render (screenshot dd-8-showcase-10.png) — correct navigation to the Live Updates demo.</div>
+
+
+</div></details>
+<details class="dbg" open><summary>运行时 debug 上下文（1 条错误）</summary><div class="dbg-none">Console 错误：<b>无</b></div><div class="dbg-none">JS 未捕获异常：<b>无</b></div><div class="dbg-has"><b>网络错误（请求失败 / 4xx–5xx）（1）</b><ul><li><code>✗ POST https://showcase.afsd.dev/cdn-cgi/rum? — net::ERR_ABORTED</code></li></ul></div></details>
+</section>
+<p class="sub" style="margin-top:22px">由 test-report-builder（build-agent-report）生成 · issue #1808</p>
+</div></body></html>
