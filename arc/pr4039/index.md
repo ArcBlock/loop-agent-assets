@@ -18,3 +18,4 @@
 | 20260815-010704-b6-invalid-anon.webm | https://github.com/ArcBlock/arc/pull/4039 | 2026-08-15T01:07:04Z | robmao@Roberts-Mac-mini-M4-Pro |
 | 20260815-010710-og-card-alice.png | https://github.com/ArcBlock/arc/pull/4039 | 2026-08-15T01:07:10Z | robmao@Roberts-Mac-mini-M4-Pro |
 | 20260815-010717-og-card-cara.png | https://github.com/ArcBlock/arc/pull/4039 | 2026-08-15T01:07:17Z | robmao@Roberts-Mac-mini-M4-Pro |
+| 20260815-050030-20260814-215940-b1-anon-landing.png | https://github.com/ArcBlock/arc/pull/4039 | 2026-08-15T05:00:30Z | robmao@Roberts-Mac-mini-M4-Pro |
