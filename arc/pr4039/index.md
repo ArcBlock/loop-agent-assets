@@ -23,3 +23,4 @@
 | 20260815-050043-20260814-215946-b3-joined.png | https://github.com/ArcBlock/arc/pull/4039 | 2026-08-15T05:00:43Z | robmao@Roberts-Mac-mini-M4-Pro |
 | 20260815-050048-20260814-215947-b4-already.png | https://github.com/ArcBlock/arc/pull/4039 | 2026-08-15T05:00:48Z | robmao@Roberts-Mac-mini-M4-Pro |
 | 20260815-050053-20260814-215949-b5-self.png | https://github.com/ArcBlock/arc/pull/4039 | 2026-08-15T05:00:53Z | robmao@Roberts-Mac-mini-M4-Pro |
+| 20260815-050059-20260814-215952-b6-expired.png | https://github.com/ArcBlock/arc/pull/4039 | 2026-08-15T05:00:59Z | robmao@Roberts-Mac-mini-M4-Pro |
