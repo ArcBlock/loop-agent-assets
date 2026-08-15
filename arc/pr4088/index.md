@@ -13,3 +13,4 @@
 | 20260815-102640-ui-verify-aggregator-dolores-park.webm | https://github.com/ArcBlock/arc/pull/4088 | 2026-08-15T10:26:40Z | robmao@Roberts-Mac-mini-M4-Pro |
 | 20260815-102645-ui-verify-aggregator-green-apple-books.webm | https://github.com/ArcBlock/arc/pull/4088 | 2026-08-15T10:26:45Z | robmao@Roberts-Mac-mini-M4-Pro |
 | 20260815-102648-ui-verify-aggregator-places-list.webm | https://github.com/ArcBlock/arc/pull/4088 | 2026-08-15T10:26:48Z | robmao@Roberts-Mac-mini-M4-Pro |
+| 20260815-102704-ui-verify-aggregator-places-list.gif | https://github.com/ArcBlock/arc/pull/4088 | 2026-08-15T10:27:04Z | robmao@Roberts-Mac-mini-M4-Pro |
