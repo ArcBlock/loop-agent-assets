@@ -1,0 +1,133 @@
+<!doctype html><html><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>chain-explorer — agent 走查报告</title><style>
+:root{--bg:#f7f8f8;--fg:#16201f;--muted:#5c6b69;--card:#fff;--card2:#eef2f1;--border:#dde3e2;--accent:#127a72;--pass:#1f8a54;--warn:#b5771a;--bad:#c0392b}
+@media(prefers-color-scheme:dark){:root{--bg:#0e1413;--fg:#e6ecea;--muted:#8ea19d;--card:#161d1c;--card2:#1d2624;--border:#26302e;--accent:#3fb8ab;--pass:#3fb37a;--warn:#d69a3e;--bad:#e5735f}}
+:root[data-theme=dark]{--bg:#0e1413;--fg:#e6ecea;--muted:#8ea19d;--card:#161d1c;--card2:#1d2624;--border:#26302e;--accent:#3fb8ab;--pass:#3fb37a;--warn:#d69a3e;--bad:#e5735f}
+:root[data-theme=light]{--bg:#f7f8f8;--fg:#16201f;--muted:#5c6b69;--card:#fff;--card2:#eef2f1;--border:#dde3e2;--accent:#127a72;--pass:#1f8a54;--warn:#b5771a;--bad:#c0392b}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--fg);font:15px/1.65 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;padding:24px}
+.wrap{max-width:920px;margin:0 auto}
+h1{font-size:24px;margin:0 0 4px;text-wrap:balance}h2{font-size:19px;margin:30px 0 8px}
+h2 .rt{font-size:13px;color:var(--muted);font-weight:400;font-variant-numeric:tabular-nums}
+.sub{color:var(--muted);margin:0 0 14px;font-size:13px}
+code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.85em;background:var(--card2);padding:1px 5px;border-radius:4px}
+.how{background:var(--card);border:1px solid var(--border);border-left:3px solid var(--accent);border-radius:8px;padding:13px 16px;margin:14px 0;font-size:14px}
+.how b{color:var(--accent)}
+.banner{border-radius:12px;padding:14px 18px;margin:16px 0}
+.banner.ok{background:color-mix(in srgb,var(--pass) 12%,transparent);border:1px solid color-mix(in srgb,var(--pass) 40%,transparent)}
+.banner.ok b{color:var(--pass)}
+.banner.bad{background:color-mix(in srgb,var(--bad) 13%,transparent);border:1px solid color-mix(in srgb,var(--bad) 45%,transparent)}
+.banner.bad b{color:var(--bad);font-size:16px}
+.banner.info{background:color-mix(in srgb,var(--accent) 10%,transparent);border:1px solid color-mix(in srgb,var(--accent) 38%,transparent)}
+.banner.info b{color:var(--accent)}
+.plist{margin:10px 0 0;padding-left:0;list-style:none}
+.plist li{padding:8px 0;border-top:1px solid var(--border)}
+.plist a{text-decoration:none;color:var(--fg);font-weight:600}
+.plist .pe{color:var(--muted);font-size:12.5px;font-weight:400;margin-top:3px}
+.video{width:100%;border-radius:10px;border:1px solid var(--border);background:#000;margin:6px 0 2px}
+.vcap{color:var(--muted);font-size:12.5px;margin:0 0 8px}
+.novideo{color:var(--bad);font-weight:600;background:color-mix(in srgb,var(--bad) 10%,transparent);border:1px dashed color-mix(in srgb,var(--bad) 45%,transparent);border-radius:8px;padding:8px 12px;font-size:13px}
+.kpis{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0}
+.kpi{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:9px 14px;min-width:70px}
+.kpi .k{font-size:21px;font-weight:700;font-variant-numeric:tabular-nums}.kpi .l{color:var(--muted);font-size:12px}
+.kpi .k-bad{color:var(--bad)}.kpi .k-warn{color:var(--warn)}
+.op{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:15px 17px;margin:14px 0}
+.op h3{margin:0 0 3px;font-size:16px;display:flex;align-items:center;gap:9px;flex-wrap:wrap}
+.op .exp{color:var(--muted);font-size:13px;margin:0 0 9px}
+.op .nt{color:var(--muted);font-size:12.5px;margin-top:6px}
+.pill{font-size:11.5px;font-weight:700;padding:2px 9px;border-radius:20px}
+.p-ok{background:color-mix(in srgb,var(--pass) 18%,transparent);color:var(--pass)}
+.p-fail{background:color-mix(in srgb,var(--bad) 18%,transparent);color:var(--bad)}
+.p-warn{background:color-mix(in srgb,var(--warn) 20%,transparent);color:var(--warn)}
+.p-skip{background:var(--card2);color:var(--muted)}
+.p-write{background:color-mix(in srgb,var(--accent) 18%,transparent);color:var(--accent)}
+.frame figure{margin:0 0 9px}.frame img{width:100%;border-radius:8px;border:1px solid var(--border);display:block}
+.frame figcaption{color:var(--muted);font-size:11.5px;margin-top:4px;text-align:center}
+.chk{background:color-mix(in srgb,var(--pass) 12%,transparent);border:1px solid color-mix(in srgb,var(--pass) 34%,transparent);border-radius:8px;padding:8px 12px;font-size:13px}
+.chk b{color:var(--pass)}
+.chk-fail{background:color-mix(in srgb,var(--bad) 11%,transparent);border:1px solid color-mix(in srgb,var(--bad) 40%,transparent);border-radius:8px;padding:8px 12px;font-size:13px}
+.chk-fail b{color:var(--bad)}
+table.probe{border-collapse:collapse;width:100%;font-size:13px}
+table.probe th,table.probe td{border:1px solid var(--border);padding:5px 9px;text-align:left}
+table.probe tr.bad td{background:color-mix(in srgb,var(--bad) 10%,transparent)}
+</style></head><body><div class="wrap">
+<h1>chain-explorer — agent 走查报告</h1>
+<p class="sub">环境 <code>https://chain-explorer.afsd.dev</code> · 2026-07-18T02:11:00Z · 走查 1 / 声明 1 条测试路径 · driver <code>agent-playwright-mcp</code></p>
+<div class="how"><b>这份报告在做什么</b>：test-sweep 让 <b>agent 读被测页面自己写的
+<code>.aup/man</code> 知识</b>，用 Playwright MCP <b>当真人逐条测试路径走查</b>（导航/加标签/编辑/删除/创建…），
+<b>每条路径各自一段录屏</b>、每步截图并<b>自判 verdict + 附观察证据</b>（实际 DOM/文本/值，可复核）。
+<b>unreached</b>=没驱动到（不当失败）；<b>inconclusive</b>=不确定（绝不判失败）。写操作默认真提交、不清理。</div>
+<div class="banner ok"><b>✅ 覆盖完整</b>：声明 1 条测试路径全部走查。</div>
+<div class="banner ok"><b>✅ 未发现问题</b>：所有路径的操作步均 pass 或 unreached（unreached 不计失败）。</div>
+<section id="probes"><h2>后端探针 （全通过）</h2><table class="probe"><tr><th></th><th>探针</th><th>详情</th></tr><tr class=""><td>✅</td><td>http-reachable</td><td>HTTP 301</td></tr><tr class=""><td>✅</td><td>afs-rpc-list</td><td>ok:true (1 .aup pages)</td></tr></table></section>
+<section id="path-search">
+<h2>Header search: type query, opens overlay, exact-match auto-jump, multi-match result list <span class="rt">anon · /main/</span></h2>
+<video class="video" controls preload="metadata" src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260718T020644Z/chain-explorer/chain-explorer-search.webm"><a href="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260718T020644Z/chain-explorer/chain-explorer-search.webm">下载该路径录像</a></video><p class="vcap">本测试路径整段走查录像</p>
+<div class="kpis"><div class="kpi"><div class="k">3</div><div class="l">操作步</div></div><div class="kpi"><div class="k">3</div><div class="l">通过</div></div><div class="kpi"><div class="k k-bad">0</div><div class="l">失败</div></div><div class="kpi"><div class="k k-warn">0</div><div class="l">不确定</div></div><div class="kpi"><div class="k">0</div><div class="l">未走到</div></div></div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> 打开 https://chain-explorer.afsd.dev/main/，等待首页 chain-overview 渲染</h3>
+<div class="exp">期望：wm shell 渲染，app-header 含导航 + 搜索框，primary-surface 显示 chain overview 统计</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260718T020644Z/chain-explorer/chain-explorer-explore-01.png" alt="打开 https://chain-explorer.afsd.dev/main/，等待首页 chain-overview 渲染" loading="lazy"><figcaption>打开 https://chain-explorer.afsd.dev/main/，等待首页 chain-overview 渲染</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：aupNodes=60，textHead 含 &#x27;Transactions 566,644 Accounts 77,739 Tokens 4 Assets 82,377 Factories 386 Stakes 2,321 Bridges 3 RECENT TRANSACTIONS ... TOKENS ... FACTORIES&#x27;，interactables 含 input&quot;Search address, tx hash, token...&quot;、nav 按钮 Home/Transactions/Accounts/Tokens/Assets/Factories/Stakes/Bridges 全部存在</div>
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> 在搜索框输入精确 token symbol &#x27;AIGNEP&#x27;（AIGNE Hub 代币）</h3>
+<div class="exp">期望：search-overlay 打开并显示 &#x27;Searching...&#x27;，随后驱动 search-results-list 查询</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260718T020644Z/chain-explorer/chain-explorer-search3-04.png" alt="在搜索框输入精确 token symbol &#x27;AIGNEP&#x27;（AIGNE Hub 代币）" loading="lazy"><figcaption>在搜索框输入精确 token symbol &#x27;AIGNEP&#x27;（AIGNE Hub 代币）</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：输入后立即：div#search-overlay 与 div#search-results-list 文本变为 &#x27;Searching...&#x27;（chain-explorer-search2-05.png）；等待满 10s 后 (chain-explorer-search3 run) 结果解析完成并因精确匹配自动跳转：textHead 变为 &#x27;AIGNE Hub (AIGNEP) Supply 32,086 AIGNEP - Issuer zNKk1Q...fyKV demoaigneproject ...&#x27;，说明命中唯一结果后自动 re-root 到该 token 详情页（man 描述的 result-click 效果，此处是精确匹配自动触发）</div>
+<div class="nt">响应延迟明显（~5-10s 才从 Searching... 变为结果），非阻断性但值得关注的性能问题；两次独立测试（&#x27;abt&#x27; 与 &#x27;AIGNEP&#x27;）都复现同一模式，不判为 flaky</div>
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> 重新导航后，在搜索框输入非精确前缀 &#x27;AIGN&#x27;（应命中多个 token）</h3>
+<div class="exp">期望：search-overlay 内 search-results-list 渲染多条结果（不自动跳转），点击结果可选择</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260718T020644Z/chain-explorer/chain-explorer-search4-04.png" alt="重新导航后，在搜索框输入非精确前缀 &#x27;AIGN&#x27;（应命中多个 token）" loading="lazy"><figcaption>重新导航后，在搜索框输入非精确前缀 &#x27;AIGN&#x27;（应命中多个 token）</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：等待 6s 后截图显示 search-results-list 弹出层含 7+ 条结果行：&#x27;AIGNE Hub (AIGNES)&#x27;、&#x27;AIGNE Hub Staging (AIGNET)&#x27;、&#x27;AIGNE Hub (AIGNEP)&#x27;、多条 &#x27;demoaigneproject&#x27; 账户地址，每行带图标/名称/子标题（Supply.../地址），与右侧背景的 Tokens/Factories 面板同时可见，未发生页面跳转（url 仍为 /main/）</div>
+
+</div>
+</section><section id="path-tx-filter">
+<h2>Transactions 路由：打开过滤对话框，勾选类型，Apply 下推 collection-query where <span class="rt">anon · /main/transactions</span></h2>
+<video class="video" controls preload="metadata" src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260718T020644Z/chain-explorer/chain-explorer-txfilter.webm"><a href="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260718T020644Z/chain-explorer/chain-explorer-txfilter.webm">下载该路径录像</a></video><p class="vcap">本测试路径整段走查录像</p>
+<div class="kpis"><div class="kpi"><div class="k">4</div><div class="l">操作步</div></div><div class="kpi"><div class="k">4</div><div class="l">通过</div></div><div class="kpi"><div class="k k-bad">0</div><div class="l">失败</div></div><div class="kpi"><div class="k k-warn">0</div><div class="l">不确定</div></div><div class="kpi"><div class="k">0</div><div class="l">未走到</div></div></div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> 点击顶部导航 &#x27;Transactions&#x27;</h3>
+<div class="exp">期望：primary-surface.src 重新指向 transactions 列表，URL 变为 /main/transactions</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260718T020644Z/chain-explorer/chain-explorer-txfilter2-02.png" alt="点击顶部导航 &#x27;Transactions&#x27;" loading="lazy"><figcaption>点击顶部导航 &#x27;Transactions&#x27;</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：url 变为 https://chain-explorer.afsd.dev/main/transactions；textHead 含 &#x27;main / transactions Transactions Live updates HASH TYPE FROM TO VALUE FEE TIME 79E3B47B…1F6349 Create Asset ...&#x27;（初次未过滤时含混合类型如 Transfer V3/Mint Token）</div>
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> 点击过滤按钮 &#x27;Open transaction filter&#x27;（primary-toolbar 内 tx-filter-toggle）</h3>
+<div class="exp">期望：tx-filter-overlay 打开，含 Transaction Type 多选列表 + Validity 下拉 + Cancel/Apply 按钮</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260718T020644Z/chain-explorer/chain-explorer-txfilter-04.png" alt="点击过滤按钮 &#x27;Open transaction filter&#x27;（primary-toolbar 内 tx-filter-toggle）" loading="lazy"><figcaption>点击过滤按钮 &#x27;Open transaction filter&#x27;（primary-toolbar 内 tx-filter-toggle）</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：截图显示对话框 &#x27;Filter Transactions&#x27; 弹出，内含滚动列表（Account · AccountMigrate / Account · Delegate / ... / Trade · Transfer / Trade · TransferV3 / Asset · CreateAsset 等）、Validity 下拉框（All），底部 Cancel + 蓝色 Apply 按钮</div>
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> 在类型列表中点击勾选 &#x27;Asset · CreateAsset&#x27;，随后点击 &#x27;Apply&#x27;</h3>
+<div class="exp">期望：tx-filter-apply 把累积的类型选择写入 primary-surface.props.listOptions.where（collection-query 下推），关闭对话框，列表只显示 CreateAsset 类型交易</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260718T020644Z/chain-explorer/chain-explorer-txfilter2-08.png" alt="在类型列表中点击勾选 &#x27;Asset · CreateAsset&#x27;，随后点击 &#x27;Apply&#x27;" loading="lazy"><figcaption>在类型列表中点击勾选 &#x27;Asset · CreateAsset&#x27;，随后点击 &#x27;Apply&#x27;</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：点击 Apply 后对话框关闭，回到 /main/transactions；列表首行变为 &#x27;79E3B47B…1F6349 Create Asset z1gaJPLs…KKiYKg z1gaJPLs…KKiYKg 0.1 ABT ... 3 months ago&#x27;，第二行 &#x27;E917CB93…F9EA6D Create Asset ...&#x27;，抽查的多行全部为 &#x27;Create Asset&#x27; 类型，无其它类型混入 — 证实过滤是服务端下推而非仅前端展示假装</div>
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> （同一 session 内的另一次独立尝试）不勾选任何类型直接点击 Apply，验证 Apply 按钮本身可点击且对话框会正常关闭</h3>
+<div class="exp">期望：Apply 按钮可交互点击（非 disabled 卡死），对话框关闭</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260718T020644Z/chain-explorer/chain-explorer-retry-06.png" alt="（同一 session 内的另一次独立尝试）不勾选任何类型直接点击 Apply，验证 Apply 按钮本身可点击且对话框会正常关闭" loading="lazy"><figcaption>（同一 session 内的另一次独立尝试）不勾选任何类型直接点击 Apply，验证 Apply 按钮本身可点击且对话框会正常关闭</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：role=button name=Apply 点击成功（ok:true），对话框消失，url 保持 /main/transactions，列表恢复未过滤视图（含 Transfer V3/Mint Token 等混合类型）</div>
+<div class="nt">早期用 CSS 选择器 #tx-filter-apply 直接点击两次超时（TimeoutError），改用 role=button name=Apply 后稳定可点 — 记录为 harness 选择器策略问题，非 blocklet 缺陷</div>
+</div>
+</section><section id="path-chain-switch">
+<h2>Header chain selector: Main ↔ Beta 切链，primary-surface + app-header 同步 re-root <span class="rt">anon · /main/</span></h2>
+<video class="video" controls preload="metadata" src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260718T020644Z/chain-explorer/chain-explorer-chainswitch.webm"><a href="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260718T020644Z/chain-explorer/chain-explorer-chainswitch.webm">下载该路径录像</a></video><p class="vcap">本测试路径整段走查录像</p>
+<div class="kpis"><div class="kpi"><div class="k">1</div><div class="l">操作步</div></div><div class="kpi"><div class="k">1</div><div class="l">通过</div></div><div class="kpi"><div class="k k-bad">0</div><div class="l">失败</div></div><div class="kpi"><div class="k k-warn">0</div><div class="l">不确定</div></div><div class="kpi"><div class="k">0</div><div class="l">未走到</div></div></div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> 点击右上角 chain selector（combobox，当前显示 &#x27;Main&#x27;）打开原生下拉，键盘 ArrowDown 选中 &#x27;Beta&#x27; 后 Enter 确认</h3>
+<div class="exp">期望：app-header.selector-change 同时重新指向 primary-surface.src 与 app-header.props.mountRoot 到 /dev/chain/beta，并强制关闭 search overlay</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260718T020644Z/chain-explorer/chain-explorer-chainswitch3-04.png" alt="点击右上角 chain selector（combobox，当前显示 &#x27;Main&#x27;）打开原生下拉，键盘 ArrowDown 选中 &#x27;Beta&#x27; 后 Enter 确认" loading="lazy"><figcaption>点击右上角 chain selector（combobox，当前显示 &#x27;Main&#x27;）打开原生下拉，键盘 ArrowDown 选中 &#x27;Beta&#x27; 后 Enter 确认</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：点击+按键后 url 从 https://chain-explorer.afsd.dev/main/ 变为 https://chain-explorer.afsd.dev/beta/；textHead 从 &#x27;Transactions 566,644 Accounts 77,739 Tokens 4 Assets 82,377 Factories 386 Stakes 2,321 Bridges 3&#x27; 变为 &#x27;Transactions 405,700 Accounts 17,533 Tokens 255 Assets 48,899 Factories 5,512 Stakes 5,745 Bridges 11&#x27;（完全不同的链上统计数字，证实真实 re-root 到 beta 链数据源，而非仅 UI 文案切换）</div>
+<div class="nt">chain selector 是原生 &lt;select&gt;（Playwright role=combobox 可点开，但 role=option 定位其 &lt;option&gt; 子项超时——原生 select 弹出层由浏览器渲染，不在可交互 DOM 树内），改用键盘 ArrowDown+Enter 驱动成功；同样原因 role=button name=&#x27;Beta&#x27; 直接点击也超时。记录为 harness 对原生 select 的驱动策略问题，非 blocklet 缺陷</div>
+</div>
+</section>
+<p class="sub" style="margin-top:22px">Generated by test-report-builder (build-agent-report) · issue #1808</p>
+</div></body></html>

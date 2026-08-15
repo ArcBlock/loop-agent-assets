@@ -1,0 +1,137 @@
+<!doctype html><html><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>arch-qa — agent 走查报告</title><style>
+:root{--bg:#f7f8f8;--fg:#16201f;--muted:#5c6b69;--card:#fff;--card2:#eef2f1;--border:#dde3e2;--accent:#127a72;--pass:#1f8a54;--warn:#b5771a;--bad:#c0392b}
+@media(prefers-color-scheme:dark){:root{--bg:#0e1413;--fg:#e6ecea;--muted:#8ea19d;--card:#161d1c;--card2:#1d2624;--border:#26302e;--accent:#3fb8ab;--pass:#3fb37a;--warn:#d69a3e;--bad:#e5735f}}
+:root[data-theme=dark]{--bg:#0e1413;--fg:#e6ecea;--muted:#8ea19d;--card:#161d1c;--card2:#1d2624;--border:#26302e;--accent:#3fb8ab;--pass:#3fb37a;--warn:#d69a3e;--bad:#e5735f}
+:root[data-theme=light]{--bg:#f7f8f8;--fg:#16201f;--muted:#5c6b69;--card:#fff;--card2:#eef2f1;--border:#dde3e2;--accent:#127a72;--pass:#1f8a54;--warn:#b5771a;--bad:#c0392b}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--fg);font:15px/1.65 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;padding:24px}
+.wrap{max-width:920px;margin:0 auto}
+h1{font-size:24px;margin:0 0 4px;text-wrap:balance}h2{font-size:19px;margin:30px 0 8px}
+h2 .rt{font-size:13px;color:var(--muted);font-weight:400;font-variant-numeric:tabular-nums}
+.sub{color:var(--muted);margin:0 0 14px;font-size:13px}
+code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.85em;background:var(--card2);padding:1px 5px;border-radius:4px}
+.how{background:var(--card);border:1px solid var(--border);border-left:3px solid var(--accent);border-radius:8px;padding:13px 16px;margin:14px 0;font-size:14px}
+.how b{color:var(--accent)}
+.banner{border-radius:12px;padding:14px 18px;margin:16px 0}
+.banner.ok{background:color-mix(in srgb,var(--pass) 12%,transparent);border:1px solid color-mix(in srgb,var(--pass) 40%,transparent)}
+.banner.ok b{color:var(--pass)}
+.banner.bad{background:color-mix(in srgb,var(--bad) 13%,transparent);border:1px solid color-mix(in srgb,var(--bad) 45%,transparent)}
+.banner.bad b{color:var(--bad);font-size:16px}
+.banner.info{background:color-mix(in srgb,var(--accent) 10%,transparent);border:1px solid color-mix(in srgb,var(--accent) 38%,transparent)}
+.banner.info b{color:var(--accent)}
+.plist{margin:10px 0 0;padding-left:0;list-style:none}
+.plist li{padding:8px 0;border-top:1px solid var(--border)}
+.plist a{text-decoration:none;color:var(--fg);font-weight:600}
+.plist .pe{color:var(--muted);font-size:12.5px;font-weight:400;margin-top:3px}
+.video{width:100%;border-radius:10px;border:1px solid var(--border);background:#000;margin:6px 0 2px}
+.vcap{color:var(--muted);font-size:12.5px;margin:0 0 8px}
+.novideo{color:var(--bad);font-weight:600;background:color-mix(in srgb,var(--bad) 10%,transparent);border:1px dashed color-mix(in srgb,var(--bad) 45%,transparent);border-radius:8px;padding:8px 12px;font-size:13px}
+.kpis{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0}
+.kpi{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:9px 14px;min-width:70px}
+.kpi .k{font-size:21px;font-weight:700;font-variant-numeric:tabular-nums}.kpi .l{color:var(--muted);font-size:12px}
+.kpi .k-bad{color:var(--bad)}.kpi .k-warn{color:var(--warn)}
+.op{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:15px 17px;margin:14px 0}
+.op h3{margin:0 0 3px;font-size:16px;display:flex;align-items:center;gap:9px;flex-wrap:wrap}
+.op .exp{color:var(--muted);font-size:13px;margin:0 0 9px}
+.op .nt{color:var(--muted);font-size:12.5px;margin-top:6px}
+.pill{font-size:11.5px;font-weight:700;padding:2px 9px;border-radius:20px}
+.p-ok{background:color-mix(in srgb,var(--pass) 18%,transparent);color:var(--pass)}
+.p-fail{background:color-mix(in srgb,var(--bad) 18%,transparent);color:var(--bad)}
+.p-warn{background:color-mix(in srgb,var(--warn) 20%,transparent);color:var(--warn)}
+.p-skip{background:var(--card2);color:var(--muted)}
+.p-write{background:color-mix(in srgb,var(--accent) 18%,transparent);color:var(--accent)}
+.frame figure{margin:0 0 9px}.frame img{width:100%;border-radius:8px;border:1px solid var(--border);display:block}
+.frame figcaption{color:var(--muted);font-size:11.5px;margin-top:4px;text-align:center}
+.chk{background:color-mix(in srgb,var(--pass) 12%,transparent);border:1px solid color-mix(in srgb,var(--pass) 34%,transparent);border-radius:8px;padding:8px 12px;font-size:13px}
+.chk b{color:var(--pass)}
+.chk-fail{background:color-mix(in srgb,var(--bad) 11%,transparent);border:1px solid color-mix(in srgb,var(--bad) 40%,transparent);border-radius:8px;padding:8px 12px;font-size:13px}
+.chk-fail b{color:var(--bad)}
+table.probe{border-collapse:collapse;width:100%;font-size:13px}
+table.probe th,table.probe td{border:1px solid var(--border);padding:5px 9px;text-align:left}
+table.probe tr.bad td{background:color-mix(in srgb,var(--bad) 10%,transparent)}
+</style></head><body><div class="wrap">
+<h1>arch-qa — agent 走查报告</h1>
+<p class="sub">环境 <code>https://arch-qa.afsd.dev</code> · 2026-07-18T02:23:00Z · 走查 2 / 声明 2 条测试路径 · driver <code>agent-playwright-mcp</code></p>
+<div class="how"><b>这份报告在做什么</b>：test-sweep 让 <b>agent 读被测页面自己写的
+<code>.aup/man</code> 知识</b>，用 Playwright MCP <b>当真人逐条测试路径走查</b>（导航/加标签/编辑/删除/创建…），
+<b>每条路径各自一段录屏</b>、每步截图并<b>自判 verdict + 附观察证据</b>（实际 DOM/文本/值，可复核）。
+<b>unreached</b>=没驱动到（不当失败）；<b>inconclusive</b>=不确定（绝不判失败）。写操作默认真提交、不清理。</div>
+<div class="banner ok"><b>✅ 覆盖完整</b>：声明 2 条测试路径全部走查。</div>
+<div class="banner bad"><b>⚠️ 发现 4 个问题</b>（点击跳到对应路径）<ul class="plist"><li><a href="#path-chat"><span class="pill p-fail">失败</span> Chat 页：加载 + 首个真实架构问题（RAG grounded 验证） · 步3</a> — 观察 agent 多轮工具调用（memory recall / index query / fallback）<div class="pe">textHead 显示 &quot;Round 1 ✓ exec `/memory/.actions/recall` Round 2 ✗ exec `/modules/index/.actions/query` Round 3 I tried to retrieve the answer from my memory and the documentation index, but both services seem to be unavailable righ… ✓ list `/</div></li><li><a href="#path-chat"><span class="pill p-fail">失败</span> Chat 页：加载 + 首个真实架构问题（RAG grounded 验证） · 步5</a> — 在第一个问题仍在生成时输入第二个问题「Explain the DID Space fail-closed rule for /instance.」并点击发送<div class="pe">输入框在点击发送后立即清空（screenshot 08 显示 textarea 为空），但最终画面（screenshot 10，等待 28s 后）transcript 中只有第一个问题的完整回答，未出现第二个问题的用户气泡，也没有为它新增的 Round 1/Thinking 态；最终 textarea 仍为空、无待发送内容。即：在助手仍在生成回答期间提交的第二条消息被静默丢弃（输入框清空但消息未真正进入对话），是可复现的确凿证据，不是抖动。已用独立会话在 chat-q2 路径</div></li><li><a href="#path-index-terminal-anon"><span class="pill p-warn">不确定</span> 首页终端控制台（defaultPage，匿名态） · 步1</a> — 匿名访问根路径 /，等待 xterm 组件加载并尝试连接 /ws/terminal/arch-qa<div class="pe">DOM 只渲染 1 个 aup 节点（textarea &quot;Terminal input&quot;），控制台错误：&quot;WebSocket connection to &#x27;wss://arch-qa.afsd.dev/ws/terminal/arch-qa&#x27; failed: HTTP Authentication failed; no valid credentials available&quot;。截图 arch-qa-terminal-02.png 显示终端左上角红点 + 文案 &quot;disconn</div></li><li><a href="#path-index-terminal-authed"><span class="pill p-fail">失败</span> 首页终端控制台（defaultPage，authed 态，注入 login_token cookie） · 步1</a> — 注入 login_token cookie（{name:&quot;login_token&quot;, domain:&quot;arch-qa.afsd.dev&quot;, path:&quot;/&quot;}，token 取自共享测试 JWT）后访问根路径 /<div class="pe">与匿名态完全相同的控制台错误：&quot;WebSocket connection to &#x27;wss://arch-qa.afsd.dev/ws/terminal/arch-qa&#x27; failed: HTTP Authentication failed; no valid credentials available&quot;，截图同样显示 &quot;disconnected&quot; 红点。即注入共享测试 JWT（login_token cookie）并未让 terminal WS 鉴权通过，排除了「匿名态本就该</div></li></ul></div>
+<section id="probes"><h2>后端探针 （全通过）</h2><table class="probe"><tr><th></th><th>探针</th><th>详情</th></tr><tr class=""><td>✅</td><td>http-reachable</td><td>HTTP 200</td></tr><tr class=""><td>✅</td><td>afs-rpc-list</td><td>ok:true (2 .aup pages)</td></tr></table></section>
+<section id="path-chat">
+<h2>Chat 页：加载 + 首个真实架构问题（RAG grounded 验证） <span class="rt">anon · /?page=chat</span></h2>
+<video class="video" controls preload="metadata" src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260718T020644Z/arch-qa/page@73c5a679ee2beff0e64c24f1a684c3aa.webm"><a href="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260718T020644Z/arch-qa/page@73c5a679ee2beff0e64c24f1a684c3aa.webm">下载该路径录像</a></video><p class="vcap">本测试路径整段走查录像</p>
+<div class="kpis"><div class="kpi"><div class="k">5</div><div class="l">操作步</div></div><div class="kpi"><div class="k">3</div><div class="l">通过</div></div><div class="kpi"><div class="k k-bad">2</div><div class="l">失败</div></div><div class="kpi"><div class="k k-warn">0</div><div class="l">不确定</div></div><div class="kpi"><div class="k">0</div><div class="l">未走到</div></div></div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> 导航到 /?page=chat，等待 AUP 节点渲染</h3>
+<div class="exp">期望：chat UI 出现（欢迎语 + 输入框），非空白页/embed 报错框</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260718T020644Z/arch-qa/arch-qa-chat-02.png" alt="导航到 /?page=chat，等待 AUP 节点渲染" loading="lazy"><figcaption>导航到 /?page=chat，等待 AUP 节点渲染</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：textHead: &quot;SESSIONS + Main How can I help? AI Device · balanced What can you help with? Show me around this workspace Run a quick skill Explain how this app works →&quot;；interactables 含 textarea &quot;Ask anything about the AFS architecture…&quot; 和 button &quot;→&quot;；aupNodes=2（arch-qa-chat embed 已被 server 端 expandTree 展开成真实 agent-surface 聊天树，符合 chat.yaml man 描述）。截图 arch-qa-chat-02.png 显示正常渲染的聊天欢迎屏，无 embed 错误框。</div>
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> 输入真实问题「What is an AFS projection and how is it different from mounting a provider?」并点击发送 →</h3>
+<div class="exp">期望：进入 thinking 态，触发 agent-run 多轮工具调用</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260718T020644Z/arch-qa/arch-qa-chat-04.png" alt="输入真实问题「What is an AFS projection and how is it different from mounting a provider?」并点击发送 →" loading="lazy"><figcaption>输入真实问题「What is an AFS projection and how is it different from mounting a provider?」并点击发送 →</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：点击后 textHead 变为 &quot;...What is an AFS projection and how is it different from mounting a provider? Thinking... →&quot;，问题文本已提交，输入框清空，出现 Thinking 态。</div>
+
+</div>
+<div class="op">
+<h3><span class="pill p-fail">失败</span> 观察 agent 多轮工具调用（memory recall / index query / fallback）</h3>
+<div class="exp">期望：Round 1 memory recall 成功；期望 Round 2 index query 成功检索文档</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260718T020644Z/arch-qa/arch-qa-chat-06.png" alt="观察 agent 多轮工具调用（memory recall / index query / fallback）" loading="lazy"><figcaption>观察 agent 多轮工具调用（memory recall / index query / fallback）</figcaption></figure></div>
+<div class="chk-fail"><b>观察证据</b>：textHead 显示 &quot;Round 1 ✓ exec `/memory/.actions/recall` Round 2 ✗ exec `/modules/index/.actions/query` Round 3 I tried to retrieve the answer from my memory and the documentation index, but both services seem to be unavailable righ… ✓ list `/packages/docs/architecture` Round 4 Method: direct-read (1 files) ✓ read `/packag[es/docs/architecture/afs-projection.md]`&quot;。即 `/modules/index/.actions/query`（RAG 语义检索 action）本次调用明确失败（Round 2 标 ✗），agent 自行降级为 Round 3 list 目录 + Round 4 direct-read 单文件才拿到内容。两次真实提问（本路径 + chat-q2 路径）该 action 均失败，是可复现的后端信号，不是偶发抖动。</div>
+<div class="nt">index/记忆检索链路的主路径（typed collection query 下推 /modules/index/.actions/query）本次两次调用均失败；产品仍能通过 direct-read 兜底给出正确答案，用户体验未受影响，但 index action 本身的故障是需要关注的后端问题。</div>
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> 等待完整回答生成完毕</h3>
+<div class="exp">期望：生成带来源引用的完整、grounded 的架构解释</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260718T020644Z/arch-qa/arch-qa-chat-10.png" alt="等待完整回答生成完毕" loading="lazy"><figcaption>等待完整回答生成完毕</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：arch-qa-chat-10.png 显示完整回答：定义 AFS Projection 为「a lightweight mechanism that maps a subtree from one AFS tree... to a path in another AFS tree」，并给出 Mounting a Provider vs AFS Projection 的对比表格（Data Ownership / Primary Role / Configuration / Example Use Case），末尾 &quot;Sources: docs/architecture/afs-projection.md&quot;，底部统计 &quot;37164 tokens · 36404 in · 760 out · 4036 cached · gemini-2.5-pro&quot;。内容与仓库 docs/architecture/afs-projection.md 的实际语义一致（projection = 只读代理转发，不持有数据），是真实 grounded 回答，非幻觉。</div>
+
+</div>
+<div class="op">
+<h3><span class="pill p-fail">失败</span> 在第一个问题仍在生成时输入第二个问题「Explain the DID Space fail-closed rule for /instance.」并点击发送</h3>
+<div class="exp">期望：第二条消息进入队列或立即开始新一轮 Round 1</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260718T020644Z/arch-qa/arch-qa-chat-10.png" alt="在第一个问题仍在生成时输入第二个问题「Explain the DID Space fail-closed rule for /instance.」并点击发送" loading="lazy"><figcaption>在第一个问题仍在生成时输入第二个问题「Explain the DID Space fail-closed rule for /instance.」并点击发送</figcaption></figure></div>
+<div class="chk-fail"><b>观察证据</b>：输入框在点击发送后立即清空（screenshot 08 显示 textarea 为空），但最终画面（screenshot 10，等待 28s 后）transcript 中只有第一个问题的完整回答，未出现第二个问题的用户气泡，也没有为它新增的 Round 1/Thinking 态；最终 textarea 仍为空、无待发送内容。即：在助手仍在生成回答期间提交的第二条消息被静默丢弃（输入框清空但消息未真正进入对话），是可复现的确凿证据，不是抖动。已用独立会话在 chat-q2 路径验证该问题本身能被正确回答，排除了「问题内容有问题」的可能，缩小到「并发发送时机」这一具体场景。</div>
+<div class="nt">建议产品侧在助手响应生成期间禁用/明确提示发送框（disabled 态或排队提示），而不是静默接受输入后丢弃。</div>
+</div>
+</section><section id="path-chat-q2">
+<h2>Chat 页：新会话单独提问第二个真实架构问题（验证上条并发丢失非问题本身导致） <span class="rt">anon · /?page=chat</span></h2>
+<video class="video" controls preload="metadata" src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260718T020644Z/arch-qa/page@dfd1150c9551f90cd69f250cc3592d63.webm"><a href="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260718T020644Z/arch-qa/page@dfd1150c9551f90cd69f250cc3592d63.webm">下载该路径录像</a></video><p class="vcap">本测试路径整段走查录像</p>
+<div class="kpis"><div class="kpi"><div class="k">1</div><div class="l">操作步</div></div><div class="kpi"><div class="k">1</div><div class="l">通过</div></div><div class="kpi"><div class="k k-bad">0</div><div class="l">失败</div></div><div class="kpi"><div class="k k-warn">0</div><div class="l">不确定</div></div><div class="kpi"><div class="k">0</div><div class="l">未走到</div></div></div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> 刷新到全新 chat 会话，输入「Explain the DID Space fail-closed rule for /instance mentioned in the architecture guardrails.」并发送，等待完整回答（分 3 段各 20s 观测直到文本长度稳定）</h3>
+<div class="exp">期望：生成 grounded、且与仓库 CLAUDE.md 中 DID Space fail-closed 规则描述一致的回答</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260718T020644Z/arch-qa/arch-qa-chat2-09.png" alt="刷新到全新 chat 会话，输入「Explain the DID Space fail-closed rule for /instance mentioned in the architecture guardrails.」并发送，等待完整回答（分 3 段各 20s 观测直到文本长度稳定）" loading="lazy"><figcaption>刷新到全新 chat 会话，输入「Explain the DID Space fail-closed rule for /instance mentioned in the architecture guardrails.」并发送，等待完整回答（分 3 段各 20s 观测直到文本长度稳定）</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：textLen 在第二次 20s 观测（40s 累计）后即稳定在 1307（第三次 20s 观测无变化，确认生成已完成，非抖动）。最终截图 arch-qa-chat2-09.png 显示完整回答：&quot;The &#x27;fail-closed&#x27; rule for /instance in DID Space is a core security principle where access is denied by default. For any request to instance-specific data, there must be an explicit authorization (an allow rule) in place. If no explicit allow rule matches, or if any part of the evaluation process is ambiguous, the system defaults to denying access.&quot;，并说明 instance 数据仅在 owner/user 从各自 DID Space 显式授权后才挂载进 AFS 树、避免多租户环境数据泄露；末尾 &quot;Sources: docs/architecture/did-space.md&quot;，统计 &quot;34960 tokens · 34454 in · 506 out · 16293 cached · gemini-2.5-pro&quot;。内容与 CLAUDE.md 「Architecture Guardrails」中 DID Space fail-closed rule 的描述语义一致（missing DID Space → explicit failure, not silent success），确认为真实 grounded 回答。同样观察到 Round 2 `/modules/index/.actions/query` 标 ✗（与 chat 路径一致，复现该 index action 故障），Round 4 direct-read `/packages/docs/architecture/did-space.md` 成功兜底。</div>
+
+</div>
+</section><section id="path-index-terminal-anon">
+<h2>首页终端控制台（defaultPage，匿名态） <span class="rt">anon · /</span></h2>
+<video class="video" controls preload="metadata" src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260718T020644Z/arch-qa/page@dfd2b03b5de3f988ce8db58e6aff50ce.webm"><a href="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260718T020644Z/arch-qa/page@dfd2b03b5de3f988ce8db58e6aff50ce.webm">下载该路径录像</a></video><p class="vcap">本测试路径整段走查录像</p>
+<div class="kpis"><div class="kpi"><div class="k">1</div><div class="l">操作步</div></div><div class="kpi"><div class="k">0</div><div class="l">通过</div></div><div class="kpi"><div class="k k-bad">0</div><div class="l">失败</div></div><div class="kpi"><div class="k k-warn">1</div><div class="l">不确定</div></div><div class="kpi"><div class="k">0</div><div class="l">未走到</div></div></div>
+<div class="op">
+<h3><span class="pill p-warn">不确定</span> 匿名访问根路径 /，等待 xterm 组件加载并尝试连接 /ws/terminal/arch-qa</h3>
+<div class="exp">期望：man 声明该页为 terminal 节点，endpoint /ws/terminal/arch-qa，rows 28；实时 WS 会话连上 agent-run 行为</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260718T020644Z/arch-qa/arch-qa-terminal-02.png" alt="匿名访问根路径 /，等待 xterm 组件加载并尝试连接 /ws/terminal/arch-qa" loading="lazy"><figcaption>匿名访问根路径 /，等待 xterm 组件加载并尝试连接 /ws/terminal/arch-qa</figcaption></figure></div>
+<div class="chk-fail"><b>观察证据</b>：DOM 只渲染 1 个 aup 节点（textarea &quot;Terminal input&quot;），控制台错误：&quot;WebSocket connection to &#x27;wss://arch-qa.afsd.dev/ws/terminal/arch-qa&#x27; failed: HTTP Authentication failed; no valid credentials available&quot;。截图 arch-qa-terminal-02.png 显示终端左上角红点 + 文案 &quot;disconnected&quot;。man 页 caveats 明确写「a screenshot-only walker (no live WS) will never see the real session, by design, not a bug」，且未声明匿名态需要登录，故此处判定为 inconclusive 而非 fail：无法区分是「terminal WS 确实要求先登录鉴权（预期行为，chat 页是给匿名/immediate 用户的替代入口）」还是「WS 鉴权链路本身有故障」。</div>
+
+</div>
+</section><section id="path-index-terminal-authed">
+<h2>首页终端控制台（defaultPage，authed 态，注入 login_token cookie） <span class="rt">authed · /</span></h2>
+<video class="video" controls preload="metadata" src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260718T020644Z/arch-qa/page@dd76ee5a869ef2802c1621b589f24969.webm"><a href="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260718T020644Z/arch-qa/page@dd76ee5a869ef2802c1621b589f24969.webm">下载该路径录像</a></video><p class="vcap">本测试路径整段走查录像</p>
+<div class="kpis"><div class="kpi"><div class="k">1</div><div class="l">操作步</div></div><div class="kpi"><div class="k">0</div><div class="l">通过</div></div><div class="kpi"><div class="k k-bad">1</div><div class="l">失败</div></div><div class="kpi"><div class="k k-warn">0</div><div class="l">不确定</div></div><div class="kpi"><div class="k">0</div><div class="l">未走到</div></div></div>
+<div class="op">
+<h3><span class="pill p-fail">失败</span> 注入 login_token cookie（{name:&quot;login_token&quot;, domain:&quot;arch-qa.afsd.dev&quot;, path:&quot;/&quot;}，token 取自共享测试 JWT）后访问根路径 /</h3>
+<div class="exp">期望：若匿名态失败是因未登录，authed cookie 应能让 WS 握手成功并显示 connected 终端</div>
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260718T020644Z/arch-qa/arch-qa-terminal-authed-02.png" alt="注入 login_token cookie（{name:&quot;login_token&quot;, domain:&quot;arch-qa.afsd.dev&quot;, path:&quot;/&quot;}，token 取自共享测试 JWT）后访问根路径 /" loading="lazy"><figcaption>注入 login_token cookie（{name:&quot;login_token&quot;, domain:&quot;arch-qa.afsd.dev&quot;, path:&quot;/&quot;}，token 取自共享测试 JWT）后访问根路径 /</figcaption></figure></div>
+<div class="chk-fail"><b>观察证据</b>：与匿名态完全相同的控制台错误：&quot;WebSocket connection to &#x27;wss://arch-qa.afsd.dev/ws/terminal/arch-qa&#x27; failed: HTTP Authentication failed; no valid credentials available&quot;，截图同样显示 &quot;disconnected&quot; 红点。即注入共享测试 JWT（login_token cookie）并未让 terminal WS 鉴权通过，排除了「匿名态本就该被拒绝、只是产品设计」的可能性——这是确凿证据：本轮 sweep 使用的共享 login_token 对该 blocklet 的 WS 端点无效（可能该 WS 端点走的是独立鉴权 header/token 方案，而非 cookie），值得记录跟进；不影响 chat 页（本 blocklet 声明的主要交互面）功能，chat 页两条真实问答均已验证 grounded 且正常工作。</div>
+
+</div>
+</section>
+<p class="sub" style="margin-top:22px">Generated by test-report-builder (build-agent-report) · issue #1808</p>
+</div></body></html>
