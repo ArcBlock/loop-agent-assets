@@ -4,3 +4,4 @@
 |---|---|---|---|
 | 20260816-142936-account-merge-chooser-desktop.png | https://github.com/ArcBlock/did | 2026-08-16T14:29:36Z | wangshijun@wangshijun-mac-studio |
 | 20260816-142955-account-merge-chooser-mobile.png | https://github.com/ArcBlock/did | 2026-08-16T14:29:55Z | wangshijun@wangshijun-mac-studio |
+| 20260816-143012-account-merge-passkey-selected.png | https://github.com/ArcBlock/did | 2026-08-16T14:30:12Z | wangshijun@wangshijun-mac-studio |
