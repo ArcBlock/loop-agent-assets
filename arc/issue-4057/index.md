@@ -7,3 +7,4 @@
 | 20260816-000044-composer-preview-write.png | https://github.com/ArcBlock/arc/issues/4057 | 2026-08-16T00:00:44Z | robert@agent |
 | 20260816-000044-composer-preview-preview.png | https://github.com/ArcBlock/arc/issues/4057 | 2026-08-16T00:00:44Z | robert@agent |
 | discuss-kit-search-default.png | issue-4057 | 2026-08-16T05:22:23Z | robert |
+| discuss-kit-search-typed.png | issue-4057 | 2026-08-16T05:22:33Z | robert |
