@@ -47,3 +47,4 @@
 | 20260817-194818-dd-9-aside-00.png | https://github.com/ArcBlock/arc | 2026-08-17T19:48:18Z | root@vm |
 | 20260817-194824-dd-9-aside-01.png | https://github.com/ArcBlock/arc | 2026-08-17T19:48:24Z | root@vm |
 | 20260817-194829-explore-01.png | https://github.com/ArcBlock/arc | 2026-08-17T19:48:29Z | root@vm |
+| 20260817-194837-explore-02.png | https://github.com/ArcBlock/arc | 2026-08-17T19:48:37Z | root@vm |
