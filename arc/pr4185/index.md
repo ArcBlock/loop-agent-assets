@@ -11,3 +11,4 @@
 | 20260817-132347-ui-verify-code-agents-settings.png | https://github.com/ArcBlock/arc/pull/4185 | 2026-08-17T13:23:47Z | robmao@Roberts-Mac-mini-M4-Pro |
 | 20260817-132351-ui-verify-code-agents-home.webm | https://github.com/ArcBlock/arc/pull/4185 | 2026-08-17T13:23:51Z | robmao@Roberts-Mac-mini-M4-Pro |
 | 20260817-132356-ui-verify-code-agents-settings.webm | https://github.com/ArcBlock/arc/pull/4185 | 2026-08-17T13:23:56Z | robmao@Roberts-Mac-mini-M4-Pro |
+| 20260817-134431-ui-verify-code-agents-home.png | https://github.com/ArcBlock/arc/pull/4185 | 2026-08-17T13:44:31Z | robmao@Roberts-Mac-mini-M4-Pro |
