@@ -39,3 +39,4 @@
 | 20260817-194728-dd-5-aside-00.png | https://github.com/ArcBlock/arc | 2026-08-17T19:47:28Z | root@vm |
 | 20260817-194734-dd-5-aside-01.png | https://github.com/ArcBlock/arc | 2026-08-17T19:47:34Z | root@vm |
 | 20260817-194740-dd-6-aside-00.png | https://github.com/ArcBlock/arc | 2026-08-17T19:47:40Z | root@vm |
+| 20260817-194747-dd-6-aside-01.png | https://github.com/ArcBlock/arc | 2026-08-17T19:47:47Z | root@vm |
