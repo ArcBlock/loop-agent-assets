@@ -127,3 +127,4 @@
 | 20260815-102702-37-multihop-drill.png | https://github.com/ArcBlock/arc | 2026-08-15T10:27:02Z | chao@Yechaos-MacBook-Pro |
 | 20260815-102725-32-traces-list.png | https://github.com/ArcBlock/arc | 2026-08-15T10:27:25Z | chao@Yechaos-MacBook-Pro |
 | arc/pr4109/agg-place-detail-4092-verify.png | https://github.com/ArcBlock/arc | 2026-08-15T16:53:56Z | root@vm |
+| 20260817-211817-ui-verify-code-agents-index.png | https://github.com/ArcBlock/arc | 2026-08-17T21:18:17Z | robmao@Roberts-Mac-mini-M4-Pro |
