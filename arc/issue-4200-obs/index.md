@@ -15,3 +15,4 @@
 | 20260818-031612-detail-grok-build.png | https://github.com/ArcBlock/arc/issues/4200-obs | 2026-08-18T03:16:12Z | robmao@Roberts-Mac-mini-M4-Pro |
 | 20260818-031617-detail-log-claude.png | https://github.com/ArcBlock/arc/issues/4200-obs | 2026-08-18T03:16:17Z | robmao@Roberts-Mac-mini-M4-Pro |
 | 20260818-031621-detail-log-codex.png | https://github.com/ArcBlock/arc/issues/4200-obs | 2026-08-18T03:16:21Z | robmao@Roberts-Mac-mini-M4-Pro |
+| 20260818-031625-detail-log-grok-build.png | https://github.com/ArcBlock/arc/issues/4200-obs | 2026-08-18T03:16:25Z | robmao@Roberts-Mac-mini-M4-Pro |
