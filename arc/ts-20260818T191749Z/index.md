@@ -4,3 +4,4 @@
 |---|---|---|---|
 | 20260818-200351-clip-01.png | https://github.com/ArcBlock/arc | 2026-08-18T20:03:51Z | root@vm |
 | 20260818-200356-clip-02.png | https://github.com/ArcBlock/arc | 2026-08-18T20:03:56Z | root@vm |
+| 20260818-200401-clip-read-1-01.png | https://github.com/ArcBlock/arc | 2026-08-18T20:04:01Z | root@vm |
