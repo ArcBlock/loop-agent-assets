@@ -129,3 +129,4 @@
 | arc/pr4109/agg-place-detail-4092-verify.png | https://github.com/ArcBlock/arc | 2026-08-15T16:53:56Z | root@vm |
 | 20260817-211817-ui-verify-code-agents-index.png | https://github.com/ArcBlock/arc | 2026-08-17T21:18:17Z | robmao@Roberts-Mac-mini-M4-Pro |
 | 20260817-224949-ui-verify-code-agents-index.png | https://github.com/ArcBlock/arc | 2026-08-17T22:49:49Z | robmao@Roberts-Mac-mini-M4-Pro |
+| 20260818-014927-ui-verify-agent-surface-chat.png | https://github.com/ArcBlock/arc | 2026-08-18T01:49:27Z | wangshijun@wangshijun-mac-studio |
