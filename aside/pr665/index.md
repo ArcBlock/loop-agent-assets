@@ -9,3 +9,4 @@
 | 20260818-174631-07-ondevice-dark.jpg | https://github.com/ArcBlock/aside/pull/665 | 2026-08-18T17:46:34Z | nategu@Nate-Mac-Pro |
 | 20260818-174642-10-feed-light.jpg | https://github.com/ArcBlock/aside/pull/665 | 2026-08-18T17:46:44Z | nategu@Nate-Mac-Pro |
 | 20260818-174655-12-settings-light.jpg | https://github.com/ArcBlock/aside/pull/665 | 2026-08-18T17:46:58Z | nategu@Nate-Mac-Pro |
+| 20260818-175136-05-appearance-dark.jpg | https://github.com/ArcBlock/aside/pull/665 | 2026-08-18T17:51:39Z | nategu@Nate-Mac-Pro |
