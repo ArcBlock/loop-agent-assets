@@ -4,3 +4,4 @@
 |---|---|---|---|
 | 20260818-115026-ui-verify-code-agents-peers-cards.png | https://github.com/ArcBlock/arc/pull/4271 | 2026-08-18T11:50:26Z | robmao@Roberts-Mac-mini-M4-Pro |
 | 20260818-115031-ui-verify-code-agents-peers-host.png | https://github.com/ArcBlock/arc/pull/4271 | 2026-08-18T11:50:31Z | robmao@Roberts-Mac-mini-M4-Pro |
+| 20260818-115035-ui-verify-code-agents-peers.png | https://github.com/ArcBlock/arc/pull/4271 | 2026-08-18T11:50:35Z | robmao@Roberts-Mac-mini-M4-Pro |
