@@ -131,3 +131,4 @@
 | 20260817-224949-ui-verify-code-agents-index.png | https://github.com/ArcBlock/arc | 2026-08-17T22:49:49Z | robmao@Roberts-Mac-mini-M4-Pro |
 | 20260818-014927-ui-verify-agent-surface-chat.png | https://github.com/ArcBlock/arc | 2026-08-18T01:49:27Z | wangshijun@wangshijun-mac-studio |
 | 20260818-014938-ui-verify-agent-surface-chat.gif | https://github.com/ArcBlock/arc | 2026-08-18T01:49:38Z | wangshijun@wangshijun-mac-studio |
+| pr4276-auto-surface-reset-after.png | https://github.com/ArcBlock/arc | 2026-08-18T15:55:06Z | chao@Yechaos-MBP |
