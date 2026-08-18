@@ -89,3 +89,4 @@
 | 20260818-201340-page@eacb66f1cbe14cddf9656e12d16afee1.webm | https://github.com/ArcBlock/arc | 2026-08-18T20:13:40Z | root@vm |
 | 20260818-201347-dd-1-todo-00.png | https://github.com/ArcBlock/arc | 2026-08-18T20:13:47Z | root@vm |
 | 20260818-201353-dd-1-todo-01.png | https://github.com/ArcBlock/arc | 2026-08-18T20:13:53Z | root@vm |
+| 20260818-201357-dd-1-todo-02.png | https://github.com/ArcBlock/arc | 2026-08-18T20:13:57Z | root@vm |
