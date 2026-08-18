@@ -153,3 +153,4 @@
 | 20260818-202012-page@f2e2b2769ff6ac89afcd8be8769c6ba4.webm | https://github.com/ArcBlock/arc | 2026-08-18T20:20:12Z | root@vm |
 | 20260818-202027-page@fc899da515bd2ba7879cf875f55fc9ce.webm | https://github.com/ArcBlock/arc | 2026-08-18T20:20:27Z | root@vm |
 | 20260818-202037-auto-surface-01.png | https://github.com/ArcBlock/arc | 2026-08-18T20:20:37Z | root@vm |
+| 20260818-202042-auto-surface-02.png | https://github.com/ArcBlock/arc | 2026-08-18T20:20:42Z | root@vm |
