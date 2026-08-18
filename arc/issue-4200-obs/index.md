@@ -10,3 +10,4 @@
 | 20260818-031552-06-claude-after-wait.png | https://github.com/ArcBlock/arc/issues/4200-obs | 2026-08-18T03:15:52Z | robmao@Roberts-Mac-mini-M4-Pro |
 | 20260818-031557-07-codex-running.png | https://github.com/ArcBlock/arc/issues/4200-obs | 2026-08-18T03:15:57Z | robmao@Roberts-Mac-mini-M4-Pro |
 | 20260818-031600-13-home-three-engines.png | https://github.com/ArcBlock/arc/issues/4200-obs | 2026-08-18T03:16:00Z | robmao@Roberts-Mac-mini-M4-Pro |
+| 20260818-031604-14-home-after-reload.png | https://github.com/ArcBlock/arc/issues/4200-obs | 2026-08-18T03:16:04Z | robmao@Roberts-Mac-mini-M4-Pro |
