@@ -107,3 +107,4 @@
 | 20260818-201516-dd-1-todo-17.png | https://github.com/ArcBlock/arc | 2026-08-18T20:15:16Z | root@vm |
 | 20260818-201521-dd-1-todo-18.png | https://github.com/ArcBlock/arc | 2026-08-18T20:15:21Z | root@vm |
 | 20260818-201525-dd-1-todo-19.png | https://github.com/ArcBlock/arc | 2026-08-18T20:15:25Z | root@vm |
+| 20260818-201531-dd-1-todo-20.png | https://github.com/ArcBlock/arc | 2026-08-18T20:15:31Z | root@vm |
