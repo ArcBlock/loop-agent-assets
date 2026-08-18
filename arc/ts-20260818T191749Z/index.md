@@ -138,3 +138,4 @@
 | 20260818-201830-page@e1d658a61d18103b4618bda151628826.webm | https://github.com/ArcBlock/arc | 2026-08-18T20:18:30Z | root@vm |
 | 20260818-201840-chat-01.png | https://github.com/ArcBlock/arc | 2026-08-18T20:18:40Z | root@vm |
 | 20260818-201846-chat-02.png | https://github.com/ArcBlock/arc | 2026-08-18T20:18:46Z | root@vm |
+| 20260818-201851-index-01.png | https://github.com/ArcBlock/arc | 2026-08-18T20:18:51Z | root@vm |
