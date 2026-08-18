@@ -12,3 +12,4 @@
 | 20260818-031600-13-home-three-engines.png | https://github.com/ArcBlock/arc/issues/4200-obs | 2026-08-18T03:16:00Z | robmao@Roberts-Mac-mini-M4-Pro |
 | 20260818-031604-14-home-after-reload.png | https://github.com/ArcBlock/arc/issues/4200-obs | 2026-08-18T03:16:04Z | robmao@Roberts-Mac-mini-M4-Pro |
 | 20260818-031608-detail-claude.png | https://github.com/ArcBlock/arc/issues/4200-obs | 2026-08-18T03:16:08Z | robmao@Roberts-Mac-mini-M4-Pro |
+| 20260818-031612-detail-grok-build.png | https://github.com/ArcBlock/arc/issues/4200-obs | 2026-08-18T03:16:12Z | robmao@Roberts-Mac-mini-M4-Pro |
