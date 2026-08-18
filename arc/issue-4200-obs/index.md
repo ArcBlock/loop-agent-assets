@@ -8,3 +8,4 @@
 | 20260818-031545-04-grok-after-stop.png | https://github.com/ArcBlock/arc/issues/4200-obs | 2026-08-18T03:15:45Z | robmao@Roberts-Mac-mini-M4-Pro |
 | 20260818-031548-05-claude-running.png | https://github.com/ArcBlock/arc/issues/4200-obs | 2026-08-18T03:15:48Z | robmao@Roberts-Mac-mini-M4-Pro |
 | 20260818-031552-06-claude-after-wait.png | https://github.com/ArcBlock/arc/issues/4200-obs | 2026-08-18T03:15:52Z | robmao@Roberts-Mac-mini-M4-Pro |
+| 20260818-031557-07-codex-running.png | https://github.com/ArcBlock/arc/issues/4200-obs | 2026-08-18T03:15:57Z | robmao@Roberts-Mac-mini-M4-Pro |
