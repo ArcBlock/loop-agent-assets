@@ -246,3 +246,4 @@
 | 20260818-203057-list-template-02.png | https://github.com/ArcBlock/arc | 2026-08-18T20:30:57Z | root@vm |
 | 20260818-203103-list-virtual-01.png | https://github.com/ArcBlock/arc | 2026-08-18T20:31:03Z | root@vm |
 | 20260818-203109-list-virtual-02.png | https://github.com/ArcBlock/arc | 2026-08-18T20:31:09Z | root@vm |
+| 20260818-203114-overlays-01.png | https://github.com/ArcBlock/arc | 2026-08-18T20:31:14Z | root@vm |
