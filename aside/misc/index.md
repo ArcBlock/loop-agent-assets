@@ -12,3 +12,4 @@
 | ja-organize-start-tradeshow.png | https://github.com/ArcBlock/aside | 2026-08-19T19:25:24Z | nategu@Nate-Mac-Pro |
 | ja-organize-date-sheet.png | https://github.com/ArcBlock/aside | 2026-08-19T19:25:34Z | nategu@Nate-Mac-Pro |
 | en-organize-start-kinds.png | https://github.com/ArcBlock/aside | 2026-08-19T19:25:45Z | nategu@Nate-Mac-Pro |
+| en-organize-start-tradeshow.png | https://github.com/ArcBlock/aside | 2026-08-19T19:25:55Z | nategu@Nate-Mac-Pro |
