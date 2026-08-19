@@ -7,3 +7,4 @@
 | 20260819-183300-ja-feed-filters.png | https://github.com/ArcBlock/aside/pull/697 | 2026-08-19T18:33:00Z | nategu@Nate-Mac-Pro |
 | 20260819-183313-ja-feed-menu.png | https://github.com/ArcBlock/aside/pull/697 | 2026-08-19T18:33:13Z | nategu@Nate-Mac-Pro |
 | 20260819-183325-ja-search-filters.png | https://github.com/ArcBlock/aside/pull/697 | 2026-08-19T18:33:25Z | nategu@Nate-Mac-Pro |
+| 20260819-183336-ja-search-query.png | https://github.com/ArcBlock/aside/pull/697 | 2026-08-19T18:33:36Z | nategu@Nate-Mac-Pro |
