@@ -10,3 +10,4 @@
 | aside-epic690-organize-start-zh.jpg | https://github.com/ArcBlock/aside | 2026-08-19T14:13:32Z | nategu@Nate-Mac-Pro |
 | ja-organize-start-kinds.png | https://github.com/ArcBlock/aside | 2026-08-19T19:25:12Z | nategu@Nate-Mac-Pro |
 | ja-organize-start-tradeshow.png | https://github.com/ArcBlock/aside | 2026-08-19T19:25:24Z | nategu@Nate-Mac-Pro |
+| ja-organize-date-sheet.png | https://github.com/ArcBlock/aside | 2026-08-19T19:25:34Z | nategu@Nate-Mac-Pro |
