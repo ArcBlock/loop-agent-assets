@@ -9,3 +9,4 @@
 | aside-epic681-language-ja-selected-still-english.jpg | https://github.com/ArcBlock/aside | 2026-08-19T08:25:59Z | nategu@Nate-Mac-Pro |
 | aside-epic690-organize-start-zh.jpg | https://github.com/ArcBlock/aside | 2026-08-19T14:13:32Z | nategu@Nate-Mac-Pro |
 | ja-organize-start-kinds.png | https://github.com/ArcBlock/aside | 2026-08-19T19:25:12Z | nategu@Nate-Mac-Pro |
+| ja-organize-start-tradeshow.png | https://github.com/ArcBlock/aside | 2026-08-19T19:25:24Z | nategu@Nate-Mac-Pro |
