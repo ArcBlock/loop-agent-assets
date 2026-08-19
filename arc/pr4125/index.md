@@ -7,3 +7,4 @@
 | places-notebook-detail-sf.png | https://github.com/ArcBlock/arc/pull/4125 | 2026-08-16T06:43:57Z | wangshijun@wangshijun-mac-studio |
 | 20260819-122004-places-detail.png | https://github.com/ArcBlock/arc/pull/4125 | 2026-08-19T12:20:04Z | robmao@Roberts-Mac-mini-M4-Pro |
 | 20260819-122011-places-list.png | https://github.com/ArcBlock/arc/pull/4125 | 2026-08-19T12:20:11Z | robmao@Roberts-Mac-mini-M4-Pro |
+| 20260819-122435-places-detail.png | https://github.com/ArcBlock/arc/pull/4125 | 2026-08-19T12:24:35Z | robmao@Roberts-Mac-mini-M4-Pro |
