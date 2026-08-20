@@ -9,3 +9,4 @@
 | 20260820-105338-home-dark-ready.jpg | https://github.com/ArcBlock/aside | 2026-08-20T10:53:38Z | nategu@Nate-Mac-Pro |
 | 20260820-105347-home-dark-skeleton.jpg | https://github.com/ArcBlock/aside | 2026-08-20T10:53:47Z | nategu@Nate-Mac-Pro |
 | 20260820-105358-home-light-ready.jpg | https://github.com/ArcBlock/aside | 2026-08-20T10:53:58Z | nategu@Nate-Mac-Pro |
+| 20260820-105411-home-light-skeleton.jpg | https://github.com/ArcBlock/aside | 2026-08-20T10:54:11Z | nategu@Nate-Mac-Pro |
