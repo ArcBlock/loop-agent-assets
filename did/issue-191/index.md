@@ -6,3 +6,4 @@
 | merge-prove-email.png | https://github.com/ArcBlock/did/issues/191 | 2026-08-20T11:39:00Z | wangshijun@wangshijun-mac-studio |
 | merge-prove-passkey.png | https://github.com/ArcBlock/did/issues/191 | 2026-08-20T11:39:08Z | wangshijun@wangshijun-mac-studio |
 | merge-prove-oauth.png | https://github.com/ArcBlock/did/issues/191 | 2026-08-20T11:39:16Z | wangshijun@wangshijun-mac-studio |
+| merge-prove-picker.png | https://github.com/ArcBlock/did/issues/191 | 2026-08-20T11:39:35Z | wangshijun@wangshijun-mac-studio |
