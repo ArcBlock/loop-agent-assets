@@ -17,3 +17,4 @@
 | 20260820-023847-settings-after-zh-language-switch.jpg | https://github.com/ArcBlock/aside | 2026-08-20T02:38:47Z | nategu@Nate-Mac-Pro |
 | 20260820-023857-settings-cold-open-dest-filled.jpg | https://github.com/ArcBlock/aside | 2026-08-20T02:38:57Z | nategu@Nate-Mac-Pro |
 | 20260820-033604-note-detail-link-card.jpg | https://github.com/ArcBlock/aside/issues/704 | 2026-08-20T03:36:04Z | nategu@Nate-Mac-Pro |
+| 20260820-033613-note-editor-link-card.jpg | https://github.com/ArcBlock/aside/issues/704 | 2026-08-20T03:36:13Z | nategu@Nate-Mac-Pro |
