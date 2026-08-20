@@ -13,3 +13,4 @@
 | 20260820-023046-note-detail-link-chip.jpg | https://github.com/ArcBlock/aside/issues/704 | 2026-08-20T02:30:49Z | nategu@Nate-Mac-Pro |
 | 20260820-023056-note-editor-link-card.jpg | https://github.com/ArcBlock/aside/issues/704 | 2026-08-20T02:30:59Z | nategu@Nate-Mac-Pro |
 | 20260820-023827-settings-after-ja-language-switch-scrolled.jpg | https://github.com/ArcBlock/aside | 2026-08-20T02:38:27Z | nategu@Nate-Mac-Pro |
+| 20260820-023837-settings-after-ja-language-switch.jpg | https://github.com/ArcBlock/aside | 2026-08-20T02:38:37Z | nategu@Nate-Mac-Pro |
