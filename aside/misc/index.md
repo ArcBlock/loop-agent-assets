@@ -13,3 +13,4 @@
 | ja-organize-date-sheet.png | https://github.com/ArcBlock/aside | 2026-08-19T19:25:34Z | nategu@Nate-Mac-Pro |
 | en-organize-start-kinds.png | https://github.com/ArcBlock/aside | 2026-08-19T19:25:45Z | nategu@Nate-Mac-Pro |
 | en-organize-start-tradeshow.png | https://github.com/ArcBlock/aside | 2026-08-19T19:25:55Z | nategu@Nate-Mac-Pro |
+| 20260820-2037-after-capture-black.jpg | https://github.com/ArcBlock/aside | 2026-08-20T12:42:16Z | nategu@Nate-Mac-Pro |
