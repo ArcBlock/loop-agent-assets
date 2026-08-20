@@ -132,3 +132,4 @@
 | 20260818-014927-ui-verify-agent-surface-chat.png | https://github.com/ArcBlock/arc | 2026-08-18T01:49:27Z | wangshijun@wangshijun-mac-studio |
 | 20260818-014938-ui-verify-agent-surface-chat.gif | https://github.com/ArcBlock/arc | 2026-08-18T01:49:38Z | wangshijun@wangshijun-mac-studio |
 | pr4276-auto-surface-reset-after.png | https://github.com/ArcBlock/arc | 2026-08-18T15:55:06Z | chao@Yechaos-MBP |
+| 20260820-042004-ui-verify-todo-home.png | https://github.com/ArcBlock/arc | 2026-08-20T04:20:04Z | wangshijun@wangshijun-mac-studio |
