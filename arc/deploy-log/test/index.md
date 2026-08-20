@@ -36,8 +36,9 @@ schema 与路径约定见 [../README.md](../README.md)（ArcBlock/arc#1698）。
 | 2026-08-10T17:21:50Z | [`99caad02d`](https://github.com/ArcBlock/arc/commit/99caad02d1821c56a08ae166da7dea8e74d14b79) | ✅ success | [31412907425](https://github.com/ArcBlock/arc/actions/runs/31412907425) |
 | 2026-08-12T17:21:12Z | [`5e139b2dd`](https://github.com/ArcBlock/arc/commit/5e139b2dd44d72f338740a4bb8e5d4a05b40e3f3) | ✅ success | [31621494198](https://github.com/ArcBlock/arc/actions/runs/31621494198) |
 | 2026-08-13T17:27:14Z | [`bce796e37`](https://github.com/ArcBlock/arc/commit/bce796e37586894863c51d4483f96ce97b8f2292) | ✅ success | [31725099098](https://github.com/ArcBlock/arc/actions/runs/31725099098) |
-| 2026-08-14T17:23:16Z | [`400ce96a4`](https://github.com/ArcBlock/arc/commit/400ce96a45dd07252236bcec777f8a8824ec6720) | ✅ success | [31822959481](https://github.com/ArcBlock/arc/actions/runs/31822959481) |
+| 2026-08-14T17:23:16Z | [`400ce96a4`](https://github.com/ArcBlock/arc/commit/400ce96a45dd07252236bcec777f8a8824 ec6720) | ✅ success | [31822959481](https://github.com/ArcBlock/arc/actions/runs/31822959481) |
 | 2026-08-15T17:22:40Z | [`91531c7a3`](https://github.com/ArcBlock/arc/commit/91531c7a3289dd7d8578275ca7cf9fca8bd7e3e2) | ✅ success | [31897648613](https://github.com/ArcBlock/arc/actions/runs/31897648613) |
 | 2026-08-17T17:22:55Z | [`a167661027`](https://github.com/ArcBlock/arc/commit/a167661027c4d93e165c78ed2df93eb87a144702) | ✅ success | [32049417771](https://github.com/ArcBlock/arc/actions/runs/32049417771) |
 | 2026-08-18T17:24:12Z | [`70ddd15b8`](https://github.com/ArcBlock/arc/commit/70ddd15b8b113f14f8df7b6f8f09464965ab8f85) | ✅ success | [32164588346](https://github.com/ArcBlock/arc/actions/runs/32164588346) |
 | 2026-08-19T17:24:22Z | [`35de3a0b7`](https://github.com/ArcBlock/arc/commit/35de3a0b7e12afdb9169f2d01fd848707016863b) | ✅ success | [32280521364](https://github.com/ArcBlock/arc/actions/runs/32280521364) |
+| 2026-08-20T17:23:32Z | [`349d24bbf`](https://github.com/ArcBlock/arc/commit/349d24bbff990ac505add9df484af52066729325) | ⚠️ cancelled (build hung) | [32396599873](https://github.com/ArcBlock/arc/actions/runs/32396599873) |
