@@ -9,3 +9,4 @@
 | 20260821-045129-05-account.jpg | https://github.com/ArcBlock/aside/pull/736 | 2026-08-21T04:51:31Z | nategu@Nate-Mac-Pro |
 | 20260821-045143-06-settings.jpg | https://github.com/ArcBlock/aside/pull/736 | 2026-08-21T04:51:47Z | nategu@Nate-Mac-Pro |
 | 20260821-052215-settings.jpg | https://github.com/ArcBlock/aside/pull/736 | 2026-08-21T05:22:17Z | nategu@Nate-Mac-Pro |
+| 20260821-052225-search.jpg | https://github.com/ArcBlock/aside/pull/736 | 2026-08-21T05:22:27Z | nategu@Nate-Mac-Pro |
