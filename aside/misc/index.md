@@ -26,3 +26,4 @@
 | aside-epic743/744-dark-add-collection.jpg | https://github.com/ArcBlock/aside/issues/744 | 2026-08-21T09:32:22Z | epic-conductor@Nate-Mac-Pro |
 | aside-epic743/744-dark-trade-show-setup.jpg | https://github.com/ArcBlock/aside/issues/744 | 2026-08-21T09:32:35Z | epic-conductor@Nate-Mac-Pro |
 | aside-epic743/744-dark-calendar-import.jpg | https://github.com/ArcBlock/aside/issues/744 | 2026-08-21T09:32:45Z | epic-conductor@Nate-Mac-Pro |
+| aside-epic743/744-light-add-collection.jpg | https://github.com/ArcBlock/aside/issues/744 | 2026-08-21T09:32:54Z | epic-conductor@Nate-Mac-Pro |
