@@ -96,3 +96,4 @@
 | 20260821-195632-files-02.png | https://github.com/ArcBlock/arc | 2026-08-21T19:56:32Z | root@vm |
 | 20260821-195637-page@657333e191ebc23668a221051dff275c.webm | https://github.com/ArcBlock/arc | 2026-08-21T19:56:37Z | root@vm |
 | 20260821-195641-detail-01.png | https://github.com/ArcBlock/arc | 2026-08-21T19:56:41Z | root@vm |
+| 20260821-195645-detail-02.png | https://github.com/ArcBlock/arc | 2026-08-21T19:56:45Z | root@vm |
