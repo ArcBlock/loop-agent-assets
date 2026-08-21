@@ -21,3 +21,4 @@
 | aside-epic743/20260821-organize-setup-dark.jpg | https://github.com/ArcBlock/aside | 2026-08-21T07:30:20Z | nategu@Nate-Mac-Pro |
 | aside-epic743/20260821-add-collection-dark.jpg | https://github.com/ArcBlock/aside | 2026-08-21T07:30:30Z | nategu@Nate-Mac-Pro |
 | aside-epic743/20260821-organize-tab-inset.jpg | https://github.com/ArcBlock/aside | 2026-08-21T07:33:11Z | nategu@Nate-Mac-Pro |
+| aside-epic743/20260821-home-tab-inset.jpg | https://github.com/ArcBlock/aside | 2026-08-21T07:33:21Z | nategu@Nate-Mac-Pro |
