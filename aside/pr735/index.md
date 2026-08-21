@@ -7,3 +7,4 @@
 | 20260821-040429-quick-note-typed.jpg | https://github.com/ArcBlock/aside/pull/735 | 2026-08-21T04:04:31Z | nategu@Nate-Mac-Pro |
 | 20260821-040442-quick-note-reopen.jpg | https://github.com/ArcBlock/aside/pull/735 | 2026-08-21T04:04:43Z | nategu@Nate-Mac-Pro |
 | 20260821-040454-item-detail-open.jpg | https://github.com/ArcBlock/aside/pull/735 | 2026-08-21T04:04:56Z | nategu@Nate-Mac-Pro |
+| 20260821-040507-item-detail-pop-feed.jpg | https://github.com/ArcBlock/aside/pull/735 | 2026-08-21T04:05:09Z | nategu@Nate-Mac-Pro |
