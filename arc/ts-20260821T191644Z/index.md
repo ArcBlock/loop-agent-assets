@@ -154,3 +154,4 @@
 | 20260821-200051-list-grid-01.png | https://github.com/ArcBlock/arc | 2026-08-21T20:00:51Z | root@vm |
 | 20260821-200055-list-grid-02.png | https://github.com/ArcBlock/arc | 2026-08-21T20:00:56Z | root@vm |
 | 20260821-200100-list-pagination-01.png | https://github.com/ArcBlock/arc | 2026-08-21T20:01:00Z | root@vm |
+| 20260821-200105-list-pagination-02.png | https://github.com/ArcBlock/arc | 2026-08-21T20:01:05Z | root@vm |
