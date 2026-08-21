@@ -135,3 +135,4 @@
 | 20260820-042004-ui-verify-todo-home.png | https://github.com/ArcBlock/arc | 2026-08-20T04:20:04Z | wangshijun@wangshijun-mac-studio |
 | 20260820-043108-wgl-test-shot.png | https://github.com/ArcBlock/arc | 2026-08-20T04:31:08Z | wangshijun@wangshijun-mac-studio |
 | 20260821-023357-index.png | https://github.com/ArcBlock/arc | 2026-08-21T02:33:57Z | wangshijun@wangshijun-mac-studio |
+| 20260821-070649-final-settings-light.png | https://github.com/ArcBlock/arc | 2026-08-21T07:06:49Z | wangshijun@wangshijun-mac-studio |
