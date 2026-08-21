@@ -2,15 +2,12 @@
 
 - **时间**: 2026-08-21T17:20:19Z
 - **版本**: `8bda7931a14b2d28b70aa569853b853a427ff06e`
-- **改动窗口**: 24 hours ago
+- **Run**: https://github.com/ArcBlock/arc/actions/runs/32507235363
+- **改动窗口**: last 24 hours ago
 
-**12 个 blocklet 被本次共享依赖改动触达**
+_窗口内无 blocklet 改动。_
 
-### 改动摘要
-
-窗口内只有 1 次 commit（`bf6a9ebcf`，[#4497](https://github.com/ArcBlock/arc/issues/4497)），
-是 nightly-test 自身的 CI/测试基础设施修复（补上 desktop e2e 依赖的 CLI 二进制编译步骤），
-不涉及任何 blocklet 的运行时行为——12 个 blocklet 因共享 `packages/`/`runtimes/` 依赖改动
-被保守地全部标记受影响，但实际无用户可见改动，此处按噪音过滤规则整体略去。
-
-_本次 nightly build 无用户可见的 blocklet 改动。_
+> 注：本窗口内确实有 39 次 commit 触及共享平台依赖（`packages/`/`providers/`/`runtimes/`），
+> 但 build log 的 `blocklets` 字段只追踪每个 fleet blocklet 自身目录（`blocklets/<name>`）的
+> 改动，不将共享依赖改动保守地广播到每个 blocklet（同 `scripts/deploy-changelog.ts` 的
+> `--format record` 输出定义）。
