@@ -158,3 +158,4 @@
 | 20260821-200109-list-template-01.png | https://github.com/ArcBlock/arc | 2026-08-21T20:01:09Z | root@vm |
 | 20260821-200113-list-template-02.png | https://github.com/ArcBlock/arc | 2026-08-21T20:01:13Z | root@vm |
 | 20260821-200118-list-virtual-01.png | https://github.com/ArcBlock/arc | 2026-08-21T20:01:18Z | root@vm |
+| 20260821-200122-list-virtual-02.png | https://github.com/ArcBlock/arc | 2026-08-21T20:01:22Z | root@vm |
