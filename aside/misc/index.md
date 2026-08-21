@@ -15,3 +15,4 @@
 | en-organize-start-tradeshow.png | https://github.com/ArcBlock/aside | 2026-08-19T19:25:55Z | nategu@Nate-Mac-Pro |
 | 20260820-2037-after-capture-black.jpg | https://github.com/ArcBlock/aside | 2026-08-20T12:42:16Z | nategu@Nate-Mac-Pro |
 | 20260820-2323-light-blank-editor.jpg | https://github.com/ArcBlock/aside | 2026-08-20T15:25:11Z | nategu@Nate-Mac-Pro |
+| aside-epic723-theme-switch-blank.png | https://github.com/ArcBlock/aside | 2026-08-21T02:07:54Z | nategu@Nate-Mac-Pro |
