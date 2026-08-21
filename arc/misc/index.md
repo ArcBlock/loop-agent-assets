@@ -138,3 +138,4 @@
 | 20260821-070649-final-settings-light.png | https://github.com/ArcBlock/arc | 2026-08-21T07:06:49Z | wangshijun@wangshijun-mac-studio |
 | 20260821-070659-final-settings-dark.png | https://github.com/ArcBlock/arc | 2026-08-21T07:06:59Z | wangshijun@wangshijun-mac-studio |
 | 20260821-094219-split-before.png | https://github.com/ArcBlock/arc | 2026-08-21T09:42:19Z | root@vm |
+| 20260821-094224-split.png | https://github.com/ArcBlock/arc | 2026-08-21T09:42:24Z | root@vm |
