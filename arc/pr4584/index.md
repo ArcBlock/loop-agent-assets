@@ -17,3 +17,4 @@
 | 20260821-171636-ui-verify-chain-explorer-main.webm | https://github.com/ArcBlock/arc/pull/4584 | 2026-08-21T17:16:36Z | robmao@Roberts-Mac-mini-M4-Pro |
 | 20260821-171646-ui-verify-did-space-browse.webm | https://github.com/ArcBlock/arc/pull/4584 | 2026-08-21T17:16:46Z | robmao@Roberts-Mac-mini-M4-Pro |
 | 20260821-171657-ui-verify-loopback-frame-embed.webm | https://github.com/ArcBlock/arc/pull/4584 | 2026-08-21T17:16:57Z | robmao@Roberts-Mac-mini-M4-Pro-2 |
+| ui-verify-todo-complete-item.webm | https://github.com/ArcBlock/arc/pull/4584 | 2026-08-21T17:17:40Z | robmao@Roberts-Mac-mini-M4-Pro-3 |
