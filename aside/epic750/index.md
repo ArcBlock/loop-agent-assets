@@ -9,3 +9,4 @@
 | 20260822-065624-752-home-tab-comparison-dark.png | https://github.com/ArcBlock/aside | 2026-08-22T06:56:24Z | nategu@Nate-Mac-Pro |
 | 20260822-065633-752-organize-header-grid-gap-dark.png | https://github.com/ArcBlock/aside | 2026-08-22T06:56:33Z | nategu@Nate-Mac-Pro |
 | 20260822-065643-752-organize-header-grid-gap-light.png | https://github.com/ArcBlock/aside | 2026-08-22T06:56:43Z | nategu@Nate-Mac-Pro |
+| 20260822-065654-753-place-detail-native-map-light.png | https://github.com/ArcBlock/aside | 2026-08-22T06:56:54Z | nategu@Nate-Mac-Pro |
