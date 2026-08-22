@@ -140,3 +140,4 @@
 | 20260821-094219-split-before.png | https://github.com/ArcBlock/arc | 2026-08-21T09:42:19Z | root@vm |
 | 20260821-094224-split.png | https://github.com/ArcBlock/arc | 2026-08-21T09:42:24Z | root@vm |
 | epic4574-01-hud-initial.png | https://github.com/ArcBlock/arc | 2026-08-22T00:33:28Z | robmao@Roberts-Mac-mini-M4-Pro-6 |
+| epic4574-02-instance-selected.png | https://github.com/ArcBlock/arc | 2026-08-22T00:33:35Z | robmao@Roberts-Mac-mini-M4-Pro-6 |
