@@ -1,0 +1,951 @@
+<!doctype html><html><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>todo — agent 走查报告</title><style>
+:root{--bg:#f7f8f8;--fg:#16201f;--muted:#5c6b69;--card:#fff;--card2:#eef2f1;--border:#dde3e2;--accent:#127a72;--pass:#1f8a54;--warn:#b5771a;--bad:#c0392b}
+@media(prefers-color-scheme:dark){:root{--bg:#0e1413;--fg:#e6ecea;--muted:#8ea19d;--card:#161d1c;--card2:#1d2624;--border:#26302e;--accent:#3fb8ab;--pass:#3fb37a;--warn:#d69a3e;--bad:#e5735f}}
+:root[data-theme=dark]{--bg:#0e1413;--fg:#e6ecea;--muted:#8ea19d;--card:#161d1c;--card2:#1d2624;--border:#26302e;--accent:#3fb8ab;--pass:#3fb37a;--warn:#d69a3e;--bad:#e5735f}
+:root[data-theme=light]{--bg:#f7f8f8;--fg:#16201f;--muted:#5c6b69;--card:#fff;--card2:#eef2f1;--border:#dde3e2;--accent:#127a72;--pass:#1f8a54;--warn:#b5771a;--bad:#c0392b}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--fg);font:15px/1.65 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;padding:24px}
+.wrap{max-width:920px;margin:0 auto}
+h1{font-size:24px;margin:0 0 4px;text-wrap:balance}h2{font-size:19px;margin:30px 0 8px}
+h2 .rt{font-size:13px;color:var(--muted);font-weight:400;font-variant-numeric:tabular-nums}
+.sub{color:var(--muted);margin:0 0 14px;font-size:13px}
+code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.85em;background:var(--card2);padding:1px 5px;border-radius:4px}
+.how{background:var(--card);border:1px solid var(--border);border-left:3px solid var(--accent);border-radius:8px;padding:13px 16px;margin:14px 0;font-size:14px}
+.how b{color:var(--accent)}
+.banner{border-radius:12px;padding:14px 18px;margin:16px 0}
+.banner.ok{background:color-mix(in srgb,var(--pass) 12%,transparent);border:1px solid color-mix(in srgb,var(--pass) 40%,transparent)}
+.banner.ok b{color:var(--pass)}
+.banner.bad{background:color-mix(in srgb,var(--bad) 13%,transparent);border:1px solid color-mix(in srgb,var(--bad) 45%,transparent)}
+.banner.bad b{color:var(--bad);font-size:16px}
+.banner.info{background:color-mix(in srgb,var(--accent) 10%,transparent);border:1px solid color-mix(in srgb,var(--accent) 38%,transparent)}
+.banner.info b{color:var(--accent)}
+.plist{margin:10px 0 0;padding-left:0;list-style:none}
+.plist li{padding:8px 0;border-top:1px solid var(--border)}
+.plist a{text-decoration:none;color:var(--fg);font-weight:600}
+.plist .pe{color:var(--muted);font-size:12.5px;font-weight:400;margin-top:3px}
+.video{width:100%;border-radius:10px;border:1px solid var(--border);background:#000;margin:6px 0 2px}
+.vcap{color:var(--muted);font-size:12.5px;margin:0 0 8px}
+.novideo{color:var(--bad);font-weight:600;background:color-mix(in srgb,var(--bad) 10%,transparent);border:1px dashed color-mix(in srgb,var(--bad) 45%,transparent);border-radius:8px;padding:8px 12px;font-size:13px}
+.kpis{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0}
+.kpi{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:9px 14px;min-width:70px}
+.kpi .k{font-size:21px;font-weight:700;font-variant-numeric:tabular-nums}.kpi .l{color:var(--muted);font-size:12px}
+.kpi .k-bad{color:var(--bad)}.kpi .k-warn{color:var(--warn)}
+.op{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:15px 17px;margin:14px 0}
+.op h3{margin:0 0 3px;font-size:16px;display:flex;align-items:center;gap:9px;flex-wrap:wrap}
+.op .exp{color:var(--muted);font-size:13px;margin:0 0 9px}
+.op .nt{color:var(--muted);font-size:12.5px;margin-top:6px}
+.pill{font-size:11.5px;font-weight:700;padding:2px 9px;border-radius:20px}
+.p-ok{background:color-mix(in srgb,var(--pass) 18%,transparent);color:var(--pass)}
+.p-fail{background:color-mix(in srgb,var(--bad) 18%,transparent);color:var(--bad)}
+.p-warn{background:color-mix(in srgb,var(--warn) 20%,transparent);color:var(--warn)}
+.p-skip{background:var(--card2);color:var(--muted)}
+.p-write{background:color-mix(in srgb,var(--accent) 18%,transparent);color:var(--accent)}
+.frame figure{margin:0 0 9px}.frame img{width:100%;border-radius:8px;border:1px solid var(--border);display:block}
+.frame figcaption{color:var(--muted);font-size:11.5px;margin-top:4px;text-align:center}
+.chk{background:color-mix(in srgb,var(--pass) 12%,transparent);border:1px solid color-mix(in srgb,var(--pass) 34%,transparent);border-radius:8px;padding:8px 12px;font-size:13px}
+.chk b{color:var(--pass)}
+.chk-fail{background:color-mix(in srgb,var(--bad) 11%,transparent);border:1px solid color-mix(in srgb,var(--bad) 40%,transparent);border-radius:8px;padding:8px 12px;font-size:13px}
+.chk-fail b{color:var(--bad)}
+table.probe{border-collapse:collapse;width:100%;font-size:13px}
+table.probe th,table.probe td{border:1px solid var(--border);padding:5px 9px;text-align:left}
+table.probe tr.bad td{background:color-mix(in srgb,var(--bad) 10%,transparent)}
+.err{background:color-mix(in srgb,var(--bad) 11%,transparent);border:1px solid color-mix(in srgb,var(--bad) 40%,transparent);border-radius:8px;padding:7px 12px;font-size:12.5px;margin-top:6px}
+.err b{color:var(--bad)}.err code{background:transparent;color:var(--bad)}
+.dbg{margin:10px 0 2px;background:var(--card);border:1px solid var(--border);border-radius:10px;padding:6px 14px;font-size:13px}
+.dbg summary{cursor:pointer;color:var(--muted);font-weight:600;padding:5px 0}
+.dbg-none{color:var(--muted);padding:4px 0;font-size:12.5px}
+.dbg-has{padding:5px 0}.dbg-has b{color:var(--warn)}
+.dbg-has ul{margin:5px 0 8px;padding-left:18px}.dbg-has li{font-size:12px;color:var(--fg);margin:2px 0;word-break:break-all}
+.dbg-has code{background:var(--card2)}
+.pdesc{color:var(--muted);font-size:13.5px;margin:1px 0 11px;line-height:1.5}
+.pdesc code{font-size:.85em}
+details.steps{margin:6px 0 2px;border:1px solid var(--border);border-radius:10px;background:var(--card2);padding:2px 14px}
+details.steps>summary{cursor:pointer;color:var(--accent);font-weight:600;padding:9px 0;font-size:13.5px;list-style:none}
+details.steps>summary::-webkit-details-marker{display:none}
+details.steps[open]>summary{border-bottom:1px solid var(--border);margin-bottom:8px}
+details.steps>summary:hover{color:var(--fg)}
+</style></head><body><div class="wrap">
+<h1>todo — agent 走查报告</h1>
+<p class="sub">环境 <code>https://todo.afsd.dev</code> · 2026-08-22T19:18:47.306308Z · 走查 10 / 声明 10 条测试路径 · driver <code>agent-playwright-mcp</code></p>
+<div class="how"><b>这份报告在做什么</b>：test-sweep 让 <b>agent 读被测页面自己写的
+<code>.aup/man</code> 知识</b>，用 Playwright MCP <b>当真人逐条测试路径走查</b>（导航/加标签/编辑/删除/创建…），
+<b>每条路径各自一段录屏</b>、每步截图并<b>自判 verdict + 附观察证据</b>（实际 DOM/文本/值，可复核）。
+<b>unreached</b>=没驱动到（不当失败）；<b>inconclusive</b>=不确定（绝不判失败）。写操作默认真提交、不清理。</div>
+
+<div class="banner ok"><b>✅ 覆盖完整</b>：声明 10 条测试路径全部走查。</div>
+<div class="banner bad"><b>⚠️ 发现 7 个问题</b>（点击跳到对应路径）<ul class="plist"><li><a href="#path-dd-1-todo"><span class="pill p-fail">失败</span> empty draft→item created (new-todo.send) · 步2</a> — fill<div class="pe">fill selector #new-todo input timed out (wrong selector, no data change)</div></li><li><a href="#path-dd-1-todo"><span class="pill p-fail">失败</span> empty draft→item created (new-todo.send) · 步4</a> — press<div class="pe">press Enter action itself errored (waitTimeout: expected float, got boolean — drive-step settle:true bug, not app bug); no verdict on app behavior from this step</div></li><li><a href="#path-dd-1-todo"><span class="pill p-fail">失败</span> empty draft→item created (new-todo.send) · 步8</a> — click<div class="pe">click role=button name=Delete exact=true timed out (strict-mode ambiguity against hidden per-row Delete buttons still in DOM) — driver selector issue, dialog remained open, item NOT deleted by this step</div></li><li><a href="#path-dd-5-todo"><span class="pill p-fail">失败</span> concierge open -&gt; item created/completed/cleared (natural-language agent-surface flow) · 步3</a> — click<div class="pe">click selector #assistant-dock timed out — selector matched the whole overlay container, not a clickable target (driver selector issue, not app bug)</div></li><li><a href="#path-dd-5-todo"><span class="pill p-fail">失败</span> concierge open -&gt; item created/completed/cleared (natural-language agent-surface flow) · 步5</a> — fill<div class="pe">fill selector input[placeholder=...] timed out — chat field is a textarea, not input (driver selector issue)</div></li><li><a href="#path-dd-5-todo"><span class="pill p-fail">失败</span> concierge open -&gt; item created/completed/cleared (natural-language agent-surface flow) · 步9</a> — click<div class="pe">click selector textarea sibling button / aria-label Send timed out — no matching send button (Enter already submitted, so target was stale); driver selector issue only</div></li><li><a href="#path-dd-10-todo"><span class="pill p-fail">失败</span> switch All/Active/Done tab (typed where pushdown + showCount) · 步5</a> — click<div class="pe">click role=button name=Done timed out (strict-mode selector ambiguity) — driver selector issue, not app bug</div></li></ul></div>
+<section id="probes"><h2>后端探针 （全通过）</h2><table class="probe"><tr><th></th><th>探针</th><th>详情</th></tr><tr class=""><td>✅</td><td>http-reachable</td><td>HTTP 200</td></tr><tr class=""><td>✅</td><td>afs-rpc-list</td><td>ok:true (2 .aup pages)</td></tr><tr class=""><td>✅</td><td>afs-rpc-authed-list-/user</td><td>ok:true (Bearer 可读)</td></tr></table></section>
+<section id="path-explorer">
+<h2>Explorer <span class="rt">anon · https://todo.afsd.dev/app?page=explorer</span></h2>
+<p class="pdesc">导航到 https://todo.afsd.dev/app?page=explorer，验证页面加载并渲染出真实内容（explorer 页 breadth 走查）。</p>
+<video class="video" controls preload="metadata" src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260822T191552Z/todo/page@321816b70c021e812246d70cf851f72a.webm"><a href="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260822T191552Z/todo/page@321816b70c021e812246d70cf851f72a.webm">下载该路径录像</a></video><p class="vcap">本测试路径整段走查录像</p>
+<div class="kpis"><div class="kpi"><div class="k">2</div><div class="l">操作步</div></div><div class="kpi"><div class="k">2</div><div class="l">通过</div></div><div class="kpi"><div class="k k-bad">0</div><div class="l">失败</div></div><div class="kpi"><div class="k k-warn">0</div><div class="l">不确定</div></div><div class="kpi"><div class="k">0</div><div class="l">未走到</div></div></div>
+<details class="steps"><summary>▸ 逐步操作详情（2 步，含判定截图）</summary><div class="op">
+<h3><span class="pill p-ok">通过</span> navigate</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260822T191552Z/todo/explorer-01.png" alt="navigate" loading="lazy"><figcaption>navigate</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：title=&#x27;Agentic Todo&#x27; url=https://todo.afsd.dev/app?page=explorer aupNodes=50 buttons=26 inputs=9 textLen=699 head=&#x27;Agentic Todo / instance DID-scoped persistent storage with CID-based content deduplication. - Per-user data isolation via DID prefix - Conte&#x27;</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> snapshot</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260822T191552Z/todo/explorer-02.png" alt="snapshot" loading="lazy"><figcaption>snapshot</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：title=&#x27;Agentic Todo&#x27; url=https://todo.afsd.dev/app?page=explorer aupNodes=50 buttons=26 inputs=9 textLen=699 head=&#x27;Agentic Todo / instance DID-scoped persistent storage with CID-based content deduplication. - Per-user data isolation via DID prefix - Conte&#x27;</div>
+
+
+</div></details>
+<details class="dbg" open><summary>运行时 debug 上下文（5 条错误）</summary><div class="dbg-has"><b>Console 错误（3）</b><ul><li><code>Failed to load resource: the server responded with a status of 403 ()</code></li><li><code>Failed to load resource: the server responded with a status of 404 ()</code></li><li><code>Failed to load resource: the server responded with a status of 404 ()</code></li></ul></div><div class="dbg-none">JS 未捕获异常：<b>无</b></div><div class="dbg-has"><b>网络错误（请求失败 / 4xx–5xx）（2）</b><ul><li><code>403 POST https://todo.afsd.dev/api/afs/rpc</code></li><li><code>404 POST https://todo.afsd.dev/api/afs/rpc</code></li></ul></div></details>
+</section><section id="path-index">
+<h2>Index <span class="rt">authed · https://todo.afsd.dev/</span></h2>
+<p class="pdesc">导航到 https://todo.afsd.dev/，验证页面加载并渲染出真实内容（index 页 breadth 走查）。</p>
+<video class="video" controls preload="metadata" src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260822T191552Z/todo/page@59bdcbc51660e4913874fbd6d30fe737.webm"><a href="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260822T191552Z/todo/page@59bdcbc51660e4913874fbd6d30fe737.webm">下载该路径录像</a></video><p class="vcap">本测试路径整段走查录像</p>
+<div class="kpis"><div class="kpi"><div class="k">2</div><div class="l">操作步</div></div><div class="kpi"><div class="k">2</div><div class="l">通过</div></div><div class="kpi"><div class="k k-bad">0</div><div class="l">失败</div></div><div class="kpi"><div class="k k-warn">0</div><div class="l">不确定</div></div><div class="kpi"><div class="k">0</div><div class="l">未走到</div></div></div>
+<details class="steps"><summary>▸ 逐步操作详情（2 步，含判定截图）</summary><div class="op">
+<h3><span class="pill p-ok">通过</span> navigate</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260822T191552Z/todo/index-01.png" alt="navigate" loading="lazy"><figcaption>navigate</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：title=&#x27;Agentic Todo&#x27; url=https://todo.afsd.dev/ aupNodes=13 buttons=27 inputs=2 textLen=331 head=&#x27;Agentic Todo Settings Explorer ▾ Tap a row to toggle. Hover to reveal delete. All 6 Active 6 Done qa-tsweep-1787254101 1 day ago qa-tsweep-1&#x27;</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> snapshot</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260822T191552Z/todo/index-02.png" alt="snapshot" loading="lazy"><figcaption>snapshot</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：title=&#x27;Agentic Todo&#x27; url=https://todo.afsd.dev/ aupNodes=13 buttons=27 inputs=2 textLen=331 head=&#x27;Agentic Todo Settings Explorer ▾ Tap a row to toggle. Hover to reveal delete. All 6 Active 6 Done qa-tsweep-1787254101 1 day ago qa-tsweep-1&#x27;</div>
+
+
+</div></details>
+<details class="dbg"><summary>运行时 debug 上下文（全清）</summary><div class="dbg-none">Console 错误：<b>无</b></div><div class="dbg-none">JS 未捕获异常：<b>无</b></div><div class="dbg-none">网络错误（请求失败 / 4xx–5xx）：<b>无</b></div></details>
+</section><section id="path-dd-1-todo">
+<h2>empty draft→item created (new-todo.send) <span class="rt">authed · /</span></h2>
+<p class="pdesc">写操作走查：11 步驱动此操作（其中 3 步为写），逐步引真实 DOM/文本/toast 为证。</p>
+<video class="video" controls preload="metadata" src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260822T191552Z/todo/page@ba88b0bc357172bf87ad907f69014199.webm"><a href="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260822T191552Z/todo/page@ba88b0bc357172bf87ad907f69014199.webm">下载该路径录像</a></video><p class="vcap">本测试路径整段走查录像</p>
+<div class="kpis"><div class="kpi"><div class="k">11</div><div class="l">操作步</div></div><div class="kpi"><div class="k">8</div><div class="l">通过</div></div><div class="kpi"><div class="k k-bad">3</div><div class="l">失败</div></div><div class="kpi"><div class="k k-warn">0</div><div class="l">不确定</div></div><div class="kpi"><div class="k">0</div><div class="l">未走到</div></div></div>
+<details class="steps"><summary>▸ 逐步操作详情（11 步，含判定截图）</summary><div class="op">
+<h3><span class="pill p-ok">通过</span> navigate</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260822T191552Z/todo/dd-1-todo-00.png" alt="navigate" loading="lazy"><figcaption>navigate</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：navigate / initial: authed app pane rendered, All 6 Active 6 (pre-existing items from prior test runs visible: qa-tsweep-1787254101 x2, usage-verify-check, verify issue 3294 ledger fix, call mom, buy milk — none touched)</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-fail">失败</span> fill</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260822T191552Z/todo/dd-1-todo-01.png" alt="fill" loading="lazy"><figcaption>fill</figcaption></figure></div>
+<div class="chk-fail"><b>观察证据</b>：fill selector #new-todo input timed out (wrong selector, no data change)</div>
+<div class="err"><b>执行错误</b>：<code>TimeoutError: fill: Timeout 8000ms exceeded.</code></div>
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> fill</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260822T191552Z/todo/dd-1-todo-02.png" alt="fill" loading="lazy"><figcaption>fill</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：fill input[placeholder=&quot;What&#x27;s next? Press Enter to add&quot;] with qa-tsweep-1787426402-dd1-create succeeded, no visible list change yet (draft only)</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-fail">失败</span> press</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260822T191552Z/todo/dd-1-todo-03.png" alt="press" loading="lazy"><figcaption>press</figcaption></figure></div>
+<div class="chk-fail"><b>观察证据</b>：press Enter action itself errored (waitTimeout: expected float, got boolean — drive-step settle:true bug, not app bug); no verdict on app behavior from this step</div>
+<div class="err"><b>执行错误</b>：<code>Error: waitForTimeout: waitTimeout: expected float, got boolean</code></div>
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> <span class="pill p-write">写</span>press</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260822T191552Z/todo/dd-1-todo-04.png" alt="press" loading="lazy"><figcaption>press</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：press Enter (no settle arg) succeeded: list now shows All 7 Active 7, top row title=&quot;qa-tsweep-1787426402-dd1-create&quot; timestamp=&quot;just now&quot; — item created via new-todo.send as .man documents</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> hover</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260822T191552Z/todo/dd-1-todo-05.png" alt="hover" loading="lazy"><figcaption>hover</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：hover over row text &quot;qa-tsweep-1787426402-dd1-create&quot; — screenshot dd-1-todo-05.png shows trash/delete icon revealed on that exact row (hover-to-reveal confirmed)</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> click</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260822T191552Z/todo/dd-1-todo-06.png" alt="click" loading="lazy"><figcaption>click</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：click role=button name=Delete (first/top row) — confirm dialog appeared with exact text: Delete &quot;qa-tsweep-1787426402-dd1-create&quot;? This cannot be undone. — correct item targeted</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-fail">失败</span> click</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260822T191552Z/todo/dd-1-todo-07.png" alt="click" loading="lazy"><figcaption>click</figcaption></figure></div>
+<div class="chk-fail"><b>观察证据</b>：click role=button name=Delete exact=true timed out (strict-mode ambiguity against hidden per-row Delete buttons still in DOM) — driver selector issue, dialog remained open, item NOT deleted by this step</div>
+<div class="err"><b>执行错误</b>：<code>TimeoutError: click: Timeout 8000ms exceeded.</code></div>
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> <span class="pill p-write">写</span>click</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260822T191552Z/todo/dd-1-todo-08.png" alt="click" loading="lazy"><figcaption>click</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：click selector button:text-is(&quot;Delete&quot;) succeeded, dialog closed</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> <span class="pill p-write">写</span>waitFor</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260822T191552Z/todo/dd-1-todo-09.png" alt="waitFor" loading="lazy"><figcaption>waitFor</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：after 2s wait, list shows All 6 Active 6 — qa-tsweep-1787426402-dd1-create no longer present, other 6 pre-existing items unchanged</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> navigate</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260822T191552Z/todo/dd-1-todo-10.png" alt="navigate" loading="lazy"><figcaption>navigate</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：re-navigated to https://todo.afsd.dev/ fresh load: All 6 Active 6, qa-tsweep-1787426402-dd1-create absent — deletion persisted server-side, zero qa-tsweep-1787426402-* leftover confirmed</div>
+
+
+</div></details>
+<details class="dbg" open><summary>运行时 debug 上下文（1 条错误）</summary><div class="dbg-none">Console 错误：<b>无</b></div><div class="dbg-none">JS 未捕获异常：<b>无</b></div><div class="dbg-has"><b>网络错误（请求失败 / 4xx–5xx）（1）</b><ul><li><code>✗ POST https://todo.afsd.dev/cdn-cgi/rum? — net::ERR_ABORTED</code></li></ul></div></details>
+</section><section id="path-dd-2-todo">
+<h2>active item→completed item (todo-list.select toggle) <span class="rt">authed · /</span></h2>
+<p class="pdesc">写操作走查：12 步驱动此操作（其中 5 步为写），逐步引真实 DOM/文本/toast 为证。</p>
+<video class="video" controls preload="metadata" src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260822T191552Z/todo/page@2ab341bb38ec2129d7dd766ef2d3de4b.webm"><a href="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260822T191552Z/todo/page@2ab341bb38ec2129d7dd766ef2d3de4b.webm">下载该路径录像</a></video><p class="vcap">本测试路径整段走查录像</p>
+<div class="kpis"><div class="kpi"><div class="k">12</div><div class="l">操作步</div></div><div class="kpi"><div class="k">12</div><div class="l">通过</div></div><div class="kpi"><div class="k k-bad">0</div><div class="l">失败</div></div><div class="kpi"><div class="k k-warn">0</div><div class="l">不确定</div></div><div class="kpi"><div class="k">0</div><div class="l">未走到</div></div></div>
+<details class="steps"><summary>▸ 逐步操作详情（12 步，含判定截图）</summary><div class="op">
+<h3><span class="pill p-ok">通过</span> navigate</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260822T191552Z/todo/dd-2-todo-00.png" alt="navigate" loading="lazy"><figcaption>navigate</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：navigate: authed app pane, All 6 Active 6 (pre-existing items untouched)</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> fill</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260822T191552Z/todo/dd-2-todo-01.png" alt="fill" loading="lazy"><figcaption>fill</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：fill new-todo input with qa-tsweep-1787426402-dd2-toggle (draft text set, no list change yet)</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> press</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260822T191552Z/todo/dd-2-todo-02.png" alt="press" loading="lazy"><figcaption>press</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：press Enter did not visibly submit in this immediate observation (list still All 6, input retained text) — submit event apparently pending/debounced</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> <span class="pill p-write">写</span>click</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260822T191552Z/todo/dd-2-todo-03.png" alt="click" loading="lazy"><figcaption>click</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：click on input (refocus) — by the time of this observation the item had already been created: All 7 Active 7, top row qa-tsweep-1787426402-dd2-toggle just now — creation confirmed via new-todo.send</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> press</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260822T191552Z/todo/dd-2-todo-04.png" alt="press" loading="lazy"><figcaption>press</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：press Enter (no-op, input already empty) — state unchanged All 7 Active 7</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> <span class="pill p-write">写</span>click</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260822T191552Z/todo/dd-2-todo-05.png" alt="click" loading="lazy"><figcaption>click</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：click text=qa-tsweep-1787426402-dd2-toggle — screenshot dd-2-todo-05.png shows the row highlighted green with a loading spinner (optimistic in-flight toggle)</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> <span class="pill p-write">写</span>waitFor</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260822T191552Z/todo/dd-2-todo-06.png" alt="waitFor" loading="lazy"><figcaption>waitFor</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：after 2s wait: All 7 Active 6 Done 1 — qa-tsweep-1787426402-dd2-toggle moved from Active to Done via todo-list.select tree-toggle of content.completed, exactly as .man documents</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> hover</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260822T191552Z/todo/dd-2-todo-07.png" alt="hover" loading="lazy"><figcaption>hover</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：hover over qa-tsweep-1787426402-dd2-toggle row — delete icon revealed on that row (cleanup step)</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> click</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260822T191552Z/todo/dd-2-todo-08.png" alt="click" loading="lazy"><figcaption>click</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：click role=button name=Delete — confirm dialog shows exact text: Delete &quot;qa-tsweep-1787426402-dd2-toggle&quot;? This cannot be undone.</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> <span class="pill p-write">写</span>click</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260822T191552Z/todo/dd-2-todo-09.png" alt="click" loading="lazy"><figcaption>click</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：click selector button:text-is(Delete) confirmed — dialog closed</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> <span class="pill p-write">写</span>waitFor</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260822T191552Z/todo/dd-2-todo-10.png" alt="waitFor" loading="lazy"><figcaption>waitFor</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：after 2s wait: All 6 Active 6 Done 0 — item removed, other 6 pre-existing items unchanged</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> navigate</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260822T191552Z/todo/dd-2-todo-11.png" alt="navigate" loading="lazy"><figcaption>navigate</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：re-navigated to https://todo.afsd.dev/ fresh load: All 6 Active 6 Done 0, qa-tsweep-1787426402-dd2-toggle absent — zero qa-tsweep-1787426402-* leftover confirmed</div>
+
+
+</div></details>
+<details class="dbg" open><summary>运行时 debug 上下文（1 条错误）</summary><div class="dbg-none">Console 错误：<b>无</b></div><div class="dbg-none">JS 未捕获异常：<b>无</b></div><div class="dbg-has"><b>网络错误（请求失败 / 4xx–5xx）（1）</b><ul><li><code>✗ POST https://todo.afsd.dev/cdn-cgi/rum? — net::ERR_ABORTED</code></li></ul></div></details>
+</section><section id="path-dd-3-todo">
+<h2>completed item→item removed (hover-reveal per-row delete, confirm-gated) <span class="rt">authed · /</span></h2>
+<p class="pdesc">写操作走查：12 步驱动此操作（其中 4 步为写），逐步引真实 DOM/文本/toast 为证。</p>
+<video class="video" controls preload="metadata" src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260822T191552Z/todo/page@ebeee3bb0889d8c3b5335539a9260704.webm"><a href="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260822T191552Z/todo/page@ebeee3bb0889d8c3b5335539a9260704.webm">下载该路径录像</a></video><p class="vcap">本测试路径整段走查录像</p>
+<div class="kpis"><div class="kpi"><div class="k">12</div><div class="l">操作步</div></div><div class="kpi"><div class="k">12</div><div class="l">通过</div></div><div class="kpi"><div class="k k-bad">0</div><div class="l">失败</div></div><div class="kpi"><div class="k k-warn">0</div><div class="l">不确定</div></div><div class="kpi"><div class="k">0</div><div class="l">未走到</div></div></div>
+<details class="steps"><summary>▸ 逐步操作详情（12 步，含判定截图）</summary><div class="op">
+<h3><span class="pill p-ok">通过</span> navigate</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260822T191552Z/todo/dd-3-todo-00.png" alt="navigate" loading="lazy"><figcaption>navigate</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：navigate: authed app pane, All 6 Active 6</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> fill</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260822T191552Z/todo/dd-3-todo-01.png" alt="fill" loading="lazy"><figcaption>fill</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：fill new-todo with qa-tsweep-1787426402-dd3-remove</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> press</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260822T191552Z/todo/dd-3-todo-02.png" alt="press" loading="lazy"><figcaption>press</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：press Enter: list still All 6 in this immediate snapshot (async creation pending)</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> <span class="pill p-write">写</span>waitFor</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260822T191552Z/todo/dd-3-todo-03.png" alt="waitFor" loading="lazy"><figcaption>waitFor</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：after 2s wait: All 7 Active 7, top row qa-tsweep-1787426402-dd3-remove just now — item created</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> click</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260822T191552Z/todo/dd-3-todo-04.png" alt="click" loading="lazy"><figcaption>click</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：click row text to toggle — action accepted</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> <span class="pill p-write">写</span>waitFor</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260822T191552Z/todo/dd-3-todo-05.png" alt="waitFor" loading="lazy"><figcaption>waitFor</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：after 2s wait: All 7 Active 6 Done 1 — qa-tsweep-1787426402-dd3-remove now completed, precondition for this flow satisfied</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> hover</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260822T191552Z/todo/dd-3-todo-06.png" alt="hover" loading="lazy"><figcaption>hover</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：hover over qa-tsweep-1787426402-dd3-remove row — delete icon revealed</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> click</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260822T191552Z/todo/dd-3-todo-07.png" alt="click" loading="lazy"><figcaption>click</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：click role=button name=Delete — confirm dialog appeared</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> snapshot</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260822T191552Z/todo/dd-3-todo-08.png" alt="snapshot" loading="lazy"><figcaption>snapshot</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：snapshot confirms dialog text exactly: Delete &quot;qa-tsweep-1787426402-dd3-remove&quot;? This cannot be undone. Cancel / Delete — confirm-gated destructive action verified before commit</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> <span class="pill p-write">写</span>click</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260822T191552Z/todo/dd-3-todo-09.png" alt="click" loading="lazy"><figcaption>click</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：click selector button:text-is(Delete) confirmed the dialog</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> <span class="pill p-write">写</span>waitFor</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260822T191552Z/todo/dd-3-todo-10.png" alt="waitFor" loading="lazy"><figcaption>waitFor</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：after 2s wait: All 6 Active 6 Done 0 — item removed via per-row delete from completed state, other 6 pre-existing items unchanged</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> navigate</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260822T191552Z/todo/dd-3-todo-11.png" alt="navigate" loading="lazy"><figcaption>navigate</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：re-navigated fresh: All 6 Active 6 Done 0, qa-tsweep-1787426402-dd3-remove absent — zero qa-tsweep-1787426402-* leftover confirmed</div>
+
+
+</div></details>
+<details class="dbg" open><summary>运行时 debug 上下文（1 条错误）</summary><div class="dbg-none">Console 错误：<b>无</b></div><div class="dbg-none">JS 未捕获异常：<b>无</b></div><div class="dbg-has"><b>网络错误（请求失败 / 4xx–5xx）（1）</b><ul><li><code>✗ POST https://todo.afsd.dev/cdn-cgi/rum? — net::ERR_ABORTED</code></li></ul></div></details>
+</section><section id="path-dd-4-todo">
+<h2>list with completed items→completed items cleared (Clear-completed, onLoad, confirm-gated destructive) <span class="rt">authed · /</span></h2>
+<p class="pdesc">写操作走查：11 步驱动此操作（其中 4 步为写），逐步引真实 DOM/文本/toast 为证。</p>
+<video class="video" controls preload="metadata" src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260822T191552Z/todo/page@fca79702d68823a52b69099067691b2e.webm"><a href="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260822T191552Z/todo/page@fca79702d68823a52b69099067691b2e.webm">下载该路径录像</a></video><p class="vcap">本测试路径整段走查录像</p>
+<div class="kpis"><div class="kpi"><div class="k">11</div><div class="l">操作步</div></div><div class="kpi"><div class="k">11</div><div class="l">通过</div></div><div class="kpi"><div class="k k-bad">0</div><div class="l">失败</div></div><div class="kpi"><div class="k k-warn">0</div><div class="l">不确定</div></div><div class="kpi"><div class="k">0</div><div class="l">未走到</div></div></div>
+<details class="steps"><summary>▸ 逐步操作详情（11 步，含判定截图）</summary><div class="op">
+<h3><span class="pill p-ok">通过</span> navigate</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260822T191552Z/todo/dd-4-todo-00.png" alt="navigate" loading="lazy"><figcaption>navigate</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：navigate: authed app pane, All 6 Active 6 Done 0 (pre-existing items untouched, none completed)</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> fill</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260822T191552Z/todo/dd-4-todo-01.png" alt="fill" loading="lazy"><figcaption>fill</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：fill new-todo with qa-tsweep-1787426402-dd4-clear</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> press</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260822T191552Z/todo/dd-4-todo-02.png" alt="press" loading="lazy"><figcaption>press</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：press Enter to submit create</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> <span class="pill p-write">写</span>waitFor</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260822T191552Z/todo/dd-4-todo-03.png" alt="waitFor" loading="lazy"><figcaption>waitFor</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：after 2s: All 7 Active 7, top row qa-tsweep-1787426402-dd4-clear just now — created</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> click</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260822T191552Z/todo/dd-4-todo-04.png" alt="click" loading="lazy"><figcaption>click</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：click row to toggle completion</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> <span class="pill p-write">写</span>waitFor</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260822T191552Z/todo/dd-4-todo-05.png" alt="waitFor" loading="lazy"><figcaption>waitFor</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：after 2s: All 7 Active 6 Done 1 — item completed, precondition built</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> navigate</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260822T191552Z/todo/dd-4-todo-06.png" alt="navigate" loading="lazy"><figcaption>navigate</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：re-navigated (onLoadEntry precondition — page loads WITH a completed item present): All 7 Active 6 Done 1 confirmed on fresh load, and crucially Done=1 means our item is the ONLY completed item system-wide, so Clear-completed cannot touch any pre-existing record</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> click</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260822T191552Z/todo/dd-4-todo-07.png" alt="click" loading="lazy"><figcaption>click</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：click role=button name=&quot;Clear completed&quot; — confirm dialog appeared: &quot;Clear completed todos? This permanently removes all completed items.&quot; Cancel/Clear — destructive action correctly confirm-gated per .man caveat</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> <span class="pill p-write">写</span>click</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260822T191552Z/todo/dd-4-todo-08.png" alt="click" loading="lazy"><figcaption>click</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：click selector button:text-is(Clear) confirmed the dialog</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> <span class="pill p-write">写</span>waitFor</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260822T191552Z/todo/dd-4-todo-09.png" alt="waitFor" loading="lazy"><figcaption>waitFor</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：after 2s: All 6 Active 6 Done 0 — qa-tsweep-1787426402-dd4-clear removed via /.actions/delete where completed=true; the 6 pre-existing active items (qa-tsweep-1787254101 x2, usage-verify-check, verify issue 3294 ledger fix, call mom, buy milk) all still present and unaffected</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> navigate</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260822T191552Z/todo/dd-4-todo-10.png" alt="navigate" loading="lazy"><figcaption>navigate</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：re-navigated fresh: All 6 Active 6 Done 0, qa-tsweep-1787426402-dd4-clear absent — zero qa-tsweep-1787426402-* leftover confirmed, no pre-existing record was deleted</div>
+
+
+</div></details>
+<details class="dbg" open><summary>运行时 debug 上下文（1 条错误）</summary><div class="dbg-none">Console 错误：<b>无</b></div><div class="dbg-none">JS 未捕获异常：<b>无</b></div><div class="dbg-has"><b>网络错误（请求失败 / 4xx–5xx）（1）</b><ul><li><code>✗ POST https://todo.afsd.dev/cdn-cgi/rum? — net::ERR_ABORTED</code></li></ul></div></details>
+</section><section id="path-dd-5-todo">
+<h2>concierge open -&gt; item created/completed/cleared (natural-language agent-surface flow) <span class="rt">authed · /</span></h2>
+<p class="pdesc">写操作走查：22 步驱动此操作（其中 2 步为写），逐步引真实 DOM/文本/toast 为证。</p>
+<video class="video" controls preload="metadata" src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260822T191552Z/todo/page@ade69106c25b740d24fe778943c82812.webm"><a href="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260822T191552Z/todo/page@ade69106c25b740d24fe778943c82812.webm">下载该路径录像</a></video><p class="vcap">本测试路径整段走查录像</p>
+<div class="kpis"><div class="kpi"><div class="k">22</div><div class="l">操作步</div></div><div class="kpi"><div class="k">19</div><div class="l">通过</div></div><div class="kpi"><div class="k k-bad">3</div><div class="l">失败</div></div><div class="kpi"><div class="k k-warn">0</div><div class="l">不确定</div></div><div class="kpi"><div class="k">0</div><div class="l">未走到</div></div></div>
+<details class="steps"><summary>▸ 逐步操作详情（22 步，含判定截图）</summary><div class="op">
+<h3><span class="pill p-ok">通过</span> navigate</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260822T191552Z/todo/dd-5-todo-00.png" alt="navigate" loading="lazy"><figcaption>navigate</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：navigate: authed app pane, All 6 Active 6 (pre-existing items untouched)</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> snapshot</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260822T191552Z/todo/dd-5-todo-01.png" alt="snapshot" loading="lazy"><figcaption>snapshot</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：snapshot: assistant-dock is collapsed to just the chat FAB (bottom-right), no chat panel open yet</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-fail">失败</span> click</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260822T191552Z/todo/dd-5-todo-02.png" alt="click" loading="lazy"><figcaption>click</figcaption></figure></div>
+<div class="chk-fail"><b>观察证据</b>：click selector #assistant-dock timed out — selector matched the whole overlay container, not a clickable target (driver selector issue, not app bug)</div>
+<div class="err"><b>执行错误</b>：<code>TimeoutError: click: Timeout 8000ms exceeded.</code></div>
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> click</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260822T191552Z/todo/dd-5-todo-03.png" alt="click" loading="lazy"><figcaption>click</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：click text=chat-emoji opened the dock: header &quot;Todo Concierge&quot; visible, and it shows pre-existing chat history from earlier test-sweep runs (qa-tsweep-1786216832-*, qa-tsweep-1786393739-*, qa-tsweep-1786563963-* concierge tasks already created/completed/deleted in prior runs — none touched by this run)</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-fail">失败</span> fill</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260822T191552Z/todo/dd-5-todo-04.png" alt="fill" loading="lazy"><figcaption>fill</figcaption></figure></div>
+<div class="chk-fail"><b>观察证据</b>：fill selector input[placeholder=...] timed out — chat field is a textarea, not input (driver selector issue)</div>
+<div class="err"><b>执行错误</b>：<code>TimeoutError: fill: Timeout 8000ms exceeded.</code></div>
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> fill</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260822T191552Z/todo/dd-5-todo-05.png" alt="fill" loading="lazy"><figcaption>fill</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：fill textarea[placeholder=Tell me what to do] with Add a todo called qa-tsweep-1787426402-dd5-concierge succeeded</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> press</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260822T191552Z/todo/dd-5-todo-06.png" alt="press" loading="lazy"><figcaption>press</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：press Enter — textarea content unchanged in this immediate DOM snapshot (submission not yet reflected)</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> snapshot</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260822T191552Z/todo/dd-5-todo-07.png" alt="snapshot" loading="lazy"><figcaption>snapshot</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：snapshot after Enter: screenshot dd-5-todo-08.png shows the message was submitted as a user bubble and the agent is Thinking — confirms Enter did submit (single-line, no Shift needed)</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-fail">失败</span> click</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260822T191552Z/todo/dd-5-todo-08.png" alt="click" loading="lazy"><figcaption>click</figcaption></figure></div>
+<div class="chk-fail"><b>观察证据</b>：click selector textarea sibling button / aria-label Send timed out — no matching send button (Enter already submitted, so target was stale); driver selector issue only</div>
+<div class="err"><b>执行错误</b>：<code>TimeoutError: click: Timeout 8000ms exceeded.</code></div>
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> <span class="pill p-write">写</span>waitFor</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260822T191552Z/todo/dd-5-todo-09.png" alt="waitFor" loading="lazy"><figcaption>waitFor</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：after 6s wait: All 7 Active 7, top row qa-tsweep-1787426402-dd5-concierge just now — concierge created the item via natural language (write /user/todo/items/qa-tsweep-1787426402-dd5-concierge-e4f5.json), matching .man example</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> fill</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260822T191552Z/todo/dd-5-todo-10.png" alt="fill" loading="lazy"><figcaption>fill</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：fill textarea with Mark the task as complete then delete it — fill reported ok but chat still showed idle state in the following observations (did not visibly register as the live field value at that time)</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> press</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260822T191552Z/todo/dd-5-todo-11.png" alt="press" loading="lazy"><figcaption>press</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：press Enter — no new user bubble appeared in the next observations (this Enter did not submit a new message; likely raced with the still-settling previous fill)</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> waitFor</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260822T191552Z/todo/dd-5-todo-12.png" alt="waitFor" loading="lazy"><figcaption>waitFor</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：after 8s wait: chat panel unchanged, no new round started</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> waitFor</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260822T191552Z/todo/dd-5-todo-13.png" alt="waitFor" loading="lazy"><figcaption>waitFor</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：after 8s wait: chat panel still unchanged (screenshot dd-5-todo-13.png) — confirms the seq10/11 fill+Enter did not actually send a new command</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> snapshot</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260822T191552Z/todo/dd-5-todo-14.png" alt="snapshot" loading="lazy"><figcaption>snapshot</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：snapshot confirms textarea is back to empty placeholder state — no pending draft, no in-flight request</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> fill</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260822T191552Z/todo/dd-5-todo-15.png" alt="fill" loading="lazy"><figcaption>fill</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：fill textarea again with the mark-complete-then-delete text — ok, but combined with the next typeChars call this produced a garbled concatenated message (driver-side compounding, not app bug)</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> typeChars</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260822T191552Z/todo/dd-5-todo-16.png" alt="typeChars" loading="lazy"><figcaption>typeChars</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：typeChars appended a second, slightly different phrasing of the same instruction into the still-populated textarea, producing a garbled but semantically redundant value (both halves ask to mark-complete-then-delete the same item id)</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> press</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260822T191552Z/todo/dd-5-todo-17.png" alt="press" loading="lazy"><figcaption>press</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：press Enter submitted the garbled message as a user bubble (screenshot dd-5-todo-18.png) — agent started Round 1 (list /user/todo/items/)</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> waitFor</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260822T191552Z/todo/dd-5-todo-18.png" alt="waitFor" loading="lazy"><figcaption>waitFor</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：after 8s wait: agent still processing (Round 1 list call visible, thinking indicator)</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> waitFor</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260822T191552Z/todo/dd-5-todo-19.png" alt="waitFor" loading="lazy"><figcaption>waitFor</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：after 10s wait: agent still processing (screenshot dd-5-todo-19.png shows Round 1 list plus a second round starting)</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> <span class="pill p-write">写</span>waitFor</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260822T191552Z/todo/dd-5-todo-20.png" alt="waitFor" loading="lazy"><figcaption>waitFor</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：after 10s wait: All 6 Active 6 Done 0 — item gone; chat log (screenshot dd-5-todo-20.png) shows Round 2: write .../qa-tsweep-1787426402-dd5-concierge-e4f5.json (mark complete) then delete .../qa-tsweep-1787426402-dd5-concierge-e4f5.json — concierge correctly parsed the garbled instruction and executed complete-then-delete on exactly our item via granted tools</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> navigate</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260822T191552Z/todo/dd-5-todo-21.png" alt="navigate" loading="lazy"><figcaption>navigate</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：re-navigated to https://todo.afsd.dev/ fresh load: All 6 Active 6 Done 0, qa-tsweep-1787426402-dd5-concierge absent, and no other qa-tsweep-1787426402-* item present — zero leftover from this item confirmed; the other 6 pre-existing items (including cross-run qa-tsweep-1787254101 residue) remain untouched</div>
+
+
+</div></details>
+<details class="dbg" open><summary>运行时 debug 上下文（1 条错误）</summary><div class="dbg-none">Console 错误：<b>无</b></div><div class="dbg-none">JS 未捕获异常：<b>无</b></div><div class="dbg-has"><b>网络错误（请求失败 / 4xx–5xx）（1）</b><ul><li><code>✗ POST https://todo.afsd.dev/cdn-cgi/rum? — net::ERR_ABORTED</code></li></ul></div></details>
+</section><section id="path-dd-6-todo">
+<h2>auth-spot-check: authed session renders business panel, not anon sign-in gate <span class="rt">authed · https://todo.afsd.dev/</span></h2>
+<p class="pdesc">页面走查：导航到 <code>https://todo.afsd.dev/</code>，验证页面渲染出真实内容并逐步观测（2 步）。</p>
+<video class="video" controls preload="metadata" src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260822T191552Z/todo/page@d2f52f2e1fd8439b4a4fd89cdfcc4d79.webm"><a href="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260822T191552Z/todo/page@d2f52f2e1fd8439b4a4fd89cdfcc4d79.webm">下载该路径录像</a></video><p class="vcap">本测试路径整段走查录像</p>
+<div class="kpis"><div class="kpi"><div class="k">2</div><div class="l">操作步</div></div><div class="kpi"><div class="k">2</div><div class="l">通过</div></div><div class="kpi"><div class="k k-bad">0</div><div class="l">失败</div></div><div class="kpi"><div class="k k-warn">0</div><div class="l">不确定</div></div><div class="kpi"><div class="k">0</div><div class="l">未走到</div></div></div>
+<details class="steps"><summary>▸ 逐步操作详情（2 步，含判定截图）</summary><div class="op">
+<h3><span class="pill p-ok">通过</span> navigate</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260822T191552Z/todo/dd-6-todo-00.png" alt="navigate" loading="lazy"><figcaption>navigate</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：navigate with authed login_token cookie: full todo app pane rendered (new-todo input, All/Active/Done tabs, 6-item list, Clear completed button) plus header shows Test Fixture User / User Center / Admin Console / Sign Out — this is the real authed business panel, NOT the anonymous sign-in gate card described in .man</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> snapshot</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260822T191552Z/todo/dd-6-todo-01.png" alt="snapshot" loading="lazy"><figcaption>snapshot</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：snapshot dd-6-todo-01.png confirms visually: no sign-in card, no login prompt anywhere on screen — floor walk pass verdict for this route is a true positive, not the assistant/gate false-positive pattern seen historically on other blocklets</div>
+
+
+</div></details>
+<details class="dbg"><summary>运行时 debug 上下文（全清）</summary><div class="dbg-none">Console 错误：<b>无</b></div><div class="dbg-none">JS 未捕获异常：<b>无</b></div><div class="dbg-none">网络错误（请求失败 / 4xx–5xx）：<b>无</b></div></details>
+</section><section id="path-dd-7-todo">
+<h2>todo explorer route -&gt; embedded AFS explorer (read-flow, anon) <span class="rt">anon · /app?page=explorer</span></h2>
+<p class="pdesc">页面走查：导航到 <code>/app?page=explorer</code>，验证页面渲染出真实内容并逐步观测（2 步）。</p>
+<video class="video" controls preload="metadata" src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260822T191552Z/todo/page@71a625340cbb815924b342eab76921e9.webm"><a href="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260822T191552Z/todo/page@71a625340cbb815924b342eab76921e9.webm">下载该路径录像</a></video><p class="vcap">本测试路径整段走查录像</p>
+<div class="kpis"><div class="kpi"><div class="k">2</div><div class="l">操作步</div></div><div class="kpi"><div class="k">2</div><div class="l">通过</div></div><div class="kpi"><div class="k k-bad">0</div><div class="l">失败</div></div><div class="kpi"><div class="k k-warn">0</div><div class="l">不确定</div></div><div class="kpi"><div class="k">0</div><div class="l">未走到</div></div></div>
+<details class="steps"><summary>▸ 逐步操作详情（2 步，含判定截图）</summary><div class="op">
+<h3><span class="pill p-ok">通过</span> navigate</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260822T191552Z/todo/dd-7-todo-00.png" alt="navigate" loading="lazy"><figcaption>navigate</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：navigate anon to /app?page=explorer: aupNodes=50, DOM shows explorer-shell wrapping afs-explorer (sidebar tree/filter/tags panels + primary pane with view toggles and a Selected: 0 status bar) — the embedded standalone explorer blocklet took over the page exactly as .man documents; header shows Login button confirming anon state</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> snapshot</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260822T191552Z/todo/dd-7-todo-01.png" alt="snapshot" loading="lazy"><figcaption>snapshot</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：snapshot dd-7-todo-01.png visually confirms the three-pane AFS explorer UI rendered (sidebar / primary / no inspector open yet), not an empty host shell</div>
+
+
+</div></details>
+<details class="dbg" open><summary>运行时 debug 上下文（5 条错误）</summary><div class="dbg-has"><b>Console 错误（3）</b><ul><li><code>Failed to load resource: the server responded with a status of 403 ()</code></li><li><code>Failed to load resource: the server responded with a status of 404 ()</code></li><li><code>Failed to load resource: the server responded with a status of 404 ()</code></li></ul></div><div class="dbg-none">JS 未捕获异常：<b>无</b></div><div class="dbg-has"><b>网络错误（请求失败 / 4xx–5xx）（2）</b><ul><li><code>403 POST https://todo.afsd.dev/api/afs/rpc</code></li><li><code>404 POST https://todo.afsd.dev/api/afs/rpc</code></li></ul></div></details>
+</section><section id="path-dd-8-todo">
+<h2>anonymous -&gt; sign-in redirect (click Sign in) <span class="rt">anon · /</span></h2>
+<p class="pdesc">页面走查：导航到 <code>/</code>，验证页面渲染出真实内容并逐步观测（3 步）。</p>
+<video class="video" controls preload="metadata" src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260822T191552Z/todo/page@dc915dd3b90bb31a8c25edd44253c8f4.webm"><a href="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260822T191552Z/todo/page@dc915dd3b90bb31a8c25edd44253c8f4.webm">下载该路径录像</a></video><p class="vcap">本测试路径整段走查录像</p>
+<div class="kpis"><div class="kpi"><div class="k">3</div><div class="l">操作步</div></div><div class="kpi"><div class="k">3</div><div class="l">通过</div></div><div class="kpi"><div class="k k-bad">0</div><div class="l">失败</div></div><div class="kpi"><div class="k k-warn">0</div><div class="l">不确定</div></div><div class="kpi"><div class="k">0</div><div class="l">未走到</div></div></div>
+<details class="steps"><summary>▸ 逐步操作详情（3 步，含判定截图）</summary><div class="op">
+<h3><span class="pill p-ok">通过</span> navigate</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260822T191552Z/todo/dd-8-todo-00.png" alt="navigate" loading="lazy"><figcaption>navigate</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：navigate anon: index page shows the sign-in gate card only (h2 Sign in to use your todos, descriptive p, Sign in action) — no todo list/input/clear-button in DOM, matching .man caveat that the two subtrees are mutually exclusive</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> click</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260822T191552Z/todo/dd-8-todo-01.png" alt="click" loading="lazy"><figcaption>click</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：click role=button name=Sign in: page navigated to https://todo.afsd.dev/.well-known/service/login exactly as .man documents (no in-page event, plain navigation)</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> snapshot</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260822T191552Z/todo/dd-8-todo-02.png" alt="snapshot" loading="lazy"><figcaption>snapshot</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：snapshot dd-8-todo-02.png confirms landed on the connect-service login page</div>
+
+
+</div></details>
+<details class="dbg" open><summary>运行时 debug 上下文（1 条错误）</summary><div class="dbg-none">Console 错误：<b>无</b></div><div class="dbg-none">JS 未捕获异常：<b>无</b></div><div class="dbg-has"><b>网络错误（请求失败 / 4xx–5xx）（1）</b><ul><li><code>✗ POST https://todo.afsd.dev/cdn-cgi/rum? — net::ERR_ABORTED</code></li></ul></div></details>
+</section><section id="path-dd-9-todo">
+<h2>sign-in redirect -&gt; app (authenticated) re-renders app pane <span class="rt">authed · /</span></h2>
+<p class="pdesc">页面走查：导航到 <code>/</code>，验证页面渲染出真实内容并逐步观测（2 步）。</p>
+<video class="video" controls preload="metadata" src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260822T191552Z/todo/page@919b8165659e8c30319be834a97589b3.webm"><a href="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260822T191552Z/todo/page@919b8165659e8c30319be834a97589b3.webm">下载该路径录像</a></video><p class="vcap">本测试路径整段走查录像</p>
+<div class="kpis"><div class="kpi"><div class="k">2</div><div class="l">操作步</div></div><div class="kpi"><div class="k">2</div><div class="l">通过</div></div><div class="kpi"><div class="k k-bad">0</div><div class="l">失败</div></div><div class="kpi"><div class="k k-warn">0</div><div class="l">不确定</div></div><div class="kpi"><div class="k">0</div><div class="l">未走到</div></div></div>
+<details class="steps"><summary>▸ 逐步操作详情（2 步，含判定截图）</summary><div class="op">
+<h3><span class="pill p-ok">通过</span> navigate</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260822T191552Z/todo/dd-9-todo-00.png" alt="navigate" loading="lazy"><figcaption>navigate</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：navigate with a valid login_token cookie (equivalent post-auth state after redirect back from connect-service): page renders the full app pane (new-todo input, filter tabs, 6-item list, Clear completed, header shows Test Fixture User identity) — the anon sign-in card subtree is NOT in the DOM, confirming the session=authenticated branch renders correctly per .man visible flip</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> snapshot</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260822T191552Z/todo/dd-9-todo-01.png" alt="snapshot" loading="lazy"><figcaption>snapshot</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：snapshot dd-9-todo-01.png visually confirms the app pane, not the sign-in card</div>
+
+
+</div></details>
+<details class="dbg"><summary>运行时 debug 上下文（全清）</summary><div class="dbg-none">Console 错误：<b>无</b></div><div class="dbg-none">JS 未捕获异常：<b>无</b></div><div class="dbg-none">网络错误（请求失败 / 4xx–5xx）：<b>无</b></div></details>
+</section><section id="path-dd-10-todo">
+<h2>switch All/Active/Done tab (typed where pushdown + showCount) <span class="rt">authed · /</span></h2>
+<p class="pdesc">写操作走查：16 步驱动此操作（其中 4 步为写），逐步引真实 DOM/文本/toast 为证。</p>
+<video class="video" controls preload="metadata" src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260822T191552Z/todo/page@792932c1a38f04802ae8578005090447.webm"><a href="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260822T191552Z/todo/page@792932c1a38f04802ae8578005090447.webm">下载该路径录像</a></video><p class="vcap">本测试路径整段走查录像</p>
+<div class="kpis"><div class="kpi"><div class="k">16</div><div class="l">操作步</div></div><div class="kpi"><div class="k">15</div><div class="l">通过</div></div><div class="kpi"><div class="k k-bad">1</div><div class="l">失败</div></div><div class="kpi"><div class="k k-warn">0</div><div class="l">不确定</div></div><div class="kpi"><div class="k">0</div><div class="l">未走到</div></div></div>
+<details class="steps"><summary>▸ 逐步操作详情（16 步，含判定截图）</summary><div class="op">
+<h3><span class="pill p-ok">通过</span> navigate</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260822T191552Z/todo/dd-10-todo-00.png" alt="navigate" loading="lazy"><figcaption>navigate</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：navigate: authed app pane, All 6 Active 6 Done 0 (pre-existing items untouched)</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> fill</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260822T191552Z/todo/dd-10-todo-01.png" alt="fill" loading="lazy"><figcaption>fill</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：fill new-todo with qa-tsweep-1787426402-dd10-tabs</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> press</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260822T191552Z/todo/dd-10-todo-02.png" alt="press" loading="lazy"><figcaption>press</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：press Enter to submit create</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> <span class="pill p-write">写</span>waitFor</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260822T191552Z/todo/dd-10-todo-03.png" alt="waitFor" loading="lazy"><figcaption>waitFor</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：after 2s: All 7 Active 7, top row qa-tsweep-1787426402-dd10-tabs just now — item created (active by default)</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-fail">失败</span> click</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260822T191552Z/todo/dd-10-todo-04.png" alt="click" loading="lazy"><figcaption>click</figcaption></figure></div>
+<div class="chk-fail"><b>观察证据</b>：click role=button name=Done timed out (strict-mode selector ambiguity) — driver selector issue, not app bug</div>
+<div class="err"><b>执行错误</b>：<code>TimeoutError: click: Timeout 8000ms exceeded.</code></div>
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> click</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260822T191552Z/todo/dd-10-todo-05.png" alt="click" loading="lazy"><figcaption>click</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：click selector button:text-is(Done) succeeded — screenshot dd-10-todo-05.png shows Done tab selected, list area shows empty state Nothing here (folder icon) — typed where completed=true pushdown correctly returns zero rows while item is still active</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> click</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260822T191552Z/todo/dd-10-todo-06.png" alt="click" loading="lazy"><figcaption>click</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：click selector button:text-is(All) — screenshot dd-10-todo-06.png shows All tab reselected, all 7 items visible again including our active item</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> click</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260822T191552Z/todo/dd-10-todo-07.png" alt="click" loading="lazy"><figcaption>click</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：click text=qa-tsweep-1787426402-dd10-tabs to toggle completion</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> <span class="pill p-write">写</span>waitFor</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260822T191552Z/todo/dd-10-todo-08.png" alt="waitFor" loading="lazy"><figcaption>waitFor</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：after 2s: All 7 Active 6 Done 1 — item now completed</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> click</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260822T191552Z/todo/dd-10-todo-09.png" alt="click" loading="lazy"><figcaption>click</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：click selector button:text-is(Active) — screenshot dd-10-todo-09.png shows Active tab (badge 6), our completed item is correctly EXCLUDED from the Active-filtered list (typed where completed=false pushdown)</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> click</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260822T191552Z/todo/dd-10-todo-10.png" alt="click" loading="lazy"><figcaption>click</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：click selector button:text-is(Done) — screenshot dd-10-todo-10.png shows Done tab (badge 1) containing exactly qa-tsweep-1787426402-dd10-tabs with strikethrough styling — typed where completed=true pushdown returns exactly our item</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> hover</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260822T191552Z/todo/dd-10-todo-11.png" alt="hover" loading="lazy"><figcaption>hover</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：hover over the item row in the Done-filtered view reveals the delete icon (hover-reveal control works inside a filtered view too)</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> click</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260822T191552Z/todo/dd-10-todo-12.png" alt="click" loading="lazy"><figcaption>click</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：click role=button name=Delete — confirm dialog text: Delete qa-tsweep-1787426402-dd10-tabs? This cannot be undone.</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> <span class="pill p-write">写</span>click</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260822T191552Z/todo/dd-10-todo-13.png" alt="click" loading="lazy"><figcaption>click</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：click selector button:text-is(Delete) confirmed the dialog</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> <span class="pill p-write">写</span>waitFor</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260822T191552Z/todo/dd-10-todo-14.png" alt="waitFor" loading="lazy"><figcaption>waitFor</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：after 2s: All 6 Active 6, Done tab now empty (Nothing here) — item removed, other 6 pre-existing items unaffected</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> navigate</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260822T191552Z/todo/dd-10-todo-15.png" alt="navigate" loading="lazy"><figcaption>navigate</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：re-navigated fresh to https://todo.afsd.dev/: All 6 Active 6 Done 0, qa-tsweep-1787426402-dd10-tabs absent — zero qa-tsweep-1787426402-* leftover confirmed</div>
+
+
+</div></details>
+<details class="dbg" open><summary>运行时 debug 上下文（1 条错误）</summary><div class="dbg-none">Console 错误：<b>无</b></div><div class="dbg-none">JS 未捕获异常：<b>无</b></div><div class="dbg-has"><b>网络错误（请求失败 / 4xx–5xx）（1）</b><ul><li><code>✗ POST https://todo.afsd.dev/cdn-cgi/rum? — net::ERR_ABORTED</code></li></ul></div></details>
+</section><section id="path-dd-11-todo">
+<h2>tap FAB -&gt; concierge open (assistant-dock overlay opens agent-surface) <span class="rt">authed · /</span></h2>
+<p class="pdesc">页面走查：导航到 <code>/</code>，验证页面渲染出真实内容并逐步观测（2 步）。</p>
+<video class="video" controls preload="metadata" src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260822T191552Z/todo/page@43e03467ad1ef315a470b45fb74fc929.webm"><a href="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260822T191552Z/todo/page@43e03467ad1ef315a470b45fb74fc929.webm">下载该路径录像</a></video><p class="vcap">本测试路径整段走查录像</p>
+<div class="kpis"><div class="kpi"><div class="k">2</div><div class="l">操作步</div></div><div class="kpi"><div class="k">2</div><div class="l">通过</div></div><div class="kpi"><div class="k k-bad">0</div><div class="l">失败</div></div><div class="kpi"><div class="k k-warn">0</div><div class="l">不确定</div></div><div class="kpi"><div class="k">0</div><div class="l">未走到</div></div></div>
+<details class="steps"><summary>▸ 逐步操作详情（2 步，含判定截图）</summary><div class="op">
+<h3><span class="pill p-ok">通过</span> navigate</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260822T191552Z/todo/dd-11-todo-00.png" alt="navigate" loading="lazy"><figcaption>navigate</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：navigate: authed app pane, All 6 Active 6, dock closed (only the chat FAB visible bottom-right)</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> click</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260822T191552Z/todo/dd-11-todo-01.png" alt="click" loading="lazy"><figcaption>click</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：click the chat FAB (text emoji): overlay opened showing header Todo Concierge, an input box Tell me what to do - add, complete, clear..., and persisted chat history from this dock (from dd-5 earlier in this same run) — the assistant-dock overlay with embedded agent-surface (todo-assistant) renders correctly on FAB tap, matching .man dock mode</div>
+
+
+</div></details>
+<details class="dbg"><summary>运行时 debug 上下文（全清）</summary><div class="dbg-none">Console 错误：<b>无</b></div><div class="dbg-none">JS 未捕获异常：<b>无</b></div><div class="dbg-none">网络错误（请求失败 / 4xx–5xx）：<b>无</b></div></details>
+</section>
+<p class="sub" style="margin-top:22px">由 test-report-builder（build-agent-report）生成 · issue #1808</p>
+</div></body></html>
