@@ -7,3 +7,4 @@
 | 20260823-003724-organize-tab-compare.jpg | https://github.com/ArcBlock/aside/issues/754 | 2026-08-23T00:37:27Z | nategu@Nate-Mac-Pro |
 | 20260823-004007-home-longpress-menu-after.jpg | https://github.com/ArcBlock/aside/issues/754 | 2026-08-23T00:40:10Z | nategu@Nate-Mac-Pro |
 | 20260823-004018-membership-clipped-after.jpg | https://github.com/ArcBlock/aside/issues/754 | 2026-08-23T00:40:21Z | nategu@Nate-Mac-Pro |
+| 20260823-004030-membership-selected-after.jpg | https://github.com/ArcBlock/aside/issues/754 | 2026-08-23T00:40:32Z | nategu@Nate-Mac-Pro |
