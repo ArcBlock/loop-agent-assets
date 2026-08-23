@@ -1,0 +1,441 @@
+<!doctype html><html><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>did-space — agent 走查报告</title><style>
+:root{--bg:#f7f8f8;--fg:#16201f;--muted:#5c6b69;--card:#fff;--card2:#eef2f1;--border:#dde3e2;--accent:#127a72;--pass:#1f8a54;--warn:#b5771a;--bad:#c0392b}
+@media(prefers-color-scheme:dark){:root{--bg:#0e1413;--fg:#e6ecea;--muted:#8ea19d;--card:#161d1c;--card2:#1d2624;--border:#26302e;--accent:#3fb8ab;--pass:#3fb37a;--warn:#d69a3e;--bad:#e5735f}}
+:root[data-theme=dark]{--bg:#0e1413;--fg:#e6ecea;--muted:#8ea19d;--card:#161d1c;--card2:#1d2624;--border:#26302e;--accent:#3fb8ab;--pass:#3fb37a;--warn:#d69a3e;--bad:#e5735f}
+:root[data-theme=light]{--bg:#f7f8f8;--fg:#16201f;--muted:#5c6b69;--card:#fff;--card2:#eef2f1;--border:#dde3e2;--accent:#127a72;--pass:#1f8a54;--warn:#b5771a;--bad:#c0392b}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--fg);font:15px/1.65 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;padding:24px}
+.wrap{max-width:920px;margin:0 auto}
+h1{font-size:24px;margin:0 0 4px;text-wrap:balance}h2{font-size:19px;margin:30px 0 8px}
+h2 .rt{font-size:13px;color:var(--muted);font-weight:400;font-variant-numeric:tabular-nums}
+.sub{color:var(--muted);margin:0 0 14px;font-size:13px}
+code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.85em;background:var(--card2);padding:1px 5px;border-radius:4px}
+.how{background:var(--card);border:1px solid var(--border);border-left:3px solid var(--accent);border-radius:8px;padding:13px 16px;margin:14px 0;font-size:14px}
+.how b{color:var(--accent)}
+.banner{border-radius:12px;padding:14px 18px;margin:16px 0}
+.banner.ok{background:color-mix(in srgb,var(--pass) 12%,transparent);border:1px solid color-mix(in srgb,var(--pass) 40%,transparent)}
+.banner.ok b{color:var(--pass)}
+.banner.bad{background:color-mix(in srgb,var(--bad) 13%,transparent);border:1px solid color-mix(in srgb,var(--bad) 45%,transparent)}
+.banner.bad b{color:var(--bad);font-size:16px}
+.banner.info{background:color-mix(in srgb,var(--accent) 10%,transparent);border:1px solid color-mix(in srgb,var(--accent) 38%,transparent)}
+.banner.info b{color:var(--accent)}
+.plist{margin:10px 0 0;padding-left:0;list-style:none}
+.plist li{padding:8px 0;border-top:1px solid var(--border)}
+.plist a{text-decoration:none;color:var(--fg);font-weight:600}
+.plist .pe{color:var(--muted);font-size:12.5px;font-weight:400;margin-top:3px}
+.video{width:100%;border-radius:10px;border:1px solid var(--border);background:#000;margin:6px 0 2px}
+.vcap{color:var(--muted);font-size:12.5px;margin:0 0 8px}
+.novideo{color:var(--bad);font-weight:600;background:color-mix(in srgb,var(--bad) 10%,transparent);border:1px dashed color-mix(in srgb,var(--bad) 45%,transparent);border-radius:8px;padding:8px 12px;font-size:13px}
+.kpis{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0}
+.kpi{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:9px 14px;min-width:70px}
+.kpi .k{font-size:21px;font-weight:700;font-variant-numeric:tabular-nums}.kpi .l{color:var(--muted);font-size:12px}
+.kpi .k-bad{color:var(--bad)}.kpi .k-warn{color:var(--warn)}
+.op{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:15px 17px;margin:14px 0}
+.op h3{margin:0 0 3px;font-size:16px;display:flex;align-items:center;gap:9px;flex-wrap:wrap}
+.op .exp{color:var(--muted);font-size:13px;margin:0 0 9px}
+.op .nt{color:var(--muted);font-size:12.5px;margin-top:6px}
+.pill{font-size:11.5px;font-weight:700;padding:2px 9px;border-radius:20px}
+.p-ok{background:color-mix(in srgb,var(--pass) 18%,transparent);color:var(--pass)}
+.p-fail{background:color-mix(in srgb,var(--bad) 18%,transparent);color:var(--bad)}
+.p-warn{background:color-mix(in srgb,var(--warn) 20%,transparent);color:var(--warn)}
+.p-skip{background:var(--card2);color:var(--muted)}
+.p-write{background:color-mix(in srgb,var(--accent) 18%,transparent);color:var(--accent)}
+.frame figure{margin:0 0 9px}.frame img{width:100%;border-radius:8px;border:1px solid var(--border);display:block}
+.frame figcaption{color:var(--muted);font-size:11.5px;margin-top:4px;text-align:center}
+.chk{background:color-mix(in srgb,var(--pass) 12%,transparent);border:1px solid color-mix(in srgb,var(--pass) 34%,transparent);border-radius:8px;padding:8px 12px;font-size:13px}
+.chk b{color:var(--pass)}
+.chk-fail{background:color-mix(in srgb,var(--bad) 11%,transparent);border:1px solid color-mix(in srgb,var(--bad) 40%,transparent);border-radius:8px;padding:8px 12px;font-size:13px}
+.chk-fail b{color:var(--bad)}
+table.probe{border-collapse:collapse;width:100%;font-size:13px}
+table.probe th,table.probe td{border:1px solid var(--border);padding:5px 9px;text-align:left}
+table.probe tr.bad td{background:color-mix(in srgb,var(--bad) 10%,transparent)}
+.err{background:color-mix(in srgb,var(--bad) 11%,transparent);border:1px solid color-mix(in srgb,var(--bad) 40%,transparent);border-radius:8px;padding:7px 12px;font-size:12.5px;margin-top:6px}
+.err b{color:var(--bad)}.err code{background:transparent;color:var(--bad)}
+.dbg{margin:10px 0 2px;background:var(--card);border:1px solid var(--border);border-radius:10px;padding:6px 14px;font-size:13px}
+.dbg summary{cursor:pointer;color:var(--muted);font-weight:600;padding:5px 0}
+.dbg-none{color:var(--muted);padding:4px 0;font-size:12.5px}
+.dbg-has{padding:5px 0}.dbg-has b{color:var(--warn)}
+.dbg-has ul{margin:5px 0 8px;padding-left:18px}.dbg-has li{font-size:12px;color:var(--fg);margin:2px 0;word-break:break-all}
+.dbg-has code{background:var(--card2)}
+.pdesc{color:var(--muted);font-size:13.5px;margin:1px 0 11px;line-height:1.5}
+.pdesc code{font-size:.85em}
+details.steps{margin:6px 0 2px;border:1px solid var(--border);border-radius:10px;background:var(--card2);padding:2px 14px}
+details.steps>summary{cursor:pointer;color:var(--accent);font-weight:600;padding:9px 0;font-size:13.5px;list-style:none}
+details.steps>summary::-webkit-details-marker{display:none}
+details.steps[open]>summary{border-bottom:1px solid var(--border);margin-bottom:8px}
+details.steps>summary:hover{color:var(--fg)}
+</style></head><body><div class="wrap">
+<h1>did-space — agent 走查报告</h1>
+<p class="sub">环境 <code>https://did-space.afsd.dev</code> · 2026-08-23T19:20:27.185262Z · 走查 6 / 声明 6 条测试路径 · driver <code>agent-playwright-mcp</code></p>
+<div class="how"><b>这份报告在做什么</b>：test-sweep 让 <b>agent 读被测页面自己写的
+<code>.aup/man</code> 知识</b>，用 Playwright MCP <b>当真人逐条测试路径走查</b>（导航/加标签/编辑/删除/创建…），
+<b>每条路径各自一段录屏</b>、每步截图并<b>自判 verdict + 附观察证据</b>（实际 DOM/文本/值，可复核）。
+<b>unreached</b>=没驱动到（不当失败）；<b>inconclusive</b>=不确定（绝不判失败）。写操作默认真提交、不清理。</div>
+
+<div class="banner ok"><b>✅ 覆盖完整</b>：声明 6 条测试路径全部走查。</div>
+<div class="banner bad"><b>⚠️ 发现 14 个问题</b>（点击跳到对应路径）<ul class="plist"><li><a href="#path-dd-2-did-space"><span class="pill p-fail">失败</span> Read-flow: anonymous sign-in gate -&gt; click sign in -&gt; redirect to DID Connect login · 步2</a> — click<div class="pe">Clicking a#files-anon-login via CSS id selector timed out after 8000ms (Playwright TimeoutError) even though the element is the single visible, non-overlapped match in the DOM snapshot and the screenshot shows the blue &quot;Sign in&quot; button full</div></li><li><a href="#path-dd-4-did-space"><span class="pill p-fail">失败</span> Read-flow: select directory in sidebar fans out to primary+inspector (files-sidebar-list.select) · 步2</a> — click<div class="pe">click selector &quot;#files-sidebar-list &gt;&gt; text=\&quot;user\&quot;&quot; (exact text engine match scoped to sidebar list) timed out after 8000ms with Playwright TimeoutError; DOM/URL unchanged, no selection occurred.</div></li><li><a href="#path-dd-4-did-space"><span class="pill p-fail">失败</span> Read-flow: select directory in sidebar fans out to primary+inspector (files-sidebar-list.select) · 步3</a> — click<div class="pe">click selector &quot;#files-sidebar-list :text-is(\&quot;user\&quot;)&quot; (CSS exact-text pseudo scoped to sidebar list) timed out after 8000ms; DOM/URL unchanged.</div></li><li><a href="#path-dd-4-did-space"><span class="pill p-fail">失败</span> Read-flow: select directory in sidebar fans out to primary+inspector (files-sidebar-list.select) · 步5</a> — click<div class="pe">click selector &quot;#files-sidebar-list :text-is(\&quot;user\&quot;):visible&quot; timed out after 8000ms; adding the :visible filter made no difference, DOM unchanged.</div></li><li><a href="#path-dd-4-did-space"><span class="pill p-fail">失败</span> Read-flow: select directory in sidebar fans out to primary+inspector (files-sidebar-list.select) · 步6</a> — click<div class="pe">Same selector retried with timeout raised to 20000ms still timed out (TimeoutError: click: Timeout 20000ms exceeded) -- ruling out a slow-settling transient state; the element never became actionable even given 2.5x the normal wait.</div></li><li><a href="#path-dd-4-did-space"><span class="pill p-fail">失败</span> Read-flow: select directory in sidebar fans out to primary+inspector (files-sidebar-list.select) · 步7</a> — click<div class="pe">click by role=treeitem name=&quot;user&quot; (guessing an ARIA tree role for the sidebar row) timed out after 8000ms -- no element exposes that accessible role/name.</div></li><li><a href="#path-dd-4-did-space"><span class="pill p-fail">失败</span> Read-flow: select directory in sidebar fans out to primary+inspector (files-sidebar-list.select) · 步8</a> — hoverClick<div class="pe">hoverClick (hover then click on the same text-is(\&quot;user\&quot;) selector) failed already at the HOVER step: &quot;TimeoutError: hover: Timeout 10000ms exceeded&quot;. Hover has weaker actionability requirements than click (no enabled/receives-events stric</div></li><li><a href="#path-dd-4-did-space"><span class="pill p-fail">失败</span> Read-flow: select directory in sidebar fans out to primary+inspector (files-sidebar-list.select) · 步9</a> — click<div class="pe">click with lenient substring text engine &quot;#files-sidebar-list &gt;&gt; text=user&quot; (no exact-match quoting) also timed out after 8000ms, ruling out an exact-text-mismatch (e.g. whitespace/casing) explanation.</div></li><li><a href="#path-dd-4-did-space"><span class="pill p-fail">失败</span> Read-flow: select directory in sidebar fans out to primary+inspector (files-sidebar-list.select) · 步10</a> — click<div class="pe">Clicking the sidebar list CONTAINER itself, &quot;#files-sidebar-list&quot; (the exact id captured in the DOM/interactables dump for this very page), still timed out after 8000ms -- even the outer, unambiguous, definitely-existing container element c</div></li><li><a href="#path-dd-4-did-space"><span class="pill p-fail">失败</span> Read-flow: select directory in sidebar fans out to primary+inspector (files-sidebar-list.select) · 步12</a> — click<div class="pe">Clicking the primary list CONTAINER, &quot;#files-primary-list&quot;, also timed out after 6000ms -- same failure mode as the sidebar list container, showing the defect affects BOTH afs-list instances on the page (sidebar tree and primary listing), n</div></li><li><a href="#path-dd-5-did-space"><span class="pill p-fail">失败</span> Read-flow: drill into directory via sidebar (files-sidebar-list.navigate) fans out to primary+inspector · 步2</a> — click<div class="pe">Clicking #preview-dir-item-4 (the inspector preview&#x27;s own &quot;user&quot; directory row -- a distinct component from files-sidebar-list/files-primary-list, and one that DOES carry a stable per-item DOM id unlike the sidebar/primary rows) still timed</div></li><li><a href="#path-dd-5-did-space"><span class="pill p-fail">失败</span> Read-flow: drill into directory via sidebar (files-sidebar-list.navigate) fans out to primary+inspector · 步3</a> — click<div class="pe">Clicking #files-sidebar-list :text-is(&quot;instance&quot;) (a different row than the &quot;user&quot; one tested in dd-4, to rule out a per-row fluke) also timed out after 6000ms with the identical TimeoutError signature. DOM/URL unchanged, no directory drill</div></li><li><a href="#path-dd-6-did-space"><span class="pill p-fail">失败</span> Read-flow: select file in primary list updates inspector (files-primary-list.select) · 步10</a> — click<div class="pe">Clicking #files-primary-list :text-is(&quot;README.md&quot;) (the file row for README.md in the primary list) timed out after 6000ms (Playwright TimeoutError) -- same failure mode documented in dd-4/dd-5 for directory rows, now reproduced for a FILE </div></li><li><a href="#path-dd-7-did-space"><span class="pill p-fail">失败</span> Read-flow: drill into subdirectory via primary list (files-primary-list.navigate) · 步2</a> — click<div class="pe">Clicking #files-primary-list :text-is(&quot;pages&quot;) (a directory row, to drill into it) timed out after 6000ms (Playwright TimeoutError) -- URL/breadcrumb/primary-list unchanged, no drill-in occurred. Fourth independent row (after dd-4 x2, dd-5 </div></li></ul></div>
+<section id="probes"><h2>后端探针 （全通过）</h2><table class="probe"><tr><th></th><th>探针</th><th>详情</th></tr><tr class=""><td>✅</td><td>http-reachable</td><td>HTTP 200</td></tr><tr class=""><td>✅</td><td>afs-rpc-list</td><td>ok:true (1 .aup pages)</td></tr><tr class=""><td>✅</td><td>afs-rpc-authed-list-/user</td><td>ok:true (Bearer 可读)</td></tr></table></section>
+<section id="path-files">
+<h2>Files <span class="rt">authed · https://did-space.afsd.dev/explorer</span></h2>
+<p class="pdesc">导航到 https://did-space.afsd.dev/explorer，验证页面加载并渲染出真实内容（files 页 breadth 走查）。</p>
+<video class="video" controls preload="metadata" src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260823T191646Z/did-space/page@a351c50414a8c24fee1f793906340b6b.webm"><a href="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260823T191646Z/did-space/page@a351c50414a8c24fee1f793906340b6b.webm">下载该路径录像</a></video><p class="vcap">本测试路径整段走查录像</p>
+<div class="kpis"><div class="kpi"><div class="k">2</div><div class="l">操作步</div></div><div class="kpi"><div class="k">2</div><div class="l">通过</div></div><div class="kpi"><div class="k k-bad">0</div><div class="l">失败</div></div><div class="kpi"><div class="k k-warn">0</div><div class="l">不确定</div></div><div class="kpi"><div class="k">0</div><div class="l">未走到</div></div></div>
+<details class="steps"><summary>▸ 逐步操作详情（2 步，含判定截图）</summary><div class="op">
+<h3><span class="pill p-ok">通过</span> navigate</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260823T191646Z/did-space/files-01.png" alt="navigate" loading="lazy"><figcaption>navigate</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：title=&#x27;DID Space&#x27; url=https://did-space.afsd.dev/explorer/ aupNodes=39 buttons=16 inputs=5 textLen=675 head=&#x27;DID Space Open Explorer ▾ / instance DID-scoped persistent storage with CID-based content deduplication. - Per-user data isolation via DID p&#x27;</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> snapshot</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260823T191646Z/did-space/files-02.png" alt="snapshot" loading="lazy"><figcaption>snapshot</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：title=&#x27;DID Space&#x27; url=https://did-space.afsd.dev/explorer/ aupNodes=39 buttons=16 inputs=5 textLen=675 head=&#x27;DID Space Open Explorer ▾ / instance DID-scoped persistent storage with CID-based content deduplication. - Per-user data isolation via DID p&#x27;</div>
+
+
+</div></details>
+<details class="dbg" open><summary>运行时 debug 上下文（2 条错误）</summary><div class="dbg-has"><b>Console 错误（1）</b><ul><li><code>Failed to load resource: the server responded with a status of 403 ()</code></li></ul></div><div class="dbg-none">JS 未捕获异常：<b>无</b></div><div class="dbg-has"><b>网络错误（请求失败 / 4xx–5xx）（1）</b><ul><li><code>403 POST https://did-space.afsd.dev/api/afs/rpc</code></li></ul></div></details>
+</section><section id="path-dd-1-did-space">
+<h2>Auth spot-check: /explorer renders authenticated file browser <span class="rt">authed · https://did-space.afsd.dev/explorer</span></h2>
+<p class="pdesc">页面走查：导航到 <code>https://did-space.afsd.dev/explorer</code>，验证页面渲染出真实内容并逐步观测（1 步）。</p>
+<video class="video" controls preload="metadata" src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260823T191646Z/did-space/page@b15e48529ff7915f4eae3fb771e37a49.webm"><a href="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260823T191646Z/did-space/page@b15e48529ff7915f4eae3fb771e37a49.webm">下载该路径录像</a></video><p class="vcap">本测试路径整段走查录像</p>
+<div class="kpis"><div class="kpi"><div class="k">1</div><div class="l">操作步</div></div><div class="kpi"><div class="k">1</div><div class="l">通过</div></div><div class="kpi"><div class="k k-bad">0</div><div class="l">失败</div></div><div class="kpi"><div class="k k-warn">0</div><div class="l">不确定</div></div><div class="kpi"><div class="k">0</div><div class="l">未走到</div></div></div>
+<details class="steps"><summary>▸ 逐步操作详情（1 步，含判定截图）</summary><div class="op">
+<h3><span class="pill p-ok">通过</span> navigate</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260823T191646Z/did-space/dd-1-did-space-00.png" alt="navigate" loading="lazy"><figcaption>navigate</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：Navigated to /explorer as authed user; DOM shows files-explorer-wm subtree (not files-anon-wm/sign-in gate) — header has button &quot;Test Fixture User&quot;, &quot;User Center&quot;, &quot;Admin Console&quot;, &quot;Sign Out&quot;; files-sidebar-list and files-primary-list both show a real 6-item directory listing (instance, packages, ash, dev, user, space) rooted at /; inspector panel shows meta-title &quot;/&quot; and Directory · 6 items. Confirms real authenticated file browser rendered, not an anonymous sign-in wall or empty/unmounted DID Space state.</div>
+
+
+</div></details>
+<details class="dbg" open><summary>运行时 debug 上下文（2 条错误）</summary><div class="dbg-has"><b>Console 错误（1）</b><ul><li><code>Failed to load resource: the server responded with a status of 403 ()</code></li></ul></div><div class="dbg-none">JS 未捕获异常：<b>无</b></div><div class="dbg-has"><b>网络错误（请求失败 / 4xx–5xx）（1）</b><ul><li><code>403 POST https://did-space.afsd.dev/api/afs/rpc</code></li></ul></div></details>
+</section><section id="path-dd-2-did-space">
+<h2>Read-flow: anonymous sign-in gate -&gt; click sign in -&gt; redirect to DID Connect login <span class="rt">authed · /explorer</span></h2>
+<p class="pdesc">页面走查：导航到 <code>/explorer</code>，验证页面渲染出真实内容并逐步观测（3 步）。</p>
+<video class="video" controls preload="metadata" src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260823T191646Z/did-space/page@ba63708c63df110ac0b733d66d1315ee.webm"><a href="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260823T191646Z/did-space/page@ba63708c63df110ac0b733d66d1315ee.webm">下载该路径录像</a></video><p class="vcap">本测试路径整段走查录像</p>
+<div class="kpis"><div class="kpi"><div class="k">3</div><div class="l">操作步</div></div><div class="kpi"><div class="k">2</div><div class="l">通过</div></div><div class="kpi"><div class="k k-bad">1</div><div class="l">失败</div></div><div class="kpi"><div class="k k-warn">0</div><div class="l">不确定</div></div><div class="kpi"><div class="k">0</div><div class="l">未走到</div></div></div>
+<details class="steps"><summary>▸ 逐步操作详情（3 步，含判定截图）</summary><div class="op">
+<h3><span class="pill p-ok">通过</span> navigate</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260823T191646Z/did-space/dd-2-did-space-00.png" alt="navigate" loading="lazy"><figcaption>navigate</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：Anonymous (no session cookie) navigate to /explorer renders files-anon-wm subtree only: header title DID Space, card with lock icon, h2 &quot;Sign in to browse your space&quot;, desc text, and a#files-anon-login &quot;Sign in&quot; link. files-explorer-wm (sidebar/primary/inspector) is NOT in the DOM, matching man page CAVEATS (mutually exclusive wm subtrees).</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-fail">失败</span> click</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260823T191646Z/did-space/dd-2-did-space-01.png" alt="click" loading="lazy"><figcaption>click</figcaption></figure></div>
+<div class="chk-fail"><b>观察证据</b>：Clicking a#files-anon-login via CSS id selector timed out after 8000ms (Playwright TimeoutError) even though the element is the single visible, non-overlapped match in the DOM snapshot and the screenshot shows the blue &quot;Sign in&quot; button fully rendered with no overlay on top of it. DOM/URL unchanged after the failed click (still /explorer, files-anon-wm). Root cause not confirmed (possibly a hit-testing/actionability quirk on this specific link), but it did not throw a page error and a role-based click on the same visible button succeeded immediately afterward (next step) with no other change to page state, so this looks like a driver/selector-targeting flake rather than a broken sign-in link -- noting as fail since the exact interaction attempted did not work at all within the given wait.</div>
+<div class="err"><b>执行错误</b>：<code>TimeoutError: click: Timeout 8000ms exceeded.</code></div>
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> click</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260823T191646Z/did-space/dd-2-did-space-02.png" alt="click" loading="lazy"><figcaption>click</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：Falling back to click by role=link name=&quot;Sign in&quot; succeeded and navigated to https://did-space.afsd.dev/.well-known/service/login, title &quot;DID Space — Sign In&quot;, rendering DID Connect login options: &quot;Sign in with Passkey&quot;, &quot;First time? Create a passkey&quot;, &quot;Continue with DID Wallet&quot;, &quot;Cancel&quot;, language toggle &quot;中文&quot;, text &quot;Secured by DID Connect&quot;. Confirms the sign-in action correctly redirects anonymous visitors to the DID Connect login flow (sign-in redirect state).</div>
+
+
+</div></details>
+<details class="dbg" open><summary>运行时 debug 上下文（1 条错误）</summary><div class="dbg-none">Console 错误：<b>无</b></div><div class="dbg-none">JS 未捕获异常：<b>无</b></div><div class="dbg-has"><b>网络错误（请求失败 / 4xx–5xx）（1）</b><ul><li><code>✗ POST https://did-space.afsd.dev/cdn-cgi/rum? — net::ERR_ABORTED</code></li></ul></div></details>
+</section><section id="path-dd-3-did-space">
+<h2>Read-flow: sign-in redirect -&gt; explorer re-renders authenticated on session becoming authenticated <span class="rt">authed · /explorer</span></h2>
+<p class="pdesc">页面走查：导航到 <code>/explorer</code>，验证页面渲染出真实内容并逐步观测（2 步）。</p>
+<video class="video" controls preload="metadata" src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260823T191646Z/did-space/page@aee471bd7d72359790a3c5e9cabd5e42.webm"><a href="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260823T191646Z/did-space/page@aee471bd7d72359790a3c5e9cabd5e42.webm">下载该路径录像</a></video><p class="vcap">本测试路径整段走查录像</p>
+<div class="kpis"><div class="kpi"><div class="k">2</div><div class="l">操作步</div></div><div class="kpi"><div class="k">2</div><div class="l">通过</div></div><div class="kpi"><div class="k k-bad">0</div><div class="l">失败</div></div><div class="kpi"><div class="k k-warn">0</div><div class="l">不确定</div></div><div class="kpi"><div class="k">0</div><div class="l">未走到</div></div></div>
+<details class="steps"><summary>▸ 逐步操作详情（2 步，含判定截图）</summary><div class="op">
+<h3><span class="pill p-ok">通过</span> navigate</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260823T191646Z/did-space/dd-3-did-space-00.png" alt="navigate" loading="lazy"><figcaption>navigate</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：With an authenticated session cookie present, navigating to /.well-known/service/login redirects to / (title &quot;Home | DID Space&quot;) instead of showing the login form again -- nav bar shows authenticated controls (button &quot;test afsd dev&quot;, &quot;User Center&quot;, &quot;Admin Console&quot;, &quot;Sign Out&quot;), confirming the app recognizes the session as already authenticated and bounces away from the login page.</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> navigate</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260823T191646Z/did-space/dd-3-did-space-01.png" alt="navigate" loading="lazy"><figcaption>navigate</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：Navigating from that state to /explorer renders files-explorer-wm (not files-anon-wm): header shows &quot;Test Fixture User&quot;/&quot;User Center&quot;/&quot;Admin Console&quot;/&quot;Sign Out&quot;, files-sidebar-list and files-primary-list both show the real 6-item root listing (instance, packages, ash, dev, user, space), and the inspector shows meta-title &quot;/&quot; + Directory · 6 items. Confirms the page correctly re-renders the authenticated explorer subtree once session.authenticated is true, matching man page flow from sign-in redirect to authenticated explorer.</div>
+
+
+</div></details>
+<details class="dbg" open><summary>运行时 debug 上下文（4 条错误）</summary><div class="dbg-has"><b>Console 错误（1）</b><ul><li><code>Failed to load resource: the server responded with a status of 403 ()</code></li></ul></div><div class="dbg-none">JS 未捕获异常：<b>无</b></div><div class="dbg-has"><b>网络错误（请求失败 / 4xx–5xx）（3）</b><ul><li><code>✗ POST https://did-space.afsd.dev/cdn-cgi/rum? — net::ERR_ABORTED</code></li><li><code>✗ POST https://did-space.afsd.dev/.beacon — net::ERR_ABORTED</code></li><li><code>403 POST https://did-space.afsd.dev/api/afs/rpc</code></li></ul></div></details>
+</section><section id="path-dd-4-did-space">
+<h2>Read-flow: select directory in sidebar fans out to primary+inspector (files-sidebar-list.select) <span class="rt">authed · /explorer</span></h2>
+<p class="pdesc">页面走查：导航到 <code>/explorer</code>，验证页面渲染出真实内容并逐步观测（13 步）。</p>
+<video class="video" controls preload="metadata" src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260823T191646Z/did-space/page@96156e1227982199efef92963b206cd4.webm"><a href="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260823T191646Z/did-space/page@96156e1227982199efef92963b206cd4.webm">下载该路径录像</a></video><p class="vcap">本测试路径整段走查录像</p>
+<div class="kpis"><div class="kpi"><div class="k">13</div><div class="l">操作步</div></div><div class="kpi"><div class="k">4</div><div class="l">通过</div></div><div class="kpi"><div class="k k-bad">9</div><div class="l">失败</div></div><div class="kpi"><div class="k k-warn">0</div><div class="l">不确定</div></div><div class="kpi"><div class="k">0</div><div class="l">未走到</div></div></div>
+<details class="steps"><summary>▸ 逐步操作详情（13 步，含判定截图）</summary><div class="op">
+<h3><span class="pill p-ok">通过</span> navigate</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260823T191646Z/did-space/dd-4-did-space-00.png" alt="navigate" loading="lazy"><figcaption>navigate</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：Navigated to /explorer as authed user; files-explorer-wm rendered with files-sidebar-list showing 6 rows (instance, packages, ash, dev, user, space) and files-primary-list showing the same 6 rows, confirming starting state for the select flow.</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-fail">失败</span> click</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260823T191646Z/did-space/dd-4-did-space-01.png" alt="click" loading="lazy"><figcaption>click</figcaption></figure></div>
+<div class="chk-fail"><b>观察证据</b>：click selector &quot;#files-sidebar-list &gt;&gt; text=\&quot;user\&quot;&quot; (exact text engine match scoped to sidebar list) timed out after 8000ms with Playwright TimeoutError; DOM/URL unchanged, no selection occurred.</div>
+<div class="err"><b>执行错误</b>：<code>TimeoutError: click: Timeout 8000ms exceeded.</code></div>
+
+</div>
+<div class="op">
+<h3><span class="pill p-fail">失败</span> click</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260823T191646Z/did-space/dd-4-did-space-02.png" alt="click" loading="lazy"><figcaption>click</figcaption></figure></div>
+<div class="chk-fail"><b>观察证据</b>：click selector &quot;#files-sidebar-list :text-is(\&quot;user\&quot;)&quot; (CSS exact-text pseudo scoped to sidebar list) timed out after 8000ms; DOM/URL unchanged.</div>
+<div class="err"><b>执行错误</b>：<code>TimeoutError: click: Timeout 8000ms exceeded.</code></div>
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> snapshot</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260823T191646Z/did-space/dd-4-did-space-03.png" alt="snapshot" loading="lazy"><figcaption>snapshot</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：snapshot taken to inspect current DOM/interactables state before further diagnosis; confirms files-sidebar-list/files-primary-list still present with 6 rows each, no error banners.</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-fail">失败</span> click</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260823T191646Z/did-space/dd-4-did-space-04.png" alt="click" loading="lazy"><figcaption>click</figcaption></figure></div>
+<div class="chk-fail"><b>观察证据</b>：click selector &quot;#files-sidebar-list :text-is(\&quot;user\&quot;):visible&quot; timed out after 8000ms; adding the :visible filter made no difference, DOM unchanged.</div>
+<div class="err"><b>执行错误</b>：<code>TimeoutError: click: Timeout 8000ms exceeded.</code></div>
+
+</div>
+<div class="op">
+<h3><span class="pill p-fail">失败</span> click</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260823T191646Z/did-space/dd-4-did-space-05.png" alt="click" loading="lazy"><figcaption>click</figcaption></figure></div>
+<div class="chk-fail"><b>观察证据</b>：Same selector retried with timeout raised to 20000ms still timed out (TimeoutError: click: Timeout 20000ms exceeded) -- ruling out a slow-settling transient state; the element never became actionable even given 2.5x the normal wait.</div>
+<div class="err"><b>执行错误</b>：<code>TimeoutError: click: Timeout 20000ms exceeded.</code></div>
+
+</div>
+<div class="op">
+<h3><span class="pill p-fail">失败</span> click</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260823T191646Z/did-space/dd-4-did-space-06.png" alt="click" loading="lazy"><figcaption>click</figcaption></figure></div>
+<div class="chk-fail"><b>观察证据</b>：click by role=treeitem name=&quot;user&quot; (guessing an ARIA tree role for the sidebar row) timed out after 8000ms -- no element exposes that accessible role/name.</div>
+<div class="err"><b>执行错误</b>：<code>TimeoutError: click: Timeout 8000ms exceeded.</code></div>
+
+</div>
+<div class="op">
+<h3><span class="pill p-fail">失败</span> hoverClick</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260823T191646Z/did-space/dd-4-did-space-07.png" alt="hoverClick" loading="lazy"><figcaption>hoverClick</figcaption></figure></div>
+<div class="chk-fail"><b>观察证据</b>：hoverClick (hover then click on the same text-is(\&quot;user\&quot;) selector) failed already at the HOVER step: &quot;TimeoutError: hover: Timeout 10000ms exceeded&quot;. Hover has weaker actionability requirements than click (no enabled/receives-events strictness needed for basic hover), so failing hover specifically indicates the located node itself is not resolvable to a real, positioned, visible element -- not merely an interception problem.</div>
+<div class="err"><b>执行错误</b>：<code>TimeoutError: hover: Timeout 10000ms exceeded.</code></div>
+
+</div>
+<div class="op">
+<h3><span class="pill p-fail">失败</span> click</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260823T191646Z/did-space/dd-4-did-space-08.png" alt="click" loading="lazy"><figcaption>click</figcaption></figure></div>
+<div class="chk-fail"><b>观察证据</b>：click with lenient substring text engine &quot;#files-sidebar-list &gt;&gt; text=user&quot; (no exact-match quoting) also timed out after 8000ms, ruling out an exact-text-mismatch (e.g. whitespace/casing) explanation.</div>
+<div class="err"><b>执行错误</b>：<code>TimeoutError: click: Timeout 8000ms exceeded.</code></div>
+
+</div>
+<div class="op">
+<h3><span class="pill p-fail">失败</span> click</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260823T191646Z/did-space/dd-4-did-space-09.png" alt="click" loading="lazy"><figcaption>click</figcaption></figure></div>
+<div class="chk-fail"><b>观察证据</b>：Clicking the sidebar list CONTAINER itself, &quot;#files-sidebar-list&quot; (the exact id captured in the DOM/interactables dump for this very page), still timed out after 8000ms -- even the outer, unambiguous, definitely-existing container element could not be clicked.</div>
+<div class="err"><b>执行错误</b>：<code>TimeoutError: click: Timeout 8000ms exceeded.</code></div>
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> click</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260823T191646Z/did-space/dd-4-did-space-10.png" alt="click" loading="lazy"><figcaption>click</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：Control check: click by role=button name=&quot;Toggle theme&quot; (a real &lt;button&gt; in the page header, sibling of the sidebar/primary/inspector surfaces) succeeded immediately with no timeout -- confirms normal buttons on this same page/session are fully clickable, ruling out a page-wide invisible overlay or generally broken click pipeline.</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-fail">失败</span> click</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260823T191646Z/did-space/dd-4-did-space-11.png" alt="click" loading="lazy"><figcaption>click</figcaption></figure></div>
+<div class="chk-fail"><b>观察证据</b>：Clicking the primary list CONTAINER, &quot;#files-primary-list&quot;, also timed out after 6000ms -- same failure mode as the sidebar list container, showing the defect affects BOTH afs-list instances on the page (sidebar tree and primary listing), not just one.</div>
+<div class="err"><b>执行错误</b>：<code>TimeoutError: click: Timeout 6000ms exceeded.</code></div>
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> click</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260823T191646Z/did-space/dd-4-did-space-12.png" alt="click" loading="lazy"><figcaption>click</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：Control check: click by role=button name=&quot;List view&quot; (a real &lt;button&gt; that is part of files-primary-list&#x27;s own toolbar, i.e. adjacent to/within the same afs-list component whose container just failed to click) succeeded immediately -- confirms the afs-list component&#x27;s chrome/toolbar buttons work fine; only the actual directory/file ROW rendering inside the list body is unreachable to Playwright click/hover.</div>
+
+
+</div></details>
+<details class="dbg" open><summary>运行时 debug 上下文（3 条错误）</summary><div class="dbg-has"><b>Console 错误（2）</b><ul><li><code>Failed to load resource: the server responded with a status of 403 ()</code></li><li><code>Failed to load resource: the server responded with a status of 403 ()</code></li></ul></div><div class="dbg-none">JS 未捕获异常：<b>无</b></div><div class="dbg-has"><b>网络错误（请求失败 / 4xx–5xx）（1）</b><ul><li><code>403 POST https://did-space.afsd.dev/api/afs/rpc</code></li></ul></div></details>
+</section><section id="path-dd-5-did-space">
+<h2>Read-flow: drill into directory via sidebar (files-sidebar-list.navigate) fans out to primary+inspector <span class="rt">authed · /explorer</span></h2>
+<p class="pdesc">页面走查：导航到 <code>/explorer</code>，验证页面渲染出真实内容并逐步观测（3 步）。</p>
+<video class="video" controls preload="metadata" src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260823T191646Z/did-space/page@9aa8c519ac281f040c2b7ccae008cfac.webm"><a href="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260823T191646Z/did-space/page@9aa8c519ac281f040c2b7ccae008cfac.webm">下载该路径录像</a></video><p class="vcap">本测试路径整段走查录像</p>
+<div class="kpis"><div class="kpi"><div class="k">3</div><div class="l">操作步</div></div><div class="kpi"><div class="k">1</div><div class="l">通过</div></div><div class="kpi"><div class="k k-bad">2</div><div class="l">失败</div></div><div class="kpi"><div class="k k-warn">0</div><div class="l">不确定</div></div><div class="kpi"><div class="k">0</div><div class="l">未走到</div></div></div>
+<details class="steps"><summary>▸ 逐步操作详情（3 步，含判定截图）</summary><div class="op">
+<h3><span class="pill p-ok">通过</span> navigate</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260823T191646Z/did-space/dd-5-did-space-00.png" alt="navigate" loading="lazy"><figcaption>navigate</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：Navigated to /explorer as authed user; files-explorer-wm rendered with sidebar/primary both showing the 6-item root listing, inspector preview panel also listing the same 6 items as clickable-looking rows (div#preview-dir-item-0..5), confirming starting state for the drill-in flow.</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-fail">失败</span> click</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260823T191646Z/did-space/dd-5-did-space-01.png" alt="click" loading="lazy"><figcaption>click</figcaption></figure></div>
+<div class="chk-fail"><b>观察证据</b>：Clicking #preview-dir-item-4 (the inspector preview&#x27;s own &quot;user&quot; directory row -- a distinct component from files-sidebar-list/files-primary-list, and one that DOES carry a stable per-item DOM id unlike the sidebar/primary rows) still timed out after 6000ms (Playwright TimeoutError). This rules out the failure being specific to one particular list-rendering implementation -- a third, differently-implemented row-like element in the same page is equally unclickable.</div>
+<div class="err"><b>执行错误</b>：<code>TimeoutError: click: Timeout 6000ms exceeded.</code></div>
+
+</div>
+<div class="op">
+<h3><span class="pill p-fail">失败</span> click</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260823T191646Z/did-space/dd-5-did-space-02.png" alt="click" loading="lazy"><figcaption>click</figcaption></figure></div>
+<div class="chk-fail"><b>观察证据</b>：Clicking #files-sidebar-list :text-is(&quot;instance&quot;) (a different row than the &quot;user&quot; one tested in dd-4, to rule out a per-row fluke) also timed out after 6000ms with the identical TimeoutError signature. DOM/URL unchanged, no directory drill-in occurred, files-primary-list/files-inspector-stat/files-inspector-preview were not re-targeted.</div>
+<div class="err"><b>执行错误</b>：<code>TimeoutError: click: Timeout 6000ms exceeded.</code></div>
+
+</div></details>
+<details class="dbg" open><summary>运行时 debug 上下文（2 条错误）</summary><div class="dbg-has"><b>Console 错误（1）</b><ul><li><code>Failed to load resource: the server responded with a status of 403 ()</code></li></ul></div><div class="dbg-none">JS 未捕获异常：<b>无</b></div><div class="dbg-has"><b>网络错误（请求失败 / 4xx–5xx）（1）</b><ul><li><code>403 POST https://did-space.afsd.dev/api/afs/rpc</code></li></ul></div></details>
+</section><section id="path-dd-6-did-space">
+<h2>Read-flow: select file in primary list updates inspector (files-primary-list.select) <span class="rt">authed · /explorer</span></h2>
+<p class="pdesc">页面走查：导航到 <code>/explorer</code>，验证页面渲染出真实内容并逐步观测（11 步）。</p>
+<video class="video" controls preload="metadata" src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260823T191646Z/did-space/page@c15f41fc5e8c52e8b8164916b7b1e996.webm"><a href="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260823T191646Z/did-space/page@c15f41fc5e8c52e8b8164916b7b1e996.webm">下载该路径录像</a></video><p class="vcap">本测试路径整段走查录像</p>
+<div class="kpis"><div class="kpi"><div class="k">11</div><div class="l">操作步</div></div><div class="kpi"><div class="k">10</div><div class="l">通过</div></div><div class="kpi"><div class="k k-bad">1</div><div class="l">失败</div></div><div class="kpi"><div class="k k-warn">0</div><div class="l">不确定</div></div><div class="kpi"><div class="k">0</div><div class="l">未走到</div></div></div>
+<details class="steps"><summary>▸ 逐步操作详情（11 步，含判定截图）</summary><div class="op">
+<h3><span class="pill p-ok">通过</span> navigate</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260823T191646Z/did-space/dd-6-did-space-00.png" alt="navigate" loading="lazy"><figcaption>navigate</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：Navigated to /explorer as authed user; root listing (6 dirs) rendered in sidebar+primary as usual.</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> navigate</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260823T191646Z/did-space/dd-6-did-space-01.png" alt="navigate" loading="lazy"><figcaption>navigate</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：Deep-linked to /explorer/user via URL: primary list re-rooted to /user showing &quot;Directory · 0 items&quot; / &quot;Empty&quot;, inspector title updated to &quot;user&quot;, breadcrumb &quot;/ / user&quot;, meta-details path=/user access=read write. Confirms URL-driven navigation (urlSync=loc) works and /user mount is empty.</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> navigate</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260823T191646Z/did-space/dd-6-did-space-02.png" alt="navigate" loading="lazy"><figcaption>navigate</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：Deep-linked to /explorer/space: page navigated successfully (breadcrumb/title updated), used only as a probe for files -- not otherwise asserted here since ultimately unused.</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> navigate</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260823T191646Z/did-space/dd-6-did-space-03.png" alt="navigate" loading="lazy"><figcaption>navigate</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：Deep-linked to /explorer/packages: page navigated successfully, used as a probe for files.</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> navigate</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260823T191646Z/did-space/dd-6-did-space-04.png" alt="navigate" loading="lazy"><figcaption>navigate</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：Deep-linked to /explorer/dev: page navigated successfully, used as a probe for files.</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> navigate</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260823T191646Z/did-space/dd-6-did-space-05.png" alt="navigate" loading="lazy"><figcaption>navigate</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：Deep-linked to /explorer/ash: primary list showed 2 sub-dirs (scripts 0 items, cookbook 2 items) -- cookbook looked like it might contain files, used to pick next probe target.</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> snapshot</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260823T191646Z/did-space/dd-6-did-space-06.png" alt="snapshot" loading="lazy"><figcaption>snapshot</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：snapshot confirmed /ash listing content (scripts/cookbook rows, descriptions &quot;Stored ASH scripts&quot;/&quot;ASH best practices and quick reference&quot;) before drilling further.</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> navigate</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260823T191646Z/did-space/dd-6-did-space-07.png" alt="navigate" loading="lazy"><figcaption>navigate</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：Deep-linked to /explorer/ash/cookbook: primary list/inspector showed &quot;You do not have access to this list.&quot; / inspector &quot;Unavailable&quot; -- this mount is permission-gated for this test user, a real and correctly-surfaced access-denied state (not a crash), so precondition search continued elsewhere.</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> navigate</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260823T191646Z/did-space/dd-6-did-space-08.png" alt="navigate" loading="lazy"><figcaption>navigate</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：Deep-linked to /explorer/packages: primary list showed 7 real items including files blocklet.dist.json, blocklet.yaml, logo.svg, package.json, README.md plus dirs pages/test -- a usable precondition state with real files was reached.</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-fail">失败</span> click</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260823T191646Z/did-space/dd-6-did-space-09.png" alt="click" loading="lazy"><figcaption>click</figcaption></figure></div>
+<div class="chk-fail"><b>观察证据</b>：Clicking #files-primary-list :text-is(&quot;README.md&quot;) (the file row for README.md in the primary list) timed out after 6000ms (Playwright TimeoutError) -- same failure mode documented in dd-4/dd-5 for directory rows, now reproduced for a FILE row too. Inspector/preview remained on the parent &quot;packages&quot; mount info, i.e. selection did not happen.</div>
+<div class="err"><b>执行错误</b>：<code>TimeoutError: click: Timeout 6000ms exceeded.</code></div>
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> navigate</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260823T191646Z/did-space/dd-6-did-space-10.png" alt="navigate" loading="lazy"><figcaption>navigate</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：As a positive control, deep-linked directly to /explorer/packages?sel=%2Fpackages%2FREADME.md (bypassing the click, driving the selectSync=sel URL param instead): the inspector correctly switched to show README.md (MD - 1.5 KB, Download/Open/Copy link actions) and the preview pane rendered the actual real README.md markdown content (a Chinese-language description of the did-space blocklet itself). This PROVES the underlying select-&gt;set-src-&gt;inspector/preview rendering pipeline works completely correctly end-to-end; the defect isolated in the prior step is specific to the click event handler on the primary/sidebar list row elements, not the selection/preview feature itself.</div>
+
+
+</div></details>
+<details class="dbg" open><summary>运行时 debug 上下文（16 条错误）</summary><div class="dbg-has"><b>Console 错误（12）</b><ul><li><code>Failed to load resource: the server responded with a status of 403 ()</code></li><li><code>Failed to load resource: the server responded with a status of 403 ()</code></li><li><code>Failed to load resource: the server responded with a status of 403 ()</code></li><li><code>Failed to load resource: the server responded with a status of 403 ()</code></li><li><code>Failed to load resource: the server responded with a status of 403 ()</code></li><li><code>Failed to load resource: the server responded with a status of 403 ()</code></li><li><code>Failed to load resource: the server responded with a status of 403 ()</code></li><li><code>Failed to load resource: the server responded with a status of 403 ()</code></li><li><code>Failed to load resource: the server responded with a status of 403 ()</code></li><li><code>Failed to load resource: the server responded with a status of 403 ()</code></li><li><code>Failed to load resource: the server responded with a status of 500 ()</code></li><li><code>Failed to load resource: the server responded with a status of 403 ()</code></li></ul></div><div class="dbg-none">JS 未捕获异常：<b>无</b></div><div class="dbg-has"><b>网络错误（请求失败 / 4xx–5xx）（4）</b><ul><li><code>403 POST https://did-space.afsd.dev/api/afs/rpc</code></li><li><code>✗ POST https://did-space.afsd.dev/cdn-cgi/rum? — net::ERR_ABORTED</code></li><li><code>✗ POST https://did-space.afsd.dev/api/afs/rpc — net::ERR_ABORTED</code></li><li><code>500 POST https://did-space.afsd.dev/api/afs/rpc</code></li></ul></div></details>
+</section><section id="path-dd-7-did-space">
+<h2>Read-flow: drill into subdirectory via primary list (files-primary-list.navigate) <span class="rt">authed · /explorer</span></h2>
+<p class="pdesc">页面走查：导航到 <code>/explorer</code>，验证页面渲染出真实内容并逐步观测（4 步）。</p>
+<video class="video" controls preload="metadata" src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260823T191646Z/did-space/page@e631a7c9443d9a7b4d9bf64288e7a896.webm"><a href="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260823T191646Z/did-space/page@e631a7c9443d9a7b4d9bf64288e7a896.webm">下载该路径录像</a></video><p class="vcap">本测试路径整段走查录像</p>
+<div class="kpis"><div class="kpi"><div class="k">4</div><div class="l">操作步</div></div><div class="kpi"><div class="k">3</div><div class="l">通过</div></div><div class="kpi"><div class="k k-bad">1</div><div class="l">失败</div></div><div class="kpi"><div class="k k-warn">0</div><div class="l">不确定</div></div><div class="kpi"><div class="k">0</div><div class="l">未走到</div></div></div>
+<details class="steps"><summary>▸ 逐步操作详情（4 步，含判定截图）</summary><div class="op">
+<h3><span class="pill p-ok">通过</span> navigate</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260823T191646Z/did-space/dd-7-did-space-00.png" alt="navigate" loading="lazy"><figcaption>navigate</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：Navigated to /explorer/packages: primary list showed 7 items (blocklet.dist.json, blocklet.yaml, logo.svg, package.json, pages, README.md, test), inspector showed packages mount info -- reused precondition state from dd-6.</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-fail">失败</span> click</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260823T191646Z/did-space/dd-7-did-space-01.png" alt="click" loading="lazy"><figcaption>click</figcaption></figure></div>
+<div class="chk-fail"><b>观察证据</b>：Clicking #files-primary-list :text-is(&quot;pages&quot;) (a directory row, to drill into it) timed out after 6000ms (Playwright TimeoutError) -- URL/breadcrumb/primary-list unchanged, no drill-in occurred. Fourth independent row (after dd-4 x2, dd-5 x2, dd-6 x1) to reproduce the identical click-unresponsive failure on files-sidebar-list/files-primary-list row elements.</div>
+<div class="err"><b>执行错误</b>：<code>TimeoutError: click: Timeout 6000ms exceeded.</code></div>
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> navigate</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260823T191646Z/did-space/dd-7-did-space-02.png" alt="navigate" loading="lazy"><figcaption>navigate</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：Positive control: navigated directly via URL to /explorer/packages/pages (bypassing the broken click), page loaded with textHead showing &quot;packages pages .. 0 index 2 pages&quot; content.</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> snapshot</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260823T191646Z/did-space/dd-7-did-space-03.png" alt="snapshot" loading="lazy"><figcaption>snapshot</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：snapshot confirmed URL is now https://did-space.afsd.dev/explorer/packages/pages, breadcrumb reads &quot;/ / packages / pages&quot;, primary list shows 1 item (index, 2 sub-items), inspector meta-title=&quot;pages&quot;, summary=&quot;Directory · 1 item&quot;, preview panel lists &quot;index&quot;. Confirms the drill-in navigation/rendering pipeline works correctly end-to-end when driven via URL -- the defect is isolated to the click event handler on the list row, not the underlying navigate mechanism.</div>
+
+
+</div></details>
+<details class="dbg" open><summary>运行时 debug 上下文（5 条错误）</summary><div class="dbg-has"><b>Console 错误（3）</b><ul><li><code>Failed to load resource: the server responded with a status of 403 ()</code></li><li><code>Failed to load resource: the server responded with a status of 403 ()</code></li><li><code>Failed to load resource: the server responded with a status of 403 ()</code></li></ul></div><div class="dbg-none">JS 未捕获异常：<b>无</b></div><div class="dbg-has"><b>网络错误（请求失败 / 4xx–5xx）（2）</b><ul><li><code>403 POST https://did-space.afsd.dev/api/afs/rpc</code></li><li><code>✗ POST https://did-space.afsd.dev/cdn-cgi/rum? — net::ERR_ABORTED</code></li></ul></div></details>
+</section>
+<p class="sub" style="margin-top:22px">由 test-report-builder（build-agent-report）生成 · issue #1808</p>
+</div></body></html>
