@@ -16,3 +16,4 @@
 | 20260824-202107-dd-4-did-space-01.png | https://github.com/ArcBlock/arc | 2026-08-24T20:21:07Z | root@vm |
 | 20260824-202111-dd-5-did-space-00.png | https://github.com/ArcBlock/arc | 2026-08-24T20:21:11Z | root@vm |
 | 20260824-202115-dd-5-did-space-01.png | https://github.com/ArcBlock/arc | 2026-08-24T20:21:15Z | root@vm |
+| 20260824-202120-dd-5-did-space-02.png | https://github.com/ArcBlock/arc | 2026-08-24T20:21:20Z | root@vm |
