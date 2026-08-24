@@ -75,3 +75,4 @@
 | 20260824-202544-page@df849018a0e90058c85947e9b5c5205c.webm | https://github.com/ArcBlock/arc | 2026-08-24T20:25:44Z | root@vm |
 | 20260824-202549-page@fa9c3230869f3f5b836823fdc9da9da8.webm | https://github.com/ArcBlock/arc | 2026-08-24T20:25:49Z | root@vm |
 | 20260824-202555-dd-1-todo-00.png | https://github.com/ArcBlock/arc | 2026-08-24T20:25:55Z | root@vm |
+| 20260824-202559-dd-1-todo-01.png | https://github.com/ArcBlock/arc | 2026-08-24T20:25:59Z | root@vm |
