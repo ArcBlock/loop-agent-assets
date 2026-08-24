@@ -580,3 +580,4 @@
 | 20260824-210227-final-check-aside-02.png | https://github.com/ArcBlock/arc | 2026-08-24T21:02:27Z | root@vm |
 | 20260824-210232-item-detail-01.png | https://github.com/ArcBlock/arc | 2026-08-24T21:02:32Z | root@vm |
 | 20260824-210237-item-detail-02.png | https://github.com/ArcBlock/arc | 2026-08-24T21:02:37Z | root@vm |
+| 20260824-210241-prep-clip-00.png | https://github.com/ArcBlock/arc | 2026-08-24T21:02:41Z | root@vm |
