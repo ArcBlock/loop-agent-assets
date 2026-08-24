@@ -309,3 +309,4 @@
 | 20260824-204228-dd-3-auto-surface-persist-05.png | https://github.com/ArcBlock/arc | 2026-08-24T20:42:28Z | root@vm |
 | 20260824-204232-dd-3-auto-surface-persist-06.png | https://github.com/ArcBlock/arc | 2026-08-24T20:42:32Z | root@vm |
 | 20260824-204236-dd-4-form-contact-invalid-00.png | https://github.com/ArcBlock/arc | 2026-08-24T20:42:36Z | root@vm |
+| 20260824-204240-dd-4-form-contact-invalid-01.png | https://github.com/ArcBlock/arc | 2026-08-24T20:42:40Z | root@vm |
