@@ -45,3 +45,4 @@
 | 20260824-202318-dd-2-index-02.png | https://github.com/ArcBlock/arc | 2026-08-24T20:23:18Z | root@vm |
 | 20260824-202323-dd-2-index-03.png | https://github.com/ArcBlock/arc | 2026-08-24T20:23:23Z | root@vm |
 | 20260824-202328-dd-2-index-04.png | https://github.com/ArcBlock/arc | 2026-08-24T20:23:28Z | root@vm |
+| 20260824-202333-dd-2-index-05.png | https://github.com/ArcBlock/arc | 2026-08-24T20:23:33Z | root@vm |
