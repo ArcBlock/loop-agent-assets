@@ -576,3 +576,4 @@
 | 20260824-210207-feed-read-1-02.png | https://github.com/ArcBlock/arc | 2026-08-24T21:02:07Z | root@vm |
 | 20260824-210211-feed-read-1-03.png | https://github.com/ArcBlock/arc | 2026-08-24T21:02:11Z | root@vm |
 | 20260824-210216-final-check-aside-00.png | https://github.com/ArcBlock/arc | 2026-08-24T21:02:16Z | root@vm |
+| 20260824-210222-final-check-aside-01.png | https://github.com/ArcBlock/arc | 2026-08-24T21:02:22Z | root@vm |
