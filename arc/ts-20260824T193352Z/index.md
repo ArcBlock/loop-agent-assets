@@ -272,3 +272,4 @@
 | 20260824-203931-auto-surface-01.png | https://github.com/ArcBlock/arc | 2026-08-24T20:39:31Z | root@vm |
 | 20260824-203935-auto-surface-02.png | https://github.com/ArcBlock/arc | 2026-08-24T20:39:35Z | root@vm |
 | 20260824-203939-dd-1-form-contact-00.png | https://github.com/ArcBlock/arc | 2026-08-24T20:39:39Z | root@vm |
+| 20260824-203945-dd-1-form-contact-01.png | https://github.com/ArcBlock/arc | 2026-08-24T20:39:45Z | root@vm |
