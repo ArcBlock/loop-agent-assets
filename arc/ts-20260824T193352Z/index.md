@@ -324,3 +324,4 @@
 | 20260824-204331-dd-7-overlays-confirm-02.png | https://github.com/ArcBlock/arc | 2026-08-24T20:43:31Z | root@vm |
 | 20260824-204336-dd-8-list-basic-pagination-00.png | https://github.com/ArcBlock/arc | 2026-08-24T20:43:36Z | root@vm |
 | 20260824-204340-dd-8-list-basic-pagination-01.png | https://github.com/ArcBlock/arc | 2026-08-24T20:43:40Z | root@vm |
+| 20260824-204344-dd-9-list-basic-template-00.png | https://github.com/ArcBlock/arc | 2026-08-24T20:43:44Z | root@vm |
