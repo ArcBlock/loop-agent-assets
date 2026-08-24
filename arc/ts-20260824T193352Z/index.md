@@ -145,3 +145,4 @@
 | 20260824-203039-final-check-todo-00.png | https://github.com/ArcBlock/arc | 2026-08-24T20:30:39Z | root@vm |
 | 20260824-203043-index-01.png | https://github.com/ArcBlock/arc | 2026-08-24T20:30:43Z | root@vm |
 | 20260824-203047-index-02.png | https://github.com/ArcBlock/arc | 2026-08-24T20:30:47Z | root@vm |
+| 20260824-203051-page@236b5628aa85ce32c300ab7457d240ba.webm | https://github.com/ArcBlock/arc | 2026-08-24T20:30:51Z | root@vm |
