@@ -578,3 +578,4 @@
 | 20260824-210216-final-check-aside-00.png | https://github.com/ArcBlock/arc | 2026-08-24T21:02:16Z | root@vm |
 | 20260824-210222-final-check-aside-01.png | https://github.com/ArcBlock/arc | 2026-08-24T21:02:22Z | root@vm |
 | 20260824-210227-final-check-aside-02.png | https://github.com/ArcBlock/arc | 2026-08-24T21:02:27Z | root@vm |
+| 20260824-210232-item-detail-01.png | https://github.com/ArcBlock/arc | 2026-08-24T21:02:32Z | root@vm |
