@@ -592,3 +592,4 @@
 | 20260824-210325-publish-01.png | https://github.com/ArcBlock/arc | 2026-08-24T21:03:25Z | root@vm |
 | 20260824-210329-publish-02.png | https://github.com/ArcBlock/arc | 2026-08-24T21:03:29Z | root@vm |
 | 20260824-210335-tags-01.png | https://github.com/ArcBlock/arc | 2026-08-24T21:03:35Z | root@vm |
+| 20260824-210339-tags-02.png | https://github.com/ArcBlock/arc | 2026-08-24T21:03:39Z | root@vm |
