@@ -319,3 +319,4 @@
 | 20260824-204310-dd-6-overlays-alert-00.png | https://github.com/ArcBlock/arc | 2026-08-24T20:43:10Z | root@vm |
 | 20260824-204315-dd-6-overlays-alert-01.png | https://github.com/ArcBlock/arc | 2026-08-24T20:43:15Z | root@vm |
 | 20260824-204319-dd-6-overlays-alert-02.png | https://github.com/ArcBlock/arc | 2026-08-24T20:43:19Z | root@vm |
+| 20260824-204323-dd-7-overlays-confirm-00.png | https://github.com/ArcBlock/arc | 2026-08-24T20:43:23Z | root@vm |
