@@ -459,3 +459,4 @@
 | 20260824-205354-cleanup-tag-aside-03.png | https://github.com/ArcBlock/arc | 2026-08-24T20:53:54Z | root@vm |
 | 20260824-205358-cleanup-tag-aside-04.png | https://github.com/ArcBlock/arc | 2026-08-24T20:53:58Z | root@vm |
 | 20260824-205402-cleanup-tag-aside-05.png | https://github.com/ArcBlock/arc | 2026-08-24T20:54:02Z | root@vm |
+| 20260824-205407-cleanup-tag-aside-06.png | https://github.com/ArcBlock/arc | 2026-08-24T20:54:07Z | root@vm |
