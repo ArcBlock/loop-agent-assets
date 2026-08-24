@@ -589,3 +589,4 @@
 | 20260824-210312-prep-clip-06.png | https://github.com/ArcBlock/arc | 2026-08-24T21:03:12Z | root@vm |
 | 20260824-210316-prep-clip-07.png | https://github.com/ArcBlock/arc | 2026-08-24T21:03:16Z | root@vm |
 | 20260824-210321-prep-clip-08.png | https://github.com/ArcBlock/arc | 2026-08-24T21:03:21Z | root@vm |
+| 20260824-210325-publish-01.png | https://github.com/ArcBlock/arc | 2026-08-24T21:03:25Z | root@vm |
