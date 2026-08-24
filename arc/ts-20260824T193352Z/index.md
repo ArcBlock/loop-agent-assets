@@ -315,3 +315,4 @@
 | 20260824-204253-dd-5-form-contact-pattern-02.png | https://github.com/ArcBlock/arc | 2026-08-24T20:42:53Z | root@vm |
 | 20260824-204257-dd-5-form-contact-pattern-03.png | https://github.com/ArcBlock/arc | 2026-08-24T20:42:57Z | root@vm |
 | 20260824-204302-dd-5-form-contact-pattern-04.png | https://github.com/ArcBlock/arc | 2026-08-24T20:43:02Z | root@vm |
+| 20260824-204306-dd-5-form-contact-pattern-05.png | https://github.com/ArcBlock/arc | 2026-08-24T20:43:06Z | root@vm |
