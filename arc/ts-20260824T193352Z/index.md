@@ -328,3 +328,4 @@
 | 20260824-204348-dd-9-list-basic-template-01.png | https://github.com/ArcBlock/arc | 2026-08-24T20:43:48Z | root@vm |
 | 20260824-204353-dd-9-list-basic-template-02.png | https://github.com/ArcBlock/arc | 2026-08-24T20:43:53Z | root@vm |
 | 20260824-204358-explorer-01.png | https://github.com/ArcBlock/arc | 2026-08-24T20:43:58Z | root@vm |
+| 20260824-204402-explorer-02.png | https://github.com/ArcBlock/arc | 2026-08-24T20:44:02Z | root@vm |
