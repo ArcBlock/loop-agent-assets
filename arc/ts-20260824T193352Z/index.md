@@ -6,3 +6,4 @@
 | 20260824-202010-chat-02.png | https://github.com/ArcBlock/arc | 2026-08-24T20:20:10Z | root@vm |
 | 20260824-202014-index-01.png | https://github.com/ArcBlock/arc | 2026-08-24T20:20:14Z | root@vm |
 | 20260824-202019-index-02.png | https://github.com/ArcBlock/arc | 2026-08-24T20:20:19Z | root@vm |
+| 20260824-202022-page@01af39284377dad3bdd513735829b335.webm | https://github.com/ArcBlock/arc | 2026-08-24T20:20:22Z | root@vm |
