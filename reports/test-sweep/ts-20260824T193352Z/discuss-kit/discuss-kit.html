@@ -1,0 +1,345 @@
+<!doctype html><html><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>discuss-kit — agent 走查报告</title><style>
+:root{--bg:#f7f8f8;--fg:#16201f;--muted:#5c6b69;--card:#fff;--card2:#eef2f1;--border:#dde3e2;--accent:#127a72;--pass:#1f8a54;--warn:#b5771a;--bad:#c0392b}
+@media(prefers-color-scheme:dark){:root{--bg:#0e1413;--fg:#e6ecea;--muted:#8ea19d;--card:#161d1c;--card2:#1d2624;--border:#26302e;--accent:#3fb8ab;--pass:#3fb37a;--warn:#d69a3e;--bad:#e5735f}}
+:root[data-theme=dark]{--bg:#0e1413;--fg:#e6ecea;--muted:#8ea19d;--card:#161d1c;--card2:#1d2624;--border:#26302e;--accent:#3fb8ab;--pass:#3fb37a;--warn:#d69a3e;--bad:#e5735f}
+:root[data-theme=light]{--bg:#f7f8f8;--fg:#16201f;--muted:#5c6b69;--card:#fff;--card2:#eef2f1;--border:#dde3e2;--accent:#127a72;--pass:#1f8a54;--warn:#b5771a;--bad:#c0392b}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--fg);font:15px/1.65 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;padding:24px}
+.wrap{max-width:920px;margin:0 auto}
+h1{font-size:24px;margin:0 0 4px;text-wrap:balance}h2{font-size:19px;margin:30px 0 8px}
+h2 .rt{font-size:13px;color:var(--muted);font-weight:400;font-variant-numeric:tabular-nums}
+.sub{color:var(--muted);margin:0 0 14px;font-size:13px}
+code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.85em;background:var(--card2);padding:1px 5px;border-radius:4px}
+.how{background:var(--card);border:1px solid var(--border);border-left:3px solid var(--accent);border-radius:8px;padding:13px 16px;margin:14px 0;font-size:14px}
+.how b{color:var(--accent)}
+.banner{border-radius:12px;padding:14px 18px;margin:16px 0}
+.banner.ok{background:color-mix(in srgb,var(--pass) 12%,transparent);border:1px solid color-mix(in srgb,var(--pass) 40%,transparent)}
+.banner.ok b{color:var(--pass)}
+.banner.bad{background:color-mix(in srgb,var(--bad) 13%,transparent);border:1px solid color-mix(in srgb,var(--bad) 45%,transparent)}
+.banner.bad b{color:var(--bad);font-size:16px}
+.banner.info{background:color-mix(in srgb,var(--accent) 10%,transparent);border:1px solid color-mix(in srgb,var(--accent) 38%,transparent)}
+.banner.info b{color:var(--accent)}
+.plist{margin:10px 0 0;padding-left:0;list-style:none}
+.plist li{padding:8px 0;border-top:1px solid var(--border)}
+.plist a{text-decoration:none;color:var(--fg);font-weight:600}
+.plist .pe{color:var(--muted);font-size:12.5px;font-weight:400;margin-top:3px}
+.video{width:100%;border-radius:10px;border:1px solid var(--border);background:#000;margin:6px 0 2px}
+.vcap{color:var(--muted);font-size:12.5px;margin:0 0 8px}
+.novideo{color:var(--bad);font-weight:600;background:color-mix(in srgb,var(--bad) 10%,transparent);border:1px dashed color-mix(in srgb,var(--bad) 45%,transparent);border-radius:8px;padding:8px 12px;font-size:13px}
+.kpis{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0}
+.kpi{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:9px 14px;min-width:70px}
+.kpi .k{font-size:21px;font-weight:700;font-variant-numeric:tabular-nums}.kpi .l{color:var(--muted);font-size:12px}
+.kpi .k-bad{color:var(--bad)}.kpi .k-warn{color:var(--warn)}
+.op{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:15px 17px;margin:14px 0}
+.op h3{margin:0 0 3px;font-size:16px;display:flex;align-items:center;gap:9px;flex-wrap:wrap}
+.op .exp{color:var(--muted);font-size:13px;margin:0 0 9px}
+.op .nt{color:var(--muted);font-size:12.5px;margin-top:6px}
+.pill{font-size:11.5px;font-weight:700;padding:2px 9px;border-radius:20px}
+.p-ok{background:color-mix(in srgb,var(--pass) 18%,transparent);color:var(--pass)}
+.p-fail{background:color-mix(in srgb,var(--bad) 18%,transparent);color:var(--bad)}
+.p-warn{background:color-mix(in srgb,var(--warn) 20%,transparent);color:var(--warn)}
+.p-skip{background:var(--card2);color:var(--muted)}
+.p-write{background:color-mix(in srgb,var(--accent) 18%,transparent);color:var(--accent)}
+.frame figure{margin:0 0 9px}.frame img{width:100%;border-radius:8px;border:1px solid var(--border);display:block}
+.frame figcaption{color:var(--muted);font-size:11.5px;margin-top:4px;text-align:center}
+.chk{background:color-mix(in srgb,var(--pass) 12%,transparent);border:1px solid color-mix(in srgb,var(--pass) 34%,transparent);border-radius:8px;padding:8px 12px;font-size:13px}
+.chk b{color:var(--pass)}
+.chk-fail{background:color-mix(in srgb,var(--bad) 11%,transparent);border:1px solid color-mix(in srgb,var(--bad) 40%,transparent);border-radius:8px;padding:8px 12px;font-size:13px}
+.chk-fail b{color:var(--bad)}
+table.probe{border-collapse:collapse;width:100%;font-size:13px}
+table.probe th,table.probe td{border:1px solid var(--border);padding:5px 9px;text-align:left}
+table.probe tr.bad td{background:color-mix(in srgb,var(--bad) 10%,transparent)}
+.err{background:color-mix(in srgb,var(--bad) 11%,transparent);border:1px solid color-mix(in srgb,var(--bad) 40%,transparent);border-radius:8px;padding:7px 12px;font-size:12.5px;margin-top:6px}
+.err b{color:var(--bad)}.err code{background:transparent;color:var(--bad)}
+.dbg{margin:10px 0 2px;background:var(--card);border:1px solid var(--border);border-radius:10px;padding:6px 14px;font-size:13px}
+.dbg summary{cursor:pointer;color:var(--muted);font-weight:600;padding:5px 0}
+.dbg-none{color:var(--muted);padding:4px 0;font-size:12.5px}
+.dbg-has{padding:5px 0}.dbg-has b{color:var(--warn)}
+.dbg-has ul{margin:5px 0 8px;padding-left:18px}.dbg-has li{font-size:12px;color:var(--fg);margin:2px 0;word-break:break-all}
+.dbg-has code{background:var(--card2)}
+.pdesc{color:var(--muted);font-size:13.5px;margin:1px 0 11px;line-height:1.5}
+.pdesc code{font-size:.85em}
+details.steps{margin:6px 0 2px;border:1px solid var(--border);border-radius:10px;background:var(--card2);padding:2px 14px}
+details.steps>summary{cursor:pointer;color:var(--accent);font-weight:600;padding:9px 0;font-size:13.5px;list-style:none}
+details.steps>summary::-webkit-details-marker{display:none}
+details.steps[open]>summary{border-bottom:1px solid var(--border);margin-bottom:8px}
+details.steps>summary:hover{color:var(--fg)}
+</style></head><body><div class="wrap">
+<h1>discuss-kit — agent 走查报告</h1>
+<p class="sub">环境 <code>https://discuss-kit.afsd.dev</code> · 2026-08-24T19:45:58.834449Z · 走查 5 / 声明 5 条测试路径 · driver <code>agent-playwright-mcp</code></p>
+<div class="how"><b>这份报告在做什么</b>：test-sweep 让 <b>agent 读被测页面自己写的
+<code>.aup/man</code> 知识</b>，用 Playwright MCP <b>当真人逐条测试路径走查</b>（导航/加标签/编辑/删除/创建…），
+<b>每条路径各自一段录屏</b>、每步截图并<b>自判 verdict + 附观察证据</b>（实际 DOM/文本/值，可复核）。
+<b>unreached</b>=没驱动到（不当失败）；<b>inconclusive</b>=不确定（绝不判失败）。写操作默认真提交、不清理。</div>
+
+<div class="banner ok"><b>✅ 覆盖完整</b>：声明 5 条测试路径全部走查。</div>
+<div class="banner ok"><b>✅ 未发现问题</b>：所有路径的操作步均 pass 或 unreached（unreached 不计失败）。</div>
+<section id="probes"><h2>后端探针 （全通过）</h2><table class="probe"><tr><th></th><th>探针</th><th>详情</th></tr><tr class=""><td>✅</td><td>http-reachable</td><td>HTTP 200</td></tr><tr class=""><td>✅</td><td>afs-rpc-list</td><td>ok:true (2 .aup pages)</td></tr><tr class=""><td>✅</td><td>afs-rpc-authed-list-/user</td><td>ok:true (Bearer 可读)</td></tr></table></section>
+<section id="path-index">
+<h2>Index <span class="rt">authed · https://discuss-kit.afsd.dev/posts</span></h2>
+<p class="pdesc">导航到 https://discuss-kit.afsd.dev/posts，验证页面加载并渲染出真实内容（index 页 breadth 走查）。</p>
+<video class="video" controls preload="metadata" src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260824T193352Z/discuss-kit/page@a910ec08a20ebcd356060639a552f4bd.webm"><a href="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260824T193352Z/discuss-kit/page@a910ec08a20ebcd356060639a552f4bd.webm">下载该路径录像</a></video><p class="vcap">本测试路径整段走查录像</p>
+<div class="kpis"><div class="kpi"><div class="k">2</div><div class="l">操作步</div></div><div class="kpi"><div class="k">2</div><div class="l">通过</div></div><div class="kpi"><div class="k k-bad">0</div><div class="l">失败</div></div><div class="kpi"><div class="k k-warn">0</div><div class="l">不确定</div></div><div class="kpi"><div class="k">0</div><div class="l">未走到</div></div></div>
+<details class="steps"><summary>▸ 逐步操作详情（2 步，含判定截图）</summary><div class="op">
+<h3><span class="pill p-ok">通过</span> navigate</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260824T193352Z/discuss-kit/index-01.png" alt="navigate" loading="lazy"><figcaption>navigate</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：title=&#x27;Discuss Kit&#x27; url=https://discuss-kit.afsd.dev/posts aupNodes=140 buttons=23 inputs=1 textLen=1801 head=&#x27;Discuss Kit ▾ Posts Reference board — posts with a read-only comment thread. + New post All 29 Announcement Question Discussion 9 Show &amp; Tel&#x27;</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> snapshot</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260824T193352Z/discuss-kit/index-02.png" alt="snapshot" loading="lazy"><figcaption>snapshot</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：title=&#x27;Discuss Kit&#x27; url=https://discuss-kit.afsd.dev/posts aupNodes=140 buttons=23 inputs=1 textLen=1801 head=&#x27;Discuss Kit ▾ Posts Reference board — posts with a read-only comment thread. + New post All 29 Announcement Question Discussion 9 Show &amp; Tel&#x27;</div>
+
+
+</div></details>
+<details class="dbg"><summary>运行时 debug 上下文（全清）</summary><div class="dbg-none">Console 错误：<b>无</b></div><div class="dbg-none">JS 未捕获异常：<b>无</b></div><div class="dbg-none">网络错误（请求失败 / 4xx–5xx）：<b>无</b></div></details>
+</section><section id="path-index-read-1">
+<h2>board (index) → board (index, collected state) <span class="rt">authed · https://discuss-kit.afsd.dev/posts</span></h2>
+<p class="pdesc">读流走查：从「board (index)」进入「board (index, collected state)」并验证渲染。</p>
+<video class="video" controls preload="metadata" src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260824T193352Z/discuss-kit/page@1a9672a3f971fee84efcd3518d373284.webm"><a href="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260824T193352Z/discuss-kit/page@1a9672a3f971fee84efcd3518d373284.webm">下载该路径录像</a></video><p class="vcap">本测试路径整段走查录像</p>
+<div class="kpis"><div class="kpi"><div class="k">3</div><div class="l">操作步</div></div><div class="kpi"><div class="k">3</div><div class="l">通过</div></div><div class="kpi"><div class="k k-bad">0</div><div class="l">失败</div></div><div class="kpi"><div class="k k-warn">0</div><div class="l">不确定</div></div><div class="kpi"><div class="k">0</div><div class="l">未走到</div></div></div>
+<details class="steps"><summary>▸ 逐步操作详情（3 步，含判定截图）</summary><div class="op">
+<h3><span class="pill p-ok">通过</span> navigate</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260824T193352Z/discuss-kit/index-read-1-01.png" alt="navigate" loading="lazy"><figcaption>navigate</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：title=&#x27;Discuss Kit&#x27; url=https://discuss-kit.afsd.dev/posts aupNodes=140 buttons=23 inputs=1 textLen=1801 head=&#x27;Discuss Kit ▾ Posts Reference board — posts with a read-only comment thread. + New post All 29 Announcement Question Discussion 9 Show &amp; Tel&#x27;</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> 点控件 [postCollect]</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260824T193352Z/discuss-kit/index-read-1-02.png" alt="点控件 [postCollect]" loading="lazy"><figcaption>点控件 [postCollect]</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：title=&#x27;Discuss Kit&#x27; url=https://discuss-kit.afsd.dev/posts aupNodes=140 buttons=24 inputs=1 textLen=1801 head=&#x27;Discuss Kit ▾ Posts Reference board — posts with a read-only comment thread. + New post All 29 Announcement Question Discussion 9 Show &amp; Tel&#x27;</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> snapshot</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260824T193352Z/discuss-kit/index-read-1-03.png" alt="snapshot" loading="lazy"><figcaption>snapshot</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：title=&#x27;Discuss Kit&#x27; url=https://discuss-kit.afsd.dev/posts aupNodes=140 buttons=24 inputs=1 textLen=1801 head=&#x27;Discuss Kit ▾ Posts Reference board — posts with a read-only comment thread. + New post All 29 Announcement Question Discussion 9 Show &amp; Tel&#x27;</div>
+
+
+</div></details>
+<details class="dbg"><summary>运行时 debug 上下文（全清）</summary><div class="dbg-none">Console 错误：<b>无</b></div><div class="dbg-none">JS 未捕获异常：<b>无</b></div><div class="dbg-none">网络错误（请求失败 / 4xx–5xx）：<b>无</b></div></details>
+</section><section id="path-detail">
+<h2>Detail <span class="rt">authed · https://discuss-kit.afsd.dev/posts/ai-in-decentralized-world</span></h2>
+<p class="pdesc">导航到 https://discuss-kit.afsd.dev/posts/ai-in-decentralized-world，验证页面加载并渲染出真实内容（detail 页 breadth 走查）。</p>
+<video class="video" controls preload="metadata" src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260824T193352Z/discuss-kit/page@df849018a0e90058c85947e9b5c5205c.webm"><a href="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260824T193352Z/discuss-kit/page@df849018a0e90058c85947e9b5c5205c.webm">下载该路径录像</a></video><p class="vcap">本测试路径整段走查录像</p>
+<div class="kpis"><div class="kpi"><div class="k">2</div><div class="l">操作步</div></div><div class="kpi"><div class="k">2</div><div class="l">通过</div></div><div class="kpi"><div class="k k-bad">0</div><div class="l">失败</div></div><div class="kpi"><div class="k k-warn">0</div><div class="l">不确定</div></div><div class="kpi"><div class="k">0</div><div class="l">未走到</div></div></div>
+<details class="steps"><summary>▸ 逐步操作详情（2 步，含判定截图）</summary><div class="op">
+<h3><span class="pill p-ok">通过</span> navigate</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260824T193352Z/discuss-kit/detail-01.png" alt="navigate" loading="lazy"><figcaption>navigate</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：title=&#x27;Discuss Kit&#x27; url=https://discuss-kit.afsd.dev/posts/ai-in-decentralized-world aupNodes=15 buttons=11 inputs=1 textLen=2125 head=&#x27;Discuss Kit ▾ ← All posts Edit post Delete post The Role of AI in a Decentralized World By Scheduled Agent · 15 days ago | Aug 9, 2026, 9:00&#x27;</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> snapshot</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260824T193352Z/discuss-kit/detail-02.png" alt="snapshot" loading="lazy"><figcaption>snapshot</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：title=&#x27;Discuss Kit&#x27; url=https://discuss-kit.afsd.dev/posts/ai-in-decentralized-world aupNodes=15 buttons=11 inputs=1 textLen=2125 head=&#x27;Discuss Kit ▾ ← All posts Edit post Delete post The Role of AI in a Decentralized World By Scheduled Agent · 15 days ago | Aug 9, 2026, 9:00&#x27;</div>
+
+
+</div></details>
+<details class="dbg"><summary>运行时 debug 上下文（全清）</summary><div class="dbg-none">Console 错误：<b>无</b></div><div class="dbg-none">JS 未捕获异常：<b>无</b></div><div class="dbg-none">网络错误（请求失败 / 4xx–5xx）：<b>无</b></div></details>
+</section><section id="path-dd-1-index">
+<h2>auth-spot-check: authed board render <span class="rt">authed · https://discuss-kit.afsd.dev/posts</span></h2>
+<p class="pdesc">页面走查：导航到 <code>https://discuss-kit.afsd.dev/posts</code>，验证页面渲染出真实内容并逐步观测（1 步）。</p>
+<video class="video" controls preload="metadata" src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260824T193352Z/discuss-kit/page@1b69fd493501e24fe1d512a6ba332ca7.webm"><a href="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260824T193352Z/discuss-kit/page@1b69fd493501e24fe1d512a6ba332ca7.webm">下载该路径录像</a></video><p class="vcap">本测试路径整段走查录像</p>
+<div class="kpis"><div class="kpi"><div class="k">1</div><div class="l">操作步</div></div><div class="kpi"><div class="k">1</div><div class="l">通过</div></div><div class="kpi"><div class="k k-bad">0</div><div class="l">失败</div></div><div class="kpi"><div class="k k-warn">0</div><div class="l">不确定</div></div><div class="kpi"><div class="k">0</div><div class="l">未走到</div></div></div>
+<details class="steps"><summary>▸ 逐步操作详情（1 步，含判定截图）</summary><div class="op">
+<h3><span class="pill p-ok">通过</span> navigate</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260824T193352Z/discuss-kit/dd-1-index-00.png" alt="navigate" loading="lazy"><figcaption>navigate</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：App header shows authed identity controls: button &quot;Test Fixture User&quot;, &quot;User Center&quot;, &quot;Admin Console&quot;, &quot;Sign Out&quot; (no anon sign-in wall). postComposer node renders the &quot;+ New post&quot; trigger button (requireAuth:true gate passed — a guest would see only the text &quot;Sign in to write a post.&quot; per post-editor.ts, which is absent from textHead). Board content (29 posts, filterTabs, tags) fully rendered.</div>
+
+
+</div></details>
+<details class="dbg"><summary>运行时 debug 上下文（全清）</summary><div class="dbg-none">Console 错误：<b>无</b></div><div class="dbg-none">JS 未捕获异常：<b>无</b></div><div class="dbg-none">网络错误（请求失败 / 4xx–5xx）：<b>无</b></div></details>
+</section><section id="path-dd-2-index">
+<h2>read-flow: board (index) -&gt; post detail via postLink href <span class="rt">authed · /posts</span></h2>
+<p class="pdesc">写操作走查：8 步驱动此操作（其中 1 步为写），逐步引真实 DOM/文本/toast 为证。</p>
+<video class="video" controls preload="metadata" src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260824T193352Z/discuss-kit/page@c3488535f8f9cc365a50fc85b47bc843.webm"><a href="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260824T193352Z/discuss-kit/page@c3488535f8f9cc365a50fc85b47bc843.webm">下载该路径录像</a></video><p class="vcap">本测试路径整段走查录像</p>
+<div class="kpis"><div class="kpi"><div class="k">8</div><div class="l">操作步</div></div><div class="kpi"><div class="k">8</div><div class="l">通过</div></div><div class="kpi"><div class="k k-bad">0</div><div class="l">失败</div></div><div class="kpi"><div class="k k-warn">0</div><div class="l">不确定</div></div><div class="kpi"><div class="k">0</div><div class="l">未走到</div></div></div>
+<details class="steps"><summary>▸ 逐步操作详情（8 步，含判定截图）</summary><div class="op">
+<h3><span class="pill p-ok">通过</span> navigate</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260824T193352Z/discuss-kit/dd-2-index-00.png" alt="navigate" loading="lazy"><figcaption>navigate</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：Navigated to /posts authed; board loaded with 29 existing posts, filterTabs, postComposer + New post button visible.</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> click</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260824T193352Z/discuss-kit/dd-2-index-01.png" alt="click" loading="lazy"><figcaption>click</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：Precondition build: clicked postComposer + New post; _aupShowFormOverlay opened with New post title, category select (Select a category/Announcement/Question/Discussion/Show &amp; Tell), Write/Preview body tabs, Publish button.</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> fill</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260824T193352Z/discuss-kit/dd-2-index-02.png" alt="fill" loading="lazy"><figcaption>fill</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：Filled title input.aup-comments-surface-composer-name with qa-tsweep-1787601304 deep-dive test post; draft-save indicator (● draft saved) appeared confirming the value was captured client-side.</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> selectOption</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260824T193352Z/discuss-kit/dd-2-index-03.png" alt="selectOption" loading="lazy"><figcaption>selectOption</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：selectOption on select.aup-comments-surface-composer-name returned selected=[discussion].</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> fill</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260824T193352Z/discuss-kit/dd-2-index-04.png" alt="fill" loading="lazy"><figcaption>fill</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：Filled textarea.aup-comments-surface-composer-input with the qa-tsweep body text (confirmed rendered verbatim on the resulting detail page in the next step).</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> <span class="pill p-write">写</span>click</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260824T193352Z/discuss-kit/dd-2-index-05.png" alt="click" loading="lazy"><figcaption>click</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：Clicked Publish; page auto-navigated (window.__aupNavigate, no reload) to https://discuss-kit.afsd.dev/posts/qa-tsweep-1787601304-deep-dive-test-post-ae9744; detail-title=&quot;qa-tsweep-1787601304 deep-dive test post&quot;, detail-body matches submitted markdown, byline shows &quot;By Test Fixture User · just now&quot; -- QA post created (precondition for dd-2..dd-5).</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> click</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260824T193352Z/discuss-kit/dd-2-index-06.png" alt="click" loading="lazy"><figcaption>click</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：Clicked detail-back (← All posts); returned to /posts; postList now shows 30 posts (was 29) with our post as the top row postRow--qa-tsweep-1787601304-deep-dive-test-post-ae9744, title &quot;qa-tsweep-1787601304 deep-dive test post&quot;, author &quot;Test Fixture User&quot;, &quot;just now&quot;.</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> click</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260824T193352Z/discuss-kit/dd-2-index-07.png" alt="click" loading="lazy"><figcaption>click</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：THE DECLARED FLOW: clicked [data-aup-id=postLink] inside our post row (a plain href=&quot;/posts/${entry.id}&quot;, not an AUP click event, per index.yaml CAVEATS). Browser navigated (SPA, no full reload) to https://discuss-kit.afsd.dev/posts/qa-tsweep-1787601304-deep-dive-test-post-ae9744; detail-title text = &quot;qa-tsweep-1787601304 deep-dive test post&quot;, confirming the postLink href correctly resolved to this row entry.id and the detail page rendered the matching record.</div>
+
+
+</div></details>
+<details class="dbg"><summary>运行时 debug 上下文（全清）</summary><div class="dbg-none">Console 错误：<b>无</b></div><div class="dbg-none">JS 未捕获异常：<b>无</b></div><div class="dbg-none">网络错误（请求失败 / 4xx–5xx）：<b>无</b></div></details>
+</section><section id="path-dd-3-detail">
+<h2>read-flow: navigate in via postLink href (detail.yaml perspective) <span class="rt">authed · /posts/{slug}</span></h2>
+<p class="pdesc">页面走查：导航到 <code>/posts/{slug}</code>，验证页面渲染出真实内容并逐步观测（2 步）。</p>
+<video class="video" controls preload="metadata" src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260824T193352Z/discuss-kit/page@fa9c3230869f3f5b836823fdc9da9da8.webm"><a href="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260824T193352Z/discuss-kit/page@fa9c3230869f3f5b836823fdc9da9da8.webm">下载该路径录像</a></video><p class="vcap">本测试路径整段走查录像</p>
+<div class="kpis"><div class="kpi"><div class="k">2</div><div class="l">操作步</div></div><div class="kpi"><div class="k">2</div><div class="l">通过</div></div><div class="kpi"><div class="k k-bad">0</div><div class="l">失败</div></div><div class="kpi"><div class="k k-warn">0</div><div class="l">不确定</div></div><div class="kpi"><div class="k">0</div><div class="l">未走到</div></div></div>
+<details class="steps"><summary>▸ 逐步操作详情（2 步，含判定截图）</summary><div class="op">
+<h3><span class="pill p-ok">通过</span> navigate</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260824T193352Z/discuss-kit/dd-3-detail-00.png" alt="navigate" loading="lazy"><figcaption>navigate</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：Navigated to /posts authed; board loaded with 30 posts including our precondition QA post (postRow--qa-tsweep-1787601304-deep-dive-test-post-ae9744) as the newest/top row.</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> click</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260824T193352Z/discuss-kit/dd-3-detail-01.png" alt="click" loading="lazy"><figcaption>click</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：Clicked [data-aup-id=postLink] inside the QA post row; browser navigated to https://discuss-kit.afsd.dev/posts/qa-tsweep-1787601304-deep-dive-test-post-ae9744 (URL now matches sites[].bindings post-detail pattern /posts/{slug}); detail-root propBind resolved meta/content for this exact slug: detail-title=&quot;qa-tsweep-1787601304 deep-dive test post&quot;, detail-body matches the submitted markdown, detail-byline shows author &quot;Test Fixture User&quot;. detail-post-editor rendered Edit post/Delete post buttons (mine=true). No detail-not-found fallback shown.</div>
+
+
+</div></details>
+<details class="dbg"><summary>运行时 debug 上下文（全清）</summary><div class="dbg-none">Console 错误：<b>无</b></div><div class="dbg-none">JS 未捕获异常：<b>无</b></div><div class="dbg-none">网络错误（请求失败 / 4xx–5xx）：<b>无</b></div></details>
+</section><section id="path-dd-4-detail">
+<h2>read-flow: post detail -&gt; board via detail-back (\u2190 All posts) <span class="rt">authed · /posts/{slug}</span></h2>
+<p class="pdesc">页面走查：导航到 <code>/posts/{slug}</code>，验证页面渲染出真实内容并逐步观测（2 步）。</p>
+<video class="video" controls preload="metadata" src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260824T193352Z/discuss-kit/page@b7033c4c03ec0a62c1572a21933c1819.webm"><a href="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260824T193352Z/discuss-kit/page@b7033c4c03ec0a62c1572a21933c1819.webm">下载该路径录像</a></video><p class="vcap">本测试路径整段走查录像</p>
+<div class="kpis"><div class="kpi"><div class="k">2</div><div class="l">操作步</div></div><div class="kpi"><div class="k">2</div><div class="l">通过</div></div><div class="kpi"><div class="k k-bad">0</div><div class="l">失败</div></div><div class="kpi"><div class="k k-warn">0</div><div class="l">不确定</div></div><div class="kpi"><div class="k">0</div><div class="l">未走到</div></div></div>
+<details class="steps"><summary>▸ 逐步操作详情（2 步，含判定截图）</summary><div class="op">
+<h3><span class="pill p-ok">通过</span> navigate</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260824T193352Z/discuss-kit/dd-4-detail-00.png" alt="navigate" loading="lazy"><figcaption>navigate</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：Direct navigation to https://discuss-kit.afsd.dev/posts/qa-tsweep-1787601304-deep-dive-test-post-ae9744 (URL-bound route post-detail) rendered correctly: detail-title=&quot;qa-tsweep-1787601304 deep-dive test post&quot;, Edit post/Delete post buttons present, detail-back (\u2190 All posts) link visible.</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> click</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260824T193352Z/discuss-kit/dd-4-detail-01.png" alt="click" loading="lazy"><figcaption>click</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：Clicked [data-aup-id=detail-back] (href=&quot;/posts&quot;, plain href not an AUP event per detail.yaml CAVEATS). Browser navigated to https://discuss-kit.afsd.dev/posts; board index rendered with 30 posts (postList), our QA post still present as the top row -- confirms detail-&gt;board navigation actually lands back on the live, correctly-populated board, not a blank/stale page.</div>
+
+
+</div></details>
+<details class="dbg"><summary>运行时 debug 上下文（全清）</summary><div class="dbg-none">Console 错误：<b>无</b></div><div class="dbg-none">JS 未捕获异常：<b>无</b></div><div class="dbg-none">网络错误（请求失败 / 4xx–5xx）：<b>无</b></div></details>
+</section><section id="path-dd-5-detail">
+<h2>read-flow: post detail (read) -&gt; post detail (editing) via detail-post-editor <span class="rt">authed · /posts/{slug}</span></h2>
+<p class="pdesc">写操作走查：7 步驱动此操作（其中 2 步为写），逐步引真实 DOM/文本/toast 为证。</p>
+<video class="video" controls preload="metadata" src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260824T193352Z/discuss-kit/page@3421002f098cb60da6994f434fdf812a.webm"><a href="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260824T193352Z/discuss-kit/page@3421002f098cb60da6994f434fdf812a.webm">下载该路径录像</a></video><p class="vcap">本测试路径整段走查录像</p>
+<div class="kpis"><div class="kpi"><div class="k">7</div><div class="l">操作步</div></div><div class="kpi"><div class="k">7</div><div class="l">通过</div></div><div class="kpi"><div class="k k-bad">0</div><div class="l">失败</div></div><div class="kpi"><div class="k k-warn">0</div><div class="l">不确定</div></div><div class="kpi"><div class="k">0</div><div class="l">未走到</div></div></div>
+<details class="steps"><summary>▸ 逐步操作详情（7 步，含判定截图）</summary><div class="op">
+<h3><span class="pill p-ok">通过</span> navigate</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260824T193352Z/discuss-kit/dd-5-detail-00.png" alt="navigate" loading="lazy"><figcaption>navigate</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：Direct navigation to our QA post detail (/posts/qa-tsweep-1787601304-deep-dive-test-post-ae9744) rendered read state: detail-title, detail-body, Edit post/Delete post buttons (mine=true).</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> click</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260824T193352Z/discuss-kit/dd-5-detail-01.png" alt="click" loading="lazy"><figcaption>click</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：THE DECLARED FLOW: clicked Edit post; detail-post-editor mounted its edit form inline via _aupShowFormOverlay (edit mode, always-mounted node per detail.yaml, not a modal toggle of a separate component) with fields PRE-FILLED from the live record: input value=&quot;qa-tsweep-1787601304 deep-dive test post&quot; (matches detail-title exactly), textarea value begins &quot;qa-tsweep-1787601304 body content for automated de...&quot; (matches detail-body), Write/Preview tabs, Save and Cancel buttons all present -- confirms the read-&gt;editing state transition genuinely reached edit mode pre-populated from state.meta/state.content, not an empty/broken form.</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> click</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260824T193352Z/discuss-kit/dd-5-detail-02.png" alt="click" loading="lazy"><figcaption>click</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：Clicked Cancel; edit overlay closed, page reverted to read state with detail-title/detail-body unchanged (&quot;qa-tsweep-1787601304 deep-dive test post&quot; / same body) -- confirms Cancel does not mutate the record, safe for a QA probe that must never persist an edit.</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> <span class="pill p-write">写</span>confirmClick</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260824T193352Z/discuss-kit/dd-5-detail-03.png" alt="confirmClick" loading="lazy"><figcaption>confirmClick</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：Cleanup step 1/2: confirmClick on Delete post matched the _aupShowConfirmOverlay confirmation layer (confirmed=true) and fired the delete; button briefly showed &quot;Deleting…&quot; loading state (_beginAupActionExec).</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> <span class="pill p-write">写</span>waitFor</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260824T193352Z/discuss-kit/dd-5-detail-04.png" alt="waitFor" loading="lazy"><figcaption>waitFor</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：Cleanup step 2/2: after the delete completed, page auto-navigated via __aupNavigate to https://discuss-kit.afsd.dev/posts; board reloaded to 29 posts (All 29, was All 30) -- the QA post is gone from the live list.</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> navigate</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260824T193352Z/discuss-kit/dd-5-detail-05.png" alt="navigate" loading="lazy"><figcaption>navigate</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：RESIDUE CHECK (fresh navigate, not just re-render): loaded https://discuss-kit.afsd.dev/posts as a new page.goto(); textHead contains no &quot;qa-tsweep&quot; anywhere; postList shows 29 posts, top row is the original &quot;The Power of Zero-Knowledge Proofs&quot; -- confirms zero qa-tsweep-* residue in the live board after cleanup.</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> navigate</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260824T193352Z/discuss-kit/dd-5-detail-06.png" alt="navigate" loading="lazy"><figcaption>navigate</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：RESIDUE CHECK 2 (adversarial): navigated directly to the deleted slug URL /posts/qa-tsweep-1787601304-deep-dive-test-post-ae9744; detail-not-found rendered &quot;Post not found.&quot;, detail-title/detail-body are empty -- confirms the record is actually gone server-side (propBind meta read resolved to falsy), not merely hidden from the list.</div>
+
+
+</div></details>
+<details class="dbg" open><summary>运行时 debug 上下文（3 条错误）</summary><div class="dbg-has"><b>Console 错误（1）</b><ul><li><code>Failed to load resource: the server responded with a status of 404 ()</code></li></ul></div><div class="dbg-none">JS 未捕获异常：<b>无</b></div><div class="dbg-has"><b>网络错误（请求失败 / 4xx–5xx）（2）</b><ul><li><code>✗ POST https://discuss-kit.afsd.dev/cdn-cgi/rum? — net::ERR_ABORTED</code></li><li><code>404 POST https://discuss-kit.afsd.dev/api/afs/rpc</code></li></ul></div></details>
+</section>
+<p class="sub" style="margin-top:22px">由 test-report-builder（build-agent-report）生成 · issue #1808</p>
+</div></body></html>
