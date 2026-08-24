@@ -290,3 +290,4 @@
 | 20260824-204054-dd-12-list-basic-live-01.png | https://github.com/ArcBlock/arc | 2026-08-24T20:40:54Z | root@vm |
 | 20260824-204100-dd-12-list-basic-live-02.png | https://github.com/ArcBlock/arc | 2026-08-24T20:41:00Z | root@vm |
 | 20260824-204104-dd-2-auto-surface-00.png | https://github.com/ArcBlock/arc | 2026-08-24T20:41:04Z | root@vm |
+| 20260824-204110-dd-2-auto-surface-01.png | https://github.com/ArcBlock/arc | 2026-08-24T20:41:10Z | root@vm |
