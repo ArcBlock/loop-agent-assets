@@ -284,3 +284,4 @@
 | 20260824-204027-dd-10-list-basic-grid-01.png | https://github.com/ArcBlock/arc | 2026-08-24T20:40:27Z | root@vm |
 | 20260824-204033-dd-10-list-basic-grid-02.png | https://github.com/ArcBlock/arc | 2026-08-24T20:40:33Z | root@vm |
 | 20260824-204038-dd-11-list-basic-virtual-00.png | https://github.com/ArcBlock/arc | 2026-08-24T20:40:38Z | root@vm |
+| 20260824-204041-dd-11-list-basic-virtual-01.png | https://github.com/ArcBlock/arc | 2026-08-24T20:40:41Z | root@vm |
