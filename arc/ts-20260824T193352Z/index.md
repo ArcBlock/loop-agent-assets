@@ -500,3 +500,4 @@
 | 20260824-205637-dd-10-aside-07.png | https://github.com/ArcBlock/arc | 2026-08-24T20:56:37Z | root@vm |
 | 20260824-205641-dd-11-aside-00.png | https://github.com/ArcBlock/arc | 2026-08-24T20:56:41Z | root@vm |
 | 20260824-205645-dd-11-aside-01.png | https://github.com/ArcBlock/arc | 2026-08-24T20:56:45Z | root@vm |
+| 20260824-205649-dd-11-aside-02.png | https://github.com/ArcBlock/arc | 2026-08-24T20:56:49Z | root@vm |
