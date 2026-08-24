@@ -448,3 +448,4 @@
 | 20260824-205310-cleanup-collection-aside-01.png | https://github.com/ArcBlock/arc | 2026-08-24T20:53:10Z | root@vm |
 | 20260824-205314-cleanup-collection-aside-02.png | https://github.com/ArcBlock/arc | 2026-08-24T20:53:14Z | root@vm |
 | 20260824-205318-cleanup-collection-aside-03.png | https://github.com/ArcBlock/arc | 2026-08-24T20:53:18Z | root@vm |
+| 20260824-205322-cleanup-collection-aside-04.png | https://github.com/ArcBlock/arc | 2026-08-24T20:53:22Z | root@vm |
