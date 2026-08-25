@@ -283,3 +283,4 @@
 | 20260825-205817-dd-2-auto-surface-07.png | https://github.com/ArcBlock/arc | 2026-08-25T20:58:17Z | root@vm |
 | 20260825-205821-dd-2-auto-surface-08.png | https://github.com/ArcBlock/arc | 2026-08-25T20:58:21Z | root@vm |
 | 20260825-205826-dd-2-auto-surface-09.png | https://github.com/ArcBlock/arc | 2026-08-25T20:58:26Z | root@vm |
+| 20260825-205830-dd-2-auto-surface-10.png | https://github.com/ArcBlock/arc | 2026-08-25T20:58:30Z | root@vm |
