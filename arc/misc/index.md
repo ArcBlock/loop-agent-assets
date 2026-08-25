@@ -147,3 +147,4 @@
 | arc/pr4976-726271e17/page@6e820d9ba1f142a7745d7b7207d9ab74.webm | https://github.com/ArcBlock/arc | 2026-08-24T18:16:31Z | robmao@Roberts-Mac-mini-M4-Pro-7 |
 | 20260825-055516-f11-peek.png | https://github.com/ArcBlock/arc | 2026-08-25T05:55:16Z | nategu@Nate-Mac-Pro |
 | 20260825-055529-f11-medium.png | https://github.com/ArcBlock/arc | 2026-08-25T05:55:29Z | nategu@Nate-Mac-Pro |
+| 20260825-055541-f11-large.png | https://github.com/ArcBlock/arc | 2026-08-25T05:55:41Z | nategu@Nate-Mac-Pro |
