@@ -20,3 +20,4 @@
 | 20260825-084925-w9-L0-unreadable-runlist.png | https://github.com/ArcBlock/arc/issues/4968 | 2026-08-25T08:49:25Z | chao@Yechaos-MacBook-Pro |
 | 20260825-152655-20260825-coldload-t6s-waiting.png | https://github.com/ArcBlock/arc/issues/4968 | 2026-08-25T15:26:55Z | chao@Yechaos-MacBook-Pro |
 | 20260825-152707-20260825-coldload-t20s-done.png | https://github.com/ArcBlock/arc/issues/4968 | 2026-08-25T15:27:07Z | chao@Yechaos-MacBook-Pro |
+| 20260825-235031-shot-anon.png | https://github.com/ArcBlock/arc/issues/4968 | 2026-08-25T23:50:31Z | chao@Yechaos-MacBook-Pro |
