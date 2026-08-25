@@ -26,3 +26,4 @@
 | 20260825-235101-shot-en.png | https://github.com/ArcBlock/arc/issues/4968 | 2026-08-25T23:51:01Z | chao@Yechaos-MacBook-Pro |
 | 20260825-235110-shot-theme-light.png | https://github.com/ArcBlock/arc/issues/4968 | 2026-08-25T23:51:10Z | chao@Yechaos-MacBook-Pro |
 | 20260825-235120-live-anon-current-main.png | https://github.com/ArcBlock/arc/issues/4968 | 2026-08-25T23:51:20Z | chao@Yechaos-MacBook-Pro |
+| 20260825-235130-live-auth-injected-header.png | https://github.com/ArcBlock/arc/issues/4968 | 2026-08-25T23:51:30Z | chao@Yechaos-MacBook-Pro |
