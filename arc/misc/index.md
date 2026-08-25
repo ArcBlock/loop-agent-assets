@@ -153,3 +153,4 @@
 | 20260825-055615-f11-back-button.png | https://github.com/ArcBlock/arc | 2026-08-25T05:56:15Z | nategu@Nate-Mac-Pro |
 | 20260825-150452-epic4968-L0-calendar-wall.png | https://github.com/ArcBlock/arc | 2026-08-25T15:04:52Z | chao@Yechaos-MacBook-Pro |
 | 20260825-150519-epic4968-toplight-landing.png | https://github.com/ArcBlock/arc | 2026-08-25T15:05:19Z | chao@Yechaos-MacBook-Pro |
+| 20260825-150529-epic4968-L2-target.png | https://github.com/ArcBlock/arc | 2026-08-25T15:05:29Z | chao@Yechaos-MacBook-Pro |
