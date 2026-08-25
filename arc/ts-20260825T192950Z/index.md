@@ -457,3 +457,4 @@
 | 20260825-211617-cleanup-1-24.png | https://github.com/ArcBlock/arc | 2026-08-25T21:16:17Z | root@vm |
 | 20260825-211621-cleanup-1-25.png | https://github.com/ArcBlock/arc | 2026-08-25T21:16:21Z | root@vm |
 | 20260825-211625-cleanup-1-26.png | https://github.com/ArcBlock/arc | 2026-08-25T21:16:25Z | root@vm |
+| 20260825-211630-clip-01.png | https://github.com/ArcBlock/arc | 2026-08-25T21:16:30Z | root@vm |
