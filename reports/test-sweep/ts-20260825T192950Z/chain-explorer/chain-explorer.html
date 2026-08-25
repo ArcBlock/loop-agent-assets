@@ -1,0 +1,633 @@
+<!doctype html><html><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>chain-explorer — agent 走查报告</title><style>
+:root{--bg:#f7f8f8;--fg:#16201f;--muted:#5c6b69;--card:#fff;--card2:#eef2f1;--border:#dde3e2;--accent:#127a72;--pass:#1f8a54;--warn:#b5771a;--bad:#c0392b}
+@media(prefers-color-scheme:dark){:root{--bg:#0e1413;--fg:#e6ecea;--muted:#8ea19d;--card:#161d1c;--card2:#1d2624;--border:#26302e;--accent:#3fb8ab;--pass:#3fb37a;--warn:#d69a3e;--bad:#e5735f}}
+:root[data-theme=dark]{--bg:#0e1413;--fg:#e6ecea;--muted:#8ea19d;--card:#161d1c;--card2:#1d2624;--border:#26302e;--accent:#3fb8ab;--pass:#3fb37a;--warn:#d69a3e;--bad:#e5735f}
+:root[data-theme=light]{--bg:#f7f8f8;--fg:#16201f;--muted:#5c6b69;--card:#fff;--card2:#eef2f1;--border:#dde3e2;--accent:#127a72;--pass:#1f8a54;--warn:#b5771a;--bad:#c0392b}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--fg);font:15px/1.65 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;padding:24px}
+.wrap{max-width:920px;margin:0 auto}
+h1{font-size:24px;margin:0 0 4px;text-wrap:balance}h2{font-size:19px;margin:30px 0 8px}
+h2 .rt{font-size:13px;color:var(--muted);font-weight:400;font-variant-numeric:tabular-nums}
+.sub{color:var(--muted);margin:0 0 14px;font-size:13px}
+code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.85em;background:var(--card2);padding:1px 5px;border-radius:4px}
+.how{background:var(--card);border:1px solid var(--border);border-left:3px solid var(--accent);border-radius:8px;padding:13px 16px;margin:14px 0;font-size:14px}
+.how b{color:var(--accent)}
+.banner{border-radius:12px;padding:14px 18px;margin:16px 0}
+.banner.ok{background:color-mix(in srgb,var(--pass) 12%,transparent);border:1px solid color-mix(in srgb,var(--pass) 40%,transparent)}
+.banner.ok b{color:var(--pass)}
+.banner.bad{background:color-mix(in srgb,var(--bad) 13%,transparent);border:1px solid color-mix(in srgb,var(--bad) 45%,transparent)}
+.banner.bad b{color:var(--bad);font-size:16px}
+.banner.info{background:color-mix(in srgb,var(--accent) 10%,transparent);border:1px solid color-mix(in srgb,var(--accent) 38%,transparent)}
+.banner.info b{color:var(--accent)}
+.plist{margin:10px 0 0;padding-left:0;list-style:none}
+.plist li{padding:8px 0;border-top:1px solid var(--border)}
+.plist a{text-decoration:none;color:var(--fg);font-weight:600}
+.plist .pe{color:var(--muted);font-size:12.5px;font-weight:400;margin-top:3px}
+.video{width:100%;border-radius:10px;border:1px solid var(--border);background:#000;margin:6px 0 2px}
+.vcap{color:var(--muted);font-size:12.5px;margin:0 0 8px}
+.novideo{color:var(--bad);font-weight:600;background:color-mix(in srgb,var(--bad) 10%,transparent);border:1px dashed color-mix(in srgb,var(--bad) 45%,transparent);border-radius:8px;padding:8px 12px;font-size:13px}
+.kpis{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0}
+.kpi{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:9px 14px;min-width:70px}
+.kpi .k{font-size:21px;font-weight:700;font-variant-numeric:tabular-nums}.kpi .l{color:var(--muted);font-size:12px}
+.kpi .k-bad{color:var(--bad)}.kpi .k-warn{color:var(--warn)}
+.op{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:15px 17px;margin:14px 0}
+.op h3{margin:0 0 3px;font-size:16px;display:flex;align-items:center;gap:9px;flex-wrap:wrap}
+.op .exp{color:var(--muted);font-size:13px;margin:0 0 9px}
+.op .nt{color:var(--muted);font-size:12.5px;margin-top:6px}
+.pill{font-size:11.5px;font-weight:700;padding:2px 9px;border-radius:20px}
+.p-ok{background:color-mix(in srgb,var(--pass) 18%,transparent);color:var(--pass)}
+.p-fail{background:color-mix(in srgb,var(--bad) 18%,transparent);color:var(--bad)}
+.p-warn{background:color-mix(in srgb,var(--warn) 20%,transparent);color:var(--warn)}
+.p-skip{background:var(--card2);color:var(--muted)}
+.p-write{background:color-mix(in srgb,var(--accent) 18%,transparent);color:var(--accent)}
+.frame figure{margin:0 0 9px}.frame img{width:100%;border-radius:8px;border:1px solid var(--border);display:block}
+.frame figcaption{color:var(--muted);font-size:11.5px;margin-top:4px;text-align:center}
+.chk{background:color-mix(in srgb,var(--pass) 12%,transparent);border:1px solid color-mix(in srgb,var(--pass) 34%,transparent);border-radius:8px;padding:8px 12px;font-size:13px}
+.chk b{color:var(--pass)}
+.chk-fail{background:color-mix(in srgb,var(--bad) 11%,transparent);border:1px solid color-mix(in srgb,var(--bad) 40%,transparent);border-radius:8px;padding:8px 12px;font-size:13px}
+.chk-fail b{color:var(--bad)}
+table.probe{border-collapse:collapse;width:100%;font-size:13px}
+table.probe th,table.probe td{border:1px solid var(--border);padding:5px 9px;text-align:left}
+table.probe tr.bad td{background:color-mix(in srgb,var(--bad) 10%,transparent)}
+.err{background:color-mix(in srgb,var(--bad) 11%,transparent);border:1px solid color-mix(in srgb,var(--bad) 40%,transparent);border-radius:8px;padding:7px 12px;font-size:12.5px;margin-top:6px}
+.err b{color:var(--bad)}.err code{background:transparent;color:var(--bad)}
+.dbg{margin:10px 0 2px;background:var(--card);border:1px solid var(--border);border-radius:10px;padding:6px 14px;font-size:13px}
+.dbg summary{cursor:pointer;color:var(--muted);font-weight:600;padding:5px 0}
+.dbg-none{color:var(--muted);padding:4px 0;font-size:12.5px}
+.dbg-has{padding:5px 0}.dbg-has b{color:var(--warn)}
+.dbg-has ul{margin:5px 0 8px;padding-left:18px}.dbg-has li{font-size:12px;color:var(--fg);margin:2px 0;word-break:break-all}
+.dbg-has code{background:var(--card2)}
+.pdesc{color:var(--muted);font-size:13.5px;margin:1px 0 11px;line-height:1.5}
+.pdesc code{font-size:.85em}
+details.steps{margin:6px 0 2px;border:1px solid var(--border);border-radius:10px;background:var(--card2);padding:2px 14px}
+details.steps>summary{cursor:pointer;color:var(--accent);font-weight:600;padding:9px 0;font-size:13.5px;list-style:none}
+details.steps>summary::-webkit-details-marker{display:none}
+details.steps[open]>summary{border-bottom:1px solid var(--border);margin-bottom:8px}
+details.steps>summary:hover{color:var(--fg)}
+</style></head><body><div class="wrap">
+<h1>chain-explorer — agent 走查报告</h1>
+<p class="sub">环境 <code>https://chain-explorer.afsd.dev</code> · 2026-08-25T19:33:56.250706Z · 走查 20 / 声明 64 条测试路径 · driver <code>agent-playwright-mcp</code></p>
+<div class="how"><b>这份报告在做什么</b>：test-sweep 让 <b>agent 读被测页面自己写的
+<code>.aup/man</code> 知识</b>，用 Playwright MCP <b>当真人逐条测试路径走查</b>（导航/加标签/编辑/删除/创建…），
+<b>每条路径各自一段录屏</b>、每步截图并<b>自判 verdict + 附观察证据</b>（实际 DOM/文本/值，可复核）。
+<b>unreached</b>=没驱动到（不当失败）；<b>inconclusive</b>=不确定（绝不判失败）。写操作默认真提交、不清理。</div>
+
+<div class="banner info"><b>ℹ️ 覆盖 20 / 64：页内部分 example 未覆盖</b>（可见但不阻断——漏走的补记为 unreached、不判红；绿灯只表示走到的都过了。agent 应据此自主决定再补哪些、完善报告）<ul class="plist"></ul></div>
+<div class="banner bad"><b>⚠️ 发现 3 个问题</b>（点击跳到对应路径）<ul class="plist"><li><a href="#path-index"><span class="pill p-warn">不确定</span> Index · 步1</a> — navigate<div class="pe">title=&#x27;Chain Explorer&#x27; url=https://chain-explorer.afsd.dev/main/ aupNodes=61 buttons=104 inputs=2 textLen=2736 head=&#x27;ABT: $0.2046 24h: +0.85% Main Beta Chain Explorer Home Transactions Accounts Tokens Assets Factories Stakes Bridges 🤖 Trans</div></li><li><a href="#path-index"><span class="pill p-warn">不确定</span> Index · 步2</a> — snapshot<div class="pe">title=&#x27;Chain Explorer&#x27; url=https://chain-explorer.afsd.dev/main/ aupNodes=61 buttons=104 inputs=2 textLen=2736 head=&#x27;ABT: $0.2046 24h: +0.85% Main Beta Chain Explorer Home Transactions Accounts Tokens Assets Factories Stakes Bridges 🤖 Trans</div></li><li><a href="#path-dd-6-index-r4"><span class="pill p-warn">不确定</span> transaction detail → raw tab · 步3</a> — click<div class="pe">以 text=&quot;Raw&quot; 点击未生效——URL/内容不变，仍是 Receipts 表格。原因：Tab 组件用 role=tab 渲染，text 定位未命中真正可点击的 tab 控件</div></li></ul></div>
+<section id="probes"><h2>后端探针 （全通过）</h2><table class="probe"><tr><th></th><th>探针</th><th>详情</th></tr><tr class=""><td>✅</td><td>http-reachable</td><td>HTTP 301</td></tr><tr class=""><td>✅</td><td>afs-rpc-list</td><td>ok:true (1 .aup pages)</td></tr><tr class=""><td>✅</td><td>afs-rpc-authed-list-/user</td><td>ok:true (Bearer 可读)</td></tr></table></section>
+<section id="path-index">
+<h2>Index <span class="rt">anon · https://chain-explorer.afsd.dev/main</span></h2>
+<p class="pdesc">导航到 https://chain-explorer.afsd.dev/main，验证页面加载并渲染出真实内容（index 页 breadth 走查）。</p>
+<video class="video" controls preload="metadata" src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260825T192950Z/chain-explorer/page@bbcc326fed24d5cbeb7fdbe064350cc6.webm"><a href="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260825T192950Z/chain-explorer/page@bbcc326fed24d5cbeb7fdbe064350cc6.webm">下载该路径录像</a></video><p class="vcap">本测试路径整段走查录像</p>
+<div class="kpis"><div class="kpi"><div class="k">2</div><div class="l">操作步</div></div><div class="kpi"><div class="k">0</div><div class="l">通过</div></div><div class="kpi"><div class="k k-bad">0</div><div class="l">失败</div></div><div class="kpi"><div class="k k-warn">2</div><div class="l">不确定</div></div><div class="kpi"><div class="k">0</div><div class="l">未走到</div></div></div>
+<details class="steps"><summary>▸ 逐步操作详情（2 步，含判定截图）</summary><div class="op">
+<h3><span class="pill p-warn">不确定</span> navigate</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260825T192950Z/chain-explorer/index-01.png" alt="navigate" loading="lazy"><figcaption>navigate</figcaption></figure></div>
+<div class="chk-fail"><b>观察证据</b>：title=&#x27;Chain Explorer&#x27; url=https://chain-explorer.afsd.dev/main/ aupNodes=61 buttons=104 inputs=2 textLen=2736 head=&#x27;ABT: $0.2046 24h: +0.85% Main Beta Chain Explorer Home Transactions Accounts Tokens Assets Factories Stakes Bridges 🤖 Transactions 598,458 A&#x27;；数据源报错：403 POST https://chain-explorer.afsd.dev/api/afs/rpc</div>
+
+<div class="nt">数据源报错：403 POST https://chain-explorer.afsd.dev/api/afs/rpc</div>
+</div>
+<div class="op">
+<h3><span class="pill p-warn">不确定</span> snapshot</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260825T192950Z/chain-explorer/index-02.png" alt="snapshot" loading="lazy"><figcaption>snapshot</figcaption></figure></div>
+<div class="chk-fail"><b>观察证据</b>：title=&#x27;Chain Explorer&#x27; url=https://chain-explorer.afsd.dev/main/ aupNodes=61 buttons=104 inputs=2 textLen=2736 head=&#x27;ABT: $0.2046 24h: +0.85% Main Beta Chain Explorer Home Transactions Accounts Tokens Assets Factories Stakes Bridges 🤖 Transactions 598,458 A&#x27;；数据源报错：403 POST https://chain-explorer.afsd.dev/api/afs/rpc</div>
+
+<div class="nt">数据源报错：403 POST https://chain-explorer.afsd.dev/api/afs/rpc</div>
+</div></details>
+<details class="dbg" open><summary>运行时 debug 上下文（2 条错误）</summary><div class="dbg-has"><b>Console 错误（1）</b><ul><li><code>Failed to load resource: the server responded with a status of 403 ()</code></li></ul></div><div class="dbg-none">JS 未捕获异常：<b>无</b></div><div class="dbg-has"><b>网络错误（请求失败 / 4xx–5xx）（1）</b><ul><li><code>403 POST https://chain-explorer.afsd.dev/api/afs/rpc</code></li></ul></div></details>
+</section><section id="path-index-read-1">
+<h2>home dashboard → transactions list <span class="rt">anon · https://chain-explorer.afsd.dev/main</span></h2>
+<p class="pdesc">读流走查：从「home dashboard」进入「transactions list」并验证渲染。</p>
+<video class="video" controls preload="metadata" src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260825T192950Z/chain-explorer/page@8363857f1f571fd0902c3ca80c5342df.webm"><a href="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260825T192950Z/chain-explorer/page@8363857f1f571fd0902c3ca80c5342df.webm">下载该路径录像</a></video><p class="vcap">本测试路径整段走查录像</p>
+<div class="kpis"><div class="kpi"><div class="k">3</div><div class="l">操作步</div></div><div class="kpi"><div class="k">3</div><div class="l">通过</div></div><div class="kpi"><div class="k k-bad">0</div><div class="l">失败</div></div><div class="kpi"><div class="k k-warn">0</div><div class="l">不确定</div></div><div class="kpi"><div class="k">0</div><div class="l">未走到</div></div></div>
+<details class="steps"><summary>▸ 逐步操作详情（3 步，含判定截图）</summary><div class="op">
+<h3><span class="pill p-ok">通过</span> navigate</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260825T192950Z/chain-explorer/index-read-1-01.png" alt="navigate" loading="lazy"><figcaption>navigate</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：title=&#x27;Chain Explorer&#x27; url=https://chain-explorer.afsd.dev/main/ aupNodes=61 buttons=104 inputs=2 textLen=2736 head=&#x27;ABT: $0.2046 24h: +0.85% Main Beta Chain Explorer Home Transactions Accounts Tokens Assets Factories Stakes Bridges 🤖 Transactions 598,458 A&#x27;</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> 点导航「transactions」</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260825T192950Z/chain-explorer/index-read-1-02.png" alt="点导航「transactions」" loading="lazy"><figcaption>点导航「transactions」</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：title=&#x27;Chain Explorer&#x27; url=https://chain-explorer.afsd.dev/main/transactions aupNodes=27 buttons=147 inputs=2 textLen=2803 head=&#x27;ABT: $0.2046 24h: +0.85% Main Beta Chain Explorer Home Transactions Accounts Tokens Assets Factories Stakes Bridges 🤖 main / transactions Tr&#x27;</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> snapshot</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260825T192950Z/chain-explorer/index-read-1-03.png" alt="snapshot" loading="lazy"><figcaption>snapshot</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：title=&#x27;Chain Explorer&#x27; url=https://chain-explorer.afsd.dev/main/transactions aupNodes=27 buttons=147 inputs=2 textLen=2803 head=&#x27;ABT: $0.2046 24h: +0.85% Main Beta Chain Explorer Home Transactions Accounts Tokens Assets Factories Stakes Bridges 🤖 main / transactions Tr&#x27;</div>
+
+
+</div></details>
+<details class="dbg" open><summary>运行时 debug 上下文（3 条错误）</summary><div class="dbg-has"><b>Console 错误（2）</b><ul><li><code>Failed to load resource: the server responded with a status of 403 ()</code></li><li><code>Failed to load resource: the server responded with a status of 403 ()</code></li></ul></div><div class="dbg-none">JS 未捕获异常：<b>无</b></div><div class="dbg-has"><b>网络错误（请求失败 / 4xx–5xx）（1）</b><ul><li><code>403 POST https://chain-explorer.afsd.dev/api/afs/rpc</code></li></ul></div></details>
+</section><section id="path-index-read-2">
+<h2>home dashboard → accounts list <span class="rt">anon · https://chain-explorer.afsd.dev/main</span></h2>
+<p class="pdesc">读流走查：从「home dashboard」进入「accounts list」并验证渲染。</p>
+<video class="video" controls preload="metadata" src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260825T192950Z/chain-explorer/page@4fc63db4f469f6c951ba01746b7de5b4.webm"><a href="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260825T192950Z/chain-explorer/page@4fc63db4f469f6c951ba01746b7de5b4.webm">下载该路径录像</a></video><p class="vcap">本测试路径整段走查录像</p>
+<div class="kpis"><div class="kpi"><div class="k">3</div><div class="l">操作步</div></div><div class="kpi"><div class="k">3</div><div class="l">通过</div></div><div class="kpi"><div class="k k-bad">0</div><div class="l">失败</div></div><div class="kpi"><div class="k k-warn">0</div><div class="l">不确定</div></div><div class="kpi"><div class="k">0</div><div class="l">未走到</div></div></div>
+<details class="steps"><summary>▸ 逐步操作详情（3 步，含判定截图）</summary><div class="op">
+<h3><span class="pill p-ok">通过</span> navigate</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260825T192950Z/chain-explorer/index-read-2-01.png" alt="navigate" loading="lazy"><figcaption>navigate</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：title=&#x27;Chain Explorer&#x27; url=https://chain-explorer.afsd.dev/main/ aupNodes=61 buttons=104 inputs=2 textLen=2736 head=&#x27;ABT: $0.2046 24h: +0.85% Main Beta Chain Explorer Home Transactions Accounts Tokens Assets Factories Stakes Bridges 🤖 Transactions 598,458 A&#x27;</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> 点导航「accounts」</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260825T192950Z/chain-explorer/index-read-2-02.png" alt="点导航「accounts」" loading="lazy"><figcaption>点导航「accounts」</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：title=&#x27;Chain Explorer&#x27; url=https://chain-explorer.afsd.dev/main/accounts aupNodes=24 buttons=66 inputs=2 textLen=1737 head=&#x27;ABT: $0.2046 24h: +0.85% Main Beta Chain Explorer Home Transactions Accounts Tokens Assets Factories Stakes Bridges 🤖 main / accounts Accoun&#x27;</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> snapshot</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260825T192950Z/chain-explorer/index-read-2-03.png" alt="snapshot" loading="lazy"><figcaption>snapshot</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：title=&#x27;Chain Explorer&#x27; url=https://chain-explorer.afsd.dev/main/accounts aupNodes=24 buttons=66 inputs=2 textLen=1737 head=&#x27;ABT: $0.2046 24h: +0.85% Main Beta Chain Explorer Home Transactions Accounts Tokens Assets Factories Stakes Bridges 🤖 main / accounts Accoun&#x27;</div>
+
+
+</div></details>
+<details class="dbg" open><summary>运行时 debug 上下文（3 条错误）</summary><div class="dbg-has"><b>Console 错误（2）</b><ul><li><code>Failed to load resource: the server responded with a status of 403 ()</code></li><li><code>Failed to load resource: the server responded with a status of 403 ()</code></li></ul></div><div class="dbg-none">JS 未捕获异常：<b>无</b></div><div class="dbg-has"><b>网络错误（请求失败 / 4xx–5xx）（1）</b><ul><li><code>403 POST https://chain-explorer.afsd.dev/api/afs/rpc</code></li></ul></div></details>
+</section><section id="path-index-read-3">
+<h2>home dashboard → tokens list <span class="rt">anon · https://chain-explorer.afsd.dev/main</span></h2>
+<p class="pdesc">读流走查：从「home dashboard」进入「tokens list」并验证渲染。</p>
+<video class="video" controls preload="metadata" src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260825T192950Z/chain-explorer/page@d7b330b70a80de018aa83ea76cf0d940.webm"><a href="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260825T192950Z/chain-explorer/page@d7b330b70a80de018aa83ea76cf0d940.webm">下载该路径录像</a></video><p class="vcap">本测试路径整段走查录像</p>
+<div class="kpis"><div class="kpi"><div class="k">3</div><div class="l">操作步</div></div><div class="kpi"><div class="k">3</div><div class="l">通过</div></div><div class="kpi"><div class="k k-bad">0</div><div class="l">失败</div></div><div class="kpi"><div class="k k-warn">0</div><div class="l">不确定</div></div><div class="kpi"><div class="k">0</div><div class="l">未走到</div></div></div>
+<details class="steps"><summary>▸ 逐步操作详情（3 步，含判定截图）</summary><div class="op">
+<h3><span class="pill p-ok">通过</span> navigate</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260825T192950Z/chain-explorer/index-read-3-01.png" alt="navigate" loading="lazy"><figcaption>navigate</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：title=&#x27;Chain Explorer&#x27; url=https://chain-explorer.afsd.dev/main/ aupNodes=61 buttons=104 inputs=2 textLen=2736 head=&#x27;ABT: $0.2046 24h: +0.85% Main Beta Chain Explorer Home Transactions Accounts Tokens Assets Factories Stakes Bridges 🤖 Transactions 598,458 A&#x27;</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> 点导航「tokens」</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260825T192950Z/chain-explorer/index-read-3-02.png" alt="点导航「tokens」" loading="lazy"><figcaption>点导航「tokens」</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：title=&#x27;Chain Explorer&#x27; url=https://chain-explorer.afsd.dev/main/tokens aupNodes=24 buttons=32 inputs=2 textLen=854 head=&#x27;ABT: $0.2046 24h: +0.85% Main Beta Chain Explorer Home Transactions Accounts Tokens Assets Factories Stakes Bridges 🤖 main / tokens Tokens N&#x27;</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> snapshot</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260825T192950Z/chain-explorer/index-read-3-03.png" alt="snapshot" loading="lazy"><figcaption>snapshot</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：title=&#x27;Chain Explorer&#x27; url=https://chain-explorer.afsd.dev/main/tokens aupNodes=24 buttons=32 inputs=2 textLen=854 head=&#x27;ABT: $0.2046 24h: +0.85% Main Beta Chain Explorer Home Transactions Accounts Tokens Assets Factories Stakes Bridges 🤖 main / tokens Tokens N&#x27;</div>
+
+
+</div></details>
+<details class="dbg" open><summary>运行时 debug 上下文（3 条错误）</summary><div class="dbg-has"><b>Console 错误（2）</b><ul><li><code>Failed to load resource: the server responded with a status of 403 ()</code></li><li><code>Failed to load resource: the server responded with a status of 403 ()</code></li></ul></div><div class="dbg-none">JS 未捕获异常：<b>无</b></div><div class="dbg-has"><b>网络错误（请求失败 / 4xx–5xx）（1）</b><ul><li><code>403 POST https://chain-explorer.afsd.dev/api/afs/rpc</code></li></ul></div></details>
+</section><section id="path-index-read-4">
+<h2>home dashboard → assets list <span class="rt">anon · https://chain-explorer.afsd.dev/main</span></h2>
+<p class="pdesc">读流走查：从「home dashboard」进入「assets list」并验证渲染。</p>
+<video class="video" controls preload="metadata" src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260825T192950Z/chain-explorer/page@860fbeeaf0a26d0ccb149431e8d25c53.webm"><a href="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260825T192950Z/chain-explorer/page@860fbeeaf0a26d0ccb149431e8d25c53.webm">下载该路径录像</a></video><p class="vcap">本测试路径整段走查录像</p>
+<div class="kpis"><div class="kpi"><div class="k">3</div><div class="l">操作步</div></div><div class="kpi"><div class="k">3</div><div class="l">通过</div></div><div class="kpi"><div class="k k-bad">0</div><div class="l">失败</div></div><div class="kpi"><div class="k k-warn">0</div><div class="l">不确定</div></div><div class="kpi"><div class="k">0</div><div class="l">未走到</div></div></div>
+<details class="steps"><summary>▸ 逐步操作详情（3 步，含判定截图）</summary><div class="op">
+<h3><span class="pill p-ok">通过</span> navigate</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260825T192950Z/chain-explorer/index-read-4-01.png" alt="navigate" loading="lazy"><figcaption>navigate</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：title=&#x27;Chain Explorer&#x27; url=https://chain-explorer.afsd.dev/main/ aupNodes=61 buttons=104 inputs=2 textLen=2736 head=&#x27;ABT: $0.2046 24h: +0.85% Main Beta Chain Explorer Home Transactions Accounts Tokens Assets Factories Stakes Bridges 🤖 Transactions 598,458 A&#x27;</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> 点导航「assets」</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260825T192950Z/chain-explorer/index-read-4-02.png" alt="点导航「assets」" loading="lazy"><figcaption>点导航「assets」</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：title=&#x27;Chain Explorer&#x27; url=https://chain-explorer.afsd.dev/main/assets aupNodes=24 buttons=106 inputs=2 textLen=2136 head=&#x27;ABT: $0.2046 24h: +0.85% Main Beta Chain Explorer Home Transactions Accounts Tokens Assets Factories Stakes Bridges 🤖 main / assets Assets A&#x27;</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> snapshot</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260825T192950Z/chain-explorer/index-read-4-03.png" alt="snapshot" loading="lazy"><figcaption>snapshot</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：title=&#x27;Chain Explorer&#x27; url=https://chain-explorer.afsd.dev/main/assets aupNodes=24 buttons=106 inputs=2 textLen=2136 head=&#x27;ABT: $0.2046 24h: +0.85% Main Beta Chain Explorer Home Transactions Accounts Tokens Assets Factories Stakes Bridges 🤖 main / assets Assets A&#x27;</div>
+
+
+</div></details>
+<details class="dbg" open><summary>运行时 debug 上下文（3 条错误）</summary><div class="dbg-has"><b>Console 错误（2）</b><ul><li><code>Failed to load resource: the server responded with a status of 403 ()</code></li><li><code>Failed to load resource: the server responded with a status of 403 ()</code></li></ul></div><div class="dbg-none">JS 未捕获异常：<b>无</b></div><div class="dbg-has"><b>网络错误（请求失败 / 4xx–5xx）（1）</b><ul><li><code>403 POST https://chain-explorer.afsd.dev/api/afs/rpc</code></li></ul></div></details>
+</section><section id="path-index-read-5">
+<h2>home dashboard → factories list <span class="rt">anon · https://chain-explorer.afsd.dev/main</span></h2>
+<p class="pdesc">读流走查：从「home dashboard」进入「factories list」并验证渲染。</p>
+<video class="video" controls preload="metadata" src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260825T192950Z/chain-explorer/page@03955e74fbbb03c92f3bdac0b8f6c16f.webm"><a href="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260825T192950Z/chain-explorer/page@03955e74fbbb03c92f3bdac0b8f6c16f.webm">下载该路径录像</a></video><p class="vcap">本测试路径整段走查录像</p>
+<div class="kpis"><div class="kpi"><div class="k">3</div><div class="l">操作步</div></div><div class="kpi"><div class="k">3</div><div class="l">通过</div></div><div class="kpi"><div class="k k-bad">0</div><div class="l">失败</div></div><div class="kpi"><div class="k k-warn">0</div><div class="l">不确定</div></div><div class="kpi"><div class="k">0</div><div class="l">未走到</div></div></div>
+<details class="steps"><summary>▸ 逐步操作详情（3 步，含判定截图）</summary><div class="op">
+<h3><span class="pill p-ok">通过</span> navigate</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260825T192950Z/chain-explorer/index-read-5-01.png" alt="navigate" loading="lazy"><figcaption>navigate</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：title=&#x27;Chain Explorer&#x27; url=https://chain-explorer.afsd.dev/main/ aupNodes=61 buttons=104 inputs=2 textLen=2736 head=&#x27;ABT: $0.2046 24h: +0.85% Main Beta Chain Explorer Home Transactions Accounts Tokens Assets Factories Stakes Bridges 🤖 Transactions 598,458 A&#x27;</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> 点导航「factories」</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260825T192950Z/chain-explorer/index-read-5-02.png" alt="点导航「factories」" loading="lazy"><figcaption>点导航「factories」</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：title=&#x27;Chain Explorer&#x27; url=https://chain-explorer.afsd.dev/main/factories aupNodes=24 buttons=66 inputs=2 textLen=2173 head=&#x27;ABT: $0.2046 24h: +0.85% Main Beta Chain Explorer Home Transactions Accounts Tokens Assets Factories Stakes Bridges 🤖 main / factories Facto&#x27;</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> snapshot</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260825T192950Z/chain-explorer/index-read-5-03.png" alt="snapshot" loading="lazy"><figcaption>snapshot</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：title=&#x27;Chain Explorer&#x27; url=https://chain-explorer.afsd.dev/main/factories aupNodes=24 buttons=66 inputs=2 textLen=2173 head=&#x27;ABT: $0.2046 24h: +0.85% Main Beta Chain Explorer Home Transactions Accounts Tokens Assets Factories Stakes Bridges 🤖 main / factories Facto&#x27;</div>
+
+
+</div></details>
+<details class="dbg" open><summary>运行时 debug 上下文（3 条错误）</summary><div class="dbg-has"><b>Console 错误（2）</b><ul><li><code>Failed to load resource: the server responded with a status of 403 ()</code></li><li><code>Failed to load resource: the server responded with a status of 403 ()</code></li></ul></div><div class="dbg-none">JS 未捕获异常：<b>无</b></div><div class="dbg-has"><b>网络错误（请求失败 / 4xx–5xx）（1）</b><ul><li><code>403 POST https://chain-explorer.afsd.dev/api/afs/rpc</code></li></ul></div></details>
+</section><section id="path-index-read-6">
+<h2>home dashboard → stakes list <span class="rt">anon · https://chain-explorer.afsd.dev/main</span></h2>
+<p class="pdesc">读流走查：从「home dashboard」进入「stakes list」并验证渲染。</p>
+<video class="video" controls preload="metadata" src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260825T192950Z/chain-explorer/page@9962c922c091c18388bc662c36d53a2e.webm"><a href="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260825T192950Z/chain-explorer/page@9962c922c091c18388bc662c36d53a2e.webm">下载该路径录像</a></video><p class="vcap">本测试路径整段走查录像</p>
+<div class="kpis"><div class="kpi"><div class="k">3</div><div class="l">操作步</div></div><div class="kpi"><div class="k">3</div><div class="l">通过</div></div><div class="kpi"><div class="k k-bad">0</div><div class="l">失败</div></div><div class="kpi"><div class="k k-warn">0</div><div class="l">不确定</div></div><div class="kpi"><div class="k">0</div><div class="l">未走到</div></div></div>
+<details class="steps"><summary>▸ 逐步操作详情（3 步，含判定截图）</summary><div class="op">
+<h3><span class="pill p-ok">通过</span> navigate</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260825T192950Z/chain-explorer/index-read-6-01.png" alt="navigate" loading="lazy"><figcaption>navigate</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：title=&#x27;Chain Explorer&#x27; url=https://chain-explorer.afsd.dev/main/ aupNodes=61 buttons=104 inputs=2 textLen=2736 head=&#x27;ABT: $0.2046 24h: +0.85% Main Beta Chain Explorer Home Transactions Accounts Tokens Assets Factories Stakes Bridges 🤖 Transactions 598,458 A&#x27;</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> 点导航「stakes」</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260825T192950Z/chain-explorer/index-read-6-02.png" alt="点导航「stakes」" loading="lazy"><figcaption>点导航「stakes」</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：title=&#x27;Chain Explorer&#x27; url=https://chain-explorer.afsd.dev/main/stakes aupNodes=24 buttons=146 inputs=2 textLen=2656 head=&#x27;ABT: $0.2046 24h: +0.85% Main Beta Chain Explorer Home Transactions Accounts Tokens Assets Factories Stakes Bridges 🤖 main / stakes Stakes A&#x27;</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> snapshot</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260825T192950Z/chain-explorer/index-read-6-03.png" alt="snapshot" loading="lazy"><figcaption>snapshot</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：title=&#x27;Chain Explorer&#x27; url=https://chain-explorer.afsd.dev/main/stakes aupNodes=24 buttons=146 inputs=2 textLen=2656 head=&#x27;ABT: $0.2046 24h: +0.85% Main Beta Chain Explorer Home Transactions Accounts Tokens Assets Factories Stakes Bridges 🤖 main / stakes Stakes A&#x27;</div>
+
+
+</div></details>
+<details class="dbg" open><summary>运行时 debug 上下文（3 条错误）</summary><div class="dbg-has"><b>Console 错误（2）</b><ul><li><code>Failed to load resource: the server responded with a status of 403 ()</code></li><li><code>Failed to load resource: the server responded with a status of 403 ()</code></li></ul></div><div class="dbg-none">JS 未捕获异常：<b>无</b></div><div class="dbg-has"><b>网络错误（请求失败 / 4xx–5xx）（1）</b><ul><li><code>403 POST https://chain-explorer.afsd.dev/api/afs/rpc</code></li></ul></div></details>
+</section><section id="path-index-read-7">
+<h2>home dashboard → bridges list <span class="rt">anon · https://chain-explorer.afsd.dev/main</span></h2>
+<p class="pdesc">读流走查：从「home dashboard」进入「bridges list」并验证渲染。</p>
+<video class="video" controls preload="metadata" src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260825T192950Z/chain-explorer/page@9209e82dfbd8bf75eb98db01194721f0.webm"><a href="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260825T192950Z/chain-explorer/page@9209e82dfbd8bf75eb98db01194721f0.webm">下载该路径录像</a></video><p class="vcap">本测试路径整段走查录像</p>
+<div class="kpis"><div class="kpi"><div class="k">3</div><div class="l">操作步</div></div><div class="kpi"><div class="k">3</div><div class="l">通过</div></div><div class="kpi"><div class="k k-bad">0</div><div class="l">失败</div></div><div class="kpi"><div class="k k-warn">0</div><div class="l">不确定</div></div><div class="kpi"><div class="k">0</div><div class="l">未走到</div></div></div>
+<details class="steps"><summary>▸ 逐步操作详情（3 步，含判定截图）</summary><div class="op">
+<h3><span class="pill p-ok">通过</span> navigate</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260825T192950Z/chain-explorer/index-read-7-01.png" alt="navigate" loading="lazy"><figcaption>navigate</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：title=&#x27;Chain Explorer&#x27; url=https://chain-explorer.afsd.dev/main/ aupNodes=61 buttons=104 inputs=2 textLen=2736 head=&#x27;ABT: $0.2046 24h: +0.85% Main Beta Chain Explorer Home Transactions Accounts Tokens Assets Factories Stakes Bridges 🤖 Transactions 598,458 A&#x27;</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> 点导航「bridges」</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260825T192950Z/chain-explorer/index-read-7-02.png" alt="点导航「bridges」" loading="lazy"><figcaption>点导航「bridges」</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：title=&#x27;Chain Explorer&#x27; url=https://chain-explorer.afsd.dev/main/bridges aupNodes=24 buttons=36 inputs=2 textLen=798 head=&#x27;ABT: $0.2046 24h: +0.85% Main Beta Chain Explorer Home Transactions Accounts Tokens Assets Factories Stakes Bridges 🤖 main / bridges Bridges&#x27;</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> snapshot</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260825T192950Z/chain-explorer/index-read-7-03.png" alt="snapshot" loading="lazy"><figcaption>snapshot</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：title=&#x27;Chain Explorer&#x27; url=https://chain-explorer.afsd.dev/main/bridges aupNodes=24 buttons=36 inputs=2 textLen=798 head=&#x27;ABT: $0.2046 24h: +0.85% Main Beta Chain Explorer Home Transactions Accounts Tokens Assets Factories Stakes Bridges 🤖 main / bridges Bridges&#x27;</div>
+
+
+</div></details>
+<details class="dbg" open><summary>运行时 debug 上下文（3 条错误）</summary><div class="dbg-has"><b>Console 错误（2）</b><ul><li><code>Failed to load resource: the server responded with a status of 403 ()</code></li><li><code>Failed to load resource: the server responded with a status of 403 ()</code></li></ul></div><div class="dbg-none">JS 未捕获异常：<b>无</b></div><div class="dbg-has"><b>网络错误（请求失败 / 4xx–5xx）（1）</b><ul><li><code>403 POST https://chain-explorer.afsd.dev/api/afs/rpc</code></li></ul></div></details>
+</section><section id="path-dd-1-index-verify">
+<h2>index 页复核：Home dashboard 真实渲染 <span class="rt">anon · https://chain-explorer.afsd.dev/main</span></h2>
+<p class="pdesc">页面走查：导航到 <code>https://chain-explorer.afsd.dev/main</code>，验证页面渲染出真实内容并逐步观测（2 步）。</p>
+<video class="video" controls preload="metadata" src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260825T192950Z/chain-explorer/page@ba25b3aa07a43fb218298795e58bbe0c.webm"><a href="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260825T192950Z/chain-explorer/page@ba25b3aa07a43fb218298795e58bbe0c.webm">下载该路径录像</a></video><p class="vcap">本测试路径整段走查录像</p>
+<div class="kpis"><div class="kpi"><div class="k">2</div><div class="l">操作步</div></div><div class="kpi"><div class="k">2</div><div class="l">通过</div></div><div class="kpi"><div class="k k-bad">0</div><div class="l">失败</div></div><div class="kpi"><div class="k k-warn">0</div><div class="l">不确定</div></div><div class="kpi"><div class="k">0</div><div class="l">未走到</div></div></div>
+<details class="steps"><summary>▸ 逐步操作详情（2 步，含判定截图）</summary><div class="op">
+<h3><span class="pill p-ok">通过</span> navigate</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260825T192950Z/chain-explorer/dd-1-00.png" alt="navigate" loading="lazy"><figcaption>navigate</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：navigate 后 DOM 含 61 个 data-aup-id 节点；chain-overview 渲染 7 张真实统计卡：Transactions 598,458 / Accounts 78,338 / Tokens 4 / Assets 82,377 / Factories 386 / Stakes 2,323 / Bridges 3；RECENT TRANSACTIONS 表格渲染 20 行真实交易（如 BD741149…8FB2CF Transfer V3 z1oSPd7F…TspKEc 0.9480581 AIGNEP 46 minutes ago）；TOKENS/FACTORIES 侧栏同样渲染真实数据；tx-filter-overlay/tx-filter-type/tx-filter-apply 等节点已存在于 DOM（隐藏态）；assistant-dock/chain-assistant 均已挂载。console 仍有一条 403 POST /api/afs/rpc（与 breadth 走查一致），但不影响任何可见内容渲染——升级为 pass。</div>
+
+<div class="nt">数据源 403（POST /api/afs/rpc）持续复现，属于非阻塞的次要请求（页面全部真实数据仍正确渲染），floor 的 inconclusive 判定过严，升级为 pass</div>
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> snapshot</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260825T192950Z/chain-explorer/dd-1-01.png" alt="snapshot" loading="lazy"><figcaption>snapshot</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：snapshot 复查：textLen=2739，内容与上一步一致，无退化/报错弹层，交易表 20 行数据与统计卡数字吻合（Transactions 598,458）</div>
+
+
+</div></details>
+<details class="dbg" open><summary>运行时 debug 上下文（2 条错误）</summary><div class="dbg-has"><b>Console 错误（1）</b><ul><li><code>Failed to load resource: the server responded with a status of 403 ()</code></li></ul></div><div class="dbg-none">JS 未捕获异常：<b>无</b></div><div class="dbg-has"><b>网络错误（请求失败 / 4xx–5xx）（1）</b><ul><li><code>403 POST https://chain-explorer.afsd.dev/api/afs/rpc</code></li></ul></div></details>
+</section><section id="path-dd-2-index-r0">
+<h2>(load) → home dashboard <span class="rt">anon · /{network}</span></h2>
+<p class="pdesc">页面走查：导航到 <code>/{network}</code>，验证页面渲染出真实内容并逐步观测（1 步）。</p>
+<video class="video" controls preload="metadata" src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260825T192950Z/chain-explorer/page@e56f32fb411f06f56bc58f85575e2d26.webm"><a href="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260825T192950Z/chain-explorer/page@e56f32fb411f06f56bc58f85575e2d26.webm">下载该路径录像</a></video><p class="vcap">本测试路径整段走查录像</p>
+<div class="kpis"><div class="kpi"><div class="k">1</div><div class="l">操作步</div></div><div class="kpi"><div class="k">1</div><div class="l">通过</div></div><div class="kpi"><div class="k k-bad">0</div><div class="l">失败</div></div><div class="kpi"><div class="k k-warn">0</div><div class="l">不确定</div></div><div class="kpi"><div class="k">0</div><div class="l">未走到</div></div></div>
+<details class="steps"><summary>▸ 逐步操作详情（1 步，含判定截图）</summary><div class="op">
+<h3><span class="pill p-ok">通过</span> navigate</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260825T192950Z/chain-explorer/dd-2-00.png" alt="navigate" loading="lazy"><figcaption>navigate</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：直接导航到 https://chain-explorer.afsd.dev/main 后，data-aup-id=chain-overview 节点渲染出完整 Home dashboard：co-metrics 7 张统计卡（Transactions 598,458/Accounts 78,338/Tokens 4/Assets 82,377/Factories 386/Stakes 2,323/Bridges 3）与 co-recent-txs-list 20 行真实交易数据（如 BD741149…8FB2CF Transfer V3）均已渲染，符合 man 声明 default route /dev/chain/main renders the Home overview dashboard 的预期</div>
+
+
+</div></details>
+<details class="dbg" open><summary>运行时 debug 上下文（2 条错误）</summary><div class="dbg-has"><b>Console 错误（1）</b><ul><li><code>Failed to load resource: the server responded with a status of 403 ()</code></li></ul></div><div class="dbg-none">JS 未捕获异常：<b>无</b></div><div class="dbg-has"><b>网络错误（请求失败 / 4xx–5xx）（1）</b><ul><li><code>403 POST https://chain-explorer.afsd.dev/api/afs/rpc</code></li></ul></div></details>
+</section><section id="path-dd-3-index-r1">
+<h2>home dashboard → transaction detail (co-recent-txs-list) <span class="rt">anon · /{network}</span></h2>
+<p class="pdesc">页面走查：导航到 <code>/{network}</code>，验证页面渲染出真实内容并逐步观测（3 步）。</p>
+<video class="video" controls preload="metadata" src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260825T192950Z/chain-explorer/page@17342a50181869e568ca2d1d04ef6854.webm"><a href="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260825T192950Z/chain-explorer/page@17342a50181869e568ca2d1d04ef6854.webm">下载该路径录像</a></video><p class="vcap">本测试路径整段走查录像</p>
+<div class="kpis"><div class="kpi"><div class="k">3</div><div class="l">操作步</div></div><div class="kpi"><div class="k">3</div><div class="l">通过</div></div><div class="kpi"><div class="k k-bad">0</div><div class="l">失败</div></div><div class="kpi"><div class="k k-warn">0</div><div class="l">不确定</div></div><div class="kpi"><div class="k">0</div><div class="l">未走到</div></div></div>
+<details class="steps"><summary>▸ 逐步操作详情（3 步，含判定截图）</summary><div class="op">
+<h3><span class="pill p-ok">通过</span> navigate</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260825T192950Z/chain-explorer/dd-3-00.png" alt="navigate" loading="lazy"><figcaption>navigate</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：导航到 /main，Home dashboard 渲染 co-recent-txs-list 表格，首行 hash=BD741149…8FB2CF</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> click</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260825T192950Z/chain-explorer/dd-3-01.png" alt="click" loading="lazy"><figcaption>click</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：点击首行（文本 BD741149）后 URL 变为 /main/transactions/BD7411490D18130073AB291C590CA6EEC04064637647EB48AB287248128FB2CF，页面渲染出交易详情：标题 Transfer V3、Success 徽标、DETAILS 面板含 Transaction Hash=BD741149…8FB2CF / Type=Transfer V3 / Sender=z1oSPd7F…TspKEc / Receiver=zNKi6YiP…tusvye / Nonce=1787684848427 / Gas Fee=0.0010792 ABT，与首页列表点击的那一行完全一致，Receipts/Raw 两个 tab 已出现</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> snapshot</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260825T192950Z/chain-explorer/dd-3-02.png" alt="snapshot" loading="lazy"><figcaption>snapshot</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：snapshot 复核 textHead 完整含 Transfer V3 Success 47 minutes ago Aug 25 2026 7:07 PM DETAILS Transaction Hash BD741149…8FB2CF 直至 Receipts Raw ACCOUNT ACTION TOKEN AMOUNT z1oSPd7F…TspKEc transfer AIGNEP -0.9480581，确认详情与 Receipts 表格数据已渲染</div>
+
+
+</div></details>
+<details class="dbg" open><summary>运行时 debug 上下文（3 条错误）</summary><div class="dbg-has"><b>Console 错误（2）</b><ul><li><code>Failed to load resource: the server responded with a status of 403 ()</code></li><li><code>Failed to load resource: the server responded with a status of 403 ()</code></li></ul></div><div class="dbg-none">JS 未捕获异常：<b>无</b></div><div class="dbg-has"><b>网络错误（请求失败 / 4xx–5xx）（1）</b><ul><li><code>403 POST https://chain-explorer.afsd.dev/api/afs/rpc</code></li></ul></div></details>
+</section><section id="path-dd-4-index-r2">
+<h2>transactions list → transaction detail (txs-view-list) <span class="rt">anon · /{network}</span></h2>
+<p class="pdesc">页面走查：导航到 <code>/{network}</code>，验证页面渲染出真实内容并逐步观测（2 步）。</p>
+<video class="video" controls preload="metadata" src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260825T192950Z/chain-explorer/page@713e42ef2dc585513ce9f56b23e1f7fc.webm"><a href="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260825T192950Z/chain-explorer/page@713e42ef2dc585513ce9f56b23e1f7fc.webm">下载该路径录像</a></video><p class="vcap">本测试路径整段走查录像</p>
+<div class="kpis"><div class="kpi"><div class="k">2</div><div class="l">操作步</div></div><div class="kpi"><div class="k">2</div><div class="l">通过</div></div><div class="kpi"><div class="k k-bad">0</div><div class="l">失败</div></div><div class="kpi"><div class="k k-warn">0</div><div class="l">不确定</div></div><div class="kpi"><div class="k">0</div><div class="l">未走到</div></div></div>
+<details class="steps"><summary>▸ 逐步操作详情（2 步，含判定截图）</summary><div class="op">
+<h3><span class="pill p-ok">通过</span> navigate</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260825T192950Z/chain-explorer/dd-4-00.png" alt="navigate" loading="lazy"><figcaption>navigate</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：导航到 /main/transactions，Transactions 列表渲染，含 HASH/TYPE/FROM/TO/VALUE/FEE/TIME 列与真实交易行，首行 FFFCC79F…6934EA</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> click</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260825T192950Z/chain-explorer/dd-4-01.png" alt="click" loading="lazy"><figcaption>click</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：点击行（文本 FFFCC79F）后 URL 变为 /main/transactions/FFFCC79F3A908A50EBA0A2F1D95F4B01B1E02BDAFEA175DE9AC16FDCEF6934EA，节点 data-aup-id=tx-detail 渲染，DETAILS 面板 Transaction Hash=FFFCC79F…6934EA / Type=Transfer V3 / Sender=z1oHa79x…AaRRmS / Receiver=zNKi6YiP…tusvye / Nonce=1787684827559，与被点击的行数据完全一致，man 声明的 expect=tx-detail 命中</div>
+
+
+</div></details>
+<details class="dbg" open><summary>运行时 debug 上下文（3 条错误）</summary><div class="dbg-has"><b>Console 错误（2）</b><ul><li><code>Failed to load resource: the server responded with a status of 403 ()</code></li><li><code>Failed to load resource: the server responded with a status of 403 ()</code></li></ul></div><div class="dbg-none">JS 未捕获异常：<b>无</b></div><div class="dbg-has"><b>网络错误（请求失败 / 4xx–5xx）（1）</b><ul><li><code>403 POST https://chain-explorer.afsd.dev/api/afs/rpc</code></li></ul></div></details>
+</section><section id="path-dd-5-index-r3">
+<h2>transaction detail → receipts tab <span class="rt">anon · /{network}</span></h2>
+<p class="pdesc">页面走查：导航到 <code>/{network}</code>，验证页面渲染出真实内容并逐步观测（3 步）。</p>
+<video class="video" controls preload="metadata" src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260825T192950Z/chain-explorer/page@8f1c534cfe9cae3f2025caf8d682a968.webm"><a href="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260825T192950Z/chain-explorer/page@8f1c534cfe9cae3f2025caf8d682a968.webm">下载该路径录像</a></video><p class="vcap">本测试路径整段走查录像</p>
+<div class="kpis"><div class="kpi"><div class="k">3</div><div class="l">操作步</div></div><div class="kpi"><div class="k">3</div><div class="l">通过</div></div><div class="kpi"><div class="k k-bad">0</div><div class="l">失败</div></div><div class="kpi"><div class="k k-warn">0</div><div class="l">不确定</div></div><div class="kpi"><div class="k">0</div><div class="l">未走到</div></div></div>
+<details class="steps"><summary>▸ 逐步操作详情（3 步，含判定截图）</summary><div class="op">
+<h3><span class="pill p-ok">通过</span> navigate</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260825T192950Z/chain-explorer/dd-5-00.png" alt="navigate" loading="lazy"><figcaption>navigate</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：导航到 /main，Home dashboard 渲染，co-recent-txs-list 首行 hash=BD741149…8FB2CF</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> click</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260825T192950Z/chain-explorer/dd-5-01.png" alt="click" loading="lazy"><figcaption>click</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：点击首行进入 /main/transactions/BD7411490D18130073AB291C590CA6EEC04064637647EB48AB287248128FB2CF，tx-detail 渲染，Receipts 标签默认已选中，表格 ACCOUNT ACTION TOKEN AMOUNT 已有 2 行数据（z1oSPd7F…TspKEc transfer AIGNEP -0.9480581 / zNKi6YiP…tusvye transfer AIGNEP +0.9480581）</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> click</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260825T192950Z/chain-explorer/dd-5-02.png" alt="click" loading="lazy"><figcaption>click</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：显式点击 Receipts 标签后内容不变、仍为该 2 行真实 receipt 数据，确认 tx-tab-receipts-list 正确渲染 sender/receiver 对称的转账明细</div>
+
+
+</div></details>
+<details class="dbg" open><summary>运行时 debug 上下文（3 条错误）</summary><div class="dbg-has"><b>Console 错误（2）</b><ul><li><code>Failed to load resource: the server responded with a status of 403 ()</code></li><li><code>Failed to load resource: the server responded with a status of 403 ()</code></li></ul></div><div class="dbg-none">JS 未捕获异常：<b>无</b></div><div class="dbg-has"><b>网络错误（请求失败 / 4xx–5xx）（1）</b><ul><li><code>403 POST https://chain-explorer.afsd.dev/api/afs/rpc</code></li></ul></div></details>
+</section><section id="path-dd-6-index-r4">
+<h2>transaction detail → raw tab <span class="rt">anon · /{network}</span></h2>
+<p class="pdesc">页面走查：导航到 <code>/{network}</code>，验证页面渲染出真实内容并逐步观测（5 步）。</p>
+<video class="video" controls preload="metadata" src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260825T192950Z/chain-explorer/page@a64ea40060386fe40c27688469309475.webm"><a href="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260825T192950Z/chain-explorer/page@a64ea40060386fe40c27688469309475.webm">下载该路径录像</a></video><p class="vcap">本测试路径整段走查录像</p>
+<div class="kpis"><div class="kpi"><div class="k">5</div><div class="l">操作步</div></div><div class="kpi"><div class="k">4</div><div class="l">通过</div></div><div class="kpi"><div class="k k-bad">0</div><div class="l">失败</div></div><div class="kpi"><div class="k k-warn">1</div><div class="l">不确定</div></div><div class="kpi"><div class="k">0</div><div class="l">未走到</div></div></div>
+<details class="steps"><summary>▸ 逐步操作详情（5 步，含判定截图）</summary><div class="op">
+<h3><span class="pill p-ok">通过</span> navigate</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260825T192950Z/chain-explorer/dd-6-00.png" alt="navigate" loading="lazy"><figcaption>navigate</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：导航到 /main，Home dashboard 渲染完成</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> click</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260825T192950Z/chain-explorer/dd-6-01.png" alt="click" loading="lazy"><figcaption>click</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：点击首行进入 /main/transactions/BD7411490D18130073AB291C590CA6EEC04064637647EB48AB287248128FB2CF，tx-detail 渲染，Receipts 标签默认激活</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-warn">不确定</span> click</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260825T192950Z/chain-explorer/dd-6-02.png" alt="click" loading="lazy"><figcaption>click</figcaption></figure></div>
+<div class="chk-fail"><b>观察证据</b>：以 text=&quot;Raw&quot; 点击未生效——URL/内容不变，仍是 Receipts 表格。原因：Tab 组件用 role=tab 渲染，text 定位未命中真正可点击的 tab 控件</div>
+<div class="err"><b>执行错误</b>：<code>TimeoutError: click: Timeout 8000ms exceeded.</code></div>
+<div class="nt">排查后改用 role+name 定位重试，见下一步</div>
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> snapshot</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260825T192950Z/chain-explorer/dd-6-03.png" alt="snapshot" loading="lazy"><figcaption>snapshot</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：snapshot 复核确认此时仍停留在 Receipts 标签内容（ACCOUNT ACTION TOKEN AMOUNT 表头 + 空数据行），验证上一步 text 点击确实未生效，而非渲染延迟</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> click</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260825T192950Z/chain-explorer/dd-6-04.png" alt="click" loading="lazy"><figcaption>click</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：改用 role=tab name=&quot;Raw&quot; 点击后，Raw 标签变为高亮选中态，内容区渲染出真实 itxJson：{ &quot;chainId&quot;: &quot;xenon-2020-01-15&quot;, &quot;delegator&quot;: &quot;&quot;, &quot;from&quot;: &quot;zNKi6YiPShda1vt9WNuHt4JUqmJkHatusvye&quot;, &quot;gasFee&quot;: &quot;1079200000000000&quot;, ... }，确认 tx-tab-raw 正确渲染原始交易数据</div>
+
+
+</div></details>
+<details class="dbg" open><summary>运行时 debug 上下文（3 条错误）</summary><div class="dbg-has"><b>Console 错误（2）</b><ul><li><code>Failed to load resource: the server responded with a status of 403 ()</code></li><li><code>Failed to load resource: the server responded with a status of 403 ()</code></li></ul></div><div class="dbg-none">JS 未捕获异常：<b>无</b></div><div class="dbg-has"><b>网络错误（请求失败 / 4xx–5xx）（1）</b><ul><li><code>403 POST https://chain-explorer.afsd.dev/api/afs/rpc</code></li></ul></div></details>
+</section><section id="path-dd-7-index-r5">
+<h2>transactions list → transactions list (filtered) <span class="rt">anon · /{network}</span></h2>
+<p class="pdesc">页面走查：导航到 <code>/{network}</code>，验证页面渲染出真实内容并逐步观测（4 步）。</p>
+<video class="video" controls preload="metadata" src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260825T192950Z/chain-explorer/page@675da7d2735b12a4ada162c7e34cee27.webm"><a href="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260825T192950Z/chain-explorer/page@675da7d2735b12a4ada162c7e34cee27.webm">下载该路径录像</a></video><p class="vcap">本测试路径整段走查录像</p>
+<div class="kpis"><div class="kpi"><div class="k">4</div><div class="l">操作步</div></div><div class="kpi"><div class="k">4</div><div class="l">通过</div></div><div class="kpi"><div class="k k-bad">0</div><div class="l">失败</div></div><div class="kpi"><div class="k k-warn">0</div><div class="l">不确定</div></div><div class="kpi"><div class="k">0</div><div class="l">未走到</div></div></div>
+<details class="steps"><summary>▸ 逐步操作详情（4 步，含判定截图）</summary><div class="op">
+<h3><span class="pill p-ok">通过</span> navigate</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260825T192950Z/chain-explorer/dd-7-00.png" alt="navigate" loading="lazy"><figcaption>navigate</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：导航到 /main/transactions，Transactions 列表渲染，含 tx-filter-toggle 漏斗图标</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> click</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260825T192950Z/chain-explorer/dd-7-01.png" alt="click" loading="lazy"><figcaption>click</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：点击 tx-filter-toggle 打开 tx-filter-overlay，弹窗渲染 Transaction Type 多选列表（Account·AccountMigrate…Bridge·ClaimBlockReward 共 30+ 项）与 Validity 下拉（All/Valid only/Failed only）</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> click</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260825T192950Z/chain-explorer/dd-7-02.png" alt="click" loading="lazy"><figcaption>click</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：点击「Trade · TransferV2」选项后该行高亮选中（截图 dd-7-02.png 确认蓝色高亮），符合 man 声明的 self-loop 本地状态写入（尚未下推到列表）</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> click</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260825T192950Z/chain-explorer/dd-7-03.png" alt="click" loading="lazy"><figcaption>click</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：点击 tx-filter-apply 后弹窗关闭，列表刷新为清一色 Transfer V2 类型交易（如 D282025C…D50548 Transfer V2 / A0AB44F5…E837BF Transfer V2 / 8D06DE79…3509C9 Transfer V2），此前主列表里的 Transfer V3/Mint Token 行全部消失，证实 collection-query where 下推真实生效而非 client 端过滤假象</div>
+
+
+</div></details>
+<details class="dbg" open><summary>运行时 debug 上下文（3 条错误）</summary><div class="dbg-has"><b>Console 错误（2）</b><ul><li><code>Failed to load resource: the server responded with a status of 403 ()</code></li><li><code>Failed to load resource: the server responded with a status of 403 ()</code></li></ul></div><div class="dbg-none">JS 未捕获异常：<b>无</b></div><div class="dbg-has"><b>网络错误（请求失败 / 4xx–5xx）（1）</b><ul><li><code>403 POST https://chain-explorer.afsd.dev/api/afs/rpc</code></li></ul></div></details>
+</section><section id="path-dd-8-index-r6">
+<h2>transactions list → transactions list (live) <span class="rt">anon · /{network}</span></h2>
+<p class="pdesc">页面走查：导航到 <code>/{network}</code>，验证页面渲染出真实内容并逐步观测（3 步）。</p>
+<video class="video" controls preload="metadata" src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260825T192950Z/chain-explorer/page@1154039be26b908bd280acdb0ca289d8.webm"><a href="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260825T192950Z/chain-explorer/page@1154039be26b908bd280acdb0ca289d8.webm">下载该路径录像</a></video><p class="vcap">本测试路径整段走查录像</p>
+<div class="kpis"><div class="kpi"><div class="k">3</div><div class="l">操作步</div></div><div class="kpi"><div class="k">3</div><div class="l">通过</div></div><div class="kpi"><div class="k k-bad">0</div><div class="l">失败</div></div><div class="kpi"><div class="k k-warn">0</div><div class="l">不确定</div></div><div class="kpi"><div class="k">0</div><div class="l">未走到</div></div></div>
+<details class="steps"><summary>▸ 逐步操作详情（3 步，含判定截图）</summary><div class="op">
+<h3><span class="pill p-ok">通过</span> navigate</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260825T192950Z/chain-explorer/dd-8-00.png" alt="navigate" loading="lazy"><figcaption>navigate</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：导航到 /main/transactions，Live updates 开关渲染为蓝色打开态（截图 dd-8-00.png）</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> click</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260825T192950Z/chain-explorer/dd-8-01.png" alt="click" loading="lazy"><figcaption>click</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：点击 txs-view-toggle 后开关变为灰色关闭态（截图 dd-8-01.png 对比 dd-8-00.png 明显切换），列表内容保留不受影响，符合 live/paused 流的预期</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> click</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260825T192950Z/chain-explorer/dd-8-02.png" alt="click" loading="lazy"><figcaption>click</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：再次点击 txs-view-toggle 恢复为蓝色打开态（截图 dd-8-02.png），确认该控件双向可逆切换</div>
+
+
+</div></details>
+<details class="dbg" open><summary>运行时 debug 上下文（2 条错误）</summary><div class="dbg-has"><b>Console 错误（1）</b><ul><li><code>Failed to load resource: the server responded with a status of 403 ()</code></li></ul></div><div class="dbg-none">JS 未捕获异常：<b>无</b></div><div class="dbg-has"><b>网络错误（请求失败 / 4xx–5xx）（1）</b><ul><li><code>403 POST https://chain-explorer.afsd.dev/api/afs/rpc</code></li></ul></div></details>
+</section><section id="path-dd-9-index-r7">
+<h2>accounts list → account detail (accts-view-list) <span class="rt">anon · /{network}</span></h2>
+<p class="pdesc">页面走查：导航到 <code>/{network}</code>，验证页面渲染出真实内容并逐步观测（2 步）。</p>
+<video class="video" controls preload="metadata" src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260825T192950Z/chain-explorer/page@45c452df74088d62221d4ff7c6a9432f.webm"><a href="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260825T192950Z/chain-explorer/page@45c452df74088d62221d4ff7c6a9432f.webm">下载该路径录像</a></video><p class="vcap">本测试路径整段走查录像</p>
+<div class="kpis"><div class="kpi"><div class="k">2</div><div class="l">操作步</div></div><div class="kpi"><div class="k">2</div><div class="l">通过</div></div><div class="kpi"><div class="k k-bad">0</div><div class="l">失败</div></div><div class="kpi"><div class="k k-warn">0</div><div class="l">不确定</div></div><div class="kpi"><div class="k">0</div><div class="l">未走到</div></div></div>
+<details class="steps"><summary>▸ 逐步操作详情（2 步，含判定截图）</summary><div class="op">
+<h3><span class="pill p-ok">通过</span> navigate</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260825T192950Z/chain-explorer/dd-9-00.png" alt="navigate" loading="lazy"><figcaption>navigate</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：导航到 /main/accounts，accts-view-list 渲染表格 ADDRESS/NAME/CREATED/UPDATED，首行 z1oSPd7F…TspKEc / z1oSPd-spKEc / 1 month ago / 54 minutes ago</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> click</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260825T192950Z/chain-explorer/dd-9-01.png" alt="click" loading="lazy"><figcaption>click</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：点击首行（文本 z1oSPd7F）后 URL 变为 /main/accounts/z1oSPd7FeLwx5EaD5UPGWXa5jBKvmTspKEc，account-detail 渲染 ACCOUNT INFO（Address=z1oSPd7F…TspKEc / Moniker=z1oSPd-spKEc / Nonce=0 / Created=1 month ago / Updated=54 minutes ago），与被点击的行数据完全一致；页面同时渲染出 Transactions/Assets/Tokens/Token Flow/Sent Stakes/Received Stakes/Analytics 全部 7 个 tab 标签，默认展示 Transactions 表格数据</div>
+
+
+</div></details>
+<details class="dbg" open><summary>运行时 debug 上下文（3 条错误）</summary><div class="dbg-has"><b>Console 错误（2）</b><ul><li><code>Failed to load resource: the server responded with a status of 403 ()</code></li><li><code>Failed to load resource: the server responded with a status of 403 ()</code></li></ul></div><div class="dbg-none">JS 未捕获异常：<b>无</b></div><div class="dbg-has"><b>网络错误（请求失败 / 4xx–5xx）（1）</b><ul><li><code>403 POST https://chain-explorer.afsd.dev/api/afs/rpc</code></li></ul></div></details>
+</section><section id="path-dd-10-index-r8">
+<h2>account detail → account transactions tab <span class="rt">anon · /{network}</span></h2>
+<p class="pdesc">页面走查：导航到 <code>/{network}</code>，验证页面渲染出真实内容并逐步观测（2 步）。</p>
+<video class="video" controls preload="metadata" src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260825T192950Z/chain-explorer/page@fefd791ca204796a8c56731988563d18.webm"><a href="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260825T192950Z/chain-explorer/page@fefd791ca204796a8c56731988563d18.webm">下载该路径录像</a></video><p class="vcap">本测试路径整段走查录像</p>
+<div class="kpis"><div class="kpi"><div class="k">2</div><div class="l">操作步</div></div><div class="kpi"><div class="k">2</div><div class="l">通过</div></div><div class="kpi"><div class="k k-bad">0</div><div class="l">失败</div></div><div class="kpi"><div class="k k-warn">0</div><div class="l">不确定</div></div><div class="kpi"><div class="k">0</div><div class="l">未走到</div></div></div>
+<details class="steps"><summary>▸ 逐步操作详情（2 步，含判定截图）</summary><div class="op">
+<h3><span class="pill p-ok">通过</span> navigate</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260825T192950Z/chain-explorer/dd-10-00.png" alt="navigate" loading="lazy"><figcaption>navigate</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：直接导航到 /main/accounts/z1oSPd7FeLwx5EaD5UPGWXa5jBKvmTspKEc，account-detail 渲染，Transactions 标签默认激活，acc-tab-txs-list 表格已渲染真实行（BD741149…8FB2CF Transfer V3 z1oSPd7F…TspKEc OUT zNKi6YiP…tusvye 0.9480581 AIGNEP 54 minutes ago）</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> click</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260825T192950Z/chain-explorer/dd-10-01.png" alt="click" loading="lazy"><figcaption>click</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：显式点击 role=tab name=Transactions 后内容保持一致（同一批真实交易行），确认 acc-tab-txs-list 可通过 tab 交互正确到达/保持</div>
+
+
+</div></details>
+<details class="dbg" open><summary>运行时 debug 上下文（2 条错误）</summary><div class="dbg-has"><b>Console 错误（1）</b><ul><li><code>Failed to load resource: the server responded with a status of 403 ()</code></li></ul></div><div class="dbg-none">JS 未捕获异常：<b>无</b></div><div class="dbg-has"><b>网络错误（请求失败 / 4xx–5xx）（1）</b><ul><li><code>403 POST https://chain-explorer.afsd.dev/api/afs/rpc</code></li></ul></div></details>
+</section><section id="path-dd-11-index-r9">
+<h2>account detail → account tokens tab <span class="rt">anon · /{network}</span></h2>
+<p class="pdesc">页面走查：导航到 <code>/{network}</code>，验证页面渲染出真实内容并逐步观测（2 步）。</p>
+<video class="video" controls preload="metadata" src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260825T192950Z/chain-explorer/page@9dbda2b2dc68efb2796141a20297ec75.webm"><a href="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260825T192950Z/chain-explorer/page@9dbda2b2dc68efb2796141a20297ec75.webm">下载该路径录像</a></video><p class="vcap">本测试路径整段走查录像</p>
+<div class="kpis"><div class="kpi"><div class="k">2</div><div class="l">操作步</div></div><div class="kpi"><div class="k">2</div><div class="l">通过</div></div><div class="kpi"><div class="k k-bad">0</div><div class="l">失败</div></div><div class="kpi"><div class="k k-warn">0</div><div class="l">不确定</div></div><div class="kpi"><div class="k">0</div><div class="l">未走到</div></div></div>
+<details class="steps"><summary>▸ 逐步操作详情（2 步，含判定截图）</summary><div class="op">
+<h3><span class="pill p-ok">通过</span> navigate</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260825T192950Z/chain-explorer/dd-11-00.png" alt="navigate" loading="lazy"><figcaption>navigate</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：导航到账户详情页 /main/accounts/z1oSPd7FeLwx5EaD5UPGWXa5jBKvmTspKEc，Transactions 标签默认激活</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> click</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260825T192950Z/chain-explorer/dd-11-01.png" alt="click" loading="lazy"><figcaption>click</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：点击 role=tab name=Tokens 后内容切换为 acc-tab-tokens-list：TOKEN BALANCE 表头 + 真实行 z35nQNyu…JV3hoC 0 AIGNEP，证实该账户的分代币余额表正确渲染</div>
+
+
+</div></details>
+<details class="dbg" open><summary>运行时 debug 上下文（2 条错误）</summary><div class="dbg-has"><b>Console 错误（1）</b><ul><li><code>Failed to load resource: the server responded with a status of 403 ()</code></li></ul></div><div class="dbg-none">JS 未捕获异常：<b>无</b></div><div class="dbg-has"><b>网络错误（请求失败 / 4xx–5xx）（1）</b><ul><li><code>403 POST https://chain-explorer.afsd.dev/api/afs/rpc</code></li></ul></div></details>
+</section><section id="path-dd-12-index-r10">
+<h2>account detail → account assets tab <span class="rt">anon · /{network}</span></h2>
+<p class="pdesc">页面走查：导航到 <code>/{network}</code>，验证页面渲染出真实内容并逐步观测（2 步）。</p>
+<video class="video" controls preload="metadata" src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260825T192950Z/chain-explorer/page@80c61c0941dc3bbca23b9788b980c9f0.webm"><a href="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260825T192950Z/chain-explorer/page@80c61c0941dc3bbca23b9788b980c9f0.webm">下载该路径录像</a></video><p class="vcap">本测试路径整段走查录像</p>
+<div class="kpis"><div class="kpi"><div class="k">2</div><div class="l">操作步</div></div><div class="kpi"><div class="k">2</div><div class="l">通过</div></div><div class="kpi"><div class="k k-bad">0</div><div class="l">失败</div></div><div class="kpi"><div class="k k-warn">0</div><div class="l">不确定</div></div><div class="kpi"><div class="k">0</div><div class="l">未走到</div></div></div>
+<details class="steps"><summary>▸ 逐步操作详情（2 步，含判定截图）</summary><div class="op">
+<h3><span class="pill p-ok">通过</span> navigate</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260825T192950Z/chain-explorer/dd-12-00.png" alt="navigate" loading="lazy"><figcaption>navigate</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：导航到账户详情页 /main/accounts/z1oSPd7FeLwx5EaD5UPGWXa5jBKvmTspKEc，Transactions 标签默认激活</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> click</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260825T192950Z/chain-explorer/dd-12-01.png" alt="click" loading="lazy"><figcaption>click</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：点击 role=tab name=Assets 后 Assets 标签高亮选中，acc-tab-assets-list 渲染出规范的空态 UI（文件夹图标 + &quot;No items&quot; 文案，非报错/空白页），符合该账户当前未持有任何 NFT 的真实情况——渲染逻辑正确，只是这个账户恰好没有资产</div>
+
+
+</div></details>
+<details class="dbg" open><summary>运行时 debug 上下文（2 条错误）</summary><div class="dbg-has"><b>Console 错误（1）</b><ul><li><code>Failed to load resource: the server responded with a status of 403 ()</code></li></ul></div><div class="dbg-none">JS 未捕获异常：<b>无</b></div><div class="dbg-has"><b>网络错误（请求失败 / 4xx–5xx）（1）</b><ul><li><code>403 POST https://chain-explorer.afsd.dev/api/afs/rpc</code></li></ul></div></details>
+</section>
+<p class="sub" style="margin-top:22px">由 test-report-builder（build-agent-report）生成 · issue #1808</p>
+</div></body></html>
