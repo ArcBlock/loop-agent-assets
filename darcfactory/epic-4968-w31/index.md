@@ -10,3 +10,4 @@
 | 20260825-033939-w31b-live-l3-discuss-kit-detail.png | https://github.com/ArcBlock/darcfactory | 2026-08-25T03:39:39Z | chao@Yechaos-MacBook-Pro |
 | 20260825-033949-w31b-local-l2-discuss-kit.png | https://github.com/ArcBlock/darcfactory | 2026-08-25T03:39:49Z | chao@Yechaos-MacBook-Pro |
 | 20260825-034000-w31b-local-l3-detail.png | https://github.com/ArcBlock/darcfactory | 2026-08-25T03:40:00Z | chao@Yechaos-MacBook-Pro |
+| 20260825-034010-w31b-local-l3-void.png | https://github.com/ArcBlock/darcfactory | 2026-08-25T03:40:10Z | chao@Yechaos-MacBook-Pro |
