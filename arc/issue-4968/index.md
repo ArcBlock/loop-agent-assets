@@ -13,3 +13,4 @@
 | 20260825-084700-w9-L3-inbox-evidence.png | https://github.com/ArcBlock/arc/issues/4968 | 2026-08-25T08:47:00Z | chao@Yechaos-MacBook-Pro |
 | 20260825-084710-w9-L2-afsui-void.png | https://github.com/ArcBlock/arc/issues/4968 | 2026-08-25T08:47:10Z | chao@Yechaos-MacBook-Pro |
 | 20260825-084720-w9-void-empty-state.png | https://github.com/ArcBlock/arc/issues/4968 | 2026-08-25T08:47:20Z | chao@Yechaos-MacBook-Pro |
+| 20260825-084730-w9-deadlink-nexthref.png | https://github.com/ArcBlock/arc/issues/4968 | 2026-08-25T08:47:30Z | chao@Yechaos-MacBook-Pro |
