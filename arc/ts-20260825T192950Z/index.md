@@ -310,3 +310,4 @@
 | 20260825-210037-dd-9-list-basic-02.png | https://github.com/ArcBlock/arc | 2026-08-25T21:00:37Z | root@vm |
 | 20260825-210042-dd-9-list-basic-03.png | https://github.com/ArcBlock/arc | 2026-08-25T21:00:42Z | root@vm |
 | 20260825-210047-dd-9-list-basic-04.png | https://github.com/ArcBlock/arc | 2026-08-25T21:00:47Z | root@vm |
+| 20260825-210053-dd-9-list-basic-05.png | https://github.com/ArcBlock/arc | 2026-08-25T21:00:53Z | root@vm |
