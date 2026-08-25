@@ -5,3 +5,4 @@
 | google-maps-peek-hotels.jpg | https://github.com/ArcBlock/aside | 2026-08-25T02:21:08Z | nategu@Nate-Mac-Pro |
 | google-maps-medium-cards.jpg | https://github.com/ArcBlock/aside | 2026-08-25T02:21:21Z | nategu@Nate-Mac-Pro |
 | google-maps-peek-title.jpg | https://github.com/ArcBlock/aside | 2026-08-25T02:21:34Z | nategu@Nate-Mac-Pro |
+| google-maps-collapsed.jpg | https://github.com/ArcBlock/aside | 2026-08-25T02:21:45Z | nategu@Nate-Mac-Pro |
