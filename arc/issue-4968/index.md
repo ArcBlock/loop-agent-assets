@@ -23,3 +23,4 @@
 | 20260825-235031-shot-anon.png | https://github.com/ArcBlock/arc/issues/4968 | 2026-08-25T23:50:31Z | chao@Yechaos-MacBook-Pro |
 | 20260825-235042-shot-anon-locale.png | https://github.com/ArcBlock/arc/issues/4968 | 2026-08-25T23:50:42Z | chao@Yechaos-MacBook-Pro |
 | 20260825-235052-shot-auth-menu.png | https://github.com/ArcBlock/arc/issues/4968 | 2026-08-25T23:50:52Z | chao@Yechaos-MacBook-Pro |
+| 20260825-235101-shot-en.png | https://github.com/ArcBlock/arc/issues/4968 | 2026-08-25T23:51:01Z | chao@Yechaos-MacBook-Pro |
