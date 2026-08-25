@@ -595,3 +595,4 @@
 | 20260825-213009-explore-01.png | https://github.com/ArcBlock/arc | 2026-08-25T21:30:09Z | root@vm |
 | 20260825-213014-explore-02.png | https://github.com/ArcBlock/arc | 2026-08-25T21:30:14Z | root@vm |
 | 20260825-213019-feed-01.png | https://github.com/ArcBlock/arc | 2026-08-25T21:30:19Z | root@vm |
+| 20260825-213023-feed-02.png | https://github.com/ArcBlock/arc | 2026-08-25T21:30:23Z | root@vm |
