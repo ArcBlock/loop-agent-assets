@@ -12,3 +12,4 @@
 | 20260824-103453-b-fix-empty-fg.png | https://github.com/ArcBlock/darcfactory | 2026-08-24T10:34:53Z | chao@Yechaos-MBP |
 | w14-l0-three-state.png | https://github.com/ArcBlock/darcfactory | 2026-08-25T00:27:31Z | chao@Yechaos-MacBook-Pro |
 | w14-l1-unreadable.png | https://github.com/ArcBlock/darcfactory | 2026-08-25T00:27:37Z | chao@Yechaos-MacBook-Pro |
+| w14-l1-void.png | https://github.com/ArcBlock/darcfactory | 2026-08-25T00:27:43Z | chao@Yechaos-MacBook-Pro |
