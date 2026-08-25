@@ -155,3 +155,4 @@
 | 20260825-150519-epic4968-toplight-landing.png | https://github.com/ArcBlock/arc | 2026-08-25T15:05:19Z | chao@Yechaos-MacBook-Pro |
 | 20260825-150529-epic4968-L2-target.png | https://github.com/ArcBlock/arc | 2026-08-25T15:05:29Z | chao@Yechaos-MacBook-Pro |
 | 20260825-155645-w44-L0-before.png | https://github.com/ArcBlock/arc | 2026-08-25T15:56:45Z | chao@Yechaos-MacBook-Pro |
+| 20260825-155655-w44-L0-after.png | https://github.com/ArcBlock/arc | 2026-08-25T15:56:55Z | chao@Yechaos-MacBook-Pro |
