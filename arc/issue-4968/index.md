@@ -8,3 +8,4 @@
 | 20260825-084602-w9-L1-sweep-top.png | https://github.com/ArcBlock/arc/issues/4968 | 2026-08-25T08:46:02Z | chao@Yechaos-MacBook-Pro |
 | 20260825-084613-w9-L1-sweep-targets.png | https://github.com/ArcBlock/arc/issues/4968 | 2026-08-25T08:46:13Z | chao@Yechaos-MacBook-Pro |
 | 20260825-084630-w9-L1-nightly-folded.png | https://github.com/ArcBlock/arc/issues/4968 | 2026-08-25T08:46:30Z | chao@Yechaos-MacBook-Pro |
+| 20260825-084640-w9-L1-nightly-expanded.png | https://github.com/ArcBlock/arc/issues/4968 | 2026-08-25T08:46:40Z | chao@Yechaos-MacBook-Pro |
