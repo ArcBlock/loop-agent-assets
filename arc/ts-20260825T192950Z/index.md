@@ -99,3 +99,4 @@
 | 20260825-204228-dd-6-files-02.png | https://github.com/ArcBlock/arc | 2026-08-25T20:42:28Z | root@vm |
 | 20260825-204232-dd-7-files-00.png | https://github.com/ArcBlock/arc | 2026-08-25T20:42:32Z | root@vm |
 | 20260825-204237-dd-7-files-01.png | https://github.com/ArcBlock/arc | 2026-08-25T20:42:37Z | root@vm |
+| 20260825-204241-dd-8-files-00.png | https://github.com/ArcBlock/arc | 2026-08-25T20:42:41Z | root@vm |
