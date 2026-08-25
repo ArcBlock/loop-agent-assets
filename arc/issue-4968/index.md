@@ -17,3 +17,4 @@
 | 20260825-084741-w9-L1-sweep-unreadable-list.png | https://github.com/ArcBlock/arc/issues/4968 | 2026-08-25T08:47:41Z | chao@Yechaos-MacBook-Pro |
 | 20260825-084751-w9-L1-nightly-unreadable.png | https://github.com/ArcBlock/arc/issues/4968 | 2026-08-25T08:47:51Z | chao@Yechaos-MacBook-Pro |
 | 20260825-084801-w9-L3-aistro-nocontrol.png | https://github.com/ArcBlock/arc/issues/4968 | 2026-08-25T08:48:01Z | chao@Yechaos-MacBook-Pro |
+| 20260825-084925-w9-L0-unreadable-runlist.png | https://github.com/ArcBlock/arc/issues/4968 | 2026-08-25T08:49:25Z | chao@Yechaos-MacBook-Pro |
