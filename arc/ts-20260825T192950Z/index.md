@@ -485,3 +485,4 @@
 | 20260825-212053-dd-1-aside-05.png | https://github.com/ArcBlock/arc | 2026-08-25T21:20:53Z | root@vm |
 | 20260825-212058-dd-1-aside-06.png | https://github.com/ArcBlock/arc | 2026-08-25T21:20:58Z | root@vm |
 | 20260825-212102-dd-1-aside-07.png | https://github.com/ArcBlock/arc | 2026-08-25T21:21:02Z | root@vm |
+| 20260825-212108-dd-1-aside-08.png | https://github.com/ArcBlock/arc | 2026-08-25T21:21:08Z | root@vm |
