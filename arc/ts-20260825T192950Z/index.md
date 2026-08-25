@@ -601,3 +601,4 @@
 | 20260825-213037-feed-read-1-03.png | https://github.com/ArcBlock/arc | 2026-08-25T21:30:37Z | root@vm |
 | 20260825-213043-index-01.png | https://github.com/ArcBlock/arc | 2026-08-25T21:30:43Z | root@vm |
 | 20260825-213048-index-02.png | https://github.com/ArcBlock/arc | 2026-08-25T21:30:48Z | root@vm |
+| 20260825-213053-item-detail-01.png | https://github.com/ArcBlock/arc | 2026-08-25T21:30:53Z | root@vm |
