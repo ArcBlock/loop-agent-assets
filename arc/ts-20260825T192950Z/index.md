@@ -604,3 +604,4 @@
 | 20260825-213053-item-detail-01.png | https://github.com/ArcBlock/arc | 2026-08-25T21:30:53Z | root@vm |
 | 20260825-213059-item-detail-02.png | https://github.com/ArcBlock/arc | 2026-08-25T21:30:59Z | root@vm |
 | 20260825-213104-publish-01.png | https://github.com/ArcBlock/arc | 2026-08-25T21:31:04Z | root@vm |
+| 20260825-213109-publish-02.png | https://github.com/ArcBlock/arc | 2026-08-25T21:31:09Z | root@vm |
