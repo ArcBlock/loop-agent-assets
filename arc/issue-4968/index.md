@@ -10,3 +10,4 @@
 | 20260825-084630-w9-L1-nightly-folded.png | https://github.com/ArcBlock/arc/issues/4968 | 2026-08-25T08:46:30Z | chao@Yechaos-MacBook-Pro |
 | 20260825-084640-w9-L1-nightly-expanded.png | https://github.com/ArcBlock/arc/issues/4968 | 2026-08-25T08:46:40Z | chao@Yechaos-MacBook-Pro |
 | 20260825-084650-w9-L2-mailbox-screenshots.png | https://github.com/ArcBlock/arc/issues/4968 | 2026-08-25T08:46:50Z | chao@Yechaos-MacBook-Pro |
+| 20260825-084700-w9-L3-inbox-evidence.png | https://github.com/ArcBlock/arc/issues/4968 | 2026-08-25T08:47:00Z | chao@Yechaos-MacBook-Pro |
