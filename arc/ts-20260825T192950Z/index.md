@@ -101,3 +101,4 @@
 | 20260825-204237-dd-7-files-01.png | https://github.com/ArcBlock/arc | 2026-08-25T20:42:37Z | root@vm |
 | 20260825-204241-dd-8-files-00.png | https://github.com/ArcBlock/arc | 2026-08-25T20:42:41Z | root@vm |
 | 20260825-204246-dd-8-files-01.png | https://github.com/ArcBlock/arc | 2026-08-25T20:42:46Z | root@vm |
+| 20260825-204250-dd-8-files-02.png | https://github.com/ArcBlock/arc | 2026-08-25T20:42:50Z | root@vm |
