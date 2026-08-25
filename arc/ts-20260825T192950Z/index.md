@@ -192,3 +192,4 @@
 | 20260825-205045-dd-9-todo-00.png | https://github.com/ArcBlock/arc | 2026-08-25T20:50:45Z | root@vm |
 | 20260825-205049-dd-9-todo-01.png | https://github.com/ArcBlock/arc | 2026-08-25T20:50:49Z | root@vm |
 | 20260825-205054-explorer-01.png | https://github.com/ArcBlock/arc | 2026-08-25T20:50:54Z | root@vm |
+| 20260825-205058-explorer-02.png | https://github.com/ArcBlock/arc | 2026-08-25T20:50:58Z | root@vm |
