@@ -28,3 +28,4 @@
 | 20260825-235120-live-anon-current-main.png | https://github.com/ArcBlock/arc/issues/4968 | 2026-08-25T23:51:20Z | chao@Yechaos-MacBook-Pro |
 | 20260825-235130-live-auth-injected-header.png | https://github.com/ArcBlock/arc/issues/4968 | 2026-08-25T23:51:30Z | chao@Yechaos-MacBook-Pro |
 | 20260825-235141-live-badge-probe.png | https://github.com/ArcBlock/arc/issues/4968 | 2026-08-25T23:51:41Z | chao@Yechaos-MacBook-Pro |
+| 20260826-003222-fix-pg-fix-anon.png | https://github.com/ArcBlock/arc/issues/4968 | 2026-08-26T00:32:22Z | chao@Yechaos-MacBook-Pro |
