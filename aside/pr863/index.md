@@ -12,3 +12,4 @@
 | 20260826-094607-3f24cfcb-zh-getting-started-390.jpg | https://github.com/ArcBlock/aside/pull/863 | 2026-08-26T09:46:09Z | nategu@Nate-Mac-Pro |
 | 20260826-094619-3f24cfcb-en-choose-a-platform-1440.jpg | https://github.com/ArcBlock/aside/pull/863 | 2026-08-26T09:46:22Z | nategu@Nate-Mac-Pro |
 | 20260826-094633-3f24cfcb-en-choose-a-platform-390.jpg | https://github.com/ArcBlock/aside/pull/863 | 2026-08-26T09:46:35Z | nategu@Nate-Mac-Pro |
+| 20260826-094645-3f24cfcb-zh-choose-a-platform-1440.jpg | https://github.com/ArcBlock/aside/pull/863 | 2026-08-26T09:46:47Z | nategu@Nate-Mac-Pro |
