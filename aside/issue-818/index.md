@@ -7,3 +7,4 @@
 | membership-create-new-collection.jpg | https://github.com/ArcBlock/aside/issues/818 | 2026-08-26T02:54:11Z | nategu@Nate-Mac-Pro |
 | membership-manage-plus.jpg | https://github.com/ArcBlock/aside/issues/818 | 2026-08-26T02:54:21Z | nategu@Nate-Mac-Pro |
 | organize-start-add-collection.jpg | https://github.com/ArcBlock/aside/issues/818 | 2026-08-26T02:54:30Z | nategu@Nate-Mac-Pro |
+| feed-delete-confirm-tip.jpg | https://github.com/ArcBlock/aside/issues/818 | 2026-08-26T02:56:21Z | nategu@Nate-Mac-Pro |
