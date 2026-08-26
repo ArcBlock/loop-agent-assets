@@ -8,3 +8,4 @@
 | 20260826-103723-20260826-103528-737c1b06-en-library-open-edit-delete-item-390.png | https://github.com/ArcBlock/aside | 2026-08-26T10:37:23Z | nategu@Nate-Mac-Pro |
 | 20260826-103732-20260826-103528-737c1b06-en-organize-collections-1440.png | https://github.com/ArcBlock/aside | 2026-08-26T10:37:32Z | nategu@Nate-Mac-Pro |
 | 20260826-103741-20260826-103528-737c1b06-en-organize-collections-390.png | https://github.com/ArcBlock/aside | 2026-08-26T10:37:41Z | nategu@Nate-Mac-Pro |
+| 20260826-103749-20260826-103528-737c1b06-en-organize-item-notes-1440.png | https://github.com/ArcBlock/aside | 2026-08-26T10:37:49Z | nategu@Nate-Mac-Pro |
