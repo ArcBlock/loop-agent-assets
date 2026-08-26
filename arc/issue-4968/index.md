@@ -33,3 +33,4 @@
 | 20260826-003241-fix-pg-bug-auth.png | https://github.com/ArcBlock/arc/issues/4968 | 2026-08-26T00:32:41Z | chao@Yechaos-MacBook-Pro |
 | 20260826-003250-fix-pg-fix-en.png | https://github.com/ArcBlock/arc/issues/4968 | 2026-08-26T00:32:50Z | chao@Yechaos-MacBook-Pro |
 | 20260826-003259-fix-locale.png | https://github.com/ArcBlock/arc/issues/4968 | 2026-08-26T00:32:59Z | chao@Yechaos-MacBook-Pro |
+| 20260826-003308-badge-matrix.png | https://github.com/ArcBlock/arc/issues/4968 | 2026-08-26T00:33:08Z | chao@Yechaos-MacBook-Pro |
