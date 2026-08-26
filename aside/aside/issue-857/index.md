@@ -16,3 +16,4 @@
 | 20260826-103833-20260826-103528-737c1b06-locale-less-organize-collections-404-1440.png | https://github.com/ArcBlock/aside | 2026-08-26T10:38:33Z | nategu@Nate-Mac-Pro |
 | 20260826-103841-20260826-103528-737c1b06-zh-library-find-and-search-1440.png | https://github.com/ArcBlock/aside | 2026-08-26T10:38:41Z | nategu@Nate-Mac-Pro |
 | 20260826-103851-20260826-103528-737c1b06-zh-library-find-and-search-390.png | https://github.com/ArcBlock/aside | 2026-08-26T10:38:51Z | nategu@Nate-Mac-Pro |
+| 20260826-103859-20260826-103528-737c1b06-zh-organize-collections-1440.png | https://github.com/ArcBlock/aside | 2026-08-26T10:38:59Z | nategu@Nate-Mac-Pro |
