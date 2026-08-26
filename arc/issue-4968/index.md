@@ -31,3 +31,4 @@
 | 20260826-003222-fix-pg-fix-anon.png | https://github.com/ArcBlock/arc/issues/4968 | 2026-08-26T00:32:22Z | chao@Yechaos-MacBook-Pro |
 | 20260826-003232-fix-pg-fix-auth.png | https://github.com/ArcBlock/arc/issues/4968 | 2026-08-26T00:32:32Z | chao@Yechaos-MacBook-Pro |
 | 20260826-003241-fix-pg-bug-auth.png | https://github.com/ArcBlock/arc/issues/4968 | 2026-08-26T00:32:41Z | chao@Yechaos-MacBook-Pro |
+| 20260826-003250-fix-pg-fix-en.png | https://github.com/ArcBlock/arc/issues/4968 | 2026-08-26T00:32:50Z | chao@Yechaos-MacBook-Pro |
