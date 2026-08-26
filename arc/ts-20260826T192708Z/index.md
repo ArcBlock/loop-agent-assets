@@ -260,3 +260,4 @@
 | 20260826-204107-page@e022efd9417e570bf7f1d321d16b919c.webm | https://github.com/ArcBlock/arc | 2026-08-26T20:41:07Z | root@vm |
 | 20260826-204112-page@e561ade85acf19d594ba1b2dfd3ff8fb.webm | https://github.com/ArcBlock/arc | 2026-08-26T20:41:12Z | root@vm |
 | 20260826-204118-page@fcc5aa139db7c795fff39e1e332ad48b.webm | https://github.com/ArcBlock/arc | 2026-08-26T20:41:18Z | root@vm |
+| 20260826-204123-cleanup-check-todo-00.png | https://github.com/ArcBlock/arc | 2026-08-26T20:41:23Z | root@vm |
