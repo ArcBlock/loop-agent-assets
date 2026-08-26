@@ -28,3 +28,4 @@
 | aside-epic743/744-dark-calendar-import.jpg | https://github.com/ArcBlock/aside/issues/744 | 2026-08-21T09:32:45Z | epic-conductor@Nate-Mac-Pro |
 | aside-epic743/744-light-add-collection.jpg | https://github.com/ArcBlock/aside/issues/744 | 2026-08-21T09:32:54Z | epic-conductor@Nate-Mac-Pro |
 | share-ext-image-assets-broken-2f5958af.jpg | https://github.com/ArcBlock/aside | 2026-08-26T07:30:51Z | nategu@Nate-Mac-Pro |
+| share-ext-image-assets-correct-cover-attachments.jpg | https://github.com/ArcBlock/aside | 2026-08-26T07:31:02Z | nategu@Nate-Mac-Pro |
