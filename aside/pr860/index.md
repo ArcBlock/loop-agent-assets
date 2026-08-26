@@ -7,3 +7,4 @@
 | 20260826-085220-en-home-390.jpg | https://github.com/ArcBlock/aside/pull/860 | 2026-08-26T08:52:23Z | nategu@Nate-Mac-Pro |
 | 20260826-085230-en-articles-1440.jpg | https://github.com/ArcBlock/aside/pull/860 | 2026-08-26T08:52:34Z | nategu@Nate-Mac-Pro |
 | 20260826-085242-en-getting-started-1440.jpg | https://github.com/ArcBlock/aside/pull/860 | 2026-08-26T08:52:45Z | nategu@Nate-Mac-Pro |
+| 20260826-085253-en-sample-404-1440.jpg | https://github.com/ArcBlock/aside/pull/860 | 2026-08-26T08:52:55Z | nategu@Nate-Mac-Pro |
