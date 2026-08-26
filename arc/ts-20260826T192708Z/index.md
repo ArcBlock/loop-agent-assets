@@ -34,3 +34,4 @@
 | 20260826-202135-feed-02.png | https://github.com/ArcBlock/arc | 2026-08-26T20:21:35Z | root@vm |
 | 20260826-202139-feed-read-1-01.png | https://github.com/ArcBlock/arc | 2026-08-26T20:21:39Z | root@vm |
 | 20260826-202144-feed-read-1-02.png | https://github.com/ArcBlock/arc | 2026-08-26T20:21:44Z | root@vm |
+| 20260826-202148-feed-read-1-03.png | https://github.com/ArcBlock/arc | 2026-08-26T20:21:48Z | root@vm |
