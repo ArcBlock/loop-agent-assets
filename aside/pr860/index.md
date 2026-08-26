@@ -13,3 +13,4 @@
 | 20260826-092103-pr-860-03765ae6-zh-home-1440.jpg | https://github.com/ArcBlock/aside/pull/860 | 2026-08-26T09:21:06Z | nategu@Nate-Mac-Pro |
 | 20260826-092114-pr-860-03765ae6-zh-home-390.jpg | https://github.com/ArcBlock/aside/pull/860 | 2026-08-26T09:21:17Z | nategu@Nate-Mac-Pro |
 | 20260826-092125-pr-860-03765ae6-en-articles-1440.jpg | https://github.com/ArcBlock/aside/pull/860 | 2026-08-26T09:21:28Z | nategu@Nate-Mac-Pro |
+| 20260826-092137-pr-860-03765ae6-en-articles-390.jpg | https://github.com/ArcBlock/aside/pull/860 | 2026-08-26T09:21:39Z | nategu@Nate-Mac-Pro |
