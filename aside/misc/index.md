@@ -30,3 +30,4 @@
 | share-ext-image-assets-broken-2f5958af.jpg | https://github.com/ArcBlock/aside | 2026-08-26T07:30:51Z | nategu@Nate-Mac-Pro |
 | share-ext-image-assets-correct-cover-attachments.jpg | https://github.com/ArcBlock/aside | 2026-08-26T07:31:02Z | nategu@Nate-Mac-Pro |
 | item-detail-more-menu-no-delete.jpg | https://github.com/ArcBlock/aside | 2026-08-26T07:48:52Z | nategu@Nate-Mac-Pro |
+| organize-tab-duplicate-plus-icons.jpg | https://github.com/ArcBlock/aside | 2026-08-26T07:50:28Z | nategu@Nate-Mac-Pro |
