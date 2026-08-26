@@ -85,3 +85,4 @@
 | 20260826-202515-index-read-7-01.png | https://github.com/ArcBlock/arc | 2026-08-26T20:25:15Z | root@vm |
 | 20260826-202519-index-read-7-02.png | https://github.com/ArcBlock/arc | 2026-08-26T20:25:19Z | root@vm |
 | 20260826-202523-index-read-7-03.png | https://github.com/ArcBlock/arc | 2026-08-26T20:25:23Z | root@vm |
+| 20260826-202527-page@0ffe4afd9bf0378037c751af430e7876.webm | https://github.com/ArcBlock/arc | 2026-08-26T20:25:27Z | root@vm |
