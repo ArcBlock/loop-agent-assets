@@ -19,3 +19,4 @@
 | 20260826-092210-pr-860-03765ae6-en-why-saving-fails-1440.jpg | https://github.com/ArcBlock/aside/pull/860 | 2026-08-26T09:22:12Z | nategu@Nate-Mac-Pro |
 | 20260826-092221-pr-860-03765ae6-en-why-saving-fails-390.jpg | https://github.com/ArcBlock/aside/pull/860 | 2026-08-26T09:22:23Z | nategu@Nate-Mac-Pro |
 | 20260826-092232-pr-860-03765ae6-en-getting-started-1440.jpg | https://github.com/ArcBlock/aside/pull/860 | 2026-08-26T09:22:34Z | nategu@Nate-Mac-Pro |
+| 20260826-092243-pr-860-03765ae6-en-getting-started-390.jpg | https://github.com/ArcBlock/aside/pull/860 | 2026-08-26T09:22:45Z | nategu@Nate-Mac-Pro |
