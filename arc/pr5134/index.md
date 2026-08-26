@@ -11,3 +11,4 @@
 | shot-peer-partial.png | https://github.com/ArcBlock/arc/pull/5134 | 2026-08-26T04:51:55Z | robmao@Roberts-Mac-mini-M4-Pro-7 |
 | shot-stale-no-emit.png | https://github.com/ArcBlock/arc/pull/5134 | 2026-08-26T05:20:04Z | robmao@Roberts-Mac-mini-M4-Pro-7 |
 | shot-before-update.png | https://github.com/ArcBlock/arc/pull/5134 | 2026-08-26T05:20:09Z | robmao@Roberts-Mac-mini-M4-Pro-7 |
+| shot-after-update.png | https://github.com/ArcBlock/arc/pull/5134 | 2026-08-26T05:20:14Z | robmao@Roberts-Mac-mini-M4-Pro-7 |
