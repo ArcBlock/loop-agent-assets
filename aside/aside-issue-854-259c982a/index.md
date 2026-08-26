@@ -3,3 +3,4 @@
 | file | source | uploaded | by |
 |---|---|---|---|
 | 20260826-095433-landing-en-1440-259c982a.png | https://github.com/ArcBlock/aside | 2026-08-26T09:54:33Z | nategu@Nate-Mac-Pro |
+| 20260826-095444-landing-en-1440-platforms-259c982a.png | https://github.com/ArcBlock/aside | 2026-08-26T09:54:44Z | nategu@Nate-Mac-Pro |
