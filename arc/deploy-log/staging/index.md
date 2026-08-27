@@ -29,3 +29,4 @@ schema 与路径约定见 [../README.md](../README.md)（ArcBlock/arc#1698）。
 | 2026-08-20T17:32:44Z | `349d24bbf` | success | https://github.com/ArcBlock/arc/actions/runs/32397247680 |
 | 2026-08-21T17:18:51Z | `8bda7931a` | success | https://github.com/ArcBlock/arc/actions/runs/32507120407 |
 | 2026-08-26T17:21:28Z | `b428bfa89` | success | https://github.com/ArcBlock/arc/actions/runs/32993202463 |
+| 2026-08-27T17:27:21Z | `44ae2cefe` | success | https://github.com/ArcBlock/arc/actions/runs/33097768542 |
