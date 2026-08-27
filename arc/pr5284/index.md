@@ -11,3 +11,4 @@
 | 20260827-172817-ui-verify-todo-create.gif | https://github.com/ArcBlock/arc/pull/5284 | 2026-08-27T17:28:17Z | wangshijun@wangshijun-mac-studio |
 | 20260827-172824-ui-verify-todo-home.gif | https://github.com/ArcBlock/arc/pull/5284 | 2026-08-27T17:28:24Z | wangshijun@wangshijun-mac-studio |
 | 20260827-172832-ui-verify-chain-explorer-main.webm | https://github.com/ArcBlock/arc/pull/5284 | 2026-08-27T17:28:32Z | wangshijun@wangshijun-mac-studio |
+| 20260827-172840-ui-verify-did-space-browse.webm | https://github.com/ArcBlock/arc/pull/5284 | 2026-08-27T17:28:40Z | wangshijun@wangshijun-mac-studio |
