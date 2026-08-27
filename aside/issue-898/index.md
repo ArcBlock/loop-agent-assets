@@ -6,3 +6,4 @@
 | 20260827-190904-social-post-in-app-detail.png | https://github.com/ArcBlock/aside/issues/898 | 2026-08-27T19:09:08Z | nategu@Nate-Mac-Pro |
 | 20260827-190919-file-typed-url-detail.png | https://github.com/ArcBlock/aside/issues/898 | 2026-08-27T19:09:22Z | nategu@Nate-Mac-Pro |
 | 20260827-190931-sheet-survives-lightbox-dismiss.png | https://github.com/ArcBlock/aside/issues/898 | 2026-08-27T19:09:34Z | nategu@Nate-Mac-Pro |
+| 20260827-190944-home-types-and-se-tag-chip.png | https://github.com/ArcBlock/aside/issues/898 | 2026-08-27T19:09:51Z | nategu@Nate-Mac-Pro |
