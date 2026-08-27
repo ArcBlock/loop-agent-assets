@@ -34,3 +34,4 @@
 | settings-storage-mixed-i18n.jpg | https://github.com/ArcBlock/aside | 2026-08-26T14:04:37Z | nategu@Nate-Mac-Pro |
 | clipboard-compose-half-height-bottom-gap.jpg | https://github.com/ArcBlock/aside | 2026-08-27T01:22:34Z | nategu@Nate-Mac-Pro |
 | wechat-link-compose-has-cover.jpg | https://github.com/ArcBlock/aside | 2026-08-27T01:24:54Z | nategu@Nate-Mac-Pro |
+| wechat-link-feed-placeholder-cover.png | https://github.com/ArcBlock/aside | 2026-08-27T01:25:05Z | nategu@Nate-Mac-Pro |
