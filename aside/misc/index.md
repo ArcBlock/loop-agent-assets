@@ -33,3 +33,4 @@
 | organize-tab-duplicate-plus-icons.jpg | https://github.com/ArcBlock/aside | 2026-08-26T07:50:28Z | nategu@Nate-Mac-Pro |
 | settings-storage-mixed-i18n.jpg | https://github.com/ArcBlock/aside | 2026-08-26T14:04:37Z | nategu@Nate-Mac-Pro |
 | clipboard-compose-half-height-bottom-gap.jpg | https://github.com/ArcBlock/aside | 2026-08-27T01:22:34Z | nategu@Nate-Mac-Pro |
+| wechat-link-compose-has-cover.jpg | https://github.com/ArcBlock/aside | 2026-08-27T01:24:54Z | nategu@Nate-Mac-Pro |
