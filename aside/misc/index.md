@@ -37,3 +37,4 @@
 | wechat-link-feed-placeholder-cover.png | https://github.com/ArcBlock/aside | 2026-08-27T01:25:05Z | nategu@Nate-Mac-Pro |
 | share-extension-tags-not-applied.png | https://github.com/ArcBlock/aside | 2026-08-27T01:59:02Z | nategu@Nate-Mac-Pro |
 | share-extension-image-save-spinner.jpg | https://github.com/ArcBlock/aside | 2026-08-27T02:01:27Z | nategu@Nate-Mac-Pro |
+| item-detail-pdf-spinner.jpg | https://github.com/ArcBlock/aside | 2026-08-27T09:11:46Z | nategu@Nate-Mac-Pro |
