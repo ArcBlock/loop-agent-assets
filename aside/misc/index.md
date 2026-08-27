@@ -32,3 +32,4 @@
 | item-detail-more-menu-no-delete.jpg | https://github.com/ArcBlock/aside | 2026-08-26T07:48:52Z | nategu@Nate-Mac-Pro |
 | organize-tab-duplicate-plus-icons.jpg | https://github.com/ArcBlock/aside | 2026-08-26T07:50:28Z | nategu@Nate-Mac-Pro |
 | settings-storage-mixed-i18n.jpg | https://github.com/ArcBlock/aside | 2026-08-26T14:04:37Z | nategu@Nate-Mac-Pro |
+| clipboard-compose-half-height-bottom-gap.jpg | https://github.com/ArcBlock/aside | 2026-08-27T01:22:34Z | nategu@Nate-Mac-Pro |
