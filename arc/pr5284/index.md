@@ -17,3 +17,4 @@
 | 20260827-182245-ui-verify-agent-surface-chat.png | https://github.com/ArcBlock/arc/pull/5284 | 2026-08-27T18:22:45Z | wangshijun@wangshijun-mac-studio |
 | 20260827-182253-ui-verify-chain-explorer-main.png | https://github.com/ArcBlock/arc/pull/5284 | 2026-08-27T18:22:53Z | wangshijun@wangshijun-mac-studio |
 | 20260827-182301-ui-verify-did-space-browse.png | https://github.com/ArcBlock/arc/pull/5284 | 2026-08-27T18:23:01Z | wangshijun@wangshijun-mac-studio |
+| 20260827-182308-ui-verify-todo-create-item.png | https://github.com/ArcBlock/arc/pull/5284 | 2026-08-27T18:23:08Z | wangshijun@wangshijun-mac-studio |
