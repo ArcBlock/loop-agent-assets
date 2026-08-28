@@ -13,3 +13,4 @@
 | 20260828-135628-09-continue-same-card.jpg | https://github.com/ArcBlock/aside/issues/972 | 2026-08-28T13:56:28Z | nategu@Nate-Mac-Pro |
 | 20260828-135639-10-zero-zero-no-related-section.jpg | https://github.com/ArcBlock/aside/issues/972 | 2026-08-28T13:56:39Z | nategu@Nate-Mac-Pro |
 | 20260828-135651-11-gesture-right-done.jpg | https://github.com/ArcBlock/aside/issues/972 | 2026-08-28T13:56:51Z | nategu@Nate-Mac-Pro |
+| 20260828-135703-12-two-confirmed-tiles.jpg | https://github.com/ArcBlock/aside/issues/972 | 2026-08-28T13:57:03Z | nategu@Nate-Mac-Pro |
