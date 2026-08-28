@@ -6,3 +6,4 @@
 | 20260828-114909-board-queue-button-only.png | https://github.com/ArcBlock/aside/pull/1007 | 2026-08-28T11:49:12Z | nategu@Nate-Mac-Pro |
 | 20260828-114922-board-absent.png | https://github.com/ArcBlock/aside/pull/1007 | 2026-08-28T11:49:24Z | nategu@Nate-Mac-Pro |
 | 20260828-114933-queue-destination.png | https://github.com/ArcBlock/aside/pull/1007 | 2026-08-28T11:49:36Z | nategu@Nate-Mac-Pro |
+| 20260828-114944-peek-confirmed.png | https://github.com/ArcBlock/aside/pull/1007 | 2026-08-28T11:49:47Z | nategu@Nate-Mac-Pro |
