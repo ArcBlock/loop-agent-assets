@@ -45,3 +45,4 @@
 | reminder-picker-presets-no-affordance.jpg | https://github.com/ArcBlock/aside | 2026-08-28T02:31:22Z | nategu@Nate-Mac-Pro |
 | reminder-picker-reference-affordance.jpg | https://github.com/ArcBlock/aside | 2026-08-28T02:31:36Z | nategu@Nate-Mac-Pro |
 | settings-ondevice-install-button.png | https://github.com/ArcBlock/aside | 2026-08-28T02:33:41Z | nategu@Nate-Mac-Pro |
+| aside/epic1016/20260828-234345-sheet-empty-notes-gap.jpg | https://github.com/ArcBlock/aside | 2026-08-28T15:49:59Z | nategu@Nate-Mac-Pro |
