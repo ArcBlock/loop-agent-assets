@@ -35,3 +35,4 @@
 | 20260828-085446-index-01.png | https://github.com/ArcBlock/arc | 2026-08-28T08:54:46Z | root@vm |
 | 20260828-085450-index-02.png | https://github.com/ArcBlock/arc | 2026-08-28T08:54:50Z | root@vm |
 | 20260828-085507-clip-01.png | https://github.com/ArcBlock/arc | 2026-08-28T08:55:07Z | root@vm |
+| 20260828-085511-clip-02.png | https://github.com/ArcBlock/arc | 2026-08-28T08:55:11Z | root@vm |
