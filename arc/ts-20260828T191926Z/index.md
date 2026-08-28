@@ -180,3 +180,4 @@
 | 20260828-200917-explorer-01.png | https://github.com/ArcBlock/arc | 2026-08-28T20:09:17Z | root@vm |
 | 20260828-200922-explorer-02.png | https://github.com/ArcBlock/arc | 2026-08-28T20:09:22Z | root@vm |
 | 20260828-200926-explorer-read-1-01.png | https://github.com/ArcBlock/arc | 2026-08-28T20:09:26Z | root@vm |
+| 20260828-200930-explorer-read-1-02.png | https://github.com/ArcBlock/arc | 2026-08-28T20:09:30Z | root@vm |
