@@ -70,3 +70,4 @@
 | 20260828-085716-item-detail-02.png | https://github.com/ArcBlock/arc | 2026-08-28T08:57:16Z | root@vm |
 | 20260828-085720-publish-01.png | https://github.com/ArcBlock/arc | 2026-08-28T08:57:20Z | root@vm |
 | 20260828-085723-publish-02.png | https://github.com/ArcBlock/arc | 2026-08-28T08:57:23Z | root@vm |
+| 20260828-085727-setup-a-00.png | https://github.com/ArcBlock/arc | 2026-08-28T08:57:27Z | root@vm |
