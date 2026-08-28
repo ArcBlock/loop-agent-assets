@@ -165,3 +165,4 @@
 | 20260828-200811-files-02.png | https://github.com/ArcBlock/arc | 2026-08-28T20:08:11Z | root@vm |
 | 20260828-200816-page@152fed6d989cefd6c4cb74880ea622f6.webm | https://github.com/ArcBlock/arc | 2026-08-28T20:08:16Z | root@vm |
 | 20260828-200821-page@f2aa3087284f8366fac3ce31a5a34ae7.webm | https://github.com/ArcBlock/arc | 2026-08-28T20:08:21Z | root@vm |
+| 20260828-200825-detail-01.png | https://github.com/ArcBlock/arc | 2026-08-28T20:08:25Z | root@vm |
