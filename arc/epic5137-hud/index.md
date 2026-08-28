@@ -18,3 +18,4 @@
 | 20260828-042406-toast-v3.png | https://github.com/ArcBlock/arc | 2026-08-28T04:24:06Z | robmao@Roberts-Mac-mini-M4-Pro-7 |
 | 20260828-044925-backs.png | https://github.com/ArcBlock/arc | 2026-08-28T04:49:25Z | robmao@Roberts-Mac-mini-M4-Pro-7 |
 | 20260828-044929-detail.png | https://github.com/ArcBlock/arc | 2026-08-28T04:49:29Z | robmao@Roberts-Mac-mini-M4-Pro-7 |
+| 20260828-044933-nav.png | https://github.com/ArcBlock/arc | 2026-08-28T04:49:33Z | robmao@Roberts-Mac-mini-M4-Pro-7 |
