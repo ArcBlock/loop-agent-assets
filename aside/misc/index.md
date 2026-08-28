@@ -44,3 +44,4 @@
 | item-detail-save-article-jank.png | https://github.com/ArcBlock/aside | 2026-08-28T02:28:57Z | nategu@Nate-Mac-Pro |
 | reminder-picker-presets-no-affordance.jpg | https://github.com/ArcBlock/aside | 2026-08-28T02:31:22Z | nategu@Nate-Mac-Pro |
 | reminder-picker-reference-affordance.jpg | https://github.com/ArcBlock/aside | 2026-08-28T02:31:36Z | nategu@Nate-Mac-Pro |
+| settings-ondevice-install-button.png | https://github.com/ArcBlock/aside | 2026-08-28T02:33:41Z | nategu@Nate-Mac-Pro |
