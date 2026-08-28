@@ -72,3 +72,4 @@
 | 20260828-065837-uishot-showcase-dsl.png | https://github.com/ArcBlock/arc/pull/5348 | 2026-08-28T06:58:37Z | robmao@Roberts-Mac-mini-M4-Pro-7 |
 | 20260828-065842-uishot-showcase.png | https://github.com/ArcBlock/arc/pull/5348 | 2026-08-28T06:58:42Z | robmao@Roberts-Mac-mini-M4-Pro-7 |
 | 20260828-065848-uishot-sites.png | https://github.com/ArcBlock/arc/pull/5348 | 2026-08-28T06:58:48Z | robmao@Roberts-Mac-mini-M4-Pro-7 |
+| 20260828-065853-uishot-telegram-assistant.png | https://github.com/ArcBlock/arc/pull/5348 | 2026-08-28T06:58:53Z | robmao@Roberts-Mac-mini-M4-Pro-7 |
