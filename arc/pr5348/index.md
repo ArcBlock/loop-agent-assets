@@ -44,3 +44,4 @@
 | 20260828-065621-process-index-chrome.png | https://github.com/ArcBlock/arc/pull/5348 | 2026-08-28T06:56:21Z | robmao@Roberts-Mac-mini-M4-Pro-7 |
 | 20260828-065626-process-index-gutter.png | https://github.com/ArcBlock/arc/pull/5348 | 2026-08-28T06:56:26Z | robmao@Roberts-Mac-mini-M4-Pro-7 |
 | 20260828-065631-process-todo-chrome.png | https://github.com/ArcBlock/arc/pull/5348 | 2026-08-28T06:56:31Z | robmao@Roberts-Mac-mini-M4-Pro-7 |
+| 20260828-065636-uishot-agent-surface.png | https://github.com/ArcBlock/arc/pull/5348 | 2026-08-28T06:56:36Z | robmao@Roberts-Mac-mini-M4-Pro-7 |
