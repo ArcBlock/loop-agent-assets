@@ -163,3 +163,4 @@
 | 20260828-200802-dd-1-did-space-12.png | https://github.com/ArcBlock/arc | 2026-08-28T20:08:02Z | root@vm |
 | 20260828-200806-files-01.png | https://github.com/ArcBlock/arc | 2026-08-28T20:08:06Z | root@vm |
 | 20260828-200811-files-02.png | https://github.com/ArcBlock/arc | 2026-08-28T20:08:11Z | root@vm |
+| 20260828-200816-page@152fed6d989cefd6c4cb74880ea622f6.webm | https://github.com/ArcBlock/arc | 2026-08-28T20:08:16Z | root@vm |
