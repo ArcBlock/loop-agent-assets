@@ -20,3 +20,4 @@
 | 20260828-065420-live-desktop.png | https://github.com/ArcBlock/arc/pull/5348 | 2026-08-28T06:54:20Z | robmao@Roberts-Mac-mini-M4-Pro-7 |
 | 20260828-065424-live-did-space.png | https://github.com/ArcBlock/arc/pull/5348 | 2026-08-28T06:54:24Z | robmao@Roberts-Mac-mini-M4-Pro-7 |
 | 20260828-065429-live-explorer.png | https://github.com/ArcBlock/arc/pull/5348 | 2026-08-28T06:54:29Z | robmao@Roberts-Mac-mini-M4-Pro-7 |
+| 20260828-065434-live-hello-declarative.png | https://github.com/ArcBlock/arc/pull/5348 | 2026-08-28T06:54:34Z | robmao@Roberts-Mac-mini-M4-Pro-7 |
