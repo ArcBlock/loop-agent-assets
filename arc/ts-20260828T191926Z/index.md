@@ -283,3 +283,4 @@
 | 20260828-201652-page@ffb52fc5d6df6b4f90776dbe12d8151e.webm | https://github.com/ArcBlock/arc | 2026-08-28T20:16:52Z | root@vm |
 | 20260828-201657-explorer-01.png | https://github.com/ArcBlock/arc | 2026-08-28T20:16:57Z | root@vm |
 | 20260828-201701-explorer-02.png | https://github.com/ArcBlock/arc | 2026-08-28T20:17:01Z | root@vm |
+| 20260828-201710-index-01.png | https://github.com/ArcBlock/arc | 2026-08-28T20:17:10Z | root@vm |
