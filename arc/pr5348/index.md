@@ -68,3 +68,4 @@
 | 20260828-065817-uishot-nimbus-demo.png | https://github.com/ArcBlock/arc/pull/5348 | 2026-08-28T06:58:17Z | robmao@Roberts-Mac-mini-M4-Pro-7 |
 | 20260828-065822-uishot-observability-explorer.png | https://github.com/ArcBlock/arc/pull/5348 | 2026-08-28T06:58:22Z | robmao@Roberts-Mac-mini-M4-Pro-7 |
 | 20260828-065826-uishot-persona.png | https://github.com/ArcBlock/arc/pull/5348 | 2026-08-28T06:58:26Z | robmao@Roberts-Mac-mini-M4-Pro-7 |
+| 20260828-065831-uishot-settings-cascade.png | https://github.com/ArcBlock/arc/pull/5348 | 2026-08-28T06:58:31Z | robmao@Roberts-Mac-mini-M4-Pro-7 |
