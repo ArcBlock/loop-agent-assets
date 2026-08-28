@@ -8,3 +8,4 @@
 | 20260828-201659-picker-selected.jpg | https://github.com/ArcBlock/aside/issues/1016 | 2026-08-28T20:17:01Z | nategu@Nate-Mac-Pro |
 | 20260828-201719-smart-recommend-overlay.jpg | https://github.com/ArcBlock/aside/issues/1016 | 2026-08-28T20:17:22Z | nategu@Nate-Mac-Pro |
 | 20260828-201732-manual-add-picker.jpg | https://github.com/ArcBlock/aside/issues/1016 | 2026-08-28T20:17:35Z | nategu@Nate-Mac-Pro |
+| 20260828-201746-related-tile-after-manual-add.jpg | https://github.com/ArcBlock/aside/issues/1016 | 2026-08-28T20:17:48Z | nategu@Nate-Mac-Pro |
