@@ -39,3 +39,4 @@
 | 20260828-065556-process-dash-chrome.png | https://github.com/ArcBlock/arc/pull/5348 | 2026-08-28T06:55:56Z | robmao@Roberts-Mac-mini-M4-Pro-7 |
 | 20260828-065601-process-dash-gutter.png | https://github.com/ArcBlock/arc/pull/5348 | 2026-08-28T06:56:01Z | robmao@Roberts-Mac-mini-M4-Pro-7 |
 | 20260828-065606-process-help-after.png | https://github.com/ArcBlock/arc/pull/5348 | 2026-08-28T06:56:06Z | robmao@Roberts-Mac-mini-M4-Pro-7 |
+| 20260828-065612-process-index-after.png | https://github.com/ArcBlock/arc/pull/5348 | 2026-08-28T06:56:12Z | robmao@Roberts-Mac-mini-M4-Pro-7 |
