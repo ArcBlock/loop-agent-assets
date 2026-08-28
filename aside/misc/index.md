@@ -49,3 +49,4 @@
 | aside/epic1016/20260828-234710-sheet-keyboard.jpg | https://github.com/ArcBlock/aside | 2026-08-28T15:50:09Z | nategu@Nate-Mac-Pro |
 | aside/epic1016/20260828-234819-collections-vs-tags.jpg | https://github.com/ArcBlock/aside | 2026-08-28T15:51:40Z | nategu@Nate-Mac-Pro |
 | aside/epic1016/20260828-235213-related-section-missing.jpg | https://github.com/ArcBlock/aside | 2026-08-28T15:56:06Z | nategu@Nate-Mac-Pro |
+| aside/epic1016/20260828-235414-select-items-picker.jpg | https://github.com/ArcBlock/aside | 2026-08-28T15:56:15Z | nategu@Nate-Mac-Pro |
