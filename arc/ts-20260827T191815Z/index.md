@@ -428,3 +428,4 @@
 | 20260828-103620-dd-1-form-contact-07.png | https://github.com/ArcBlock/arc | 2026-08-28T10:36:20Z | root@vm |
 | 20260828-103623-dd-10-list-basic-00.png | https://github.com/ArcBlock/arc | 2026-08-28T10:36:23Z | root@vm |
 | 20260828-103627-dd-10-list-basic-01.png | https://github.com/ArcBlock/arc | 2026-08-28T10:36:27Z | root@vm |
+| 20260828-103630-dd-11-list-basic-00.png | https://github.com/ArcBlock/arc | 2026-08-28T10:36:30Z | root@vm |
