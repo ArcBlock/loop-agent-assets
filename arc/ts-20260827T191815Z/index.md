@@ -139,3 +139,4 @@
 | 20260828-090128-setup-a-66.png | https://github.com/ArcBlock/arc | 2026-08-28T09:01:28Z | root@vm |
 | 20260828-090132-setup-a-67.png | https://github.com/ArcBlock/arc | 2026-08-28T09:01:32Z | root@vm |
 | 20260828-090136-setup-b-00.png | https://github.com/ArcBlock/arc | 2026-08-28T09:01:36Z | root@vm |
+| 20260828-090139-setup-b-01.png | https://github.com/ArcBlock/arc | 2026-08-28T09:01:39Z | root@vm |
