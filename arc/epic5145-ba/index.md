@@ -12,3 +12,4 @@
 | 20260828-031812-pair-toast-t8.png | https://github.com/ArcBlock/arc/issues/5145 | 2026-08-28T03:18:13Z | robmao@Roberts-Mac-mini-M4-Pro-7 |
 | 20260828-031818-toast-t0-after.png | https://github.com/ArcBlock/arc/issues/5145 | 2026-08-28T03:18:18Z | robmao@Roberts-Mac-mini-M4-Pro-7 |
 | 20260828-031823-toast-t0-before.png | https://github.com/ArcBlock/arc/issues/5145 | 2026-08-28T03:18:23Z | robmao@Roberts-Mac-mini-M4-Pro-7 |
+| 20260828-031828-toast-t8-after.png | https://github.com/ArcBlock/arc/issues/5145 | 2026-08-28T03:18:28Z | robmao@Roberts-Mac-mini-M4-Pro-7 |
