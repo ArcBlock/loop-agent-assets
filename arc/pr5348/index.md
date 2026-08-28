@@ -33,3 +33,4 @@
 | 20260828-065525-live-settings-cascade.png | https://github.com/ArcBlock/arc/pull/5348 | 2026-08-28T06:55:25Z | robmao@Roberts-Mac-mini-M4-Pro-7 |
 | 20260828-065530-live-sites.png | https://github.com/ArcBlock/arc/pull/5348 | 2026-08-28T06:55:30Z | robmao@Roberts-Mac-mini-M4-Pro-7 |
 | 20260828-065535-live-telegram-assistant.png | https://github.com/ArcBlock/arc/pull/5348 | 2026-08-28T06:55:35Z | robmao@Roberts-Mac-mini-M4-Pro-7 |
+| 20260828-065540-live-terminal.png | https://github.com/ArcBlock/arc/pull/5348 | 2026-08-28T06:55:40Z | robmao@Roberts-Mac-mini-M4-Pro-7 |
