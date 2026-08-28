@@ -589,3 +589,4 @@
 | 20260828-104750-chat-02.png | https://github.com/ArcBlock/arc | 2026-08-28T10:47:50Z | root@vm |
 | 20260828-104754-index-01.png | https://github.com/ArcBlock/arc | 2026-08-28T10:47:54Z | root@vm |
 | 20260828-104757-index-02.png | https://github.com/ArcBlock/arc | 2026-08-28T10:47:57Z | root@vm |
+| 20260828-104801-page@1373bca623d4e9f58edd6fc999a1cbdf.webm | https://github.com/ArcBlock/arc | 2026-08-28T10:48:01Z | root@vm |
