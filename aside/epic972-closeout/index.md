@@ -11,3 +11,4 @@
 | 20260828-135603-07-reopen-peek-confirmed.jpg | https://github.com/ArcBlock/aside/issues/972 | 2026-08-28T13:56:03Z | nategu@Nate-Mac-Pro |
 | 20260828-135615-08-overlay-card-peek.jpg | https://github.com/ArcBlock/aside/issues/972 | 2026-08-28T13:56:15Z | nategu@Nate-Mac-Pro |
 | 20260828-135628-09-continue-same-card.jpg | https://github.com/ArcBlock/aside/issues/972 | 2026-08-28T13:56:28Z | nategu@Nate-Mac-Pro |
+| 20260828-135639-10-zero-zero-no-related-section.jpg | https://github.com/ArcBlock/aside/issues/972 | 2026-08-28T13:56:39Z | nategu@Nate-Mac-Pro |
