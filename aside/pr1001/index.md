@@ -5,3 +5,4 @@
 | 20260828-081339-en-desktop-full-page.png | https://github.com/ArcBlock/aside/pull/1001 | 2026-08-28T08:13:42Z | codex-epic-conductor |
 | 20260828-081359-en-mobile-full-page.png | https://github.com/ArcBlock/aside/pull/1001 | 2026-08-28T08:14:03Z | codex-epic-conductor |
 | 20260828-081421-zh-desktop-full-page.png | https://github.com/ArcBlock/aside/pull/1001 | 2026-08-28T08:14:25Z | codex-epic-conductor |
+| 20260828-081447-zh-mobile-full-page.png | https://github.com/ArcBlock/aside/pull/1001 | 2026-08-28T08:14:51Z | codex-epic-conductor |
