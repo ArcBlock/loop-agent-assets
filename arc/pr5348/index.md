@@ -83,3 +83,4 @@
 | 20260828-230645-ui-verify-pr5348-code-agents-dialog.png | https://github.com/ArcBlock/arc/pull/5348 | 2026-08-28T23:06:45Z | robmao@Roberts-Mac-mini-M4-Pro-7 |
 | 20260828-230651-ui-verify-pr5348-code-agents-settings.png | https://github.com/ArcBlock/arc/pull/5348 | 2026-08-28T23:06:51Z | robmao@Roberts-Mac-mini-M4-Pro-7 |
 | 20260828-230655-ui-verify-pr5348-code-agents.png | https://github.com/ArcBlock/arc/pull/5348 | 2026-08-28T23:06:56Z | robmao@Roberts-Mac-mini-M4-Pro-7 |
+| 20260828-230700-ui-verify-pr5348-dsl-mobile-closed.png | https://github.com/ArcBlock/arc/pull/5348 | 2026-08-28T23:07:00Z | robmao@Roberts-Mac-mini-M4-Pro-7 |
