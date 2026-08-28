@@ -46,3 +46,4 @@
 | 20260828-065631-process-todo-chrome.png | https://github.com/ArcBlock/arc/pull/5348 | 2026-08-28T06:56:31Z | robmao@Roberts-Mac-mini-M4-Pro-7 |
 | 20260828-065636-uishot-agent-surface.png | https://github.com/ArcBlock/arc/pull/5348 | 2026-08-28T06:56:36Z | robmao@Roberts-Mac-mini-M4-Pro-7 |
 | 20260828-065640-uishot-agent-terminal.png | https://github.com/ArcBlock/arc/pull/5348 | 2026-08-28T06:56:40Z | robmao@Roberts-Mac-mini-M4-Pro-7 |
+| 20260828-065645-uishot-aggregator.png | https://github.com/ArcBlock/arc/pull/5348 | 2026-08-28T06:56:45Z | robmao@Roberts-Mac-mini-M4-Pro-7 |
