@@ -464,3 +464,4 @@
 | 20260828-103834-dd-7-overlays-00.png | https://github.com/ArcBlock/arc | 2026-08-28T10:38:34Z | root@vm |
 | 20260828-103838-dd-7-overlays-01.png | https://github.com/ArcBlock/arc | 2026-08-28T10:38:38Z | root@vm |
 | 20260828-103841-dd-7-overlays-02.png | https://github.com/ArcBlock/arc | 2026-08-28T10:38:41Z | root@vm |
+| 20260828-103845-dd-8-overlays-00.png | https://github.com/ArcBlock/arc | 2026-08-28T10:38:45Z | root@vm |
