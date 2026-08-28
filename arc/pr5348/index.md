@@ -37,3 +37,4 @@
 | 20260828-065545-live-workspace-demo.png | https://github.com/ArcBlock/arc/pull/5348 | 2026-08-28T06:55:45Z | robmao@Roberts-Mac-mini-M4-Pro-7 |
 | 20260828-065551-process-dash-after.png | https://github.com/ArcBlock/arc/pull/5348 | 2026-08-28T06:55:51Z | robmao@Roberts-Mac-mini-M4-Pro-7 |
 | 20260828-065556-process-dash-chrome.png | https://github.com/ArcBlock/arc/pull/5348 | 2026-08-28T06:55:56Z | robmao@Roberts-Mac-mini-M4-Pro-7 |
+| 20260828-065601-process-dash-gutter.png | https://github.com/ArcBlock/arc/pull/5348 | 2026-08-28T06:56:01Z | robmao@Roberts-Mac-mini-M4-Pro-7 |
