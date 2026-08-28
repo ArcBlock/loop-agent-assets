@@ -77,3 +77,4 @@
 | 20260828-065902-uishot-todo.png | https://github.com/ArcBlock/arc/pull/5348 | 2026-08-28T06:59:02Z | robmao@Roberts-Mac-mini-M4-Pro-7 |
 | 20260828-065907-uishot-workspace-demo.png | https://github.com/ArcBlock/arc/pull/5348 | 2026-08-28T06:59:07Z | robmao@Roberts-Mac-mini-M4-Pro-7 |
 | fix-settings-sidebar-hairline.png | https://github.com/ArcBlock/arc/pull/5348 | 2026-08-28T15:40:21Z | root@vm |
+| fix-navsidebar-content-clamp.png | https://github.com/ArcBlock/arc/pull/5348 | 2026-08-28T15:40:32Z | root@vm |
