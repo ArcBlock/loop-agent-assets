@@ -24,3 +24,4 @@
 | 20260828-085406-collections-read-1-03.png | https://github.com/ArcBlock/arc | 2026-08-28T08:54:06Z | root@vm |
 | 20260828-085409-dd10-clean-00.png | https://github.com/ArcBlock/arc | 2026-08-28T08:54:09Z | root@vm |
 | 20260828-085413-dd10-clean-01.png | https://github.com/ArcBlock/arc | 2026-08-28T08:54:13Z | root@vm |
+| 20260828-085417-dd10-clean-02.png | https://github.com/ArcBlock/arc | 2026-08-28T08:54:17Z | root@vm |
