@@ -57,3 +57,4 @@
 | 20260828-085628-dd10-clean-00.png | https://github.com/ArcBlock/arc | 2026-08-28T08:56:28Z | root@vm |
 | 20260828-085632-dd10-clean-01.png | https://github.com/ArcBlock/arc | 2026-08-28T08:56:32Z | root@vm |
 | 20260828-085636-dd10-clean-02.png | https://github.com/ArcBlock/arc | 2026-08-28T08:56:36Z | root@vm |
+| 20260828-085639-explore-01.png | https://github.com/ArcBlock/arc | 2026-08-28T08:56:39Z | root@vm |
