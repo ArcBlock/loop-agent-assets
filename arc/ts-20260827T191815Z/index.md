@@ -3,3 +3,4 @@
 | file | source | uploaded | by |
 |---|---|---|---|
 | 20260828-085253-clip-01.png | https://github.com/ArcBlock/arc | 2026-08-28T08:52:53Z | root@vm |
+| 20260828-085300-clip-02.png | https://github.com/ArcBlock/arc | 2026-08-28T08:53:00Z | root@vm |
