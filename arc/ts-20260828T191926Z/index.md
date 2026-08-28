@@ -39,3 +39,4 @@
 | 20260828-195944-index-02.png | https://github.com/ArcBlock/arc | 2026-08-28T19:59:44Z | root@vm |
 | 20260828-195948-item-detail-01.png | https://github.com/ArcBlock/arc | 2026-08-28T19:59:48Z | root@vm |
 | 20260828-195953-item-detail-02.png | https://github.com/ArcBlock/arc | 2026-08-28T19:59:53Z | root@vm |
+| 20260828-195956-publish-01.png | https://github.com/ArcBlock/arc | 2026-08-28T19:59:56Z | root@vm |
