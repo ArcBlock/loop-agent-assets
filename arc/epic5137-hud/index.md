@@ -14,3 +14,4 @@
 | 20260828-041804-toast-chrome.png | https://github.com/ArcBlock/arc/pull/5337 | 2026-08-28T04:18:04Z | robmao@Roberts-Mac-mini-M4-Pro-7 |
 | 20260828-042355-btns-v3.png | https://github.com/ArcBlock/arc | 2026-08-28T04:23:55Z | robmao@Roberts-Mac-mini-M4-Pro-7 |
 | 20260828-042359-confirm-v3.png | https://github.com/ArcBlock/arc | 2026-08-28T04:23:59Z | robmao@Roberts-Mac-mini-M4-Pro-7 |
+| 20260828-042403-salad-v3.png | https://github.com/ArcBlock/arc | 2026-08-28T04:24:03Z | robmao@Roberts-Mac-mini-M4-Pro-7 |
