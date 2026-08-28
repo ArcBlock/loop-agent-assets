@@ -43,3 +43,4 @@
 | organize-read-later-count-stale.jpg | https://github.com/ArcBlock/aside | 2026-08-28T02:26:04Z | nategu@Nate-Mac-Pro |
 | item-detail-save-article-jank.png | https://github.com/ArcBlock/aside | 2026-08-28T02:28:57Z | nategu@Nate-Mac-Pro |
 | reminder-picker-presets-no-affordance.jpg | https://github.com/ArcBlock/aside | 2026-08-28T02:31:22Z | nategu@Nate-Mac-Pro |
+| reminder-picker-reference-affordance.jpg | https://github.com/ArcBlock/aside | 2026-08-28T02:31:36Z | nategu@Nate-Mac-Pro |
