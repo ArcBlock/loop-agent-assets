@@ -87,3 +87,4 @@
 | 20260828-230705-ui-verify-pr5348-dsl-mobile-open.png | https://github.com/ArcBlock/arc/pull/5348 | 2026-08-28T23:07:05Z | robmao@Roberts-Mac-mini-M4-Pro-7 |
 | 20260828-230709-ui-verify-pr5348-showcase-app.png | https://github.com/ArcBlock/arc/pull/5348 | 2026-08-28T23:07:09Z | robmao@Roberts-Mac-mini-M4-Pro-7 |
 | 20260828-230713-ui-verify-pr5348-showcase-catalog.png | https://github.com/ArcBlock/arc/pull/5348 | 2026-08-28T23:07:13Z | robmao@Roberts-Mac-mini-M4-Pro-7 |
+| 20260828-230717-ui-verify-pr5348-showcase-mobile-closed.png | https://github.com/ArcBlock/arc/pull/5348 | 2026-08-28T23:07:17Z | robmao@Roberts-Mac-mini-M4-Pro-7 |
