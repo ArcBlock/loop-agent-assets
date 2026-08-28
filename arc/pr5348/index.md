@@ -80,3 +80,4 @@
 | fix-navsidebar-content-clamp.png | https://github.com/ArcBlock/arc/pull/5348 | 2026-08-28T15:40:32Z | root@vm |
 | fix-mobile-drawer-closed.png | https://github.com/ArcBlock/arc/pull/5348 | 2026-08-28T15:40:38Z | root@vm |
 | fix-mobile-drawer-open.png | https://github.com/ArcBlock/arc/pull/5348 | 2026-08-28T15:40:42Z | root@vm |
+| 20260828-230645-ui-verify-pr5348-code-agents-dialog.png | https://github.com/ArcBlock/arc/pull/5348 | 2026-08-28T23:06:45Z | robmao@Roberts-Mac-mini-M4-Pro-7 |
