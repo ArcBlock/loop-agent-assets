@@ -49,3 +49,4 @@
 | 20260828-065645-uishot-aggregator.png | https://github.com/ArcBlock/arc/pull/5348 | 2026-08-28T06:56:45Z | robmao@Roberts-Mac-mini-M4-Pro-7 |
 | 20260828-065650-uishot-aistro.png | https://github.com/ArcBlock/arc/pull/5348 | 2026-08-28T06:56:50Z | robmao@Roberts-Mac-mini-M4-Pro-7 |
 | 20260828-065655-uishot-arch-qa.png | https://github.com/ArcBlock/arc/pull/5348 | 2026-08-28T06:56:55Z | robmao@Roberts-Mac-mini-M4-Pro-7 |
+| 20260828-065659-uishot-aup-canvas.png | https://github.com/ArcBlock/arc/pull/5348 | 2026-08-28T06:56:59Z | robmao@Roberts-Mac-mini-M4-Pro-7 |
