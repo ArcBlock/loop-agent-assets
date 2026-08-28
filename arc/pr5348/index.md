@@ -23,3 +23,4 @@
 | 20260828-065434-live-hello-declarative.png | https://github.com/ArcBlock/arc/pull/5348 | 2026-08-28T06:54:34Z | robmao@Roberts-Mac-mini-M4-Pro-7 |
 | 20260828-065438-live-info-pages.png | https://github.com/ArcBlock/arc/pull/5348 | 2026-08-28T06:54:38Z | robmao@Roberts-Mac-mini-M4-Pro-7 |
 | 20260828-065443-live-instances.png | https://github.com/ArcBlock/arc/pull/5348 | 2026-08-28T06:54:43Z | robmao@Roberts-Mac-mini-M4-Pro-7 |
+| 20260828-065448-live-launch-kit.png | https://github.com/ArcBlock/arc/pull/5348 | 2026-08-28T06:54:48Z | robmao@Roberts-Mac-mini-M4-Pro-7 |
