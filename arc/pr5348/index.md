@@ -29,3 +29,4 @@
 | 20260828-065505-live-observability-explorer.png | https://github.com/ArcBlock/arc/pull/5348 | 2026-08-28T06:55:05Z | robmao@Roberts-Mac-mini-M4-Pro-7 |
 | 20260828-065510-live-persona.png | https://github.com/ArcBlock/arc/pull/5348 | 2026-08-28T06:55:10Z | robmao@Roberts-Mac-mini-M4-Pro-7 |
 | 20260828-065515-live-places-notebook.png | https://github.com/ArcBlock/arc/pull/5348 | 2026-08-28T06:55:15Z | robmao@Roberts-Mac-mini-M4-Pro-7 |
+| 20260828-065520-live-runtime-demos.png | https://github.com/ArcBlock/arc/pull/5348 | 2026-08-28T06:55:20Z | robmao@Roberts-Mac-mini-M4-Pro-7 |
