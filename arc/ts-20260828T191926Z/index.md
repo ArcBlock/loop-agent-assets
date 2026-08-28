@@ -149,3 +149,4 @@
 | 20260828-200709-page@fa805484fec77d1098912e8c8ca616aa.webm | https://github.com/ArcBlock/arc | 2026-08-28T20:07:09Z | root@vm |
 | 20260828-200713-page@fc9ebbb29123a1182fe8b1418d25946a.webm | https://github.com/ArcBlock/arc | 2026-08-28T20:07:13Z | root@vm |
 | 20260828-200717-dd-1-did-space-00.png | https://github.com/ArcBlock/arc | 2026-08-28T20:07:17Z | root@vm |
+| 20260828-200720-dd-1-did-space-01.png | https://github.com/ArcBlock/arc | 2026-08-28T20:07:20Z | root@vm |
