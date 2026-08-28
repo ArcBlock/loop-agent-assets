@@ -7,3 +7,4 @@
 | 20260828-072607-organize-no-time-named.png | https://github.com/ArcBlock/aside/pull/1000 | 2026-08-28T07:26:10Z | nategu@Nate-Mac-Pro |
 | 20260828-090824-board-four-sections.png | https://github.com/ArcBlock/aside/pull/1000 | 2026-08-28T09:08:27Z | nategu@Nate-Mac-Pro |
 | 20260828-090836-peek-hud-only.png | https://github.com/ArcBlock/aside/pull/1000 | 2026-08-28T09:08:38Z | nategu@Nate-Mac-Pro |
+| 20260828-090847-organize-no-time-collection.png | https://github.com/ArcBlock/aside/pull/1000 | 2026-08-28T09:08:50Z | nategu@Nate-Mac-Pro |
