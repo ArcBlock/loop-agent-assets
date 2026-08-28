@@ -375,3 +375,4 @@
 | 20260828-100851-explorer-01.png | https://github.com/ArcBlock/arc | 2026-08-28T10:08:51Z | root@vm |
 | 20260828-100855-explorer-02.png | https://github.com/ArcBlock/arc | 2026-08-28T10:08:55Z | root@vm |
 | 20260828-100858-index-01.png | https://github.com/ArcBlock/arc | 2026-08-28T10:08:58Z | root@vm |
+| 20260828-100902-index-02.png | https://github.com/ArcBlock/arc | 2026-08-28T10:09:02Z | root@vm |
