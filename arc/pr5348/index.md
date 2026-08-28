@@ -57,3 +57,4 @@
 | 20260828-065724-uishot-desktop.png | https://github.com/ArcBlock/arc/pull/5348 | 2026-08-28T06:57:24Z | robmao@Roberts-Mac-mini-M4-Pro-7 |
 | 20260828-065729-uishot-did-space.png | https://github.com/ArcBlock/arc/pull/5348 | 2026-08-28T06:57:29Z | robmao@Roberts-Mac-mini-M4-Pro-7 |
 | 20260828-065734-uishot-discuss-kit.png | https://github.com/ArcBlock/arc/pull/5348 | 2026-08-28T06:57:34Z | robmao@Roberts-Mac-mini-M4-Pro-7 |
+| 20260828-065738-uishot-explorer.png | https://github.com/ArcBlock/arc/pull/5348 | 2026-08-28T06:57:38Z | robmao@Roberts-Mac-mini-M4-Pro-7 |
