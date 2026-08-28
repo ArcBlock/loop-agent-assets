@@ -8,3 +8,4 @@
 | live-discuss-kit.png | https://github.com/ArcBlock/arc/pull/5348 | 2026-08-28T06:51:29Z | robmao@Roberts-Mac-mini-M4-Pro-7 |
 | live-mailbox-demo.png | https://github.com/ArcBlock/arc/pull/5348 | 2026-08-28T06:51:34Z | robmao@Roberts-Mac-mini-M4-Pro-7 |
 | live-blocklet-manager.png | https://github.com/ArcBlock/arc/pull/5348 | 2026-08-28T06:51:38Z | robmao@Roberts-Mac-mini-M4-Pro-7 |
+| live-collections.png | https://github.com/ArcBlock/arc/pull/5348 | 2026-08-28T06:51:44Z | robmao@Roberts-Mac-mini-M4-Pro-7 |
