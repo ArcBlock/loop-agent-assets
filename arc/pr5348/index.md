@@ -75,3 +75,4 @@
 | 20260828-065853-uishot-telegram-assistant.png | https://github.com/ArcBlock/arc/pull/5348 | 2026-08-28T06:58:53Z | robmao@Roberts-Mac-mini-M4-Pro-7 |
 | 20260828-065857-uishot-terminal.png | https://github.com/ArcBlock/arc/pull/5348 | 2026-08-28T06:58:57Z | robmao@Roberts-Mac-mini-M4-Pro-7 |
 | 20260828-065902-uishot-todo.png | https://github.com/ArcBlock/arc/pull/5348 | 2026-08-28T06:59:02Z | robmao@Roberts-Mac-mini-M4-Pro-7 |
+| 20260828-065907-uishot-workspace-demo.png | https://github.com/ArcBlock/arc/pull/5348 | 2026-08-28T06:59:07Z | robmao@Roberts-Mac-mini-M4-Pro-7 |
