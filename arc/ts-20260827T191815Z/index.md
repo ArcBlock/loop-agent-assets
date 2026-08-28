@@ -28,3 +28,4 @@
 | 20260828-085421-explore-01.png | https://github.com/ArcBlock/arc | 2026-08-28T08:54:21Z | root@vm |
 | 20260828-085424-explore-02.png | https://github.com/ArcBlock/arc | 2026-08-28T08:54:24Z | root@vm |
 | 20260828-085427-feed-01.png | https://github.com/ArcBlock/arc | 2026-08-28T08:54:27Z | root@vm |
+| 20260828-085431-feed-02.png | https://github.com/ArcBlock/arc | 2026-08-28T08:54:31Z | root@vm |
