@@ -52,3 +52,4 @@
 | 20260828-065659-uishot-aup-canvas.png | https://github.com/ArcBlock/arc/pull/5348 | 2026-08-28T06:56:59Z | robmao@Roberts-Mac-mini-M4-Pro-7 |
 | 20260828-065704-uishot-blocklet-manager.png | https://github.com/ArcBlock/arc/pull/5348 | 2026-08-28T06:57:04Z | robmao@Roberts-Mac-mini-M4-Pro-7 |
 | 20260828-065709-uishot-chain-explorer.png | https://github.com/ArcBlock/arc/pull/5348 | 2026-08-28T06:57:09Z | robmao@Roberts-Mac-mini-M4-Pro-7 |
+| 20260828-065714-uishot-code-agents.png | https://github.com/ArcBlock/arc/pull/5348 | 2026-08-28T06:57:14Z | robmao@Roberts-Mac-mini-M4-Pro-7 |
