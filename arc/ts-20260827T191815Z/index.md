@@ -399,3 +399,4 @@
 | 20260828-101656-dd-4-detail-00.png | https://github.com/ArcBlock/arc | 2026-08-28T10:16:56Z | root@vm |
 | 20260828-101700-dd-4-detail-01.png | https://github.com/ArcBlock/arc | 2026-08-28T10:17:00Z | root@vm |
 | 20260828-101704-dd-5-detail-00.png | https://github.com/ArcBlock/arc | 2026-08-28T10:17:04Z | root@vm |
+| 20260828-101707-dd-5-detail-01.png | https://github.com/ArcBlock/arc | 2026-08-28T10:17:07Z | root@vm |
