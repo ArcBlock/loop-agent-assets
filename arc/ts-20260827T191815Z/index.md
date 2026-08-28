@@ -21,3 +21,4 @@
 | 20260828-085355-collections-02.png | https://github.com/ArcBlock/arc | 2026-08-28T08:53:55Z | root@vm |
 | 20260828-085359-collections-read-1-01.png | https://github.com/ArcBlock/arc | 2026-08-28T08:53:59Z | root@vm |
 | 20260828-085402-collections-read-1-02.png | https://github.com/ArcBlock/arc | 2026-08-28T08:54:02Z | root@vm |
+| 20260828-085406-collections-read-1-03.png | https://github.com/ArcBlock/arc | 2026-08-28T08:54:06Z | root@vm |
