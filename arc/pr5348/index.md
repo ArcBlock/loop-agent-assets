@@ -17,3 +17,4 @@
 | 20260828-065405-live-arch-qa.png | https://github.com/ArcBlock/arc/pull/5348 | 2026-08-28T06:54:05Z | robmao@Roberts-Mac-mini-M4-Pro-7 |
 | 20260828-065410-live-aup-canvas.png | https://github.com/ArcBlock/arc/pull/5348 | 2026-08-28T06:54:10Z | robmao@Roberts-Mac-mini-M4-Pro-7 |
 | 20260828-065415-live-chain-explorer.png | https://github.com/ArcBlock/arc/pull/5348 | 2026-08-28T06:54:15Z | robmao@Roberts-Mac-mini-M4-Pro-7 |
+| 20260828-065420-live-desktop.png | https://github.com/ArcBlock/arc/pull/5348 | 2026-08-28T06:54:20Z | robmao@Roberts-Mac-mini-M4-Pro-7 |
