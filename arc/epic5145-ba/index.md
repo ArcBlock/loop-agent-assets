@@ -9,3 +9,4 @@
 | 20260828-031757-pair-intent.png | https://github.com/ArcBlock/arc/issues/5145 | 2026-08-28T03:17:57Z | robmao@Roberts-Mac-mini-M4-Pro-7 |
 | 20260828-031802-pair-peers.png | https://github.com/ArcBlock/arc/issues/5145 | 2026-08-28T03:18:02Z | robmao@Roberts-Mac-mini-M4-Pro-7 |
 | 20260828-031807-pair-toast-t0.png | https://github.com/ArcBlock/arc/issues/5145 | 2026-08-28T03:18:07Z | robmao@Roberts-Mac-mini-M4-Pro-7 |
+| 20260828-031812-pair-toast-t8.png | https://github.com/ArcBlock/arc/issues/5145 | 2026-08-28T03:18:13Z | robmao@Roberts-Mac-mini-M4-Pro-7 |
