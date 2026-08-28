@@ -60,3 +60,4 @@
 | 20260828-065738-uishot-explorer.png | https://github.com/ArcBlock/arc/pull/5348 | 2026-08-28T06:57:38Z | robmao@Roberts-Mac-mini-M4-Pro-7 |
 | 20260828-065743-uishot-hello-declarative.png | https://github.com/ArcBlock/arc/pull/5348 | 2026-08-28T06:57:43Z | robmao@Roberts-Mac-mini-M4-Pro-7 |
 | 20260828-065748-uishot-instances.png | https://github.com/ArcBlock/arc/pull/5348 | 2026-08-28T06:57:48Z | robmao@Roberts-Mac-mini-M4-Pro-7 |
+| 20260828-065753-uishot-launch-kit-host-demo.png | https://github.com/ArcBlock/arc/pull/5348 | 2026-08-28T06:57:53Z | robmao@Roberts-Mac-mini-M4-Pro-7 |
