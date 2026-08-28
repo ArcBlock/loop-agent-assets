@@ -79,3 +79,4 @@
 | fix-settings-sidebar-hairline.png | https://github.com/ArcBlock/arc/pull/5348 | 2026-08-28T15:40:21Z | root@vm |
 | fix-navsidebar-content-clamp.png | https://github.com/ArcBlock/arc/pull/5348 | 2026-08-28T15:40:32Z | root@vm |
 | fix-mobile-drawer-closed.png | https://github.com/ArcBlock/arc/pull/5348 | 2026-08-28T15:40:38Z | root@vm |
+| fix-mobile-drawer-open.png | https://github.com/ArcBlock/arc/pull/5348 | 2026-08-28T15:40:42Z | root@vm |
