@@ -64,3 +64,4 @@
 | 20260828-065758-uishot-launch-kit.png | https://github.com/ArcBlock/arc/pull/5348 | 2026-08-28T06:57:58Z | robmao@Roberts-Mac-mini-M4-Pro-7 |
 | 20260828-065803-uishot-llm-terminal.png | https://github.com/ArcBlock/arc/pull/5348 | 2026-08-28T06:58:03Z | robmao@Roberts-Mac-mini-M4-Pro-7 |
 | 20260828-065808-uishot-mailbox-demo.png | https://github.com/ArcBlock/arc/pull/5348 | 2026-08-28T06:58:08Z | robmao@Roberts-Mac-mini-M4-Pro-7 |
+| 20260828-065812-uishot-messaging-io-terminal.png | https://github.com/ArcBlock/arc/pull/5348 | 2026-08-28T06:58:12Z | robmao@Roberts-Mac-mini-M4-Pro-7 |
