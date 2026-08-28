@@ -433,3 +433,4 @@
 | 20260828-103638-dd-12-list-basic-00.png | https://github.com/ArcBlock/arc | 2026-08-28T10:36:38Z | root@vm |
 | 20260828-103641-dd-12-list-basic-01.png | https://github.com/ArcBlock/arc | 2026-08-28T10:36:41Z | root@vm |
 | 20260828-103645-dd-2-auto-surface-00.png | https://github.com/ArcBlock/arc | 2026-08-28T10:36:45Z | root@vm |
+| 20260828-103649-dd-2-auto-surface-01.png | https://github.com/ArcBlock/arc | 2026-08-28T10:36:49Z | root@vm |
