@@ -180,3 +180,4 @@
 | 20260828-090400-setup-b-39.png | https://github.com/ArcBlock/arc | 2026-08-28T09:04:00Z | root@vm |
 | 20260828-090403-setup-b-40.png | https://github.com/ArcBlock/arc | 2026-08-28T09:04:03Z | root@vm |
 | 20260828-090407-setup-b-41.png | https://github.com/ArcBlock/arc | 2026-08-28T09:04:07Z | root@vm |
+| 20260828-090411-setup-b-42.png | https://github.com/ArcBlock/arc | 2026-08-28T09:04:11Z | root@vm |
