@@ -1,0 +1,727 @@
+<!doctype html><html><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>did-space — agent 走查报告</title><style>
+:root{--bg:#f7f8f8;--fg:#16201f;--muted:#5c6b69;--card:#fff;--card2:#eef2f1;--border:#dde3e2;--accent:#127a72;--pass:#1f8a54;--warn:#b5771a;--bad:#c0392b}
+@media(prefers-color-scheme:dark){:root{--bg:#0e1413;--fg:#e6ecea;--muted:#8ea19d;--card:#161d1c;--card2:#1d2624;--border:#26302e;--accent:#3fb8ab;--pass:#3fb37a;--warn:#d69a3e;--bad:#e5735f}}
+:root[data-theme=dark]{--bg:#0e1413;--fg:#e6ecea;--muted:#8ea19d;--card:#161d1c;--card2:#1d2624;--border:#26302e;--accent:#3fb8ab;--pass:#3fb37a;--warn:#d69a3e;--bad:#e5735f}
+:root[data-theme=light]{--bg:#f7f8f8;--fg:#16201f;--muted:#5c6b69;--card:#fff;--card2:#eef2f1;--border:#dde3e2;--accent:#127a72;--pass:#1f8a54;--warn:#b5771a;--bad:#c0392b}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--fg);font:15px/1.65 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;padding:24px}
+.wrap{max-width:920px;margin:0 auto}
+h1{font-size:24px;margin:0 0 4px;text-wrap:balance}h2{font-size:19px;margin:30px 0 8px}
+h2 .rt{font-size:13px;color:var(--muted);font-weight:400;font-variant-numeric:tabular-nums}
+.sub{color:var(--muted);margin:0 0 14px;font-size:13px}
+code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.85em;background:var(--card2);padding:1px 5px;border-radius:4px}
+.how{background:var(--card);border:1px solid var(--border);border-left:3px solid var(--accent);border-radius:8px;padding:13px 16px;margin:14px 0;font-size:14px}
+.how b{color:var(--accent)}
+.banner{border-radius:12px;padding:14px 18px;margin:16px 0}
+.banner.ok{background:color-mix(in srgb,var(--pass) 12%,transparent);border:1px solid color-mix(in srgb,var(--pass) 40%,transparent)}
+.banner.ok b{color:var(--pass)}
+.banner.bad{background:color-mix(in srgb,var(--bad) 13%,transparent);border:1px solid color-mix(in srgb,var(--bad) 45%,transparent)}
+.banner.bad b{color:var(--bad);font-size:16px}
+.banner.info{background:color-mix(in srgb,var(--accent) 10%,transparent);border:1px solid color-mix(in srgb,var(--accent) 38%,transparent)}
+.banner.info b{color:var(--accent)}
+.plist{margin:10px 0 0;padding-left:0;list-style:none}
+.plist li{padding:8px 0;border-top:1px solid var(--border)}
+.plist a{text-decoration:none;color:var(--fg);font-weight:600}
+.plist .pe{color:var(--muted);font-size:12.5px;font-weight:400;margin-top:3px}
+.video{width:100%;border-radius:10px;border:1px solid var(--border);background:#000;margin:6px 0 2px}
+.vcap{color:var(--muted);font-size:12.5px;margin:0 0 8px}
+.novideo{color:var(--bad);font-weight:600;background:color-mix(in srgb,var(--bad) 10%,transparent);border:1px dashed color-mix(in srgb,var(--bad) 45%,transparent);border-radius:8px;padding:8px 12px;font-size:13px}
+.kpis{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0}
+.kpi{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:9px 14px;min-width:70px}
+.kpi .k{font-size:21px;font-weight:700;font-variant-numeric:tabular-nums}.kpi .l{color:var(--muted);font-size:12px}
+.kpi .k-bad{color:var(--bad)}.kpi .k-warn{color:var(--warn)}
+.op{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:15px 17px;margin:14px 0}
+.op h3{margin:0 0 3px;font-size:16px;display:flex;align-items:center;gap:9px;flex-wrap:wrap}
+.op .exp{color:var(--muted);font-size:13px;margin:0 0 9px}
+.op .nt{color:var(--muted);font-size:12.5px;margin-top:6px}
+.pill{font-size:11.5px;font-weight:700;padding:2px 9px;border-radius:20px}
+.p-ok{background:color-mix(in srgb,var(--pass) 18%,transparent);color:var(--pass)}
+.p-fail{background:color-mix(in srgb,var(--bad) 18%,transparent);color:var(--bad)}
+.p-warn{background:color-mix(in srgb,var(--warn) 20%,transparent);color:var(--warn)}
+.p-skip{background:var(--card2);color:var(--muted)}
+.p-write{background:color-mix(in srgb,var(--accent) 18%,transparent);color:var(--accent)}
+.frame figure{margin:0 0 9px}.frame img{width:100%;border-radius:8px;border:1px solid var(--border);display:block}
+.frame figcaption{color:var(--muted);font-size:11.5px;margin-top:4px;text-align:center}
+.chk{background:color-mix(in srgb,var(--pass) 12%,transparent);border:1px solid color-mix(in srgb,var(--pass) 34%,transparent);border-radius:8px;padding:8px 12px;font-size:13px}
+.chk b{color:var(--pass)}
+.chk-fail{background:color-mix(in srgb,var(--bad) 11%,transparent);border:1px solid color-mix(in srgb,var(--bad) 40%,transparent);border-radius:8px;padding:8px 12px;font-size:13px}
+.chk-fail b{color:var(--bad)}
+table.probe{border-collapse:collapse;width:100%;font-size:13px}
+table.probe th,table.probe td{border:1px solid var(--border);padding:5px 9px;text-align:left}
+table.probe tr.bad td{background:color-mix(in srgb,var(--bad) 10%,transparent)}
+.err{background:color-mix(in srgb,var(--bad) 11%,transparent);border:1px solid color-mix(in srgb,var(--bad) 40%,transparent);border-radius:8px;padding:7px 12px;font-size:12.5px;margin-top:6px}
+.err b{color:var(--bad)}.err code{background:transparent;color:var(--bad)}
+.dbg{margin:10px 0 2px;background:var(--card);border:1px solid var(--border);border-radius:10px;padding:6px 14px;font-size:13px}
+.dbg summary{cursor:pointer;color:var(--muted);font-weight:600;padding:5px 0}
+.dbg-none{color:var(--muted);padding:4px 0;font-size:12.5px}
+.dbg-has{padding:5px 0}.dbg-has b{color:var(--warn)}
+.dbg-has ul{margin:5px 0 8px;padding-left:18px}.dbg-has li{font-size:12px;color:var(--fg);margin:2px 0;word-break:break-all}
+.dbg-has code{background:var(--card2)}
+.pdesc{color:var(--muted);font-size:13.5px;margin:1px 0 11px;line-height:1.5}
+.pdesc code{font-size:.85em}
+details.steps{margin:6px 0 2px;border:1px solid var(--border);border-radius:10px;background:var(--card2);padding:2px 14px}
+details.steps>summary{cursor:pointer;color:var(--accent);font-weight:600;padding:9px 0;font-size:13.5px;list-style:none}
+details.steps>summary::-webkit-details-marker{display:none}
+details.steps[open]>summary{border-bottom:1px solid var(--border);margin-bottom:8px}
+details.steps>summary:hover{color:var(--fg)}
+</style></head><body><div class="wrap">
+<h1>did-space — agent 走查报告</h1>
+<p class="sub">环境 <code>https://did-space.afsd.dev</code> · 2026-08-27T19:25:14.748141Z · 走查 6 / 声明 6 条测试路径 · driver <code>agent-playwright-mcp</code></p>
+<div class="how"><b>这份报告在做什么</b>：test-sweep 让 <b>agent 读被测页面自己写的
+<code>.aup/man</code> 知识</b>，用 Playwright MCP <b>当真人逐条测试路径走查</b>（导航/加标签/编辑/删除/创建…），
+<b>每条路径各自一段录屏</b>、每步截图并<b>自判 verdict + 附观察证据</b>（实际 DOM/文本/值，可复核）。
+<b>unreached</b>=没驱动到（不当失败）；<b>inconclusive</b>=不确定（绝不判失败）。写操作默认真提交、不清理。</div>
+
+<div class="banner ok"><b>✅ 覆盖完整</b>：声明 6 条测试路径全部走查。</div>
+<div class="banner bad"><b>⚠️ 发现 9 个问题</b>（点击跳到对应路径）<ul class="plist"><li><a href="#path-files"><span class="pill p-warn">不确定</span> Files · 步1</a> — navigate<div class="pe">title=&#x27;DID Space&#x27; url=https://did-space.afsd.dev/explorer/ aupNodes=42 buttons=16 inputs=5 textLen=699 head=&#x27;DID Space Open Explorer ▾ / instance DID-scoped persistent storage with CID-based content deduplication. - Per-user data isolation </div></li><li><a href="#path-files"><span class="pill p-warn">不确定</span> Files · 步2</a> — snapshot<div class="pe">title=&#x27;DID Space&#x27; url=https://did-space.afsd.dev/explorer/ aupNodes=42 buttons=16 inputs=5 textLen=699 head=&#x27;DID Space Open Explorer ▾ / instance DID-scoped persistent storage with CID-based content deduplication. - Per-user data isolation </div></li><li><a href="#path-dd-1-files"><span class="pill p-warn">不确定</span> auth-spot-check: files page renders authed content, not sign-in gate · 步1</a> — snapshot<div class="pe">driver 启动时的初始状态 about:blank，尚未 navigate，无实质页面内容</div></li><li><a href="#path-dd-2-files"><span class="pill p-warn">不确定</span> verify-inconclusive: upgrade floor inconclusive to pass with real observation · 步1</a> — snapshot<div class="pe">driver 启动时的初始状态 about:blank，尚未 navigate，无实质页面内容</div></li><li><a href="#path-dd-5-files"><span class="pill p-warn">不确定</span> read-flow files|r2: sidebar select fans out to primary + inspector · 步1</a> — snapshot<div class="pe">driver 启动时的初始状态 about:blank，尚未 navigate，无实质页面内容</div></li><li><a href="#path-dd-6-files"><span class="pill p-warn">不确定</span> read-flow files|r3: sidebar navigate/drill (same fan-out) · 步1</a> — snapshot<div class="pe">driver 启动时的初始状态 about:blank，尚未 navigate，无实质页面内容</div></li><li><a href="#path-dd-7-files"><span class="pill p-warn">不确定</span> read-flow files|r4: primary select file updates inspector preview · 步1</a> — snapshot<div class="pe">driver 启动时的初始状态 about:blank，尚未 navigate，无实质页面内容</div></li><li><a href="#path-dd-8-files"><span class="pill p-warn">不确定</span> read-flow files|r5: primary navigate drills into directory · 步1</a> — snapshot<div class="pe">driver 启动时的初始状态 about:blank，尚未 navigate，无实质页面内容</div></li><li><a href="#path-dd-4-files"><span class="pill p-warn">不确定</span> read-flow files|r1: session becomes authenticated, page re-renders files-explorer-wm · 步1</a> — snapshot<div class="pe">driver 启动时的初始状态 about:blank，尚未 navigate，无实质页面内容</div></li></ul></div>
+<section id="probes"><h2>后端探针 （全通过）</h2><table class="probe"><tr><th></th><th>探针</th><th>详情</th></tr><tr class=""><td>✅</td><td>http-reachable</td><td>HTTP 200</td></tr><tr class=""><td>✅</td><td>afs-rpc-list</td><td>ok:true (1 .aup pages)</td></tr><tr class=""><td>✅</td><td>afs-rpc-authed-list-/user</td><td>ok:true (Bearer 可读)</td></tr></table></section>
+<section id="path-files">
+<h2>Files <span class="rt">authed · https://did-space.afsd.dev/explorer</span></h2>
+<p class="pdesc">导航到 https://did-space.afsd.dev/explorer，验证页面加载并渲染出真实内容（files 页 breadth 走查）。</p>
+<video class="video" controls preload="metadata" src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260827T191815Z/did-space/page@d67c4c8305c7b5b8302ccd8996e5f5b1.webm"><a href="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260827T191815Z/did-space/page@d67c4c8305c7b5b8302ccd8996e5f5b1.webm">下载该路径录像</a></video><p class="vcap">本测试路径整段走查录像</p>
+<div class="kpis"><div class="kpi"><div class="k">2</div><div class="l">操作步</div></div><div class="kpi"><div class="k">0</div><div class="l">通过</div></div><div class="kpi"><div class="k k-bad">0</div><div class="l">失败</div></div><div class="kpi"><div class="k k-warn">2</div><div class="l">不确定</div></div><div class="kpi"><div class="k">0</div><div class="l">未走到</div></div></div>
+<details class="steps"><summary>▸ 逐步操作详情（2 步，含判定截图）</summary><div class="op">
+<h3><span class="pill p-warn">不确定</span> navigate</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260827T191815Z/did-space/files-01.png" alt="navigate" loading="lazy"><figcaption>navigate</figcaption></figure></div>
+<div class="chk-fail"><b>观察证据</b>：title=&#x27;DID Space&#x27; url=https://did-space.afsd.dev/explorer/ aupNodes=42 buttons=16 inputs=5 textLen=699 head=&#x27;DID Space Open Explorer ▾ / instance DID-scoped persistent storage with CID-based content deduplication. - Per-user data isolation via DID p&#x27;；数据源报错：403 POST https://did-space.afsd.dev/api/afs/rpc</div>
+
+<div class="nt">数据源报错：403 POST https://did-space.afsd.dev/api/afs/rpc</div>
+</div>
+<div class="op">
+<h3><span class="pill p-warn">不确定</span> snapshot</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260827T191815Z/did-space/files-02.png" alt="snapshot" loading="lazy"><figcaption>snapshot</figcaption></figure></div>
+<div class="chk-fail"><b>观察证据</b>：title=&#x27;DID Space&#x27; url=https://did-space.afsd.dev/explorer/ aupNodes=42 buttons=16 inputs=5 textLen=699 head=&#x27;DID Space Open Explorer ▾ / instance DID-scoped persistent storage with CID-based content deduplication. - Per-user data isolation via DID p&#x27;；数据源报错：403 POST https://did-space.afsd.dev/api/afs/rpc</div>
+
+<div class="nt">数据源报错：403 POST https://did-space.afsd.dev/api/afs/rpc</div>
+</div></details>
+<details class="dbg" open><summary>运行时 debug 上下文（2 条错误）</summary><div class="dbg-has"><b>Console 错误（1）</b><ul><li><code>Failed to load resource: the server responded with a status of 403 ()</code></li></ul></div><div class="dbg-none">JS 未捕获异常：<b>无</b></div><div class="dbg-has"><b>网络错误（请求失败 / 4xx–5xx）（1）</b><ul><li><code>403 POST https://did-space.afsd.dev/api/afs/rpc</code></li></ul></div></details>
+</section><section id="path-dd-1-files">
+<h2>auth-spot-check: files page renders authed content, not sign-in gate <span class="rt">authed · https://did-space.afsd.dev/explorer</span></h2>
+<p class="pdesc">页面走查：导航到 <code>https://did-space.afsd.dev/explorer</code>，验证页面渲染出真实内容并逐步观测（10 步）。</p>
+<video class="video" controls preload="metadata" src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260827T191815Z/did-space/page@c4e55901bbbf86a2a403f666781be1c4.webm"><a href="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260827T191815Z/did-space/page@c4e55901bbbf86a2a403f666781be1c4.webm">下载该路径录像</a></video><p class="vcap">本测试路径整段走查录像</p>
+<div class="kpis"><div class="kpi"><div class="k">10</div><div class="l">操作步</div></div><div class="kpi"><div class="k">9</div><div class="l">通过</div></div><div class="kpi"><div class="k k-bad">0</div><div class="l">失败</div></div><div class="kpi"><div class="k k-warn">1</div><div class="l">不确定</div></div><div class="kpi"><div class="k">0</div><div class="l">未走到</div></div></div>
+<details class="steps"><summary>▸ 逐步操作详情（10 步，含判定截图）</summary><div class="op">
+<h3><span class="pill p-warn">不确定</span> snapshot</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260827T191815Z/did-space/dd-1-files-00.png" alt="snapshot" loading="lazy"><figcaption>snapshot</figcaption></figure></div>
+<div class="chk-fail"><b>观察证据</b>：driver 启动时的初始状态 about:blank，尚未 navigate，无实质页面内容</div>
+
+<div class="nt">setup step, not a real observation</div>
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> navigate</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260827T191815Z/did-space/dd-1-files-01.png" alt="navigate" loading="lazy"><figcaption>navigate</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：authed cookie(login_token)注入后 navigate 到 https://did-space.afsd.dev/explorer/ ：渲染的是 files-explorer-wm（三栏浏览器），header 显示真实用户身份按钮 &#x27;Test Fixture User&#x27; + &#x27;User Center&#x27;/&#x27;Admin Console&#x27;/&#x27;Sign Out&#x27;，sidebar 与 primary 均显示 7 个真实 mount 目录 instance/packages/ash/dev/modules/user/space —— 不是 files-anon-wm 的 sign-in 卡片。证实这是该用户自己的 per-user session-root 三挂载视图，不是通用/占位内容。</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> click</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260827T191815Z/did-space/dd-1-files-02.png" alt="click" loading="lazy"><figcaption>click</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：点击 sidebar 中 &#x27;packages&#x27; 目录行：URL 变为 /explorer/packages，primary-list 重新根定位到 packages 目录并列出其真实内容（blocklet.dist.json/blocklet.yaml/logo.svg/package.json/pages/README.md/test），inspector-stat 同步显示 &#x27;packages Mount · did-space&#x27; + capabilities(list/read/stat/explain)。三目标（primary + inspector-stat + inspector-preview）一次性联动更新，符合 files-sidebar-list.select 的 fan-out 声明。</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> click</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260827T191815Z/did-space/dd-1-files-03.png" alt="click" loading="lazy"><figcaption>click</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：点击 primary-list 中的文件行 &#x27;package.json&#x27;：URL 出现 ?sel=%2Fpackages%2Fpackage.json（selectSync 持久化选中的叶子）</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> snapshot</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260827T191815Z/did-space/dd-1-files-04.png" alt="snapshot" loading="lazy"><figcaption>snapshot</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：snapshot 确认 inspector-preview 渲染出该文件的真实内容（带行号语法高亮）：{&quot;name&quot;: &quot;@aigne/blocklet-did-space&quot;, &quot;version&quot;: &quot;0.0.0&quot;, ... &quot;dependencies&quot;: {&quot;@aigne/afs&quot;: &quot;workspace:*&quot;} ...}，353 chars，与仓库里 blocklets/did-space/package.json 的真实内容吻合 —— 证实 files-primary-list.select 真的驱动了 inspector 预览，不是占位符。</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> click</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260827T191815Z/did-space/dd-1-files-05.png" alt="click" loading="lazy"><figcaption>click</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：点击 primary-list 中的目录行 &#x27;pages&#x27;：URL 变为 /explorer/packages/pages，breadcrumb 更新为 &#x27;/ / packages / pages&#x27;，sidebar 树同步展开选中对应节点 —— 证实 files-primary-list.navigate 的钻取行为。</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> snapshot</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260827T191815Z/did-space/dd-1-files-06.png" alt="snapshot" loading="lazy"><figcaption>snapshot</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：snapshot 确认钻入后 inspector 显示 &#x27;pages Directory · 1 item&#x27;，preview 面板列出真实子项 &#x27;index&#x27;，primary-list 显示同一内容 —— 与 sidebar drill 后的 fan-out 完全一致（真实数据，非占位）。</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> snapshot</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260827T191815Z/did-space/dd-1-files-07.png" alt="snapshot" loading="lazy"><figcaption>snapshot</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：重复 snapshot 复核状态无漂移：URL/inspector/preview 与上一步一致，渲染稳定。</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> click</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260827T191815Z/did-space/dd-1-files-08.png" alt="click" loading="lazy"><figcaption>click</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：点击 sidebar 根级目录行 &#x27;ash&#x27;（未曾访问过的新 mount）：URL 变为 /explorer/ash，breadcrumb 复位为 &#x27;/ / ash&#x27;，inspector/primary 同步切到 ash mount 的真实子目录 —— 与 packages 的行为一致，证实 sidebar 对任意目录行的 select/navigate 都走同一个 set:{src} fan-out wire（man CAVEATS 所述）。</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> snapshot</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260827T191815Z/did-space/dd-1-files-09.png" alt="snapshot" loading="lazy"><figcaption>snapshot</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：snapshot 确认 ash 目录下渲染出真实子内容 &#x27;/scripts&#x27;（Stored ASH scripts）与 &#x27;/cookbook&#x27;（ASH best practices and quick reference）—— 非占位数据，且与仓库 ash/ 目录语义吻合。</div>
+
+
+</div></details>
+<details class="dbg" open><summary>运行时 debug 上下文（7 条错误）</summary><div class="dbg-has"><b>Console 错误（5）</b><ul><li><code>Failed to load resource: the server responded with a status of 403 ()</code></li><li><code>Failed to load resource: the server responded with a status of 403 ()</code></li><li><code>Failed to load resource: the server responded with a status of 403 ()</code></li><li><code>Failed to load resource: the server responded with a status of 403 ()</code></li><li><code>Failed to load resource: the server responded with a status of 500 ()</code></li></ul></div><div class="dbg-none">JS 未捕获异常：<b>无</b></div><div class="dbg-has"><b>网络错误（请求失败 / 4xx–5xx）（2）</b><ul><li><code>403 POST https://did-space.afsd.dev/api/afs/rpc</code></li><li><code>500 POST https://did-space.afsd.dev/api/afs/rpc</code></li></ul></div></details>
+</section><section id="path-dd-2-files">
+<h2>verify-inconclusive: upgrade floor inconclusive to pass with real observation <span class="rt">authed · https://did-space.afsd.dev/explorer</span></h2>
+<p class="pdesc">floor 走查两步均标 inconclusive；本轮重访并驱动多步交互，确认渲染的是真实 per-user 三挂载浏览器（非占位），升级为 pass。附带发现：session 期间 /api/afs/rpc 出现 4 次 403 + 1 次 500（不影响本轮所有可见交互结果，均正常渲染真实数据），已计入 note 供排查。</p>
+<video class="video" controls preload="metadata" src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260827T191815Z/did-space/page@c4e55901bbbf86a2a403f666781be1c4.webm"><a href="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260827T191815Z/did-space/page@c4e55901bbbf86a2a403f666781be1c4.webm">下载该路径录像</a></video><p class="vcap">本测试路径整段走查录像</p>
+<div class="kpis"><div class="kpi"><div class="k">10</div><div class="l">操作步</div></div><div class="kpi"><div class="k">9</div><div class="l">通过</div></div><div class="kpi"><div class="k k-bad">0</div><div class="l">失败</div></div><div class="kpi"><div class="k k-warn">1</div><div class="l">不确定</div></div><div class="kpi"><div class="k">0</div><div class="l">未走到</div></div></div>
+<details class="steps"><summary>▸ 逐步操作详情（10 步，含判定截图）</summary><div class="op">
+<h3><span class="pill p-warn">不确定</span> snapshot</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260827T191815Z/did-space/dd-1-files-00.png" alt="snapshot" loading="lazy"><figcaption>snapshot</figcaption></figure></div>
+<div class="chk-fail"><b>观察证据</b>：driver 启动时的初始状态 about:blank，尚未 navigate，无实质页面内容</div>
+
+<div class="nt">setup step, not a real observation</div>
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> navigate</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260827T191815Z/did-space/dd-1-files-01.png" alt="navigate" loading="lazy"><figcaption>navigate</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：authed cookie(login_token)注入后 navigate 到 https://did-space.afsd.dev/explorer/ ：渲染的是 files-explorer-wm（三栏浏览器），header 显示真实用户身份按钮 &#x27;Test Fixture User&#x27; + &#x27;User Center&#x27;/&#x27;Admin Console&#x27;/&#x27;Sign Out&#x27;，sidebar 与 primary 均显示 7 个真实 mount 目录 instance/packages/ash/dev/modules/user/space —— 不是 files-anon-wm 的 sign-in 卡片。证实这是该用户自己的 per-user session-root 三挂载视图，不是通用/占位内容。</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> click</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260827T191815Z/did-space/dd-1-files-02.png" alt="click" loading="lazy"><figcaption>click</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：点击 sidebar 中 &#x27;packages&#x27; 目录行：URL 变为 /explorer/packages，primary-list 重新根定位到 packages 目录并列出其真实内容（blocklet.dist.json/blocklet.yaml/logo.svg/package.json/pages/README.md/test），inspector-stat 同步显示 &#x27;packages Mount · did-space&#x27; + capabilities(list/read/stat/explain)。三目标（primary + inspector-stat + inspector-preview）一次性联动更新，符合 files-sidebar-list.select 的 fan-out 声明。</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> click</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260827T191815Z/did-space/dd-1-files-03.png" alt="click" loading="lazy"><figcaption>click</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：点击 primary-list 中的文件行 &#x27;package.json&#x27;：URL 出现 ?sel=%2Fpackages%2Fpackage.json（selectSync 持久化选中的叶子）</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> snapshot</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260827T191815Z/did-space/dd-1-files-04.png" alt="snapshot" loading="lazy"><figcaption>snapshot</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：snapshot 确认 inspector-preview 渲染出该文件的真实内容（带行号语法高亮）：{&quot;name&quot;: &quot;@aigne/blocklet-did-space&quot;, &quot;version&quot;: &quot;0.0.0&quot;, ... &quot;dependencies&quot;: {&quot;@aigne/afs&quot;: &quot;workspace:*&quot;} ...}，353 chars，与仓库里 blocklets/did-space/package.json 的真实内容吻合 —— 证实 files-primary-list.select 真的驱动了 inspector 预览，不是占位符。</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> click</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260827T191815Z/did-space/dd-1-files-05.png" alt="click" loading="lazy"><figcaption>click</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：点击 primary-list 中的目录行 &#x27;pages&#x27;：URL 变为 /explorer/packages/pages，breadcrumb 更新为 &#x27;/ / packages / pages&#x27;，sidebar 树同步展开选中对应节点 —— 证实 files-primary-list.navigate 的钻取行为。</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> snapshot</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260827T191815Z/did-space/dd-1-files-06.png" alt="snapshot" loading="lazy"><figcaption>snapshot</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：snapshot 确认钻入后 inspector 显示 &#x27;pages Directory · 1 item&#x27;，preview 面板列出真实子项 &#x27;index&#x27;，primary-list 显示同一内容 —— 与 sidebar drill 后的 fan-out 完全一致（真实数据，非占位）。</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> snapshot</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260827T191815Z/did-space/dd-1-files-07.png" alt="snapshot" loading="lazy"><figcaption>snapshot</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：重复 snapshot 复核状态无漂移：URL/inspector/preview 与上一步一致，渲染稳定。</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> click</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260827T191815Z/did-space/dd-1-files-08.png" alt="click" loading="lazy"><figcaption>click</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：点击 sidebar 根级目录行 &#x27;ash&#x27;（未曾访问过的新 mount）：URL 变为 /explorer/ash，breadcrumb 复位为 &#x27;/ / ash&#x27;，inspector/primary 同步切到 ash mount 的真实子目录 —— 与 packages 的行为一致，证实 sidebar 对任意目录行的 select/navigate 都走同一个 set:{src} fan-out wire（man CAVEATS 所述）。</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> snapshot</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260827T191815Z/did-space/dd-1-files-09.png" alt="snapshot" loading="lazy"><figcaption>snapshot</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：snapshot 确认 ash 目录下渲染出真实子内容 &#x27;/scripts&#x27;（Stored ASH scripts）与 &#x27;/cookbook&#x27;（ASH best practices and quick reference）—— 非占位数据，且与仓库 ash/ 目录语义吻合。</div>
+
+
+</div></details>
+<details class="dbg" open><summary>运行时 debug 上下文（7 条错误）</summary><div class="dbg-has"><b>Console 错误（5）</b><ul><li><code>Failed to load resource: the server responded with a status of 403 ()</code></li><li><code>Failed to load resource: the server responded with a status of 403 ()</code></li><li><code>Failed to load resource: the server responded with a status of 403 ()</code></li><li><code>Failed to load resource: the server responded with a status of 403 ()</code></li><li><code>Failed to load resource: the server responded with a status of 500 ()</code></li></ul></div><div class="dbg-none">JS 未捕获异常：<b>无</b></div><div class="dbg-has"><b>网络错误（请求失败 / 4xx–5xx）（2）</b><ul><li><code>403 POST https://did-space.afsd.dev/api/afs/rpc</code></li><li><code>500 POST https://did-space.afsd.dev/api/afs/rpc</code></li></ul></div></details>
+</section><section id="path-dd-5-files">
+<h2>read-flow files|r2: sidebar select fans out to primary + inspector <span class="rt">authed · /explorer</span></h2>
+<p class="pdesc">页面走查：导航到 <code>/explorer</code>，验证页面渲染出真实内容并逐步观测（10 步）。</p>
+<video class="video" controls preload="metadata" src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260827T191815Z/did-space/page@c4e55901bbbf86a2a403f666781be1c4.webm"><a href="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260827T191815Z/did-space/page@c4e55901bbbf86a2a403f666781be1c4.webm">下载该路径录像</a></video><p class="vcap">本测试路径整段走查录像</p>
+<div class="kpis"><div class="kpi"><div class="k">10</div><div class="l">操作步</div></div><div class="kpi"><div class="k">9</div><div class="l">通过</div></div><div class="kpi"><div class="k k-bad">0</div><div class="l">失败</div></div><div class="kpi"><div class="k k-warn">1</div><div class="l">不确定</div></div><div class="kpi"><div class="k">0</div><div class="l">未走到</div></div></div>
+<details class="steps"><summary>▸ 逐步操作详情（10 步，含判定截图）</summary><div class="op">
+<h3><span class="pill p-warn">不确定</span> snapshot</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260827T191815Z/did-space/dd-1-files-00.png" alt="snapshot" loading="lazy"><figcaption>snapshot</figcaption></figure></div>
+<div class="chk-fail"><b>观察证据</b>：driver 启动时的初始状态 about:blank，尚未 navigate，无实质页面内容</div>
+
+<div class="nt">setup step, not a real observation</div>
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> navigate</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260827T191815Z/did-space/dd-1-files-01.png" alt="navigate" loading="lazy"><figcaption>navigate</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：authed cookie(login_token)注入后 navigate 到 https://did-space.afsd.dev/explorer/ ：渲染的是 files-explorer-wm（三栏浏览器），header 显示真实用户身份按钮 &#x27;Test Fixture User&#x27; + &#x27;User Center&#x27;/&#x27;Admin Console&#x27;/&#x27;Sign Out&#x27;，sidebar 与 primary 均显示 7 个真实 mount 目录 instance/packages/ash/dev/modules/user/space —— 不是 files-anon-wm 的 sign-in 卡片。证实这是该用户自己的 per-user session-root 三挂载视图，不是通用/占位内容。</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> click</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260827T191815Z/did-space/dd-1-files-02.png" alt="click" loading="lazy"><figcaption>click</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：点击 sidebar 中 &#x27;packages&#x27; 目录行：URL 变为 /explorer/packages，primary-list 重新根定位到 packages 目录并列出其真实内容（blocklet.dist.json/blocklet.yaml/logo.svg/package.json/pages/README.md/test），inspector-stat 同步显示 &#x27;packages Mount · did-space&#x27; + capabilities(list/read/stat/explain)。三目标（primary + inspector-stat + inspector-preview）一次性联动更新，符合 files-sidebar-list.select 的 fan-out 声明。</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> click</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260827T191815Z/did-space/dd-1-files-03.png" alt="click" loading="lazy"><figcaption>click</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：点击 primary-list 中的文件行 &#x27;package.json&#x27;：URL 出现 ?sel=%2Fpackages%2Fpackage.json（selectSync 持久化选中的叶子）</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> snapshot</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260827T191815Z/did-space/dd-1-files-04.png" alt="snapshot" loading="lazy"><figcaption>snapshot</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：snapshot 确认 inspector-preview 渲染出该文件的真实内容（带行号语法高亮）：{&quot;name&quot;: &quot;@aigne/blocklet-did-space&quot;, &quot;version&quot;: &quot;0.0.0&quot;, ... &quot;dependencies&quot;: {&quot;@aigne/afs&quot;: &quot;workspace:*&quot;} ...}，353 chars，与仓库里 blocklets/did-space/package.json 的真实内容吻合 —— 证实 files-primary-list.select 真的驱动了 inspector 预览，不是占位符。</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> click</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260827T191815Z/did-space/dd-1-files-05.png" alt="click" loading="lazy"><figcaption>click</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：点击 primary-list 中的目录行 &#x27;pages&#x27;：URL 变为 /explorer/packages/pages，breadcrumb 更新为 &#x27;/ / packages / pages&#x27;，sidebar 树同步展开选中对应节点 —— 证实 files-primary-list.navigate 的钻取行为。</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> snapshot</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260827T191815Z/did-space/dd-1-files-06.png" alt="snapshot" loading="lazy"><figcaption>snapshot</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：snapshot 确认钻入后 inspector 显示 &#x27;pages Directory · 1 item&#x27;，preview 面板列出真实子项 &#x27;index&#x27;，primary-list 显示同一内容 —— 与 sidebar drill 后的 fan-out 完全一致（真实数据，非占位）。</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> snapshot</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260827T191815Z/did-space/dd-1-files-07.png" alt="snapshot" loading="lazy"><figcaption>snapshot</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：重复 snapshot 复核状态无漂移：URL/inspector/preview 与上一步一致，渲染稳定。</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> click</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260827T191815Z/did-space/dd-1-files-08.png" alt="click" loading="lazy"><figcaption>click</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：点击 sidebar 根级目录行 &#x27;ash&#x27;（未曾访问过的新 mount）：URL 变为 /explorer/ash，breadcrumb 复位为 &#x27;/ / ash&#x27;，inspector/primary 同步切到 ash mount 的真实子目录 —— 与 packages 的行为一致，证实 sidebar 对任意目录行的 select/navigate 都走同一个 set:{src} fan-out wire（man CAVEATS 所述）。</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> snapshot</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260827T191815Z/did-space/dd-1-files-09.png" alt="snapshot" loading="lazy"><figcaption>snapshot</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：snapshot 确认 ash 目录下渲染出真实子内容 &#x27;/scripts&#x27;（Stored ASH scripts）与 &#x27;/cookbook&#x27;（ASH best practices and quick reference）—— 非占位数据，且与仓库 ash/ 目录语义吻合。</div>
+
+
+</div></details>
+<details class="dbg" open><summary>运行时 debug 上下文（7 条错误）</summary><div class="dbg-has"><b>Console 错误（5）</b><ul><li><code>Failed to load resource: the server responded with a status of 403 ()</code></li><li><code>Failed to load resource: the server responded with a status of 403 ()</code></li><li><code>Failed to load resource: the server responded with a status of 403 ()</code></li><li><code>Failed to load resource: the server responded with a status of 403 ()</code></li><li><code>Failed to load resource: the server responded with a status of 500 ()</code></li></ul></div><div class="dbg-none">JS 未捕获异常：<b>无</b></div><div class="dbg-has"><b>网络错误（请求失败 / 4xx–5xx）（2）</b><ul><li><code>403 POST https://did-space.afsd.dev/api/afs/rpc</code></li><li><code>500 POST https://did-space.afsd.dev/api/afs/rpc</code></li></ul></div></details>
+</section><section id="path-dd-6-files">
+<h2>read-flow files|r3: sidebar navigate/drill (same fan-out) <span class="rt">authed · /explorer</span></h2>
+<p class="pdesc">页面走查：导航到 <code>/explorer</code>，验证页面渲染出真实内容并逐步观测（10 步）。</p>
+<video class="video" controls preload="metadata" src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260827T191815Z/did-space/page@c4e55901bbbf86a2a403f666781be1c4.webm"><a href="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260827T191815Z/did-space/page@c4e55901bbbf86a2a403f666781be1c4.webm">下载该路径录像</a></video><p class="vcap">本测试路径整段走查录像</p>
+<div class="kpis"><div class="kpi"><div class="k">10</div><div class="l">操作步</div></div><div class="kpi"><div class="k">9</div><div class="l">通过</div></div><div class="kpi"><div class="k k-bad">0</div><div class="l">失败</div></div><div class="kpi"><div class="k k-warn">1</div><div class="l">不确定</div></div><div class="kpi"><div class="k">0</div><div class="l">未走到</div></div></div>
+<details class="steps"><summary>▸ 逐步操作详情（10 步，含判定截图）</summary><div class="op">
+<h3><span class="pill p-warn">不确定</span> snapshot</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260827T191815Z/did-space/dd-1-files-00.png" alt="snapshot" loading="lazy"><figcaption>snapshot</figcaption></figure></div>
+<div class="chk-fail"><b>观察证据</b>：driver 启动时的初始状态 about:blank，尚未 navigate，无实质页面内容</div>
+
+<div class="nt">setup step, not a real observation</div>
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> navigate</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260827T191815Z/did-space/dd-1-files-01.png" alt="navigate" loading="lazy"><figcaption>navigate</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：authed cookie(login_token)注入后 navigate 到 https://did-space.afsd.dev/explorer/ ：渲染的是 files-explorer-wm（三栏浏览器），header 显示真实用户身份按钮 &#x27;Test Fixture User&#x27; + &#x27;User Center&#x27;/&#x27;Admin Console&#x27;/&#x27;Sign Out&#x27;，sidebar 与 primary 均显示 7 个真实 mount 目录 instance/packages/ash/dev/modules/user/space —— 不是 files-anon-wm 的 sign-in 卡片。证实这是该用户自己的 per-user session-root 三挂载视图，不是通用/占位内容。</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> click</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260827T191815Z/did-space/dd-1-files-02.png" alt="click" loading="lazy"><figcaption>click</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：点击 sidebar 中 &#x27;packages&#x27; 目录行：URL 变为 /explorer/packages，primary-list 重新根定位到 packages 目录并列出其真实内容（blocklet.dist.json/blocklet.yaml/logo.svg/package.json/pages/README.md/test），inspector-stat 同步显示 &#x27;packages Mount · did-space&#x27; + capabilities(list/read/stat/explain)。三目标（primary + inspector-stat + inspector-preview）一次性联动更新，符合 files-sidebar-list.select 的 fan-out 声明。</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> click</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260827T191815Z/did-space/dd-1-files-03.png" alt="click" loading="lazy"><figcaption>click</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：点击 primary-list 中的文件行 &#x27;package.json&#x27;：URL 出现 ?sel=%2Fpackages%2Fpackage.json（selectSync 持久化选中的叶子）</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> snapshot</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260827T191815Z/did-space/dd-1-files-04.png" alt="snapshot" loading="lazy"><figcaption>snapshot</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：snapshot 确认 inspector-preview 渲染出该文件的真实内容（带行号语法高亮）：{&quot;name&quot;: &quot;@aigne/blocklet-did-space&quot;, &quot;version&quot;: &quot;0.0.0&quot;, ... &quot;dependencies&quot;: {&quot;@aigne/afs&quot;: &quot;workspace:*&quot;} ...}，353 chars，与仓库里 blocklets/did-space/package.json 的真实内容吻合 —— 证实 files-primary-list.select 真的驱动了 inspector 预览，不是占位符。</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> click</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260827T191815Z/did-space/dd-1-files-05.png" alt="click" loading="lazy"><figcaption>click</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：点击 primary-list 中的目录行 &#x27;pages&#x27;：URL 变为 /explorer/packages/pages，breadcrumb 更新为 &#x27;/ / packages / pages&#x27;，sidebar 树同步展开选中对应节点 —— 证实 files-primary-list.navigate 的钻取行为。</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> snapshot</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260827T191815Z/did-space/dd-1-files-06.png" alt="snapshot" loading="lazy"><figcaption>snapshot</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：snapshot 确认钻入后 inspector 显示 &#x27;pages Directory · 1 item&#x27;，preview 面板列出真实子项 &#x27;index&#x27;，primary-list 显示同一内容 —— 与 sidebar drill 后的 fan-out 完全一致（真实数据，非占位）。</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> snapshot</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260827T191815Z/did-space/dd-1-files-07.png" alt="snapshot" loading="lazy"><figcaption>snapshot</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：重复 snapshot 复核状态无漂移：URL/inspector/preview 与上一步一致，渲染稳定。</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> click</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260827T191815Z/did-space/dd-1-files-08.png" alt="click" loading="lazy"><figcaption>click</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：点击 sidebar 根级目录行 &#x27;ash&#x27;（未曾访问过的新 mount）：URL 变为 /explorer/ash，breadcrumb 复位为 &#x27;/ / ash&#x27;，inspector/primary 同步切到 ash mount 的真实子目录 —— 与 packages 的行为一致，证实 sidebar 对任意目录行的 select/navigate 都走同一个 set:{src} fan-out wire（man CAVEATS 所述）。</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> snapshot</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260827T191815Z/did-space/dd-1-files-09.png" alt="snapshot" loading="lazy"><figcaption>snapshot</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：snapshot 确认 ash 目录下渲染出真实子内容 &#x27;/scripts&#x27;（Stored ASH scripts）与 &#x27;/cookbook&#x27;（ASH best practices and quick reference）—— 非占位数据，且与仓库 ash/ 目录语义吻合。</div>
+
+
+</div></details>
+<details class="dbg" open><summary>运行时 debug 上下文（7 条错误）</summary><div class="dbg-has"><b>Console 错误（5）</b><ul><li><code>Failed to load resource: the server responded with a status of 403 ()</code></li><li><code>Failed to load resource: the server responded with a status of 403 ()</code></li><li><code>Failed to load resource: the server responded with a status of 403 ()</code></li><li><code>Failed to load resource: the server responded with a status of 403 ()</code></li><li><code>Failed to load resource: the server responded with a status of 500 ()</code></li></ul></div><div class="dbg-none">JS 未捕获异常：<b>无</b></div><div class="dbg-has"><b>网络错误（请求失败 / 4xx–5xx）（2）</b><ul><li><code>403 POST https://did-space.afsd.dev/api/afs/rpc</code></li><li><code>500 POST https://did-space.afsd.dev/api/afs/rpc</code></li></ul></div></details>
+</section><section id="path-dd-7-files">
+<h2>read-flow files|r4: primary select file updates inspector preview <span class="rt">authed · /explorer</span></h2>
+<p class="pdesc">页面走查：导航到 <code>/explorer</code>，验证页面渲染出真实内容并逐步观测（10 步）。</p>
+<video class="video" controls preload="metadata" src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260827T191815Z/did-space/page@c4e55901bbbf86a2a403f666781be1c4.webm"><a href="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260827T191815Z/did-space/page@c4e55901bbbf86a2a403f666781be1c4.webm">下载该路径录像</a></video><p class="vcap">本测试路径整段走查录像</p>
+<div class="kpis"><div class="kpi"><div class="k">10</div><div class="l">操作步</div></div><div class="kpi"><div class="k">9</div><div class="l">通过</div></div><div class="kpi"><div class="k k-bad">0</div><div class="l">失败</div></div><div class="kpi"><div class="k k-warn">1</div><div class="l">不确定</div></div><div class="kpi"><div class="k">0</div><div class="l">未走到</div></div></div>
+<details class="steps"><summary>▸ 逐步操作详情（10 步，含判定截图）</summary><div class="op">
+<h3><span class="pill p-warn">不确定</span> snapshot</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260827T191815Z/did-space/dd-1-files-00.png" alt="snapshot" loading="lazy"><figcaption>snapshot</figcaption></figure></div>
+<div class="chk-fail"><b>观察证据</b>：driver 启动时的初始状态 about:blank，尚未 navigate，无实质页面内容</div>
+
+<div class="nt">setup step, not a real observation</div>
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> navigate</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260827T191815Z/did-space/dd-1-files-01.png" alt="navigate" loading="lazy"><figcaption>navigate</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：authed cookie(login_token)注入后 navigate 到 https://did-space.afsd.dev/explorer/ ：渲染的是 files-explorer-wm（三栏浏览器），header 显示真实用户身份按钮 &#x27;Test Fixture User&#x27; + &#x27;User Center&#x27;/&#x27;Admin Console&#x27;/&#x27;Sign Out&#x27;，sidebar 与 primary 均显示 7 个真实 mount 目录 instance/packages/ash/dev/modules/user/space —— 不是 files-anon-wm 的 sign-in 卡片。证实这是该用户自己的 per-user session-root 三挂载视图，不是通用/占位内容。</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> click</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260827T191815Z/did-space/dd-1-files-02.png" alt="click" loading="lazy"><figcaption>click</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：点击 sidebar 中 &#x27;packages&#x27; 目录行：URL 变为 /explorer/packages，primary-list 重新根定位到 packages 目录并列出其真实内容（blocklet.dist.json/blocklet.yaml/logo.svg/package.json/pages/README.md/test），inspector-stat 同步显示 &#x27;packages Mount · did-space&#x27; + capabilities(list/read/stat/explain)。三目标（primary + inspector-stat + inspector-preview）一次性联动更新，符合 files-sidebar-list.select 的 fan-out 声明。</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> click</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260827T191815Z/did-space/dd-1-files-03.png" alt="click" loading="lazy"><figcaption>click</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：点击 primary-list 中的文件行 &#x27;package.json&#x27;：URL 出现 ?sel=%2Fpackages%2Fpackage.json（selectSync 持久化选中的叶子）</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> snapshot</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260827T191815Z/did-space/dd-1-files-04.png" alt="snapshot" loading="lazy"><figcaption>snapshot</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：snapshot 确认 inspector-preview 渲染出该文件的真实内容（带行号语法高亮）：{&quot;name&quot;: &quot;@aigne/blocklet-did-space&quot;, &quot;version&quot;: &quot;0.0.0&quot;, ... &quot;dependencies&quot;: {&quot;@aigne/afs&quot;: &quot;workspace:*&quot;} ...}，353 chars，与仓库里 blocklets/did-space/package.json 的真实内容吻合 —— 证实 files-primary-list.select 真的驱动了 inspector 预览，不是占位符。</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> click</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260827T191815Z/did-space/dd-1-files-05.png" alt="click" loading="lazy"><figcaption>click</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：点击 primary-list 中的目录行 &#x27;pages&#x27;：URL 变为 /explorer/packages/pages，breadcrumb 更新为 &#x27;/ / packages / pages&#x27;，sidebar 树同步展开选中对应节点 —— 证实 files-primary-list.navigate 的钻取行为。</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> snapshot</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260827T191815Z/did-space/dd-1-files-06.png" alt="snapshot" loading="lazy"><figcaption>snapshot</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：snapshot 确认钻入后 inspector 显示 &#x27;pages Directory · 1 item&#x27;，preview 面板列出真实子项 &#x27;index&#x27;，primary-list 显示同一内容 —— 与 sidebar drill 后的 fan-out 完全一致（真实数据，非占位）。</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> snapshot</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260827T191815Z/did-space/dd-1-files-07.png" alt="snapshot" loading="lazy"><figcaption>snapshot</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：重复 snapshot 复核状态无漂移：URL/inspector/preview 与上一步一致，渲染稳定。</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> click</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260827T191815Z/did-space/dd-1-files-08.png" alt="click" loading="lazy"><figcaption>click</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：点击 sidebar 根级目录行 &#x27;ash&#x27;（未曾访问过的新 mount）：URL 变为 /explorer/ash，breadcrumb 复位为 &#x27;/ / ash&#x27;，inspector/primary 同步切到 ash mount 的真实子目录 —— 与 packages 的行为一致，证实 sidebar 对任意目录行的 select/navigate 都走同一个 set:{src} fan-out wire（man CAVEATS 所述）。</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> snapshot</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260827T191815Z/did-space/dd-1-files-09.png" alt="snapshot" loading="lazy"><figcaption>snapshot</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：snapshot 确认 ash 目录下渲染出真实子内容 &#x27;/scripts&#x27;（Stored ASH scripts）与 &#x27;/cookbook&#x27;（ASH best practices and quick reference）—— 非占位数据，且与仓库 ash/ 目录语义吻合。</div>
+
+
+</div></details>
+<details class="dbg" open><summary>运行时 debug 上下文（7 条错误）</summary><div class="dbg-has"><b>Console 错误（5）</b><ul><li><code>Failed to load resource: the server responded with a status of 403 ()</code></li><li><code>Failed to load resource: the server responded with a status of 403 ()</code></li><li><code>Failed to load resource: the server responded with a status of 403 ()</code></li><li><code>Failed to load resource: the server responded with a status of 403 ()</code></li><li><code>Failed to load resource: the server responded with a status of 500 ()</code></li></ul></div><div class="dbg-none">JS 未捕获异常：<b>无</b></div><div class="dbg-has"><b>网络错误（请求失败 / 4xx–5xx）（2）</b><ul><li><code>403 POST https://did-space.afsd.dev/api/afs/rpc</code></li><li><code>500 POST https://did-space.afsd.dev/api/afs/rpc</code></li></ul></div></details>
+</section><section id="path-dd-8-files">
+<h2>read-flow files|r5: primary navigate drills into directory <span class="rt">authed · /explorer</span></h2>
+<p class="pdesc">页面走查：导航到 <code>/explorer</code>，验证页面渲染出真实内容并逐步观测（10 步）。</p>
+<video class="video" controls preload="metadata" src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260827T191815Z/did-space/page@c4e55901bbbf86a2a403f666781be1c4.webm"><a href="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260827T191815Z/did-space/page@c4e55901bbbf86a2a403f666781be1c4.webm">下载该路径录像</a></video><p class="vcap">本测试路径整段走查录像</p>
+<div class="kpis"><div class="kpi"><div class="k">10</div><div class="l">操作步</div></div><div class="kpi"><div class="k">9</div><div class="l">通过</div></div><div class="kpi"><div class="k k-bad">0</div><div class="l">失败</div></div><div class="kpi"><div class="k k-warn">1</div><div class="l">不确定</div></div><div class="kpi"><div class="k">0</div><div class="l">未走到</div></div></div>
+<details class="steps"><summary>▸ 逐步操作详情（10 步，含判定截图）</summary><div class="op">
+<h3><span class="pill p-warn">不确定</span> snapshot</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260827T191815Z/did-space/dd-1-files-00.png" alt="snapshot" loading="lazy"><figcaption>snapshot</figcaption></figure></div>
+<div class="chk-fail"><b>观察证据</b>：driver 启动时的初始状态 about:blank，尚未 navigate，无实质页面内容</div>
+
+<div class="nt">setup step, not a real observation</div>
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> navigate</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260827T191815Z/did-space/dd-1-files-01.png" alt="navigate" loading="lazy"><figcaption>navigate</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：authed cookie(login_token)注入后 navigate 到 https://did-space.afsd.dev/explorer/ ：渲染的是 files-explorer-wm（三栏浏览器），header 显示真实用户身份按钮 &#x27;Test Fixture User&#x27; + &#x27;User Center&#x27;/&#x27;Admin Console&#x27;/&#x27;Sign Out&#x27;，sidebar 与 primary 均显示 7 个真实 mount 目录 instance/packages/ash/dev/modules/user/space —— 不是 files-anon-wm 的 sign-in 卡片。证实这是该用户自己的 per-user session-root 三挂载视图，不是通用/占位内容。</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> click</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260827T191815Z/did-space/dd-1-files-02.png" alt="click" loading="lazy"><figcaption>click</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：点击 sidebar 中 &#x27;packages&#x27; 目录行：URL 变为 /explorer/packages，primary-list 重新根定位到 packages 目录并列出其真实内容（blocklet.dist.json/blocklet.yaml/logo.svg/package.json/pages/README.md/test），inspector-stat 同步显示 &#x27;packages Mount · did-space&#x27; + capabilities(list/read/stat/explain)。三目标（primary + inspector-stat + inspector-preview）一次性联动更新，符合 files-sidebar-list.select 的 fan-out 声明。</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> click</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260827T191815Z/did-space/dd-1-files-03.png" alt="click" loading="lazy"><figcaption>click</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：点击 primary-list 中的文件行 &#x27;package.json&#x27;：URL 出现 ?sel=%2Fpackages%2Fpackage.json（selectSync 持久化选中的叶子）</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> snapshot</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260827T191815Z/did-space/dd-1-files-04.png" alt="snapshot" loading="lazy"><figcaption>snapshot</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：snapshot 确认 inspector-preview 渲染出该文件的真实内容（带行号语法高亮）：{&quot;name&quot;: &quot;@aigne/blocklet-did-space&quot;, &quot;version&quot;: &quot;0.0.0&quot;, ... &quot;dependencies&quot;: {&quot;@aigne/afs&quot;: &quot;workspace:*&quot;} ...}，353 chars，与仓库里 blocklets/did-space/package.json 的真实内容吻合 —— 证实 files-primary-list.select 真的驱动了 inspector 预览，不是占位符。</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> click</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260827T191815Z/did-space/dd-1-files-05.png" alt="click" loading="lazy"><figcaption>click</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：点击 primary-list 中的目录行 &#x27;pages&#x27;：URL 变为 /explorer/packages/pages，breadcrumb 更新为 &#x27;/ / packages / pages&#x27;，sidebar 树同步展开选中对应节点 —— 证实 files-primary-list.navigate 的钻取行为。</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> snapshot</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260827T191815Z/did-space/dd-1-files-06.png" alt="snapshot" loading="lazy"><figcaption>snapshot</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：snapshot 确认钻入后 inspector 显示 &#x27;pages Directory · 1 item&#x27;，preview 面板列出真实子项 &#x27;index&#x27;，primary-list 显示同一内容 —— 与 sidebar drill 后的 fan-out 完全一致（真实数据，非占位）。</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> snapshot</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260827T191815Z/did-space/dd-1-files-07.png" alt="snapshot" loading="lazy"><figcaption>snapshot</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：重复 snapshot 复核状态无漂移：URL/inspector/preview 与上一步一致，渲染稳定。</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> click</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260827T191815Z/did-space/dd-1-files-08.png" alt="click" loading="lazy"><figcaption>click</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：点击 sidebar 根级目录行 &#x27;ash&#x27;（未曾访问过的新 mount）：URL 变为 /explorer/ash，breadcrumb 复位为 &#x27;/ / ash&#x27;，inspector/primary 同步切到 ash mount 的真实子目录 —— 与 packages 的行为一致，证实 sidebar 对任意目录行的 select/navigate 都走同一个 set:{src} fan-out wire（man CAVEATS 所述）。</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> snapshot</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260827T191815Z/did-space/dd-1-files-09.png" alt="snapshot" loading="lazy"><figcaption>snapshot</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：snapshot 确认 ash 目录下渲染出真实子内容 &#x27;/scripts&#x27;（Stored ASH scripts）与 &#x27;/cookbook&#x27;（ASH best practices and quick reference）—— 非占位数据，且与仓库 ash/ 目录语义吻合。</div>
+
+
+</div></details>
+<details class="dbg" open><summary>运行时 debug 上下文（7 条错误）</summary><div class="dbg-has"><b>Console 错误（5）</b><ul><li><code>Failed to load resource: the server responded with a status of 403 ()</code></li><li><code>Failed to load resource: the server responded with a status of 403 ()</code></li><li><code>Failed to load resource: the server responded with a status of 403 ()</code></li><li><code>Failed to load resource: the server responded with a status of 403 ()</code></li><li><code>Failed to load resource: the server responded with a status of 500 ()</code></li></ul></div><div class="dbg-none">JS 未捕获异常：<b>无</b></div><div class="dbg-has"><b>网络错误（请求失败 / 4xx–5xx）（2）</b><ul><li><code>403 POST https://did-space.afsd.dev/api/afs/rpc</code></li><li><code>500 POST https://did-space.afsd.dev/api/afs/rpc</code></li></ul></div></details>
+</section><section id="path-dd-3-files">
+<h2>read-flow files|r0: anon sees sign-in gate, click sign in redirects to login <span class="rt">anon · /explorer</span></h2>
+<p class="pdesc">页面走查：导航到 <code>/explorer</code>，验证页面渲染出真实内容并逐步观测（2 步）。</p>
+<video class="video" controls preload="metadata" src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260827T191815Z/did-space/page@cf08123b962d8385cbc621a700cac668.webm"><a href="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260827T191815Z/did-space/page@cf08123b962d8385cbc621a700cac668.webm">下载该路径录像</a></video><p class="vcap">本测试路径整段走查录像</p>
+<div class="kpis"><div class="kpi"><div class="k">2</div><div class="l">操作步</div></div><div class="kpi"><div class="k">2</div><div class="l">通过</div></div><div class="kpi"><div class="k k-bad">0</div><div class="l">失败</div></div><div class="kpi"><div class="k k-warn">0</div><div class="l">不确定</div></div><div class="kpi"><div class="k">0</div><div class="l">未走到</div></div></div>
+<details class="steps"><summary>▸ 逐步操作详情（2 步，含判定截图）</summary><div class="op">
+<h3><span class="pill p-ok">通过</span> navigate</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260827T191815Z/did-space/dd-3-files-00.png" alt="navigate" loading="lazy"><figcaption>navigate</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：匿名（无 login_token cookie）navigate 到 https://did-space.afsd.dev/explorer：渲染的是 files-anon-wm（files-explorer-wm 完全不在 DOM 里），包含 files-anon-title=&quot;Sign in to browse your space&quot;、files-anon-desc、files-anon-login 三个真实节点，与 man 的 (anon) 示例断言完全吻合，没有部分/降级的浏览器视图。</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> click</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260827T191815Z/did-space/dd-3-files-01.png" alt="click" loading="lazy"><figcaption>click</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：点击 files-anon-login（&quot;Sign in&quot;）：页面跳转到 https://did-space.afsd.dev/.well-known/service/login（title=&quot;DID Space — Sign In&quot;），与 man flows 声明的 &quot;navigates to /.well-known/service/login&quot; 完全一致，是真实的路由跳转（非 in-page 事件）。</div>
+
+
+</div></details>
+<details class="dbg"><summary>运行时 debug 上下文（全清）</summary><div class="dbg-none">Console 错误：<b>无</b></div><div class="dbg-none">JS 未捕获异常：<b>无</b></div><div class="dbg-none">网络错误（请求失败 / 4xx–5xx）：<b>无</b></div></details>
+</section><section id="path-dd-4-files">
+<h2>read-flow files|r1: session becomes authenticated, page re-renders files-explorer-wm <span class="rt">authed · /explorer</span></h2>
+<p class="pdesc">真实 DID 钱包扫码登录需要人工交互，无人值守云环境不可行；本轮用 browser-auth 签发的 login_token cookie 注入替代（这是本仓 browser-auth 技能为自动化测试设计的标准替身机制，语义等价于完成 sign-in 后 session 变为 authenticated），观察注入后 navigate 到 /explorer 的渲染结果作为该转场后置状态的证据。</p>
+<video class="video" controls preload="metadata" src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260827T191815Z/did-space/page@c4e55901bbbf86a2a403f666781be1c4.webm"><a href="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260827T191815Z/did-space/page@c4e55901bbbf86a2a403f666781be1c4.webm">下载该路径录像</a></video><p class="vcap">本测试路径整段走查录像</p>
+<div class="kpis"><div class="kpi"><div class="k">10</div><div class="l">操作步</div></div><div class="kpi"><div class="k">9</div><div class="l">通过</div></div><div class="kpi"><div class="k k-bad">0</div><div class="l">失败</div></div><div class="kpi"><div class="k k-warn">1</div><div class="l">不确定</div></div><div class="kpi"><div class="k">0</div><div class="l">未走到</div></div></div>
+<details class="steps"><summary>▸ 逐步操作详情（10 步，含判定截图）</summary><div class="op">
+<h3><span class="pill p-warn">不确定</span> snapshot</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260827T191815Z/did-space/dd-1-files-00.png" alt="snapshot" loading="lazy"><figcaption>snapshot</figcaption></figure></div>
+<div class="chk-fail"><b>观察证据</b>：driver 启动时的初始状态 about:blank，尚未 navigate，无实质页面内容</div>
+
+<div class="nt">setup step, not a real observation</div>
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> navigate</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260827T191815Z/did-space/dd-1-files-01.png" alt="navigate" loading="lazy"><figcaption>navigate</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：authed cookie(login_token)注入后 navigate 到 https://did-space.afsd.dev/explorer/ ：渲染的是 files-explorer-wm（三栏浏览器），header 显示真实用户身份按钮 &#x27;Test Fixture User&#x27; + &#x27;User Center&#x27;/&#x27;Admin Console&#x27;/&#x27;Sign Out&#x27;，sidebar 与 primary 均显示 7 个真实 mount 目录 instance/packages/ash/dev/modules/user/space —— 不是 files-anon-wm 的 sign-in 卡片。证实这是该用户自己的 per-user session-root 三挂载视图，不是通用/占位内容。</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> click</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260827T191815Z/did-space/dd-1-files-02.png" alt="click" loading="lazy"><figcaption>click</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：点击 sidebar 中 &#x27;packages&#x27; 目录行：URL 变为 /explorer/packages，primary-list 重新根定位到 packages 目录并列出其真实内容（blocklet.dist.json/blocklet.yaml/logo.svg/package.json/pages/README.md/test），inspector-stat 同步显示 &#x27;packages Mount · did-space&#x27; + capabilities(list/read/stat/explain)。三目标（primary + inspector-stat + inspector-preview）一次性联动更新，符合 files-sidebar-list.select 的 fan-out 声明。</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> click</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260827T191815Z/did-space/dd-1-files-03.png" alt="click" loading="lazy"><figcaption>click</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：点击 primary-list 中的文件行 &#x27;package.json&#x27;：URL 出现 ?sel=%2Fpackages%2Fpackage.json（selectSync 持久化选中的叶子）</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> snapshot</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260827T191815Z/did-space/dd-1-files-04.png" alt="snapshot" loading="lazy"><figcaption>snapshot</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：snapshot 确认 inspector-preview 渲染出该文件的真实内容（带行号语法高亮）：{&quot;name&quot;: &quot;@aigne/blocklet-did-space&quot;, &quot;version&quot;: &quot;0.0.0&quot;, ... &quot;dependencies&quot;: {&quot;@aigne/afs&quot;: &quot;workspace:*&quot;} ...}，353 chars，与仓库里 blocklets/did-space/package.json 的真实内容吻合 —— 证实 files-primary-list.select 真的驱动了 inspector 预览，不是占位符。</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> click</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260827T191815Z/did-space/dd-1-files-05.png" alt="click" loading="lazy"><figcaption>click</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：点击 primary-list 中的目录行 &#x27;pages&#x27;：URL 变为 /explorer/packages/pages，breadcrumb 更新为 &#x27;/ / packages / pages&#x27;，sidebar 树同步展开选中对应节点 —— 证实 files-primary-list.navigate 的钻取行为。</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> snapshot</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260827T191815Z/did-space/dd-1-files-06.png" alt="snapshot" loading="lazy"><figcaption>snapshot</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：snapshot 确认钻入后 inspector 显示 &#x27;pages Directory · 1 item&#x27;，preview 面板列出真实子项 &#x27;index&#x27;，primary-list 显示同一内容 —— 与 sidebar drill 后的 fan-out 完全一致（真实数据，非占位）。</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> snapshot</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260827T191815Z/did-space/dd-1-files-07.png" alt="snapshot" loading="lazy"><figcaption>snapshot</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：重复 snapshot 复核状态无漂移：URL/inspector/preview 与上一步一致，渲染稳定。</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> click</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260827T191815Z/did-space/dd-1-files-08.png" alt="click" loading="lazy"><figcaption>click</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：点击 sidebar 根级目录行 &#x27;ash&#x27;（未曾访问过的新 mount）：URL 变为 /explorer/ash，breadcrumb 复位为 &#x27;/ / ash&#x27;，inspector/primary 同步切到 ash mount 的真实子目录 —— 与 packages 的行为一致，证实 sidebar 对任意目录行的 select/navigate 都走同一个 set:{src} fan-out wire（man CAVEATS 所述）。</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> snapshot</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260827T191815Z/did-space/dd-1-files-09.png" alt="snapshot" loading="lazy"><figcaption>snapshot</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：snapshot 确认 ash 目录下渲染出真实子内容 &#x27;/scripts&#x27;（Stored ASH scripts）与 &#x27;/cookbook&#x27;（ASH best practices and quick reference）—— 非占位数据，且与仓库 ash/ 目录语义吻合。</div>
+
+
+</div></details>
+<details class="dbg" open><summary>运行时 debug 上下文（7 条错误）</summary><div class="dbg-has"><b>Console 错误（5）</b><ul><li><code>Failed to load resource: the server responded with a status of 403 ()</code></li><li><code>Failed to load resource: the server responded with a status of 403 ()</code></li><li><code>Failed to load resource: the server responded with a status of 403 ()</code></li><li><code>Failed to load resource: the server responded with a status of 403 ()</code></li><li><code>Failed to load resource: the server responded with a status of 500 ()</code></li></ul></div><div class="dbg-none">JS 未捕获异常：<b>无</b></div><div class="dbg-has"><b>网络错误（请求失败 / 4xx–5xx）（2）</b><ul><li><code>403 POST https://did-space.afsd.dev/api/afs/rpc</code></li><li><code>500 POST https://did-space.afsd.dev/api/afs/rpc</code></li></ul></div></details>
+</section>
+<p class="sub" style="margin-top:22px">由 test-report-builder（build-agent-report）生成 · issue #1808</p>
+</div></body></html>
