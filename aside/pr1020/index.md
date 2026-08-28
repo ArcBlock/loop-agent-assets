@@ -7,3 +7,4 @@
 | 20260828-164928-hud-tap-large.jpg | https://github.com/ArcBlock/aside/pull/1020 | 2026-08-28T16:49:31Z | nategu@Nate-Mac-Pro |
 | 20260828-173929-notes-keyboard-up.jpg | https://github.com/ArcBlock/aside/pull/1020 | 2026-08-28T17:39:32Z | nategu@Nate-Mac-Pro |
 | 20260828-173941-notes-keyboard-dismissed.jpg | https://github.com/ArcBlock/aside/pull/1020 | 2026-08-28T17:39:43Z | nategu@Nate-Mac-Pro |
+| 20260828-173952-notes-written-xy.jpg | https://github.com/ArcBlock/aside/pull/1020 | 2026-08-28T17:39:54Z | nategu@Nate-Mac-Pro |
