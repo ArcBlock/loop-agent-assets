@@ -339,3 +339,4 @@
 | 20260828-100640-dd-2-todo-02.png | https://github.com/ArcBlock/arc | 2026-08-28T10:06:40Z | root@vm |
 | 20260828-100644-dd-2-todo-03.png | https://github.com/ArcBlock/arc | 2026-08-28T10:06:44Z | root@vm |
 | 20260828-100648-dd-2-todo-04.png | https://github.com/ArcBlock/arc | 2026-08-28T10:06:48Z | root@vm |
+| 20260828-100651-dd-2-todo-05.png | https://github.com/ArcBlock/arc | 2026-08-28T10:06:51Z | root@vm |
