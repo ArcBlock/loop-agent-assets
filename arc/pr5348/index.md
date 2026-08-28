@@ -14,3 +14,4 @@
 | 20260828-065351-live-agent-terminal.png | https://github.com/ArcBlock/arc/pull/5348 | 2026-08-28T06:53:51Z | robmao@Roberts-Mac-mini-M4-Pro-7 |
 | 20260828-065355-live-aggregator.png | https://github.com/ArcBlock/arc/pull/5348 | 2026-08-28T06:53:55Z | robmao@Roberts-Mac-mini-M4-Pro-7 |
 | 20260828-065400-live-aistro.png | https://github.com/ArcBlock/arc/pull/5348 | 2026-08-28T06:54:00Z | robmao@Roberts-Mac-mini-M4-Pro-7 |
+| 20260828-065405-live-arch-qa.png | https://github.com/ArcBlock/arc/pull/5348 | 2026-08-28T06:54:05Z | robmao@Roberts-Mac-mini-M4-Pro-7 |
