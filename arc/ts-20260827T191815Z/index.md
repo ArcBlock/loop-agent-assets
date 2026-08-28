@@ -461,3 +461,4 @@
 | 20260828-103820-dd-6-form-contact-04.png | https://github.com/ArcBlock/arc | 2026-08-28T10:38:20Z | root@vm |
 | 20260828-103827-dd-6-form-contact-05.png | https://github.com/ArcBlock/arc | 2026-08-28T10:38:27Z | root@vm |
 | 20260828-103830-dd-6-form-contact-06.png | https://github.com/ArcBlock/arc | 2026-08-28T10:38:30Z | root@vm |
+| 20260828-103834-dd-7-overlays-00.png | https://github.com/ArcBlock/arc | 2026-08-28T10:38:34Z | root@vm |
