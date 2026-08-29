@@ -10,3 +10,4 @@
 | deadline-v2-3-threshold-table.png | https://github.com/ArcBlock/arc/issues/5374 | 2026-08-28T18:02:18Z | chao@Yechaos-MBP |
 | deadline-v3-1-green-at-load.png | https://github.com/ArcBlock/arc/issues/5374 | 2026-08-29T15:53:44Z | chao@Yechaos-MBP |
 | deadline-v3-2-red-after-heartbeat.png | https://github.com/ArcBlock/arc/issues/5374 | 2026-08-29T15:54:02Z | chao@Yechaos-MBP |
+| deadline-v3-3-threshold-table.png | https://github.com/ArcBlock/arc/issues/5374 | 2026-08-29T15:54:20Z | chao@Yechaos-MBP |
