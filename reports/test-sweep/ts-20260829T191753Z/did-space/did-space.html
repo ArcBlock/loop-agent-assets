@@ -1,0 +1,343 @@
+<!doctype html><html><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>did-space — agent 走查报告</title><style>
+:root{--bg:#f7f8f8;--fg:#16201f;--muted:#5c6b69;--card:#fff;--card2:#eef2f1;--border:#dde3e2;--accent:#127a72;--pass:#1f8a54;--warn:#b5771a;--bad:#c0392b}
+@media(prefers-color-scheme:dark){:root{--bg:#0e1413;--fg:#e6ecea;--muted:#8ea19d;--card:#161d1c;--card2:#1d2624;--border:#26302e;--accent:#3fb8ab;--pass:#3fb37a;--warn:#d69a3e;--bad:#e5735f}}
+:root[data-theme=dark]{--bg:#0e1413;--fg:#e6ecea;--muted:#8ea19d;--card:#161d1c;--card2:#1d2624;--border:#26302e;--accent:#3fb8ab;--pass:#3fb37a;--warn:#d69a3e;--bad:#e5735f}
+:root[data-theme=light]{--bg:#f7f8f8;--fg:#16201f;--muted:#5c6b69;--card:#fff;--card2:#eef2f1;--border:#dde3e2;--accent:#127a72;--pass:#1f8a54;--warn:#b5771a;--bad:#c0392b}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--fg);font:15px/1.65 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;padding:24px}
+.wrap{max-width:920px;margin:0 auto}
+h1{font-size:24px;margin:0 0 4px;text-wrap:balance}h2{font-size:19px;margin:30px 0 8px}
+h2 .rt{font-size:13px;color:var(--muted);font-weight:400;font-variant-numeric:tabular-nums}
+.sub{color:var(--muted);margin:0 0 14px;font-size:13px}
+code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.85em;background:var(--card2);padding:1px 5px;border-radius:4px}
+.how{background:var(--card);border:1px solid var(--border);border-left:3px solid var(--accent);border-radius:8px;padding:13px 16px;margin:14px 0;font-size:14px}
+.how b{color:var(--accent)}
+.banner{border-radius:12px;padding:14px 18px;margin:16px 0}
+.banner.ok{background:color-mix(in srgb,var(--pass) 12%,transparent);border:1px solid color-mix(in srgb,var(--pass) 40%,transparent)}
+.banner.ok b{color:var(--pass)}
+.banner.bad{background:color-mix(in srgb,var(--bad) 13%,transparent);border:1px solid color-mix(in srgb,var(--bad) 45%,transparent)}
+.banner.bad b{color:var(--bad);font-size:16px}
+.banner.info{background:color-mix(in srgb,var(--accent) 10%,transparent);border:1px solid color-mix(in srgb,var(--accent) 38%,transparent)}
+.banner.info b{color:var(--accent)}
+.plist{margin:10px 0 0;padding-left:0;list-style:none}
+.plist li{padding:8px 0;border-top:1px solid var(--border)}
+.plist a{text-decoration:none;color:var(--fg);font-weight:600}
+.plist .pe{color:var(--muted);font-size:12.5px;font-weight:400;margin-top:3px}
+.video{width:100%;border-radius:10px;border:1px solid var(--border);background:#000;margin:6px 0 2px}
+.vcap{color:var(--muted);font-size:12.5px;margin:0 0 8px}
+.novideo{color:var(--bad);font-weight:600;background:color-mix(in srgb,var(--bad) 10%,transparent);border:1px dashed color-mix(in srgb,var(--bad) 45%,transparent);border-radius:8px;padding:8px 12px;font-size:13px}
+.kpis{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0}
+.kpi{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:9px 14px;min-width:70px}
+.kpi .k{font-size:21px;font-weight:700;font-variant-numeric:tabular-nums}.kpi .l{color:var(--muted);font-size:12px}
+.kpi .k-bad{color:var(--bad)}.kpi .k-warn{color:var(--warn)}
+.op{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:15px 17px;margin:14px 0}
+.op h3{margin:0 0 3px;font-size:16px;display:flex;align-items:center;gap:9px;flex-wrap:wrap}
+.op .exp{color:var(--muted);font-size:13px;margin:0 0 9px}
+.op .nt{color:var(--muted);font-size:12.5px;margin-top:6px}
+.pill{font-size:11.5px;font-weight:700;padding:2px 9px;border-radius:20px}
+.p-ok{background:color-mix(in srgb,var(--pass) 18%,transparent);color:var(--pass)}
+.p-fail{background:color-mix(in srgb,var(--bad) 18%,transparent);color:var(--bad)}
+.p-warn{background:color-mix(in srgb,var(--warn) 20%,transparent);color:var(--warn)}
+.p-skip{background:var(--card2);color:var(--muted)}
+.p-write{background:color-mix(in srgb,var(--accent) 18%,transparent);color:var(--accent)}
+.frame figure{margin:0 0 9px}.frame img{width:100%;border-radius:8px;border:1px solid var(--border);display:block}
+.frame figcaption{color:var(--muted);font-size:11.5px;margin-top:4px;text-align:center}
+.chk{background:color-mix(in srgb,var(--pass) 12%,transparent);border:1px solid color-mix(in srgb,var(--pass) 34%,transparent);border-radius:8px;padding:8px 12px;font-size:13px}
+.chk b{color:var(--pass)}
+.chk-fail{background:color-mix(in srgb,var(--bad) 11%,transparent);border:1px solid color-mix(in srgb,var(--bad) 40%,transparent);border-radius:8px;padding:8px 12px;font-size:13px}
+.chk-fail b{color:var(--bad)}
+table.probe{border-collapse:collapse;width:100%;font-size:13px}
+table.probe th,table.probe td{border:1px solid var(--border);padding:5px 9px;text-align:left}
+table.probe tr.bad td{background:color-mix(in srgb,var(--bad) 10%,transparent)}
+.err{background:color-mix(in srgb,var(--bad) 11%,transparent);border:1px solid color-mix(in srgb,var(--bad) 40%,transparent);border-radius:8px;padding:7px 12px;font-size:12.5px;margin-top:6px}
+.err b{color:var(--bad)}.err code{background:transparent;color:var(--bad)}
+.dbg{margin:10px 0 2px;background:var(--card);border:1px solid var(--border);border-radius:10px;padding:6px 14px;font-size:13px}
+.dbg summary{cursor:pointer;color:var(--muted);font-weight:600;padding:5px 0}
+.dbg-none{color:var(--muted);padding:4px 0;font-size:12.5px}
+.dbg-has{padding:5px 0}.dbg-has b{color:var(--warn)}
+.dbg-has ul{margin:5px 0 8px;padding-left:18px}.dbg-has li{font-size:12px;color:var(--fg);margin:2px 0;word-break:break-all}
+.dbg-has code{background:var(--card2)}
+.pdesc{color:var(--muted);font-size:13.5px;margin:1px 0 11px;line-height:1.5}
+.pdesc code{font-size:.85em}
+details.steps{margin:6px 0 2px;border:1px solid var(--border);border-radius:10px;background:var(--card2);padding:2px 14px}
+details.steps>summary{cursor:pointer;color:var(--accent);font-weight:600;padding:9px 0;font-size:13.5px;list-style:none}
+details.steps>summary::-webkit-details-marker{display:none}
+details.steps[open]>summary{border-bottom:1px solid var(--border);margin-bottom:8px}
+details.steps>summary:hover{color:var(--fg)}
+</style></head><body><div class="wrap">
+<h1>did-space — agent 走查报告</h1>
+<p class="sub">环境 <code>https://did-space.afsd.dev</code> · 2026-08-29T19:21:08.891562Z · 走查 6 / 声明 6 条测试路径 · driver <code>agent-playwright-mcp</code></p>
+<div class="how"><b>这份报告在做什么</b>：test-sweep 让 <b>agent 读被测页面自己写的
+<code>.aup/man</code> 知识</b>，用 Playwright MCP <b>当真人逐条测试路径走查</b>（导航/加标签/编辑/删除/创建…），
+<b>每条路径各自一段录屏</b>、每步截图并<b>自判 verdict + 附观察证据</b>（实际 DOM/文本/值，可复核）。
+<b>unreached</b>=没驱动到（不当失败）；<b>inconclusive</b>=不确定（绝不判失败）。写操作默认真提交、不清理。</div>
+
+<div class="banner ok"><b>✅ 覆盖完整</b>：声明 6 条测试路径全部走查。</div>
+<div class="banner bad"><b>⚠️ 发现 6 个问题</b>（点击跳到对应路径）<ul class="plist"><li><a href="#path-files"><span class="pill p-warn">不确定</span> Files · 步1</a> — navigate<div class="pe">title=&#x27;DID Space&#x27; url=https://did-space.afsd.dev/explorer/ aupNodes=42 buttons=16 inputs=5 textLen=699 head=&#x27;DID Space Open Explorer ▾ / instance DID-scoped persistent storage with CID-based content deduplication. - Per-user data isolation </div></li><li><a href="#path-files"><span class="pill p-warn">不确定</span> Files · 步2</a> — snapshot<div class="pe">title=&#x27;DID Space&#x27; url=https://did-space.afsd.dev/explorer/ aupNodes=42 buttons=16 inputs=5 textLen=699 head=&#x27;DID Space Open Explorer ▾ / instance DID-scoped persistent storage with CID-based content deduplication. - Per-user data isolation </div></li><li><a href="#path-dd-6-files"><span class="pill p-fail">失败</span> read-flow files|r3: sidebar navigate → primary + inspector（drill into directory，同 fan-out） · 步2</a> — click<div class="pe">单击 files-sidebar-list 内 [data-entry-id=&quot;instance&quot;]（select 事件）触发 3-target fan-out 后出现真实不一致：files-primary-list 渲染 &quot;You do not have access to this list.&quot;（列表被拒），但同一 fan-out 里的 files-inspector-stat 显示 meta-details-kv=&quot;path/instance kind:did-spac</div></li><li><a href="#path-dd-6-files"><span class="pill p-warn">不确定</span> read-flow files|r3: sidebar navigate → primary + inspector（drill into directory，同 fan-out） · 步3</a> — press<div class="pe">press ArrowRight 后 URL/DOM 均未发生任何变化（files-sidebar-list 自身仍显示 root 级子目录 instance/packages/ash/dev/modules/user/space，未 drill 进 /instance），无法确认这次按键是否真的触发了 files-sidebar-list 的 navigate handler——curIdx/_kbActive 状态在 drive-step.py 动作集里无法直接探测。不排</div></li><li><a href="#path-dd-6-files"><span class="pill p-fail">失败</span> read-flow files|r3: sidebar navigate → primary + inspector（drill into directory，同 fan-out） · 步4</a> — snapshot<div class="pe">snapshot 复核：DOM 仍稳定在同一状态，files-inspector-stat 完整展示 instance mount 的 capabilities（list/read/stat/search/write/delete/exec/explain）与 access:readwrite，files-inspector-preview 仍显示 &quot;Directory · 1 item index&quot;，而 files-primary-list 仍是 &quot;You do not h</div></li><li><a href="#path-dd-7-files"><span class="pill p-warn">不确定</span> read-flow files|r4: 选择文件 → inspector 更新（select） · 步3</a> — click<div class="pe">用 [data-entry-id=&quot;package.json&quot;] 选择器点击超时（8000ms 未命中元素）。</div></li></ul></div>
+<section id="probes"><h2>后端探针 （全通过）</h2><table class="probe"><tr><th></th><th>探针</th><th>详情</th></tr><tr class=""><td>✅</td><td>http-reachable</td><td>HTTP 200</td></tr><tr class=""><td>✅</td><td>afs-rpc-list</td><td>ok:true (1 .aup pages)</td></tr><tr class=""><td>✅</td><td>afs-rpc-authed-list-/user</td><td>ok:true (Bearer 可读)</td></tr></table></section>
+<section id="path-files">
+<h2>Files <span class="rt">authed · https://did-space.afsd.dev/explorer</span></h2>
+<p class="pdesc">导航到 https://did-space.afsd.dev/explorer，验证页面加载并渲染出真实内容（files 页 breadth 走查）。</p>
+<video class="video" controls preload="metadata" src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260829T191753Z/did-space/page@851bf82261813853d5f5f72b2a90cac0.webm"><a href="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260829T191753Z/did-space/page@851bf82261813853d5f5f72b2a90cac0.webm">下载该路径录像</a></video><p class="vcap">本测试路径整段走查录像</p>
+<div class="kpis"><div class="kpi"><div class="k">2</div><div class="l">操作步</div></div><div class="kpi"><div class="k">0</div><div class="l">通过</div></div><div class="kpi"><div class="k k-bad">0</div><div class="l">失败</div></div><div class="kpi"><div class="k k-warn">2</div><div class="l">不确定</div></div><div class="kpi"><div class="k">0</div><div class="l">未走到</div></div></div>
+<details class="steps"><summary>▸ 逐步操作详情（2 步，含判定截图）</summary><div class="op">
+<h3><span class="pill p-warn">不确定</span> navigate</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260829T191753Z/did-space/files-01.png" alt="navigate" loading="lazy"><figcaption>navigate</figcaption></figure></div>
+<div class="chk-fail"><b>观察证据</b>：title=&#x27;DID Space&#x27; url=https://did-space.afsd.dev/explorer/ aupNodes=42 buttons=16 inputs=5 textLen=699 head=&#x27;DID Space Open Explorer ▾ / instance DID-scoped persistent storage with CID-based content deduplication. - Per-user data isolation via DID p&#x27;；数据源报错：403 POST https://did-space.afsd.dev/api/afs/rpc</div>
+
+<div class="nt">数据源报错：403 POST https://did-space.afsd.dev/api/afs/rpc</div>
+</div>
+<div class="op">
+<h3><span class="pill p-warn">不确定</span> snapshot</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260829T191753Z/did-space/files-02.png" alt="snapshot" loading="lazy"><figcaption>snapshot</figcaption></figure></div>
+<div class="chk-fail"><b>观察证据</b>：title=&#x27;DID Space&#x27; url=https://did-space.afsd.dev/explorer/ aupNodes=42 buttons=16 inputs=5 textLen=699 head=&#x27;DID Space Open Explorer ▾ / instance DID-scoped persistent storage with CID-based content deduplication. - Per-user data isolation via DID p&#x27;；数据源报错：403 POST https://did-space.afsd.dev/api/afs/rpc</div>
+
+<div class="nt">数据源报错：403 POST https://did-space.afsd.dev/api/afs/rpc</div>
+</div></details>
+<details class="dbg" open><summary>运行时 debug 上下文（2 条错误）</summary><div class="dbg-has"><b>Console 错误（1）</b><ul><li><code>Failed to load resource: the server responded with a status of 403 ()</code></li></ul></div><div class="dbg-none">JS 未捕获异常：<b>无</b></div><div class="dbg-has"><b>网络错误（请求失败 / 4xx–5xx）（1）</b><ul><li><code>403 POST https://did-space.afsd.dev/api/afs/rpc</code></li></ul></div></details>
+</section><section id="path-dd-1-files">
+<h2>auth-spot-check: /explorer renders authenticated content <span class="rt">authed · https://did-space.afsd.dev/explorer</span></h2>
+<p class="pdesc">页面走查：导航到 <code>https://did-space.afsd.dev/explorer</code>，验证页面渲染出真实内容并逐步观测（2 步）。</p>
+<video class="video" controls preload="metadata" src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260829T191753Z/did-space/page@a95ae839de582af569b0fefe621e8e9d.webm"><a href="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260829T191753Z/did-space/page@a95ae839de582af569b0fefe621e8e9d.webm">下载该路径录像</a></video><p class="vcap">本测试路径整段走查录像</p>
+<div class="kpis"><div class="kpi"><div class="k">2</div><div class="l">操作步</div></div><div class="kpi"><div class="k">2</div><div class="l">通过</div></div><div class="kpi"><div class="k k-bad">0</div><div class="l">失败</div></div><div class="kpi"><div class="k k-warn">0</div><div class="l">不确定</div></div><div class="kpi"><div class="k">0</div><div class="l">未走到</div></div></div>
+<details class="steps"><summary>▸ 逐步操作详情（2 步，含判定截图）</summary><div class="op">
+<h3><span class="pill p-ok">通过</span> navigate</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260829T191753Z/did-space/dd-1-files-00.png" alt="navigate" loading="lazy"><figcaption>navigate</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：navigate 后 DOM 含 [data-aup-id=&quot;files-explorer-wm&quot;]/files-sidebar-list/files-primary-list/files-inspector-stat/files-inspector-preview 全部渲染；user-menu 按钮显示 &quot;Test Fixture User&quot;（真实登录态身份），root 列出 7 个真实条目（instance/packages/ash/dev/modules/user/space）；DOM 中不存在 files-anon-wm/files-anon-login（匿名 sign-in 卡片），确认走的是 authed 分支而非 anon 门禁。</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> snapshot</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260829T191753Z/did-space/dd-1-files-01.png" alt="snapshot" loading="lazy"><figcaption>snapshot</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：snapshot 复核：aupNodes=42，title/url 与上一步一致，渲染稳定未回退到 anon 门禁。</div>
+
+
+</div></details>
+<details class="dbg" open><summary>运行时 debug 上下文（2 条错误）</summary><div class="dbg-has"><b>Console 错误（1）</b><ul><li><code>Failed to load resource: the server responded with a status of 403 ()</code></li></ul></div><div class="dbg-none">JS 未捕获异常：<b>无</b></div><div class="dbg-has"><b>网络错误（请求失败 / 4xx–5xx）（1）</b><ul><li><code>403 POST https://did-space.afsd.dev/api/afs/rpc</code></li></ul></div></details>
+</section><section id="path-dd-2-files">
+<h2>verify-inconclusive 升级：/explorer 重访+长等待，判定 floor 的 403 是否致命 <span class="rt">authed · https://did-space.afsd.dev/explorer</span></h2>
+<p class="pdesc">页面走查：导航到 <code>https://did-space.afsd.dev/explorer</code>，验证页面渲染出真实内容并逐步观测（2 步）。</p>
+<video class="video" controls preload="metadata" src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260829T191753Z/did-space/page@eb34453d961b58cf820871ae95185ad6.webm"><a href="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260829T191753Z/did-space/page@eb34453d961b58cf820871ae95185ad6.webm">下载该路径录像</a></video><p class="vcap">本测试路径整段走查录像</p>
+<div class="kpis"><div class="kpi"><div class="k">2</div><div class="l">操作步</div></div><div class="kpi"><div class="k">2</div><div class="l">通过</div></div><div class="kpi"><div class="k k-bad">0</div><div class="l">失败</div></div><div class="kpi"><div class="k k-warn">0</div><div class="l">不确定</div></div><div class="kpi"><div class="k">0</div><div class="l">未走到</div></div></div>
+<details class="steps"><summary>▸ 逐步操作详情（2 步，含判定截图）</summary><div class="op">
+<h3><span class="pill p-ok">通过</span> navigate</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260829T191753Z/did-space/dd-2-files-00.png" alt="navigate" loading="lazy"><figcaption>navigate</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：minSettle=9000ms 长等待后 navigate 仍稳定渲染 files-explorer-wm，aupNodes=42 与短等待一致（未随时间推移才补齐渲染，排除慢渲染假说）。代码走读确认：403 POST /api/afs/rpc 来自 list-features-probe.ts 的 _probeListFeatures（探测 mount 是否支持 includeContent/orderBy/query 下推），其 .then(null, function(){return none}) 显式把探测失败映射为 none 并吞掉——不是未处理异常，是设计好的优雅降级，不阻塞真实数据渲染。</div>
+
+<div class="nt">根因走读：providers/runtime/ui/src/web-page/renderers/list-features-probe.ts _probeListFeatures 读 &lt;mountPrefix&gt;/.meta/.capabilities 失败时 fallback 到 none，不影响主渲染路径。</div>
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> waitFor</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260829T191753Z/did-space/dd-2-files-01.png" alt="waitFor" loading="lazy"><figcaption>waitFor</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：额外 3s 静置后 aupNodes 仍为 42、buttons 仍为 16，无进一步变化——确认页面已达终态而非仍在异步加载中，403 不是渲染未完成的信号。</div>
+
+
+</div></details>
+<details class="dbg" open><summary>运行时 debug 上下文（2 条错误）</summary><div class="dbg-has"><b>Console 错误（1）</b><ul><li><code>Failed to load resource: the server responded with a status of 403 ()</code></li></ul></div><div class="dbg-none">JS 未捕获异常：<b>无</b></div><div class="dbg-has"><b>网络错误（请求失败 / 4xx–5xx）（1）</b><ul><li><code>403 POST https://did-space.afsd.dev/api/afs/rpc</code></li></ul></div></details>
+</section><section id="path-dd-3-files">
+<h2>read-flow files|r0: anonymous → sign-in redirect <span class="rt">anonymous · /explorer</span></h2>
+<p class="pdesc">页面走查：导航到 <code>/explorer</code>，验证页面渲染出真实内容并逐步观测（2 步）。</p>
+<video class="video" controls preload="metadata" src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260829T191753Z/did-space/page@498d1b645f58409f70338836595eb64e.webm"><a href="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260829T191753Z/did-space/page@498d1b645f58409f70338836595eb64e.webm">下载该路径录像</a></video><p class="vcap">本测试路径整段走查录像</p>
+<div class="kpis"><div class="kpi"><div class="k">2</div><div class="l">操作步</div></div><div class="kpi"><div class="k">2</div><div class="l">通过</div></div><div class="kpi"><div class="k k-bad">0</div><div class="l">失败</div></div><div class="kpi"><div class="k k-warn">0</div><div class="l">不确定</div></div><div class="kpi"><div class="k">0</div><div class="l">未走到</div></div></div>
+<details class="steps"><summary>▸ 逐步操作详情（2 步，含判定截图）</summary><div class="op">
+<h3><span class="pill p-ok">通过</span> navigate</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260829T191753Z/did-space/dd-3-files-00.png" alt="navigate" loading="lazy"><figcaption>navigate</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：匿名会话（无 cookie）navigate 到 /explorer：DOM 渲染 files-anon-wm 子树（files-anon-title=&quot;Sign in to browse your space&quot;、files-anon-desc、files-anon-login 均在场），files-explorer-wm 分支不在 DOM 中——与 .man 声明的两子树互斥语义一致。</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> click</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260829T191753Z/did-space/dd-3-files-01.png" alt="click" loading="lazy"><figcaption>click</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：click [data-aup-id=&quot;files-anon-login&quot;] 后页面真实跳转：url 从 https://did-space.afsd.dev/explorer 变为 https://did-space.afsd.dev/.well-known/service/login，标题变 &quot;DID Space — Sign In&quot;，正文渲染 &quot;Sign in with Passkey&quot;/&quot;Continue with DID Wallet&quot;/&quot;Secured by DID Connect&quot; —— 与 files.yaml 声明的 href=/.well-known/service/login 完全一致，真实浏览器跳转已验证（非仅断言 href 存在）。</div>
+
+
+</div></details>
+<details class="dbg"><summary>运行时 debug 上下文（全清）</summary><div class="dbg-none">Console 错误：<b>无</b></div><div class="dbg-none">JS 未捕获异常：<b>无</b></div><div class="dbg-none">网络错误（请求失败 / 4xx–5xx）：<b>无</b></div></details>
+</section><section id="path-dd-4-files">
+<h2>read-flow files|r1: sign-in redirect → explorer (authenticated) <span class="rt">authed · /explorer</span></h2>
+<p class="pdesc">页面走查：导航到 <code>/explorer</code>，验证页面渲染出真实内容并逐步观测（1 步）。</p>
+<video class="video" controls preload="metadata" src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260829T191753Z/did-space/page@b23050f0564d68ee1eb3ddf9064bbe80.webm"><a href="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260829T191753Z/did-space/page@b23050f0564d68ee1eb3ddf9064bbe80.webm">下载该路径录像</a></video><p class="vcap">本测试路径整段走查录像</p>
+<div class="kpis"><div class="kpi"><div class="k">1</div><div class="l">操作步</div></div><div class="kpi"><div class="k">1</div><div class="l">通过</div></div><div class="kpi"><div class="k k-bad">0</div><div class="l">失败</div></div><div class="kpi"><div class="k k-warn">0</div><div class="l">不确定</div></div><div class="kpi"><div class="k">0</div><div class="l">未走到</div></div></div>
+<details class="steps"><summary>▸ 逐步操作详情（1 步，含判定截图）</summary><div class="op">
+<h3><span class="pill p-ok">通过</span> navigate</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260829T191753Z/did-space/dd-4-files-00.png" alt="navigate" loading="lazy"><figcaption>navigate</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：authed session（login_token cookie 已注入，等价于真实 DID Connect 登录成功后浏览器持有的会话态）navigate 到 /explorer：DOM 渲染 files-explorer-wm（含 files-sidebar-list/files-primary-list/inspector），user-menu 显示 &quot;Test Fixture User&quot;/&quot;User Center&quot;，files-anon-wm 分支不在 DOM 中——确认「session 变为 authenticated → 页面重渲染成 files-explorer-wm」这一目标终态成立。</div>
+
+<div class="nt">限制说明：真实的 DID Connect 登录（passkey/wallet 交互）需要人工在第三方钱包 UI 完成，无人值守环境无法在同一浏览器 context 内完整驱动 dd-3→dd-4 的活体转场（agent-drive.mjs 的 cookie 注入只在 session 启动时生效，无法在已打开的匿名 session 中途注入）。本项改用与 dd-1/dd-3 一致的标准 authed-cookie 机制单独验证转场的两个端点：dd-3 已证实「匿名→点击 sign-in→跳转到 /.well-known/service/login」，本项证实「authenticated session → files-explorer-wm 渲染」，两端点均为真实观测，中间的 SPA 内无刷新转场未被字面驱动。</div>
+</div></details>
+<details class="dbg" open><summary>运行时 debug 上下文（2 条错误）</summary><div class="dbg-has"><b>Console 错误（1）</b><ul><li><code>Failed to load resource: the server responded with a status of 403 ()</code></li></ul></div><div class="dbg-none">JS 未捕获异常：<b>无</b></div><div class="dbg-has"><b>网络错误（请求失败 / 4xx–5xx）（1）</b><ul><li><code>403 POST https://did-space.afsd.dev/api/afs/rpc</code></li></ul></div></details>
+</section><section id="path-dd-5-files">
+<h2>read-flow files|r2: sidebar select → primary + inspector 三目标同步 fan-out <span class="rt">authed · /explorer</span></h2>
+<p class="pdesc">页面走查：导航到 <code>/explorer</code>，验证页面渲染出真实内容并逐步观测（2 步）。</p>
+<video class="video" controls preload="metadata" src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260829T191753Z/did-space/page@6a36eec01526d8d62bc9729e2503e9a4.webm"><a href="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260829T191753Z/did-space/page@6a36eec01526d8d62bc9729e2503e9a4.webm">下载该路径录像</a></video><p class="vcap">本测试路径整段走查录像</p>
+<div class="kpis"><div class="kpi"><div class="k">2</div><div class="l">操作步</div></div><div class="kpi"><div class="k">2</div><div class="l">通过</div></div><div class="kpi"><div class="k k-bad">0</div><div class="l">失败</div></div><div class="kpi"><div class="k k-warn">0</div><div class="l">不确定</div></div><div class="kpi"><div class="k">0</div><div class="l">未走到</div></div></div>
+<details class="steps"><summary>▸ 逐步操作详情（2 步，含判定截图）</summary><div class="op">
+<h3><span class="pill p-ok">通过</span> navigate</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260829T191753Z/did-space/dd-5-files-00.png" alt="navigate" loading="lazy"><figcaption>navigate</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：navigate 到 /explorer 后 authed 渲染正常（同 dd-1）。</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> click</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260829T191753Z/did-space/dd-5-files-01.png" alt="click" loading="lazy"><figcaption>click</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：单击 files-sidebar-list 内 [data-entry-id=&quot;user&quot;] 触发 select 事件后：url 变为 https://did-space.afsd.dev/explorer/user（urlSync 生效）；files-primary-list 面包屑变为 &quot;/ user&quot;、列出 &quot;.. &quot; + 0 项（真实进入 /user 目录，当前为空）；files-inspector-stat 的 meta-title 变为 &quot;user&quot;；files-inspector-preview 变为 preview-dir-header=&quot;Directory · 0 items&quot; + preview-dir-empty=&quot;Empty&quot;。三个目标（primary-list + inspector-stat + inspector-preview）全部同步更新到 /user 路径，与 files.yaml 声明的 3-target fan-out 完全一致。</div>
+
+
+</div></details>
+<details class="dbg" open><summary>运行时 debug 上下文（3 条错误）</summary><div class="dbg-has"><b>Console 错误（2）</b><ul><li><code>Failed to load resource: the server responded with a status of 403 ()</code></li><li><code>Failed to load resource: the server responded with a status of 403 ()</code></li></ul></div><div class="dbg-none">JS 未捕获异常：<b>无</b></div><div class="dbg-has"><b>网络错误（请求失败 / 4xx–5xx）（1）</b><ul><li><code>403 POST https://did-space.afsd.dev/api/afs/rpc</code></li></ul></div></details>
+</section><section id="path-dd-6-files">
+<h2>read-flow files|r3: sidebar navigate → primary + inspector（drill into directory，同 fan-out） <span class="rt">authed · /explorer</span></h2>
+<p class="pdesc">页面走查：导航到 <code>/explorer</code>，验证页面渲染出真实内容并逐步观测（6 步）。</p>
+<video class="video" controls preload="metadata" src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260829T191753Z/did-space/page@c5b35a61f0ab3054dc9a3a907a5d9996.webm"><a href="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260829T191753Z/did-space/page@c5b35a61f0ab3054dc9a3a907a5d9996.webm">下载该路径录像</a></video><p class="vcap">本测试路径整段走查录像</p>
+<div class="kpis"><div class="kpi"><div class="k">6</div><div class="l">操作步</div></div><div class="kpi"><div class="k">3</div><div class="l">通过</div></div><div class="kpi"><div class="k k-bad">2</div><div class="l">失败</div></div><div class="kpi"><div class="k k-warn">1</div><div class="l">不确定</div></div><div class="kpi"><div class="k">0</div><div class="l">未走到</div></div></div>
+<details class="steps"><summary>▸ 逐步操作详情（6 步，含判定截图）</summary><div class="op">
+<h3><span class="pill p-ok">通过</span> navigate</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260829T191753Z/did-space/dd-6-files-00.png" alt="navigate" loading="lazy"><figcaption>navigate</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：navigate 到 /explorer，authed 渲染正常（同 dd-1）。</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-fail">失败</span> click</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260829T191753Z/did-space/dd-6-files-01.png" alt="click" loading="lazy"><figcaption>click</figcaption></figure></div>
+<div class="chk-fail"><b>观察证据</b>：单击 files-sidebar-list 内 [data-entry-id=&quot;instance&quot;]（select 事件）触发 3-target fan-out 后出现真实不一致：files-primary-list 渲染 &quot;You do not have access to this list.&quot;（列表被拒），但同一 fan-out 里的 files-inspector-stat 显示 meta-details-kv=&quot;path/instance kind:did-space:root access:readwrite&quot; 且 meta-capabilities-chips 明确列出 list/read/stat/search/write/delete/exec/explain 全部可用，files-inspector-preview 同时成功渲染 &quot;Directory · 1 item index&quot;（预览组件确实列出了 /instance 的内容）。同一会话、同一路径、同一次 fan-out，三个组件（afs-list vs afs-stat vs afs-preview）对「能不能 list /instance」给出互相矛盾的答案——stat 声明的 capabilities 与 preview 的实际成功形成对照组，afs-list 组件是唯一拒绝的一个。</div>
+
+<div class="nt">BUG 候选：files-primary-list（afs-list 组件）对 /instance 返回 &quot;You do not have access to this list.&quot;，而 files-inspector-stat 的 capabilities 探测和 files-inspector-preview 都能正常读取/列出同一路径。networkErrors 未记录对应请求的 4xx（非 HTTP 层拒绝），说明这是应用层的权限判断分歧，不是网络错误——三个组件应该对同一 caller/同一 path 给出一致的可访问性判断。</div>
+</div>
+<div class="op">
+<h3><span class="pill p-warn">不确定</span> press</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260829T191753Z/did-space/dd-6-files-02.png" alt="press" loading="lazy"><figcaption>press</figcaption></figure></div>
+<div class="chk-fail"><b>观察证据</b>：press ArrowRight 后 URL/DOM 均未发生任何变化（files-sidebar-list 自身仍显示 root 级子目录 instance/packages/ash/dev/modules/user/space，未 drill 进 /instance），无法确认这次按键是否真的触发了 files-sidebar-list 的 navigate handler——curIdx/_kbActive 状态在 drive-step.py 动作集里无法直接探测。不排除是 /instance 访问被拒的死路状态掩盖了 navigate 的效果，也不排除按键未命中该 list 实例的键盘处理器。</div>
+
+<div class="nt">drive-step.py 的动作集里没有原生 dblclick 原语（agent-drive.mjs 的 switch-case 只有 click/hover/hoverClick 等，没有 dblclick），改用键盘 ArrowRight/Enter 触发同一段 navigate 代码路径（list.ts:4027/4039）作为替代驱动方式；这一步未能证实生效，后续用 packages 目录 + Enter 键重试后证实可行（见后两步）。</div>
+</div>
+<div class="op">
+<h3><span class="pill p-fail">失败</span> snapshot</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260829T191753Z/did-space/dd-6-files-03.png" alt="snapshot" loading="lazy"><figcaption>snapshot</figcaption></figure></div>
+<div class="chk-fail"><b>观察证据</b>：snapshot 复核：DOM 仍稳定在同一状态，files-inspector-stat 完整展示 instance mount 的 capabilities（list/read/stat/search/write/delete/exec/explain）与 access:readwrite，files-inspector-preview 仍显示 &quot;Directory · 1 item index&quot;，而 files-primary-list 仍是 &quot;You do not have access to this list.&quot;——复核确认这不是一次性网络抖动，是稳定复现的组件间不一致。</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> click</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260829T191753Z/did-space/dd-6-files-04.png" alt="click" loading="lazy"><figcaption>click</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：单击 files-sidebar-list 内 [data-entry-id=&quot;packages&quot;]（select 事件，换一个真实可访问的目录规避 /instance 的权限死路）：url 变为 .../explorer/packages；files-primary-list 面包屑 &quot;/ packages&quot;，列出 7 个真实条目（blocklet.dist.json/blocklet.yaml/logo.svg/package.json/pages/README.md/test）；meta-title=&quot;packages&quot;；files-inspector-preview 显示同样 7 项——select 的 3-target fan-out 在这个可访问路径上完全一致、无矛盾。</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> press</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260829T191753Z/did-space/dd-6-files-05.png" alt="press" loading="lazy"><figcaption>press</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：press Enter（curIdx 命中已选中的 &quot;packages&quot; 行，触发 list.ts:4027 的 navigate 分支，等价于双击 drill-in，弥补 drive-step 动作集缺少原生 dblclick 的限制）后：files-sidebar-list 自身的渲染从「root 级 instance/packages/ash/dev/modules/user/space」变为「packages 内部的子树 /did-space/pages(1)、/did-space/test(1)」——证实 sidebar 自身真的 navigateTo() drill 进了 /packages（不是停留在 root 只是外部 set src）；同时 files-primary-list 面包屑仍为 &quot;/ packages&quot;、7 items 与 select 时一致，meta-title=&quot;packages&quot;，files-inspector-preview 同步 7 items——navigate 事件的 3-target fan-out（primary-list + inspector-stat + inspector-preview）与 select 完全一致，且 sidebar 本身也确认进入了 navigate 特有的 drill 状态，与 files.yaml 声明的 &quot;drill into directory (same fan-out)&quot; 完全吻合。</div>
+
+
+</div></details>
+<details class="dbg" open><summary>运行时 debug 上下文（16 条错误）</summary><div class="dbg-has"><b>Console 错误（12）</b><ul><li><code>Failed to load resource: the server responded with a status of 403 ()</code></li><li><code>Failed to load resource: the server responded with a status of 403 ()</code></li><li><code>Failed to load resource: the server responded with a status of 403 ()</code></li><li><code>Failed to load resource: the server responded with a status of 403 ()</code></li><li><code>Failed to load resource: the server responded with a status of 403 ()</code></li><li><code>Failed to load resource: the server responded with a status of 403 ()</code></li><li><code>Failed to load resource: the server responded with a status of 403 ()</code></li><li><code>Failed to load resource: the server responded with a status of 403 ()</code></li><li><code>Failed to load resource: the server responded with a status of 403 ()</code></li><li><code>Failed to load resource: the server responded with a status of 403 ()</code></li><li><code>Failed to load resource: the server responded with a status of 403 ()</code></li><li><code>Failed to load resource: the server responded with a status of 403 ()</code></li></ul></div><div class="dbg-has"><b>JS 未捕获异常（3）</b><ul><li><code>Uncaught (in promise) Error: Forbidden at /instance: network clients cannot list base paths; declare a networkRead rule or use an overlay</code></li><li><code>Uncaught (in promise) Error: Forbidden at /instance: network clients cannot list base paths; declare a networkRead rule or use an overlay</code></li><li><code>Uncaught (in promise) Error: Forbidden at /instance: network clients cannot list base paths; declare a networkRead rule or use an overlay</code></li></ul></div><div class="dbg-has"><b>网络错误（请求失败 / 4xx–5xx）（1）</b><ul><li><code>403 POST https://did-space.afsd.dev/api/afs/rpc</code></li></ul></div></details>
+</section><section id="path-dd-7-files">
+<h2>read-flow files|r4: 选择文件 → inspector 更新（select） <span class="rt">authed · /explorer</span></h2>
+<p class="pdesc">页面走查：导航到 <code>/explorer</code>，验证页面渲染出真实内容并逐步观测（5 步）。</p>
+<video class="video" controls preload="metadata" src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260829T191753Z/did-space/page@4aae728272865e21fc4ac3ee56706bf5.webm"><a href="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260829T191753Z/did-space/page@4aae728272865e21fc4ac3ee56706bf5.webm">下载该路径录像</a></video><p class="vcap">本测试路径整段走查录像</p>
+<div class="kpis"><div class="kpi"><div class="k">5</div><div class="l">操作步</div></div><div class="kpi"><div class="k">4</div><div class="l">通过</div></div><div class="kpi"><div class="k k-bad">0</div><div class="l">失败</div></div><div class="kpi"><div class="k k-warn">1</div><div class="l">不确定</div></div><div class="kpi"><div class="k">0</div><div class="l">未走到</div></div></div>
+<details class="steps"><summary>▸ 逐步操作详情（5 步，含判定截图）</summary><div class="op">
+<h3><span class="pill p-ok">通过</span> navigate</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260829T191753Z/did-space/dd-7-files-00.png" alt="navigate" loading="lazy"><figcaption>navigate</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：navigate 到 /explorer，authed 渲染正常（同 dd-1）。</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> click</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260829T191753Z/did-space/dd-7-files-01.png" alt="click" loading="lazy"><figcaption>click</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：点击 sidebar packages 目录（select）把 files-primary-list 的 src 设为 /packages，url 变为 .../explorer/packages，primary-list 显示 7 个真实条目（同 dd-6 已验证的路径，用于制造一个有真实文件的目录供本项测试）。</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-warn">不确定</span> click</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260829T191753Z/did-space/dd-7-files-02.png" alt="click" loading="lazy"><figcaption>click</figcaption></figure></div>
+<div class="chk-fail"><b>观察证据</b>：用 [data-entry-id=&quot;package.json&quot;] 选择器点击超时（8000ms 未命中元素）。</div>
+<div class="err"><b>执行错误</b>：<code>TimeoutError: click: Timeout 8000ms exceeded.</code></div>
+<div class="nt">驱动工具问题，非应用缺陷：data-entry-id 属性的实际取值与猜测的裸文件名不完全一致，改用 data-entry-path（完整路径）选择器后（下一步）立即命中成功，证实该行确实存在、只是选择器语法猜错。</div>
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> click</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260829T191753Z/did-space/dd-7-files-03.png" alt="click" loading="lazy"><figcaption>click</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：改用 [data-entry-path=&quot;/packages/package.json&quot;] 点击成功（files-primary-list.select 事件）：url 变为 .../explorer/packages?sel=%2Fpackages%2Fpackage.json（selectSync=&quot;sel&quot; 生效，deep-link 可还原）。</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> snapshot</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260829T191753Z/did-space/dd-7-files-04.png" alt="snapshot" loading="lazy"><figcaption>snapshot</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：snapshot 确认 inspector 双目标真实更新：files-inspector-stat 显示 &quot;package.json JSON · 353 B&quot; 及 Download/Open/Copy link 操作；files-inspector-preview 显示 &quot;Preview JSON&quot; 并渲染出文件的真实 JSON 内容（{&quot;name&quot;: &quot;@aigne/blocklet-did-space&quot;, &quot;version&quot;: &quot;0.0.0&quot;, ...}，带行号 Ln 1, Col 1、353 chars）——files-primary-list.select 的 2-target fan-out（inspector-stat + inspector-preview）完全符合 files.yaml 声明，且证实是只读预览：未触发任何 AFS 写请求（networkErrors 中无相关 4xx/5xx 写操作）。</div>
+
+
+</div></details>
+<details class="dbg" open><summary>运行时 debug 上下文（3 条错误）</summary><div class="dbg-has"><b>Console 错误（2）</b><ul><li><code>Failed to load resource: the server responded with a status of 403 ()</code></li><li><code>Failed to load resource: the server responded with a status of 403 ()</code></li></ul></div><div class="dbg-none">JS 未捕获异常：<b>无</b></div><div class="dbg-has"><b>网络错误（请求失败 / 4xx–5xx）（1）</b><ul><li><code>403 POST https://did-space.afsd.dev/api/afs/rpc</code></li></ul></div></details>
+</section><section id="path-dd-8-files">
+<h2>read-flow files|r5: 主列表 drill（navigate）→ inspector 更新 <span class="rt">authed · /explorer</span></h2>
+<p class="pdesc">页面走查：导航到 <code>/explorer</code>，验证页面渲染出真实内容并逐步观测（4 步）。</p>
+<video class="video" controls preload="metadata" src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260829T191753Z/did-space/page@ec33fe4b15e3dd3fee9da172a86a4fd9.webm"><a href="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260829T191753Z/did-space/page@ec33fe4b15e3dd3fee9da172a86a4fd9.webm">下载该路径录像</a></video><p class="vcap">本测试路径整段走查录像</p>
+<div class="kpis"><div class="kpi"><div class="k">4</div><div class="l">操作步</div></div><div class="kpi"><div class="k">4</div><div class="l">通过</div></div><div class="kpi"><div class="k k-bad">0</div><div class="l">失败</div></div><div class="kpi"><div class="k k-warn">0</div><div class="l">不确定</div></div><div class="kpi"><div class="k">0</div><div class="l">未走到</div></div></div>
+<details class="steps"><summary>▸ 逐步操作详情（4 步，含判定截图）</summary><div class="op">
+<h3><span class="pill p-ok">通过</span> navigate</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260829T191753Z/did-space/dd-8-files-00.png" alt="navigate" loading="lazy"><figcaption>navigate</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：navigate 到 /explorer，authed 渲染正常（同 dd-1）。</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> click</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260829T191753Z/did-space/dd-8-files-01.png" alt="click" loading="lazy"><figcaption>click</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：点击 sidebar packages 目录（select）把 files-primary-list 的 src 设为 /packages，url 变为 .../explorer/packages，制造一个含子目录（pages/test）的真实目录供本项测试。</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> click</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260829T191753Z/did-space/dd-8-files-02.png" alt="click" loading="lazy"><figcaption>click</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：点击 files-primary-list 内 [data-entry-path=&quot;/packages/pages&quot;]（select 事件）：url 变为 .../explorer/packages?sel=%2Fpackages%2Fpages（selectSync 生效）。</div>
+
+
+</div>
+<div class="op">
+<h3><span class="pill p-ok">通过</span> press</h3>
+
+<div class="frame"><figure><img src="https://raw.githubusercontent.com/ArcBlock/loop-agent-assets/main/reports/test-sweep/ts-20260829T191753Z/did-space/dd-8-files-03.png" alt="press" loading="lazy"><figcaption>press</figcaption></figure></div>
+<div class="chk"><b>观察证据</b>：press Enter（curIdx 命中刚选中的 &quot;pages&quot; 行，触发 files-primary-list 自身的 navigate 分支——等价于双击 drill-in，用于弥补 drive-step 动作集缺少原生 dblclick 的限制）后：url 变为 .../explorer/packages/pages/?sel=...（primary-list 真的 drill 进了 /packages/pages，不再是外部 set src）；面包屑变为 &quot;/ / packages / pages&quot;，列出 &quot;..&quot; + &quot;index&quot;（该目录唯一子项）；files-inspector-stat 的 meta-title=&quot;pages&quot;、meta-summary=&quot;Directory · 1 item&quot;；files-inspector-preview 同步显示 &quot;Directory · 1 item index&quot;——files-primary-list.navigate 的 2-target fan-out（inspector-stat + inspector-preview）与 files.yaml 声明完全一致，真实驱入更深一层目录并观测到内容变化。</div>
+
+
+</div></details>
+<details class="dbg" open><summary>运行时 debug 上下文（3 条错误）</summary><div class="dbg-has"><b>Console 错误（2）</b><ul><li><code>Failed to load resource: the server responded with a status of 403 ()</code></li><li><code>Failed to load resource: the server responded with a status of 403 ()</code></li></ul></div><div class="dbg-none">JS 未捕获异常：<b>无</b></div><div class="dbg-has"><b>网络错误（请求失败 / 4xx–5xx）（1）</b><ul><li><code>403 POST https://did-space.afsd.dev/api/afs/rpc</code></li></ul></div></details>
+</section>
+<p class="sub" style="margin-top:22px">由 test-report-builder（build-agent-report）生成 · issue #1808</p>
+</div></body></html>
