@@ -12,3 +12,4 @@
 | 20260829-040135-17e-round2-long-list-header.jpg | https://github.com/ArcBlock/aside/pull/1037 | 2026-08-29T04:01:38Z | nategu@Nate-Mac-Pro |
 | 20260829-040146-17e-round2-organize-start.jpg | https://github.com/ArcBlock/aside/pull/1037 | 2026-08-29T04:01:48Z | nategu@Nate-Mac-Pro |
 | 20260829-040156-17e-round2-setup.jpg | https://github.com/ArcBlock/aside/pull/1037 | 2026-08-29T04:01:59Z | nategu@Nate-Mac-Pro |
+| 20260829-040208-17e-round2-organize-tab.jpg | https://github.com/ArcBlock/aside/pull/1037 | 2026-08-29T04:02:11Z | nategu@Nate-Mac-Pro |
