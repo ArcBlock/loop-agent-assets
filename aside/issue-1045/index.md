@@ -7,3 +7,4 @@
 | 20260829-151248-section-title-related.jpg | https://github.com/ArcBlock/aside/issues/1045 | 2026-08-29T15:12:50Z | nategu@Nate-Mac-Pro |
 | 20260829-151257-section-title-collections.jpg | https://github.com/ArcBlock/aside/issues/1045 | 2026-08-29T15:12:59Z | nategu@Nate-Mac-Pro |
 | 20260829-152418-related-more-label.jpg | https://github.com/ArcBlock/aside/issues/1045 | 2026-08-29T15:24:20Z | nategu@Nate-Mac-Pro |
+| 20260829-173715-1046-white-organize-setup.png | https://github.com/ArcBlock/aside/issues/1045 | 2026-08-29T17:37:17Z | nategu@Nate-Mac-Pro |
