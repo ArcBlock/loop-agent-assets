@@ -8,3 +8,4 @@
 | i5443a-04-after-cost-mix.png | https://github.com/ArcBlock/arc/issues/5443 | 2026-08-29T10:19:05Z | robmao@Roberts-Mac-mini-M4-Pro-7 |
 | i5443a-05-after-detail-cost-unknown.png | https://github.com/ArcBlock/arc/issues/5443 | 2026-08-29T10:19:10Z | robmao@Roberts-Mac-mini-M4-Pro-7 |
 | i5443a-06-after-detail-cost-known.png | https://github.com/ArcBlock/arc/issues/5443 | 2026-08-29T10:19:15Z | robmao@Roberts-Mac-mini-M4-Pro-7 |
+| i5443a-07-before-controls.png | https://github.com/ArcBlock/arc/issues/5443 | 2026-08-29T10:35:33Z | robmao@Roberts-Mac-mini-M4-Pro-7 |
