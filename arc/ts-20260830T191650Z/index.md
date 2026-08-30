@@ -382,3 +382,4 @@
 | 20260830-202628-explorer-01.png | https://github.com/ArcBlock/arc | 2026-08-30T20:26:28Z | root@vm |
 | 20260830-202632-explorer-02.png | https://github.com/ArcBlock/arc | 2026-08-30T20:26:32Z | root@vm |
 | 20260830-202636-final-cleanup-todo-00.png | https://github.com/ArcBlock/arc | 2026-08-30T20:26:36Z | root@vm |
+| 20260830-202640-index-01.png | https://github.com/ArcBlock/arc | 2026-08-30T20:26:40Z | root@vm |
