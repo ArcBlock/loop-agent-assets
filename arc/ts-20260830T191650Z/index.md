@@ -255,3 +255,4 @@
 | 20260830-201742-list-template-02.png | https://github.com/ArcBlock/arc | 2026-08-30T20:17:42Z | root@vm |
 | 20260830-201746-list-virtual-01.png | https://github.com/ArcBlock/arc | 2026-08-30T20:17:46Z | root@vm |
 | 20260830-201750-list-virtual-02.png | https://github.com/ArcBlock/arc | 2026-08-30T20:17:50Z | root@vm |
+| 20260830-201754-overlays-01.png | https://github.com/ArcBlock/arc | 2026-08-30T20:17:54Z | root@vm |
