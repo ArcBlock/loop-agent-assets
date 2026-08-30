@@ -34,3 +34,4 @@
 | w00-v2-9-reject-run.png | https://github.com/ArcBlock/darcfactory | 2026-08-30T03:22:53Z | chao@Yechaos-MBP |
 | 20260830-042818-df50-1-dashboard.png | https://github.com/ArcBlock/darcfactory | 2026-08-30T04:28:18Z | chao@Yechaos-MBP |
 | 20260830-042826-df50-2-dash-missing.png | https://github.com/ArcBlock/darcfactory | 2026-08-30T04:28:26Z | chao@Yechaos-MBP |
+| 20260830-042833-df50-3-app-missing.png | https://github.com/ArcBlock/darcfactory | 2026-08-30T04:28:33Z | chao@Yechaos-MBP |
