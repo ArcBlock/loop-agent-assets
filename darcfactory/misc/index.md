@@ -31,3 +31,4 @@
 | w00-v2-5-problem.png | https://github.com/ArcBlock/darcfactory | 2026-08-30T03:22:16Z | chao@Yechaos-MBP |
 | w00-v2-6-problem-list.png | https://github.com/ArcBlock/darcfactory | 2026-08-30T03:22:25Z | chao@Yechaos-MBP |
 | w00-v2-7-reject-day.png | https://github.com/ArcBlock/darcfactory | 2026-08-30T03:22:44Z | chao@Yechaos-MBP |
+| w00-v2-9-reject-run.png | https://github.com/ArcBlock/darcfactory | 2026-08-30T03:22:53Z | chao@Yechaos-MBP |
