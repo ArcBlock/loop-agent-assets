@@ -21,3 +21,4 @@
 | w00-3-run.png | https://github.com/ArcBlock/darcfactory | 2026-08-30T02:48:15Z | chao@Yechaos-MBP |
 | w00-4-app.png | https://github.com/ArcBlock/darcfactory | 2026-08-30T02:48:29Z | chao@Yechaos-MBP |
 | w00-5-problem.png | https://github.com/ArcBlock/darcfactory | 2026-08-30T02:48:36Z | chao@Yechaos-MBP |
+| w00-6-problem-list.png | https://github.com/ArcBlock/darcfactory | 2026-08-30T02:48:47Z | chao@Yechaos-MBP |
