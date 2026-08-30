@@ -150,3 +150,4 @@
 | 20260830-201018-dd-7-showcase-04.png | https://github.com/ArcBlock/arc | 2026-08-30T20:10:18Z | root@vm |
 | 20260830-201022-dd-9-showcase-00.png | https://github.com/ArcBlock/arc | 2026-08-30T20:10:22Z | root@vm |
 | 20260830-201026-dd-9-showcase-01.png | https://github.com/ArcBlock/arc | 2026-08-30T20:10:26Z | root@vm |
+| 20260830-201045-auto-surface-01.png | https://github.com/ArcBlock/arc | 2026-08-30T20:10:45Z | root@vm |
