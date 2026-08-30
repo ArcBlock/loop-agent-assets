@@ -38,3 +38,4 @@
 | 20260830-042840-df50-4-path-missing.png | https://github.com/ArcBlock/darcfactory | 2026-08-30T04:28:40Z | chao@Yechaos-MBP |
 | 20260830-042847-df50-5a-heartbeat-before.png | https://github.com/ArcBlock/darcfactory | 2026-08-30T04:28:47Z | chao@Yechaos-MBP |
 | 20260830-042853-df50-5b-heartbeat-after.png | https://github.com/ArcBlock/darcfactory | 2026-08-30T04:28:53Z | chao@Yechaos-MBP |
+| 20260830-042900-df50-B-stall-unresolved.png | https://github.com/ArcBlock/darcfactory | 2026-08-30T04:29:00Z | chao@Yechaos-MBP |
