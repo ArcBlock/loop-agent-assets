@@ -26,3 +26,4 @@
 | w00-8-reject-route.png | https://github.com/ArcBlock/darcfactory | 2026-08-30T02:49:24Z | chao@Yechaos-MBP |
 | w00-v2-1-dashboard.png | https://github.com/ArcBlock/darcfactory | 2026-08-30T03:21:35Z | chao@Yechaos-MBP |
 | w00-v2-2-day.png | https://github.com/ArcBlock/darcfactory | 2026-08-30T03:21:44Z | chao@Yechaos-MBP |
+| w00-v2-3-run.png | https://github.com/ArcBlock/darcfactory | 2026-08-30T03:21:56Z | chao@Yechaos-MBP |
