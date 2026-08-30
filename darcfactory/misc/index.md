@@ -23,3 +23,4 @@
 | w00-5-problem.png | https://github.com/ArcBlock/darcfactory | 2026-08-30T02:48:36Z | chao@Yechaos-MBP |
 | w00-6-problem-list.png | https://github.com/ArcBlock/darcfactory | 2026-08-30T02:48:47Z | chao@Yechaos-MBP |
 | w00-7-reject-day.png | https://github.com/ArcBlock/darcfactory | 2026-08-30T02:48:55Z | chao@Yechaos-MBP |
+| w00-8-reject-route.png | https://github.com/ArcBlock/darcfactory | 2026-08-30T02:49:24Z | chao@Yechaos-MBP |
