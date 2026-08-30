@@ -16,3 +16,4 @@
 | w14-l2-unreadable.png | https://github.com/ArcBlock/darcfactory | 2026-08-25T00:27:50Z | chao@Yechaos-MacBook-Pro |
 | w14-l3-evidence.png | https://github.com/ArcBlock/darcfactory | 2026-08-25T00:27:56Z | chao@Yechaos-MacBook-Pro |
 | w14-l1-loadfail-old-runtime.png | https://github.com/ArcBlock/darcfactory | 2026-08-25T00:28:03Z | chao@Yechaos-MacBook-Pro |
+| w00-1-dashboard.png | https://github.com/ArcBlock/darcfactory | 2026-08-30T02:47:49Z | chao@Yechaos-MBP |
