@@ -63,3 +63,4 @@
 | 20260901-201254-page@94e03e4e6b43f28891a2fc0fd0e01913.webm | https://github.com/ArcBlock/arc | 2026-09-01T20:12:54Z | root@vm |
 | 20260901-201259-page@b91c89f43542471ac44d94988b6192e2.webm | https://github.com/ArcBlock/arc | 2026-09-01T20:12:59Z | root@vm |
 | 20260901-201303-index-01.png | https://github.com/ArcBlock/arc | 2026-09-01T20:13:03Z | root@vm |
+| 20260901-201308-index-02.png | https://github.com/ArcBlock/arc | 2026-09-01T20:13:08Z | root@vm |
