@@ -52,3 +52,4 @@
 | aside/epic1016/20260828-235414-select-items-picker.jpg | https://github.com/ArcBlock/aside | 2026-08-28T15:56:15Z | nategu@Nate-Mac-Pro |
 | issue-1123-ai-note-layout.jpg | https://github.com/ArcBlock/aside | 2026-09-01T03:02:19Z | nategu@Nate-Mac-Pro |
 | issue-1123-markdown-plain-text.jpg | https://github.com/ArcBlock/aside | 2026-09-01T03:04:39Z | nategu@Nate-Mac-Pro |
+| issue-1123-collection-pick-paging.jpg | https://github.com/ArcBlock/aside | 2026-09-01T03:07:49Z | nategu@Nate-Mac-Pro |
