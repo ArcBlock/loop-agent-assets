@@ -161,3 +161,4 @@
 | epic5371-closeout-dashboard.png | https://github.com/ArcBlock/arc | 2026-09-01T13:42:15Z | chao@Yechaos-MBP |
 | epic5371-closeout-reports.png | https://github.com/ArcBlock/arc | 2026-09-01T13:42:30Z | chao@Yechaos-MBP |
 | epic5371-closeout-problems.png | https://github.com/ArcBlock/arc | 2026-09-01T13:42:43Z | chao@Yechaos-MBP |
+| 20260901-135305-pr5759-default-detail.png | https://github.com/ArcBlock/arc | 2026-09-01T13:53:05Z | wangshijun@wangshijun-mac-studio |
