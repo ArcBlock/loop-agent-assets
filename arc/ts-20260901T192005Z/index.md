@@ -301,3 +301,4 @@
 | 20260901-203120-page@fa05a11de28e300d3564fc02747610d4.webm | https://github.com/ArcBlock/arc | 2026-09-01T20:31:20Z | root@vm |
 | 20260901-203125-explorer-01.png | https://github.com/ArcBlock/arc | 2026-09-01T20:31:25Z | root@vm |
 | 20260901-203130-explorer-02.png | https://github.com/ArcBlock/arc | 2026-09-01T20:31:30Z | root@vm |
+| 20260901-203134-index-01.png | https://github.com/ArcBlock/arc | 2026-09-01T20:31:34Z | root@vm |
