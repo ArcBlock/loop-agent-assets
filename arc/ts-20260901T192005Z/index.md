@@ -185,3 +185,4 @@
 | 20260901-202233-dd-9-showcase-01.png | https://github.com/ArcBlock/arc | 2026-09-01T20:22:33Z | root@vm |
 | 20260901-202237-explorer-01.png | https://github.com/ArcBlock/arc | 2026-09-01T20:22:37Z | root@vm |
 | 20260901-202242-explorer-02.png | https://github.com/ArcBlock/arc | 2026-09-01T20:22:42Z | root@vm |
+| 20260901-202247-explorer-read-1-01.png | https://github.com/ArcBlock/arc | 2026-09-01T20:22:47Z | root@vm |
