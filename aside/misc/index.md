@@ -55,3 +55,4 @@
 | issue-1123-collection-pick-paging.jpg | https://github.com/ArcBlock/aside | 2026-09-01T03:07:49Z | nategu@Nate-Mac-Pro |
 | issue-1123-related-all-grid.jpg | https://github.com/ArcBlock/aside | 2026-09-01T03:11:00Z | nategu@Nate-Mac-Pro |
 | issue-1123-related-board-tiles.jpg | https://github.com/ArcBlock/aside | 2026-09-01T03:11:10Z | nategu@Nate-Mac-Pro |
+| issue-1123-collection-outputs-tab.jpg | https://github.com/ArcBlock/aside | 2026-09-01T03:13:01Z | nategu@Nate-Mac-Pro |
