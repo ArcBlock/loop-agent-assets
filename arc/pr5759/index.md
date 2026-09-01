@@ -3,3 +3,4 @@
 | file | source | uploaded | by |
 |---|---|---|---|
 | pr5759-default-post-hero.png | https://github.com/ArcBlock/arc/pull/5759 | 2026-09-01T14:41:21Z | wangshijun@wangshijun-mac-studio |
+| pr5759-classic-post-hero.png | https://github.com/ArcBlock/arc/pull/5759 | 2026-09-01T14:41:34Z | wangshijun@wangshijun-mac-studio |
