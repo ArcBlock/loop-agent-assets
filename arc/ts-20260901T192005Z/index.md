@@ -41,3 +41,4 @@
 | 20260901-201110-item-detail-02.png | https://github.com/ArcBlock/arc | 2026-09-01T20:11:10Z | root@vm |
 | 20260901-201115-publish-01.png | https://github.com/ArcBlock/arc | 2026-09-01T20:11:15Z | root@vm |
 | 20260901-201120-publish-02.png | https://github.com/ArcBlock/arc | 2026-09-01T20:11:20Z | root@vm |
+| 20260901-201124-tags-01.png | https://github.com/ArcBlock/arc | 2026-09-01T20:11:24Z | root@vm |
