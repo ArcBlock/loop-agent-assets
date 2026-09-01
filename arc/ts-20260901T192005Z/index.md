@@ -10,3 +10,4 @@
 | 20260901-200841-page@b75d8e952497c4733d4ac4c3c7c65da9.webm | https://github.com/ArcBlock/arc | 2026-09-01T20:08:41Z | root@vm |
 | 20260901-200846-clip-01.png | https://github.com/ArcBlock/arc | 2026-09-01T20:08:46Z | root@vm |
 | 20260901-200852-clip-02.png | https://github.com/ArcBlock/arc | 2026-09-01T20:08:52Z | root@vm |
+| 20260901-200857-clip-read-1-01.png | https://github.com/ArcBlock/arc | 2026-09-01T20:08:57Z | root@vm |
