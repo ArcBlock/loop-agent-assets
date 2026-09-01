@@ -59,3 +59,4 @@
 | issue-1123-hud-note-source.jpg | https://github.com/ArcBlock/aside | 2026-09-01T03:15:58Z | nategu@Nate-Mac-Pro |
 | issue-1123-hud-one-line-truncation.jpg | https://github.com/ArcBlock/aside | 2026-09-01T03:16:06Z | nategu@Nate-Mac-Pro |
 | aside-1152-related-empty.jpg | https://github.com/ArcBlock/aside | 2026-09-01T10:51:06Z | nategu@Nate-Mac-Pro |
+| aside-1152-possible-related-card-overflow-photo.jpg | https://github.com/ArcBlock/aside | 2026-09-01T10:58:52Z | nategu@Nate-Mac-Pro |
