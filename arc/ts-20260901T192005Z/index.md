@@ -30,3 +30,4 @@
 | 20260901-201018-collections-read-1-03.png | https://github.com/ArcBlock/arc | 2026-09-01T20:10:18Z | root@vm |
 | 20260901-201023-explore-01.png | https://github.com/ArcBlock/arc | 2026-09-01T20:10:23Z | root@vm |
 | 20260901-201027-explore-02.png | https://github.com/ArcBlock/arc | 2026-09-01T20:10:27Z | root@vm |
+| 20260901-201032-feed-01.png | https://github.com/ArcBlock/arc | 2026-09-01T20:10:32Z | root@vm |
