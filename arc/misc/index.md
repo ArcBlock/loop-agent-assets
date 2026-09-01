@@ -157,3 +157,4 @@
 | 20260825-155645-w44-L0-before.png | https://github.com/ArcBlock/arc | 2026-08-25T15:56:45Z | chao@Yechaos-MacBook-Pro |
 | 20260825-155655-w44-L0-after.png | https://github.com/ArcBlock/arc | 2026-08-25T15:56:55Z | chao@Yechaos-MacBook-Pro |
 | 20260901-101531-png-before-after-2x.png | https://github.com/ArcBlock/arc | 2026-09-01T10:15:31Z | wangshijun@wangshijun-mac-studio |
+| 20260901-101546-jpeg-before-after-2.5x.png | https://github.com/ArcBlock/arc | 2026-09-01T10:15:46Z | wangshijun@wangshijun-mac-studio |
