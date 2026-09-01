@@ -46,3 +46,4 @@
 | 20260901-201134-tags-read-1-01.png | https://github.com/ArcBlock/arc | 2026-09-01T20:11:34Z | root@vm |
 | 20260901-201138-tags-read-1-02.png | https://github.com/ArcBlock/arc | 2026-09-01T20:11:38Z | root@vm |
 | 20260901-201143-tags-read-1-03.png | https://github.com/ArcBlock/arc | 2026-09-01T20:11:43Z | root@vm |
+| 20260901-201147-page@0f87963668619e42f02392914bcec890.webm | https://github.com/ArcBlock/arc | 2026-09-01T20:11:47Z | root@vm |
