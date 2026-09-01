@@ -96,3 +96,4 @@
 | 20260901-201524-files-01.png | https://github.com/ArcBlock/arc | 2026-09-01T20:15:24Z | root@vm |
 | 20260901-201529-files-02.png | https://github.com/ArcBlock/arc | 2026-09-01T20:15:29Z | root@vm |
 | 20260901-201533-page@f27edd94a6a8d1c2d4f31b74e0f41a9f.webm | https://github.com/ArcBlock/arc | 2026-09-01T20:15:33Z | root@vm |
+| 20260901-201538-dd-1-discuss-kit-00.png | https://github.com/ArcBlock/arc | 2026-09-01T20:15:38Z | root@vm |
