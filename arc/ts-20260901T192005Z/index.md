@@ -109,3 +109,4 @@
 | 20260901-201639-dd-6-discuss-kit-00.png | https://github.com/ArcBlock/arc | 2026-09-01T20:16:39Z | root@vm |
 | 20260901-201643-dd-6-discuss-kit-01.png | https://github.com/ArcBlock/arc | 2026-09-01T20:16:43Z | root@vm |
 | 20260901-201648-dd-6-discuss-kit-02.png | https://github.com/ArcBlock/arc | 2026-09-01T20:16:48Z | root@vm |
+| 20260901-201652-detail-01.png | https://github.com/ArcBlock/arc | 2026-09-01T20:16:52Z | root@vm |
