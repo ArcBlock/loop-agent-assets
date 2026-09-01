@@ -127,3 +127,4 @@
 | 20260901-201805-page@ff17412110c30f4dd1cdc395e353c592.webm | https://github.com/ArcBlock/arc | 2026-09-01T20:18:05Z | root@vm |
 | 20260901-201809-auto-surface-01.png | https://github.com/ArcBlock/arc | 2026-09-01T20:18:09Z | root@vm |
 | 20260901-201814-auto-surface-02.png | https://github.com/ArcBlock/arc | 2026-09-01T20:18:14Z | root@vm |
+| 20260901-201818-dd-1-showcase-00.png | https://github.com/ArcBlock/arc | 2026-09-01T20:18:18Z | root@vm |
