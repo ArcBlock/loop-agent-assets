@@ -171,3 +171,4 @@
 | 20260902-053941-sidebyside.png | https://github.com/ArcBlock/arc | 2026-09-02T05:39:41Z | wangshijun@wangshijun-mac-studio |
 | 20260902-054351-zoom-sbs.png | https://github.com/ArcBlock/arc | 2026-09-02T05:43:51Z | wangshijun@wangshijun-mac-studio |
 | 20260902-055347-sidebyside-mine.png | https://github.com/ArcBlock/arc | 2026-09-02T05:53:47Z | wangshijun@wangshijun-mac-studio |
+| 20260902-055400-final-shipped-compare.png | https://github.com/ArcBlock/arc | 2026-09-02T05:54:00Z | wangshijun@wangshijun-mac-studio |
