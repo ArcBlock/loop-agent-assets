@@ -165,3 +165,4 @@
 | 20260901-135316-pr5759-classic-detail.png | https://github.com/ArcBlock/arc | 2026-09-01T13:53:16Z | wangshijun@wangshijun-mac-studio |
 | 20260902-050227-landing-desktop-1280.png | https://github.com/ArcBlock/arc | 2026-09-02T05:02:27Z | wangshijun@wangshijun-mac-studio |
 | 20260902-050238-landing-mobile-420.png | https://github.com/ArcBlock/arc | 2026-09-02T05:02:38Z | wangshijun@wangshijun-mac-studio |
+| 20260902-053906-icon_sizes_sheet.png | https://github.com/ArcBlock/arc | 2026-09-02T05:39:06Z | wangshijun@wangshijun-mac-studio |
