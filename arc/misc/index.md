@@ -167,3 +167,4 @@
 | 20260902-050238-landing-mobile-420.png | https://github.com/ArcBlock/arc | 2026-09-02T05:02:38Z | wangshijun@wangshijun-mac-studio |
 | 20260902-053906-icon_sizes_sheet.png | https://github.com/ArcBlock/arc | 2026-09-02T05:39:06Z | wangshijun@wangshijun-mac-studio |
 | 20260902-053916-icon_512x512@2x.png | https://github.com/ArcBlock/arc | 2026-09-02T05:39:16Z | wangshijun@wangshijun-mac-studio |
+| 20260902-053927-tray_light_dark_final.png | https://github.com/ArcBlock/arc | 2026-09-02T05:39:27Z | wangshijun@wangshijun-mac-studio |
