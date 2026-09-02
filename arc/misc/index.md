@@ -174,3 +174,4 @@
 | 20260902-055400-final-shipped-compare.png | https://github.com/ArcBlock/arc | 2026-09-02T05:54:00Z | wangshijun@wangshijun-mac-studio |
 | 20260902-062152-sbs_all_sizes.png | https://github.com/ArcBlock/arc | 2026-09-02T06:21:52Z | wangshijun@wangshijun-mac-studio |
 | 20260902-062402-icon_512x512@2x.png | https://github.com/ArcBlock/arc | 2026-09-02T06:24:02Z | wangshijun@wangshijun-mac-studio |
+| 20260902-062417-final_sheet.png | https://github.com/ArcBlock/arc | 2026-09-02T06:24:17Z | wangshijun@wangshijun-mac-studio |
