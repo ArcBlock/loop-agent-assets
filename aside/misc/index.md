@@ -63,3 +63,4 @@
 | aside-1152-possible-related-card-overflow-link.jpg | https://github.com/ArcBlock/aside | 2026-09-01T10:59:00Z | nategu@Nate-Mac-Pro |
 | aside-1183-note-save-failed.jpg | https://github.com/ArcBlock/aside | 2026-09-02T08:15:55Z | nategu@Nate-Mac-Pro |
 | aside-1183-membership-filestore-error.jpg | https://github.com/ArcBlock/aside | 2026-09-02T08:16:05Z | nategu@Nate-Mac-Pro |
+| aside-1242-note-location-map.jpg | https://github.com/ArcBlock/aside | 2026-09-03T15:39:40Z | nategu@Nate-Mac-Pro |
