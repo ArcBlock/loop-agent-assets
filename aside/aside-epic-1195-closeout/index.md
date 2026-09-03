@@ -15,3 +15,4 @@
 | 20260903-071316-1204-home-add-sheet.jpg | https://github.com/ArcBlock/aside | 2026-09-03T07:13:16Z | nategu@Nate-Mac-Pro |
 | 20260903-071325-1204-home-after-cancel.jpg | https://github.com/ArcBlock/aside | 2026-09-03T07:13:25Z | nategu@Nate-Mac-Pro |
 | 20260903-071335-1204-host-after-swipe.jpg | https://github.com/ArcBlock/aside | 2026-09-03T07:13:35Z | nategu@Nate-Mac-Pro |
+| 20260903-071347-1204-host-cancel-keeps-detail.jpg | https://github.com/ArcBlock/aside | 2026-09-03T07:13:47Z | nategu@Nate-Mac-Pro |
