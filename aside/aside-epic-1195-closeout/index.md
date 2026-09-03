@@ -10,3 +10,4 @@
 | 20260903-071225-1201-home-scrollbar.jpg | https://github.com/ArcBlock/aside | 2026-09-03T07:12:25Z | nategu@Nate-Mac-Pro |
 | 20260903-071236-1202-editor-stack.jpg | https://github.com/ArcBlock/aside | 2026-09-03T07:12:36Z | nategu@Nate-Mac-Pro |
 | 20260903-071247-1202-gallery-scrolled.jpg | https://github.com/ArcBlock/aside | 2026-09-03T07:12:47Z | nategu@Nate-Mac-Pro |
+| 20260903-071255-1202-gallery-stack.jpg | https://github.com/ArcBlock/aside | 2026-09-03T07:12:55Z | nategu@Nate-Mac-Pro |
