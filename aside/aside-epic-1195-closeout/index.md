@@ -12,3 +12,4 @@
 | 20260903-071247-1202-gallery-scrolled.jpg | https://github.com/ArcBlock/aside | 2026-09-03T07:12:47Z | nategu@Nate-Mac-Pro |
 | 20260903-071255-1202-gallery-stack.jpg | https://github.com/ArcBlock/aside | 2026-09-03T07:12:55Z | nategu@Nate-Mac-Pro |
 | 20260903-071305-1203-settings-home.jpg | https://github.com/ArcBlock/aside | 2026-09-03T07:13:05Z | nategu@Nate-Mac-Pro |
+| 20260903-071316-1204-home-add-sheet.jpg | https://github.com/ArcBlock/aside | 2026-09-03T07:13:16Z | nategu@Nate-Mac-Pro |
