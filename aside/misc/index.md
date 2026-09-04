@@ -72,3 +72,4 @@
 | aside-1252-app-list.png | https://github.com/ArcBlock/aside | 2026-09-04T03:07:35Z | nategu@Nate-Mac-Pro |
 | aside-1252-app-grid.png | https://github.com/ArcBlock/aside | 2026-09-04T03:07:45Z | nategu@Nate-Mac-Pro |
 | aside-1251-home-list.png | https://github.com/ArcBlock/aside | 2026-09-04T03:07:55Z | nategu@Nate-Mac-Pro |
+| aside-1251-home-grid.png | https://github.com/ArcBlock/aside | 2026-09-04T03:08:08Z | nategu@Nate-Mac-Pro |
