@@ -3,3 +3,4 @@
 | file | source | uploaded | by |
 |---|---|---|---|
 | 20260904-092234-arcsphere-mono.jpg | https://github.com/ArcBlock/arc/issues/1358-arcsphere-lock | 2026-09-04T09:22:34Z | robmao@Roberts-Mac-mini-M4-Pro-7 |
+| 20260904-092241-arcsphere.jpg | https://github.com/ArcBlock/arc/issues/1358-arcsphere-lock | 2026-09-04T09:22:41Z | robmao@Roberts-Mac-mini-M4-Pro-7 |
