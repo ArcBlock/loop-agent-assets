@@ -8,3 +8,4 @@
 | 20260904-081341-a-saturn-3d.png | https://github.com/ArcBlock/arc/issues/1358-logo-pitch | 2026-09-04T08:13:41Z | robmao@Roberts-Mac-mini-M4-Pro-7 |
 | 20260904-081346-c-launch-64.png | https://github.com/ArcBlock/arc/issues/1358-logo-pitch | 2026-09-04T08:13:46Z | robmao@Roberts-Mac-mini-M4-Pro-7 |
 | 20260904-081351-c-launch-mono.png | https://github.com/ArcBlock/arc/issues/1358-logo-pitch | 2026-09-04T08:13:51Z | robmao@Roberts-Mac-mini-M4-Pro-7 |
+| 20260904-081356-c-launch.png | https://github.com/ArcBlock/arc/issues/1358-logo-pitch | 2026-09-04T08:13:56Z | robmao@Roberts-Mac-mini-M4-Pro-7 |
