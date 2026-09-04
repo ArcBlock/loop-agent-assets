@@ -67,3 +67,4 @@
 | aside-1242-quick-note-header-flush.jpg | https://github.com/ArcBlock/aside | 2026-09-03T15:42:47Z | nategu@Nate-Mac-Pro |
 | aside-1242-home-pull-to-sync.jpg | https://github.com/ArcBlock/aside | 2026-09-03T15:45:17Z | nategu@Nate-Mac-Pro |
 | aside-1263-choose-location-simulated.jpg | https://github.com/ArcBlock/aside | 2026-09-04T01:43:06Z | nategu@Nate-Mac-Pro |
+| aside-1253-contact-list.png | https://github.com/ArcBlock/aside | 2026-09-04T02:54:35Z | nategu@Nate-Mac-Pro |
