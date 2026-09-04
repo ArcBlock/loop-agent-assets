@@ -4,3 +4,4 @@
 |---|---|---|---|
 | 20260904-083513-sphere-geo.jpg | https://github.com/ArcBlock/arc/issues/1358-sphere | 2026-09-04T08:35:13Z | robmao@Roberts-Mac-mini-M4-Pro-7 |
 | 20260904-083519-sphere-glass.jpg | https://github.com/ArcBlock/arc/issues/1358-sphere | 2026-09-04T08:35:19Z | robmao@Roberts-Mac-mini-M4-Pro-7 |
+| 20260904-083525-sphere-launch.jpg | https://github.com/ArcBlock/arc/issues/1358-sphere | 2026-09-04T08:35:25Z | robmao@Roberts-Mac-mini-M4-Pro-7 |
