@@ -6,3 +6,4 @@
 | 20260904-062204-chain-390-wm-tokens.png | https://github.com/ArcBlock/arc | 2026-09-04T06:22:04Z | robmao@Roberts-Mac-mini-M4-Pro-7 |
 | 20260904-062210-chain-live-wt-390-tokens.png | https://github.com/ArcBlock/arc | 2026-09-04T06:22:10Z | robmao@Roberts-Mac-mini-M4-Pro-7 |
 | 20260904-062216-did-space-filters.png | https://github.com/ArcBlock/arc | 2026-09-04T06:22:16Z | robmao@Roberts-Mac-mini-M4-Pro-7 |
+| 20260904-062223-did-space-live-1280.png | https://github.com/ArcBlock/arc | 2026-09-04T06:22:23Z | robmao@Roberts-Mac-mini-M4-Pro-7 |
