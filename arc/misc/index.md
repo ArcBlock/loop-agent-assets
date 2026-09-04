@@ -179,3 +179,4 @@
 | 20260902-064035-icon-check-r2b-sidebyside.png | https://github.com/ArcBlock/arc | 2026-09-02T06:40:35Z | wangshijun@wangshijun-mac-studio |
 | 20260902-064051-tray-light-dark.png | https://github.com/ArcBlock/arc | 2026-09-02T06:40:51Z | wangshijun@wangshijun-mac-studio |
 | issue-1358-behind-glass.jpg | https://github.com/ArcBlock/arc | 2026-09-04T08:51:36Z | robmao@Roberts-Mac-mini-M4-Pro-7 |
+| issue-1358-svg-preview.png | https://github.com/ArcBlock/arc | 2026-09-04T10:13:17Z | robmao@Roberts-Mac-mini-M4-Pro-7 |
