@@ -70,3 +70,4 @@
 | aside-1253-contact-list.png | https://github.com/ArcBlock/aside | 2026-09-04T02:54:35Z | nategu@Nate-Mac-Pro |
 | aside-1253-contact-grid.png | https://github.com/ArcBlock/aside | 2026-09-04T02:54:47Z | nategu@Nate-Mac-Pro |
 | aside-1252-app-list.png | https://github.com/ArcBlock/aside | 2026-09-04T03:07:35Z | nategu@Nate-Mac-Pro |
+| aside-1252-app-grid.png | https://github.com/ArcBlock/aside | 2026-09-04T03:07:45Z | nategu@Nate-Mac-Pro |
