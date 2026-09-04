@@ -21,3 +21,4 @@
 | 20260904-092716-en-home-390-light.png | https://github.com/ArcBlock/arcblock-site/pull/490 | 2026-09-04T09:27:16Z | robmao@Roberts-Mac-mini-M4-Pro-7 |
 | 20260904-092720-en-media-assets-1440.png | https://github.com/ArcBlock/arcblock-site/pull/490 | 2026-09-04T09:27:20Z | robmao@Roberts-Mac-mini-M4-Pro-7 |
 | 20260904-092725-en-media-assets-390.png | https://github.com/ArcBlock/arcblock-site/pull/490 | 2026-09-04T09:27:25Z | robmao@Roberts-Mac-mini-M4-Pro-7 |
+| 20260904-092730-en-old-kit-1440.png | https://github.com/ArcBlock/arcblock-site/pull/490 | 2026-09-04T09:27:30Z | robmao@Roberts-Mac-mini-M4-Pro-7 |
