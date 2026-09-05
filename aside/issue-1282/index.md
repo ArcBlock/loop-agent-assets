@@ -7,3 +7,4 @@
 | 20260905-180614-account-guest-dark-d4.png | https://github.com/ArcBlock/aside/issues/1282 | 2026-09-05T18:06:16Z | nategu@Nate-Mac-Pro |
 | 20260905-180627-account-synthetic-expired-d4.png | https://github.com/ArcBlock/aside/issues/1282 | 2026-09-05T18:06:30Z | nategu@Nate-Mac-Pro |
 | 20260905-180638-account-synthetic-unavailable-d4.png | https://github.com/ArcBlock/aside/issues/1282 | 2026-09-05T18:06:41Z | nategu@Nate-Mac-Pro |
+| 20260905-180855-account-375-synthetic-long-did-d4.png | https://github.com/ArcBlock/aside/issues/1282 | 2026-09-05T18:08:58Z | nategu@Nate-Mac-Pro |
