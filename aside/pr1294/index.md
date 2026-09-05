@@ -9,3 +9,4 @@
 | 20260905-122340-6c1a6e1ce-01-search-reader-local-body.png | https://github.com/ArcBlock/aside/pull/1294 | 2026-09-05T12:23:43Z | codex-epic845 |
 | 20260905-122350-6c1a6e1ce-02-reader-next-local-body.png | https://github.com/ArcBlock/aside/pull/1294 | 2026-09-05T12:23:52Z | codex-epic845 |
 | 20260905-122359-6c1a6e1ce-03-cached-article-open-original.png | https://github.com/ArcBlock/aside/pull/1294 | 2026-09-05T12:24:01Z | codex-epic845 |
+| 20260905-122409-6c1a6e1ce-04-og-only-header-and-canvas.png | https://github.com/ArcBlock/aside/pull/1294 | 2026-09-05T12:24:11Z | codex-epic845 |
