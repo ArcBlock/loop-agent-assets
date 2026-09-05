@@ -8,3 +8,4 @@
 | work-board-epic-1280.png | https://github.com/ArcBlock/arc/pull/5966 | 2026-09-05T10:54:58Z | robmao@Roberts-Mac-mini-M4-Pro-7 |
 | 4307af6e-overview-1280.png | https://github.com/ArcBlock/arc/pull/5966 | 2026-09-05T11:26:13Z | robmao@Roberts-Mac-mini-M4-Pro-7 |
 | 4307af6e-overview-390.png | https://github.com/ArcBlock/arc/pull/5966 | 2026-09-05T11:26:18Z | robmao@Roberts-Mac-mini-M4-Pro-7 |
+| 4307af6e-overview-error-1280.png | https://github.com/ArcBlock/arc/pull/5966 | 2026-09-05T11:26:23Z | robmao@Roberts-Mac-mini-M4-Pro-7 |
