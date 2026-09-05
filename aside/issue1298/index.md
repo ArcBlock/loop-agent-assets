@@ -9,3 +9,4 @@
 | 20260905-175735-native-organize-375-dark-scrolled.png | https://github.com/ArcBlock/aside/issues/1298 | 2026-09-05T17:57:38Z | nategu@Nate-Mac-Pro |
 | 20260905-175949-native-organize-375-max-top.png | https://github.com/ArcBlock/aside/issues/1298 | 2026-09-05T17:59:52Z | nategu@Nate-Mac-Pro |
 | 20260905-180112-native-organize-375-max-middle.png | https://github.com/ArcBlock/aside/issues/1298 | 2026-09-05T18:01:14Z | nategu@Nate-Mac-Pro |
+| 20260905-180124-native-organize-375-max-bottom.png | https://github.com/ArcBlock/aside/issues/1298 | 2026-09-05T18:01:26Z | nategu@Nate-Mac-Pro |
