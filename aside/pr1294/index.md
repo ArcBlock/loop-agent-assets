@@ -7,3 +7,4 @@
 | 20260905-121659-03-cached-article-open-original.png | https://github.com/ArcBlock/aside/pull/1294 | 2026-09-05T12:17:02Z | codex-epic845 |
 | 20260905-121713-04-og-only-header-and-canvas.png | https://github.com/ArcBlock/aside/pull/1294 | 2026-09-05T12:17:15Z | codex-epic845 |
 | 20260905-122340-6c1a6e1ce-01-search-reader-local-body.png | https://github.com/ArcBlock/aside/pull/1294 | 2026-09-05T12:23:43Z | codex-epic845 |
+| 20260905-122350-6c1a6e1ce-02-reader-next-local-body.png | https://github.com/ArcBlock/aside/pull/1294 | 2026-09-05T12:23:52Z | codex-epic845 |
