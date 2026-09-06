@@ -11,3 +11,4 @@
 | 20260906-090958-4d538b23-account-dark.png | https://github.com/ArcBlock/aside/issues/1314 | 2026-09-06T09:10:01Z | Codex |
 | 20260906-091009-4d538b23-account-state-error.png | https://github.com/ArcBlock/aside/issues/1314 | 2026-09-06T09:10:16Z | Codex |
 | 20260906-091025-4d538b23-account-state-loading.png | https://github.com/ArcBlock/aside/issues/1314 | 2026-09-06T09:10:27Z | Codex |
+| 20260906-091035-4d538b23-account-state-empty.png | https://github.com/ArcBlock/aside/issues/1314 | 2026-09-06T09:10:38Z | Codex |
