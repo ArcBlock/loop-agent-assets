@@ -21,3 +21,4 @@
 | 20260906-100012-0ad82af5-account-state-long-bottom.png | https://github.com/ArcBlock/aside/pull/1320 | 2026-09-06T10:00:14Z | Codex |
 | 20260906-100024-0ad82af5-account-state-error.png | https://github.com/ArcBlock/aside/pull/1320 | 2026-09-06T10:00:26Z | Codex |
 | 20260906-100034-0ad82af5-tag-context-menu.png | https://github.com/ArcBlock/aside/pull/1320 | 2026-09-06T10:00:37Z | Codex |
+| 20260906-100045-0ad82af5-tag-account-after-relaunch.png | https://github.com/ArcBlock/aside/pull/1320 | 2026-09-06T10:00:48Z | Codex |
