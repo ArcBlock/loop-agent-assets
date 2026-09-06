@@ -9,3 +9,4 @@
 | 20260906-074443-filter.jpg | https://github.com/ArcBlock/aside/issues/1311 | 2026-09-06T07:44:45Z | Codex |
 | 20260906-080501-hidden-first-same-day.png | https://github.com/ArcBlock/aside/issues/1311 | 2026-09-06T08:05:04Z | Codex |
 | 20260906-080538-hidden-cross-day.png | https://github.com/ArcBlock/aside/issues/1311 | 2026-09-06T08:05:41Z | Codex |
+| 20260906-080603-hidden-filter.png | https://github.com/ArcBlock/aside/issues/1311 | 2026-09-06T08:06:06Z | Codex |
