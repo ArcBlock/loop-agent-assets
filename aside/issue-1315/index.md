@@ -13,3 +13,4 @@
 | 20260906-085001-organize-188-empty-axxxl.png | https://github.com/ArcBlock/aside/pull/1318 | 2026-09-06T08:50:04Z | Codex |
 | 20260906-085013-organize-188-axxxl.png | https://github.com/ArcBlock/aside/pull/1318 | 2026-09-06T08:50:15Z | Codex |
 | 20260906-085023-organize-188-scrolled.png | https://github.com/ArcBlock/aside/pull/1318 | 2026-09-06T08:50:26Z | Codex |
+| 20260906-085034-organize-188-last-card.png | https://github.com/ArcBlock/aside/pull/1318 | 2026-09-06T08:50:36Z | Codex |
