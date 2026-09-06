@@ -14,3 +14,4 @@
 | 20260906-091035-4d538b23-account-state-empty.png | https://github.com/ArcBlock/aside/issues/1314 | 2026-09-06T09:10:38Z | Codex |
 | 20260906-091050-4d538b23-account-state-stale.png | https://github.com/ArcBlock/aside/issues/1314 | 2026-09-06T09:10:53Z | Codex |
 | 20260906-091100-4d538b23-account-return-2025.png | https://github.com/ArcBlock/aside/issues/1314 | 2026-09-06T09:11:03Z | Codex |
+| 20260906-091112-4d538b23-tag-account-after-relaunch.png | https://github.com/ArcBlock/aside/issues/1314 | 2026-09-06T09:11:14Z | Codex |
