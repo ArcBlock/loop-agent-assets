@@ -6,3 +6,4 @@
 | 20260906-090832-account-4d538b23-top.png | https://github.com/ArcBlock/aside/issues/1314 | 2026-09-06T09:08:35Z | Codex |
 | 20260906-090918-4d538b23-design-account-populated.png | https://github.com/ArcBlock/aside/issues/1314 | 2026-09-06T09:09:20Z | Codex |
 | 20260906-090928-4d538b23-design-account-populated-bottom.png | https://github.com/ArcBlock/aside/issues/1314 | 2026-09-06T09:09:30Z | Codex |
+| 20260906-090937-4d538b23-account-bottom.png | https://github.com/ArcBlock/aside/issues/1314 | 2026-09-06T09:09:39Z | Codex |
