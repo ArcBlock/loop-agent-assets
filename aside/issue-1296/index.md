@@ -5,3 +5,4 @@
 | 20260906-024706-final-organize.png | https://github.com/ArcBlock/aside/issues/1296 | 2026-09-06T02:47:10Z | codex-epic-conductor |
 | 20260906-024739-final-account-synthetic.png | https://github.com/ArcBlock/aside/issues/1296 | 2026-09-06T02:47:43Z | codex-epic-conductor |
 | 20260906-024832-final-membership-detail.png | https://github.com/ArcBlock/aside/issues/1296 | 2026-09-06T02:48:35Z | codex-epic-conductor |
+| 20260906-024903-final-home-filtered.png | https://github.com/ArcBlock/aside/issues/1296 | 2026-09-06T02:49:05Z | codex-epic-conductor |
