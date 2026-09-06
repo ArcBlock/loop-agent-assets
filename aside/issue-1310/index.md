@@ -9,3 +9,4 @@
 | 20260906-134451-45eeff787-1312-expanded.png | https://github.com/ArcBlock/aside/issues/1310 | 2026-09-06T13:44:53Z | nategu@Nate-Mac-Pro |
 | 20260906-134502-45eeff787-1312-quote.png | https://github.com/ArcBlock/aside/issues/1310 | 2026-09-06T13:45:04Z | nategu@Nate-Mac-Pro |
 | 20260906-134514-45eeff787-1313-align.png | https://github.com/ArcBlock/aside/issues/1310 | 2026-09-06T13:45:18Z | nategu@Nate-Mac-Pro |
+| 20260906-134527-45eeff787-1313-open.png | https://github.com/ArcBlock/aside/issues/1310 | 2026-09-06T13:45:32Z | nategu@Nate-Mac-Pro |
