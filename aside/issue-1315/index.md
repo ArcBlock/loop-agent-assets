@@ -8,3 +8,4 @@
 | 20260906-082742-organize-after-scroll.png | https://github.com/ArcBlock/aside/issues/1315 | 2026-09-06T08:27:44Z | Codex |
 | 20260906-082752-organize-last-card.png | https://github.com/ArcBlock/aside/issues/1315 | 2026-09-06T08:27:55Z | Codex |
 | 20260906-082802-organize-axxxl-baseline.png | https://github.com/ArcBlock/aside/issues/1315 | 2026-09-06T08:28:05Z | Codex |
+| 20260906-082815-organize-axxxl-current.png | https://github.com/ArcBlock/aside/issues/1315 | 2026-09-06T08:28:17Z | Codex |
