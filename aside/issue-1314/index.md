@@ -17,3 +17,4 @@
 | 20260906-091112-4d538b23-tag-account-after-relaunch.png | https://github.com/ArcBlock/aside/issues/1314 | 2026-09-06T09:11:14Z | Codex |
 | 20260906-094401-a4cb7bac-large-arrow-before.png | https://github.com/ArcBlock/aside/pull/1320 | 2026-09-06T09:44:04Z | Codex |
 | 20260906-095944-0ad82af5-account-signed-in-top.png | https://github.com/ArcBlock/aside/pull/1320 | 2026-09-06T09:59:47Z | Codex |
+| 20260906-095957-0ad82af5-account-bottom.png | https://github.com/ArcBlock/aside/pull/1320 | 2026-09-06T10:00:02Z | Codex |
