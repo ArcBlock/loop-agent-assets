@@ -19,3 +19,4 @@
 | 20260906-095944-0ad82af5-account-signed-in-top.png | https://github.com/ArcBlock/aside/pull/1320 | 2026-09-06T09:59:47Z | Codex |
 | 20260906-095957-0ad82af5-account-bottom.png | https://github.com/ArcBlock/aside/pull/1320 | 2026-09-06T10:00:02Z | Codex |
 | 20260906-100012-0ad82af5-account-state-long-bottom.png | https://github.com/ArcBlock/aside/pull/1320 | 2026-09-06T10:00:14Z | Codex |
+| 20260906-100024-0ad82af5-account-state-error.png | https://github.com/ArcBlock/aside/pull/1320 | 2026-09-06T10:00:26Z | Codex |
