@@ -185,3 +185,4 @@
 | 20260907-020826-6027-before-internal-embed-blocked.jpg | https://github.com/ArcBlock/arc | 2026-09-07T02:08:26Z | wangshijun@wangshijun-mac-studio |
 | 20260907-020837-6027-after-internal-embed-loads.jpg | https://github.com/ArcBlock/arc | 2026-09-07T02:08:38Z | wangshijun@wangshijun-mac-studio |
 | 20260907-023804-tray-cmp.png | https://github.com/ArcBlock/arc | 2026-09-07T02:38:04Z | wangshijun@wangshijun-mac-studio |
+| pr6029-review-tray-mono-comparison.png | https://github.com/ArcBlock/arc | 2026-09-07T02:48:08Z | wangshijun@wangshijun-mac-studio |
