@@ -182,3 +182,4 @@
 | issue-1358-svg-preview.png | https://github.com/ArcBlock/arc | 2026-09-04T10:13:17Z | robmao@Roberts-Mac-mini-M4-Pro-7 |
 | issue-1358-svg-v2.png | https://github.com/ArcBlock/arc | 2026-09-04T21:05:28Z | robmao@Roberts-Mac-mini-M4-Pro-7 |
 | 20260907-015753-cmp.png | https://github.com/ArcBlock/arc | 2026-09-07T01:57:53Z | wangshijun@wangshijun-mac-studio |
+| 20260907-020826-6027-before-internal-embed-blocked.jpg | https://github.com/ArcBlock/arc | 2026-09-07T02:08:26Z | wangshijun@wangshijun-mac-studio |
