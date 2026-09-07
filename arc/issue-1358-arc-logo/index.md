@@ -8,3 +8,4 @@
 | 20260907-022758-1358-appicon-32.png | https://github.com/ArcBlock/arc/issues/1358-arc-logo | 2026-09-07T02:27:58Z | wangshijun@wangshijun-mac-studio |
 | 20260907-022807-1358-appicon-512.png | https://github.com/ArcBlock/arc/issues/1358-arc-logo | 2026-09-07T02:28:07Z | wangshijun@wangshijun-mac-studio |
 | 20260907-022817-1358-landing-full.png | https://github.com/ArcBlock/arc/issues/1358-arc-logo | 2026-09-07T02:28:17Z | wangshijun@wangshijun-mac-studio |
+| 20260907-022827-1358-landing-header-zoom.png | https://github.com/ArcBlock/arc/issues/1358-arc-logo | 2026-09-07T02:28:27Z | wangshijun@wangshijun-mac-studio |
