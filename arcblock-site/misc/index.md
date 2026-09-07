@@ -109,3 +109,4 @@
 | immersive-video-gallery-cover.jpg | https://github.com/ArcBlock/arcblock-site | 2026-08-14T07:05:22Z | robmao@Roberts-Mac-mini-M4-Pro |
 | 20260907-105427-en-desktop-final.png | https://github.com/ArcBlock/arcblock-site | 2026-09-07T10:54:27Z | robmao@Roberts-Mac-mini-M4-Pro-7 |
 | 20260907-105440-en-mobile-final.png | https://github.com/ArcBlock/arcblock-site | 2026-09-07T10:54:40Z | robmao@Roberts-Mac-mini-M4-Pro-7 |
+| 20260907-105452-en-desktop-dark-list.png | https://github.com/ArcBlock/arcblock-site | 2026-09-07T10:54:52Z | robmao@Roberts-Mac-mini-M4-Pro-7 |
