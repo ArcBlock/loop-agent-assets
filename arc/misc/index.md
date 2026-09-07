@@ -186,3 +186,4 @@
 | 20260907-020837-6027-after-internal-embed-loads.jpg | https://github.com/ArcBlock/arc | 2026-09-07T02:08:38Z | wangshijun@wangshijun-mac-studio |
 | 20260907-023804-tray-cmp.png | https://github.com/ArcBlock/arc | 2026-09-07T02:38:04Z | wangshijun@wangshijun-mac-studio |
 | pr6029-review-tray-mono-comparison.png | https://github.com/ArcBlock/arc | 2026-09-07T02:48:08Z | wangshijun@wangshijun-mac-studio |
+| 20260907-073508-pixotale-native-locale-proof.jpg | https://github.com/ArcBlock/arc | 2026-09-07T07:35:08Z | robmao@Roberts-Mac-mini-M4-Pro-7 |
