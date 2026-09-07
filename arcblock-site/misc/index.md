@@ -114,3 +114,4 @@
 | 20260907-110121-entry-5-showcase.afsd.io.png | https://github.com/ArcBlock/arcblock-site | 2026-09-07T11:01:21Z | robmao@Roberts-Mac-mini-M4-Pro-7 |
 | 20260907-213300-land-en-desktop.png | https://github.com/ArcBlock/arcblock-site | 2026-09-07T21:33:01Z | robmao@Roberts-Mac-mini-M4-Pro-7 |
 | 20260907-213309-land-en-desktop-dark.png | https://github.com/ArcBlock/arcblock-site | 2026-09-07T21:33:09Z | robmao@Roberts-Mac-mini-M4-Pro-7 |
+| 20260907-213329-land-en-mobile.png | https://github.com/ArcBlock/arcblock-site | 2026-09-07T21:33:29Z | robmao@Roberts-Mac-mini-M4-Pro-7 |
