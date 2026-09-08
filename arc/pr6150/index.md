@@ -12,3 +12,4 @@
 | 20260907-214701-work-board-live.png | https://github.com/ArcBlock/arc/pull/6150 | 2026-09-07T21:47:01Z | robmao@Roberts-Mac-mini-M4-Pro-7 |
 | work-board-index.png | https://github.com/ArcBlock/arc/pull/6150 | 2026-09-08T00:22:22Z | robmao@Roberts-Mac-mini-M4-Pro-7 |
 | work-board-authed.png | https://github.com/ArcBlock/arc/pull/6150 | 2026-09-08T00:22:27Z | robmao@Roberts-Mac-mini-M4-Pro-7 |
+| code-agents-index.png | https://github.com/ArcBlock/arc/pull/6150 | 2026-09-08T00:22:32Z | robmao@Roberts-Mac-mini-M4-Pro-7 |
