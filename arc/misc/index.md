@@ -194,3 +194,4 @@
 | 20260909-114019-shot-6274-csp-external-rescue.png | https://github.com/ArcBlock/arc | 2026-09-09T11:40:19Z | wangshijun@wangshijun-mac-studio |
 | 20260909-132025-human-mini-firstscreen.png | https://github.com/ArcBlock/arc | 2026-09-09T13:20:25Z | wangshijun@wangshijun-mac-studio |
 | 20260909-132041-s5-cdn-missing-hash.png | https://github.com/ArcBlock/arc | 2026-09-09T13:20:41Z | wangshijun@wangshijun-mac-studio |
+| 20260909-132052-agent-mini-firstscreen.png | https://github.com/ArcBlock/arc | 2026-09-09T13:20:52Z | wangshijun@wangshijun-mac-studio |
