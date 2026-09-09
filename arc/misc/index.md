@@ -190,3 +190,4 @@
 | 20260909-091556-curl-first-screen.png | https://github.com/ArcBlock/arc | 2026-09-09T09:15:56Z | wangshijun@wangshijun-mac-studio |
 | 20260909-091612-first-screen-local-assets.png | https://github.com/ArcBlock/arc | 2026-09-09T09:16:12Z | wangshijun@wangshijun-mac-studio |
 | 20260909-103012-shot-6274-before.png | https://github.com/ArcBlock/arc | 2026-09-09T10:30:12Z | wangshijun@wangshijun-mac-studio |
+| 20260909-103025-shot-6274-after.png | https://github.com/ArcBlock/arc | 2026-09-09T10:30:25Z | wangshijun@wangshijun-mac-studio |
