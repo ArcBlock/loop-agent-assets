@@ -192,3 +192,4 @@
 | 20260909-103012-shot-6274-before.png | https://github.com/ArcBlock/arc | 2026-09-09T10:30:12Z | wangshijun@wangshijun-mac-studio |
 | 20260909-103025-shot-6274-after.png | https://github.com/ArcBlock/arc | 2026-09-09T10:30:25Z | wangshijun@wangshijun-mac-studio |
 | 20260909-114019-shot-6274-csp-external-rescue.png | https://github.com/ArcBlock/arc | 2026-09-09T11:40:19Z | wangshijun@wangshijun-mac-studio |
+| 20260909-132025-human-mini-firstscreen.png | https://github.com/ArcBlock/arc | 2026-09-09T13:20:25Z | wangshijun@wangshijun-mac-studio |
