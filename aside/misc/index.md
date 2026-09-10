@@ -80,3 +80,4 @@
 | aside-1252-app-detail-v2.png | https://github.com/ArcBlock/aside | 2026-09-04T03:27:48Z | nategu@Nate-Mac-Pro |
 | aside-1251-home-detail-v2.png | https://github.com/ArcBlock/aside | 2026-09-04T03:28:00Z | nategu@Nate-Mac-Pro |
 | contact-avatar-incomplete.png | https://github.com/ArcBlock/aside | 2026-09-06T15:26:33Z | nategu@Nate-Mac-Pro |
+| 20260910-search-first-open-white.jpg | https://github.com/ArcBlock/aside | 2026-09-10T07:13:37Z | nategu@Nate-Mac-Pro |
