@@ -4,3 +4,4 @@
 |---|---|---|---|
 | work-board-index-loaded.png | https://github.com/ArcBlock/arc/pull/6347 | 2026-09-10T09:32:54Z | robmao@Roberts-Mac-mini-M4-Pro-7 |
 | work-board-index-queryfailed.png | https://github.com/ArcBlock/arc/pull/6347 | 2026-09-10T09:33:02Z | robmao@Roberts-Mac-mini-M4-Pro-7 |
+| work-board-index-allzero.png | https://github.com/ArcBlock/arc/pull/6347 | 2026-09-10T09:33:07Z | robmao@Roberts-Mac-mini-M4-Pro-7 |
