@@ -11,3 +11,4 @@
 | pr6347-filtertabs-loaded-18eec72c8.png | https://github.com/ArcBlock/arc/pull/6347 | 2026-09-10T20:07:50Z | robmao@Roberts-Mac-mini-M4-Pro-7 |
 | pr6347-filtertabs-inflight-18eec72c8.png | https://github.com/ArcBlock/arc/pull/6347 | 2026-09-10T20:07:56Z | robmao@Roberts-Mac-mini-M4-Pro-7 |
 | pr6347-filtertabs-mixed-zero-18eec72c8.png | https://github.com/ArcBlock/arc/pull/6347 | 2026-09-10T20:08:02Z | robmao@Roberts-Mac-mini-M4-Pro-7 |
+| pr6347-work-board-live-18eec72c8.png | https://github.com/ArcBlock/arc/pull/6347 | 2026-09-10T20:10:51Z | robmao@Roberts-Mac-mini-M4-Pro-7 |
