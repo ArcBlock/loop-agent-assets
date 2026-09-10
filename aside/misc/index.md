@@ -86,3 +86,4 @@
 | 20260911-item-location-simplify.jpg | https://github.com/ArcBlock/aside | 2026-09-10T16:33:19Z | nategu@Nate-Mac-Pro |
 | 20260911-feed-longpress-menu.jpg | https://github.com/ArcBlock/aside | 2026-09-10T16:36:49Z | nategu@Nate-Mac-Pro |
 | 20260911-feed-ellipsis-menu.jpg | https://github.com/ArcBlock/aside | 2026-09-10T16:36:58Z | nategu@Nate-Mac-Pro |
+| 20260911-manage-membership-chrome.jpg | https://github.com/ArcBlock/aside | 2026-09-10T16:39:25Z | nategu@Nate-Mac-Pro |
