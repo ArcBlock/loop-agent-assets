@@ -89,3 +89,4 @@
 | 20260911-manage-membership-chrome.jpg | https://github.com/ArcBlock/aside | 2026-09-10T16:39:25Z | nategu@Nate-Mac-Pro |
 | 20260911-organize-calendar-import.jpg | https://github.com/ArcBlock/aside | 2026-09-10T16:41:48Z | nategu@Nate-Mac-Pro |
 | aside/issue-1511-save-article-i18n/item-detail-more-menu-save-article-zh.jpg | https://github.com/ArcBlock/aside | 2026-09-11T02:39:17Z | nategu@Nate-Mac-Pro |
+| aside/issue-1511-settings-section-bg/account-tags-storage.jpg | https://github.com/ArcBlock/aside | 2026-09-11T02:55:56Z | nategu@Nate-Mac-Pro |
