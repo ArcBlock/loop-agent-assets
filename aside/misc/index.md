@@ -106,3 +106,4 @@
 | item-tags-search-input-refresh.jpg | https://github.com/ArcBlock/aside | 2026-09-11T13:45:59Z | nategu@Nate-Mac-Pro |
 | collection-empty-display-font.jpg | https://github.com/ArcBlock/aside | 2026-09-11T13:49:00Z | nategu@Nate-Mac-Pro |
 | organize-grid-capturing-leftover.jpg | https://github.com/ArcBlock/aside | 2026-09-11T13:50:46Z | nategu@Nate-Mac-Pro |
+| share-extension-recent-collection-more.jpg | https://github.com/ArcBlock/aside | 2026-09-11T13:55:43Z | nategu@Nate-Mac-Pro |
