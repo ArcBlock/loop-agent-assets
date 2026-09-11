@@ -98,3 +98,4 @@
 | item-location-toggle-off-subtitle-off.jpg | https://github.com/ArcBlock/aside | 2026-09-11T13:27:08Z | nategu@Nate-Mac-Pro |
 | item-location-toggle-on-subtitle-off.jpg | https://github.com/ArcBlock/aside | 2026-09-11T13:27:17Z | nategu@Nate-Mac-Pro |
 | account-heatmap-all-years-current.jpg | https://github.com/ArcBlock/aside | 2026-09-11T13:29:43Z | nategu@Nate-Mac-Pro |
+| activity-single-year-with-picker.jpg | https://github.com/ArcBlock/aside | 2026-09-11T13:29:52Z | nategu@Nate-Mac-Pro |
