@@ -116,3 +116,4 @@
 | aside/issue-1607/collection-saves-old-item-chrome.jpg | https://github.com/ArcBlock/aside | 2026-09-11T23:50:30Z | nategu@Nate-Mac-Pro |
 | aside/issue-1607/tag-detail-no-more-button.jpg | https://github.com/ArcBlock/aside | 2026-09-11T23:53:24Z | nategu@Nate-Mac-Pro |
 | aside/issue-1607/create-tag-alert.jpg | https://github.com/ArcBlock/aside | 2026-09-11T23:53:33Z | nategu@Nate-Mac-Pro |
+| aside/issue-1607/delete-collection-confirm.jpg | https://github.com/ArcBlock/aside | 2026-09-11T23:53:43Z | nategu@Nate-Mac-Pro |
