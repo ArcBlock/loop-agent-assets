@@ -104,3 +104,4 @@
 | collection-item-card-missing-cover-chips.jpg | https://github.com/ArcBlock/aside | 2026-09-11T13:39:14Z | nategu@Nate-Mac-Pro |
 | tags-create-alert-slow-refresh.jpg | https://github.com/ArcBlock/aside | 2026-09-11T13:41:20Z | nategu@Nate-Mac-Pro |
 | item-tags-search-input-refresh.jpg | https://github.com/ArcBlock/aside | 2026-09-11T13:45:59Z | nategu@Nate-Mac-Pro |
+| collection-empty-display-font.jpg | https://github.com/ArcBlock/aside | 2026-09-11T13:49:00Z | nategu@Nate-Mac-Pro |
