@@ -6,3 +6,4 @@
 | 20260911-065148-travel-overview.jpg | https://github.com/ArcBlock/aside/pull/1527 | 2026-09-11T06:51:51Z | nategu@Nate-Mac-Pro |
 | 20260911-071250-travel-overview.jpg | https://github.com/ArcBlock/aside/pull/1527 | 2026-09-11T07:12:52Z | nategu@Nate-Mac-Pro |
 | 20260911-071301-travel-saves.jpg | https://github.com/ArcBlock/aside/pull/1527 | 2026-09-11T07:13:03Z | nategu@Nate-Mac-Pro |
+| 20260911-071958-segment-overview.jpg | https://github.com/ArcBlock/aside/pull/1527 | 2026-09-11T07:20:01Z | nategu@Nate-Mac-Pro |
