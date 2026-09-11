@@ -111,3 +111,4 @@
 | aside/issue-1607/item-location-toggle-still-lag.jpg | https://github.com/ArcBlock/aside | 2026-09-11T23:40:53Z | nategu@Nate-Mac-Pro |
 | aside/issue-1607/activity-body-title-and-year-summary.jpg | https://github.com/ArcBlock/aside | 2026-09-11T23:43:55Z | nategu@Nate-Mac-Pro |
 | aside/issue-1607/activity-year-list-no-nav-title.jpg | https://github.com/ArcBlock/aside | 2026-09-11T23:44:10Z | nategu@Nate-Mac-Pro |
+| aside/issue-1607/recent-searches-full-rows.jpg | https://github.com/ArcBlock/aside | 2026-09-11T23:45:57Z | nategu@Nate-Mac-Pro |
