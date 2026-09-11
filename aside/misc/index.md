@@ -101,3 +101,4 @@
 | activity-single-year-with-picker.jpg | https://github.com/ArcBlock/aside | 2026-09-11T13:29:52Z | nategu@Nate-Mac-Pro |
 | search-recent-searches-below-saved.jpg | https://github.com/ArcBlock/aside | 2026-09-11T13:35:05Z | nategu@Nate-Mac-Pro |
 | home-item-card-with-cover-chips.jpg | https://github.com/ArcBlock/aside | 2026-09-11T13:39:03Z | nategu@Nate-Mac-Pro |
+| collection-item-card-missing-cover-chips.jpg | https://github.com/ArcBlock/aside | 2026-09-11T13:39:14Z | nategu@Nate-Mac-Pro |
