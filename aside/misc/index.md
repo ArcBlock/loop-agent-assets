@@ -92,3 +92,4 @@
 | aside/issue-1511-settings-section-bg/account-tags-storage.jpg | https://github.com/ArcBlock/aside | 2026-09-11T02:55:56Z | nategu@Nate-Mac-Pro |
 | aside/issue-1511-settings-section-bg/settings-groups-b4paper.jpg | https://github.com/ArcBlock/aside | 2026-09-11T02:56:04Z | nategu@Nate-Mac-Pro |
 | aside/issue-1511-1490-capture-collection/share-extension-capture-collection.jpg | https://github.com/ArcBlock/aside | 2026-09-11T03:11:25Z | nategu@Nate-Mac-Pro |
+| collection-detail-nav-title-and-saves-filters.jpg | https://github.com/ArcBlock/aside | 2026-09-11T13:20:25Z | nategu@Nate-Mac-Pro |
