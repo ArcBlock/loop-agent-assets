@@ -95,3 +95,4 @@
 | collection-detail-nav-title-and-saves-filters.jpg | https://github.com/ArcBlock/aside | 2026-09-11T13:20:25Z | nategu@Nate-Mac-Pro |
 | organize-start-stale-chrome-after-kind.jpg | https://github.com/ArcBlock/aside | 2026-09-11T13:23:16Z | nategu@Nate-Mac-Pro |
 | organize-start-kinds-chrome-expected.jpg | https://github.com/ArcBlock/aside | 2026-09-11T13:23:25Z | nategu@Nate-Mac-Pro |
+| item-location-toggle-off-subtitle-off.jpg | https://github.com/ArcBlock/aside | 2026-09-11T13:27:08Z | nategu@Nate-Mac-Pro |
