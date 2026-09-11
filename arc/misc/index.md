@@ -197,3 +197,4 @@
 | 20260909-132052-agent-mini-firstscreen.png | https://github.com/ArcBlock/arc | 2026-09-09T13:20:52Z | wangshijun@wangshijun-mac-studio |
 | arc/issue-6279/asset-cdn-uiverify-83e361ba.png | https://github.com/ArcBlock/arc | 2026-09-10T00:23:27Z | wangshijun@wangshijun-mac-studio |
 | 20260910-050943-arc6322-webdevice-batched-render.png | https://github.com/ArcBlock/arc | 2026-09-10T05:09:43Z | wangshijun@wangshijun-mac-studio |
+| work-board-tree-checklist-ref.png | https://github.com/ArcBlock/arc | 2026-09-11T01:22:10Z | robmao@Roberts-Mac-mini-M4-Pro-7 |
