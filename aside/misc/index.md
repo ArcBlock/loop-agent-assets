@@ -122,3 +122,4 @@
 | aside/issue-1618/settings-appearance-dark-selected.jpg | https://github.com/ArcBlock/aside | 2026-09-12T08:14:13Z | nategu@Nate-Mac-Pro |
 | aside/issue-1618/settings-home-appearance-subtitle-light.jpg | https://github.com/ArcBlock/aside | 2026-09-12T08:14:22Z | nategu@Nate-Mac-Pro |
 | aside/issue-1618/places-visited-chrome.jpg | https://github.com/ArcBlock/aside | 2026-09-12T08:17:52Z | nategu@Nate-Mac-Pro |
+| aside/issue-1618/activity-stuck-loading.jpg | https://github.com/ArcBlock/aside | 2026-09-12T08:21:39Z | nategu@Nate-Mac-Pro |
