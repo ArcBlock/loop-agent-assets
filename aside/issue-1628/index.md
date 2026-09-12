@@ -5,3 +5,4 @@
 | 20260912-230108-nested-edit-date-place.png | https://github.com/ArcBlock/aside/issues/1628 | 2026-09-12T23:01:13Z | codex-epic-conductor |
 | 20260912-230123-trade-show-saved-date-place.png | https://github.com/ArcBlock/aside/issues/1628 | 2026-09-12T23:01:26Z | codex-epic-conductor |
 | 20260912-230135-travel-edit-date-place.png | https://github.com/ArcBlock/aside/issues/1628 | 2026-09-12T23:01:38Z | codex-epic-conductor |
+| 20260912-230148-ordinary-edit-location-no-date.png | https://github.com/ArcBlock/aside/issues/1628 | 2026-09-12T23:01:50Z | codex-epic-conductor |
