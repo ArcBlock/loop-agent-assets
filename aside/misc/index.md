@@ -120,3 +120,4 @@
 | aside/issue-1607/collection-edit-blurb-placeholder-cursor.jpg | https://github.com/ArcBlock/aside | 2026-09-11T23:58:29Z | nategu@Nate-Mac-Pro |
 | aside/issue-1618/feed-location-weather-above-item.jpg | https://github.com/ArcBlock/aside | 2026-09-12T08:11:23Z | nategu@Nate-Mac-Pro |
 | aside/issue-1618/settings-appearance-dark-selected.jpg | https://github.com/ArcBlock/aside | 2026-09-12T08:14:13Z | nategu@Nate-Mac-Pro |
+| aside/issue-1618/settings-home-appearance-subtitle-light.jpg | https://github.com/ArcBlock/aside | 2026-09-12T08:14:22Z | nategu@Nate-Mac-Pro |
