@@ -129,3 +129,4 @@
 | aside/issue-1618/quick-capture-typed-text.jpg | https://github.com/ArcBlock/aside | 2026-09-12T08:29:26Z | nategu@Nate-Mac-Pro |
 | aside/issue-1618/add-collection-pick-items-row.jpg | https://github.com/ArcBlock/aside | 2026-09-12T08:32:44Z | nategu@Nate-Mac-Pro |
 | aside/issue-1618/collection-new-add-some-first.jpg | https://github.com/ArcBlock/aside | 2026-09-12T08:32:52Z | nategu@Nate-Mac-Pro |
+| aside/issue-1618/edit-collection-no-date.jpg | https://github.com/ArcBlock/aside | 2026-09-12T08:36:23Z | nategu@Nate-Mac-Pro |
