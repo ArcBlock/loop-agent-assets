@@ -4,3 +4,4 @@
 |---|---|---|---|
 | 20260912-085851-item-location-before.jpg | https://github.com/ArcBlock/aside/pull/1629 | 2026-09-12T08:58:53Z | nategu@Nate-Mac-Pro |
 | 20260912-085901-item-location-one-tap-on.jpg | https://github.com/ArcBlock/aside/pull/1629 | 2026-09-12T08:59:03Z | nategu@Nate-Mac-Pro |
+| 20260912-085910-item-location-one-tap-off.jpg | https://github.com/ArcBlock/aside/pull/1629 | 2026-09-12T08:59:12Z | nategu@Nate-Mac-Pro |
