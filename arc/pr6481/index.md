@@ -8,3 +8,4 @@
 | 20260912-074533-work-board-agents-peers-reclick.png | https://github.com/ArcBlock/arc/pull/6481 | 2026-09-12T07:45:33Z | robmao@Roberts-Mac-mini-M4-Pro-7 |
 | 20260912-074538-work-board-agents-peers.png | https://github.com/ArcBlock/arc/pull/6481 | 2026-09-12T07:45:38Z | robmao@Roberts-Mac-mini-M4-Pro-7 |
 | 20260912-074541-work-board-agents.png | https://github.com/ArcBlock/arc/pull/6481 | 2026-09-12T07:45:42Z | robmao@Roberts-Mac-mini-M4-Pro-7 |
+| 20260912-074545-work-board-overview.png | https://github.com/ArcBlock/arc/pull/6481 | 2026-09-12T07:45:45Z | robmao@Roberts-Mac-mini-M4-Pro-7 |
