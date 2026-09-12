@@ -118,3 +118,4 @@
 | aside/issue-1607/create-tag-alert.jpg | https://github.com/ArcBlock/aside | 2026-09-11T23:53:33Z | nategu@Nate-Mac-Pro |
 | aside/issue-1607/delete-collection-confirm.jpg | https://github.com/ArcBlock/aside | 2026-09-11T23:53:43Z | nategu@Nate-Mac-Pro |
 | aside/issue-1607/collection-edit-blurb-placeholder-cursor.jpg | https://github.com/ArcBlock/aside | 2026-09-11T23:58:29Z | nategu@Nate-Mac-Pro |
+| aside/issue-1618/feed-location-weather-above-item.jpg | https://github.com/ArcBlock/aside | 2026-09-12T08:11:23Z | nategu@Nate-Mac-Pro |
