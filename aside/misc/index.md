@@ -127,3 +127,4 @@
 | aside/issue-1618/quick-capture-stale-location.jpg | https://github.com/ArcBlock/aside | 2026-09-12T08:25:32Z | nategu@Nate-Mac-Pro |
 | aside/issue-1618/quick-capture-placeholder.jpg | https://github.com/ArcBlock/aside | 2026-09-12T08:29:17Z | nategu@Nate-Mac-Pro |
 | aside/issue-1618/quick-capture-typed-text.jpg | https://github.com/ArcBlock/aside | 2026-09-12T08:29:26Z | nategu@Nate-Mac-Pro |
+| aside/issue-1618/add-collection-pick-items-row.jpg | https://github.com/ArcBlock/aside | 2026-09-12T08:32:44Z | nategu@Nate-Mac-Pro |
