@@ -125,3 +125,4 @@
 | aside/issue-1618/activity-stuck-loading.jpg | https://github.com/ArcBlock/aside | 2026-09-12T08:21:39Z | nategu@Nate-Mac-Pro |
 | aside/issue-1618/quick-capture-collecting.jpg | https://github.com/ArcBlock/aside | 2026-09-12T08:25:22Z | nategu@Nate-Mac-Pro |
 | aside/issue-1618/quick-capture-stale-location.jpg | https://github.com/ArcBlock/aside | 2026-09-12T08:25:32Z | nategu@Nate-Mac-Pro |
+| aside/issue-1618/quick-capture-placeholder.jpg | https://github.com/ArcBlock/aside | 2026-09-12T08:29:17Z | nategu@Nate-Mac-Pro |
