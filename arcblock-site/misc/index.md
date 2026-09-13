@@ -117,3 +117,4 @@
 | 20260907-213329-land-en-mobile.png | https://github.com/ArcBlock/arcblock-site | 2026-09-07T21:33:29Z | robmao@Roberts-Mac-mini-M4-Pro-7 |
 | pr529-join-the-builders.png | https://github.com/ArcBlock/arcblock-site | 2026-09-10T02:53:56Z | wangshijun@wangshijun-mac-studio |
 | did-issue220-with-logo.png | https://github.com/ArcBlock/arcblock-site | 2026-09-13T00:43:52Z | wangshijun@wangshijun-mac-studio |
+| did-issue220-without-logo.png | https://github.com/ArcBlock/arcblock-site | 2026-09-13T00:44:18Z | wangshijun@wangshijun-mac-studio |
