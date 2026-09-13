@@ -4,3 +4,4 @@
 |---|---|---|---|
 | 20260913-105144-quick-capture-more-overview.png | https://github.com/ArcBlock/aside/pull/1652 | 2026-09-13T10:51:48Z | codex-pr-update |
 | 20260913-105204-quick-capture-current-location-loading.png | https://github.com/ArcBlock/aside/pull/1652 | 2026-09-13T10:52:06Z | codex-pr-update |
+| 20260913-105222-quick-capture-choose-location-reuse.png | https://github.com/ArcBlock/aside/pull/1652 | 2026-09-13T10:52:24Z | codex-pr-update |
