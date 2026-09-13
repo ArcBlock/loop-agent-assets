@@ -8,3 +8,4 @@
 | 20260913-123711-weather-removed.jpg | https://github.com/ArcBlock/aside/pull/1657 | 2026-09-13T12:37:14Z | nategu@Nate-Mac-Pro |
 | 20260913-123721-location-removed.jpg | https://github.com/ArcBlock/aside/pull/1657 | 2026-09-13T12:37:23Z | nategu@Nate-Mac-Pro |
 | 20260913-123730-cancel-keeps-place.jpg | https://github.com/ArcBlock/aside/pull/1657 | 2026-09-13T12:37:33Z | nategu@Nate-Mac-Pro |
+| 20260913-123740-unavailable-still-saves.jpg | https://github.com/ArcBlock/aside/pull/1657 | 2026-09-13T12:37:43Z | nategu@Nate-Mac-Pro |
