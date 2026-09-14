@@ -135,3 +135,4 @@
 | issue-1692-quick-capture-xhs-paste.jpg | https://github.com/ArcBlock/aside | 2026-09-14T07:51:44Z | nategu@Nate-Mac-Pro |
 | epic-1671-new-capture-more.jpg | https://github.com/ArcBlock/aside | 2026-09-14T08:16:09Z | nategu@Nate-Mac-Pro |
 | epic-1671-edit-restores-more.jpg | https://github.com/ArcBlock/aside | 2026-09-14T08:16:18Z | nategu@Nate-Mac-Pro |
+| issue-1692-stale-tag-save-error.jpg | https://github.com/ArcBlock/aside | 2026-09-14T08:28:42Z | nategu@Nate-Mac-Pro |
