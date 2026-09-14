@@ -3,3 +3,4 @@
 | file | source | uploaded | by |
 |---|---|---|---|
 | 20260914-133359-empty-mascots-brand-gallery.png | https://github.com/ArcBlock/aside/pull/1706 | 2026-09-14T13:34:02Z | nategu@Nate-Mac-Pro |
+| 20260914-133421-empty-mascots-page-context.png | https://github.com/ArcBlock/aside/pull/1706 | 2026-09-14T13:34:24Z | nategu@Nate-Mac-Pro |
