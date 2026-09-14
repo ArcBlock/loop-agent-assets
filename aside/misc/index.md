@@ -138,3 +138,4 @@
 | issue-1692-stale-tag-save-error.jpg | https://github.com/ArcBlock/aside | 2026-09-14T08:28:42Z | nategu@Nate-Mac-Pro |
 | aside/issue-1702/regular-collection-empty-no-desc.jpg | https://github.com/ArcBlock/aside | 2026-09-14T13:14:04Z | nategu@Nate-Mac-Pro |
 | aside/issue-1702/edit-note-attachments-failed.jpg | https://github.com/ArcBlock/aside | 2026-09-14T13:30:54Z | nategu@Nate-Mac-Pro |
+| aside/issue-1702/edit-note-item-detail-photo-ok.jpg | https://github.com/ArcBlock/aside | 2026-09-14T13:31:03Z | nategu@Nate-Mac-Pro |
