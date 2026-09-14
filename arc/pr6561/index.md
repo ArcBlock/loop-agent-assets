@@ -9,3 +9,4 @@
 | 20260914-095750-todo-home.png | https://github.com/ArcBlock/arc/pull/6561 | 2026-09-14T09:57:50Z | wangshijun@wangshijun-mac-studio |
 | 20260914-095757-agent-chat.gif | https://github.com/ArcBlock/arc/pull/6561 | 2026-09-14T09:57:57Z | wangshijun@wangshijun-mac-studio |
 | 20260914-095805-todo-create.gif | https://github.com/ArcBlock/arc/pull/6561 | 2026-09-14T09:58:05Z | wangshijun@wangshijun-mac-studio |
+| 20260914-095812-todo-home.gif | https://github.com/ArcBlock/arc/pull/6561 | 2026-09-14T09:58:12Z | wangshijun@wangshijun-mac-studio |
