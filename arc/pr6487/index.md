@@ -6,3 +6,4 @@
 | 20260914-191302-ui-verify-work-board-feed.png | https://github.com/ArcBlock/arc/pull/6487 | 2026-09-14T19:13:02Z | robmao@Roberts-Mac-mini-M4-Pro-7 |
 | 20260914-191307-ui-verify-work-board-inbox.png | https://github.com/ArcBlock/arc/pull/6487 | 2026-09-14T19:13:07Z | robmao@Roberts-Mac-mini-M4-Pro-7 |
 | 20260914-191312-ui-verify-work-board-overview.png | https://github.com/ArcBlock/arc/pull/6487 | 2026-09-14T19:13:12Z | robmao@Roberts-Mac-mini-M4-Pro-7 |
+| 20260914-191318-ui-verify-work-board-peer-details.png | https://github.com/ArcBlock/arc/pull/6487 | 2026-09-14T19:13:18Z | robmao@Roberts-Mac-mini-M4-Pro-7 |
