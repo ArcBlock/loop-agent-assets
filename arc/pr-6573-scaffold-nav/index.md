@@ -12,3 +12,4 @@
 | 20260914-232852-ui-verify-6573-07-menu-menu-admin-settings-target.png | https://github.com/ArcBlock/arc | 2026-09-14T23:28:52Z | wangshijun@wangshijun-mac-studio |
 | 20260914-232900-ui-verify-6573-08-footer-footer-placement-home.png | https://github.com/ArcBlock/arc | 2026-09-14T23:29:00Z | wangshijun@wangshijun-mac-studio |
 | 20260914-232908-ui-verify-6573-09-footer-footer-placement-support.png | https://github.com/ArcBlock/arc | 2026-09-14T23:29:08Z | wangshijun@wangshijun-mac-studio |
+| 20260914-232916-ui-verify-6573-10-footer-footer-placement-settings.png | https://github.com/ArcBlock/arc | 2026-09-14T23:29:16Z | wangshijun@wangshijun-mac-studio |
