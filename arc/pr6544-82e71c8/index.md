@@ -9,3 +9,4 @@
 | 20260914-053633-ui-verify-nimbus-home.gif | https://github.com/ArcBlock/arc/pull/6544-82e71c8 | 2026-09-14T05:36:33Z | wangshijun@wangshijun-mac-studio |
 | 20260914-053643-ui-verify-scaffold-overview.gif | https://github.com/ArcBlock/arc/pull/6544-82e71c8 | 2026-09-14T05:36:43Z | wangshijun@wangshijun-mac-studio |
 | 20260914-053654-ui-verify-scaffold-website-entry.gif | https://github.com/ArcBlock/arc/pull/6544-82e71c8 | 2026-09-14T05:36:54Z | wangshijun@wangshijun-mac-studio |
+| 20260914-053705-ui-verify-showcase-website-entry.gif | https://github.com/ArcBlock/arc/pull/6544-82e71c8 | 2026-09-14T05:37:05Z | wangshijun@wangshijun-mac-studio |
