@@ -16,3 +16,4 @@
 | 20260914-192328-board-inbox.png | https://github.com/ArcBlock/arc/pull/6487 | 2026-09-14T19:23:28Z | robmao@Roberts-Mac-mini-M4-Pro-7 |
 | 20260914-192334-board-new-click.png | https://github.com/ArcBlock/arc/pull/6487 | 2026-09-14T19:23:34Z | robmao@Roberts-Mac-mini-M4-Pro-7 |
 | 20260914-192338-board-peer-detail.png | https://github.com/ArcBlock/arc/pull/6487 | 2026-09-14T19:23:38Z | robmao@Roberts-Mac-mini-M4-Pro-7 |
+| 20260914-192344-board-peers.png | https://github.com/ArcBlock/arc/pull/6487 | 2026-09-14T19:23:44Z | robmao@Roberts-Mac-mini-M4-Pro-7 |
