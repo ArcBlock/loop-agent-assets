@@ -9,3 +9,4 @@
 | 20260914-232828-ui-verify-6573-04-header-cta-header-action-launch-assistant.png | https://github.com/ArcBlock/arc | 2026-09-14T23:28:28Z | wangshijun@wangshijun-mac-studio |
 | 20260914-232836-ui-verify-6573-05-menu-menu-customer-ops-support-target.png | https://github.com/ArcBlock/arc | 2026-09-14T23:28:36Z | wangshijun@wangshijun-mac-studio |
 | 20260914-232844-ui-verify-6573-06-menu-menu-workspace-workflows-dashboard-target.png | https://github.com/ArcBlock/arc | 2026-09-14T23:28:44Z | wangshijun@wangshijun-mac-studio |
+| 20260914-232852-ui-verify-6573-07-menu-menu-admin-settings-target.png | https://github.com/ArcBlock/arc | 2026-09-14T23:28:52Z | wangshijun@wangshijun-mac-studio |
