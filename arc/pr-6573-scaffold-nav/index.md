@@ -16,3 +16,4 @@
 | 20260914-232924-ui-verify-6573-11-header-header-nav-app.png | https://github.com/ArcBlock/arc | 2026-09-14T23:29:24Z | wangshijun@wangshijun-mac-studio |
 | 20260914-232932-ui-verify-6573-12-settings-sidebar-workspace-review-flow.png | https://github.com/ArcBlock/arc | 2026-09-14T23:29:32Z | wangshijun@wangshijun-mac-studio |
 | 20260914-232940-ui-verify-6573-module-switch.gif | https://github.com/ArcBlock/arc | 2026-09-14T23:29:40Z | wangshijun@wangshijun-mac-studio |
+| 20260914-232950-ui-verify-6573-module-switch.webm | https://github.com/ArcBlock/arc | 2026-09-14T23:29:50Z | wangshijun@wangshijun-mac-studio |
