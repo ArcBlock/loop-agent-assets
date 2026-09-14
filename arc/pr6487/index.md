@@ -12,3 +12,4 @@
 | 20260914-191334-ui-verify-work-board-stats.png | https://github.com/ArcBlock/arc/pull/6487 | 2026-09-14T19:13:34Z | robmao@Roberts-Mac-mini-M4-Pro-7 |
 | 20260914-192313-board-agents-peers.png | https://github.com/ArcBlock/arc/pull/6487 | 2026-09-14T19:23:13Z | robmao@Roberts-Mac-mini-M4-Pro-7 |
 | 20260914-192318-board-agents.png | https://github.com/ArcBlock/arc/pull/6487 | 2026-09-14T19:23:18Z | robmao@Roberts-Mac-mini-M4-Pro-7 |
+| 20260914-192323-board-home.png | https://github.com/ArcBlock/arc/pull/6487 | 2026-09-14T19:23:23Z | robmao@Roberts-Mac-mini-M4-Pro-7 |
