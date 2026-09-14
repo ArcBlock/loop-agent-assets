@@ -136,3 +136,4 @@
 | epic-1671-new-capture-more.jpg | https://github.com/ArcBlock/aside | 2026-09-14T08:16:09Z | nategu@Nate-Mac-Pro |
 | epic-1671-edit-restores-more.jpg | https://github.com/ArcBlock/aside | 2026-09-14T08:16:18Z | nategu@Nate-Mac-Pro |
 | issue-1692-stale-tag-save-error.jpg | https://github.com/ArcBlock/aside | 2026-09-14T08:28:42Z | nategu@Nate-Mac-Pro |
+| aside/issue-1702/regular-collection-empty-no-desc.jpg | https://github.com/ArcBlock/aside | 2026-09-14T13:14:04Z | nategu@Nate-Mac-Pro |
