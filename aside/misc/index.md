@@ -134,3 +134,4 @@
 | issue-1671-edit-quick-capture-more-empty.jpg | https://github.com/ArcBlock/aside | 2026-09-14T06:03:19Z | nategu@Nate-Mac-Pro |
 | issue-1692-quick-capture-xhs-paste.jpg | https://github.com/ArcBlock/aside | 2026-09-14T07:51:44Z | nategu@Nate-Mac-Pro |
 | epic-1671-new-capture-more.jpg | https://github.com/ArcBlock/aside | 2026-09-14T08:16:09Z | nategu@Nate-Mac-Pro |
+| epic-1671-edit-restores-more.jpg | https://github.com/ArcBlock/aside | 2026-09-14T08:16:18Z | nategu@Nate-Mac-Pro |
