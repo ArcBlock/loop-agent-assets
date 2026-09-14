@@ -132,3 +132,4 @@
 | aside/issue-1618/edit-collection-no-date.jpg | https://github.com/ArcBlock/aside | 2026-09-12T08:36:23Z | nategu@Nate-Mac-Pro |
 | aside/issue-1618/create-collection-date-place.jpg | https://github.com/ArcBlock/aside | 2026-09-12T08:36:32Z | nategu@Nate-Mac-Pro |
 | issue-1671-edit-quick-capture-more-empty.jpg | https://github.com/ArcBlock/aside | 2026-09-14T06:03:19Z | nategu@Nate-Mac-Pro |
+| issue-1692-quick-capture-xhs-paste.jpg | https://github.com/ArcBlock/aside | 2026-09-14T07:51:44Z | nategu@Nate-Mac-Pro |
