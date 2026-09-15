@@ -9,3 +9,4 @@
 | 6623-aup-closed-desktop.png | https://github.com/ArcBlock/arc/issues/6623 | 2026-09-15T17:13:36Z | wangshijun@wangshijun-mac-studio |
 | 6623-aup-comments-desktop.png | https://github.com/ArcBlock/arc/issues/6623 | 2026-09-15T17:13:53Z | wangshijun@wangshijun-mac-studio |
 | 6623-aup-open-desktop.png | https://github.com/ArcBlock/arc/issues/6623 | 2026-09-15T17:14:09Z | wangshijun@wangshijun-mac-studio |
+| 6623-aup-open-mobile.png | https://github.com/ArcBlock/arc/issues/6623 | 2026-09-15T17:14:25Z | wangshijun@wangshijun-mac-studio |
