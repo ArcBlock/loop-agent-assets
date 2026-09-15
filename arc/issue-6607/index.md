@@ -4,3 +4,4 @@
 |---|---|---|---|
 | 6607-local-list-seeded.png | https://github.com/ArcBlock/arc/issues/6607 | 2026-09-15T14:52:39Z | wangshijun@wangshijun-mac-studio |
 | 6607-local-detail-seeded.png | https://github.com/ArcBlock/arc/issues/6607 | 2026-09-15T14:52:50Z | wangshijun@wangshijun-mac-studio |
+| 6607-local-app-aup.png | https://github.com/ArcBlock/arc/issues/6607 | 2026-09-15T14:53:01Z | wangshijun@wangshijun-mac-studio |
