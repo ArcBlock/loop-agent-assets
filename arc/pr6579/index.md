@@ -11,3 +11,4 @@
 | 20260915-004420-work-board-inbox.png | https://github.com/ArcBlock/arc/pull/6579 | 2026-09-15T00:44:20Z | robmao@Roberts-Mac-mini-M4-Pro-7 |
 | 20260915-004426-work-board-overview.png | https://github.com/ArcBlock/arc/pull/6579 | 2026-09-15T00:44:26Z | robmao@Roberts-Mac-mini-M4-Pro-7 |
 | 20260915-004431-work-board-peers.png | https://github.com/ArcBlock/arc/pull/6579 | 2026-09-15T00:44:31Z | robmao@Roberts-Mac-mini-M4-Pro-7 |
+| 20260915-004436-work-board-settings.png | https://github.com/ArcBlock/arc/pull/6579 | 2026-09-15T00:44:36Z | robmao@Roberts-Mac-mini-M4-Pro-7 |
