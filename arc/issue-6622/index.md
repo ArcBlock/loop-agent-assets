@@ -50,3 +50,4 @@
 | 6622-v4-aup-error.png | https://github.com/ArcBlock/arc/issues/6622 | 2026-09-15T21:57:09Z | wangshijun@wangshijun-mac-studio |
 | 6622-v4-aup-guest.png | https://github.com/ArcBlock/arc/issues/6622 | 2026-09-15T21:57:20Z | wangshijun@wangshijun-mac-studio |
 | 6622-v4-aup-lightbox.png | https://github.com/ArcBlock/arc/issues/6622 | 2026-09-15T21:57:30Z | wangshijun@wangshijun-mac-studio |
+| 6622-v4-aup-error-note.png | https://github.com/ArcBlock/arc/issues/6622 | 2026-09-15T21:57:40Z | wangshijun@wangshijun-mac-studio |
