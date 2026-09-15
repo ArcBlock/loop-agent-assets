@@ -34,3 +34,4 @@
 | 6622-v3-aup-nested-400.png | https://github.com/ArcBlock/arc/issues/6622 | 2026-09-15T20:54:26Z | wangshijun@wangshijun-mac-studio |
 | 6622-v3-aup-error.png | https://github.com/ArcBlock/arc/issues/6622 | 2026-09-15T20:54:37Z | wangshijun@wangshijun-mac-studio |
 | 6622-v3-aup-guest.png | https://github.com/ArcBlock/arc/issues/6622 | 2026-09-15T20:54:47Z | wangshijun@wangshijun-mac-studio |
+| 6622-v3-aup-lightbox.png | https://github.com/ArcBlock/arc/issues/6622 | 2026-09-15T20:54:58Z | wangshijun@wangshijun-mac-studio |
