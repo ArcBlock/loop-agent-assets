@@ -40,3 +40,4 @@
 | 6622-v3-wd-uploaded.png | https://github.com/ArcBlock/arc/issues/6622 | 2026-09-15T20:55:28Z | wangshijun@wangshijun-mac-studio |
 | 6622-v3-wd-media.png | https://github.com/ArcBlock/arc/issues/6622 | 2026-09-15T20:55:39Z | wangshijun@wangshijun-mac-studio |
 | 6622-v3-wd-nested-400.png | https://github.com/ArcBlock/arc/issues/6622 | 2026-09-15T20:55:50Z | wangshijun@wangshijun-mac-studio |
+| 6622-v3-wd-error.png | https://github.com/ArcBlock/arc/issues/6622 | 2026-09-15T20:56:00Z | wangshijun@wangshijun-mac-studio |
