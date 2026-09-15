@@ -1,0 +1,5 @@
+# arc/pr6579
+
+| file | source | uploaded | by |
+|---|---|---|---|
+| 20260915-002337-work-board-agents.png | https://github.com/ArcBlock/arc/pull/6579 | 2026-09-15T00:23:37Z | robmao@Roberts-Mac-mini-M4-Pro-7 |
