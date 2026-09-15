@@ -14,3 +14,4 @@
 | 6623-wd-closed-mobile-v2.png | https://github.com/ArcBlock/arc/issues/6623 | 2026-09-15T17:56:27Z | wangshijun@wangshijun-mac-studio |
 | 6623-wd-open-desktop-v2.png | https://github.com/ArcBlock/arc/issues/6623 | 2026-09-15T17:56:43Z | wangshijun@wangshijun-mac-studio |
 | 6623-wd-open-mobile-v2.png | https://github.com/ArcBlock/arc/issues/6623 | 2026-09-15T17:56:59Z | wangshijun@wangshijun-mac-studio |
+| 6623-aup-closed-desktop-v2.png | https://github.com/ArcBlock/arc/issues/6623 | 2026-09-15T17:57:15Z | wangshijun@wangshijun-mac-studio |
