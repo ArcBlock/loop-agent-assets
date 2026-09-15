@@ -3,3 +3,4 @@
 | file | source | uploaded | by |
 |---|---|---|---|
 | 20260915-131505-safarizh-text-before-after.png | https://github.com/ArcBlock/aside/issues/1756 | 2026-09-15T13:15:07Z | nategu@Nate-Mac-Pro |
+| 20260915-131553-howtosave-zh-four-surfaces.png | https://github.com/ArcBlock/aside/issues/1756 | 2026-09-15T13:15:56Z | nategu@Nate-Mac-Pro |
