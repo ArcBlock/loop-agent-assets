@@ -12,3 +12,4 @@
 | 6622-wd-uploading.png | https://github.com/ArcBlock/arc/issues/6622 | 2026-09-15T19:35:35Z | wangshijun@wangshijun-mac-studio |
 | 6622-wd-uploaded.png | https://github.com/ArcBlock/arc/issues/6622 | 2026-09-15T19:35:45Z | wangshijun@wangshijun-mac-studio |
 | 6622-wd-media.png | https://github.com/ArcBlock/arc/issues/6622 | 2026-09-15T19:35:56Z | wangshijun@wangshijun-mac-studio |
+| 6622-wd-nested-400.png | https://github.com/ArcBlock/arc/issues/6622 | 2026-09-15T19:36:06Z | wangshijun@wangshijun-mac-studio |
