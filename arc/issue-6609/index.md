@@ -5,3 +5,4 @@
 | comments-markdown-format-desktop.png | https://github.com/ArcBlock/arc/issues/6609 | 2026-09-15T10:49:07Z | wangshijun@wangshijun-mac-studio |
 | comments-markdown-format-mobile.png | https://github.com/ArcBlock/arc/issues/6609 | 2026-09-15T10:49:17Z | wangshijun@wangshijun-mac-studio |
 | comments-markdown-format-desktop-v2.png | https://github.com/ArcBlock/arc/issues/6609 | 2026-09-15T11:31:28Z | wangshijun@wangshijun-mac-studio |
+| comments-markdown-format-mobile-v2.png | https://github.com/ArcBlock/arc/issues/6609 | 2026-09-15T11:31:41Z | wangshijun@wangshijun-mac-studio |
