@@ -9,3 +9,4 @@
 | 6620-aup-desktop-v2.png | https://github.com/ArcBlock/arc/issues/6620 | 2026-09-15T11:48:29Z | wangshijun@wangshijun-mac-studio |
 | 6620-aup-mobile-v2.png | https://github.com/ArcBlock/arc/issues/6620 | 2026-09-15T11:48:40Z | wangshijun@wangshijun-mac-studio |
 | 6620-wd-desktop-v2.png | https://github.com/ArcBlock/arc/issues/6620 | 2026-09-15T11:48:51Z | wangshijun@wangshijun-mac-studio |
+| 6620-wd-mobile-v2.png | https://github.com/ArcBlock/arc/issues/6620 | 2026-09-15T11:49:02Z | wangshijun@wangshijun-mac-studio |
