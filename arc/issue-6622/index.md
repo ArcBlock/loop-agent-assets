@@ -54,3 +54,4 @@
 | 6622-v4-wd-composer.png | https://github.com/ArcBlock/arc/issues/6622 | 2026-09-15T21:57:51Z | wangshijun@wangshijun-mac-studio |
 | 6622-v4-wd-uploading.png | https://github.com/ArcBlock/arc/issues/6622 | 2026-09-15T21:58:01Z | wangshijun@wangshijun-mac-studio |
 | 6622-v4-wd-uploaded.png | https://github.com/ArcBlock/arc/issues/6622 | 2026-09-15T21:58:14Z | wangshijun@wangshijun-mac-studio |
+| 6622-v4-wd-media.png | https://github.com/ArcBlock/arc/issues/6622 | 2026-09-15T21:58:24Z | wangshijun@wangshijun-mac-studio |
