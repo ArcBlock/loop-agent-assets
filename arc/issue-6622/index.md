@@ -23,3 +23,4 @@
 | 6622-v2-aup-guest.png | https://github.com/ArcBlock/arc/issues/6622 | 2026-09-15T20:05:46Z | wangshijun@wangshijun-mac-studio |
 | 6622-v2-wd-composer.png | https://github.com/ArcBlock/arc/issues/6622 | 2026-09-15T20:05:56Z | wangshijun@wangshijun-mac-studio |
 | 6622-v2-wd-uploading.png | https://github.com/ArcBlock/arc/issues/6622 | 2026-09-15T20:06:06Z | wangshijun@wangshijun-mac-studio |
+| 6622-v2-wd-uploaded.png | https://github.com/ArcBlock/arc/issues/6622 | 2026-09-15T20:06:17Z | wangshijun@wangshijun-mac-studio |
