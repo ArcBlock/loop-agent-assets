@@ -46,3 +46,4 @@
 | 6622-v4-aup-composer.png | https://github.com/ArcBlock/arc/issues/6622 | 2026-09-15T21:56:26Z | wangshijun@wangshijun-mac-studio |
 | 6622-v4-aup-uploading.png | https://github.com/ArcBlock/arc/issues/6622 | 2026-09-15T21:56:36Z | wangshijun@wangshijun-mac-studio |
 | 6622-v4-aup-media.png | https://github.com/ArcBlock/arc/issues/6622 | 2026-09-15T21:56:47Z | wangshijun@wangshijun-mac-studio |
+| 6622-v4-aup-nested-400.png | https://github.com/ArcBlock/arc/issues/6622 | 2026-09-15T21:56:59Z | wangshijun@wangshijun-mac-studio |
