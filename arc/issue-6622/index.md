@@ -38,3 +38,4 @@
 | 6622-v3-wd-composer.png | https://github.com/ArcBlock/arc/issues/6622 | 2026-09-15T20:55:08Z | wangshijun@wangshijun-mac-studio |
 | 6622-v3-wd-uploading.png | https://github.com/ArcBlock/arc/issues/6622 | 2026-09-15T20:55:18Z | wangshijun@wangshijun-mac-studio |
 | 6622-v3-wd-uploaded.png | https://github.com/ArcBlock/arc/issues/6622 | 2026-09-15T20:55:28Z | wangshijun@wangshijun-mac-studio |
+| 6622-v3-wd-media.png | https://github.com/ArcBlock/arc/issues/6622 | 2026-09-15T20:55:39Z | wangshijun@wangshijun-mac-studio |
