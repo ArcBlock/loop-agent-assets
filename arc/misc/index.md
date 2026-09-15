@@ -204,3 +204,4 @@
 | 20260911-120951-todo-live2.png | https://github.com/ArcBlock/arc | 2026-09-11T12:09:51Z | box@cursor |
 | work-board-admin-nav-ref.png | https://github.com/ArcBlock/arc | 2026-09-12T05:23:29Z | robmao@Roberts-Mac-mini-M4-Pro-7 |
 | 20260915-034435-overview.png | https://github.com/ArcBlock/arc | 2026-09-15T03:44:35Z | robmao@MiniProsperHome |
+| 20260915-034440-agents.png | https://github.com/ArcBlock/arc | 2026-09-15T03:44:40Z | robmao@MiniProsperHome |
