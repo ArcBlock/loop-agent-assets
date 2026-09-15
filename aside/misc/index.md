@@ -141,3 +141,4 @@
 | aside/issue-1702/edit-note-item-detail-photo-ok.jpg | https://github.com/ArcBlock/aside | 2026-09-14T13:31:03Z | nategu@Nate-Mac-Pro |
 | aside-home-sync-error-triangle.jpg | https://github.com/ArcBlock/aside | 2026-09-15T02:42:18Z | nategu@Nate-Mac-Pro |
 | aside/issue-1720/organize-last-collection-blank.jpg | https://github.com/ArcBlock/aside | 2026-09-15T02:44:02Z | nategu@Nate-Mac-Pro |
+| aside/issue-1720/share-in-feed-count-stale.jpg | https://github.com/ArcBlock/aside | 2026-09-15T02:47:48Z | nategu@Nate-Mac-Pro |
