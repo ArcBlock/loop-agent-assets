@@ -7,3 +7,4 @@
 | 6621-3-inserted-markdown-write.png | https://github.com/ArcBlock/arc/issues/6621 | 2026-09-15T17:29:15Z | wangshijun@wangshijun-mac-studio |
 | 6621-3b-preview-renders-image.png | https://github.com/ArcBlock/arc/issues/6621 | 2026-09-15T17:29:35Z | wangshijun@wangshijun-mac-studio |
 | 6621-4-error-line-retry.png | https://github.com/ArcBlock/arc/issues/6621 | 2026-09-15T17:29:49Z | wangshijun@wangshijun-mac-studio |
+| 6621-5-guest-drop-login-prompt.png | https://github.com/ArcBlock/arc/issues/6621 | 2026-09-15T17:30:04Z | wangshijun@wangshijun-mac-studio |
