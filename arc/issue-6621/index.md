@@ -11,3 +11,4 @@
 | 6621-6-mobile-400px.png | https://github.com/ArcBlock/arc/issues/6621 | 2026-09-15T17:30:19Z | wangshijun@wangshijun-mac-studio |
 | 6621-1-editor-toolbar-idle-r2.png | https://github.com/ArcBlock/arc/issues/6621 | 2026-09-15T18:01:23Z | wangshijun@wangshijun-mac-studio |
 | 6621-2-uploading-two-files-r2.png | https://github.com/ArcBlock/arc/issues/6621 | 2026-09-15T18:01:38Z | wangshijun@wangshijun-mac-studio |
+| 6621-3-inserted-markdown-write-r2.png | https://github.com/ArcBlock/arc/issues/6621 | 2026-09-15T18:01:53Z | wangshijun@wangshijun-mac-studio |
