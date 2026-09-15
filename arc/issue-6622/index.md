@@ -59,3 +59,4 @@
 | 6622-v4-wd-error.png | https://github.com/ArcBlock/arc/issues/6622 | 2026-09-15T21:58:46Z | wangshijun@wangshijun-mac-studio |
 | 6622-v4-wd-guest.png | https://github.com/ArcBlock/arc/issues/6622 | 2026-09-15T21:58:57Z | wangshijun@wangshijun-mac-studio |
 | 6622-v4-wd-lightbox.png | https://github.com/ArcBlock/arc/issues/6622 | 2026-09-15T21:59:07Z | wangshijun@wangshijun-mac-studio |
+| 6622-v4-wd-error-note.png | https://github.com/ArcBlock/arc/issues/6622 | 2026-09-15T21:59:17Z | wangshijun@wangshijun-mac-studio |
