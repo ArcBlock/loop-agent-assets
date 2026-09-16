@@ -9,3 +9,4 @@
 | 20260916-193217-en-use-cases-1440.png | https://github.com/ArcBlock/aside | 2026-09-16T19:32:17Z | nategu@Nate-Mac-Pro |
 | 20260916-193226-en-use-cases-390.png | https://github.com/ArcBlock/aside | 2026-09-16T19:32:26Z | nategu@Nate-Mac-Pro |
 | 20260916-193234-zh-use-cases-1440.png | https://github.com/ArcBlock/aside | 2026-09-16T19:32:34Z | nategu@Nate-Mac-Pro |
+| 20260916-193243-zh-use-cases-390.png | https://github.com/ArcBlock/aside | 2026-09-16T19:32:43Z | nategu@Nate-Mac-Pro |
