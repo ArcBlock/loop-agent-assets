@@ -218,3 +218,4 @@
 | 20260916-024935-01-editor-preview.png | https://github.com/ArcBlock/arc | 2026-09-16T02:49:35Z | wangshijun@wangshijun-mac-studio |
 | 20260916-024946-02-ssr-lightbox-open.png | https://github.com/ArcBlock/arc | 2026-09-16T02:49:46Z | wangshijun@wangshijun-mac-studio |
 | 20260916-024956-03-aup-detail-comment-image.png | https://github.com/ArcBlock/arc | 2026-09-16T02:49:56Z | wangshijun@wangshijun-mac-studio |
+| 20260916-025007-04-aup-comment-rendered.png | https://github.com/ArcBlock/arc | 2026-09-16T02:50:07Z | wangshijun@wangshijun-mac-studio |
