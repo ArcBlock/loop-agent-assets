@@ -13,3 +13,4 @@
 | 20260916-171725-en-compare-1440.png | https://github.com/ArcBlock/aside | 2026-09-16T17:17:25Z | nategu@Nate-Mac-Pro |
 | 20260916-171734-en-compare-390.png | https://github.com/ArcBlock/aside | 2026-09-16T17:17:34Z | nategu@Nate-Mac-Pro |
 | 20260916-171743-en-import-1440.png | https://github.com/ArcBlock/aside | 2026-09-16T17:17:43Z | nategu@Nate-Mac-Pro |
+| 20260916-171751-en-import-390.png | https://github.com/ArcBlock/aside | 2026-09-16T17:17:51Z | nategu@Nate-Mac-Pro |
