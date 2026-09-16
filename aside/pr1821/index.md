@@ -6,3 +6,4 @@
 | 20260916-193414-en-compare-apple-notes-390.png | https://github.com/ArcBlock/aside/pull/1821 | 2026-09-16T19:34:16Z | nategu@Nate-Mac-Pro |
 | 20260916-193424-en-compare-dir-1440.png | https://github.com/ArcBlock/aside/pull/1821 | 2026-09-16T19:34:26Z | nategu@Nate-Mac-Pro |
 | 20260916-193435-en-compare-dir-390.png | https://github.com/ArcBlock/aside/pull/1821 | 2026-09-16T19:34:37Z | nategu@Nate-Mac-Pro |
+| 20260916-193444-en-compare-pocket-1440.png | https://github.com/ArcBlock/aside/pull/1821 | 2026-09-16T19:34:47Z | nategu@Nate-Mac-Pro |
