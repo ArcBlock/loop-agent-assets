@@ -8,3 +8,4 @@
 | 20260916-203710-en-travel-390.png | https://github.com/ArcBlock/aside | 2026-09-16T20:37:10Z | nategu@Nate-Mac-Pro |
 | 20260916-203718-share-en.png | https://github.com/ArcBlock/aside | 2026-09-16T20:37:18Z | nategu@Nate-Mac-Pro |
 | 20260916-203727-zh-share-1440.png | https://github.com/ArcBlock/aside | 2026-09-16T20:37:27Z | nategu@Nate-Mac-Pro |
+| 20260916-203736-zh-share-390.png | https://github.com/ArcBlock/aside | 2026-09-16T20:37:36Z | nategu@Nate-Mac-Pro |
