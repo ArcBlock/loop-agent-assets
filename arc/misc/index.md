@@ -217,3 +217,4 @@
 | 20260915-164928-pr6659-r3-todo-home.png | https://github.com/ArcBlock/arc | 2026-09-15T16:49:28Z | wangshijun@wangshijun-mac-studio |
 | 20260916-024935-01-editor-preview.png | https://github.com/ArcBlock/arc | 2026-09-16T02:49:35Z | wangshijun@wangshijun-mac-studio |
 | 20260916-024946-02-ssr-lightbox-open.png | https://github.com/ArcBlock/arc | 2026-09-16T02:49:46Z | wangshijun@wangshijun-mac-studio |
+| 20260916-024956-03-aup-detail-comment-image.png | https://github.com/ArcBlock/arc | 2026-09-16T02:49:56Z | wangshijun@wangshijun-mac-studio |
