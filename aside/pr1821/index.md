@@ -9,3 +9,4 @@
 | 20260916-193444-en-compare-pocket-1440.png | https://github.com/ArcBlock/aside/pull/1821 | 2026-09-16T19:34:47Z | nategu@Nate-Mac-Pro |
 | 20260916-193455-en-compare-pocket-390.png | https://github.com/ArcBlock/aside/pull/1821 | 2026-09-16T19:34:58Z | nategu@Nate-Mac-Pro |
 | 20260916-193507-zh-compare-pocket-1440.png | https://github.com/ArcBlock/aside/pull/1821 | 2026-09-16T19:35:09Z | nategu@Nate-Mac-Pro |
+| 20260916-193517-zh-compare-pocket-390.png | https://github.com/ArcBlock/aside/pull/1821 | 2026-09-16T19:35:19Z | nategu@Nate-Mac-Pro |
