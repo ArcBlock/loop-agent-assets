@@ -16,3 +16,4 @@
 | 20260917-073716-ui-verify-discuss-kit-home.webm | https://github.com/ArcBlock/arc/pull/6735 | 2026-09-17T07:37:16Z | wangshijun@wangshijun-mac-studio |
 | 20260917-073726-ui-verify-discuss-kit-post-welcome.webm | https://github.com/ArcBlock/arc/pull/6735 | 2026-09-17T07:37:26Z | wangshijun@wangshijun-mac-studio |
 | 20260917-073737-ui-verify-discuss-kit-search-welcome.webm | https://github.com/ArcBlock/arc/pull/6735 | 2026-09-17T07:37:37Z | wangshijun@wangshijun-mac-studio |
+| 20260917-073747-ui-verify-discuss-kit-zh.webm | https://github.com/ArcBlock/arc/pull/6735 | 2026-09-17T07:37:47Z | wangshijun@wangshijun-mac-studio |
