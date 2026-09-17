@@ -148,3 +148,4 @@
 | aside/issue-1720/quick-capture-more-design.png | https://github.com/ArcBlock/aside | 2026-09-15T02:58:41Z | nategu@Nate-Mac-Pro |
 | aside-home-item-share-menu.jpg | https://github.com/ArcBlock/aside | 2026-09-15T03:05:35Z | nategu@Nate-Mac-Pro |
 | aside/issue-1720/zh-address-western-order.jpg | https://github.com/ArcBlock/aside | 2026-09-15T03:15:45Z | nategu@Nate-Mac-Pro |
+| 20260917-item-tags-xmark-close.jpg | https://github.com/ArcBlock/aside | 2026-09-17T02:12:15Z | nategu@Nate-Mac-Pro |
