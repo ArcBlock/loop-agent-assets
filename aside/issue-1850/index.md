@@ -9,3 +9,4 @@
 | 03-root-saves-no-overview.png | https://github.com/ArcBlock/aside/issues/1850 | 2026-09-17T13:43:00Z | nategu@Nate-Mac-Pro |
 | 04-children-tab-work.png | https://github.com/ArcBlock/aside/issues/1850 | 2026-09-17T13:43:09Z | nategu@Nate-Mac-Pro |
 | 05-work-children-research.png | https://github.com/ArcBlock/aside/issues/1850 | 2026-09-17T13:43:18Z | nategu@Nate-Mac-Pro |
+| 06-research-leaf-no-tabs.png | https://github.com/ArcBlock/aside/issues/1850 | 2026-09-17T13:43:27Z | nategu@Nate-Mac-Pro |
