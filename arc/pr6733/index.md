@@ -12,3 +12,4 @@
 | 91878-home-desktop.jpg | https://github.com/ArcBlock/arc/pull/6733 | 2026-09-17T08:10:16Z | robmao@MiniProsperHome |
 | 9429-docs-desktop.jpg | https://github.com/ArcBlock/arc/pull/6733 | 2026-09-17T08:45:13Z | robmao@MiniProsperHome |
 | 9429-home-desktop.jpg | https://github.com/ArcBlock/arc/pull/6733 | 2026-09-17T08:45:36Z | robmao@MiniProsperHome |
+| df8-docs-desktop.jpg | https://github.com/ArcBlock/arc/pull/6733 | 2026-09-17T08:55:58Z | robmao@MiniProsperHome |
