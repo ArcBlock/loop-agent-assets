@@ -15,3 +15,4 @@
 | 09-membership-roots-first.png | https://github.com/ArcBlock/aside/issues/1850 | 2026-09-17T13:43:53Z | nategu@Nate-Mac-Pro |
 | 10-after-delete-work-research-promoted.png | https://github.com/ArcBlock/aside/issues/1850 | 2026-09-17T13:44:02Z | nategu@Nate-Mac-Pro |
 | 11-delete-work-confirm.png | https://github.com/ArcBlock/aside/issues/1850 | 2026-09-17T13:44:11Z | nategu@Nate-Mac-Pro |
+| 12-ordinary-no-children-no-tabs.png | https://github.com/ArcBlock/aside/issues/1850 | 2026-09-17T13:44:20Z | nategu@Nate-Mac-Pro |
