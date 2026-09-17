@@ -221,3 +221,4 @@
 | 20260916-025007-04-aup-comment-rendered.png | https://github.com/ArcBlock/arc | 2026-09-16T02:50:07Z | wangshijun@wangshijun-mac-studio |
 | 20260916-025016-05-anon-mobile-400.png | https://github.com/ArcBlock/arc | 2026-09-16T02:50:16Z | wangshijun@wangshijun-mac-studio |
 | discuss-home.png | https://github.com/ArcBlock/arc | 2026-09-17T14:42:15Z | wangshijun@wangshijun-mac-studio |
+| discuss-compose.png | https://github.com/ArcBlock/arc | 2026-09-17T14:42:38Z | wangshijun@wangshijun-mac-studio |
