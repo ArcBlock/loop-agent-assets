@@ -11,3 +11,4 @@
 | 05-work-children-research.png | https://github.com/ArcBlock/aside/issues/1850 | 2026-09-17T13:43:18Z | nategu@Nate-Mac-Pro |
 | 06-research-leaf-no-tabs.png | https://github.com/ArcBlock/aside/issues/1850 | 2026-09-17T13:43:27Z | nategu@Nate-Mac-Pro |
 | 07-organize-add-no-subcollection.png | https://github.com/ArcBlock/aside/issues/1850 | 2026-09-17T13:43:36Z | nategu@Nate-Mac-Pro |
+| 08-more-menu-no-subcollection.png | https://github.com/ArcBlock/aside/issues/1850 | 2026-09-17T13:43:45Z | nategu@Nate-Mac-Pro |
