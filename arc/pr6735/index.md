@@ -14,3 +14,4 @@
 | 20260917-073657-ui-verify-discuss-kit-zh.gif | https://github.com/ArcBlock/arc/pull/6735 | 2026-09-17T07:36:57Z | wangshijun@wangshijun-mac-studio |
 | 20260917-073706-ui-verify-discuss-kit-board-announcements.webm | https://github.com/ArcBlock/arc/pull/6735 | 2026-09-17T07:37:06Z | wangshijun@wangshijun-mac-studio |
 | 20260917-073716-ui-verify-discuss-kit-home.webm | https://github.com/ArcBlock/arc/pull/6735 | 2026-09-17T07:37:16Z | wangshijun@wangshijun-mac-studio |
+| 20260917-073726-ui-verify-discuss-kit-post-welcome.webm | https://github.com/ArcBlock/arc/pull/6735 | 2026-09-17T07:37:26Z | wangshijun@wangshijun-mac-studio |
