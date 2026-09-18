@@ -150,3 +150,4 @@
 | aside/issue-1720/zh-address-western-order.jpg | https://github.com/ArcBlock/aside | 2026-09-15T03:15:45Z | nategu@Nate-Mac-Pro |
 | 20260917-item-tags-xmark-close.jpg | https://github.com/ArcBlock/aside | 2026-09-17T02:12:15Z | nategu@Nate-Mac-Pro |
 | aside/issue-1863/20260918-account-activity-stale-after-import.jpg | https://github.com/ArcBlock/aside | 2026-09-18T01:30:10Z | nategu@Nate-Mac-Pro |
+| 20260918-013256-20260918-import-prepare-safari.jpg | https://github.com/ArcBlock/aside | 2026-09-18T01:32:56Z | nategu@Nate-Mac-Pro |
