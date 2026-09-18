@@ -151,3 +151,4 @@
 | 20260917-item-tags-xmark-close.jpg | https://github.com/ArcBlock/aside | 2026-09-17T02:12:15Z | nategu@Nate-Mac-Pro |
 | aside/issue-1863/20260918-account-activity-stale-after-import.jpg | https://github.com/ArcBlock/aside | 2026-09-18T01:30:10Z | nategu@Nate-Mac-Pro |
 | 20260918-013256-20260918-import-prepare-safari.jpg | https://github.com/ArcBlock/aside | 2026-09-18T01:32:56Z | nategu@Nate-Mac-Pro |
+| 20260918-013305-20260918-import-complete-14.png | https://github.com/ArcBlock/aside | 2026-09-18T01:33:05Z | nategu@Nate-Mac-Pro |
