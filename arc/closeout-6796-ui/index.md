@@ -11,3 +11,4 @@
 | 20260921-144746-02c-cf-detail-comment-reactions.png | https://github.com/ArcBlock/arc | 2026-09-21T14:47:46Z | wangshijun@wangshijun-mac-studio |
 | 20260921-144753-03-cf-dead-slug-404.png | https://github.com/ArcBlock/arc | 2026-09-21T14:47:53Z | wangshijun@wangshijun-mac-studio |
 | 20260921-144800-04a-cf-category-support-page2.png | https://github.com/ArcBlock/arc | 2026-09-21T14:48:00Z | wangshijun@wangshijun-mac-studio |
+| 20260921-144808-04b-cf-tag-aistro-via-301.png | https://github.com/ArcBlock/arc | 2026-09-21T14:48:08Z | wangshijun@wangshijun-mac-studio |
