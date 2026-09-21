@@ -13,3 +13,4 @@
 | 20260921-144800-04a-cf-category-support-page2.png | https://github.com/ArcBlock/arc | 2026-09-21T14:48:00Z | wangshijun@wangshijun-mac-studio |
 | 20260921-144808-04b-cf-tag-aistro-via-301.png | https://github.com/ArcBlock/arc | 2026-09-21T14:48:08Z | wangshijun@wangshijun-mac-studio |
 | 20260921-144816-04c-cf-boards-announcements-301-to-c.png | https://github.com/ArcBlock/arc | 2026-09-21T14:48:16Z | wangshijun@wangshijun-mac-studio |
+| 20260921-144824-05a-cf-search-wallet.png | https://github.com/ArcBlock/arc | 2026-09-21T14:48:24Z | wangshijun@wangshijun-mac-studio |
