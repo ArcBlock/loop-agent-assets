@@ -21,3 +21,4 @@
 | 20260921-144904-07a-cf-anon-new-login-gated.png | https://github.com/ArcBlock/arc | 2026-09-21T14:49:04Z | wangshijun@wangshijun-mac-studio |
 | 20260921-144911-07b-cf-home-after-timeout-503.png | https://github.com/ArcBlock/arc | 2026-09-21T14:49:11Z | wangshijun@wangshijun-mac-studio |
 | 20260921-144919-08a-node-me-private-before.png | https://github.com/ArcBlock/arc | 2026-09-21T14:49:19Z | wangshijun@wangshijun-mac-studio |
+| 20260921-144927-08b-node-private-detail-delete-button.png | https://github.com/ArcBlock/arc | 2026-09-21T14:49:27Z | wangshijun@wangshijun-mac-studio |
