@@ -8,3 +8,4 @@
 | 20260921-053705-discuss-kit-home-cf.png | https://github.com/ArcBlock/arc/pull/6812 | 2026-09-21T05:37:05Z | wangshijun@wangshijun-mac-studio |
 | 20260921-053712-discuss-kit-home.png | https://github.com/ArcBlock/arc/pull/6812 | 2026-09-21T05:37:12Z | wangshijun@wangshijun-mac-studio |
 | 20260921-053719-discuss-kit-post-detail.png | https://github.com/ArcBlock/arc/pull/6812 | 2026-09-21T05:37:19Z | wangshijun@wangshijun-mac-studio |
+| 20260921-053727-discuss-kit-tag.png | https://github.com/ArcBlock/arc/pull/6812 | 2026-09-21T05:37:27Z | wangshijun@wangshijun-mac-studio |
