@@ -17,3 +17,4 @@
 | 20260921-144832-05b-cf-search-empty.png | https://github.com/ArcBlock/arc | 2026-09-21T14:48:32Z | wangshijun@wangshijun-mac-studio |
 | 20260921-144840-05c-cf-search-300char.png | https://github.com/ArcBlock/arc | 2026-09-21T14:48:40Z | wangshijun@wangshijun-mac-studio |
 | 20260921-144848-06a-cf-sitemap-index.png | https://github.com/ArcBlock/arc | 2026-09-21T14:48:48Z | wangshijun@wangshijun-mac-studio |
+| 20260921-144855-06b-cf-sitemap-posts-1-shard.png | https://github.com/ArcBlock/arc | 2026-09-21T14:48:55Z | wangshijun@wangshijun-mac-studio |
