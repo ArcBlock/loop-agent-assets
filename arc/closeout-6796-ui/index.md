@@ -8,3 +8,4 @@
 | 20260921-144722-01d-cf-page-cap-note-maxpages3.png | https://github.com/ArcBlock/arc | 2026-09-21T14:47:22Z | wangshijun@wangshijun-mac-studio |
 | 20260921-144730-02a-cf-detail-headings-toc.png | https://github.com/ArcBlock/arc | 2026-09-21T14:47:30Z | wangshijun@wangshijun-mac-studio |
 | 20260921-144738-02b-cf-detail-toc-expanded.png | https://github.com/ArcBlock/arc | 2026-09-21T14:47:38Z | wangshijun@wangshijun-mac-studio |
+| 20260921-144746-02c-cf-detail-comment-reactions.png | https://github.com/ArcBlock/arc | 2026-09-21T14:47:46Z | wangshijun@wangshijun-mac-studio |
