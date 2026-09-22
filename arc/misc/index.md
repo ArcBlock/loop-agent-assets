@@ -225,3 +225,4 @@
 | discuss-c059b00ba-detail.png | https://github.com/ArcBlock/arc | 2026-09-17T14:43:06Z | wangshijun@wangshijun-mac-studio |
 | 20260922-042337-02-ssr-visible.png | https://github.com/ArcBlock/arc | 2026-09-22T04:23:37Z | wangshijun@wangshijun-mac-studio |
 | 20260922-042351-02-ssr-visible.png | https://github.com/ArcBlock/arc | 2026-09-22T04:23:52Z | wangshijun@wangshijun-mac-studio |
+| 20260922-042403-04-hydrated.png | https://github.com/ArcBlock/arc | 2026-09-22T04:24:03Z | wangshijun@wangshijun-mac-studio |
