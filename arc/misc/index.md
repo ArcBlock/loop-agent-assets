@@ -226,3 +226,4 @@
 | 20260922-042337-02-ssr-visible.png | https://github.com/ArcBlock/arc | 2026-09-22T04:23:37Z | wangshijun@wangshijun-mac-studio |
 | 20260922-042351-02-ssr-visible.png | https://github.com/ArcBlock/arc | 2026-09-22T04:23:52Z | wangshijun@wangshijun-mac-studio |
 | 20260922-042403-04-hydrated.png | https://github.com/ArcBlock/arc | 2026-09-22T04:24:03Z | wangshijun@wangshijun-mac-studio |
+| 20260922-042414-06-nojs-first-paint.png | https://github.com/ArcBlock/arc | 2026-09-22T04:24:14Z | wangshijun@wangshijun-mac-studio |
