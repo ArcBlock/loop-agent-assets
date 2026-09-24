@@ -3,3 +3,4 @@
 | file | source | uploaded | by |
 |---|---|---|---|
 | 20260924-134136-ui-verify-work-board-anon-detail.png | https://github.com/ArcBlock/arc/pull/6962-7e47f46 | 2026-09-24T13:41:36Z | robmao@Roberts-Mac-mini-M4-Pro-7 |
+| 20260924-134143-ui-verify-work-board-anon-overview.png | https://github.com/ArcBlock/arc/pull/6962-7e47f46 | 2026-09-24T13:41:43Z | robmao@Roberts-Mac-mini-M4-Pro-7 |
