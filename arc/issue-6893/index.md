@@ -6,3 +6,4 @@
 | 20260924-061403-app-new-mobile.png | https://github.com/ArcBlock/arc/issues/6893 | 2026-09-24T06:14:03Z | wangshijun@wangshijun-mac-studio |
 | 20260924-061413-category-desktop.png | https://github.com/ArcBlock/arc/issues/6893 | 2026-09-24T06:14:14Z | wangshijun@wangshijun-mac-studio |
 | 20260924-061424-category-mobile.png | https://github.com/ArcBlock/arc/issues/6893 | 2026-09-24T06:14:24Z | wangshijun@wangshijun-mac-studio |
+| 20260924-061435-home-desktop.png | https://github.com/ArcBlock/arc/issues/6893 | 2026-09-24T06:14:35Z | wangshijun@wangshijun-mac-studio |
