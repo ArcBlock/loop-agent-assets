@@ -11,3 +11,4 @@
 | 20260924-061500-post-desktop.png | https://github.com/ArcBlock/arc/issues/6893 | 2026-09-24T06:15:00Z | wangshijun@wangshijun-mac-studio |
 | 20260924-061511-post-mobile.png | https://github.com/ArcBlock/arc/issues/6893 | 2026-09-24T06:15:11Z | wangshijun@wangshijun-mac-studio |
 | 20260924-061526-search-desktop.png | https://github.com/ArcBlock/arc/issues/6893 | 2026-09-24T06:15:26Z | wangshijun@wangshijun-mac-studio |
+| 20260924-061536-search-mobile.png | https://github.com/ArcBlock/arc/issues/6893 | 2026-09-24T06:15:36Z | wangshijun@wangshijun-mac-studio |
