@@ -13,3 +13,4 @@
 | 20260924-224512-20-community-detail.png | https://github.com/ArcBlock/arc/issues/6890 | 2026-09-24T22:45:12Z | wangshijun@wangshijun-mac-studio |
 | 20260924-224520-20-community-editor.png | https://github.com/ArcBlock/arc/issues/6890 | 2026-09-24T22:45:20Z | wangshijun@wangshijun-mac-studio |
 | 20260924-224528-20-community-home.png | https://github.com/ArcBlock/arc/issues/6890 | 2026-09-24T22:45:28Z | wangshijun@wangshijun-mac-studio |
+| 20260924-224536-20-community-loading.png | https://github.com/ArcBlock/arc/issues/6890 | 2026-09-24T22:45:36Z | wangshijun@wangshijun-mac-studio |
