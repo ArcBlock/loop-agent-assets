@@ -9,3 +9,4 @@
 | 20260924-224442-10-harbor-editor.png | https://github.com/ArcBlock/arc/issues/6890 | 2026-09-24T22:44:42Z | wangshijun@wangshijun-mac-studio |
 | 20260924-224449-10-harbor-home.png | https://github.com/ArcBlock/arc/issues/6890 | 2026-09-24T22:44:49Z | wangshijun@wangshijun-mac-studio |
 | 20260924-224457-10-harbor-loading.png | https://github.com/ArcBlock/arc/issues/6890 | 2026-09-24T22:44:57Z | wangshijun@wangshijun-mac-studio |
+| 20260924-224504-20-community-category.png | https://github.com/ArcBlock/arc/issues/6890 | 2026-09-24T22:45:04Z | wangshijun@wangshijun-mac-studio |
