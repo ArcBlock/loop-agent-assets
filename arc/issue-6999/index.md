@@ -11,3 +11,4 @@
 | 20260925-092031-settings-community-mobile.png | https://github.com/ArcBlock/arc/issues/6999 | 2026-09-25T09:20:31Z | wangshijun@wangshijun-mac-studio |
 | 20260925-092039-settings-default-desktop.png | https://github.com/ArcBlock/arc/issues/6999 | 2026-09-25T09:20:39Z | wangshijun@wangshijun-mac-studio |
 | 20260925-092047-settings-edit-desktop.png | https://github.com/ArcBlock/arc/issues/6999 | 2026-09-25T09:20:47Z | wangshijun@wangshijun-mac-studio |
+| 20260925-092054-settings-footer-desktop.png | https://github.com/ArcBlock/arc/issues/6999 | 2026-09-25T09:20:54Z | wangshijun@wangshijun-mac-studio |
