@@ -236,3 +236,4 @@
 | 20260925-045537-08-run-detail-override.png | https://github.com/ArcBlock/arc | 2026-09-25T04:55:37Z | robmao@Roberts-Mac-mini-M4-Pro-7 |
 | 20260925-045543-09-override-primary-after.png | https://github.com/ArcBlock/arc | 2026-09-25T04:55:43Z | robmao@Roberts-Mac-mini-M4-Pro-7 |
 | 20260925-045549-10-override-skill-after.png | https://github.com/ArcBlock/arc | 2026-09-25T04:55:49Z | robmao@Roberts-Mac-mini-M4-Pro-7 |
+| 20260925-045618-15-embedded-bind-dialog.png | https://github.com/ArcBlock/arc | 2026-09-25T04:56:18Z | robmao@Roberts-Mac-mini-M4-Pro-7 |
