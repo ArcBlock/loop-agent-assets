@@ -26,3 +26,4 @@
 | c45bd4277-instance-anon-stat.png | https://github.com/ArcBlock/arc/pull/6217 | 2026-09-25T10:36:04Z | robmao@Roberts-Mac-mini-M4-Pro-7 |
 | c45bd4277-instance-anon-preview.png | https://github.com/ArcBlock/arc/pull/6217 | 2026-09-25T10:36:17Z | robmao@Roberts-Mac-mini-M4-Pro-7 |
 | c45bd4277-packages-guest-stat-open.png | https://github.com/ArcBlock/arc/pull/6217 | 2026-09-25T10:36:23Z | robmao@Roberts-Mac-mini-M4-Pro-7 |
+| c45bd4277-packages-guest-preview.png | https://github.com/ArcBlock/arc/pull/6217 | 2026-09-25T10:36:29Z | robmao@Roberts-Mac-mini-M4-Pro-7 |
