@@ -33,3 +33,4 @@
 | 20260925-123306-after-nimbus-settings.png | https://github.com/ArcBlock/arc/issues/6999 | 2026-09-25T12:33:06Z | wangshijun@wangshijun-mac-studio |
 | 20260925-123318-after-showcase-app-settings-grouped.png | https://github.com/ArcBlock/arc/issues/6999 | 2026-09-25T12:33:18Z | wangshijun@wangshijun-mac-studio |
 | 20260925-123329-after-showcase-autosurface-legacy.png | https://github.com/ArcBlock/arc/issues/6999 | 2026-09-25T12:33:29Z | wangshijun@wangshijun-mac-studio |
+| 20260925-123341-after-showcase-controls-general.png | https://github.com/ArcBlock/arc/issues/6999 | 2026-09-25T12:33:41Z | wangshijun@wangshijun-mac-studio |
