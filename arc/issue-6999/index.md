@@ -35,3 +35,4 @@
 | 20260925-123329-after-showcase-autosurface-legacy.png | https://github.com/ArcBlock/arc/issues/6999 | 2026-09-25T12:33:29Z | wangshijun@wangshijun-mac-studio |
 | 20260925-123341-after-showcase-controls-general.png | https://github.com/ArcBlock/arc/issues/6999 | 2026-09-25T12:33:41Z | wangshijun@wangshijun-mac-studio |
 | 20260925-123353-after-showcase-controls-input-types.png | https://github.com/ArcBlock/arc/issues/6999 | 2026-09-25T12:33:53Z | wangshijun@wangshijun-mac-studio |
+| 20260925-123405-after-showcase-controls-states-mobile.png | https://github.com/ArcBlock/arc/issues/6999 | 2026-09-25T12:34:05Z | wangshijun@wangshijun-mac-studio |
