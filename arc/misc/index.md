@@ -228,3 +228,4 @@
 | 20260922-042403-04-hydrated.png | https://github.com/ArcBlock/arc | 2026-09-22T04:24:03Z | wangshijun@wangshijun-mac-studio |
 | 20260922-042414-06-nojs-first-paint.png | https://github.com/ArcBlock/arc | 2026-09-22T04:24:14Z | wangshijun@wangshijun-mac-studio |
 | harbor-home.png | https://github.com/ArcBlock/arc | 2026-09-24T22:43:45Z | wangshijun@wangshijun-mac-studio |
+| 20260925-045443-11-idle-board-schedule-in-rail.png | https://github.com/ArcBlock/arc | 2026-09-25T04:54:43Z | robmao@Roberts-Mac-mini-M4-Pro-7 |
