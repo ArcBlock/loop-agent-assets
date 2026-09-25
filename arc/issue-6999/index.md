@@ -30,3 +30,4 @@
 | 20260925-123230-after-discuss-header-desktop.png | https://github.com/ArcBlock/arc/issues/6999 | 2026-09-25T12:32:30Z | wangshijun@wangshijun-mac-studio |
 | 20260925-123242-after-discuss-home-dark.png | https://github.com/ArcBlock/arc/issues/6999 | 2026-09-25T12:32:42Z | wangshijun@wangshijun-mac-studio |
 | 20260925-123254-after-discuss-home-desktop.png | https://github.com/ArcBlock/arc/issues/6999 | 2026-09-25T12:32:54Z | wangshijun@wangshijun-mac-studio |
+| 20260925-123306-after-nimbus-settings.png | https://github.com/ArcBlock/arc/issues/6999 | 2026-09-25T12:33:06Z | wangshijun@wangshijun-mac-studio |
