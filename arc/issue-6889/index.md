@@ -11,3 +11,4 @@
 | 20260925-171551-cmp-mobile-home-dark.png | https://github.com/ArcBlock/arc/issues/6889 | 2026-09-25T17:15:51Z | wangshijun@wangshijun-mac-studio |
 | 20260925-171603-cmp-mobile-footer-light.png | https://github.com/ArcBlock/arc/issues/6889 | 2026-09-25T17:16:03Z | wangshijun@wangshijun-mac-studio |
 | 20260925-171614-cmp-mobile-footer-dark.png | https://github.com/ArcBlock/arc/issues/6889 | 2026-09-25T17:16:14Z | wangshijun@wangshijun-mac-studio |
+| 20260925-171624-cmp-mobile-category-light.png | https://github.com/ArcBlock/arc/issues/6889 | 2026-09-25T17:16:24Z | wangshijun@wangshijun-mac-studio |
