@@ -244,3 +244,4 @@
 | arc/issue-6889 | https://github.com/ArcBlock/arc | 2026-09-25T10:27:38Z | wangshijun@wangshijun-mac-studio |
 | 20260925-135410-footer-archive-desktop.png | https://github.com/ArcBlock/arc | 2026-09-25T13:54:10Z | wangshijun@wangshijun-mac-studio |
 | 20260925-135424-footer-archive-mobile.png | https://github.com/ArcBlock/arc | 2026-09-25T13:54:24Z | wangshijun@wangshijun-mac-studio |
+| 20260925-135435-footer-default-desktop.png | https://github.com/ArcBlock/arc | 2026-09-25T13:54:35Z | wangshijun@wangshijun-mac-studio |
