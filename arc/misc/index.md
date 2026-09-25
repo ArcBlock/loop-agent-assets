@@ -239,3 +239,4 @@
 | 20260925-045618-15-embedded-bind-dialog.png | https://github.com/ArcBlock/arc | 2026-09-25T04:56:18Z | robmao@Roberts-Mac-mini-M4-Pro-7 |
 | 20260925-045640-01-settings-standalone.png | https://github.com/ArcBlock/arc | 2026-09-25T04:56:40Z | robmao@Roberts-Mac-mini-M4-Pro-7 |
 | 20260925-055654-public-instance.png | https://github.com/ArcBlock/arc | 2026-09-25T05:56:54Z | wangshijun@wangshijun-mac-studio |
+| 20260925-055706-app-new-instance.png | https://github.com/ArcBlock/arc | 2026-09-25T05:57:06Z | wangshijun@wangshijun-mac-studio |
