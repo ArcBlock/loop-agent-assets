@@ -230,3 +230,4 @@
 | harbor-home.png | https://github.com/ArcBlock/arc | 2026-09-24T22:43:45Z | wangshijun@wangshijun-mac-studio |
 | 20260925-045443-11-idle-board-schedule-in-rail.png | https://github.com/ArcBlock/arc | 2026-09-25T04:54:43Z | robmao@Roberts-Mac-mini-M4-Pro-7 |
 | 20260925-045513-13-dialog-filtered-engines.png | https://github.com/ArcBlock/arc | 2026-09-25T04:55:13Z | robmao@Roberts-Mac-mini-M4-Pro-7 |
+| 20260925-045519-03-unconfigured-after.png | https://github.com/ArcBlock/arc | 2026-09-25T04:55:19Z | robmao@Roberts-Mac-mini-M4-Pro-7 |
