@@ -20,3 +20,4 @@
 | 20260925-171731-after-settings-mobile-strip-scrolled-end.png | https://github.com/ArcBlock/arc/issues/6889 | 2026-09-25T17:17:31Z | wangshijun@wangshijun-mac-studio |
 | 20260925-171743-after-post-desktop-dark-zh.png | https://github.com/ArcBlock/arc/issues/6889 | 2026-09-25T17:17:43Z | wangshijun@wangshijun-mac-studio |
 | 20260925-171756-after-search-mobile-dark-en.png | https://github.com/ArcBlock/arc/issues/6889 | 2026-09-25T17:17:56Z | wangshijun@wangshijun-mac-studio |
+| 20260925-171807-after-home-desktop-dark-zh.png | https://github.com/ArcBlock/arc/issues/6889 | 2026-09-25T17:18:07Z | wangshijun@wangshijun-mac-studio |
