@@ -242,3 +242,4 @@
 | 20260925-055706-app-new-instance.png | https://github.com/ArcBlock/arc | 2026-09-25T05:57:06Z | wangshijun@wangshijun-mac-studio |
 | 20260925-055716-app-new-default.png | https://github.com/ArcBlock/arc | 2026-09-25T05:57:16Z | wangshijun@wangshijun-mac-studio |
 | arc/issue-6889 | https://github.com/ArcBlock/arc | 2026-09-25T10:27:38Z | wangshijun@wangshijun-mac-studio |
+| 20260925-135410-footer-archive-desktop.png | https://github.com/ArcBlock/arc | 2026-09-25T13:54:10Z | wangshijun@wangshijun-mac-studio |
