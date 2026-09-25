@@ -41,3 +41,4 @@
 | 20260925-123439-after-todo-settings.png | https://github.com/ArcBlock/arc/issues/6999 | 2026-09-25T12:34:39Z | wangshijun@wangshijun-mac-studio |
 | 20260925-123456-before-aggregator-desktop.png | https://github.com/ArcBlock/arc/issues/6999 | 2026-09-25T12:34:56Z | wangshijun@wangshijun-mac-studio |
 | 20260925-123507-before-aggregator-mobile.png | https://github.com/ArcBlock/arc/issues/6999 | 2026-09-25T12:35:07Z | wangshijun@wangshijun-mac-studio |
+| 20260925-123518-before-discuss-footer-desktop.png | https://github.com/ArcBlock/arc/issues/6999 | 2026-09-25T12:35:18Z | wangshijun@wangshijun-mac-studio |
