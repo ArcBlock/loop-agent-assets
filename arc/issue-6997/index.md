@@ -7,3 +7,4 @@
 | 6997-list-3items-desktop.png | https://github.com/ArcBlock/arc/issues/6997 | 2026-09-25T05:14:31Z | wangshijun@wangshijun-mac-studio |
 | 6997-list-3items-mobile.png | https://github.com/ArcBlock/arc/issues/6997 | 2026-09-25T05:14:42Z | wangshijun@wangshijun-mac-studio |
 | 6997-list-editing-desktop.png | https://github.com/ArcBlock/arc/issues/6997 | 2026-09-25T05:14:53Z | wangshijun@wangshijun-mac-studio |
+| 6997-list-editing-mobile.png | https://github.com/ArcBlock/arc/issues/6997 | 2026-09-25T05:15:04Z | wangshijun@wangshijun-mac-studio |
