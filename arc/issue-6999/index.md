@@ -18,3 +18,4 @@
 | 20260925-123016-after-aggregator-desktop.png | https://github.com/ArcBlock/arc/issues/6999 | 2026-09-25T12:30:16Z | wangshijun@wangshijun-mac-studio |
 | 20260925-123027-after-aggregator-mobile.png | https://github.com/ArcBlock/arc/issues/6999 | 2026-09-25T12:30:27Z | wangshijun@wangshijun-mac-studio |
 | 20260925-123038-after-discuss-advanced-desktop.png | https://github.com/ArcBlock/arc/issues/6999 | 2026-09-25T12:30:38Z | wangshijun@wangshijun-mac-studio |
+| 20260925-123050-after-discuss-advanced-json-error.png | https://github.com/ArcBlock/arc/issues/6999 | 2026-09-25T12:30:50Z | wangshijun@wangshijun-mac-studio |
