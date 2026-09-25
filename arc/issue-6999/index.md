@@ -49,3 +49,4 @@
 | 20260925-123617-before-discuss-home-desktop.png | https://github.com/ArcBlock/arc/issues/6999 | 2026-09-25T12:36:17Z | wangshijun@wangshijun-mac-studio |
 | 20260925-123628-before-showcase-autosurface-desktop.png | https://github.com/ArcBlock/arc/issues/6999 | 2026-09-25T12:36:28Z | wangshijun@wangshijun-mac-studio |
 | 20260925-123639-before-showcase-shell-dark.png | https://github.com/ArcBlock/arc/issues/6999 | 2026-09-25T12:36:39Z | wangshijun@wangshijun-mac-studio |
+| 20260925-123650-before-showcase-shell-desktop.png | https://github.com/ArcBlock/arc/issues/6999 | 2026-09-25T12:36:50Z | wangshijun@wangshijun-mac-studio |
