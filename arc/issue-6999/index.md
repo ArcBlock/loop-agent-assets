@@ -39,3 +39,4 @@
 | 20260925-123416-after-showcase-controls-states-top.png | https://github.com/ArcBlock/arc/issues/6999 | 2026-09-25T12:34:16Z | wangshijun@wangshijun-mac-studio |
 | 20260925-123427-after-showcase-controls-states.png | https://github.com/ArcBlock/arc/issues/6999 | 2026-09-25T12:34:27Z | wangshijun@wangshijun-mac-studio |
 | 20260925-123439-after-todo-settings.png | https://github.com/ArcBlock/arc/issues/6999 | 2026-09-25T12:34:39Z | wangshijun@wangshijun-mac-studio |
+| 20260925-123456-before-aggregator-desktop.png | https://github.com/ArcBlock/arc/issues/6999 | 2026-09-25T12:34:56Z | wangshijun@wangshijun-mac-studio |
