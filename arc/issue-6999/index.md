@@ -44,3 +44,4 @@
 | 20260925-123518-before-discuss-footer-desktop.png | https://github.com/ArcBlock/arc/issues/6999 | 2026-09-25T12:35:18Z | wangshijun@wangshijun-mac-studio |
 | 20260925-123529-before-discuss-footer-mobile.png | https://github.com/ArcBlock/arc/issues/6999 | 2026-09-25T12:35:29Z | wangshijun@wangshijun-mac-studio |
 | 20260925-123539-before-discuss-general-dark.png | https://github.com/ArcBlock/arc/issues/6999 | 2026-09-25T12:35:39Z | wangshijun@wangshijun-mac-studio |
+| 20260925-123556-before-discuss-general-zh.png | https://github.com/ArcBlock/arc/issues/6999 | 2026-09-25T12:35:56Z | wangshijun@wangshijun-mac-studio |
