@@ -22,3 +22,4 @@
 | 20260925-171756-after-search-mobile-dark-en.png | https://github.com/ArcBlock/arc/issues/6889 | 2026-09-25T17:17:56Z | wangshijun@wangshijun-mac-studio |
 | 20260925-171807-after-home-desktop-dark-zh.png | https://github.com/ArcBlock/arc/issues/6889 | 2026-09-25T17:18:07Z | wangshijun@wangshijun-mac-studio |
 | 20260925-171818-after-appnew-mobile-dark-zh.png | https://github.com/ArcBlock/arc/issues/6889 | 2026-09-25T17:18:18Z | wangshijun@wangshijun-mac-studio |
+| 20260925-184334-final-local-home-desktop.png | https://github.com/ArcBlock/arc/issues/6889 | 2026-09-25T18:43:34Z | wangshijun@wangshijun-mac-studio |
