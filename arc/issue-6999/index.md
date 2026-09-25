@@ -22,3 +22,4 @@
 | 20260925-123101-after-discuss-categories-dark.png | https://github.com/ArcBlock/arc/issues/6999 | 2026-09-25T12:31:01Z | wangshijun@wangshijun-mac-studio |
 | 20260925-123112-after-discuss-categories-desktop.png | https://github.com/ArcBlock/arc/issues/6999 | 2026-09-25T12:31:12Z | wangshijun@wangshijun-mac-studio |
 | 20260925-123122-after-discuss-categories-expanded-desktop.png | https://github.com/ArcBlock/arc/issues/6999 | 2026-09-25T12:31:23Z | wangshijun@wangshijun-mac-studio |
+| 20260925-123133-after-discuss-categories-mobile.png | https://github.com/ArcBlock/arc/issues/6999 | 2026-09-25T12:31:33Z | wangshijun@wangshijun-mac-studio |
