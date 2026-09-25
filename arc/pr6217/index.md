@@ -16,3 +16,4 @@
 | 394ac047c-packages-guest-stat-open.png | https://github.com/ArcBlock/arc/pull/6217 | 2026-09-25T07:47:17Z | robmao@Roberts-Mac-mini-M4-Pro-7 |
 | 394ac047c-packages-guest-preview.png | https://github.com/ArcBlock/arc/pull/6217 | 2026-09-25T07:47:23Z | robmao@Roberts-Mac-mini-M4-Pro-7 |
 | 394ac047c-ash-owner-stat-open.png | https://github.com/ArcBlock/arc/pull/6217 | 2026-09-25T07:47:29Z | robmao@Roberts-Mac-mini-M4-Pro-7 |
+| 394ac047c-caps-member-stat-open.png | https://github.com/ArcBlock/arc/pull/6217 | 2026-09-25T07:47:38Z | robmao@Roberts-Mac-mini-M4-Pro-7 |
