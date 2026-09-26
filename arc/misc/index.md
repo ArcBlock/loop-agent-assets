@@ -267,3 +267,4 @@
 | 20260926-124954-j-owner-approved-armed.png | https://github.com/ArcBlock/arc | 2026-09-26T12:49:54Z | robmao@Roberts-Mac-mini-M4-Pro-7 |
 | 20260926-125000-j-owner-disarmed.png | https://github.com/ArcBlock/arc | 2026-09-26T12:50:00Z | robmao@Roberts-Mac-mini-M4-Pro-7 |
 | 20260926-150050-before-epic.png | https://github.com/ArcBlock/arc | 2026-09-26T15:00:50Z | robmao@Roberts-Mac-mini-M4-Pro-7 |
+| 20260926-150258-after-epic-board.png | https://github.com/ArcBlock/arc | 2026-09-26T15:02:58Z | robmao@Roberts-Mac-mini-M4-Pro-7 |
