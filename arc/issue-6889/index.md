@@ -25,3 +25,4 @@
 | 20260925-184334-final-local-home-desktop.png | https://github.com/ArcBlock/arc/issues/6889 | 2026-09-25T18:43:34Z | wangshijun@wangshijun-mac-studio |
 | 20260926-074921-staging-home-light.png | https://github.com/ArcBlock/arc/issues/6889 | 2026-09-26T07:49:21Z | wangshijun@wangshijun-mac-studio |
 | 20260926-074935-staging-home-dark-top.png | https://github.com/ArcBlock/arc/issues/6889 | 2026-09-26T07:49:35Z | wangshijun@wangshijun-mac-studio |
+| 20260926-082149-prod-home-light-after.png | https://github.com/ArcBlock/arc/issues/6889 | 2026-09-26T08:21:49Z | wangshijun@wangshijun-mac-studio |
