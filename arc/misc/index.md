@@ -249,3 +249,4 @@
 | 20260926-000510-page-access-anon-desktop.png | https://github.com/ArcBlock/arc | 2026-09-26T00:05:10Z | wangshijun@wangshijun-mac-studio |
 | 20260926-000522-page-access-anon-mobile.png | https://github.com/ArcBlock/arc | 2026-09-26T00:05:22Z | wangshijun@wangshijun-mac-studio |
 | 20260926-000534-page-access-member-desktop.png | https://github.com/ArcBlock/arc | 2026-09-26T00:05:34Z | wangshijun@wangshijun-mac-studio |
+| 20260926-000544-page-access-member-mobile.png | https://github.com/ArcBlock/arc | 2026-09-26T00:05:44Z | wangshijun@wangshijun-mac-studio |
