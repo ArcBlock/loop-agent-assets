@@ -258,3 +258,4 @@
 | 20260926-123002-h-owner-awaiting.png | https://github.com/ArcBlock/arc | 2026-09-26T12:30:02Z | robmao@Roberts-Mac-mini-M4-Pro-7 |
 | 20260926-123008-h-owner-approved-armed.png | https://github.com/ArcBlock/arc | 2026-09-26T12:30:08Z | robmao@Roberts-Mac-mini-M4-Pro-7 |
 | 20260926-123013-h-owner-disarmed.png | https://github.com/ArcBlock/arc | 2026-09-26T12:30:13Z | robmao@Roberts-Mac-mini-M4-Pro-7 |
+| 20260926-124728-before-signed-in.png | https://github.com/ArcBlock/arc | 2026-09-26T12:47:28Z | robmao@Roberts-Mac-mini-M4-Pro-7 |
