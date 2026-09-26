@@ -59,3 +59,4 @@
 | 20260926-012558-showcase-desktop-light-6-leave-confirm.png | https://github.com/ArcBlock/arc/issues/6999 | 2026-09-26T01:25:58Z | wangshijun@wangshijun-mac-studio |
 | 20260926-012610-showcase-desktop-dark-2-dirty.png | https://github.com/ArcBlock/arc/issues/6999 | 2026-09-26T01:26:10Z | wangshijun@wangshijun-mac-studio |
 | 20260926-012622-showcase-desktop-dark-3-conflict.png | https://github.com/ArcBlock/arc/issues/6999 | 2026-09-26T01:26:22Z | wangshijun@wangshijun-mac-studio |
+| 20260926-012634-showcase-desktop-dark-4-invalid.png | https://github.com/ArcBlock/arc/issues/6999 | 2026-09-26T01:26:34Z | wangshijun@wangshijun-mac-studio |
