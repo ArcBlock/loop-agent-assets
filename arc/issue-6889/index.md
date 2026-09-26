@@ -23,3 +23,4 @@
 | 20260925-171807-after-home-desktop-dark-zh.png | https://github.com/ArcBlock/arc/issues/6889 | 2026-09-25T17:18:07Z | wangshijun@wangshijun-mac-studio |
 | 20260925-171818-after-appnew-mobile-dark-zh.png | https://github.com/ArcBlock/arc/issues/6889 | 2026-09-25T17:18:18Z | wangshijun@wangshijun-mac-studio |
 | 20260925-184334-final-local-home-desktop.png | https://github.com/ArcBlock/arc/issues/6889 | 2026-09-25T18:43:34Z | wangshijun@wangshijun-mac-studio |
+| 20260926-074921-staging-home-light.png | https://github.com/ArcBlock/arc/issues/6889 | 2026-09-26T07:49:21Z | wangshijun@wangshijun-mac-studio |
