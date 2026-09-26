@@ -247,3 +247,4 @@
 | 20260925-135435-footer-default-desktop.png | https://github.com/ArcBlock/arc | 2026-09-25T13:54:35Z | wangshijun@wangshijun-mac-studio |
 | 20260925-135446-footer-default-mobile.png | https://github.com/ArcBlock/arc | 2026-09-25T13:54:46Z | wangshijun@wangshijun-mac-studio |
 | 20260926-000510-page-access-anon-desktop.png | https://github.com/ArcBlock/arc | 2026-09-26T00:05:10Z | wangshijun@wangshijun-mac-studio |
+| 20260926-000522-page-access-anon-mobile.png | https://github.com/ArcBlock/arc | 2026-09-26T00:05:22Z | wangshijun@wangshijun-mac-studio |
