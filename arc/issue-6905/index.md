@@ -6,3 +6,4 @@
 | work-create-2-missing-name.png | https://github.com/ArcBlock/arc/issues/6905 | 2026-09-26T19:03:43Z | robmao@Roberts-Mac-mini-M4-Pro-7 |
 | work-create-3-filled.png | https://github.com/ArcBlock/arc/issues/6905 | 2026-09-26T19:03:49Z | robmao@Roberts-Mac-mini-M4-Pro-7 |
 | work-create-5-under-epic.png | https://github.com/ArcBlock/arc/issues/6905 | 2026-09-26T19:03:54Z | robmao@Roberts-Mac-mini-M4-Pro-7 |
+| work-create-6-reopened.png | https://github.com/ArcBlock/arc/issues/6905 | 2026-09-26T19:24:34Z | robmao@Roberts-Mac-mini-M4-Pro-7 |
