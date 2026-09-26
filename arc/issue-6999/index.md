@@ -51,3 +51,4 @@
 | 20260925-123639-before-showcase-shell-dark.png | https://github.com/ArcBlock/arc/issues/6999 | 2026-09-25T12:36:39Z | wangshijun@wangshijun-mac-studio |
 | 20260925-123650-before-showcase-shell-desktop.png | https://github.com/ArcBlock/arc/issues/6999 | 2026-09-25T12:36:50Z | wangshijun@wangshijun-mac-studio |
 | 20260925-123707-before-discuss-general-desktop.png | https://github.com/ArcBlock/arc/issues/6999 | 2026-09-25T12:37:07Z | wangshijun@wangshijun-mac-studio |
+| 20260926-012447-showcase-desktop-light-2-dirty.png | https://github.com/ArcBlock/arc/issues/6999 | 2026-09-26T01:24:47Z | wangshijun@wangshijun-mac-studio |
