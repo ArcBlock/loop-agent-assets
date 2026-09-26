@@ -261,3 +261,4 @@
 | 20260926-124728-before-signed-in.png | https://github.com/ArcBlock/arc | 2026-09-26T12:47:28Z | robmao@Roberts-Mac-mini-M4-Pro-7 |
 | 20260926-124734-after-signed-in.png | https://github.com/ArcBlock/arc | 2026-09-26T12:47:34Z | robmao@Roberts-Mac-mini-M4-Pro-7 |
 | 20260926-124739-after-hour.png | https://github.com/ArcBlock/arc | 2026-09-26T12:47:39Z | robmao@Roberts-Mac-mini-M4-Pro-7 |
+| 20260926-124744-after-anon.png | https://github.com/ArcBlock/arc | 2026-09-26T12:47:44Z | robmao@Roberts-Mac-mini-M4-Pro-7 |
