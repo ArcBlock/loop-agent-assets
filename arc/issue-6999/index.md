@@ -55,3 +55,4 @@
 | 20260926-012514-showcase-desktop-light-1-clean.png | https://github.com/ArcBlock/arc/issues/6999 | 2026-09-26T01:25:14Z | wangshijun@wangshijun-mac-studio |
 | 20260926-012525-showcase-desktop-light-3-conflict.png | https://github.com/ArcBlock/arc/issues/6999 | 2026-09-26T01:25:25Z | wangshijun@wangshijun-mac-studio |
 | 20260926-012536-showcase-desktop-light-4-invalid.png | https://github.com/ArcBlock/arc/issues/6999 | 2026-09-26T01:25:36Z | wangshijun@wangshijun-mac-studio |
+| 20260926-012548-showcase-desktop-light-5-saved.png | https://github.com/ArcBlock/arc/issues/6999 | 2026-09-26T01:25:48Z | wangshijun@wangshijun-mac-studio |
