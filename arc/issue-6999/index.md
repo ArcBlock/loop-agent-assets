@@ -68,3 +68,4 @@
 | 20260926-012754-showcase-mobile-dark-5-saved.png | https://github.com/ArcBlock/arc/issues/6999 | 2026-09-26T01:27:54Z | wangshijun@wangshijun-mac-studio |
 | 20260926-012805-aggregator-desktop-light-dirty.png | https://github.com/ArcBlock/arc/issues/6999 | 2026-09-26T01:28:05Z | wangshijun@wangshijun-mac-studio |
 | 20260926-012818-aggregator-mobile-light-dirty.png | https://github.com/ArcBlock/arc/issues/6999 | 2026-09-26T01:28:18Z | wangshijun@wangshijun-mac-studio |
+| 20260926-012830-settings-cascade-mobile-light-dirty.png | https://github.com/ArcBlock/arc/issues/6999 | 2026-09-26T01:28:30Z | wangshijun@wangshijun-mac-studio |
