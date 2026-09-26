@@ -69,3 +69,4 @@
 | 20260926-012805-aggregator-desktop-light-dirty.png | https://github.com/ArcBlock/arc/issues/6999 | 2026-09-26T01:28:05Z | wangshijun@wangshijun-mac-studio |
 | 20260926-012818-aggregator-mobile-light-dirty.png | https://github.com/ArcBlock/arc/issues/6999 | 2026-09-26T01:28:18Z | wangshijun@wangshijun-mac-studio |
 | 20260926-012830-settings-cascade-mobile-light-dirty.png | https://github.com/ArcBlock/arc/issues/6999 | 2026-09-26T01:28:30Z | wangshijun@wangshijun-mac-studio |
+| 20260926-012842-settings-cascade-desktop-light-dirty.png | https://github.com/ArcBlock/arc/issues/6999 | 2026-09-26T01:28:42Z | wangshijun@wangshijun-mac-studio |
