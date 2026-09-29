@@ -118,3 +118,4 @@
 | pr529-join-the-builders.png | https://github.com/ArcBlock/arcblock-site | 2026-09-10T02:53:56Z | wangshijun@wangshijun-mac-studio |
 | did-issue220-with-logo.png | https://github.com/ArcBlock/arcblock-site | 2026-09-13T00:43:52Z | wangshijun@wangshijun-mac-studio |
 | did-issue220-without-logo.png | https://github.com/ArcBlock/arcblock-site | 2026-09-13T00:44:18Z | wangshijun@wangshijun-mac-studio |
+| arcblock-site/issue-651 | https://github.com/ArcBlock/arcblock-site | 2026-09-29T23:43:32Z | robmao@Roberts-Mac-mini-M4-Pro-7 |
