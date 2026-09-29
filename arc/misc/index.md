@@ -272,3 +272,4 @@
 | 20260926-150310-after-board.png | https://github.com/ArcBlock/arc | 2026-09-26T15:03:10Z | robmao@Roberts-Mac-mini-M4-Pro-7 |
 | 20260929-142746-home-zh-desktop.png | https://github.com/ArcBlock/arc | 2026-09-29T14:27:46Z | wangshijun@wangshijun-mac-studio |
 | 20260929-142800-home-en-desktop.png | https://github.com/ArcBlock/arc | 2026-09-29T14:28:00Z | wangshijun@wangshijun-mac-studio |
+| 20260929-142811-home-zh-mobile-400.png | https://github.com/ArcBlock/arc | 2026-09-29T14:28:11Z | wangshijun@wangshijun-mac-studio |
