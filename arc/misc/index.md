@@ -273,3 +273,4 @@
 | 20260929-142746-home-zh-desktop.png | https://github.com/ArcBlock/arc | 2026-09-29T14:27:46Z | wangshijun@wangshijun-mac-studio |
 | 20260929-142800-home-en-desktop.png | https://github.com/ArcBlock/arc | 2026-09-29T14:28:00Z | wangshijun@wangshijun-mac-studio |
 | 20260929-142811-home-zh-mobile-400.png | https://github.com/ArcBlock/arc | 2026-09-29T14:28:11Z | wangshijun@wangshijun-mac-studio |
+| 20260929-142822-home-en-mobile-400.png | https://github.com/ArcBlock/arc | 2026-09-29T14:28:22Z | wangshijun@wangshijun-mac-studio |
