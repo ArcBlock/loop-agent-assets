@@ -27,3 +27,4 @@
 | 20260930-164703-my-desktop-light-zh.png | https://github.com/ArcBlock/arc/issues/7466 | 2026-09-30T16:47:03Z | wangshijun@wangshijun-mac-studio |
 | 20260930-164714-my-mobile-dark-zh.png | https://github.com/ArcBlock/arc/issues/7466 | 2026-09-30T16:47:14Z | wangshijun@wangshijun-mac-studio |
 | 20260930-164725-my-mobile-light-en-sites.png | https://github.com/ArcBlock/arc/issues/7466 | 2026-09-30T16:47:25Z | wangshijun@wangshijun-mac-studio |
+| 20260930-164736-my-mobile-light-en.png | https://github.com/ArcBlock/arc/issues/7466 | 2026-09-30T16:47:36Z | wangshijun@wangshijun-mac-studio |
