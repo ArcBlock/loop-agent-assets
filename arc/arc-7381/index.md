@@ -9,3 +9,4 @@
 | 20260930-151731-author-my-light.png | https://github.com/ArcBlock/arc | 2026-09-30T15:17:31Z | wangshijun@wangshijun-mac-studio |
 | 20260930-151742-author-t-direct-me-dark.png | https://github.com/ArcBlock/arc | 2026-09-30T15:17:42Z | wangshijun@wangshijun-mac-studio |
 | 20260930-151753-author-t-direct-new-dark.png | https://github.com/ArcBlock/arc | 2026-09-30T15:17:53Z | wangshijun@wangshijun-mac-studio |
+| 20260930-151804-author-t-mount-home-dark.png | https://github.com/ArcBlock/arc | 2026-09-30T15:18:04Z | wangshijun@wangshijun-mac-studio |
