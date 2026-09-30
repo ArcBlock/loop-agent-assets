@@ -16,3 +16,4 @@
 | 20260930-183648-v2-sys-light-desktop-todo.png | https://github.com/ArcBlock/arc/issues/7471 | 2026-09-30T18:36:48Z | wangshijun@wangshijun-mac-studio |
 | 20260930-183658-v2-sys-light-m390-discuss.png | https://github.com/ArcBlock/arc/issues/7471 | 2026-09-30T18:36:58Z | wangshijun@wangshijun-mac-studio |
 | 20260930-183709-v2-sys-light-m390-my.png | https://github.com/ArcBlock/arc/issues/7471 | 2026-09-30T18:37:09Z | wangshijun@wangshijun-mac-studio |
+| 20260930-183719-v2-sys-light-m390-todo-own.png | https://github.com/ArcBlock/arc/issues/7471 | 2026-09-30T18:37:19Z | wangshijun@wangshijun-mac-studio |
