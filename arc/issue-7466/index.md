@@ -13,3 +13,4 @@
 | 20260930-160708-my-mobile-light-en.png | https://github.com/ArcBlock/arc/issues/7466 | 2026-09-30T16:07:08Z | wangshijun@wangshijun-mac-studio |
 | 20260930-160719-signin-discuss-kit-390-dark.png | https://github.com/ArcBlock/arc/issues/7466 | 2026-09-30T16:07:19Z | wangshijun@wangshijun-mac-studio |
 | 20260930-160729-signin-discuss-kit-390-light.png | https://github.com/ArcBlock/arc/issues/7466 | 2026-09-30T16:07:29Z | wangshijun@wangshijun-mac-studio |
+| 20260930-160739-signin-discuss-kit-desktop-dark.png | https://github.com/ArcBlock/arc/issues/7466 | 2026-09-30T16:07:39Z | wangshijun@wangshijun-mac-studio |
