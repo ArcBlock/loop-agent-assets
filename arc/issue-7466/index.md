@@ -18,3 +18,4 @@
 | 20260930-160800-signin-todo-390-dark.png | https://github.com/ArcBlock/arc/issues/7466 | 2026-09-30T16:08:00Z | wangshijun@wangshijun-mac-studio |
 | 20260930-160810-signin-todo-390-light.png | https://github.com/ArcBlock/arc/issues/7466 | 2026-09-30T16:08:10Z | wangshijun@wangshijun-mac-studio |
 | 20260930-160820-signin-todo-desktop-dark.png | https://github.com/ArcBlock/arc/issues/7466 | 2026-09-30T16:08:20Z | wangshijun@wangshijun-mac-studio |
+| 20260930-160831-signin-todo-desktop-light.png | https://github.com/ArcBlock/arc/issues/7466 | 2026-09-30T16:08:31Z | wangshijun@wangshijun-mac-studio |
