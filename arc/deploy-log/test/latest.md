@@ -1,8 +1,13 @@
-## ✅ Deploy test · `c0d2e6a9f` · success
+## ✅ Deploy test · `36fa51fc4` · success
 
-- **时间**: 2026-08-30T17:24:18Z
-- **版本**: `c0d2e6a9fdf3da780c7440f085cf6fc09e1ed483`
-- **Run**: https://github.com/ArcBlock/arc/actions/runs/33324771545
-- **改动窗口**: last 24 hours ago
+- **时间**: 2026-09-30T03:33:56Z
+- **版本**: `36fa51fc4798fb46674b25ddfeaebd601e42d3d2`
+- **改动窗口**: 24 hours ago
 
-_窗口内无 blocklet 改动。_
+**3 个 blocklet 有改动**
+
+### 改动摘要
+
+- **did-space**：首页改成四语版本，并收成一个最小登录入口，页脚更紧凑；域名路由接上声明式 publish 渲染（#7342、#7310、#7360、`71079bdc3`）
+- **todo**：列表和公开页共用同一条事项视图（#7418）
+- **discuss-kit**：去掉默认 query，让它们共用一个地址（#7369）
