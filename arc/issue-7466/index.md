@@ -22,3 +22,4 @@
 | 20260930-164607-my-anon-gate.png | https://github.com/ArcBlock/arc/issues/7466 | 2026-09-30T16:46:07Z | wangshijun@wangshijun-mac-studio |
 | 20260930-164620-my-anon-my.png | https://github.com/ArcBlock/arc/issues/7466 | 2026-09-30T16:46:20Z | wangshijun@wangshijun-mac-studio |
 | 20260930-164631-my-desktop-dark-en.png | https://github.com/ArcBlock/arc/issues/7466 | 2026-09-30T16:46:31Z | wangshijun@wangshijun-mac-studio |
+| 20260930-164641-my-desktop-light-en.png | https://github.com/ArcBlock/arc/issues/7466 | 2026-09-30T16:46:41Z | wangshijun@wangshijun-mac-studio |
