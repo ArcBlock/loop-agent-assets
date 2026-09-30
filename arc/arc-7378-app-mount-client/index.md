@@ -9,3 +9,4 @@
 | 20260930-001929-nonmount-after-dark.png | https://github.com/ArcBlock/arc | 2026-09-30T00:19:29Z | wangshijun@wangshijun-mac-studio |
 | 20260930-001940-nonmount-after-light-plain.png | https://github.com/ArcBlock/arc | 2026-09-30T00:19:40Z | wangshijun@wangshijun-mac-studio |
 | 20260930-001950-nonmount-before-dark.png | https://github.com/ArcBlock/arc | 2026-09-30T00:19:50Z | wangshijun@wangshijun-mac-studio |
+| 20260930-002001-nonmount-before-light-plain.png | https://github.com/ArcBlock/arc | 2026-09-30T00:20:01Z | wangshijun@wangshijun-mac-studio |
