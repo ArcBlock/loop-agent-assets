@@ -13,3 +13,4 @@
 | 20261001-011720-12-mount-todo-settings-deeplink.png | https://github.com/ArcBlock/arc | 2026-10-01T01:17:20Z | wangshijun@wangshijun-mac-studio |
 | 20261001-011727-13-direct-todo-settings.png | https://github.com/ArcBlock/arc | 2026-10-01T01:17:27Z | wangshijun@wangshijun-mac-studio |
 | 20261001-011734-14-mount-discuss-root-shows-composer.png | https://github.com/ArcBlock/arc | 2026-10-01T01:17:34Z | wangshijun@wangshijun-mac-studio |
+| 20261001-011744-16-mount-discuss-me-redirects-harbor-notes-404.png | https://github.com/ArcBlock/arc | 2026-10-01T01:17:44Z | wangshijun@wangshijun-mac-studio |
