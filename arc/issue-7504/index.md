@@ -7,3 +7,4 @@
 | 20261001-132003-aside-390-light-en.png | https://github.com/ArcBlock/arc/issues/7504 | 2026-10-01T13:20:03Z | wangshijun@wangshijun-mac-studio |
 | 20261001-132011-aside-390-light-zh.png | https://github.com/ArcBlock/arc/issues/7504 | 2026-10-01T13:20:11Z | wangshijun@wangshijun-mac-studio |
 | 20261001-132018-aside-desktop-dark-en.png | https://github.com/ArcBlock/arc/issues/7504 | 2026-10-01T13:20:18Z | wangshijun@wangshijun-mac-studio |
+| 20261001-132027-aside-desktop-dark-zh.png | https://github.com/ArcBlock/arc/issues/7504 | 2026-10-01T13:20:27Z | wangshijun@wangshijun-mac-studio |
