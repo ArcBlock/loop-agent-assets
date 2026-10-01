@@ -279,3 +279,4 @@
 | 7379-direct-todo-crosscheck.png | https://github.com/ArcBlock/arc | 2026-09-30T04:50:41Z | wangshijun@wangshijun-mac-studio |
 | 20261001-011940-01-my-apps-en-1280.png | https://github.com/ArcBlock/arc | 2026-10-01T01:19:40Z | wangshijun@wangshijun-mac-studio |
 | 20261001-011953-02-my-sites-en-1280-error.png | https://github.com/ArcBlock/arc | 2026-10-01T01:19:53Z | wangshijun@wangshijun-mac-studio |
+| 20261001-012006-07-mount-todo-add-failed-to-fetch.png | https://github.com/ArcBlock/arc | 2026-10-01T01:20:06Z | wangshijun@wangshijun-mac-studio |
