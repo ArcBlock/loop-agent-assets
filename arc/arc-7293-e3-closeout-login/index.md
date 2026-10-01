@@ -17,3 +17,4 @@
 | 20261001-011751-17-mount-discuss-me.png | https://github.com/ArcBlock/arc | 2026-10-01T01:17:51Z | wangshijun@wangshijun-mac-studio |
 | 20261001-011759-18-mount-discuss-post-link-lands-harbor-notes.png | https://github.com/ArcBlock/arc | 2026-10-01T01:17:59Z | wangshijun@wangshijun-mac-studio |
 | 20261001-011807-19-mount-discuss-new-request-deadline.png | https://github.com/ArcBlock/arc | 2026-10-01T01:18:07Z | wangshijun@wangshijun-mac-studio |
+| 20261001-011814-20-mount-discuss-composer-filled.png | https://github.com/ArcBlock/arc | 2026-10-01T01:18:14Z | wangshijun@wangshijun-mac-studio |
