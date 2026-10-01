@@ -10,3 +10,4 @@
 | 20261001-011656-09-direct-todo-checked.png | https://github.com/ArcBlock/arc | 2026-10-01T01:16:56Z | wangshijun@wangshijun-mac-studio |
 | 20261001-011703-10-mount-todo-delete-confirm.png | https://github.com/ArcBlock/arc | 2026-10-01T01:17:03Z | wangshijun@wangshijun-mac-studio |
 | 20261001-011712-11-direct-todo-after-delete.png | https://github.com/ArcBlock/arc | 2026-10-01T01:17:12Z | wangshijun@wangshijun-mac-studio |
+| 20261001-011720-12-mount-todo-settings-deeplink.png | https://github.com/ArcBlock/arc | 2026-10-01T01:17:20Z | wangshijun@wangshijun-mac-studio |
