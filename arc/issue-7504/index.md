@@ -24,3 +24,4 @@
 | 20261001-132223-todo-390-light-zh.png | https://github.com/ArcBlock/arc/issues/7504 | 2026-10-01T13:22:23Z | wangshijun@wangshijun-mac-studio |
 | 20261001-132231-todo-desktop-dark-en.png | https://github.com/ArcBlock/arc/issues/7504 | 2026-10-01T13:22:31Z | wangshijun@wangshijun-mac-studio |
 | 20261001-132239-todo-desktop-dark-zh.png | https://github.com/ArcBlock/arc/issues/7504 | 2026-10-01T13:22:39Z | wangshijun@wangshijun-mac-studio |
+| 20261001-132247-todo-desktop-light-en.png | https://github.com/ArcBlock/arc/issues/7504 | 2026-10-01T13:22:47Z | wangshijun@wangshijun-mac-studio |
