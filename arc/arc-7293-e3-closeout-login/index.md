@@ -5,3 +5,4 @@
 | 20261001-011614-03-my-apps-zh-1280.png | https://github.com/ArcBlock/arc | 2026-10-01T01:16:14Z | wangshijun@wangshijun-mac-studio |
 | 20261001-011623-04-my-apps-zh-390.png | https://github.com/ArcBlock/arc | 2026-10-01T01:16:23Z | wangshijun@wangshijun-mac-studio |
 | 20261001-011630-05-my-sites-zh-390-error.png | https://github.com/ArcBlock/arc | 2026-10-01T01:16:30Z | wangshijun@wangshijun-mac-studio |
+| 20261001-011638-06-mount-todo-zh-1280.png | https://github.com/ArcBlock/arc | 2026-10-01T01:16:38Z | wangshijun@wangshijun-mac-studio |
