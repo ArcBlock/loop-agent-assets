@@ -21,3 +21,4 @@
 | 20261001-011821-21-mount-discuss-after-publish-unprefixed-404.png | https://github.com/ArcBlock/arc | 2026-10-01T01:18:21Z | wangshijun@wangshijun-mac-studio |
 | 20261001-011829-22-direct-discuss-post-edited.png | https://github.com/ArcBlock/arc | 2026-10-01T01:18:29Z | wangshijun@wangshijun-mac-studio |
 | 20261001-011836-23-mount-discuss-me-with-new-post.png | https://github.com/ArcBlock/arc | 2026-10-01T01:18:36Z | wangshijun@wangshijun-mac-studio |
+| 20261001-011843-24-direct-discuss-me-with-new-post.png | https://github.com/ArcBlock/arc | 2026-10-01T01:18:43Z | wangshijun@wangshijun-mac-studio |
