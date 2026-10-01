@@ -14,3 +14,4 @@
 | 20261001-132102-discuss-kit-390-dark-zh.png | https://github.com/ArcBlock/arc/issues/7504 | 2026-10-01T13:21:02Z | wangshijun@wangshijun-mac-studio |
 | 20261001-132109-discuss-kit-390-light-en.png | https://github.com/ArcBlock/arc/issues/7504 | 2026-10-01T13:21:09Z | wangshijun@wangshijun-mac-studio |
 | 20261001-132119-discuss-kit-390-light-zh.png | https://github.com/ArcBlock/arc/issues/7504 | 2026-10-01T13:21:19Z | wangshijun@wangshijun-mac-studio |
+| 20261001-132127-discuss-kit-desktop-dark-en.png | https://github.com/ArcBlock/arc/issues/7504 | 2026-10-01T13:21:27Z | wangshijun@wangshijun-mac-studio |
