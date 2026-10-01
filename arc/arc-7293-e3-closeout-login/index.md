@@ -15,3 +15,4 @@
 | 20261001-011734-14-mount-discuss-root-shows-composer.png | https://github.com/ArcBlock/arc | 2026-10-01T01:17:34Z | wangshijun@wangshijun-mac-studio |
 | 20261001-011744-16-mount-discuss-me-redirects-harbor-notes-404.png | https://github.com/ArcBlock/arc | 2026-10-01T01:17:44Z | wangshijun@wangshijun-mac-studio |
 | 20261001-011751-17-mount-discuss-me.png | https://github.com/ArcBlock/arc | 2026-10-01T01:17:51Z | wangshijun@wangshijun-mac-studio |
+| 20261001-011759-18-mount-discuss-post-link-lands-harbor-notes.png | https://github.com/ArcBlock/arc | 2026-10-01T01:17:59Z | wangshijun@wangshijun-mac-studio |
