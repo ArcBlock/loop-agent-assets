@@ -1,15 +1,15 @@
-## ✅ Deploy test · `e9b2258fd` · success
+## ✅ Deploy test · `3a8e9518b` · success
 
-- **时间**: 2026-10-01T08:24:36Z
-- **版本**: `e9b2258fd1ecf323ee81c0ac26702fb78c3f8206`
-- **Run**: https://github.com/ArcBlock/arc/actions/runs/36835727471
+- **时间**: 2026-10-01T21:40:56Z
+- **版本**: `3a8e9518b091becdb8146cdcc7b81e33e361b460`
+- **Run**: https://github.com/ArcBlock/arc/actions/runs/36929788052
 - **改动窗口**: 24 hours ago
 
 **2 个 blocklet 有改动**
 
 ### 改动摘要
 
-- **did-space**：个人空间和带品牌的公开页（#7462），工作区加宽（`66e7f6a09`），已登录访客留在首页（`d2cd1e16c`），匿名打开 `/my` 会转到登录（#7477），测试环境发布协调失败时 `/my` 公开站仍可读（#7512），挂载框跟随 arc space 的主题（#7478），只有显式开关才写入 web-mode（#7499）。
-- **todo**：`/my` 补上头像回退、显式 locale 和路由标题（#7475）。个人空间与工作区宽度也落到了 todo（#7462、`66e7f6a09`）。
+- **did-space**：测试环境发布协调失败时 `/my` 公开站仍可读（#7512）。只有显式开关才写入 web-mode，系统站跟随操作系统（#7499）。工作区加宽（`66e7f6a09`）。已登录访客留在首页（`d2cd1e16c`）。
+- **todo**：工作区宽度同一改动（`66e7f6a09`）。
 
-这次部署的头 `e9b2258fd`（#7537）只改 AUP 客户端的 `exec /.actions/query` 传输，没有改任何 blocklet 自己的文件，所以它是头提交，不进上面的摘要。
+这次部署的头 `3a8e9518b`（#7553）是 `perf(did-space): read schema on a primary bookmark`。它改的是 DID Space schema 读，没有改任何 blocklet 自己的文件，所以不进上面的摘要。
