@@ -26,3 +26,4 @@
 | 20261001-011858-26-mount-nonexistent-404.png | https://github.com/ArcBlock/arc | 2026-10-01T01:18:58Z | wangshijun@wangshijun-mac-studio |
 | 20261001-011905-27-home-signed-in-open-my-space.png | https://github.com/ArcBlock/arc | 2026-10-01T01:19:05Z | wangshijun@wangshijun-mac-studio |
 | 20261001-011913-28-my-light-after-homepage.png | https://github.com/ArcBlock/arc | 2026-10-01T01:19:13Z | wangshijun@wangshijun-mac-studio |
+| 20261001-011921-29-mount-todo-after-homepage.png | https://github.com/ArcBlock/arc | 2026-10-01T01:19:21Z | wangshijun@wangshijun-mac-studio |
