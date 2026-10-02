@@ -8,3 +8,4 @@
 | 20261002-145847-a-create-1280-light-zh.png | https://github.com/ArcBlock/arc | 2026-10-02T14:58:47Z | wangshijun@wangshijun-mac-studio |
 | 20261002-145854-a-create-390-dark-en.png | https://github.com/ArcBlock/arc | 2026-10-02T14:58:54Z | wangshijun@wangshijun-mac-studio |
 | 20261002-145902-a-create-390-dark-zh.png | https://github.com/ArcBlock/arc | 2026-10-02T14:59:02Z | wangshijun@wangshijun-mac-studio |
+| 20261002-145910-a-create-390-light-en.png | https://github.com/ArcBlock/arc | 2026-10-02T14:59:10Z | wangshijun@wangshijun-mac-studio |
