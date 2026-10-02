@@ -9,3 +9,4 @@
 | 20261002-080431-home-desktop-dark-en.png | https://github.com/ArcBlock/arc | 2026-10-02T08:04:31Z | wangshijun@wangshijun-mac-studio |
 | 20261002-080439-home-desktop-dark-zh.png | https://github.com/ArcBlock/arc | 2026-10-02T08:04:39Z | wangshijun@wangshijun-mac-studio |
 | 20261002-080448-home-desktop-light-en.png | https://github.com/ArcBlock/arc | 2026-10-02T08:04:48Z | wangshijun@wangshijun-mac-studio |
+| 20261002-080456-home-desktop-light-zh.png | https://github.com/ArcBlock/arc | 2026-10-02T08:04:56Z | wangshijun@wangshijun-mac-studio |
