@@ -23,3 +23,4 @@
 | 20261002-150050-a-post-1280-light-en.png | https://github.com/ArcBlock/arc | 2026-10-02T15:00:50Z | wangshijun@wangshijun-mac-studio |
 | 20261002-150058-a-post-1280-light-zh.png | https://github.com/ArcBlock/arc | 2026-10-02T15:00:58Z | wangshijun@wangshijun-mac-studio |
 | 20261002-150106-a-post-390-dark-en.png | https://github.com/ArcBlock/arc | 2026-10-02T15:01:06Z | wangshijun@wangshijun-mac-studio |
+| 20261002-150114-a-post-390-dark-zh.png | https://github.com/ArcBlock/arc | 2026-10-02T15:01:14Z | wangshijun@wangshijun-mac-studio |
