@@ -33,3 +33,4 @@
 | 20261002-150216-b-home-390-dark-en.png | https://github.com/ArcBlock/arc | 2026-10-02T15:02:16Z | wangshijun@wangshijun-mac-studio |
 | 20261002-150224-b-home-390-dark-zh.png | https://github.com/ArcBlock/arc | 2026-10-02T15:02:24Z | wangshijun@wangshijun-mac-studio |
 | 20261002-150232-b-home-390-light-en.png | https://github.com/ArcBlock/arc | 2026-10-02T15:02:32Z | wangshijun@wangshijun-mac-studio |
+| 20261002-150240-b-home-390-light-zh.png | https://github.com/ArcBlock/arc | 2026-10-02T15:02:40Z | wangshijun@wangshijun-mac-studio |
