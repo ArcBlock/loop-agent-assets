@@ -18,3 +18,4 @@
 | 20261004-185741-timber-travel-shopping.png | https://github.com/ArcBlock/aside | 2026-10-04T18:57:41Z | nategu@Nate-Mac-Pro |
 | 20261004-185751-timber-travel.png | https://github.com/ArcBlock/aside | 2026-10-04T18:57:51Z | nategu@Nate-Mac-Pro |
 | 20261004-185802-timber-voice-notes.png | https://github.com/ArcBlock/aside | 2026-10-04T18:58:02Z | nategu@Nate-Mac-Pro |
+| 20261004-185813-zh-get-started-desktop.png | https://github.com/ArcBlock/aside | 2026-10-04T18:58:13Z | nategu@Nate-Mac-Pro |
