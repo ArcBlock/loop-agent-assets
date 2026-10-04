@@ -5,3 +5,4 @@
 | 20261004-175229-en-get-started-desktop.png | https://github.com/ArcBlock/aside | 2026-10-04T17:52:29Z | nategu@Nate-Mac-Pro |
 | 20261004-175239-en-use-cases-desktop.png | https://github.com/ArcBlock/aside | 2026-10-04T17:52:39Z | nategu@Nate-Mac-Pro |
 | 20261004-175249-en-use-cases-mobile.png | https://github.com/ArcBlock/aside | 2026-10-04T17:52:49Z | nategu@Nate-Mac-Pro |
+| 20261004-175258-zh-use-cases-desktop.png | https://github.com/ArcBlock/aside | 2026-10-04T17:52:58Z | nategu@Nate-Mac-Pro |
