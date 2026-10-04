@@ -7,3 +7,4 @@
 | 20261004-171708-en-share-crumb-desktop.png | https://github.com/ArcBlock/aside | 2026-10-04T17:17:08Z | nategu@Nate-Mac-Pro |
 | 20261004-171718-en-use-cases-desktop.png | https://github.com/ArcBlock/aside | 2026-10-04T17:17:18Z | nategu@Nate-Mac-Pro |
 | 20261004-171727-en-use-cases-mobile.png | https://github.com/ArcBlock/aside | 2026-10-04T17:17:27Z | nategu@Nate-Mac-Pro |
+| 20261004-171737-zh-get-started-desktop.png | https://github.com/ArcBlock/aside | 2026-10-04T17:17:37Z | nategu@Nate-Mac-Pro |
