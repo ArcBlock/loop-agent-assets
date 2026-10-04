@@ -14,3 +14,4 @@
 | 20261004-185706-timber-save-first-item.png | https://github.com/ArcBlock/aside | 2026-10-04T18:57:06Z | nategu@Nate-Mac-Pro |
 | 20261004-185715-timber-save-with-notes.png | https://github.com/ArcBlock/aside | 2026-10-04T18:57:15Z | nategu@Nate-Mac-Pro |
 | 20261004-185723-timber-share-in.png | https://github.com/ArcBlock/aside | 2026-10-04T18:57:23Z | nategu@Nate-Mac-Pro |
+| 20261004-185732-timber-side-by-side.png | https://github.com/ArcBlock/aside | 2026-10-04T18:57:32Z | nategu@Nate-Mac-Pro |
