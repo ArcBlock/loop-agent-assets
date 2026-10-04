@@ -9,3 +9,4 @@
 | ios-contact-list-now.jpg | https://github.com/ArcBlock/aside/issues/1941 | 2026-10-04T06:40:37Z | nategu@Nate-Mac-Pro |
 | ios-contact-detail-now.jpg | https://github.com/ArcBlock/aside/issues/1941 | 2026-10-04T06:40:47Z | nategu@Nate-Mac-Pro |
 | ios-contact-detail-before.png | https://github.com/ArcBlock/aside/issues/1941 | 2026-10-04T06:41:06Z | nategu@Nate-Mac-Pro |
+| ios-contact-list-before.png | https://github.com/ArcBlock/aside/issues/1941 | 2026-10-04T06:41:17Z | nategu@Nate-Mac-Pro |
