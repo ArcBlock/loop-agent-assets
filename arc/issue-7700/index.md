@@ -8,3 +8,4 @@
 | 20261004-084746-item-mobile-dark.png | https://github.com/ArcBlock/arc/issues/7700 | 2026-10-04T08:47:46Z | wangshijun@wangshijun-mac-studio |
 | 20261004-084753-item-mobile.png | https://github.com/ArcBlock/arc/issues/7700 | 2026-10-04T08:47:53Z | wangshijun@wangshijun-mac-studio |
 | 20261004-084800-published-desktop.png | https://github.com/ArcBlock/arc/issues/7700 | 2026-10-04T08:48:00Z | wangshijun@wangshijun-mac-studio |
+| 20261004-084806-published-mobile-dark.png | https://github.com/ArcBlock/arc/issues/7700 | 2026-10-04T08:48:06Z | wangshijun@wangshijun-mac-studio |
