@@ -12,3 +12,4 @@
 | 20261004-185647-timber-reminders.png | https://github.com/ArcBlock/aside | 2026-10-04T18:56:47Z | nategu@Nate-Mac-Pro |
 | 20261004-185657-timber-research.png | https://github.com/ArcBlock/aside | 2026-10-04T18:56:57Z | nategu@Nate-Mac-Pro |
 | 20261004-185706-timber-save-first-item.png | https://github.com/ArcBlock/aside | 2026-10-04T18:57:06Z | nategu@Nate-Mac-Pro |
+| 20261004-185715-timber-save-with-notes.png | https://github.com/ArcBlock/aside | 2026-10-04T18:57:15Z | nategu@Nate-Mac-Pro |
