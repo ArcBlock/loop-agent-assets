@@ -10,3 +10,4 @@
 | 20261005-124518-felt-zh-desktop.png | https://github.com/ArcBlock/aside | 2026-10-05T12:45:18Z | nategu@Nate-Mac-Pro |
 | 20261005-124527-next-en-desktop.png | https://github.com/ArcBlock/aside | 2026-10-05T12:45:27Z | nategu@Nate-Mac-Pro |
 | 20261005-124537-next-en-mobile.png | https://github.com/ArcBlock/aside | 2026-10-05T12:45:37Z | nategu@Nate-Mac-Pro |
+| 20261005-124549-next-zh-desktop.png | https://github.com/ArcBlock/aside | 2026-10-05T12:45:49Z | nategu@Nate-Mac-Pro |
