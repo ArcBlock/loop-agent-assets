@@ -4,3 +4,4 @@
 |---|---|---|---|
 | 20261005-024423-en-use-cases-desktop.png | https://github.com/ArcBlock/aside | 2026-10-05T02:44:23Z | nategu@Nate-Mac-Pro |
 | 20261005-024435-en-use-cases-mobile.png | https://github.com/ArcBlock/aside | 2026-10-05T02:44:35Z | nategu@Nate-Mac-Pro |
+| 20261005-024446-zh-use-cases-desktop.png | https://github.com/ArcBlock/aside | 2026-10-05T02:44:46Z | nategu@Nate-Mac-Pro |
