@@ -7,3 +7,4 @@
 | 20261006-003821-next-en-demo.png | https://github.com/ArcBlock/aside | 2026-10-06T00:38:21Z | nategu@Nate-Mac-Pro |
 | 20261006-003831-use-en-desktop.png | https://github.com/ArcBlock/aside | 2026-10-06T00:38:31Z | nategu@Nate-Mac-Pro |
 | 20261006-003857-use-en-mobile.png | https://github.com/ArcBlock/aside | 2026-10-06T00:38:57Z | nategu@Nate-Mac-Pro |
+| 20261006-003909-use-zh-desktop.png | https://github.com/ArcBlock/aside | 2026-10-06T00:39:09Z | nategu@Nate-Mac-Pro |
