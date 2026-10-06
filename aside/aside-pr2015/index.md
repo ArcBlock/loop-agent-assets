@@ -7,3 +7,4 @@
 | 20261006-042321-felt-zh-desktop.png | https://github.com/ArcBlock/aside | 2026-10-06T04:23:21Z | nategu@Nate-Mac-Pro |
 | 20261006-042338-felt-zh-mobile.png | https://github.com/ArcBlock/aside | 2026-10-06T04:23:38Z | nategu@Nate-Mac-Pro |
 | 20261006-042348-next-zh-desktop.png | https://github.com/ArcBlock/aside | 2026-10-06T04:23:48Z | nategu@Nate-Mac-Pro |
+| 20261006-042359-use-zh-desktop.png | https://github.com/ArcBlock/aside | 2026-10-06T04:23:59Z | nategu@Nate-Mac-Pro |
