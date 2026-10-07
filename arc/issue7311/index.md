@@ -7,3 +7,4 @@
 | 20261007-233010-e5-1-staging-home-ja.png | https://github.com/ArcBlock/arc | 2026-10-07T23:30:10Z | wangshijun@wangshijun-mac-studio |
 | 20261007-233018-e5-1-staging-home-zh-TW.png | https://github.com/ArcBlock/arc | 2026-10-07T23:30:18Z | wangshijun@wangshijun-mac-studio |
 | 20261007-233026-e5-1-staging-home-zh.png | https://github.com/ArcBlock/arc | 2026-10-07T23:30:26Z | wangshijun@wangshijun-mac-studio |
+| 20261007-233035-e5-1-staging-my-anon.png | https://github.com/ArcBlock/arc | 2026-10-07T23:30:35Z | wangshijun@wangshijun-mac-studio |
