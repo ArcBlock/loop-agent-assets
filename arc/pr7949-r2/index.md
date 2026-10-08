@@ -10,3 +10,4 @@
 | 20261008-055301-legacy-zh-mobile-dark.png | https://github.com/ArcBlock/arc/pull/7949-r2 | 2026-10-08T05:53:01Z | wangshijun@wangshijun-mac-studio |
 | 20261008-055309-legacy-zh-mobile-light.png | https://github.com/ArcBlock/arc/pull/7949-r2 | 2026-10-08T05:53:09Z | wangshijun@wangshijun-mac-studio |
 | 20261008-055317-legacy-zh-mobile-menu.png | https://github.com/ArcBlock/arc/pull/7949-r2 | 2026-10-08T05:53:17Z | wangshijun@wangshijun-mac-studio |
+| 20261008-055324-my-en-desktop.png | https://github.com/ArcBlock/arc/pull/7949-r2 | 2026-10-08T05:53:24Z | wangshijun@wangshijun-mac-studio |
