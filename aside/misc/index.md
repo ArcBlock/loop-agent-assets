@@ -155,3 +155,4 @@
 | share-cards-r2-desktop.png | https://github.com/ArcBlock/aside | 2026-10-08T04:12:49Z | wangshijun@wangshijun-mac-studio |
 | share-cards-r2-desktop-dark.png | https://github.com/ArcBlock/aside | 2026-10-08T04:13:01Z | wangshijun@wangshijun-mac-studio |
 | share-cards-r2-zh-mobile.png | https://github.com/ArcBlock/aside | 2026-10-08T04:13:10Z | wangshijun@wangshijun-mac-studio |
+| share-cards-r2-zh-mobile-dark.png | https://github.com/ArcBlock/aside | 2026-10-08T04:13:22Z | wangshijun@wangshijun-mac-studio |
