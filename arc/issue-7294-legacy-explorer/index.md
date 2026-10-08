@@ -8,3 +8,4 @@
 | 20261008-052143-legacy-zh-desktop-preview.png | https://github.com/ArcBlock/arc/issues/7294-legacy-explorer | 2026-10-08T05:21:43Z | wangshijun@wangshijun-mac-studio |
 | 20261008-052151-legacy-zh-mobile-dark.png | https://github.com/ArcBlock/arc/issues/7294-legacy-explorer | 2026-10-08T05:21:51Z | wangshijun@wangshijun-mac-studio |
 | 20261008-052158-legacy-zh-mobile-light.png | https://github.com/ArcBlock/arc/issues/7294-legacy-explorer | 2026-10-08T05:21:58Z | wangshijun@wangshijun-mac-studio |
+| 20261008-052206-my-en-desktop.png | https://github.com/ArcBlock/arc/issues/7294-legacy-explorer | 2026-10-08T05:22:07Z | wangshijun@wangshijun-mac-studio |
