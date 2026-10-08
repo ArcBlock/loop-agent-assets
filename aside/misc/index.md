@@ -154,3 +154,4 @@
 | 20260918-013305-20260918-import-complete-14.png | https://github.com/ArcBlock/aside | 2026-09-18T01:33:05Z | nategu@Nate-Mac-Pro |
 | share-cards-r2-desktop.png | https://github.com/ArcBlock/aside | 2026-10-08T04:12:49Z | wangshijun@wangshijun-mac-studio |
 | share-cards-r2-desktop-dark.png | https://github.com/ArcBlock/aside | 2026-10-08T04:13:01Z | wangshijun@wangshijun-mac-studio |
+| share-cards-r2-zh-mobile.png | https://github.com/ArcBlock/aside | 2026-10-08T04:13:10Z | wangshijun@wangshijun-mac-studio |
