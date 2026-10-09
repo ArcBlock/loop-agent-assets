@@ -6,3 +6,4 @@
 | import-entry.png | https://github.com/ArcBlock/aside/issues/2177 | 2026-10-09T14:57:25Z | nategu@Nate-Mac-Pro |
 | import-home-still-empty.png | https://github.com/ArcBlock/aside/issues/2177 | 2026-10-09T14:57:37Z | nategu@Nate-Mac-Pro |
 | import-home-after-relaunch.png | https://github.com/ArcBlock/aside/issues/2177 | 2026-10-09T14:57:46Z | nategu@Nate-Mac-Pro |
+| collection-detail-bottom-padding.png | https://github.com/ArcBlock/aside/issues/2177 | 2026-10-09T15:00:28Z | nategu@Nate-Mac-Pro |
