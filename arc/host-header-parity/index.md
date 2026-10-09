@@ -7,3 +7,4 @@
 | 20261009-122709-discuss-desktop.png | https://github.com/ArcBlock/arc | 2026-10-09T12:27:09Z | wangshijun@wangshijun-mac-studio |
 | 20261009-122715-discuss-mobile.png | https://github.com/ArcBlock/arc | 2026-10-09T12:27:15Z | wangshijun@wangshijun-mac-studio |
 | 20261009-122722-legacy-desktop.png | https://github.com/ArcBlock/arc | 2026-10-09T12:27:22Z | wangshijun@wangshijun-mac-studio |
+| 20261009-122728-legacy-mobile.png | https://github.com/ArcBlock/arc | 2026-10-09T12:27:28Z | wangshijun@wangshijun-mac-studio |
