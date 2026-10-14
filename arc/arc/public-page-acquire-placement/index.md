@@ -12,3 +12,4 @@
 | 20261014-124320-quiet.png | https://github.com/ArcBlock/arc | 2026-10-14T12:43:20Z | wangshijun@wangshijun-mac-studio |
 | 20261014-130221-article-phone.png | https://github.com/ArcBlock/arc | 2026-10-14T13:02:21Z | wangshijun@wangshijun-mac-studio |
 | 20261014-130240-article.png | https://github.com/ArcBlock/arc | 2026-10-14T13:02:40Z | wangshijun@wangshijun-mac-studio |
+| 20261014-130250-index.png | https://github.com/ArcBlock/arc | 2026-10-14T13:02:50Z | wangshijun@wangshijun-mac-studio |
