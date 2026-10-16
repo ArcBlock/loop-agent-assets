@@ -160,3 +160,4 @@
 | share-cards-r2-edge-mobile.png | https://github.com/ArcBlock/aside | 2026-10-08T04:13:41Z | wangshijun@wangshijun-mac-studio |
 | aside-landing.jpg | https://github.com/ArcBlock/aside | 2026-10-15T14:15:09Z | wangshijun@wangshijun-mac-studio |
 | delete-confirm-only-on-connect-page.jpg | https://github.com/ArcBlock/aside | 2026-10-16T13:02:21Z | nategu@Nate-Mac-Pro |
+| connect-page-service-tag-631d.jpg | https://github.com/ArcBlock/aside | 2026-10-16T13:06:40Z | nategu@Nate-Mac-Pro |
