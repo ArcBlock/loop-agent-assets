@@ -163,3 +163,4 @@
 | connect-page-service-tag-631d.jpg | https://github.com/ArcBlock/aside | 2026-10-16T13:06:40Z | nategu@Nate-Mac-Pro |
 | epic-2443-2452-banner-root.png | https://github.com/ArcBlock/aside | 2026-10-17T03:37:39Z | nategu@Nate-Mac-Pro |
 | epic-2443-2452-banner-round-list.png | https://github.com/ArcBlock/aside | 2026-10-17T03:37:54Z | nategu@Nate-Mac-Pro |
+| epic-2443-2453-home-recent-row.png | https://github.com/ArcBlock/aside | 2026-10-17T04:22:14Z | nategu@Nate-Mac-Pro |
