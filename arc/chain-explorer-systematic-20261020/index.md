@@ -9,3 +9,4 @@
 | 20261020-034651-31-bridge-block-mobile.jpg | https://github.com/ArcBlock/arc | 2026-10-20T03:46:51Z | wangshijun@wangshijun-mac-studio |
 | 20261020-034701-40-home-mobile.jpg | https://github.com/ArcBlock/arc | 2026-10-20T03:47:01Z | wangshijun@wangshijun-mac-studio |
 | 20261020-034714-41-home-desktop.jpg | https://github.com/ArcBlock/arc | 2026-10-20T03:47:14Z | wangshijun@wangshijun-mac-studio |
+| 20261020-034725-42-home-assistant-desktop.jpg | https://github.com/ArcBlock/arc | 2026-10-20T03:47:25Z | wangshijun@wangshijun-mac-studio |
