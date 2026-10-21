@@ -7,3 +7,4 @@
 | 20261021-043206-collection-2-on.png | https://github.com/ArcBlock/arc | 2026-10-21T04:32:06Z | wangshijun@wangshijun-mac-studio |
 | 20261021-043221-collection-4-off.png | https://github.com/ArcBlock/arc | 2026-10-21T04:32:21Z | wangshijun@wangshijun-mac-studio |
 | 20261021-043234-collection-4-on.png | https://github.com/ArcBlock/arc | 2026-10-21T04:32:34Z | wangshijun@wangshijun-mac-studio |
+| 20261021-043246-item-image-off.png | https://github.com/ArcBlock/arc | 2026-10-21T04:32:46Z | wangshijun@wangshijun-mac-studio |
