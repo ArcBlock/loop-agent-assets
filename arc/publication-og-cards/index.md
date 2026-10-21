@@ -7,3 +7,4 @@
 | 20261021-035019-card-b.png | https://github.com/ArcBlock/arc | 2026-10-21T03:50:19Z | wangshijun@wangshijun-mac-studio |
 | 20261021-035027-card-c.png | https://github.com/ArcBlock/arc | 2026-10-21T03:50:27Z | wangshijun@wangshijun-mac-studio |
 | 20261021-035036-card-d.png | https://github.com/ArcBlock/arc | 2026-10-21T03:50:36Z | wangshijun@wangshijun-mac-studio |
+| 20261021-035047-current-generated.png | https://github.com/ArcBlock/arc | 2026-10-21T03:50:47Z | wangshijun@wangshijun-mac-studio |
