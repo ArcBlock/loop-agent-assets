@@ -11,3 +11,4 @@
 | 20261021-043259-item-image-on.png | https://github.com/ArcBlock/arc | 2026-10-21T04:32:59Z | wangshijun@wangshijun-mac-studio |
 | 20261021-043313-item-text-ja-long.png | https://github.com/ArcBlock/arc | 2026-10-21T04:33:13Z | wangshijun@wangshijun-mac-studio |
 | 20261021-043324-item-text-off.png | https://github.com/ArcBlock/arc | 2026-10-21T04:33:24Z | wangshijun@wangshijun-mac-studio |
+| 20261021-043335-item-text-on.png | https://github.com/ArcBlock/arc | 2026-10-21T04:33:35Z | wangshijun@wangshijun-mac-studio |
