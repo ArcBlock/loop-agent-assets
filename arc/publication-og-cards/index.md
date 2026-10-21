@@ -9,3 +9,4 @@
 | 20261021-035036-card-d.png | https://github.com/ArcBlock/arc | 2026-10-21T03:50:36Z | wangshijun@wangshijun-mac-studio |
 | 20261021-035047-current-generated.png | https://github.com/ArcBlock/arc | 2026-10-21T03:50:47Z | wangshijun@wangshijun-mac-studio |
 | 20261021-035056-feed-compare.png | https://github.com/ArcBlock/arc | 2026-10-21T03:50:56Z | wangshijun@wangshijun-mac-studio |
+| 20261021-035105-satori-render.png | https://github.com/ArcBlock/arc | 2026-10-21T03:51:05Z | wangshijun@wangshijun-mac-studio |
