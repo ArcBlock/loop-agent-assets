@@ -291,3 +291,4 @@
 | publication-comments-8523.png | https://github.com/ArcBlock/arc | 2026-10-16T10:44:24Z | wangshijun@wangshijun-mac-studio |
 | 20261022-055627-arc8800-side-collage-worst-zh.png | https://github.com/ArcBlock/arc | 2026-10-22T05:56:27Z | wangshijun@wangshijun-mac-studio |
 | 20261022-055651-arc8800-side-collage-real-zh.png | https://github.com/ArcBlock/arc | 2026-10-22T05:56:51Z | wangshijun@wangshijun-mac-studio |
+| 20261022-055711-arc8800-side-collage-typical-zh.png | https://github.com/ArcBlock/arc | 2026-10-22T05:57:11Z | wangshijun@wangshijun-mac-studio |
