@@ -294,3 +294,4 @@
 | 20261022-055711-arc8800-side-collage-typical-zh.png | https://github.com/ArcBlock/arc | 2026-10-22T05:57:11Z | wangshijun@wangshijun-mac-studio |
 | 20261022-055726-arc8800-side-item-image-zh.png | https://github.com/ArcBlock/arc | 2026-10-22T05:57:26Z | wangshijun@wangshijun-mac-studio |
 | 20261023-002201-s8832-contact-sheet.png | https://github.com/ArcBlock/arc | 2026-10-23T00:22:01Z | wangshijun@wangshijun-mac-studio |
+| 20261023-022901-s8832b-contact-sheet.png | https://github.com/ArcBlock/arc | 2026-10-23T02:29:01Z | wangshijun@wangshijun-mac-studio |
