@@ -297,3 +297,4 @@
 | 20261023-022901-s8832b-contact-sheet.png | https://github.com/ArcBlock/arc | 2026-10-23T02:29:01Z | wangshijun@wangshijun-mac-studio |
 | 20261023-022921-s8832b-mix-zhTW-before-after.png | https://github.com/ArcBlock/arc | 2026-10-23T02:29:21Z | wangshijun@wangshijun-mac-studio |
 | 20261023-023101-s8832b-mix-zhTW-ab.png | https://github.com/ArcBlock/arc | 2026-10-23T02:31:01Z | wangshijun@wangshijun-mac-studio |
+| 20261023-023127-s8832b-mix-zhTW-ab2.png | https://github.com/ArcBlock/arc | 2026-10-23T02:31:27Z | wangshijun@wangshijun-mac-studio |
