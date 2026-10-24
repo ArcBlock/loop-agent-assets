@@ -3,3 +3,4 @@
 | file | source | uploaded | by |
 |---|---|---|---|
 | needs-human-attention-en.png | https://github.com/ArcBlock/arc/issues/9018 | 2026-10-24T20:47:51Z | robmao@Roberts-Mac-mini-M4-Pro-7 |
+| needs-human-attention-zh.png | https://github.com/ArcBlock/arc/issues/9018 | 2026-10-24T20:47:58Z | robmao@Roberts-Mac-mini-M4-Pro-7 |
