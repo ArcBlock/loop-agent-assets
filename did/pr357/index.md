@@ -4,3 +4,4 @@
 |---|---|---|---|
 | 20261028-154006-forest.jpg | https://github.com/ArcBlock/did/pull/357 | 2026-10-28T15:40:12Z | wangshijun@wangshijun-mac-studio |
 | 20261028-154022-harbor.jpg | https://github.com/ArcBlock/did/pull/357 | 2026-10-28T15:40:24Z | wangshijun@wangshijun-mac-studio |
+| 20261028-154032-staging-other.jpg | https://github.com/ArcBlock/did/pull/357 | 2026-10-28T15:40:34Z | wangshijun@wangshijun-mac-studio |
