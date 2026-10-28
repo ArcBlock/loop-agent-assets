@@ -14,3 +14,4 @@
 | 2960-collapsed-after.png | https://github.com/ArcBlock/aside | 2026-10-28T07:35:18Z | nategu@Nate-Mac-Pro |
 | 2960-expanded-after.png | https://github.com/ArcBlock/aside | 2026-10-28T07:35:30Z | nategu@Nate-Mac-Pro |
 | 2960-folded-peek.png | https://github.com/ArcBlock/aside | 2026-10-28T07:35:40Z | nategu@Nate-Mac-Pro |
+| 2960-folded-expanded.png | https://github.com/ArcBlock/aside | 2026-10-28T07:35:52Z | nategu@Nate-Mac-Pro |
