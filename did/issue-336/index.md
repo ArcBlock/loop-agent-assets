@@ -14,3 +14,4 @@
 | 20261028-080522-baseline-03-more.png | https://github.com/ArcBlock/did/issues/336 | 2026-10-28T08:05:25Z | wangshijun@wangshijun-mac-studio |
 | 20261028-080536-baseline-04-create-form.png | https://github.com/ArcBlock/did/issues/336 | 2026-10-28T08:05:39Z | wangshijun@wangshijun-mac-studio |
 | 20261028-080552-baseline-05-keyboard.png | https://github.com/ArcBlock/did/issues/336 | 2026-10-28T08:05:55Z | wangshijun@wangshijun-mac-studio |
+| 20261028-080607-baseline-06-cancel.png | https://github.com/ArcBlock/did/issues/336 | 2026-10-28T08:06:10Z | wangshijun@wangshijun-mac-studio |
