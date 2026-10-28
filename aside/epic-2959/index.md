@@ -10,3 +10,4 @@
 | 20261028-062003-tap-collection-more.png | https://github.com/ArcBlock/aside | 2026-10-28T06:20:03Z | nategu@Nate-Mac-Pro |
 | 20261028-062012-tap-collection-add2.png | https://github.com/ArcBlock/aside | 2026-10-28T06:20:12Z | nategu@Nate-Mac-Pro |
 | 20261028-aside-2960-collapsed-capsule.png | https://github.com/ArcBlock/aside | 2026-10-28T06:37:11Z | nategu@Nate-Mac-Pro |
+| 20261028-aside-2960-notes-expanded.png | https://github.com/ArcBlock/aside | 2026-10-28T06:37:23Z | nategu@Nate-Mac-Pro |
