@@ -10,3 +10,4 @@
 | 20261028-080127-result.png | https://github.com/ArcBlock/did/issues/336 | 2026-10-28T08:01:33Z | wangshijun@wangshijun-mac-studio |
 | 20261028-080144-context.png | https://github.com/ArcBlock/did/issues/336 | 2026-10-28T08:01:49Z | wangshijun@wangshijun-mac-studio |
 | 20261028-080452-baseline-01-account.png | https://github.com/ArcBlock/did/issues/336 | 2026-10-28T08:04:55Z | wangshijun@wangshijun-mac-studio |
+| 20261028-080508-baseline-02-methods.png | https://github.com/ArcBlock/did/issues/336 | 2026-10-28T08:05:10Z | wangshijun@wangshijun-mac-studio |
