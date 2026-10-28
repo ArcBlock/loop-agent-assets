@@ -7,3 +7,4 @@
 | 20261028-duo-settings-back-noop.png | https://github.com/ArcBlock/aside/issues/2959 | 2026-10-28T03:32:30Z | nategu@Nate-Mac-Pro |
 | 20261028-duo-header-buttons-dead.png | https://github.com/ArcBlock/aside/issues/2959 | 2026-10-28T04:36:13Z | nategu@Nate-Mac-Pro |
 | 20261028-061949-tap-settings-back.png | https://github.com/ArcBlock/aside | 2026-10-28T06:19:49Z | nategu@Nate-Mac-Pro |
+| 20261028-062003-tap-collection-more.png | https://github.com/ArcBlock/aside | 2026-10-28T06:20:03Z | nategu@Nate-Mac-Pro |
