@@ -8,3 +8,4 @@
 | 20261028-175745-wallet.jpg | https://github.com/ArcBlock/did/issues/345 | 2026-10-28T17:57:48Z | wangshijun@wangshijun-mac-studio |
 | 20261028-182228-two-methods.jpg | https://github.com/ArcBlock/did/issues/345 | 2026-10-28T18:22:31Z | wangshijun@wangshijun-mac-studio |
 | 20261028-182239-app-info.jpg | https://github.com/ArcBlock/did/issues/345 | 2026-10-28T18:22:42Z | wangshijun@wangshijun-mac-studio |
+| 20261028-182251-wallet.jpg | https://github.com/ArcBlock/did/issues/345 | 2026-10-28T18:22:53Z | wangshijun@wangshijun-mac-studio |
