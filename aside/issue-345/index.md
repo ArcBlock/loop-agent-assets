@@ -7,3 +7,4 @@
 | 20261028-211015-final-staging-methods.png | https://github.com/ArcBlock/did/issues/345 | 2026-10-28T21:10:19Z | wangshijun@wangshijun-mac-studio |
 | 20261028-211028-final-staging-create.png | https://github.com/ArcBlock/did/issues/345 | 2026-10-28T21:10:31Z | wangshijun@wangshijun-mac-studio |
 | 20261028-211039-final-discuss-wallet-fallback.png | https://github.com/ArcBlock/did/issues/345 | 2026-10-28T21:10:41Z | wangshijun@wangshijun-mac-studio |
+| 20261028-211259-merged-root-rp-staging-methods.png | https://github.com/ArcBlock/did/issues/345 | 2026-10-28T21:13:02Z | wangshijun@wangshijun-mac-studio |
