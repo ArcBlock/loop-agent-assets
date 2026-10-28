@@ -8,3 +8,4 @@
 | 20261028-080048-wallet.png | https://github.com/ArcBlock/did/issues/336 | 2026-10-28T08:00:51Z | wangshijun@wangshijun-mac-studio |
 | 20261028-080108-recovery.png | https://github.com/ArcBlock/did/issues/336 | 2026-10-28T08:01:12Z | wangshijun@wangshijun-mac-studio |
 | 20261028-080127-result.png | https://github.com/ArcBlock/did/issues/336 | 2026-10-28T08:01:33Z | wangshijun@wangshijun-mac-studio |
+| 20261028-080144-context.png | https://github.com/ArcBlock/did/issues/336 | 2026-10-28T08:01:49Z | wangshijun@wangshijun-mac-studio |
