@@ -5,3 +5,4 @@
 | 20261029-074456-create-passkey-light.png | https://github.com/ArcBlock/did/pull/385 | 2026-10-29T07:45:01Z | wangshijun@wangshijun-mac-studio |
 | 20261029-074631-create-passkey-dark.png | https://github.com/ArcBlock/did/pull/385 | 2026-10-29T07:46:34Z | wangshijun@wangshijun-mac-studio |
 | 20261030-001921-ipad-create-nav-aligned.png | https://github.com/ArcBlock/did/issues/343 | 2026-10-30T00:19:24Z | wangshijun@wangshijun-mac-studio |
+| 20261030-001946-ipad-email-nav-aligned.png | https://github.com/ArcBlock/did/issues/343 | 2026-10-30T00:19:48Z | wangshijun@wangshijun-mac-studio |
