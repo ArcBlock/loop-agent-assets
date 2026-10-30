@@ -164,3 +164,4 @@
 | epic-2443-2452-banner-root.png | https://github.com/ArcBlock/aside | 2026-10-17T03:37:39Z | nategu@Nate-Mac-Pro |
 | epic-2443-2452-banner-round-list.png | https://github.com/ArcBlock/aside | 2026-10-17T03:37:54Z | nategu@Nate-Mac-Pro |
 | epic-2443-2453-home-recent-row.png | https://github.com/ArcBlock/aside | 2026-10-17T04:22:14Z | nategu@Nate-Mac-Pro |
+| 20261030-045352-PR 3010 settings-storage without copy sync diagnostics | https://github.com/ArcBlock/aside | 2026-10-30T04:53:56Z | wangshijun@wangshijun-mac-studio |
