@@ -166,3 +166,4 @@
 | epic-2443-2453-home-recent-row.png | https://github.com/ArcBlock/aside | 2026-10-17T04:22:14Z | nategu@Nate-Mac-Pro |
 | 20261030-045352-PR 3010 settings-storage without copy sync diagnostics | https://github.com/ArcBlock/aside | 2026-10-30T04:53:56Z | wangshijun@wangshijun-mac-studio |
 | 20261030-045422-PR 3010 settings-about with developer menu hidden | https://github.com/ArcBlock/aside | 2026-10-30T04:54:24Z | wangshijun@wangshijun-mac-studio |
+| 20261031-094043---issue | https://github.com/ArcBlock/aside | 2026-10-31T09:40:48Z | wangshijun@wangshijun-mac-studio |
