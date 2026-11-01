@@ -3,3 +3,4 @@
 | file | source | uploaded | by |
 |---|---|---|---|
 | chat-voice-listening.png | https://github.com/ArcBlock/arc/issues/10062 | 2026-11-01T04:03:34Z | robmao@robmaos-Mac-Studio |
+| chat-voice-toggled-en.png | https://github.com/ArcBlock/arc/issues/10062 | 2026-11-01T04:03:42Z | robmao@robmaos-Mac-Studio |
