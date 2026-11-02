@@ -9,3 +9,4 @@
 | 20261102-080907-expanded-light.png | https://github.com/ArcBlock/arc | 2026-11-02T08:09:07Z | robmao@robmaos-Mac-Studio |
 | 20261102-080912-light.png | https://github.com/ArcBlock/arc | 2026-11-02T08:09:12Z | robmao@robmaos-Mac-Studio |
 | 20261102-080917-phone-alert.png | https://github.com/ArcBlock/arc | 2026-11-02T08:09:17Z | robmao@robmaos-Mac-Studio |
+| 20261102-080922-phone-dark.png | https://github.com/ArcBlock/arc | 2026-11-02T08:09:22Z | robmao@robmaos-Mac-Studio |
