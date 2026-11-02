@@ -3,3 +3,4 @@
 | file | source | uploaded | by |
 |---|---|---|---|
 | channel-chat-sidebar-nav-groups.png | https://github.com/ArcBlock/arc/issues/10407 | 2026-11-02T10:40:32Z | wangshijun@wangshijun-mac-studio |
+| channel-chat-sidebar-nav-groups-v2.png | https://github.com/ArcBlock/arc/issues/10407 | 2026-11-02T10:47:03Z | wangshijun@wangshijun-mac-studio |
