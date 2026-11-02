@@ -299,3 +299,4 @@
 | 20261023-023101-s8832b-mix-zhTW-ab.png | https://github.com/ArcBlock/arc | 2026-10-23T02:31:01Z | wangshijun@wangshijun-mac-studio |
 | 20261023-023127-s8832b-mix-zhTW-ab2.png | https://github.com/ArcBlock/arc | 2026-10-23T02:31:27Z | wangshijun@wangshijun-mac-studio |
 | 20261102-053111-tone-preview.png | https://github.com/ArcBlock/arc | 2026-11-02T05:31:11Z | robmao@robmaos-Mac-Studio |
+| 20261102-053119-tone-declared.png | https://github.com/ArcBlock/arc | 2026-11-02T05:31:19Z | robmao@robmaos-Mac-Studio |
