@@ -4,3 +4,4 @@
 |---|---|---|---|
 | 20261102-080845-canvas-dark.png | https://github.com/ArcBlock/arc | 2026-11-02T08:08:45Z | robmao@robmaos-Mac-Studio |
 | 20261102-080853-canvas-light.png | https://github.com/ArcBlock/arc | 2026-11-02T08:08:53Z | robmao@robmaos-Mac-Studio |
+| 20261102-080857-dark.png | https://github.com/ArcBlock/arc | 2026-11-02T08:08:57Z | robmao@robmaos-Mac-Studio |
