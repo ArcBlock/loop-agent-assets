@@ -10,3 +10,4 @@
 | 20261103-184540-06-invite-dark-desktop.png | https://github.com/ArcBlock/arc | 2026-11-03T18:45:40Z | wangshijun@wangshijun-mac-studio |
 | 20261103-184548-sbs-invite.png | https://github.com/ArcBlock/arc | 2026-11-03T18:45:48Z | wangshijun@wangshijun-mac-studio |
 | 20261103-184555-sbs-login-default.png | https://github.com/ArcBlock/arc | 2026-11-03T18:45:55Z | wangshijun@wangshijun-mac-studio |
+| 20261103-184602-sbs-login-expanded-wallet.png | https://github.com/ArcBlock/arc | 2026-11-03T18:46:02Z | wangshijun@wangshijun-mac-studio |
