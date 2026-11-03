@@ -3,3 +3,4 @@
 | file | source | uploaded | by |
 |---|---|---|---|
 | 20261103-151728-01-login-light-desktop.png | https://github.com/ArcBlock/arc/issues/10448-pr-a | 2026-11-03T15:17:28Z | wangshijun@wangshijun-mac-studio |
+| 20261103-151744-02-login-dark-desktop.png | https://github.com/ArcBlock/arc/issues/10448-pr-a | 2026-11-03T15:17:44Z | wangshijun@wangshijun-mac-studio |
