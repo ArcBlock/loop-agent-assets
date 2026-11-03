@@ -8,3 +8,4 @@
 | 20261103-212106-04-login-dark-mobile.png | https://github.com/ArcBlock/arc | 2026-11-03T21:21:06Z | wangshijun@wangshijun-mac-studio |
 | 20261103-212115-05-oauth-consent-light-desktop.png | https://github.com/ArcBlock/arc | 2026-11-03T21:21:15Z | wangshijun@wangshijun-mac-studio |
 | 20261103-212122-06-invite-dark-desktop.png | https://github.com/ArcBlock/arc | 2026-11-03T21:21:22Z | wangshijun@wangshijun-mac-studio |
+| 20261103-212129-sbs-invite.png | https://github.com/ArcBlock/arc | 2026-11-03T21:21:29Z | wangshijun@wangshijun-mac-studio |
