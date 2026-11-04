@@ -6,3 +6,4 @@
 | 20261104-130424-02-en-desktop-lightbox.png | https://github.com/ArcBlock/aside/issues/3048-6892482d | 2026-11-04T13:04:24Z | wangshijun@wangshijun-mac-studio |
 | 20261104-130434-03-en-desktop-loop-lazy-loaded.png | https://github.com/ArcBlock/aside/issues/3048-6892482d | 2026-11-04T13:04:34Z | wangshijun@wangshijun-mac-studio |
 | 20261104-130444-04-zh-desktop-hero.png | https://github.com/ArcBlock/aside/issues/3048-6892482d | 2026-11-04T13:04:44Z | wangshijun@wangshijun-mac-studio |
+| 20261104-130506-05-en-mobile-hero.png | https://github.com/ArcBlock/aside/issues/3048-6892482d | 2026-11-04T13:05:06Z | wangshijun@wangshijun-mac-studio |
