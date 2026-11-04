@@ -12,3 +12,4 @@
 | 20261104-065604-login-light-mobile.png | https://github.com/ArcBlock/arc/pull/10496 | 2026-11-04T06:56:04Z | wangshijun@wangshijun-mac-studio |
 | 20261104-065614-login-modal-dark-mobile.png | https://github.com/ArcBlock/arc/pull/10496 | 2026-11-04T06:56:14Z | wangshijun@wangshijun-mac-studio |
 | 20261104-065624-login-modal-light-desktop.png | https://github.com/ArcBlock/arc/pull/10496 | 2026-11-04T06:56:24Z | wangshijun@wangshijun-mac-studio |
+| 20261104-065633-login-other-light-desktop.png | https://github.com/ArcBlock/arc/pull/10496 | 2026-11-04T06:56:33Z | wangshijun@wangshijun-mac-studio |
