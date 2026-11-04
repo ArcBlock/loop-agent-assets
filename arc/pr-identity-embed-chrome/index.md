@@ -6,3 +6,4 @@
 | identity-embed-before-staging-standalone.png | https://github.com/ArcBlock/arc | 2026-11-04T10:01:24Z | wangshijun@wangshijun-mac-studio |
 | identity-embed-after-modal-email.png | https://github.com/ArcBlock/arc | 2026-11-04T10:01:31Z | wangshijun@wangshijun-mac-studio |
 | identity-embed-after-modal-wallet.png | https://github.com/ArcBlock/arc | 2026-11-04T10:01:43Z | wangshijun@wangshijun-mac-studio |
+| identity-embed-after-standalone.png | https://github.com/ArcBlock/arc | 2026-11-04T10:01:54Z | wangshijun@wangshijun-mac-studio |
