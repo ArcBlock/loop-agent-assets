@@ -310,3 +310,4 @@
 | pr10512-copy-btn-desktop-light-copied.png | https://github.com/ArcBlock/arc | 2026-11-04T05:03:58Z | robmao@robmaos-Mac-Studio |
 | pr10512-copy-btn-desktop-dark.png | https://github.com/ArcBlock/arc | 2026-11-04T05:04:04Z | robmao@robmaos-Mac-Studio |
 | pr10512-copy-btn-desktop-dark-copied.png | https://github.com/ArcBlock/arc | 2026-11-04T05:04:33Z | robmao@robmaos-Mac-Studio |
+| pr10512-copy-btn-mobile-light.png | https://github.com/ArcBlock/arc | 2026-11-04T05:04:38Z | robmao@robmaos-Mac-Studio |
