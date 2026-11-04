@@ -318,3 +318,4 @@
 | pr10476-expanded.png | https://github.com/ArcBlock/arc | 2026-11-04T22:05:18Z | robmao@robmaos-Mac-Studio |
 | pr10474-topics-light-desktop.png | https://github.com/ArcBlock/arc | 2026-11-04T22:11:17Z | robmao@robmaos-Mac-Studio |
 | pr10474-topics-dark-desktop.png | https://github.com/ArcBlock/arc | 2026-11-04T22:11:23Z | robmao@robmaos-Mac-Studio |
+| pr10474-topics-light-phone.png | https://github.com/ArcBlock/arc | 2026-11-04T22:11:29Z | robmao@robmaos-Mac-Studio |
