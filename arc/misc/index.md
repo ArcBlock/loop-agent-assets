@@ -316,3 +316,4 @@
 | pr10512-copy-btn-mobile-dark-copied.png | https://github.com/ArcBlock/arc | 2026-11-04T05:04:52Z | robmao@robmaos-Mac-Studio |
 | pr10476-collapsed.png | https://github.com/ArcBlock/arc | 2026-11-04T22:05:08Z | robmao@robmaos-Mac-Studio |
 | pr10476-expanded.png | https://github.com/ArcBlock/arc | 2026-11-04T22:05:18Z | robmao@robmaos-Mac-Studio |
+| pr10474-topics-light-desktop.png | https://github.com/ArcBlock/arc | 2026-11-04T22:11:17Z | robmao@robmaos-Mac-Studio |
