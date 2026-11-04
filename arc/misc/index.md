@@ -304,3 +304,4 @@
 | channel-chat-create-dialog-10421.png | https://github.com/ArcBlock/arc | 2026-11-02T12:22:48Z | wangshijun@wangshijun-mac-studio |
 | software-factory-diagram-pranshgupta54.jpg | https://github.com/ArcBlock/arc | 2026-11-02T21:09:18Z | robmao@robmaos-Mac-Studio |
 | 20261103-114051-arc-10412-footer-verify.png | https://github.com/ArcBlock/arc | 2026-11-03T11:40:51Z | wangshijun@wangshijun-mac-studio |
+| sbs-login-federated | https://github.com/ArcBlock/arc | 2026-11-04T00:18:58Z | wangshijun@wangshijun-mac-studio |
