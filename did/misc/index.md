@@ -4,3 +4,4 @@
 |---|---|---|---|
 | pr205-d04f09a-merge-confirm.png | https://github.com/ArcBlock/did | 2026-08-27T04:44:59Z | wangshijun@wangshijun-mac-studio |
 | pr205-d04f09a-merged-profile.png | https://github.com/ArcBlock/did | 2026-08-27T04:45:08Z | wangshijun@wangshijun-mac-studio |
+| staging-aside-aup-login-modal.png | https://github.com/ArcBlock/did | 2026-11-04T09:35:48Z | wangshijun@wangshijun-mac-studio |
