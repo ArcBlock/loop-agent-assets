@@ -306,3 +306,4 @@
 | 20261103-114051-arc-10412-footer-verify.png | https://github.com/ArcBlock/arc | 2026-11-03T11:40:51Z | wangshijun@wangshijun-mac-studio |
 | sbs-login-federated | https://github.com/ArcBlock/arc | 2026-11-04T00:18:58Z | wangshijun@wangshijun-mac-studio |
 | 20261104-sbs-login-federated.png | https://github.com/ArcBlock/arc | 2026-11-04T00:21:30Z | wangshijun@wangshijun-mac-studio |
+| pr10512-copy-btn-desktop-light.png | https://github.com/ArcBlock/arc | 2026-11-04T05:03:51Z | robmao@robmaos-Mac-Studio |
