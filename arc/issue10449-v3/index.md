@@ -10,3 +10,4 @@
 | 20261105-051054-dlg-member-desktop-light.png | https://github.com/ArcBlock/arc | 2026-11-05T05:10:54Z | wangshijun@wangshijun-mac-studio |
 | 20261105-051108-invitations-desktop-light.png | https://github.com/ArcBlock/arc | 2026-11-05T05:11:08Z | wangshijun@wangshijun-mac-studio |
 | 20261105-051120-members-desktop-light.png | https://github.com/ArcBlock/arc | 2026-11-05T05:11:20Z | wangshijun@wangshijun-mac-studio |
+| 20261105-051134-members-mobile-dark.png | https://github.com/ArcBlock/arc | 2026-11-05T05:11:34Z | wangshijun@wangshijun-mac-studio |
