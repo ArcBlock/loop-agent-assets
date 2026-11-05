@@ -11,3 +11,4 @@
 | 20261105-010108-new-after2-wallet-timeout-after-scanned.png | https://github.com/ArcBlock/arc/pull/10579 | 2026-11-05T01:01:08Z | wangshijun@wangshijun-mac-studio |
 | 20261105-010114-old-email-code.png | https://github.com/ArcBlock/arc/pull/10579 | 2026-11-05T01:01:14Z | wangshijun@wangshijun-mac-studio |
 | 20261105-010120-old-email-success.png | https://github.com/ArcBlock/arc/pull/10579 | 2026-11-05T01:01:20Z | wangshijun@wangshijun-mac-studio |
+| 20261105-010126-old-passkey-setup.png | https://github.com/ArcBlock/arc/pull/10579 | 2026-11-05T01:01:26Z | wangshijun@wangshijun-mac-studio |
