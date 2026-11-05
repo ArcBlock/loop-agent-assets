@@ -8,3 +8,4 @@
 | 20261105-010049-new-after-wallet.png | https://github.com/ArcBlock/arc/pull/10579 | 2026-11-05T01:00:49Z | wangshijun@wangshijun-mac-studio |
 | 20261105-010055-new-after2-passkey-setup.png | https://github.com/ArcBlock/arc/pull/10579 | 2026-11-05T01:00:55Z | wangshijun@wangshijun-mac-studio |
 | 20261105-010101-new-after2-wallet-scanned.png | https://github.com/ArcBlock/arc/pull/10579 | 2026-11-05T01:01:01Z | wangshijun@wangshijun-mac-studio |
+| 20261105-010108-new-after2-wallet-timeout-after-scanned.png | https://github.com/ArcBlock/arc/pull/10579 | 2026-11-05T01:01:08Z | wangshijun@wangshijun-mac-studio |
