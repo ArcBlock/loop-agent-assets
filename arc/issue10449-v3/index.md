@@ -15,3 +15,4 @@
 | 20261105-051204-oauth-clients-desktop-light.png | https://github.com/ArcBlock/arc | 2026-11-05T05:12:04Z | wangshijun@wangshijun-mac-studio |
 | 20261105-051212-profile-desktop-dark.png | https://github.com/ArcBlock/arc | 2026-11-05T05:12:12Z | wangshijun@wangshijun-mac-studio |
 | 20261105-051227-profile-desktop-light.png | https://github.com/ArcBlock/arc | 2026-11-05T05:12:27Z | wangshijun@wangshijun-mac-studio |
+| 20261105-051238-profile-keys-desktop-light.png | https://github.com/ArcBlock/arc | 2026-11-05T05:12:38Z | wangshijun@wangshijun-mac-studio |
