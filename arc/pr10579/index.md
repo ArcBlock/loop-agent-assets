@@ -12,3 +12,4 @@
 | 20261105-010114-old-email-code.png | https://github.com/ArcBlock/arc/pull/10579 | 2026-11-05T01:01:14Z | wangshijun@wangshijun-mac-studio |
 | 20261105-010120-old-email-success.png | https://github.com/ArcBlock/arc/pull/10579 | 2026-11-05T01:01:20Z | wangshijun@wangshijun-mac-studio |
 | 20261105-010126-old-passkey-setup.png | https://github.com/ArcBlock/arc/pull/10579 | 2026-11-05T01:01:26Z | wangshijun@wangshijun-mac-studio |
+| 20261105-010134-old-wallet-scanned.png | https://github.com/ArcBlock/arc/pull/10579 | 2026-11-05T01:01:34Z | wangshijun@wangshijun-mac-studio |
