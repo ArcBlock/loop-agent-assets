@@ -322,3 +322,4 @@
 | pr10474-topics-dark-phone.png | https://github.com/ArcBlock/arc | 2026-11-04T22:11:35Z | robmao@robmaos-Mac-Studio |
 | access-forbidden-1280.png | https://github.com/ArcBlock/arc | 2026-11-09T13:10:15Z | wangshijun@wangshijun-mac-studio |
 | auth-data-en-1280.png | https://github.com/ArcBlock/arc | 2026-11-09T13:10:28Z | wangshijun@wangshijun-mac-studio |
+| auth-edit-oauth-en-1280.png | https://github.com/ArcBlock/arc | 2026-11-09T13:10:41Z | wangshijun@wangshijun-mac-studio |
