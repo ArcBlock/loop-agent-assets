@@ -7,3 +7,4 @@
 | 20261109-130819-access-data-zh-1280.png | https://github.com/ArcBlock/arc | 2026-11-09T13:08:19Z | wangshijun@wangshijun-mac-studio |
 | 20261109-130830-access-data-zh-390.png | https://github.com/ArcBlock/arc | 2026-11-09T13:08:30Z | wangshijun@wangshijun-mac-studio |
 | 20261109-130840-access-edit-policy-en-1280.png | https://github.com/ArcBlock/arc | 2026-11-09T13:08:40Z | wangshijun@wangshijun-mac-studio |
+| 20261109-130849-access-edit-policy-zh-1280.png | https://github.com/ArcBlock/arc | 2026-11-09T13:08:49Z | wangshijun@wangshijun-mac-studio |
