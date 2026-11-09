@@ -20,3 +20,4 @@
 | 20261109-130649-auth-edit-oauth-en-1280.png | https://github.com/ArcBlock/arc | 2026-11-09T13:06:49Z | wangshijun@wangshijun-mac-studio |
 | 20261109-130659-auth-edit-oauth-zh-1280.png | https://github.com/ArcBlock/arc | 2026-11-09T13:06:59Z | wangshijun@wangshijun-mac-studio |
 | 20261109-130709-auth-empty-oauth-en-1280.png | https://github.com/ArcBlock/arc | 2026-11-09T13:07:09Z | wangshijun@wangshijun-mac-studio |
+| 20261109-130720-auth-empty-oauth-en-390.png | https://github.com/ArcBlock/arc | 2026-11-09T13:07:20Z | wangshijun@wangshijun-mac-studio |
