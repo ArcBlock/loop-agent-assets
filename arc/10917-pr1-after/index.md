@@ -19,3 +19,4 @@
 | 20261109-120300-ak-row-menu-en-1280.png | https://github.com/ArcBlock/arc | 2026-11-09T12:03:00Z | wangshijun@wangshijun-mac-studio |
 | 20261109-120309-audit-data-en-1280.png | https://github.com/ArcBlock/arc | 2026-11-09T12:03:09Z | wangshijun@wangshijun-mac-studio |
 | 20261109-120318-audit-data-en-390.png | https://github.com/ArcBlock/arc | 2026-11-09T12:03:18Z | wangshijun@wangshijun-mac-studio |
+| 20261109-120323-audit-data-zh-1280.png | https://github.com/ArcBlock/arc | 2026-11-09T12:03:23Z | wangshijun@wangshijun-mac-studio |
