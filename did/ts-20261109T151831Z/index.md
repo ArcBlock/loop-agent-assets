@@ -31,3 +31,4 @@
 | 20261109-152310-profile-data-zh-1280.png | https://github.com/ArcBlock/did | 2026-11-09T15:23:10Z | wangshijun@wangshijun-mac-studio |
 | 20261109-152321-profile-data-zh-390.png | https://github.com/ArcBlock/did | 2026-11-09T15:23:21Z | wangshijun@wangshijun-mac-studio |
 | 20261109-152331-profile-passkey-rename-en-1280.png | https://github.com/ArcBlock/did | 2026-11-09T15:23:31Z | wangshijun@wangshijun-mac-studio |
+| 20261109-152342-profile-passkey-rename-zh-1280.png | https://github.com/ArcBlock/did | 2026-11-09T15:23:42Z | wangshijun@wangshijun-mac-studio |
