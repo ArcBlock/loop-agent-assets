@@ -9,3 +9,4 @@
 | 20261109-130456-access-edit-policy-en-1280.png | https://github.com/ArcBlock/arc | 2026-11-09T13:04:56Z | wangshijun@wangshijun-mac-studio |
 | 20261109-130507-access-edit-policy-zh-1280.png | https://github.com/ArcBlock/arc | 2026-11-09T13:05:07Z | wangshijun@wangshijun-mac-studio |
 | 20261109-130518-access-empty-rules-en-1280.png | https://github.com/ArcBlock/arc | 2026-11-09T13:05:18Z | wangshijun@wangshijun-mac-studio |
+| 20261109-130529-access-empty-rules-en-390.png | https://github.com/ArcBlock/arc | 2026-11-09T13:05:29Z | wangshijun@wangshijun-mac-studio |
