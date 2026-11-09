@@ -11,3 +11,4 @@
 | 20261109-151431-instances-empty-en-1280.png | https://github.com/ArcBlock/did | 2026-11-09T15:14:31Z | wangshijun@wangshijun-mac-studio |
 | 20261109-151443-instances-empty-en-390.png | https://github.com/ArcBlock/did | 2026-11-09T15:14:43Z | wangshijun@wangshijun-mac-studio |
 | 20261109-151453-instances-empty-zh-1280.png | https://github.com/ArcBlock/did | 2026-11-09T15:14:53Z | wangshijun@wangshijun-mac-studio |
+| 20261109-151504-instances-empty-zh-390.png | https://github.com/ArcBlock/did | 2026-11-09T15:15:04Z | wangshijun@wangshijun-mac-studio |
