@@ -28,3 +28,4 @@
 | 20261109-120359-audit-page2-en-1280.png | https://github.com/ArcBlock/arc | 2026-11-09T12:03:59Z | wangshijun@wangshijun-mac-studio |
 | 20261109-120406-audit-page2-en-390.png | https://github.com/ArcBlock/arc | 2026-11-09T12:04:06Z | wangshijun@wangshijun-mac-studio |
 | 20261109-120412-audit-page2-zh-1280.png | https://github.com/ArcBlock/arc | 2026-11-09T12:04:12Z | wangshijun@wangshijun-mac-studio |
+| 20261109-120418-audit-page2-zh-390.png | https://github.com/ArcBlock/arc | 2026-11-09T12:04:18Z | wangshijun@wangshijun-mac-studio |
