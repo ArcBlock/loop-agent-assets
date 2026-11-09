@@ -6,3 +6,4 @@
 | 20261109-062642-authorize-owner-en-light-desktop.png | https://github.com/ArcBlock/arc/pull/10914 | 2026-11-09T06:26:42Z | wangshijun@wangshijun-mac-studio |
 | 20261109-062652-countdown-en-dark-desktop.png | https://github.com/ArcBlock/arc/pull/10914 | 2026-11-09T06:26:52Z | wangshijun@wangshijun-mac-studio |
 | 20261109-062704-error-no-token-zh-dark-phone.png | https://github.com/ArcBlock/arc/pull/10914 | 2026-11-09T06:27:04Z | wangshijun@wangshijun-mac-studio |
+| 20261109-062717-oauth-cimd-en-dark-desktop.png | https://github.com/ArcBlock/arc/pull/10914 | 2026-11-09T06:27:17Z | wangshijun@wangshijun-mac-studio |
