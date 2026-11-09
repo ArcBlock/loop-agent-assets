@@ -25,3 +25,4 @@
 | 20261109-151702-oauth-clients-pager-en-1280.png | https://github.com/ArcBlock/did | 2026-11-09T15:17:02Z | wangshijun@wangshijun-mac-studio |
 | 20261109-151715-oauth-clients-pager-zh-1280.png | https://github.com/ArcBlock/did | 2026-11-09T15:17:15Z | wangshijun@wangshijun-mac-studio |
 | 20261109-151727-profile-data-en-1280.png | https://github.com/ArcBlock/did | 2026-11-09T15:17:27Z | wangshijun@wangshijun-mac-studio |
+| 20261109-151739-profile-data-en-390.png | https://github.com/ArcBlock/did | 2026-11-09T15:17:39Z | wangshijun@wangshijun-mac-studio |
