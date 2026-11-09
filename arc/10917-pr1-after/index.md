@@ -6,3 +6,4 @@
 | 20261109-120101-ak-data-en-390.png | https://github.com/ArcBlock/arc | 2026-11-09T12:01:01Z | wangshijun@wangshijun-mac-studio |
 | 20261109-120111-ak-data-zh-1280.png | https://github.com/ArcBlock/arc | 2026-11-09T12:01:11Z | wangshijun@wangshijun-mac-studio |
 | 20261109-120122-ak-data-zh-390.png | https://github.com/ArcBlock/arc | 2026-11-09T12:01:22Z | wangshijun@wangshijun-mac-studio |
+| 20261109-120131-ak-edit-dialog-en-1280.png | https://github.com/ArcBlock/arc | 2026-11-09T12:01:31Z | wangshijun@wangshijun-mac-studio |
