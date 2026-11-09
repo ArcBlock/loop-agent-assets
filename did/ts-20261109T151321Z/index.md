@@ -15,3 +15,4 @@
 | 20261109-151514-instances-forbidden-1280.png | https://github.com/ArcBlock/did | 2026-11-09T15:15:14Z | wangshijun@wangshijun-mac-studio |
 | 20261109-151524-oauth-clients-data-en-1280.png | https://github.com/ArcBlock/did | 2026-11-09T15:15:24Z | wangshijun@wangshijun-mac-studio |
 | 20261109-151536-oauth-clients-data-en-390.png | https://github.com/ArcBlock/did | 2026-11-09T15:15:36Z | wangshijun@wangshijun-mac-studio |
+| 20261109-151548-oauth-clients-data-zh-1280.png | https://github.com/ArcBlock/did | 2026-11-09T15:15:48Z | wangshijun@wangshijun-mac-studio |
