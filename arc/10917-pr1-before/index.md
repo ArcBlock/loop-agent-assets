@@ -15,3 +15,4 @@
 | 20261109-120556-ak-page2-en-1280.png | https://github.com/ArcBlock/arc | 2026-11-09T12:05:56Z | wangshijun@wangshijun-mac-studio |
 | 20261109-120601-ak-page2-en-390.png | https://github.com/ArcBlock/arc | 2026-11-09T12:06:01Z | wangshijun@wangshijun-mac-studio |
 | 20261109-120607-ak-page2-zh-1280.png | https://github.com/ArcBlock/arc | 2026-11-09T12:06:07Z | wangshijun@wangshijun-mac-studio |
+| 20261109-120614-ak-page2-zh-390.png | https://github.com/ArcBlock/arc | 2026-11-09T12:06:14Z | wangshijun@wangshijun-mac-studio |
