@@ -324,3 +324,4 @@
 | auth-data-en-1280.png | https://github.com/ArcBlock/arc | 2026-11-09T13:10:28Z | wangshijun@wangshijun-mac-studio |
 | auth-edit-oauth-en-1280.png | https://github.com/ArcBlock/arc | 2026-11-09T13:10:41Z | wangshijun@wangshijun-mac-studio |
 | auth-forbidden-1280.png | https://github.com/ArcBlock/arc | 2026-11-09T13:10:55Z | wangshijun@wangshijun-mac-studio |
+| 20261110-225653-channel-decision-card-10990-b2-light.png | https://github.com/ArcBlock/arc | 2026-11-10T22:56:53Z | robmao@robmaos-Mac-Studio |
