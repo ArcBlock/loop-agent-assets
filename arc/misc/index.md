@@ -341,3 +341,4 @@
 | 20261112-084518-desktop-dark-top-11229.png | https://github.com/ArcBlock/arc | 2026-11-12T08:45:18Z | robmao@robmaos-Mac-Studio |
 | 20261112-084523-desktop-dark-mid-11229.png | https://github.com/ArcBlock/arc | 2026-11-12T08:45:23Z | robmao@robmaos-Mac-Studio |
 | 20261112-084529-mobile-idle-clean-11229.png | https://github.com/ArcBlock/arc | 2026-11-12T08:45:29Z | robmao@robmaos-Mac-Studio |
+| 20261112-084535-mobile-active-scroll-11229.png | https://github.com/ArcBlock/arc | 2026-11-12T08:45:35Z | robmao@robmaos-Mac-Studio |
