@@ -31,3 +31,4 @@
 | 20261113-033304-85-tx-withdraw-incoming-light-en-phone.png | https://github.com/ArcBlock/blockchain | 2026-11-13T03:33:04Z | wangshijun@wangshijun-mac-studio |
 | 20261113-033314-86-status-light-en-phone.png | https://github.com/ArcBlock/blockchain | 2026-11-13T03:33:14Z | wangshijun@wangshijun-mac-studio |
 | 20261113-033326-88-ocap-explorer-deposit-credit-tx-light.png | https://github.com/ArcBlock/blockchain | 2026-11-13T03:33:26Z | wangshijun@wangshijun-mac-studio |
+| 20261113-033337-90-otterscan-deposit-tx-light.png | https://github.com/ArcBlock/blockchain | 2026-11-13T03:33:37Z | wangshijun@wangshijun-mac-studio |
