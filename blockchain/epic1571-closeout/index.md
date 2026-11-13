@@ -17,3 +17,4 @@
 | 20261113-033030-27-withdraw-form-mid-light-en.png | https://github.com/ArcBlock/blockchain | 2026-11-13T03:30:30Z | wangshijun@wangshijun-mac-studio |
 | 20261113-033040-28-withdraw-review-sheet-mid-light-en.png | https://github.com/ArcBlock/blockchain | 2026-11-13T03:30:40Z | wangshijun@wangshijun-mac-studio |
 | 20261113-033051-33-tx-withdraw-mid-completed-light-en.png | https://github.com/ArcBlock/blockchain | 2026-11-13T03:30:51Z | wangshijun@wangshijun-mac-studio |
+| 20261113-033102-34-tx-withdraw-mid-done-final-light-en.png | https://github.com/ArcBlock/blockchain | 2026-11-13T03:31:02Z | wangshijun@wangshijun-mac-studio |
