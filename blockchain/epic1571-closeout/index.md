@@ -35,3 +35,4 @@
 | 20261113-033348-93-tx-withdraw-incoming-returned-final-light-en.png | https://github.com/ArcBlock/blockchain | 2026-11-13T03:33:48Z | wangshijun@wangshijun-mac-studio |
 | 20261113-033358-94-tx-withdraw-returned-light-en.png | https://github.com/ArcBlock/blockchain | 2026-11-13T03:33:58Z | wangshijun@wangshijun-mac-studio |
 | 20261113-033409-96-status-all-operational-light-en.png | https://github.com/ArcBlock/blockchain | 2026-11-13T03:34:09Z | wangshijun@wangshijun-mac-studio |
+| 20261113-033421-97-activity-returning-light-en.png | https://github.com/ArcBlock/blockchain | 2026-11-13T03:34:21Z | wangshijun@wangshijun-mac-studio |
