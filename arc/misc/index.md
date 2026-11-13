@@ -349,3 +349,4 @@
 | 11332-3-sweep-vernier-fanned-card-dark.png | https://github.com/ArcBlock/arc | 2026-11-13T10:57:04Z | robmao@robmaos-Mac-Studio |
 | 11332-4-sparse-gap-constant-window-light.png | https://github.com/ArcBlock/arc | 2026-11-13T10:57:09Z | robmao@robmaos-Mac-Studio |
 | 11339-1-ambient-monochrome-minimal-dark.png | https://github.com/ArcBlock/arc | 2026-11-13T12:38:43Z | robmao@robmaos-Mac-Studio |
+| 11339-2-hover-coarse-fanned-labels-dark.png | https://github.com/ArcBlock/arc | 2026-11-13T12:38:50Z | robmao@robmaos-Mac-Studio |
