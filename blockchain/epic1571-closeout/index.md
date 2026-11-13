@@ -27,3 +27,4 @@
 | 20261113-033219-63-tx-withdraw-incoming-ready-light-en.png | https://github.com/ArcBlock/blockchain | 2026-11-13T03:32:19Z | wangshijun@wangshijun-mac-studio |
 | 20261113-033230-66-recover-plain-transfer-ready-to-sign-light-en.png | https://github.com/ArcBlock/blockchain | 2026-11-13T03:32:30Z | wangshijun@wangshijun-mac-studio |
 | 20261113-033241-71-recover-find-plain-transfer-hash-light-en.png | https://github.com/ArcBlock/blockchain | 2026-11-13T03:32:41Z | wangshijun@wangshijun-mac-studio |
+| 20261113-033252-73-tx-notify-reminders-light-en.png | https://github.com/ArcBlock/blockchain | 2026-11-13T03:32:52Z | wangshijun@wangshijun-mac-studio |
