@@ -22,3 +22,4 @@
 | 20261113-033125-37-home-banner-relayer-paused-light-en.png | https://github.com/ArcBlock/blockchain | 2026-11-13T03:31:25Z | wangshijun@wangshijun-mac-studio |
 | 20261113-033136-40-tx-withdraw-expire-taking-longer-than-usual-light-en.png | https://github.com/ArcBlock/blockchain | 2026-11-13T03:31:36Z | wangshijun@wangshijun-mac-studio |
 | 20261113-033147-50-tx-withdraw-claim-done-final-light-en.png | https://github.com/ArcBlock/blockchain | 2026-11-13T03:31:47Z | wangshijun@wangshijun-mac-studio |
+| 20261113-033158-55-activity-all-light-en.png | https://github.com/ArcBlock/blockchain | 2026-11-13T03:31:58Z | wangshijun@wangshijun-mac-studio |
