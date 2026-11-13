@@ -355,3 +355,4 @@
 | 11339-4-empty-region-persistent-block-light-v2.png | https://github.com/ArcBlock/arc | 2026-11-13T12:57:53Z | robmao@robmaos-Mac-Studio |
 | 20261113-133846-factory-landing-11329-light.png | https://github.com/ArcBlock/arc | 2026-11-13T13:38:46Z | robmao@robmaos-Mac-Studio |
 | 20261113-133855-factory-landing-11329-dark.png | https://github.com/ArcBlock/arc | 2026-11-13T13:38:55Z | robmao@robmaos-Mac-Studio |
+| 20261113-133900-factory-l3-signin-11329-light.png | https://github.com/ArcBlock/arc | 2026-11-13T13:39:00Z | robmao@robmaos-Mac-Studio |
