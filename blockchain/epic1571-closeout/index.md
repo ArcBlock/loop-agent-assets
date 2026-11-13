@@ -8,3 +8,4 @@
 | 20261113-032850-07-home-connected-dark-en.png | https://github.com/ArcBlock/blockchain | 2026-11-13T03:28:50Z | wangshijun@wangshijun-mac-studio |
 | 20261113-032901-09-home-connected-light-en-phone.png | https://github.com/ArcBlock/blockchain | 2026-11-13T03:29:01Z | wangshijun@wangshijun-mac-studio |
 | 20261113-032912-11-deposit-form-filled-light-en.png | https://github.com/ArcBlock/blockchain | 2026-11-13T03:29:12Z | wangshijun@wangshijun-mac-studio |
+| 20261113-032923-12-deposit-review-sheet-light-en.png | https://github.com/ArcBlock/blockchain | 2026-11-13T03:29:23Z | wangshijun@wangshijun-mac-studio |
