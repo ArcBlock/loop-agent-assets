@@ -370,3 +370,4 @@
 | 20261113-220629-11358-4-empty-slice-unified-bg-curve-light.png | https://github.com/ArcBlock/arc | 2026-11-13T22:06:29Z | robmao@robmaos-Mac-Studio |
 | 11363 | https://github.com/ArcBlock/arc | 2026-11-13T23:39:51Z | robmao@robmaos-Mac-Studio |
 | 20261113-234026-darc-hero-settled-11363-dark.png | https://github.com/ArcBlock/arc | 2026-11-13T23:40:26Z | robmao@robmaos-Mac-Studio |
+| 20261113-234031-darc-hero-settled-11363-light.png | https://github.com/ArcBlock/arc | 2026-11-13T23:40:31Z | robmao@robmaos-Mac-Studio |
