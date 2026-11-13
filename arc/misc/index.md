@@ -379,3 +379,4 @@
 | 20261113-235737-11365-1-scrolling-only-no-bg-blocks-dark.png | https://github.com/ArcBlock/arc | 2026-11-13T23:57:37Z | robmao@robmaos-Mac-Studio |
 | 20261113-235747-11365-2-scrolling-only-no-bg-blocks-light.png | https://github.com/ArcBlock/arc | 2026-11-13T23:57:47Z | robmao@robmaos-Mac-Studio |
 | 20261113-235753-11365-3-hover-fine-open-both-bg-blocks-dark.png | https://github.com/ArcBlock/arc | 2026-11-13T23:57:53Z | robmao@robmaos-Mac-Studio |
+| 20261113-235800-11365-4-hover-fine-open-both-bg-blocks-light.png | https://github.com/ArcBlock/arc | 2026-11-13T23:58:00Z | robmao@robmaos-Mac-Studio |
