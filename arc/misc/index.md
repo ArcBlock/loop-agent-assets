@@ -377,3 +377,4 @@
 | 20261113-234052-darc-hero-hover-cooling-11363-dark.png | https://github.com/ArcBlock/arc | 2026-11-13T23:40:52Z | robmao@robmaos-Mac-Studio |
 | 20261113-234057-darc-header-hover-sparks-11363-dark.png | https://github.com/ArcBlock/arc | 2026-11-13T23:40:57Z | robmao@robmaos-Mac-Studio |
 | 20261113-235737-11365-1-scrolling-only-no-bg-blocks-dark.png | https://github.com/ArcBlock/arc | 2026-11-13T23:57:37Z | robmao@robmaos-Mac-Studio |
+| 20261113-235747-11365-2-scrolling-only-no-bg-blocks-light.png | https://github.com/ArcBlock/arc | 2026-11-13T23:57:47Z | robmao@robmaos-Mac-Studio |
