@@ -11,3 +11,4 @@
 | 20261113-032923-12-deposit-review-sheet-light-en.png | https://github.com/ArcBlock/blockchain | 2026-11-13T03:29:23Z | wangshijun@wangshijun-mac-studio |
 | 20261113-032934-13-deposit-review-sheet-dark-en.png | https://github.com/ArcBlock/blockchain | 2026-11-13T03:29:34Z | wangshijun@wangshijun-mac-studio |
 | 20261113-032946-17-tx-deposit-validators-confirming-light-en.png | https://github.com/ArcBlock/blockchain | 2026-11-13T03:29:46Z | wangshijun@wangshijun-mac-studio |
+| 20261113-032957-19-tx-deposit-done-final-light-en.png | https://github.com/ArcBlock/blockchain | 2026-11-13T03:29:57Z | wangshijun@wangshijun-mac-studio |
