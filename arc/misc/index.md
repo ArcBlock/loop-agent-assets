@@ -372,3 +372,4 @@
 | 20261113-234026-darc-hero-settled-11363-dark.png | https://github.com/ArcBlock/arc | 2026-11-13T23:40:26Z | robmao@robmaos-Mac-Studio |
 | 20261113-234031-darc-hero-settled-11363-light.png | https://github.com/ArcBlock/arc | 2026-11-13T23:40:31Z | robmao@robmaos-Mac-Studio |
 | 20261113-234036-darc-hero-closeup-unannealed-11363-dark.png | https://github.com/ArcBlock/arc | 2026-11-13T23:40:36Z | robmao@robmaos-Mac-Studio |
+| 20261113-234041-darc-hero-hover-sparks-11363-dark.png | https://github.com/ArcBlock/arc | 2026-11-13T23:40:41Z | robmao@robmaos-Mac-Studio |
