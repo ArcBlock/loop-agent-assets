@@ -359,3 +359,4 @@
 | 20261113-133906-factory-l3-signin-11329-dark.png | https://github.com/ArcBlock/arc | 2026-11-13T13:39:06Z | robmao@robmaos-Mac-Studio |
 | 20261113-133912-factory-header-logo-11331-light.png | https://github.com/ArcBlock/arc | 2026-11-13T13:39:12Z | robmao@robmaos-Mac-Studio |
 | 20261113-133917-factory-header-logo-11331-dark.png | https://github.com/ArcBlock/arc | 2026-11-13T13:39:17Z | robmao@robmaos-Mac-Studio |
+| misc | https://github.com/ArcBlock/arc | 2026-11-13T21:20:53Z | robmao@robmaos-Mac-Studio |
