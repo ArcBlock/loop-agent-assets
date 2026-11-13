@@ -345,3 +345,4 @@
 | 20261112-084540-mobile-touch-scrub-11229.png | https://github.com/ArcBlock/arc | 2026-11-12T08:45:40Z | robmao@robmaos-Mac-Studio |
 | issue-11332 | https://github.com/ArcBlock/arc | 2026-11-13T10:56:23Z | robmao@robmaos-Mac-Studio |
 | 11332-1-scroll-single-ruler-dark.png | https://github.com/ArcBlock/arc | 2026-11-13T10:56:53Z | robmao@robmaos-Mac-Studio |
+| 11332-2-hover-coarse-auto-vernier-dark.png | https://github.com/ArcBlock/arc | 2026-11-13T10:56:58Z | robmao@robmaos-Mac-Studio |
