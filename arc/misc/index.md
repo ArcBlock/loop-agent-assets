@@ -368,3 +368,4 @@
 | 20261113-220615-11358-2-unified-bg-curves-hover-coarse-light.png | https://github.com/ArcBlock/arc | 2026-11-13T22:06:15Z | robmao@robmaos-Mac-Studio |
 | 20261113-220623-11358-3-label-card-focus-curve-dark.png | https://github.com/ArcBlock/arc | 2026-11-13T22:06:23Z | robmao@robmaos-Mac-Studio |
 | 20261113-220629-11358-4-empty-slice-unified-bg-curve-light.png | https://github.com/ArcBlock/arc | 2026-11-13T22:06:29Z | robmao@robmaos-Mac-Studio |
+| 11363 | https://github.com/ArcBlock/arc | 2026-11-13T23:39:51Z | robmao@robmaos-Mac-Studio |
