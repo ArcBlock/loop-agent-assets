@@ -382,3 +382,4 @@
 | 20261113-235800-11365-4-hover-fine-open-both-bg-blocks-light.png | https://github.com/ArcBlock/arc | 2026-11-13T23:58:00Z | robmao@robmaos-Mac-Studio |
 | 20261114-003706-darc-logo-spike-full-11367-dark.png | https://github.com/ArcBlock/arc | 2026-11-14T00:37:06Z | robmao@robmaos-Mac-Studio |
 | 20261114-003715-darc-logo-spike-full-11367-light.png | https://github.com/ArcBlock/arc | 2026-11-14T00:37:15Z | robmao@robmaos-Mac-Studio |
+| 20261114-003722-darc-logo-spike-grid-11367-dark.png | https://github.com/ArcBlock/arc | 2026-11-14T00:37:22Z | robmao@robmaos-Mac-Studio |
