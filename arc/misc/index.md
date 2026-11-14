@@ -390,3 +390,4 @@
 | 20261114-011719-chat-postscript-full-11370-light.png | https://github.com/ArcBlock/arc | 2026-11-14T01:17:19Z | robmao@robmaos-Mac-Studio |
 | 20261114-025024-darc-logo-a2-closeup-11372-dark.png | https://github.com/ArcBlock/arc | 2026-11-14T02:50:24Z | robmao@robmaos-Mac-Studio |
 | 20261114-025034-darc-logo-a2-closeup-11372-light.png | https://github.com/ArcBlock/arc | 2026-11-14T02:50:34Z | robmao@robmaos-Mac-Studio |
+| 20261114-025040-darc-logo-a2-triad-11372-dark.png | https://github.com/ArcBlock/arc | 2026-11-14T02:50:40Z | robmao@robmaos-Mac-Studio |
