@@ -393,3 +393,4 @@
 | 20261114-025040-darc-logo-a2-triad-11372-dark.png | https://github.com/ArcBlock/arc | 2026-11-14T02:50:40Z | robmao@robmaos-Mac-Studio |
 | 20261114-025047-darc-logo-a2-triad-11372-light.png | https://github.com/ArcBlock/arc | 2026-11-14T02:50:47Z | robmao@robmaos-Mac-Studio |
 | 20261114-025054-darc-logo-a2-hover-sparks-11372-dark.png | https://github.com/ArcBlock/arc | 2026-11-14T02:50:54Z | robmao@robmaos-Mac-Studio |
+| arc-11594/01-transactions-list.png | https://github.com/ArcBlock/arc | 2026-11-16T14:28:07Z | wangshijun@wangshijun-mac-studio |
