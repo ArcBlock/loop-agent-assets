@@ -9,3 +9,4 @@
 | 20261118-021026-05-bridge-v2-detail.png | https://github.com/blocklet/block-explorer | 2026-11-18T02:10:26Z | wangshijun@wangshijun-mac-studio |
 | 20261118-021034-06-bridge-v2-refund-tab.png | https://github.com/blocklet/block-explorer | 2026-11-18T02:10:34Z | wangshijun@wangshijun-mac-studio |
 | 20261118-021041-07-bridge-v2-withdraw-tab.png | https://github.com/blocklet/block-explorer | 2026-11-18T02:10:42Z | wangshijun@wangshijun-mac-studio |
+| 20261118-021050-08-txs-list.png | https://github.com/blocklet/block-explorer | 2026-11-18T02:10:50Z | wangshijun@wangshijun-mac-studio |
