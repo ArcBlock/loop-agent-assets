@@ -11,3 +11,4 @@
 | 20261119-035000-qr-pending-zh-light.png | https://github.com/ArcBlock/blockchain | 2026-11-19T03:50:00Z | wangshijun@wangshijun-mac-studio |
 | 20261119-035013-qr-ready-en-light.png | https://github.com/ArcBlock/blockchain | 2026-11-19T03:50:13Z | wangshijun@wangshijun-mac-studio |
 | 20261119-035025-qr-stalled-en-dark.png | https://github.com/ArcBlock/blockchain | 2026-11-19T03:50:25Z | wangshijun@wangshijun-mac-studio |
+| 20261119-035035-qr-stalled-en-light.png | https://github.com/ArcBlock/blockchain | 2026-11-19T03:50:35Z | wangshijun@wangshijun-mac-studio |
