@@ -3,3 +3,4 @@
 | file | source | uploaded | by |
 |---|---|---|---|
 | summon-panel-desktop-zh.png | https://github.com/ArcBlock/arc | 2026-11-22T21:47:35Z | robmao@robmaos-Mac-Studio |
+| summon-panel-phone-zh.png | https://github.com/ArcBlock/arc | 2026-11-22T21:47:42Z | robmao@robmaos-Mac-Studio |
