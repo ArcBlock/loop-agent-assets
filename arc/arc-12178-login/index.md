@@ -5,3 +5,4 @@
 | agents-login-zh.png | https://github.com/ArcBlock/arc | 2026-11-22T11:47:20Z | robmao@robmaos-Mac-Studio |
 | agents-login-en.png | https://github.com/ArcBlock/arc | 2026-11-22T11:47:28Z | robmao@robmaos-Mac-Studio |
 | agents-login-zh-mobile.png | https://github.com/ArcBlock/arc | 2026-11-22T11:47:33Z | robmao@robmaos-Mac-Studio |
+| agents-login-zh-v2.png | https://github.com/ArcBlock/arc | 2026-11-22T12:08:59Z | robmao@robmaos-Mac-Studio |
