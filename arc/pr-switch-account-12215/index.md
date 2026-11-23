@@ -5,3 +5,4 @@
 | 20261123-080705-01-card-switch-account.png | https://github.com/ArcBlock/arc | 2026-11-23T08:07:05Z | robmao@robmaos-Mac-Studio |
 | 20261123-080712-02-switched-channel-line.png | https://github.com/ArcBlock/arc | 2026-11-23T08:07:12Z | robmao@robmaos-Mac-Studio |
 | 20261123-080717-03-card-standby-plan.png | https://github.com/ArcBlock/arc | 2026-11-23T08:07:17Z | robmao@robmaos-Mac-Studio |
+| 20261123-080723-04-standby-notice.png | https://github.com/ArcBlock/arc | 2026-11-23T08:07:23Z | robmao@robmaos-Mac-Studio |
