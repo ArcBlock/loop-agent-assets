@@ -12,3 +12,4 @@
 | 20261123-124820-menu-web.png | https://github.com/ArcBlock/arc | 2026-11-23T12:48:20Z | robmao@robmaos-Mac-Studio |
 | 20261123-124824-profile-native.png | https://github.com/ArcBlock/arc | 2026-11-23T12:48:24Z | robmao@robmaos-Mac-Studio |
 | 20261123-124827-profile-web.png | https://github.com/ArcBlock/arc | 2026-11-23T12:48:27Z | robmao@robmaos-Mac-Studio |
+| 20261123-124832-profile-write-native.png | https://github.com/ArcBlock/arc | 2026-11-23T12:48:32Z | robmao@robmaos-Mac-Studio |
