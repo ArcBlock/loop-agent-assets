@@ -10,3 +10,4 @@
 | 20261123-180715-native-4b-row-paired.png | https://github.com/ArcBlock/arc | 2026-11-23T18:07:15Z | robmao@robmaos-Mac-Studio |
 | 20261123-180720-native-4c-form-paired.png | https://github.com/ArcBlock/arc | 2026-11-23T18:07:20Z | robmao@robmaos-Mac-Studio |
 | 20261123-180724-native-5-after-restart.png | https://github.com/ArcBlock/arc | 2026-11-23T18:07:24Z | robmao@robmaos-Mac-Studio |
+| 20261123-180728-web-1-instances.png | https://github.com/ArcBlock/arc | 2026-11-23T18:07:28Z | robmao@robmaos-Mac-Studio |
