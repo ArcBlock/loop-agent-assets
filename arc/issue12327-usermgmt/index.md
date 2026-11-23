@@ -4,3 +4,4 @@
 |---|---|---|---|
 | 20261123-124750-access-keys-native.png | https://github.com/ArcBlock/arc | 2026-11-23T12:47:50Z | robmao@robmaos-Mac-Studio |
 | 20261123-124755-access-keys-web.png | https://github.com/ArcBlock/arc | 2026-11-23T12:47:55Z | robmao@robmaos-Mac-Studio |
+| 20261123-124759-admin-native.png | https://github.com/ArcBlock/arc | 2026-11-23T12:47:59Z | robmao@robmaos-Mac-Studio |
