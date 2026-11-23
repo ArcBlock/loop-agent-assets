@@ -7,3 +7,4 @@
 | 20261123-010323-03-terminal-started.png | https://github.com/ArcBlock/arc | 2026-11-23T01:03:23Z | robmao@robmaos-Mac-Studio |
 | 20261123-010329-04-dismiss-pending.png | https://github.com/ArcBlock/arc | 2026-11-23T01:03:29Z | robmao@robmaos-Mac-Studio |
 | 20261123-010334-05-dismissed-once.png | https://github.com/ArcBlock/arc | 2026-11-23T01:03:34Z | robmao@robmaos-Mac-Studio |
+| 20261123-010339-summon-fast-close-12205.webm | https://github.com/ArcBlock/arc | 2026-11-23T01:03:39Z | robmao@robmaos-Mac-Studio |
