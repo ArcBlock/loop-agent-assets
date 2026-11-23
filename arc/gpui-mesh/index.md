@@ -13,3 +13,4 @@
 | 20261123-180728-web-1-instances.png | https://github.com/ArcBlock/arc | 2026-11-23T18:07:28Z | robmao@robmaos-Mac-Studio |
 | 20261123-180733-web-2-peer-selected.png | https://github.com/ArcBlock/arc | 2026-11-23T18:07:33Z | robmao@robmaos-Mac-Studio |
 | 20261123-180737-web-3-peer-app.png | https://github.com/ArcBlock/arc | 2026-11-23T18:07:37Z | robmao@robmaos-Mac-Studio |
+| 20261123-180741-web-4a-before-pair.png | https://github.com/ArcBlock/arc | 2026-11-23T18:07:41Z | robmao@robmaos-Mac-Studio |
