@@ -10,3 +10,4 @@
 | 20261123-035936-1-alive-waiting.png | https://github.com/ArcBlock/arc | 2026-11-23T03:59:36Z | robmao@robmaos-Mac-Studio |
 | 20261123-035941-2-alive-handed-off.png | https://github.com/ArcBlock/arc | 2026-11-23T03:59:41Z | robmao@robmaos-Mac-Studio |
 | 20261123-035946-3-inactive-handed-off.png | https://github.com/ArcBlock/arc | 2026-11-23T03:59:46Z | robmao@robmaos-Mac-Studio |
+| 20261123-035951-4-failed.png | https://github.com/ArcBlock/arc | 2026-11-23T03:59:51Z | robmao@robmaos-Mac-Studio |
