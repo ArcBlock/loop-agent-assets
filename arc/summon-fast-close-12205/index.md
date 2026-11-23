@@ -3,3 +3,4 @@
 | file | source | uploaded | by |
 |---|---|---|---|
 | 20261123-010311-01-summon-panel.png | https://github.com/ArcBlock/arc | 2026-11-23T01:03:11Z | robmao@robmaos-Mac-Studio |
+| 20261123-010318-02-closed-in-progress-card.png | https://github.com/ArcBlock/arc | 2026-11-23T01:03:18Z | robmao@robmaos-Mac-Studio |
