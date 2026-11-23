@@ -4,3 +4,4 @@
 |---|---|---|---|
 | agent-names-561-join.png | https://github.com/ArcBlock/arc | 2026-11-23T09:02:23Z | robmao@robmaos-Mac-Studio |
 | agent-names-561-join-task.png | https://github.com/ArcBlock/arc | 2026-11-23T09:02:31Z | robmao@robmaos-Mac-Studio |
+| agent-names-561-take.png | https://github.com/ArcBlock/arc | 2026-11-23T09:02:36Z | robmao@robmaos-Mac-Studio |
