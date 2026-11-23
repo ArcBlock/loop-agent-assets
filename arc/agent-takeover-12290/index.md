@@ -8,3 +8,4 @@
 | 20261123-035926-04-dismiss-pending.png | https://github.com/ArcBlock/arc | 2026-11-23T03:59:26Z | robmao@robmaos-Mac-Studio |
 | 20261123-035931-05-dismissed-once.png | https://github.com/ArcBlock/arc | 2026-11-23T03:59:31Z | robmao@robmaos-Mac-Studio |
 | 20261123-035936-1-alive-waiting.png | https://github.com/ArcBlock/arc | 2026-11-23T03:59:36Z | robmao@robmaos-Mac-Studio |
+| 20261123-035941-2-alive-handed-off.png | https://github.com/ArcBlock/arc | 2026-11-23T03:59:41Z | robmao@robmaos-Mac-Studio |
