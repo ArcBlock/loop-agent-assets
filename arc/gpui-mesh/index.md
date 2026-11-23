@@ -8,3 +8,4 @@
 | 20261123-180707-native-3-peer-app.png | https://github.com/ArcBlock/arc | 2026-11-23T18:07:07Z | robmao@robmaos-Mac-Studio |
 | 20261123-180711-native-4a-before-pair.png | https://github.com/ArcBlock/arc | 2026-11-23T18:07:11Z | robmao@robmaos-Mac-Studio |
 | 20261123-180715-native-4b-row-paired.png | https://github.com/ArcBlock/arc | 2026-11-23T18:07:15Z | robmao@robmaos-Mac-Studio |
+| 20261123-180720-native-4c-form-paired.png | https://github.com/ArcBlock/arc | 2026-11-23T18:07:20Z | robmao@robmaos-Mac-Studio |
