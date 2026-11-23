@@ -397,3 +397,4 @@
 | arc-11594/02-bridge-deposit-kind3-detail.png | https://github.com/ArcBlock/arc | 2026-11-16T14:28:25Z | wangshijun@wangshijun-mac-studio |
 | terminal-inventory-owner-zh.png | https://github.com/ArcBlock/arc | 2026-11-23T01:47:33Z | robmao@robmaos-Mac-Studio |
 | terminal-inventory-owner-en.png | https://github.com/ArcBlock/arc | 2026-11-23T01:47:37Z | robmao@robmaos-Mac-Studio |
+| terminal-rename-dialog-zh.png | https://github.com/ArcBlock/arc | 2026-11-23T01:47:41Z | robmao@robmaos-Mac-Studio |
