@@ -14,3 +14,4 @@
 | 20261123-124827-profile-web.png | https://github.com/ArcBlock/arc | 2026-11-23T12:48:27Z | robmao@robmaos-Mac-Studio |
 | 20261123-124832-profile-write-native.png | https://github.com/ArcBlock/arc | 2026-11-23T12:48:32Z | robmao@robmaos-Mac-Studio |
 | 20261123-124836-teams-native.png | https://github.com/ArcBlock/arc | 2026-11-23T12:48:36Z | robmao@robmaos-Mac-Studio |
+| 20261123-124840-teams-web.png | https://github.com/ArcBlock/arc | 2026-11-23T12:48:40Z | robmao@robmaos-Mac-Studio |
