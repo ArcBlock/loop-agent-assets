@@ -12,3 +12,4 @@
 | 20261126-100407-before-light-en_learn_map_select.png | https://github.com/ArcBlock/arc | 2026-11-26T10:04:07Z | robmao@robmaos-Mac-Studio |
 | 20261126-100413-loading-en_learn_afs_.png | https://github.com/ArcBlock/arc | 2026-11-26T10:04:13Z | robmao@robmaos-Mac-Studio |
 | 20261126-102410-fail-en_learn_afs.png | https://github.com/ArcBlock/arc | 2026-11-26T10:24:10Z | robmao@robmaos-Mac-Studio |
+| 20261126-102417-preview-draft-en_learn_afs.png | https://github.com/ArcBlock/arc | 2026-11-26T10:24:17Z | robmao@robmaos-Mac-Studio |
