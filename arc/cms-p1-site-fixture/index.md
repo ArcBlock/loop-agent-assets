@@ -17,3 +17,4 @@
 | 20261127-202521-20261127-202437-friends-college-light-desktop.png | https://github.com/ArcBlock/arc | 2026-11-27T20:25:21Z | robmao@robmaos-Mac-Studio |
 | 20261127-202526-20261127-202437-friends-college-light-mobile.png | https://github.com/ArcBlock/arc | 2026-11-27T20:25:26Z | robmao@robmaos-Mac-Studio |
 | 20261127-202530-20261127-202437-reading-anon-light-desktop.png | https://github.com/ArcBlock/arc | 2026-11-27T20:25:30Z | robmao@robmaos-Mac-Studio |
+| 20261127-202535-20261127-202437-reading-dark-desktop.png | https://github.com/ArcBlock/arc | 2026-11-27T20:25:35Z | robmao@robmaos-Mac-Studio |
