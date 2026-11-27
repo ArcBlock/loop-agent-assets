@@ -15,3 +15,4 @@
 | 20261127-110633-6-instance-delete-wallet-dark.png | https://github.com/ArcBlock/arc | 2026-11-27T11:06:33Z | robmao@robmaos-Mac-Studio |
 | 20261127-110638-6-instance-delete-wallet-light.png | https://github.com/ArcBlock/arc | 2026-11-27T11:06:38Z | robmao@robmaos-Mac-Studio |
 | 20261127-110643-7-transfer-wallet-dark.png | https://github.com/ArcBlock/arc | 2026-11-27T11:06:43Z | robmao@robmaos-Mac-Studio |
+| 20261127-110648-7-transfer-wallet-light.png | https://github.com/ArcBlock/arc | 2026-11-27T11:06:48Z | robmao@robmaos-Mac-Studio |
