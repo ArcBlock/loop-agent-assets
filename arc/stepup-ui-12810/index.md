@@ -20,3 +20,4 @@
 | 20261127-110658-8-transfer-done-light.png | https://github.com/ArcBlock/arc | 2026-11-27T11:06:58Z | robmao@robmaos-Mac-Studio |
 | 20261127-121910-10-role-admin-wallet-dark.png | https://github.com/ArcBlock/arc | 2026-11-27T12:19:10Z | robmao@robmaos-Mac-Studio |
 | 20261127-121917-10-role-admin-wallet-light.png | https://github.com/ArcBlock/arc | 2026-11-27T12:19:17Z | robmao@robmaos-Mac-Studio |
+| 20261127-121921-11-role-admin-done-dark.png | https://github.com/ArcBlock/arc | 2026-11-27T12:19:21Z | robmao@robmaos-Mac-Studio |
