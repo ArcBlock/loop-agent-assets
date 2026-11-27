@@ -1,0 +1,5 @@
+# arc/cms-p1-site-fixture
+
+| file | source | uploaded | by |
+|---|---|---|---|
+| 20261127-104734-friends-college-dark-desktop.png | https://github.com/ArcBlock/arc | 2026-11-27T10:47:34Z | robmao@robmaos-Mac-Studio |
