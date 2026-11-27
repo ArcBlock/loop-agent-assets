@@ -9,3 +9,4 @@
 | 20261127-110601-3-merge-done-dark.png | https://github.com/ArcBlock/arc | 2026-11-27T11:06:01Z | robmao@robmaos-Mac-Studio |
 | 20261127-110607-3-merge-done-light.png | https://github.com/ArcBlock/arc | 2026-11-27T11:06:07Z | robmao@robmaos-Mac-Studio |
 | 20261127-110612-4-refusal-no-own-wallet-dark.png | https://github.com/ArcBlock/arc | 2026-11-27T11:06:12Z | robmao@robmaos-Mac-Studio |
+| 20261127-110617-4-refusal-no-own-wallet-light.png | https://github.com/ArcBlock/arc | 2026-11-27T11:06:17Z | robmao@robmaos-Mac-Studio |
