@@ -23,3 +23,4 @@
 | 20261127-121921-11-role-admin-done-dark.png | https://github.com/ArcBlock/arc | 2026-11-27T12:19:21Z | robmao@robmaos-Mac-Studio |
 | 20261127-121925-11-role-admin-done-light.png | https://github.com/ArcBlock/arc | 2026-11-27T12:19:25Z | robmao@robmaos-Mac-Studio |
 | 20261127-121929-12-invitation-pending-dark.png | https://github.com/ArcBlock/arc | 2026-11-27T12:19:29Z | robmao@robmaos-Mac-Studio |
+| 20261127-121933-12-invitation-pending-light.png | https://github.com/ArcBlock/arc | 2026-11-27T12:19:33Z | robmao@robmaos-Mac-Studio |
