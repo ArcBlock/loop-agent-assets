@@ -28,3 +28,4 @@
 | 20261127-121943-13-invitation-wallet-light.png | https://github.com/ArcBlock/arc | 2026-11-27T12:19:43Z | robmao@robmaos-Mac-Studio |
 | 20261127-121948-14-invitation-done-dark.png | https://github.com/ArcBlock/arc | 2026-11-27T12:19:48Z | robmao@robmaos-Mac-Studio |
 | 20261127-121953-14-invitation-done-light.png | https://github.com/ArcBlock/arc | 2026-11-27T12:19:53Z | robmao@robmaos-Mac-Studio |
+| 20261127-121959-9-role-admin-select-dark.png | https://github.com/ArcBlock/arc | 2026-11-27T12:19:59Z | robmao@robmaos-Mac-Studio |
