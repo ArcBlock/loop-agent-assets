@@ -4,3 +4,4 @@
 |---|---|---|---|
 | 20261127-104734-friends-college-dark-desktop.png | https://github.com/ArcBlock/arc | 2026-11-27T10:47:34Z | robmao@robmaos-Mac-Studio |
 | 20261127-104740-friends-college-light-desktop.png | https://github.com/ArcBlock/arc | 2026-11-27T10:47:40Z | robmao@robmaos-Mac-Studio |
+| 20261127-104744-friends-college-light-mobile.png | https://github.com/ArcBlock/arc | 2026-11-27T10:47:44Z | robmao@robmaos-Mac-Studio |
