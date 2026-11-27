@@ -13,3 +13,4 @@
 | 20261127-110622-5-instance-owner-wallet-dark.png | https://github.com/ArcBlock/arc | 2026-11-27T11:06:22Z | robmao@robmaos-Mac-Studio |
 | 20261127-110627-5-instance-owner-wallet-light.png | https://github.com/ArcBlock/arc | 2026-11-27T11:06:27Z | robmao@robmaos-Mac-Studio |
 | 20261127-110633-6-instance-delete-wallet-dark.png | https://github.com/ArcBlock/arc | 2026-11-27T11:06:33Z | robmao@robmaos-Mac-Studio |
+| 20261127-110638-6-instance-delete-wallet-light.png | https://github.com/ArcBlock/arc | 2026-11-27T11:06:38Z | robmao@robmaos-Mac-Studio |
