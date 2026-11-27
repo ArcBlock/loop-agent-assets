@@ -19,3 +19,4 @@
 | 20261127-202530-20261127-202437-reading-anon-light-desktop.png | https://github.com/ArcBlock/arc | 2026-11-27T20:25:30Z | robmao@robmaos-Mac-Studio |
 | 20261127-202535-20261127-202437-reading-dark-desktop.png | https://github.com/ArcBlock/arc | 2026-11-27T20:25:35Z | robmao@robmaos-Mac-Studio |
 | 20261127-202541-20261127-202437-reading-dark-mobile.png | https://github.com/ArcBlock/arc | 2026-11-27T20:25:41Z | robmao@robmaos-Mac-Studio |
+| 20261127-202545-20261127-202437-reading-detail-anon-light-desktop.png | https://github.com/ArcBlock/arc | 2026-11-27T20:25:45Z | robmao@robmaos-Mac-Studio |
