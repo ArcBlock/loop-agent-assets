@@ -11,3 +11,4 @@
 | 20261127-110612-4-refusal-no-own-wallet-dark.png | https://github.com/ArcBlock/arc | 2026-11-27T11:06:12Z | robmao@robmaos-Mac-Studio |
 | 20261127-110617-4-refusal-no-own-wallet-light.png | https://github.com/ArcBlock/arc | 2026-11-27T11:06:17Z | robmao@robmaos-Mac-Studio |
 | 20261127-110622-5-instance-owner-wallet-dark.png | https://github.com/ArcBlock/arc | 2026-11-27T11:06:22Z | robmao@robmaos-Mac-Studio |
+| 20261127-110627-5-instance-owner-wallet-light.png | https://github.com/ArcBlock/arc | 2026-11-27T11:06:27Z | robmao@robmaos-Mac-Studio |
